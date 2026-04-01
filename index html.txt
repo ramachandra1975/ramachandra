@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Naredla Rama Chandra | Cultural Musings</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 20px; color: #333; }
+        header { border-bottom: 3px solid #2c3e50; margin-bottom: 20px; }
+        .box { background: #f4f4f4; padding: 20px; border-radius: 8px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Naredla Rama Chandra</h1>
+        <p>Researcher & Author: Synthesis of Ancient Sciences & Modern Technology</p>
+    </header>
+    <div class="box">
+        <h2>Core Research</h2>
+        <ul>
+            <li><strong>Master Consciousness Protocol (MCP)</strong>: A 300-page text on humanoid existence.</li>
+            <li><strong>Sapta Swaras</strong>: Bio-acoustic impacts of the seven musical notes.</li>
+            <li><strong>Vedic Studies</strong>: Integration of Natya Shastra with modern physics.</li>
+        </ul>
+        <p>Contact: smith123846@gmail.com | +91 9121379100</p>
+    </div>
+</body>
+</html>
