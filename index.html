@@ -11,7 +11,7 @@ HTML
             --primary: #1a2a44; 
             --accent: #b8955a;  
             --paper: #fdfaf5;   
-            /* Using Relative Paths for Vercel Compatibility */
+            /* File names must match your GitHub files exactly (lowercase) */
             --bg-img: url('./background.png');
             --karanas-img: url('./karanas.jpg'); 
             --profile-img: url('./photo.jpg');
@@ -40,13 +40,11 @@ HTML
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         .brand { display: flex; align-items: center; }
         .logo { 
-            width: 55px; 
-            height: 55px; 
+            width: 55px; height: 55px; 
             background-color: #eee;
             background-image: var(--logo-img); 
             background-size: cover; 
@@ -73,8 +71,7 @@ HTML
 
         .profile-box { display: flex; gap: 40px; align-items: center; }
         .p-img { 
-            width: 220px; 
-            height: 280px; 
+            width: 220px; height: 280px; 
             background-color: #f0f0f0;
             background-image: var(--profile-img); 
             background-size: cover; 
@@ -84,8 +81,7 @@ HTML
         }
 
         .karana-img { 
-            width: 100%; 
-            height: 450px; 
+            width: 100%; height: 450px; 
             background-color: #f9f6f0;
             background-image: var(--karanas-img); 
             background-size: contain; 
@@ -117,8 +113,9 @@ HTML
 </head>
 <body>
 
-<audio id="bg-flute" loop>
+<audio id="bg-flute" loop preload="auto">
     <source src="./flute.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
 </audio>
 <button id="music-btn" onclick="toggleMusic()">[ PLAY FLUTE ]</button>
 
@@ -150,7 +147,7 @@ HTML
             <div class="p-img"></div>
             <div>
                 <h2>I. Researcher Profile</h2>
-                <p><strong>Naredla Rama Chandra</strong> is an independent researcher dedicated to the synthesis of ancient Indian musicology and modern empirical sciences. His work focuses on the bio-acoustic properties of the <strong>Sapta Swaras</strong> and the neurological foundations of the <strong>108 Karanas</strong>.</p>
+                <p><strong>Naredla Rama Chandra</strong> is an independent researcher bridging ancient Indian musicology with modern empirical sciences. His work focuses on the bio-acoustic properties of the <strong>Sapta Swaras</strong> and the neurological foundations of the <strong>108 Karanas</strong>.</p>
             </div>
         </div>
     </section>
@@ -159,7 +156,7 @@ HTML
         <h3>II. The Science of the 108 Karanas</h3>
         <p>The **108 Karanas** represent the fundamental grammar of human movement. Our research investigates how these archetypal forms serve as systematic tools to align consciousness by utilizing the body as a precise tool of resonance.</p>
         <div class="karana-img"></div>
-        <p style="text-align: center; font-style: italic; color: #666; font-size: 0.9rem;">Fig 1: Karana Postures in Reference to Medical & Cosmic Context</p>
+        <p style="text-align: center; font-style: italic; color: #666; font-size: 0.9rem;">Fig 1: Posture Reference to Context - Lalita, Tandava, Avahittha</p>
     </section>
 
     <section id="medical">
@@ -169,27 +166,27 @@ HTML
 
     <section id="astrology">
         <h3>IV. Science Front: Astrological Font</h3>
-        <p>By analyzing the vibrational resonance of the individual’s bio-energy against the cosmic forces in context, we provide professional correlation for optimal project timing and personal well-being.</p>
+        <p>By analyzing the vibrational resonance of the individual’s bio-energy against cosmic forces, we provide professional correlation for optimal timing and well-being from a scientific astrological perspective.</p>
     </section>
 
     <section id="books">
         <h3>V. Core Publications</h3>
         <div class="grid">
             <div class="card"><h4>1. Complete Science of Consciousness</h4><p>Vedic Chaitanya vs. AI.</p></div>
-            <div class="card"><h4>2. Master Reference Compendium</h4><p>Standardizing traditional and medical terms.</p></div>
-            <div class="card"><h4>3. Sapta Swaras & Healing</h4><p>Resonance with the endocrine system.</p></div>
-            <div class="card"><h4>4. 108 Karanas & Beeja Aksharas</h4><p>Mathematical movement and primordial sound.</p></div>
+            <div class="card"><h4>2. Master Reference Compendium</h4><p>Standardizing terminology.</p></div>
+            <div class="card"><h4>3. Sapta Swaras & Healing</h4><p>Music and the endocrine system.</p></div>
+            <div class="card"><h4>4. 108 Karanas & Beeja Aksharas</h4><p>Movement and sound resonance.</p></div>
             <div class="card"><h4>5. Yoga: The Eternal Science</h4><p>Vedic roots for modern neurology.</p></div>
-            <div class="card"><h4>6. Shabda Brahman</h4><p>Primordial vibration as physical foundation.</p></div>
-            <div class="card"><h4>7. Cosmic Choreography</h4><p>Advaita Vedanta through astrophysics.</p></div>
-            <div class="card"><h4>8. Sanskrit & AI</h4><p>Grammar and neurological programming.</p></div>
+            <div class="card"><h4>6. Shabda Brahman</h4><p>The primordial vibration.</p></div>
+            <div class="card"><h4>7. Cosmic Choreography</h4><p>Advaita Vedanta & astrophysics.</p></div>
+            <div class="card"><h4>8. Sanskrit & AI</h4><p>Grammar and neurological logic.</p></div>
             <div class="card"><h4>9. Aesthetics of Society</h4><p>Traditional arts in community health.</p></div>
         </div>
     </section>
 
     <section id="clan">
         <h3>VI. The Guru's Clan</h3>
-        <p>Honoring the oral traditions of regional masters in Vizianagaram, ensuring authentic data for our bio-acoustic and Karana studies.</p>
+        <p>Honoring the oral traditions of regional masters in Vizianagaram, ensuring authentic data for bio-acoustic research.</p>
     </section>
 
     <section id="videos">
@@ -204,12 +201,12 @@ HTML
 
     <section id="references">
         <h3>VIII. Textual References</h3>
-        <p>Primary sources include the Natyashastra, Sangita Ratnakara, and contemporary peer-reviewed scientific journals regarding Neuro-endocrinology.</p>
+        <p>Primary sources: Natyashastra, Sangita Ratnakara, and peer-reviewed Neuro-endocrinology journals.</p>
     </section>
 
     <section id="context">
         <h3>IX. Contextual Framework</h3>
-        <p>Situating Indian aesthetics within the global movement of Bio-musicology as precise, functional tools for holistic health.</p>
+        <p>Situating Indian aesthetics within Bio-musicology as precise, functional tools for holistic health.</p>
     </section>
 
     <section id="inquiry">
@@ -232,11 +229,12 @@ HTML
 <script>
     const audio = document.getElementById('bg-flute');
     const btn = document.getElementById('music-btn');
-    audio.volume = 0.3; 
+    audio.volume = 0.35; // Set smooth, subtle volume
 
+    // Trigger music on first click anywhere (required by browsers)
     document.body.addEventListener('click', () => {
         if (audio.paused) {
-            audio.play();
+            audio.play().catch(e => console.log("Audio failed to play:", e));
             btn.innerHTML = "[ PAUSE FLUTE ]";
         }
     }, { once: true });
