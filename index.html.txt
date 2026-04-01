@@ -1,0 +1,142 @@
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naredla Rama Chandra | culturalmusings.com</title>
+    
+    <meta name="description" content="Official research hub of Naredla Rama Chandra. Exploring Sapta Swaras, 108 Karanas, and the Master Consciousness Protocol.">
+    <link rel="canonical" href="https://culturalmusings.com" />
+
+    <style>
+        :root {
+            --primary: #1a365d;
+            --accent: #e0c38c;
+            --bg-img: url('23Pink Blue Mountain Top Photo Motivational Quote Facebook Post.jpg');
+            --profile-img: url('images.jpg');
+            --logo-img: url('download.jpg');
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), var(--bg-img) no-repeat center center fixed;
+            background-size: cover;
+            color: #2c3e50;
+        }
+
+        /* Simplified Header */
+        header {
+            background: white;
+            padding: 10px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand { display: flex; align-items: center; }
+        .logo { width: 45px; height: 45px; border-radius: 50%; background-image: var(--logo-image); background-size: cover; margin-right: 12px; border: 1px solid #ddd; }
+        .title { font-size: 1.2rem; font-weight: bold; color: var(--primary); letter-spacing: 1px; }
+
+        nav { background: var(--primary); padding: 10px; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+
+        .content { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+
+        section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Profile Area */
+        .profile-box { display: flex; gap: 30px; align-items: center; }
+        .p-img { width: 180px; height: 220px; border-radius: 10px; background-image: var(--profile-img); background-size: cover; background-position: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); flex-shrink: 0; }
+        
+        /* Publications Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .card { background: white; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); }
+        .card h4 { margin: 0 0 5px 0; color: var(--primary); }
+
+        /* Video Area */
+        .v-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .v-card { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden; }
+        .v-card iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        footer { background: var(--primary); color: white; padding: 40px 20px; text-align: center; border-radius: 12px; }
+        footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
+
+        @media (max-width: 600px) { .profile-box { flex-direction: column; text-align: center; } .v-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">
+        <div class="logo" style="background-image: var(--logo-img);"></div>
+        <div class="title">AESTHETICS OF SOCIETY</div>
+    </div>
+    <div style="font-size: 0.8rem; color: #888;">culturalmusings.com</div>
+</header>
+
+<nav>
+    <a href="#about">About</a>
+    <a href="#books">Books</a>
+    <a href="#videos">Media</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="content">
+
+    <section id="about">
+        <div class="profile-box">
+            <div class="p-img"></div>
+            <div>
+                <h2 style="margin-top: 0;">Naredla Rama Chandra</h2>
+                <p>Independent Researcher & Author bridging Ancient Indian Systems (Sapta Swaras, 108 Karanas) with Modern Bio-acoustics and Neuroscience.</p>
+                <p><strong>Goal:</strong> To establish the "Master Consciousness Protocol" for natural healing and the liberation of human potential.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="books">
+        <h3 style="color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 5px;">Publications</h3>
+        <div class="grid">
+            <div class="card"><h4>1. Complete Science of Consciousness</h4><p>Ancient Knowledge vs Artificial Intelligence.</p></div>
+            <div class="card"><h4>2. Master Reference Compendium</h4><p>Integrated Research Standards.</p></div>
+            <div class="card"><h4>3. Sapta Swaras & Healing</h4><p>Treatise on Carnatic Music Science.</p></div>
+            <div class="card"><h4>4. 108 Karanas & Beeja Aksharas</h4><p>Astrophysics & Medical Science foundations.</p></div>
+            <div class="card"><h4>5. Yoga: The Eternal Science</h4><p>Vedic roots for modern neurology.</p></div>
+            <div class="card"><h4>6. Shabda Brahman</h4><p>Sacred Science of Sound.</p></div>
+            <div class="card"><h4>7. The Cosmic Choreography</h4><p>Study of Shankaracharya’s Metaphysics.</p></div>
+            <div class="card"><h4>8. Sanskrit & AI</h4><p>Neurological Healing & Programming.</p></div>
+        </div>
+    </section>
+
+    <section id="videos">
+        <h3 style="color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 5px;">Research Media</h3>
+        <div class="v-grid">
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/NBrVKBYQd_M?start=26"></iframe></div>
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/DcNa4N5dD-A?start=21"></iframe></div>
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/eLjirbtcJFo?start=30"></iframe></div>
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/0khYFMffpCU?start=72"></iframe></div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h3>Collaborate With Us</h3>
+        <p>Seeking partners for clinical studies and scientific research.</p>
+        <p>📞 +91 9121379100 | ✉️ <a href="mailto:smith123846@gmail.com">smith123846@gmail.com</a></p>
+    </footer>
+
+</div>
+
+</body>
+</html>
