@@ -1,9 +1,10 @@
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naredla Rama Chandra | 108 Karanas & Master Consciousness Protocol</title>
+    <title>Naredla Rama Chandra | Master Consciousness Protocol</title>
     
     <style>
         :root {
@@ -11,30 +12,29 @@
             --accent: #b8955a;  
             --paper: #fdfaf5;   
             --bg-img: url('./background.png');
-            --karanas-img: url('./karanas.jpg'); 
             --profile-img: url('./photo.jpg');
             --logo-img: url('./logo.jpg');
+            --karanas-img: url('./karanas.jpg');
         }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: 'Georgia', serif;
             margin: 0;
             background-color: var(--paper);
-            background-image: linear-gradient(rgba(253, 250, 245, 0.95), rgba(253, 250, 245, 0.95)), var(--bg-img);
+            background-image: linear-gradient(rgba(253, 250, 245, 0.94), rgba(253, 250, 245, 0.94)), var(--bg-img);
             background-attachment: fixed;
-            background-position: center;
             background-size: cover;
             color: #2c3e50;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         header {
             background: #ffffff;
-            padding: 15px 5%;
+            padding: 20px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 3px solid var(--accent);
+            border-bottom: 4px solid var(--accent);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -42,213 +42,209 @@
 
         .brand { display: flex; align-items: center; }
         .logo { 
-            width: 55px; height: 55px; 
-            background-color: #f4f1ea;
+            width: 60px; height: 60px; 
             background-image: var(--logo-img); 
             background-size: cover; 
-            margin-right: 15px; 
+            margin-right: 20px; 
             border: 1px solid var(--accent); 
+            border-radius: 50%;
         }
-        .title { font-size: 1.2rem; font-weight: bold; color: var(--primary); letter-spacing: 1px; text-transform: uppercase; }
+        .header-text h1 { margin: 0; font-size: 1.4rem; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
 
         nav { 
             background: var(--primary); 
-            padding: 12px; 
+            padding: 15px; 
             text-align: center; 
             position: sticky; 
-            top: 88px; 
+            top: 104px; 
             z-index: 999; 
-            border-bottom: 2px solid var(--accent); 
-            overflow-x: auto; 
-            white-space: nowrap; 
+            border-bottom: 2px solid var(--accent);
+            white-space: nowrap;
+            overflow-x: auto;
         }
-        nav a { color: var(--paper); text-decoration: none; margin: 0 12px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; font-weight: bold; }
+        nav a { color: var(--paper); text-decoration: none; margin: 0 15px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
         nav a:hover { color: var(--accent); }
 
-        .content { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .content { max-width: 1100px; margin: 50px auto; padding: 0 30px; }
 
         section {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 40px;
-            margin-bottom: 50px;
+            background: white;
+            padding: 50px;
+            margin-bottom: 60px;
             border: 1px solid #e0d7c6;
-            box-shadow: 10px 10px 0px rgba(184, 149, 90, 0.05);
+            box-shadow: 12px 12px 0px rgba(184, 149, 90, 0.04);
         }
 
-        h2, h3 { color: var(--primary); border-bottom: 1px solid var(--accent); padding-bottom: 10px; margin-top: 0; }
+        .deep-insight {
+            border-left: 4px solid var(--accent);
+            padding: 10px 25px;
+            font-style: italic;
+            color: #444;
+            margin: 30px 0;
+            font-size: 1.15rem;
+            background: #fffcf9;
+        }
 
-        .profile-box { display: flex; gap: 30px; align-items: center; }
+        .profile-box { display: flex; gap: 40px; align-items: flex-start; }
         .p-img { 
-            width: 200px; height: 260px; 
-            background-color: #f0f0f0;
+            width: 220px; height: 280px; 
             background-image: var(--profile-img); 
             background-size: cover; 
             background-position: center;
-            border: 2px solid var(--accent); 
+            border: 3px double var(--accent); 
             flex-shrink: 0; 
         }
 
-        .karana-img { 
+        .karana-banner { 
             width: 100%; height: 400px; 
-            background-color: #f9f6f0;
             background-image: var(--karanas-img); 
             background-size: contain; 
             background-repeat: no-repeat;
             background-position: center; 
-            border: 1px solid var(--accent); 
-            margin: 20px 0; 
+            margin: 30px 0;
+            border: 1px solid #eee;
         }
 
-        /* CLAN LIST STYLING */
-        .clan-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .clan-list li { padding: 10px; background: #fffcf9; border-left: 3px solid var(--accent); font-weight: bold; color: var(--primary); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card { padding: 25px; background: #fffcf9; border-top: 3px solid var(--accent); border-right: 1px solid #eee; border-bottom: 1px solid #eee; border-left: 1px solid #eee; }
+        .card h4 { margin-top: 0; color: var(--primary); font-size: 1.1rem; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { padding: 15px; border: 1px solid #eee; background: #fffcf9; border-left: 3px solid var(--accent); }
-        .card h4 { margin: 0 0 5px 0; color: #8a6d3b; font-size: 1rem; }
+        .v-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); gap: 25px; }
+        .v-card { position: relative; padding-bottom: 56.25%; height: 0; border: 1px solid var(--accent); }
+        .v-card iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        .v-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
-        .v-card { position: relative; padding-bottom: 56.25%; height: 0; border: 1px solid var(--accent); overflow: hidden; }
-        .v-card iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        footer { background: #1a2a44; color: white; padding: 60px 20px; text-align: center; border-top: 5px solid var(--accent); }
+        
+        #music-btn { 
+            position: fixed; bottom: 30px; left: 30px; 
+            background: var(--accent); color: white; 
+            border: none; padding: 12px 24px; 
+            cursor: pointer; font-family: inherit; 
+            font-weight: bold; border-radius: 4px; 
+            z-index: 2000; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
 
-        .inquiry-form { display: flex; flex-direction: column; gap: 15px; max-width: 600px; }
-        .inquiry-form input, .inquiry-form textarea { padding: 12px; border: 1px solid #ccc; font-family: inherit; }
-        .btn-submit { background: var(--primary); color: white; padding: 15px; border: none; cursor: pointer; font-weight: bold; }
-
-        footer { background: #f4f1ea; color: var(--primary); padding: 40px 20px; text-align: center; border-top: 1px solid var(--accent); }
-        #music-btn { position: fixed; bottom: 20px; left: 20px; background: white; border: 1px solid var(--accent); padding: 8px 12px; cursor: pointer; z-index: 2000; font-size: 0.7rem; font-weight: bold; }
-
-        @media (max-width: 768px) { .profile-box { flex-direction: column; } .clan-list { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .profile-box { flex-direction: column; align-items: center; text-align: center; } }
     </style>
 </head>
 <body>
 
-<audio id="bg-flute" loop preload="auto">
-    <source src="./flute.mp3" type="audio/mpeg">
-</audio>
-<button id="music-btn" onclick="toggleMusic()">[ PLAY FLUTE ]</button>
+<audio id="audio-branding"><source src="./branding.mp3" type="audio/mpeg"></audio>
+<audio id="bg-flute" loop><source src="./flute.mp3" type="audio/mpeg"></audio>
+
+<button id="music-btn" onclick="startExperience()">ENABLE AUDIO ENVIRONMENT</button>
 
 <header>
-    <div class="brand"><div class="logo"></div><div class="title">Aesthetics of Society</div></div>
-    <div style="font-style: italic; color: #666; font-size: 0.8rem;">culturalmusings.com</div>
+    <div class="brand">
+        <div class="logo"></div>
+        <div class="header-text">
+            <h1>Naredla Rama Chandra</h1>
+        </div>
+    </div>
+    <div style="font-family: 'Courier New', monospace; color: var(--accent); font-weight: bold; font-size: 0.9rem;">CULTURALMUSINGS.COM</div>
 </header>
 
 <nav>
-    <a href="#about">I. Profile</a>
-    <a href="#karanas">II. 108 Karanas</a>
-    <a href="#medical">III. Medical Science</a>
-    <a href="#astrology">IV. Astrology</a>
-    <a href="#books">V. Publications</a>
-    <a href="#clan">VI. Clan</a>
-    <a href="#videos">VII. Media</a>
-    <a href="#references">VIII. References</a>
-    <a href="#context">IX. Context</a>
-    <a href="#inquiry">X. Inquiry</a>
+    <a href="#about">Research Profile</a>
+    <a href="#karanas">108 Karanas</a>
+    <a href="#medical">Neuro-Endocrinology</a>
+    <a href="#publications">Publications</a>
+    <a href="#media">Media</a>
 </nav>
 
 <div class="content">
 
     <section id="about">
+        <h2>The Master Consciousness Protocol</h2>
         <div class="profile-box">
             <div class="p-img"></div>
             <div>
-                <h2>I. Researcher Profile</h2>
-                <p><strong>Naredla Rama Chandra</strong> is an independent researcher dedicated to the synthesis of ancient Indian musicology and modern empirical sciences.</p>
+                <p><strong>Naredla Rama Chandra</strong> is an independent researcher dedicated to the synthesis of ancient Indian musicology and modern empirical sciences. His work establishes a framework where the 108 Karanas and Sapta Swaras function as biological triggers for heightened states of consciousness.</p>
+                <div class="deep-insight">
+                    "My research posits that the human nervous system is a resonant chamber; through the geometric precision of the Karanas, we do not merely move—we recalibrate our biological frequency."
+                </div>
             </div>
         </div>
     </section>
 
     <section id="karanas">
-        <h3>II. 108 Karanas</h3>
-        <p>Investigating the fundamental grammar of human movement as tools of resonance.</p>
-        <div class="karana-img"></div>
+        <h3>II. 108 Karanas: Somatic Architectures</h3>
+        <p>Investigating the fundamental grammar of human movement as tools of resonance. This study maps the transitions of the <em>Natyashastra</em> against modern biomechanics and fluid dynamics.</p>
+        <div class="karana-banner"></div>
     </section>
 
     <section id="medical">
-        <h3>III. Medical Science</h3>
-        <p>Researching the influence of Karanas and Mudras on the endocrine system.</p>
-    </section>
-
-    <section id="astrology">
-        <h3>IV. Astrology & Science</h3>
-        <p>Scientific correlation of bio-energy and cosmic timing.</p>
-    </section>
-
-    <section id="books">
-        <h3>V. Publications</h3>
+        <h3>III. Neuro-Endocrinology & Bio-Acoustics</h3>
         <div class="grid">
-            <div class="card"><h4>1. Complete Science of Consciousness</h4></div>
-            <div class="card"><h4>2. Master Reference Compendium</h4></div>
-            <div class="card"><h4>3. Sapta Swaras & Healing</h4></div>
-            <div class="card"><h4>4. 108 Karanas & Beeja Aksharas</h4></div>
-            <div class="card"><h4>5. Yoga: The Eternal Science</h4></div>
-            <div class="card"><h4>6. Shabda Brahman</h4></div>
-            <div class="card"><h4>7. Cosmic Choreography</h4></div>
-            <div class="card"><h4>8. Sanskrit & AI</h4></div>
-            <div class="card"><h4>9. Aesthetics of Society</h4></div>
+            <div class="card">
+                <h4>Glandular Stimulation</h4>
+                <p>Detailed research on how specific postures stimulate the Pineal and Pituitary glands to regulate the Master Consciousness state.</p>
+            </div>
+            <div class="card">
+                <h4>Frequency Mapping</h4>
+                <p>Correlation between the <strong>Sapta Swaras</strong> and brainwave entrainment (Alpha, Theta, and Gamma states).</p>
+            </div>
         </div>
     </section>
 
-    <section id="clan">
-        <h3>VI. The Guru's Clan</h3>
-        <p>Acknowledging the lineage and oral traditions of the regional masters:</p>
-        <ul class="clan-list">
-            <li>Naredla Rama Chandra</li>
-            <li>Naredla Satyanarayana</li>
-            <li>Naredla Venkata Ramana</li>
-            <li>Naredla Krishna Murthy</li>
-            <li>Naredla Appala Swamy</li>
-            <li>Naredla Simhachalam</li>
-        </ul>
+    <section id="publications">
+        <h3>IV. Core Publications</h3>
+        <div class="grid">
+            <div class="card"><strong>1. Master Consciousness Protocol</strong><br><small>300-page academic synthesis.</small></div>
+            <div class="card"><strong>2. Sapta Swaras & Healing</strong><br><small>The bio-physics of Carnatic music.</small></div>
+            <div class="card"><strong>3. 108 Karanas & Beeja Aksharas</strong><br><small>Somatic and phonetic integration.</small></div>
+            <div class="card"><strong>4. Cosmic Vak</strong><br><small>The evolution of consciousness through sound.</small></div>
+        </div>
     </section>
 
-    <section id="videos">
-        <h3>VII. Research Media</h3>
+    <section id="media">
+        <h3>V. Research Media</h3>
         <div class="v-grid">
             <div class="v-card"><iframe src="https://www.youtube.com/embed/NBrVKBYQd_M"></iframe></div>
             <div class="v-card"><iframe src="https://www.youtube.com/embed/DcNa4N5dD-A"></iframe></div>
-            <div class="v-card"><iframe src="https://www.youtube.com/embed/eLjirbtcJFo"></iframe></div>
-            <div class="v-card"><iframe src="https://www.youtube.com/embed/0khYFMffpCU"></iframe></div>
         </div>
     </section>
 
-    <section id="references">
-        <h3>VIII. References</h3>
-        <p>Natyashastra, Sangita Ratnakara, and Medical Journals.</p>
-    </section>
-
-    <section id="context">
-        <h3>IX. Context</h3>
-        <p>Indian aesthetics within global Bio-musicology.</p>
-    </section>
-
-    <section id="inquiry">
-        <h3>X. Inquiry</h3>
-        <form class="inquiry-form" action="mailto:smith123846@gmail.com" method="post" enctype="text-plain">
-            <input type="text" name="name" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <textarea name="message" rows="4" placeholder="Message" required></textarea>
-            <button type="submit" class="btn-submit">Submit Inquiry</button>
-        </form>
-    </section>
-
-    <footer>
-        <p><strong>Naredla Rama Chandra</strong> | culturalmusings.com</p>
-        <p>© 2026 MASTER CONSCIOUSNESS PROTOCOL</p>
-    </footer>
-
 </div>
 
+<footer>
+    <p><strong>Naredla Rama Chandra</strong> | Researcher & Author</p>
+    <p>© 2026 MASTER CONSCIOUSNESS PROTOCOL</p>
+</footer>
+
 <script>
-    const audio = document.getElementById('bg-flute');
+    const branding = document.getElementById('audio-branding');
+    const flute = document.getElementById('bg-flute');
     const btn = document.getElementById('music-btn');
-    audio.volume = 0.3;
-    document.body.addEventListener('click', () => {
-        if (audio.paused) { audio.play().catch(e => {}); btn.innerHTML = "[ PAUSE FLUTE ]"; }
-    }, { once: true });
-    function toggleMusic() {
-        if (audio.paused) { audio.play(); btn.innerHTML = "[ PAUSE FLUTE ]"; }
-        else { audio.pause(); btn.innerHTML = "[ PLAY FLUTE ]"; }
+    
+    branding.volume = 0.7;
+    flute.volume = 0.25;
+
+    function startExperience() {
+        if (flute.paused && branding.paused) {
+            // Sequence Start
+            btn.innerHTML = "INITIALIZING...";
+            btn.style.background = "#666";
+            
+            // Play branding (2 seconds)
+            branding.play();
+
+            // After 2 seconds, switch to background flute
+            setTimeout(() => {
+                flute.play();
+                btn.innerHTML = "DISABLE AUDIO ENVIRONMENT";
+                btn.style.background = "#1a2a44";
+            }, 2000);
+        } else {
+            // Toggle Off
+            branding.pause();
+            flute.pause();
+            branding.currentTime = 0;
+            flute.currentTime = 0;
+            btn.innerHTML = "ENABLE AUDIO ENVIRONMENT";
+            btn.style.background = "#b8955a";
+        }
     }
 </script>
 
