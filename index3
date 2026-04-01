@@ -1,0 +1,72 @@
+# Aesthetics of Society — culturalmusings.com
+
+Official research hub of **Naredla Rama Chandra**.  
+Exploring Sapta Swaras, 108 Karanas, and the Master Consciousness Protocol.
+
+---
+
+## 🚀 Deployment Guide — Step by Step
+
+### STEP 1 — Upload files to GitHub
+
+1. Go to: **https://github.com/ramachandra1975/ramachandra**
+2. Click **"Add file"** → **"Upload files"**
+3. Upload both files:
+   - `index.html`
+   - `_config.yml`
+4. Scroll down → click **"Commit changes"**
+
+---
+
+### STEP 2 — Enable GitHub Pages
+
+1. In the repo, click **"Settings"** (top menu)
+2. Scroll down to **"Pages"** (left sidebar)
+3. Under **"Source"** → select **"Deploy from a branch"**
+4. Branch: **main** / Folder: **/ (root)**
+5. Click **"Save"**
+
+Your site will be live at:  
+👉 **https://ramachandra1975.github.io/ramachandra**
+
+---
+
+### STEP 3 — Point your domain www.culturalmusings.com
+
+In your domain registrar (GoDaddy / Namecheap / Google Domains etc.):
+
+**Add these DNS records:**
+
+| Type  | Name | Value |
+|-------|------|-------|
+| CNAME | www  | ramachandra1975.github.io |
+| A     | @    | 185.199.108.153 |
+| A     | @    | 185.199.109.153 |
+| A     | @    | 185.199.110.153 |
+| A     | @    | 185.199.111.153 |
+
+**Then in GitHub Pages settings:**
+- Under "Custom domain" → type: `www.culturalmusings.com`
+- Check **"Enforce HTTPS"**
+
+DNS changes take 24–48 hours to propagate.
+
+---
+
+## 📋 What's on the site
+
+- Hero page with background image, tagline, social links, contact
+- About / Bio with photo
+- 8 Publications with full descriptions
+- 8 Research videos (click-to-play thumbnails)
+- Textual & contextual scholarly references
+- Guru Paramparā / Lineage section
+- Contact / Inquiry form → smith123846@gmail.com
+
+---
+
+## 📞 Contact
+
+- Phone: +91 9121379100  
+- Email: smith123846@gmail.com  
+- Website: culturalmusings.com
