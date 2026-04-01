@@ -3,46 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naredla Rama Chandra | Cultural Musings</title>
+    <title>Naredla Rama Chandra | Aesthetics of Society</title>
+    
+    <meta name="description" content="Official research hub of Naredla Rama Chandra. Exploring Sapta Swaras, 108 Karanas, and the Master Consciousness Protocol.">
+    <meta name="author" content="Naredla Rama Chandra">
+    <link rel="canonical" href="https://culturalmusings.com" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Naredla Rama Chandra",
+      "url": "https://culturalmusings.com",
+      "sameAs": [
+        "https://facebook.com/naredla.ramachandra",
+        "https://instagram.com/naredlaramachandra",
+        "https://linktr.ee/naredlaramachandra",
+        "https://aestheticsofsociety.wordpress.com"
+      ],
+      "jobTitle": "Researcher & Author",
+      "knowsAbout": ["Vedic Science", "Natya Shastra", "Bio-acoustics", "Neuroscience", "Carnatic Music"]
+    }
+    </script>
+
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 40px; color: #2c3e50; background-color: #fdfdfd; }
-        header { border-bottom: 4px solid #8e44ad; padding-bottom: 20px; margin-bottom: 30px; }
-        h1 { color: #2c3e50; margin: 0; font-size: 2.5em; }
-        .subtitle { font-style: italic; color: #7f8c8d; font-size: 1.1em; }
-        .research-section { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 5px solid #8e44ad; margin-bottom: 25px; }
-        h2 { color: #8e44ad; margin-top: 0; }
-        .contact { background: #34495e; color: white; padding: 20px; border-radius: 10px; margin-top: 40px; }
-        .contact a { color: #a29bfe; text-decoration: none; }
+        :root {
+            --primary: #1a365d;
+            --accent: #e0c38c;
+            --bg-light: #fdfaf5;
+            --text-dark: #2c3e50;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        /* Music Control Widget */
+        #audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--accent);
+        }
+
+        header {
+            background: white;
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-area { display: flex; align-items: center; }
+        .logo-img { width: 45px; height: 45px; border-radius: 50%; margin-right: 12px; border: 1px solid #ddd; }
+        
+        nav { background: var(--primary); padding: 12px; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
+
+        .hero {
+            background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.85)), url('23Pink Blue Mountain Top Photo Motivational Quote Facebook Post.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        section { padding: 60px 0; border-bottom: 1px solid #eee; }
+        h2 { color: var(--primary); border-left: 5px solid var(--accent); padding-left: 15px; margin-bottom: 30px; }
+
+        .profile-flex { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+        .p-img { width: 220px; height: 280px; border-radius: 15px; background: url('images.jpg') center/cover; border: 4px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--accent); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .card h4 { margin: 0 0 10px 0; color: var(--primary); }
+
+        .v-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+        .v-card { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .v-card iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .social-link-card { 
+            text-align: center; 
+            padding: 20px; 
+            border-radius: 10px; 
+            text-decoration: none; 
+            color: var(--primary); 
+            font-weight: bold; 
+            border: 1px solid #ddd;
+            transition: 0.3s;
+        }
+        .social-link-card:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+
+        .youtube-channel-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: #FF0000;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .youtube-channel-link:hover { background: #cc0000; }
+
+        form input, form textarea, form select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        .submit-btn { background: var(--primary); color: white; padding: 15px 40px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
+        .submit-btn:hover { background: var(--accent); color: var(--primary); }
+
+        @media (max-width: 600px) { .v-grid { grid-template-columns: 1fr; } .profile-flex { justify-content: center; text-align: center; } }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Naredla Rama Chandra</h1>
-        <p class="subtitle">Researcher & Author | Synthesis of Ancient Sciences & Modern Technology</p>
-    </header>
+<div id="audio-control">
+    <audio id="bg-music" loop>
+        <source src="carnatic-bg.mp3" type="audio/mpeg">
+    </audio>
+    <span style="font-size: 12px; font-weight: bold;">Carnatic Ambient</span>
+    <button onclick="toggleMusic()" style="padding: 5px 12px; background: var(--primary); color: white; border: none; border-radius: 20px; cursor: pointer;">Play/Pause</button>
+</div>
 
-    <div class="research-section">
-        <h2>Master Consciousness Protocol (MCP)</h2>
-        <p>A comprehensive 300-page exploration into humanoid existence, consciousness, and the future of human evolution.</p>
+<header>
+    <div class="logo-area">
+        <img src="download.jpg" alt="Logo" class="logo-img">
+        <div style="font-weight: bold; font-size: 1.2rem; color: var(--primary);">AESTHETICS OF SOCIETY</div>
     </div>
+    <div style="font-size: 0.8rem; color: #777; font-weight: bold;">culturalmusings.com</div>
+</header>
 
-    <div class="research-section">
-        <h2>Sapta Swaras & Bio-Acoustics</h2>
-        <p>In-depth research into the seven musical notes and their neuro-endocrinal impact on the human body, blending Carnatic music with modern medical science.</p>
-    </div>
+<nav>
+    <a href="#about">Bio</a>
+    <a href="#clan">The Clan</a>
+    <a href="#books">Publications</a>
+    <a href="#media">Media</a>
+    <a href="#connect">Connect</a>
+    <a href="#inquiry">Inquiry</a>
+</nav>
 
-    <div class="research-section">
-        <h2>Vedic Studies & Physics</h2>
-        <p>Integrating Natya Shastra, 108 Karanas, and Sanskrit Beeja Aksharas with contemporary astrophysics and AI programming.</p>
-    </div>
+<div class="hero">
+    <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Naredla Rama Chandra</h1>
+    <p style="font-size: 1.2rem; font-style: italic;">Researcher | Author | Specialist in Vedic Synthesis</p>
+</div>
 
-    <div class="contact">
-        <h3>Professional Collaboration</h3>
-        <p>Email: <a href="mailto:smith123846@gmail.com">smith123846@gmail.com</a></p>
-        <p>Phone: +91 9121379100</p>
-        <p>Vizianagaram, Andhra Pradesh</p>
-    </div>
+<div class="container">
+
+    <section id="about">
+        <div class="profile-flex">
+            <div class="p-img"></div>
+            <div style="flex: 1; min-width: 300px;">
+                <h2>Researcher Profile</h2>
+                <p>Naredla Rama Chandra is an independent researcher and author bridging ancient systems with modern frameworks. His multidisciplinary approach connects the bio-acoustics of Carnatic music and the kinematics of Natya Shastra with contemporary neuroscience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="clan">
+        <h2>The Guru's Clan & Heritage</h2>
+        <p>Anchored in the spiritual heritage of the <strong>Ramanandi Tradition</strong> and the philosophy of Vishishtadvaita Vedanta. This lineage emphasizes the transformative power of <em>Shabda Brahman</em>.</p>
+    </section>
+
+    <section id="books">
+        <h2>The 8 Pillars of Research</h2>
+        <div class="grid">
+            <div class="card"><h4>1. Complete Science of Consciousness</h4><p>Ancient Knowledge vs Artificial Intelligence.</p></div>
+            <div class="card"><h4>2. Master Reference Compendium</h4><p>Integrated Research Standards.</p></div>
+            <div class="card"><h4>3. Sapta Swaras & Healing</h4><p>Treatise on Carnatic Music Science.</p></div>
+            <div class="card"><h4>4. 108 Karanas & Beeja Aksharas</h4><p>Astrophysics & Medical Science foundations.</p></div>
+            <div class="card"><h4>5. Yoga: The Eternal Science</h4><p>Vedic roots for modern neurology.</p></div>
+            <div class="card"><h4>6. Shabda Brahman</h4><p>Sacred Science of Sound.</p></div>
+            <div class="card"><h4>7. The Cosmic Choreography</h4><p>Study of Shankaracharya’s Metaphysics.</p></div>
+            <div class="card"><h4>8. Sanskrit & AI</h4><p>Neurological Healing & Programming.</p></div>
+        </div>
+    </section>
+
+    <section id="media">
+        <h2>Research Media & Analysis</h2>
+        <div class="v-grid">
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/NBrVKBYQd_M?start=26"></iframe></div>
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/DcNa4N5dD-A?start=21"></iframe></div>
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/eLjirbtcJFo?start=30"></iframe></div>
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/0khYFMffpCU?start=72"></iframe></div>
+        </div>
+        <a href="https://www.youtube.com/@aestheticsofsociety/videos?view=0&sort=p&flow=grid" target="_blank" class="youtube-channel-link">
+            🔎 Search Popular Research Videos from @aestheticsofsociety
+        </a>
+    </section>
+
+    <section id="connect">
+        <h2>Digital Hub & Socials</h2>
+        <div class="grid">
+            <a href="https://linktr.ee/naredlaramachandra" class="social-link-card" target="_blank">Linktree Central</a>
+            <a href="https://aestheticsofsociety.wordpress.com" class="social-link-card" target="_blank">Official Blogsite</a>
+            <a href="https://facebook.com/naredla.ramachandra" class="social-link-card" target="_blank">Facebook Page</a>
+            <a href="https://instagram.com/naredlaramachandra" class="social-link-card" target="_blank">Instagram Visuals</a>
+        </div>
+    </section>
+
+    <section id="inquiry">
+        <h2>Inquiry & Collaboration</h2>
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <select>
+                <option>General Research Inquiry</option>
+                <option>Master Consciousness Protocol</option>
+                <option>Book Purchase</option>
+                <option>Speaking Engagement</option>
+            </select>
+            <textarea rows="5" placeholder="Your Message..."></textarea>
+            <button type="submit" class="submit-btn">Submit Inquiry</button>
+        </form>
+    </section>
+
+</div>
+
+<footer style="background: var(--primary); color: white; padding: 60px 20px; text-align: center;">
+    <p style="font-weight: bold; font-size: 1.1rem;">Naredla Rama Chandra</p>
+    <p>📞 +91 9121379100 | ✉️ <a href="mailto:smith123846@gmail.com" style="color: var(--accent);">smith123846@gmail.com</a></p>
+    <div style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">© 2026 culturalmusings.com. All Rights Reserved.</div>
+</footer>
+
+<script>
+    const music = document.getElementById('bg-music');
+    function toggleMusic() {
+        if (music.paused) {
+            music.play();
+        } else {
+            music.pause();
+        }
+    }
+</script>
 
 </body>
 </html>
