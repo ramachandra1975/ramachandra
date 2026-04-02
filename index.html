@@ -6,14 +6,14 @@ HTML
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Consciousness Protocol | Naredla Rama Chandra</title>
     <style>
-        :root { --primary: #0a254d; --accent: #d4af37; }
+        :root { --primary: #0a254d; --gold: #b8860b; }
         * { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; }
+        body, html { margin: 0; padding: 0; font-family: 'Times New Roman', Times, serif; scroll-behavior: smooth; }
         
         body {
-            background-image: linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)), url('background.png');
+            background-image: linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35)), url('background.png');
             background-size: cover; background-position: center; background-attachment: fixed;
-            color: #000;
+            color: #111;
         }
 
         header {
@@ -22,57 +22,46 @@ HTML
             position: fixed; top: 0; width: 100%; z-index: 1000;
         }
 
-        .nav-select { 
-            padding: 10px; border: 2px solid var(--primary); border-radius: 4px; 
-            background: white; color: var(--primary); font-weight: bold; cursor: pointer;
-        }
+        .container { max-width: 1100px; margin: 150px auto 80px; padding: 0 40px; }
 
-        .container { max-width: 1000px; margin: 160px auto 80px; padding: 0 30px; }
-
-        /* AUTOMATIC UPDATE RADIO BUTTONS */
-        .radio-group { margin: 30px 0; display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-        .radio-group input[type="radio"] { display: none; }
-        
+        /* SHARED RADIO STYLING */
+        .radio-group { margin: 20px 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+        .radio-group input { display: none; }
         .radio-group label {
-            padding: 12px 25px; border: 2px solid var(--primary); border-radius: 30px;
-            cursor: pointer; font-weight: bold; transition: 0.3s; 
-            background: rgba(255,255,255,0.6); color: var(--primary);
-            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;
+            padding: 10px 25px; border: 2px solid var(--primary); border-radius: 30px;
+            cursor: pointer; font-weight: bold; background: rgba(255,255,255,0.6);
+            text-transform: uppercase; font-size: 0.85rem; transition: 0.3s;
+        }
+        .radio-group input:checked + label { background: var(--primary); color: white; }
+
+        /* LAYOUT FOR SECTIONS */
+        .content-flex { display: flex; gap: 40px; align-items: flex-start; margin-top: 30px; flex-wrap: wrap; }
+        .media-side { flex: 1; min-width: 300px; }
+        .text-side { flex: 1.5; min-width: 350px; text-align: justify; line-height: 1.8; font-size: 1.15rem; }
+
+        .profile-img { 
+            width: 100%; max-width: 350px; border-radius: 5px; 
+            border: 1px solid var(--primary); box-shadow: 5px 5px 15px rgba(0,0,0,0.1); 
         }
 
-        .radio-group input[type="radio"]:checked + label { background: var(--primary); color: white; }
-
-        .display-area {
-            min-height: 120px; padding: 25px 0; font-size: 1.2rem; line-height: 1.8;
-            color: #000; text-shadow: 0px 0px 10px white; text-align: justify;
-        }
-
-        section { padding: 50px 0; border-bottom: 1px solid rgba(10, 37, 77, 0.1); }
-        h2 { font-family: 'Georgia', serif; color: var(--primary); text-shadow: 1px 1px 2px white; }
+        section { padding: 60px 0; border-bottom: 1px solid rgba(10,37,77,0.1); }
+        h2 { color: var(--primary); font-size: 1.8rem; letter-spacing: 2px; text-align: center; }
+        .book-intro-text { white-space: pre-line; font-style: italic; color: #333; }
     </style>
 </head>
 <body>
 
     <header>
-        <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 15px;">
             <img src="logo.jpg" style="width:50px; height:50px; border-radius: 50%;">
-            <span style="font-weight: bold; color: var(--primary);">Aesthetics of Society</span>
+            <span style="font-weight: bold; color: var(--primary); font-size: 1.2rem;">Aesthetics of Society</span>
         </div>
         <nav>
-            <select class="nav-select" onchange="if(this.value) location.hash = this.value;">
-                <option value="">EXPLORE THE PROTOCOL</option>
+            <select style="padding:8px; font-weight:bold;" onchange="location.hash=this.value">
                 <option value="#author">01. Author Introduction</option>
-                <option value="#karanas">02. 10 Karanas (Postures)</option>
-                <option value="#mcp">03. Master Consciousness Protocol</option>
-                <option value="#swaras">04. Sapta Swaras & Healing</option>
-                <option value="#cosmic">05. The Cosmic Choreography</option>
-                <option value="#psych">06. Sampoorna Manovijnana</option>
-                <option value="#yoga">07. Yoga: Eternal Science</option>
-                <option value="#dna">08. Beeja Akshara & DNA</option>
-                <option value="#bio">09. Vedic Bio-Acoustics</option>
-                <option value="#vak">10. Cosmic Vak Series</option>
-                <option value="#lineage">11. Guru Shishya Clan</option>
-                <option value="#contact">12. Research Inquiry</option>
+                <option value="#karanas">02. 10 Karanas Analysis</option>
+                <option value="#mcp">03. Master Protocol</option>
+                <option value="#contact">12. Contact Inquiry</option>
             </select>
         </nav>
     </header>
@@ -80,15 +69,21 @@ HTML
     <div class="container">
         
         <section id="author">
-            <h2 style="text-align: center;">INDEPENDENT RESEARCHER • NAREDLA RAMA CHANDRA</h2>
+            <h2>NAREDLA RAMA CHANDRA</h2>
             <div class="radio-group">
-                <input type="radio" name="auth-tab" id="a1" checked onclick="autoUpdate('auth', 'a1')">
-                <label for="a1">Brief Profile</label>
-                
-                <input type="radio" name="auth-tab" id="a2" onclick="autoUpdate('auth', 'a2')">
-                <label for="a2">Research Philosophy</label>
+                <input type="radio" name="auth" id="ab1" checked onclick="updateAuth('profile')">
+                <label for="ab1">Brief Profile</label>
+                <input type="radio" name="auth" id="ab2" onclick="updateAuth('philosophy')">
+                <label for="ab2">Research Philosophy</label>
             </div>
-            <div id="auth-display" class="display-area"></div>
+
+            <div class="content-flex">
+                <div class="media-side" id="author-img-area">
+                    <img src="author.jpg" class="profile-img" alt="Naredla Rama Chandra">
+                </div>
+                <div class="text-side" id="author-text">
+                    </div>
+            </div>
         </section>
 
         <section id="karanas">
@@ -96,47 +91,55 @@ HTML
             <div class="radio-group">
                 <script>
                     for(let i=1; i<=10; i++) {
-                        let id = "k"+i;
-                        document.write(`<input type="radio" name="k-tab" id="${id}" ${i==1?'checked':''} onclick="autoUpdate('karana', '${id}')">`);
-                        document.write(`<label for="${id}">K-${i < 10 ? '0'+i : i}</label>`);
+                        document.write(`<input type="radio" name="k" id="k${i}" ${i==1?'checked':''} onclick="updateKarana(${i})">
+                                       <label for="k${i}">K-${i<10?'0'+i:i}</label>`);
                     }
                 </script>
             </div>
-            <div id="karana-display" class="display-area"></div>
+
+            <div class="content-flex">
+                <div class="media-side">
+                    <img src="k1.jpg" id="karana-img" class="profile-img" alt="Karana Photo">
+                </div>
+                <div class="text-side">
+                    <h3 id="karana-title" style="color:var(--primary); margin-top:0;">Karana 01</h3>
+                    <div id="karana-desc" style="white-space: pre-line;">
+                        </div>
+                </div>
+            </div>
         </section>
 
     </div>
 
     <script>
-        // Content Data Store
-        const data = {
-            auth: {
-                'a1': 'Naredla Rama Chandra is an independent researcher and author specializing in the integration of Indian Classical Arts, Bio-Acoustics, and Neuroscience.',
-                'a2': 'Deciphering the "Source Code" of the Natya Shastra to develop the Master Consciousness Protocol for cellular wellness.'
-            },
-            karana: {
-                'k1': 'Karana 01: Spinal alignment for electromagnetic resonance.',
-                'k2': 'Karana 02: Lateral movement for brain synchronization.',
-                'k3': 'Karana 03: Hand mudra and bio-acoustic frequency mapping.',
-                'k4': 'Karana 04: Grounding transitions with terrestrial rhythms.',
-                'k5': 'Karana 05: Rotational dynamics in the Consciousness Protocol.',
-                'k6': 'Karana 06: Neuro-geometric patterns for physiological health.',
-                'k7': 'Karana 07: Resonance mapping for cellular bio-acoustics.',
-                'k8': 'Karana 08: Aligning movement with astrophysical cycles.',
-                'k9': 'Karana 09: Bridge between static and dynamic meditation.',
-                'k10': 'Karana 10: Final synthesis of vibrational sound medicine.'
+        const content = {
+            profile: "Naredla Rama Chandra is an independent researcher and author who has dedicated his career to the 'Source Code' of ancient Indian knowledge systems. His work specifically decodes the Natya Shastra through the lens of modern neuroscience and bio-acoustics, providing a bridge between spiritual heritage and clinical physiological wellness. He is the architect of the Master Consciousness Protocol (MCP).",
+            philosophy: "The research philosophy of Naredla Rama Chandra is rooted in the belief that ancient kinetic units—the Karanas—are not merely dance postures but biochemical switches. By aligning specific neuro-geometric movements with Raga frequencies, the Protocol seeks to trigger cellular resonance, offering a scientific pathway to sound-based healing and consciousness expansion.",
+            karanas: {
+                1: {
+                    title: "Karana 01: Spinal Resonance",
+                    text: "1. Vertical alignment is established to facilitate electromagnetic flow.\n2. Serves as the primary bio-acoustic reception point.\n3. Activates the 'Source Code' of the central nervous system.\n4. Integrates breathing cycles with static spinal geometry.\n5. Calibrates the practitioner to the Earth's frequency.\n6. Focuses on the thoracic cavity as a sound chamber.\n7. Initiates alpha-wave transitions in the motor cortex.\n8. Maps hand mudras to specific neural pathways.\n9. Essential for the foundation of the Master Protocol.\n10. Provides the baseline for clinical sound resonance."
+                }
+                // Add Karanas 2-10 here following the same format
             }
         };
 
-        // Automatic Update Function
-        function autoUpdate(type, id) {
-            const displayId = type === 'auth' ? 'auth-display' : 'karana-display';
-            document.getElementById(displayId).innerText = data[type][id];
+        function updateAuth(type) {
+            document.getElementById('author-text').innerText = content[type];
+            // Hide photo for philosophy to focus on the text, show for profile
+            document.getElementById('author-img-area').style.display = (type === 'profile') ? 'block' : 'none';
         }
 
-        // Run on load to set defaults
-        autoUpdate('auth', 'a1');
-        autoUpdate('karana', 'k1');
+        function updateKarana(id) {
+            const k = content.karanas[id] || {title: "Karana "+id, text: "Detailed research explanation for Karana "+id+" is loading..."};
+            document.getElementById('karana-img').src = "k" + id + ".jpg";
+            document.getElementById('karana-title').innerText = k.title;
+            document.getElementById('karana-desc').innerText = k.text;
+        }
+
+        // Initialize default views
+        updateAuth('profile');
+        updateKarana(1);
     </script>
 </body>
 </html>
