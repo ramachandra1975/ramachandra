@@ -4,176 +4,215 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Naredla Rama Chandra</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Aesthetics of Society | Research Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
-
-        :root { --navy: #1e3a8a; --gold: #b45309; --cream: #fdfcf9; }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--cream); 
-            color: #333; 
-            margin: 0; 
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+        :root {
+            --primary: #1a365d; /* Navy Blue */
+            --accent: #d4af37;  /* Gold */
+            --text: #334155;
+            --bg: #ffffff;
         }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+        }
+        .serif { font-family: 'Georgia', serif; }
 
-        .serif { font-family: 'Playfair Display', serif; }
-
-        /* HEADER: Decreased font size, branding in one go */
+        /* HEADER & NAVIGATION (Matches your screenshot) */
         header {
-            position: fixed; top: 0; width: 100%; height: 100px;
-            background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px);
-            z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid #f1f5f9;
         }
-
-        .brand-text { 
-            font-size: 1.1rem; 
-            letter-spacing: 0.15em; 
-            color: var(--navy); 
+        header h1 {
+            font-family: 'Georgia', serif;
             text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 10px;
+            letter-spacing: 0.3em;
+            color: var(--primary);
+            margin: 0 0 30px 0;
+            font-weight: normal;
         }
-
-        nav { display: flex; gap: 20px; }
-        nav label, nav a { 
-            cursor: pointer; transition: 0.3s; color: #94a3b8; 
-            font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+        nav a {
             text-decoration: none;
+            color: #64748b;
+            transition: color 0.3s;
+        }
+        nav a:hover, nav a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 5px;
         }
 
-        /* WATERMARK BACKGROUND LOGO */
-        .bg-watermark {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 60vw; height: 60vw; opacity: 0.03; z-index: -1; pointer-events: none;
-            background: url('logo.png') no-repeat center center; background-size: contain;
+        /* SECTION STYLING */
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+        h2 {
+            font-family: 'Georgia', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            margin-bottom: 50px;
+            font-style: italic;
         }
 
-        /* TAB NAVIGATION LOGIC */
-        .view-trigger { display: none; }
-        main section { display: none; padding-top: 150px; min-height: 100vh; animation: fadeIn 0.8s ease-out; }
-        
-        #tab-home:checked ~ main #sec-home,
-        #tab-publications:checked ~ main #sec-publications,
-        #tab-timeline:checked ~ main #sec-timeline,
-        #tab-media:checked ~ main #sec-media,
-        #tab-contact:checked ~ main #sec-contact { display: block; }
+        /* PUBLICATIONS GRID (8 Volumes) */
+        .pub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .pub-card {
+            padding: 25px;
+            border: 1px solid #f1f5f9;
+            background: #fdfdfd;
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+        .pub-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .pub-card h4 { color: var(--primary); margin-top: 0; }
+        .pub-card p { font-size: 13px; color: #64748b; }
 
-        #tab-home:checked ~ header label[for="tab-home"],
-        #tab-publications:checked ~ header label[for="tab-publications"],
-        #tab-timeline:checked ~ header label[for="tab-timeline"],
-        #tab-media:checked ~ header label[for="tab-media"],
-        #tab-contact:checked ~ header label[for="tab-contact"] { color: var(--navy); border-bottom: 1px solid var(--navy); }
+        /* VIDEO GRID (4 Research Videos) */
+        .v-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+        }
+        .v-card {
+            background: #fff;
+            border: 1px solid #f1f5f9;
+            padding: 20px;
+            border-radius: 4px;
+        }
+        .iframe-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 4px;
+        }
+        .v-meta {
+            font-size: 12px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
 
-        /* MEDIA CARDS */
-        .media-card { background: white; border: 1px solid #eee; padding: 2rem; transition: 0.3s; }
-        .media-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .video-box { width: 100%; aspect-ratio: 16/9; background: #f9f9f9; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; border: 1px solid #f1f1f1; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* ADVERTISING FOOTER */
+        .promo-footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .yt-button {
+            background: #ff0000;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="bg-watermark"></div>
-
-    <input type="radio" name="nav" id="tab-home" class="view-trigger" checked>
-    <input type="radio" name="nav" id="tab-publications" class="view-trigger">
-    <input type="radio" name="nav" id="tab-timeline" class="view-trigger">
-    <input type="radio" name="nav" id="tab-media" class="view-trigger">
-    <input type="radio" name="nav" id="tab-contact" class="view-trigger">
-
     <header>
-        <div class="brand-text serif">Aesthetics of Society</div>
+        <h1>Aesthetics of Society</h1>
         <nav>
-            <label for="tab-home">About</label>
-            <label for="tab-publications">Publications</label>
-            <label for="tab-timeline">Timeline</label>
-            <label for="tab-media">Media</label>
-            <label for="tab-contact">Contact</label>
-            <a href="https://linktr.ee/naredlaramachandra" target="_blank" style="color: var(--gold);">LINKTREE</a>
+            <a href="#about">About</a>
+            <a href="#publications">Publications</a>
+            <a href="#timeline">Timeline</a>
+            <a href="#media" class="active">Media</a>
+            <a href="#contact">Contact</a>
         </nav>
     </header>
 
-    <main class="px-10 md:px-24">
-        <section id="sec-publications">
-            <div class="max-w-6xl mx-auto pb-20">
-                <h2 class="serif text-5xl text-blue-900 mb-12">Eight Landmark Works</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white p-10 border border-gray-100">
-                        <span class="text-[9px] uppercase tracking-widest text-gold font-bold">Volume IV</span>
-                        <h3 class="serif text-2xl mt-2">108 Karanas & Beeja Aksharas</h3>
-                        <p class="text-xs text-gray-400 mt-2 uppercase tracking-widest">Astrophysics & Medical Science Foundations</p>
-                        <p class="text-sm text-gray-600 mt-6 leading-relaxed">
-                            A systematic decoding of the 108 Karanas as body-mind configurations that interface with astrophysical constants and neurological health.
-                        </p>
-                    </div>
-                    </div>
-            </div>
-        </section>
-
-        <section id="sec-media">
-            <div class="max-w-6xl mx-auto pb-20">
-                <div class="mb-12">
-                    <span class="text-[10px] tracking-[0.4em] uppercase text-gray-400">Video Archive & Cross-References</span>
-                    <h2 class="serif text-5xl text-blue-900 mt-2">Scientific Ideology</h2>
-                    <p class="text-sm text-gray-500 mt-4 italic max-w-3xl">
-                        The following media presentations provide the "ten-liner" scientific bridge between the visual Karanas and the eight research publications found on the @aestheticsofsociety channel.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div class="media-card">
-                        <div class="video-box">
-                            <i data-lucide="play" class="text-gray-200 w-12 h-12"></i>
-                        </div>
-                        <h4 class="serif text-xl text-blue-900">Decoding the Ten Karanas</h4>
-                        <p class="text-[10px] text-gold font-bold uppercase mt-2">Cross-Reference: Vol IV & Vol II</p>
-                        <p class="text-sm text-gray-500 mt-4 leading-relaxed">
-                            This presentation explains the practical importance of the ten primary Karanas. Each posture is shown not as mere dance, but as a precise neurological reset that aligns the human energy field with the primordial sounds (Beeja Aksharas). By studying these ten references, the researcher understands the foundational mechanics behind the Master Consciousness Protocol's physical rehabilitation standards.
-                        </p>
-                    </div>
-
-                    <div class="media-card">
-                        <div class="video-box">
-                            <i data-lucide="play" class="text-gray-200 w-12 h-12"></i>
-                        </div>
-                        <h4 class="serif text-xl text-blue-900">Sapta Swaras: Bio-Acoustic Healing</h4>
-                        <p class="text-[10px] text-gold font-bold uppercase mt-2">Cross-Reference: Vol III & Vol VI</p>
-                        <p class="text-sm text-gray-500 mt-4 leading-relaxed">
-                            Exploring the ideology of sound as a fundamental substrate. This video bridges the gap between ancient Carnatic swaras and the physiological restoration of neural pathways.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="py-12 border-t border-gray-100 text-center">
-        <p class="text-[9px] tracking-[0.5em] uppercase text-gray-300">© 2026 Naredla Rama Chandra</p>
-        <div class="flex justify-center gap-6 mt-4">
-            <a href="https://github.com/ramachandra1975" target="_blank" class="text-gray-300 hover:text-blue-900"><i data-lucide="github" class="w-4 h-4"></i></a>
-            <a href="https://youtube.com/@aestheticsofsociety" target="_blank" class="text-gray-300 hover:text-blue-900"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+    <section id="publications">
+        <h2>Publications</h2>
+        <div class="pub-grid">
+            <div class="pub-card"><h4>1. Science of Consciousness</h4><p>Ancient Knowledge vs AI.</p></div>
+            <div class="pub-card"><h4>2. Master Reference</h4><p>Integrated Research Standards.</p></div>
+            <div class="pub-card"><h4>3. Sapta Swaras & Healing</h4><p>Treatise on Carnatic Music.</p></div>
+            <div class="pub-card"><h4>4. 108 Karanas</h4><p>Astrophysics & Medical Science.</p></div>
+            <div class="pub-card"><h4>5. Yoga: Eternal Science</h4><p>Vedic roots for modern neurology.</p></div>
+            <div class="pub-card"><h4>6. Shabda Brahman</h4><p>Sacred Science of Sound.</p></div>
+            <div class="pub-card"><h4>7. Cosmic Choreography</h4><p>Shankaracharya’s Metaphysics.</p></div>
+            <div class="pub-card"><h4>8. Sanskrit & AI</h4><p>Neural Healing & Programming.</p></div>
         </div>
+    </section>
+
+    <section id="media">
+        <h2>Research Media Archive</h2>
+        <div class="v-grid">
+            <div class="v-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/NBrVKBYQd_M?start=26" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <h4 class="serif">01. Master Consciousness Protocol</h4>
+                <div class="v-meta">
+                    <p>Maps the "Source Code" of human existence. Supports <strong>Vol I</strong>.</p>
+                </div>
+            </div>
+            <div class="v-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/DcNa4N5dD-A?start=21" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <h4 class="serif">02. Sapta Swara & Bio-Acoustics</h4>
+                <div class="v-meta">
+                    <p>Resonance of notes with neural plexuses. Cross-referenced with <strong>Vol III</strong>.</p>
+                </div>
+            </div>
+            <div class="v-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/eLjirbtcJFo?start=30" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <h4 class="serif">03. 108 Karanas & Neural Geometry</h4>
+                <div class="v-meta">
+                    <p>Postures stimulating the motor cortex. Supports <strong>Vol IV</strong>.</p>
+                </div>
+            </div>
+            <div class="v-card">
+                <div class="iframe-container">
+                    <iframe src="https://www.youtube.com/embed/0khYFMffpCU?start=72" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <h4 class="serif">04. Sanskrit: The AI Algorithm</h4>
+                <div class="v-meta">
+                    <p>Paninian grammar vs. modern neural networks. Supports <strong>Vol VIII</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="promo-footer">
+        <h3 class="serif">Join Our Research Community</h3>
+        <p>Subscribe to <strong>@aestheticsofsociety</strong> for clinical demonstrations.</p>
+        <a href="https://youtube.com/@aestheticsofsociety" target="_blank" class="yt-button">Visit Official YouTube Channel</a>
     </footer>
 
-    <audio id="site-audio" loop>
-        <source src="flute.mp3" type="audio/mpeg">
-    </audio>
-
-    <script>
-        lucide.createIcons();
-        // Start audio on first interaction
-        document.body.addEventListener('click', () => {
-            const audio = document.getElementById('site-audio');
-            audio.volume = 0.15;
-            audio.play();
-        }, { once: true });
-    </script>
 </body>
 </html>
