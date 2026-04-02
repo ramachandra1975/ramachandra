@@ -4,179 +4,206 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Naredla Rama Chandra</title>
+    <title>Research Portfolio | Naredla Rama Chandra</title>
     <style>
-        :root {
+        /* COLOR & THEME DEFINITIONS */
+        :root { 
             --primary: #1a365d; 
-            --accent: #d4af37;
+            --accent: #d4af37; 
         }
-
+        
         * { box-sizing: border-box; }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
-            scroll-behavior: smooth;
+        
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            scroll-behavior: smooth; 
         }
-
+        
         body {
-            background-image: linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)), url('background.png');
-            background-size: cover;
-            background-position: center;
+            /* Background with 60% white overlay for perfect text readability without boxes */
+            background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('background.png');
+            background-size: cover; 
+            background-position: center; 
             background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
+            color: #111;
         }
 
         /* NAVIGATION HEADER */
         header {
-            display: flex;
-            justify-content: space-between;
+            display: flex; 
+            justify-content: space-between; 
             align-items: center;
-            padding: 10px 5%;
+            padding: 10px 5%; 
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0; width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .brand-text { font-family: 'Georgia', serif; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
 
-        /* DROPDOWN MENU STYLE */
-        .nav-dropdown {
-            padding: 8px 12px;
-            border: 1px solid var(--primary);
-            border-radius: 4px;
+        .nav-dropdown { 
+            padding: 8px 12px; 
+            border: 1px solid var(--primary); 
+            border-radius: 4px; 
+            color: var(--primary); 
+            font-weight: bold; 
+            cursor: pointer; 
             background: white;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
             outline: none;
-            text-transform: uppercase;
         }
 
-        /* HERO AREA */
-        .hero-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 20px;
-            min-height: 100vh;
+        /* CONTENT CONTAINER */
+        .container { 
+            max-width: 1000px; 
+            margin: 120px auto 60px; 
+            padding: 0 25px; 
         }
 
-        .author-name {
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            color: #000;
-            font-weight: 700;
-            background: rgba(255, 255, 255, 0.5);
-            padding: 15px 25px;
-            border-radius: 2px;
+        /* SECTION STYLING (NO BOXES) */
+        section { 
+            padding: 60px 0; 
+            border-bottom: 1px solid rgba(26, 54, 93, 0.1); 
+        }
+
+        h2 { 
+            font-family: 'Georgia', serif; 
+            color: var(--primary); 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 35px; 
+            border-left: 5px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        /* DETAILED BOOK STYLING */
+        .book-entry { margin-bottom: 45px; }
+        
+        .book-header { 
+            font-family: 'Georgia', serif;
+            font-weight: bold; 
+            font-size: 1.3rem; 
+            color: var(--primary); 
+            display: block; 
+            margin-bottom: 12px; 
+        }
+
+        .book-content { 
+            line-height: 1.8; 
+            text-align: justify; 
+            color: #333; 
+            font-size: 1.05rem; 
         }
 
         /* INQUIRY SECTION */
-        .inquiry-card {
-            background: white;
-            max-width: 700px;
-            width: 90%;
-            margin: 100px auto;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        .contact-details {
             text-align: center;
+            font-size: 1.2rem;
+            line-height: 2;
+            padding: 40px 0;
         }
-
-        .contact-box {
-            margin: 20px 0;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 5px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary { background: var(--primary); color: white; margin-top: 20px; }
 
         /* FOOTER */
-        footer {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #555;
-            border-top: 1px solid #eee;
+        footer { 
+            text-align: center; 
+            padding: 40px; 
+            font-size: 0.85rem; 
+            color: #444;
+            background: rgba(255,255,255,0.8);
         }
+        
+        .status-indicator { color: #27ae60; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="brand-container">
-            <img src="logo.jpg" style="width:35px; height:35px; object-fit: contain;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="logo.jpg" style="width:35px; height:35px; object-fit: contain;" alt="Logo">
             <span class="brand-text">Aesthetics of Society</span>
-        </a>
-        
+        </div>
         <nav>
-            <select class="nav-dropdown" onchange="if (this.value) window.location.href = this.value;">
-                <option value="">Menu</option>
-                <option value="#">Home</option>
-                <option value="#about">About the Author</option>
-                <option value="#mcp">MCP Protocol</option>
-                <option value="#publications">Publications</option>
-                <option value="#media">Media</option>
-                <option value="#inquiry">Inquiry</option>
+            <select class="nav-dropdown" onchange="if(this.value) location.hash = this.value;">
+                <option value="">Navigation Menu</option>
+                <option value="#karanas">108 Karanas</option>
+                <option value="#publications">Detailed Publications</option>
+                <option value="#inquiry">Inquiry & Contact</option>
             </select>
         </nav>
     </header>
 
-    <main class="hero-section">
-        <p class="author-name">Independent Researcher • Naredla Rama Chandra</p>
+    <div class="container">
         
-        <div style="margin-top: 30px;">
-            <a href="#inquiry" class="btn btn-primary">Contact for Research</a>
-        </div>
-    </main>
+        <section id="karanas">
+            <h2>The 108 Karanas: A Research Overview</h2>
+            <div class="book-content">
+                The 108 Karanas, as detailed in the <i>Natya Shastra</i>, serve as the fundamental kinetic units of Indian classical tradition. My research redefines these movements as a <b>Master Consciousness Protocol</b>. By exploring the intersection of neuro-geometry and bio-acoustics, we observe how these transitions align human physiology with cosmic frequencies. This work bridges ancient movement science with modern astrophysical concepts, revealing a "Cosmic Choreography" that influences both mental clarity and cellular health.
+            </div>
+        </section>
 
-    <section id="inquiry" class="inquiry-card">
-        <h2 style="font-family: 'Georgia', serif; color: var(--primary);">Research Inquiry</h2>
-        <p>Direct communication for collaborations and scholarly queries.</p>
-        
-        <div class="contact-box">
-            <p><b>Phone:</b> +91 9121379100</p>
-            <p><b>Email:</b> smith123846@gmail.com</p>
-        </div>
+        <section id="publications">
+            <h2>Core Research Publications</h2>
 
-        <form style="display: flex; flex-direction: column; gap: 10px;">
-            <input type="text" placeholder="Full Name" style="padding: 12px; border: 1px solid #ddd;">
-            <input type="email" placeholder="Email Address" style="padding: 12px; border: 1px solid #ddd;">
-            <textarea placeholder="Your Message" rows="4" style="padding: 12px; border: 1px solid #ddd;"></textarea>
-            <button type="button" class="btn btn-primary">Submit Inquiry</button>
-        </form>
-    </section>
+            <div class="book-entry">
+                <span class="book-header">01. Master Consciousness Protocol (MCP)</span>
+                <p class="book-content">A 300-page foundational volume establishing a multi-disciplinary framework for studying Ragas and their physiological effects. It includes the 365-day Daily Raga Calendar, mapping sounds to chakras and endocrine systems for clinical wellness.</p>
+            </div>
+
+            <div class="book-entry">
+                <span class="book-header">02. Sapta Swaras & Healing Science</span>
+                <p class="book-content">An exploration of the biochemical impact of Carnatic music. This work maps the 22 Shrutis to the human nervous system, establishing <i>Raga Chikitsa</i> (sound medicine) as a precise tool for modern neuro-immunology.</p>
+            </div>
+
+            <div class="book-entry">
+                <span class="book-header">03. The Cosmic Choreography</span>
+                <p class="book-content">A bridge between the 108 Karanas and Astrophysics. This book interprets ancient dance transitions as geometric alignments that tune the human spine to the Earth's electromagnetic resonance.</p>
+            </div>
+
+            <div class="book-entry">
+                <span class="book-header">04. Sampoorna Manovijnana Sangraha</span>
+                <p class="book-content">A comprehensive psychological treatise synthesizing ancient Indic philosophy with modern cognitive science, focusing on <i>Citta</i>, <i>Manas</i>, and neuroplasticity through 240 academic case studies.</p>
+            </div>
+
+            <div class="book-entry">
+                <span class="book-header">05. Yoga: The Eternal Science (Vols I & II)</span>
+                <p class="book-content">Tracing the architecture of the Vedic-Yogic tradition from the Upanishads to the <i>Natya Shastra</i>, exploring the Guru-Shishya Parampara and the neuroscience of Samadhi.</p>
+            </div>
+
+            <div class="book-entry">
+                <span class="book-header">06. Beeja Akshara & DNA Resonance</span>
+                <p class="book-content">Investigating how Sanskrit phonemes and <i>Matrikas</i> (seed sounds) act as vibrational keys to unlock genetic potential through the ancient practice of <i>Nyasa</i>.</p>
+            </div>
+
+            <div class="book-entry">
+                <span class="book-header">07. Vedic Bio-Acoustics</span>
+                <p class="book-content">Connecting the <i>Gandharva Veda</i> with contemporary psycho-neuro-immunology, this volume provides a scientific basis for <i>Nada Yoga</i> as a clinical healing modality.</p>
+            </div>
+
+            <div class="book-entry">
+                <span class="book-header">08. Cosmic Vak: The Story of Language</span>
+                <p class="book-content">A cosmological history of communication, detailing the four stages of sound (Para to Vaikhari) and how eternal vibrations manifest as human language and time.</p>
+            </div>
+        </section>
+
+        <section id="inquiry" style="border: none;">
+            <h2>Professional Inquiry</h2>
+            <div class="contact-details">
+                <p>For academic collaboration or access to these research volumes:</p>
+                <p><b>Phone:</b> +91 9121379100<br>
+                <b>Email:</b> smith123846@gmail.com</p>
+                <p style="font-size: 1rem; margin-top: 20px; font-style: italic;">Researcher: Naredla Rama Chandra</p>
+            </div>
+        </section>
+
+    </div>
 
     <footer>
-        <p><b>System Status:</b> <span style="color: #27ae60;">● Deployment Live</span></p>
-        <p>Naredla Rama Chandra | © 2026 Aesthetics of Society</p>
+        <p><b>System Status:</b> <span class="status-indicator">● Deployment Live</span> | Updated: April 2026</p>
+        <p>Vercel Automatic Updation Active | © 2026 Aesthetics of Society</p>
     </footer>
 
 </body>
