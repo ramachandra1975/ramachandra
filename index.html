@@ -6,140 +6,136 @@ HTML
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Consciousness Protocol | Naredla Rama Chandra</title>
     <style>
-        :root { --primary: #0a254d; --gold: #b8860b; }
+        :root { --navy: #041631; }
         * { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; font-family: 'Times New Roman', Times, serif; scroll-behavior: smooth; }
+        body, html { margin: 0; padding: 0; font-family: 'Times New Roman', serif; scroll-behavior: smooth; }
         
         body {
-            background-image: linear-gradient(rgba(255,255,255,0.35), rgba(255,255,255,0.35)), url('background.png');
+            /* Background with 50% white overlay for high text contrast */
+            background: linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url('background.png');
             background-size: cover; background-position: center; background-attachment: fixed;
-            color: #111;
+            color: #000;
+        }
+
+        /* LOGO WATERMARK */
+        .watermark {
+            position: fixed; top: 55%; left: 50%; transform: translate(-50%, -50%);
+            width: 500px; opacity: 0.05; z-index: -1; pointer-events: none;
         }
 
         header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 5%; background: rgba(255, 255, 255, 0.9);
-            position: fixed; top: 0; width: 100%; z-index: 1000;
+            display: flex; justify-content: space-between; padding: 15px 5%;
+            background: rgba(255, 255, 255, 0.98); position: fixed; top: 0; width: 100%; 
+            z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .container { max-width: 1100px; margin: 150px auto 80px; padding: 0 40px; }
+        .container { max-width: 1150px; margin: 160px auto 80px; padding: 0 40px; }
 
-        /* SHARED RADIO STYLING */
-        .radio-group { margin: 20px 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+        /* TEXT READABILITY: Pure black with white halo */
+        .readable-text {
+            text-shadow: 0px 0px 15px #fff, 0px 0px 5px #fff;
+            font-weight: 600;
+            line-height: 1.9;
+            font-size: 1.3rem;
+        }
+
+        .radio-group { display: flex; gap: 12px; justify-content: center; margin-bottom: 35px; }
         .radio-group input { display: none; }
         .radio-group label {
-            padding: 10px 25px; border: 2px solid var(--primary); border-radius: 30px;
-            cursor: pointer; font-weight: bold; background: rgba(255,255,255,0.6);
-            text-transform: uppercase; font-size: 0.85rem; transition: 0.3s;
+            padding: 12px 30px; border: 2px solid var(--navy); border-radius: 40px;
+            cursor: pointer; font-weight: bold; background: white;
+            text-transform: uppercase; font-size: 0.9rem; color: var(--navy);
         }
-        .radio-group input:checked + label { background: var(--primary); color: white; }
+        .radio-group input:checked + label { background: var(--navy); color: white; }
 
-        /* LAYOUT FOR SECTIONS */
-        .content-flex { display: flex; gap: 40px; align-items: flex-start; margin-top: 30px; flex-wrap: wrap; }
-        .media-side { flex: 1; min-width: 300px; }
-        .text-side { flex: 1.5; min-width: 350px; text-align: justify; line-height: 1.8; font-size: 1.15rem; }
+        /* FLEX LAYOUT FOR PHOTO + TEXT */
+        .content-wrap { display: flex; gap: 50px; align-items: flex-start; flex-wrap: wrap; }
+        .media-side { flex: 1; min-width: 320px; }
+        .text-side { flex: 1.5; min-width: 350px; text-align: justify; }
 
-        .profile-img { 
-            width: 100%; max-width: 350px; border-radius: 5px; 
-            border: 1px solid var(--primary); box-shadow: 5px 5px 15px rgba(0,0,0,0.1); 
+        .image-frame { 
+            width: 100%; max-width: 400px; border-radius: 4px; 
+            border: 3px solid var(--navy); box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
         }
-
-        section { padding: 60px 0; border-bottom: 1px solid rgba(10,37,77,0.1); }
-        h2 { color: var(--primary); font-size: 1.8rem; letter-spacing: 2px; text-align: center; }
-        .book-intro-text { white-space: pre-line; font-style: italic; color: #333; }
+        
+        section { padding: 80px 0; border-bottom: 2px solid rgba(10,37,77,0.2); }
+        h2 { color: var(--navy); text-align: center; letter-spacing: 2px; font-size: 2.2rem; margin-bottom: 25px; }
     </style>
 </head>
 <body>
 
+    <img src="logo.jpg" class="watermark">
+
     <header>
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <img src="logo.jpg" style="width:50px; height:50px; border-radius: 50%;">
-            <span style="font-weight: bold; color: var(--primary); font-size: 1.2rem;">Aesthetics of Society</span>
-        </div>
-        <nav>
-            <select style="padding:8px; font-weight:bold;" onchange="location.hash=this.value">
-                <option value="#author">01. Author Introduction</option>
-                <option value="#karanas">02. 10 Karanas Analysis</option>
-                <option value="#mcp">03. Master Protocol</option>
-                <option value="#contact">12. Contact Inquiry</option>
-            </select>
-        </nav>
+        <div style="font-weight: bold; color: var(--navy); font-size: 1.4rem;">AESTHETICS OF SOCIETY</div>
+        <select style="padding:10px; font-weight:bold;" onchange="location.hash=this.value">
+            <option value="#author">Introduction</option>
+            <option value="#karanas">10 Karanas</option>
+            <option value="#contact">Contact</option>
+        </select>
     </header>
 
     <div class="container">
-        
         <section id="author">
-            <h2>NAREDLA RAMA CHANDRA</h2>
+            <h2 class="readable-text">NAREDLA RAMA CHANDRA</h2>
             <div class="radio-group">
-                <input type="radio" name="auth" id="ab1" checked onclick="updateAuth('profile')">
-                <label for="ab1">Brief Profile</label>
-                <input type="radio" name="auth" id="ab2" onclick="updateAuth('philosophy')">
-                <label for="ab2">Research Philosophy</label>
+                <input type="radio" name="atab" id="p" checked onclick="updateAuth('p')">
+                <label for="p">Brief Profile</label>
+                <input type="radio" name="atab" id="ph" onclick="updateAuth('ph')">
+                <label for="ph">Research Philosophy</label>
             </div>
 
-            <div class="content-flex">
-                <div class="media-side" id="author-img-area">
-                    <img src="author.jpg" class="profile-img" alt="Naredla Rama Chandra">
+            <div class="content-wrap">
+                <div class="media-side" id="auth-img-container">
+                    <img src="author.jpg" class="image-frame" alt="Naredla Rama Chandra">
                 </div>
-                <div class="text-side" id="author-text">
+                <div class="text-side readable-text" id="auth-display">
                     </div>
             </div>
         </section>
 
         <section id="karanas">
-            <h2>The 10 Karanas: Source Code Analysis</h2>
+            <h2 class="readable-text">THE 10 KARANAS: SOURCE CODE</h2>
             <div class="radio-group">
                 <script>
                     for(let i=1; i<=10; i++) {
-                        document.write(`<input type="radio" name="k" id="k${i}" ${i==1?'checked':''} onclick="updateKarana(${i})">
+                        document.write(`<input type="radio" name="ktab" id="k${i}" ${i==1?'checked':''} onclick="updateK(${i})">
                                        <label for="k${i}">K-${i<10?'0'+i:i}</label>`);
                     }
                 </script>
             </div>
-
-            <div class="content-flex">
-                <div class="media-side">
-                    <img src="k1.jpg" id="karana-img" class="profile-img" alt="Karana Photo">
-                </div>
-                <div class="text-side">
-                    <h3 id="karana-title" style="color:var(--primary); margin-top:0;">Karana 01</h3>
-                    <div id="karana-desc" style="white-space: pre-line;">
-                        </div>
+            <div class="content-wrap">
+                <div class="media-side"><img src="k1.jpg" id="k-img" class="image-frame"></div>
+                <div class="text-side readable-text">
+                    <h3 id="k-title" style="margin-top:0; color:var(--navy);"></h3>
+                    <div id="k-desc" style="white-space: pre-line;"></div>
                 </div>
             </div>
         </section>
-
     </div>
 
     <script>
-        const content = {
-            profile: "Naredla Rama Chandra is an independent researcher and author who has dedicated his career to the 'Source Code' of ancient Indian knowledge systems. His work specifically decodes the Natya Shastra through the lens of modern neuroscience and bio-acoustics, providing a bridge between spiritual heritage and clinical physiological wellness. He is the architect of the Master Consciousness Protocol (MCP).",
-            philosophy: "The research philosophy of Naredla Rama Chandra is rooted in the belief that ancient kinetic units—the Karanas—are not merely dance postures but biochemical switches. By aligning specific neuro-geometric movements with Raga frequencies, the Protocol seeks to trigger cellular resonance, offering a scientific pathway to sound-based healing and consciousness expansion.",
+        const library = {
+            profile: "Naredla Rama Chandra is an independent researcher and author specializing in the 'Source Code' of ancient Indian knowledge systems. His work integrates the Natya Shastra with modern neuroscience and bio-acoustics, creating a scientific bridge for clinical physiological wellness. He is the architect of the Master Consciousness Protocol (MCP).",
+            philosophy: "His research posits that ancient Karanas are biochemical switches. By aligning neuro-geometric movements with Raga frequencies, the Protocol triggers cellular resonance, offering a scientific pathway to sound-based healing and consciousness expansion.",
             karanas: {
-                1: {
-                    title: "Karana 01: Spinal Resonance",
-                    text: "1. Vertical alignment is established to facilitate electromagnetic flow.\n2. Serves as the primary bio-acoustic reception point.\n3. Activates the 'Source Code' of the central nervous system.\n4. Integrates breathing cycles with static spinal geometry.\n5. Calibrates the practitioner to the Earth's frequency.\n6. Focuses on the thoracic cavity as a sound chamber.\n7. Initiates alpha-wave transitions in the motor cortex.\n8. Maps hand mudras to specific neural pathways.\n9. Essential for the foundation of the Master Protocol.\n10. Provides the baseline for clinical sound resonance."
-                }
-                // Add Karanas 2-10 here following the same format
+                1: { title: "Karana 01: Talapushpaputam", 
+                     text: "1. Establishes primary vertical alignment.\n2. Source Code for bio-acoustic reception.\n3. Thoracic cage as a resonant chamber.\n4. Aligns CNS with terrestrial frequencies.\n5. Foundation for alpha-wave brain activity.\n6. Bridges static and dynamic geometry.\n7. Calibrates electromagnetic field.\n8. Intersection of mudra and sound.\n9. Essential for MCP foundation.\n10. Clinical baseline for resonance." }
             }
         };
 
         function updateAuth(type) {
-            document.getElementById('author-text').innerText = content[type];
-            // Hide photo for philosophy to focus on the text, show for profile
-            document.getElementById('author-img-area').style.display = (type === 'profile') ? 'block' : 'none';
+            document.getElementById('auth-display').innerText = type === 'p' ? library.profile : library.philosophy;
+            // SHOW PHOTO for profile, HIDE for philosophy
+            document.getElementById('auth-img-container').style.display = type === 'p' ? 'block' : 'none';
         }
-
-        function updateKarana(id) {
-            const k = content.karanas[id] || {title: "Karana "+id, text: "Detailed research explanation for Karana "+id+" is loading..."};
-            document.getElementById('karana-img').src = "k" + id + ".jpg";
-            document.getElementById('karana-title').innerText = k.title;
-            document.getElementById('karana-desc').innerText = k.text;
+        function updateK(id) {
+            const k = library.karanas[id] || {title: "Karana "+id, text: "Analysis loading..."};
+            document.getElementById('k-img').src = `k${id}.jpg`;
+            document.getElementById('k-title').innerText = k.title;
+            document.getElementById('k-desc').innerText = k.text;
         }
-
-        // Initialize default views
-        updateAuth('profile');
-        updateKarana(1);
+        updateAuth('p'); updateK(1);
     </script>
 </body>
 </html>
