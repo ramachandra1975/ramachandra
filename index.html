@@ -4,9 +4,8 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naredla Rama Chandra | Independent Researcher</title>
+    <title>Inquiry | Naredla Rama Chandra</title>
     <style>
-        /* GLOBAL SETTINGS */
         :root {
             --primary: #1a365d; 
         }
@@ -16,113 +15,97 @@ HTML
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
             width: 100%;
-            overflow: hidden;
-        }
-
-        body {
-            /* Background image with light overlay for readability */
-            background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url('background.png');
+            font-family: 'Segoe UI', sans-serif;
+            background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* NAVIGATION HEADER */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 12px 5%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.9);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--primary);
-        }
+        .brand-text { font-family: 'Georgia', serif; font-weight: bold; color: var(--primary); }
 
-        .header-logo { width: 35px; height: 35px; object-fit: contain; }
-        .brand-text { font-family: 'Georgia', serif; font-weight: bold; font-size: 1.1rem; }
-
-        /* POSITIONING THE NAME BETWEEN THE SCRIPT LINES */
-        .hero-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .container {
+            max-width: 800px;
+            margin: 120px auto 50px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
-            /* Adjust this percentage to move your name up or down between the script lines */
-            padding-top: 12vh; 
         }
 
-        .author-name {
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-size: clamp(0.8rem, 2.5vw, 1.2rem);
-            color: #000;
-            font-weight: 700;
-            background: rgba(255, 255, 255, 0.4); /* Subtle glow behind text */
-            padding: 10px 20px;
+        h2 { font-family: 'Georgia', serif; color: var(--primary); margin-bottom: 10px; }
+        
+        .contact-info {
+            margin: 20px 0;
+            padding: 20px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            line-height: 1.8;
+        }
+
+        .contact-info b { color: var(--primary); }
+
+        form { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+
+        input, textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
             border-radius: 4px;
+            width: 100%;
         }
 
-        /* BUTTONS AT THE BOTTOM */
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 40px;
-        }
-
-        .btn {
-            padding: 12px 28px;
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
             border: none;
-            cursor: pointer;
             font-weight: bold;
+            cursor: pointer;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            text-decoration: none;
         }
 
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-secondary { background: white; color: var(--primary); border: 1px solid var(--primary); }
-
-        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
-
+        .btn-submit:hover { opacity: 0.9; }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="brand">
-            <img src="logo.jpg" alt="Logo" class="header-logo">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="logo.jpg" style="width:35px;">
             <span class="brand-text">Aesthetics of Society</span>
-        </a>
+        </div>
     </header>
 
-    <main class="hero-container">
-        <p class="author-name">Independent Researcher • Naredla Rama Chandra</p>
-        
-        <div class="btn-group">
-            <a href="#" class="btn btn-primary">Explore Publications</a>
-            <a href="#" class="btn btn-secondary">About the Author</a>
+    <div class="container">
+        <h2>Professional Inquiry</h2>
+        <p>For research collaborations or academic queries, please use the details below.</p>
+
+        <div class="contact-info">
+            <p><b>Phone:</b> +91 9121379100</p>
+            <p><b>Email:</b> smith123846@gmail.com</p>
         </div>
-    </main>
+
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message or Research Inquiry" rows="5" required></textarea>
+            <button type="submit" class="btn-submit">Send Message</button>
+        </form>
+    </div>
 
 </body>
 </html>
