@@ -4,245 +4,121 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naredla Rama Chandra | Cultural Musings</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Cultural Musings | Naredla Rama Chandra</title>
     <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #fcfcfc; }
-        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
-        
-        .bg-fixed-custom { 
-            background-image: url('background.png'); 
-            background-size: cover; 
-            background-attachment: fixed; 
-            background-position: center; 
-        }
-        .watermark-logo { 
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            opacity: 0.04; width: 45%; z-index: -1; pointer-events: none; 
+        /* 1. The Background Layer */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+            background-image: url('background.jpg'); /* Rename your mountain photo to background.jpg */
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #2c3e50;
         }
 
-        .glass-panel { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); border: 1px solid rgba(0,0,0,0.04); }
-        .nav-text { font-size: 9px; letter-spacing: 0.2em; font-weight: 700; text-transform: uppercase; transition: color 0.3s; }
-        .karana-box { border-left: 4px solid #1e3a8a; padding-left: 2rem; margin-bottom: 5rem; }
-        .publication-card { border-top: 1px solid #eee; padding-top: 1.5rem; transition: transform 0.3s; }
-        .publication-card:hover { transform: translateY(-5px); }
-        
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* 2. The Parchment Overlay */
+        .main-wrapper {
+            background-color: rgba(255, 252, 245, 0.92); /* Light parchment feel */
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            min-height: 90vh;
+        }
 
-        .ref-badge { background: #1e3a8a; color: white; padding: 2px 8px; font-size: 10px; border-radius: 4px; text-transform: uppercase; }
+        header {
+            text-align: center;
+            border-bottom: 2px solid #8e44ad;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin-bottom: 10px;
+        }
+
+        /* 3. The 10-Page Navigation */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: #fdf6e3;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #5d3f6a;
+            font-weight: bold;
+            font-size: 0.9em;
+            padding: 5px 10px;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            border-bottom: 2px solid #8e44ad;
+        }
+
+        /* Content Sections */
+        .content-section {
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        h1 { color: #5d3f6a; margin-bottom: 5px; }
+        h2 { color: #8e44ad; border-left: 5px solid #8e44ad; padding-left: 15px; }
+
+        .audio-player {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
-<body class="bg-fixed-custom text-gray-900">
+<body>
 
-    <img src="logo.jpg" class="watermark-logo" alt="Aesthetics of Society Logo">
-
-    <audio id="siteAudio" loop>
-        <source src="flute.mp3" type="audio/mpeg">
-    </audio>
-
-    <header class="relative z-10 pt-10 text-center bg-white/80 border-b border-gray-100">
-        <p class="text-[10px] tracking-[0.8em] uppercase text-gray-400 mb-2 font-bold">Aesthetics of Society</p>
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-800">Naredla Rama Chandra</h1>
-        <p class="text-md italic text-blue-900 mt-2 font-medium">Independent Researcher & Author</p>
-        
-        <nav class="mt-10 py-4 max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
-            <ul class="flex justify-center gap-x-8 whitespace-nowrap">
-                <li><a href="#publications" class="nav-text hover:text-blue-700">Publications</a></li>
-                <li><a href="#textual-ref" class="nav-text hover:text-blue-700">Textual References</a></li>
-                <li><a href="#contextual-ref" class="nav-text hover:text-blue-700">Contextual Reference</a></li>
-                <li><a href="#karanas" class="nav-text hover:text-blue-700">108 Karanas</a></li>
-                <li><a href="#media" class="nav-text hover:text-blue-700">Media</a></li>
-                <li><a href="#contact" class="nav-text hover:text-blue-700">Inquiry Sheet</a></li>
-            </ul>
-        </nav>
+<div class="main-wrapper">
+    <header>
+        <img src="logo.png" alt="Aesthetics of Society Logo" class="logo">
+        <h1>Naredla Rama Chandra</h1>
+        <p>Independent Researcher & Author | Master Consciousness Protocol</p>
     </header>
 
-    <main class="relative z-10 max-w-6xl mx-auto px-6 py-20 space-y-40">
-        
-        <!-- INTRO -->
-        <section id="intro" class="glass-panel p-16 rounded text-center shadow-sm">
-            <h2 class="text-3xl font-bold mb-6 italic">Master Consciousness Protocol</h2>
-            <p class="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto font-light">
-                A landmark interdisciplinary framework bridging ancient Indian bio-acoustic algorithms with 21st-century neuro-rehabilitation. 
-                Our research synthesizes the 108 Karanas, Sapta Swaras, and Beeja Aksharas into a validated clinical methodology for physiological restoration.
-            </p>
+    <nav>
+        <a href="#profile">Profile</a>
+        <a href="#mcp">MCP Protocol</a>
+        <a href="#karanas">108 Karanas</a>
+        <a href="#swaras">Sapta Swaras</a>
+        <a href="#books">Publications</a>
+        <a href="#neuro">Neuroscience</a>
+        <a href="#bio">Bio-Acoustics</a>
+        <a href="#astro">Astrophysics</a>
+        <a href="#blog">Musings</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="content-section">
+        <section id="profile">
+            <h2>Research Profile</h2>
+            <p>Bridging ancient Indian systems with modern empirical sciences, including neuroscience and microbiology. Focus on the vibrational significance of the Sanskrit alphabet and the healing properties of Carnatic music.</p>
         </section>
 
-        <!-- PUBLICATIONS SECTION -->
-        <section id="publications" class="space-y-16">
-            <h2 class="text-3xl font-bold uppercase tracking-widest text-center border-b-2 border-blue-900 inline-block pb-2 mx-auto block w-max">The 8-Volume Series</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="publication-card">
-                    <span class="ref-badge">Vol I</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">Consciousness Studies</h3>
-                    <p class="text-sm text-gray-600 italic">Vedic AI Paradigms vs. Modern Neural Networks.</p>
-                </div>
-                <div class="publication-card">
-                    <span class="ref-badge">Vol II</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">Master Reference Compendium</h3>
-                    <p class="text-sm text-gray-600 italic">Standardizing Ancient-to-Modern Research Protocols.</p>
-                </div>
-                <div class="publication-card">
-                    <span class="ref-badge">Vol III</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">Sapta Swaras & Healing</h3>
-                    <p class="text-sm text-gray-600 italic">The Bio-Acoustic Science of Carnatic Music Frequencies.</p>
-                </div>
-                <div class="publication-card">
-                    <span class="ref-badge">Vol IV</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">108 Karanas & Beeja Aksharas</h3>
-                    <p class="text-sm text-gray-600 italic">Vibrational Significance of Matrikas in Classical Postures.</p>
-                </div>
-                <div class="publication-card">
-                    <span class="ref-badge">Vol V</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">Sampoorna Manovijnana Sangraha</h3>
-                    <p class="text-sm text-gray-600 italic">A Clinical Manual for Vedic Psychology & Mind Mastery.</p>
-                </div>
-                <div class="publication-card">
-                    <span class="ref-badge">Vol VI</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">Bio-Mechanics of Dance</h3>
-                    <p class="text-sm text-gray-600 italic">Anatomical Analysis of Karana-based Neuro-Rehabilitation.</p>
-                </div>
-                <div class="publication-card">
-                    <span class="ref-badge">Vol VII</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">Space & Sound Architecture</h3>
-                    <p class="text-sm text-gray-600 italic">Physics of Akasha (Aether) in Neural Communication.</p>
-                </div>
-                <div class="publication-card">
-                    <span class="ref-badge">Vol VIII</span>
-                    <h3 class="text-xl font-bold mt-2 mb-2">Master Protocol Summary</h3>
-                    <p class="text-sm text-gray-600 italic">The Unified Theory of Ancient Indian Healing Sciences.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- DEDICATED TEXTUAL REFERENCE PAGE -->
-        <section id="textual-ref" class="glass-panel p-16 rounded shadow-lg border-l-8 border-blue-900">
-            <h2 class="text-3xl font-bold mb-8 uppercase tracking-widest text-blue-900">Textual Reference Page</h2>
-            <div class="grid md:grid-cols-2 gap-12 text-justify">
-                <div>
-                    <h4 class="font-bold text-gray-800 mb-4 serif italic underline">Ancient Canonical Sources</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                        The entire research corpus is anchored in primary Sanskrit manuscripts including the <strong>Rig Veda, Samaveda (Gana)</strong>, and the <strong>Principal Upanishads</strong>. These texts provide the mathematical and acoustic foundations for the <em>Master Consciousness Protocol</em>.
-                    </p>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Cross-references are drawn from the <strong>Natya Shastra</strong> and <strong>Sangita Ratnakara</strong> to validate the vibrational data used in <em>Volume III (Sapta Swaras)</em> and <em>Volume IV (108 Karanas)</em>.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-gray-800 mb-4 serif italic underline">The Guru’s Clan Lineage</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                        Every publication respects the <strong>Shankaracharya Advaita Tradition</strong>, ensuring that metaphysical concepts are not lost in translation when applied to modern clinical neuroscience.
-                    </p>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        This textual grounding ensures that the 8-volume series serves as a reliable bridge between historical wisdom and modern empirical validation.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- DEDICATED CONTEXTUAL REFERENCE PAGE -->
-        <section id="contextual-ref" class="glass-panel p-16 rounded shadow-lg border-r-8 border-blue-900 bg-blue-50/30">
-            <h2 class="text-3xl font-bold mb-8 uppercase tracking-widest text-right text-blue-900">Contextual Reference Page</h2>
-            <div class="grid md:grid-cols-2 gap-12 text-justify">
-                <div>
-                    <h4 class="font-bold text-gray-800 mb-4 serif italic underline">Ideological Foundation</h4>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        The core ideology of Naredla Rama Chandra’s research is the <strong>Scientific Restoration of Hidden Medical Perspectives</strong>. The context is not merely artistic; it is a clinical quest to prove that ancient Indian bio-acoustic algorithms are functional tools for neuro-regeneration.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-gray-800 mb-4 serif italic underline">Research Contextual Mapping</h4>
-                    <ul class="text-xs text-gray-500 space-y-3">
-                        <li><strong>Context 1:</strong> Neuro-rehabilitation through classical posture (Karanas).</li>
-                        <li><strong>Context 2:</strong> Acoustic therapy via Swara frequencies (Carnatic Science).</li>
-                        <li><strong>Context 3:</strong> Psychological stabilization through Vedic Manovijnana.</li>
-                        <li><strong>Context 4:</strong> Digital integration of Sanskrit logic into AI paradigms.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 108 KARANAS SECTION -->
-        <section id="karanas" class="space-y-24">
-            <h2 class="text-3xl font-bold text-center uppercase tracking-widest">108 Karanas & Neuroscience</h2>
-            <div id="karana-container">
-                <script>
-                    const kData = [
-                        { t: "Talapuspaputa", p: "Geometric alignment mirroring Upanishadic patterns.", n: "Stabilizes the Vagus nerve and brain hemisphere sync.", r: "Ref: Vol I - Consciousness Studies.", u: "Baseline for neuro-plasticity." },
-                        { t: "Lina", p: "Inward focus reflecting Advaita traditions.", n: "Regulates CSF pressure and metabolic clearance.", r: "Ref: Vol IV - 108 Karanas.", u: "Critical for cranial-spinal health." },
-                        { t: "Valita", p: "Vocal gateway for Beeja Akshara resonance.", n: "Stimulates laryngeal nerve to improve HRV.", r: "Ref: Vol III - Sapta Swaras.", u: "Primary respiratory restoration." }
-                    ];
-
-                    kData.forEach((k, i) => {
-                        document.write(`
-                        <div class="karana-box glass-panel p-10 rounded-r-lg flex flex-col md:flex-row gap-10">
-                            <div class="w-full md:w-1/3 text-center">
-                                <img src="karana${i+1}.jpg" class="w-full h-auto rounded shadow-sm border" alt="${k.t}">
-                                <p class="text-[9px] mt-4 tracking-widest text-blue-900 font-bold uppercase">Plate #${i+1}</p>
-                            </div>
-                            <div class="w-full md:w-2/3 text-[13px] leading-relaxed">
-                                <h3 class="text-2xl font-bold mb-4 italic serif">${k.t}</h3>
-                                <p class="mb-2"><strong>Contextual Ideology:</strong> ${k.p}</p>
-                                <p class="mb-2"><strong>Neuroscience Perspective:</strong> ${k.n}</p>
-                                <p class="mb-2"><strong>Textual Publication:</strong> <span class="text-blue-700 font-bold underline">${k.r}</span></p>
-                                <p><strong>Medical Importance:</strong> ${k.u}</p>
-                            </div>
-                        </div>
-                        `);
-                    });
-                </script>
-            </div>
-        </section>
-
-        <!-- MEDIA -->
-        <section id="media" class="space-y-12">
-            <h2 class="text-3xl font-bold text-center uppercase tracking-widest">Research Media</h2>
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="aspect-video bg-black rounded overflow-hidden shadow-xl"><iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_ID_1" frameborder="0" allowfullscreen></iframe></div>
-                <div class="aspect-video bg-black rounded overflow-hidden shadow-xl"><iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_ID_2" frameborder="0" allowfullscreen></iframe></div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- INQUIRY SHEET / FOOTER -->
-    <footer id="contact" class="bg-white py-32 text-center border-t border-gray-100 relative z-10">
-        <h2 class="text-3xl font-bold mb-4 uppercase tracking-[0.3em] text-gray-800">Inquiry Sheet</h2>
-        <p class="text-sm text-gray-500 mb-16 italic max-w-2xl mx-auto px-6 font-light">
-            For academic collaboration, clinical validation, or access to the digital manuscript archives.
-        </p>
-
-        <div class="grid md:grid-cols-3 gap-12 mb-24 px-6">
-            <div>
-                <p class="text-[9px] tracking-[0.4em] text-blue-900 font-bold mb-2 uppercase">Official Inquiry</p>
-                <a href="mailto:smith123846@gmail.com" class="text-xl md:text-2xl font-light text-gray-900 border-b border-gray-50 pb-1 hover:text-blue-900 transition">smith123846@gmail.com</a>
-            </div>
-            <div>
-                <p class="text-[9px] tracking-[0.4em] text-blue-900 font-bold mb-2 uppercase">Direct Contact</p>
-                <a href="tel:+919121379100" class="text-xl md:text-2xl font-light text-gray-900 border-b border-gray-50 pb-1 hover:text-blue-900 transition">+91 91213 79100</a>
-            </div>
-            <div>
-                <p class="text-[9px] tracking-[0.4em] text-blue-900 font-bold mb-2 uppercase">Archive Access</p>
-                <a href="https://github.com/ramachandra1975" target="_blank" class="text-xl md:text-2xl font-light text-gray-900 border-b border-gray-50 pb-1 hover:text-blue-900 transition">GitHub Profile</a>
-            </div>
+        <!-- Placeholder for your audio file -->
+        <div class="audio-player">
+            <p><em>Background Score: Divine Flute</em></p>
+            <audio controls loop>
+                <source src="flute.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
         </div>
+    </div>
+</div>
 
-        <p class="mt-20 text-[9px] text-gray-300 tracking-[0.6em] uppercase font-bold italic">
-            © 2026 Naredla Rama Chandra | Cultural Musings
-        </p>
-    </footer>
-
-    <script>
-        // Interaction to start audio
-        window.addEventListener('click', () => {
-            const audio = document.getElementById('siteAudio');
-            if (audio.paused) {
-                audio.volume = 0.15;
-                audio.play();
-            }
-        }, { once: true });
-    </script>
 </body>
 </html>
