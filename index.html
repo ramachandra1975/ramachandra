@@ -3,44 +3,27 @@ HTML
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Naredla Rama Chandra</title>
+    <title>Aesthetics of Society</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <div class="brand-container">
-        <img src="logo.jpg" alt="Logo" class="header-logo">
-        <h1 class="serif" style="font-size: 1.1rem; color: var(--primary); margin:0;">Aesthetics of Society</h1>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="logo.jpg" class="header-logo">
+        <span style="font-weight: bold; font-family: 'Georgia', serif;">Aesthetics of Society</span>
     </div>
-
-    <nav>
-        <select onchange="location = this.value;" style="padding: 8px; border: 1px solid var(--primary); font-size: 12px;">
-            <option value="">Main Menu</option>
-            <option value="index.html">Home</option>
-            <option value="#">Timeline</option>
-            <option value="#">About Author</option>
-            <option value="#">MCP Protocol</option>
-            <option value="#">Publications</option>
-            <option value="#">Media</option>
-            <option value="#">Inquiry</option>
-            <option value="#">Updates</option>
-            <option value="#">Research</option>
-            <option value="#">Gallery</option>
-            <option value="#">Archives</option>
-            <option value="#">Contact</option>
-        </select>
-    </nav>
 </header>
 
-<main class="hero-content">
-    <h2 class="main-title serif">Aesthetics of Society</h2>
-    <p class="sub-title">Independent Researcher • Naredla Rama Chandra</p>
-    
-    <div style="margin-top: 40px; display: flex; gap: 15px;">
-        <button style="padding: 12px 30px; background: var(--primary); color: white; border: none; font-weight: bold; cursor: pointer;">Explore Publications</button>
-        <button style="padding: 12px 30px; background: transparent; border: 2px solid var(--primary); color: var(--primary); font-weight: bold; cursor: pointer;">About Author</button>
+<main class="hero-container">
+    <div class="content-box">
+        <h1 class="main-title">Aesthetics of Society</h1>
+        <p class="sub-title">Independent Researcher • Naredla Rama Chandra</p>
+        
+        <div class="btn-group">
+            <button class="btn btn-primary">Explore Publications</button>
+            <button class="btn btn-secondary">About the Author</button>
+        </div>
     </div>
 </main>
 
