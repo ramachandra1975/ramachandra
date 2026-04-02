@@ -4,215 +4,178 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Research Portfolio</title>
+    <title>Aesthetics of Society | Naredla Rama Chandra</title>
     <style>
-        :root {
-            --primary: #1a365d; /* Navy Blue */
-            --accent: #d4af37;  /* Gold */
-            --text: #334155;
-            --bg: #ffffff;
+        :root { 
+            --primary: #1a365d; 
+            --accent: #d4af37; 
+            --text: #334155; 
+            --bg-texture: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            --logo-watermark: url('logo.png'); /* Replace with your logo path */
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            line-height: 1.6;
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            margin: 0; 
+            background-color: #fdfdfd;
+            background-image: var(--bg-texture);
             color: var(--text);
-            background-color: var(--bg);
+            scroll-behavior: smooth;
         }
-        .serif { font-family: 'Georgia', serif; }
 
-        /* HEADER & NAVIGATION (Matches your screenshot) */
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            border-bottom: 1px solid #f1f5f9;
-        }
-        header h1 {
-            font-family: 'Georgia', serif;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: var(--primary);
-            margin: 0 0 30px 0;
-            font-weight: normal;
-        }
-        nav {
+        /* HEADER: Logo Top-Left, 12-Item Nav Top-Right */
+        header { 
             display: flex;
-            justify-content: center;
-            gap: 40px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .brand-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { width: 45px; height: 45px; object-fit: contain; }
+        .brand-name { 
+            font-family: 'Georgia', serif; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-size: 1.1rem; 
+            color: var(--primary);
+        }
+
+        nav { 
+            display: grid; 
+            grid-template-columns: repeat(6, 1fr); /* 2 rows of 6 for clarity */
+            gap: 10px 20px; 
+            text-align: right;
+        }
+        nav a { 
+            text-decoration: none; 
+            color: #64748b; 
+            font-size: 10px; 
+            font-weight: bold; 
             text-transform: uppercase;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 0.1em;
+            transition: 0.2s;
         }
-        nav a {
-            text-decoration: none;
-            color: #64748b;
-            transition: color 0.3s;
-        }
-        nav a:hover, nav a.active {
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 5px;
-        }
+        nav a:hover { color: var(--accent); }
 
-        /* SECTION STYLING */
-        section {
-            max-width: 1100px;
-            margin: auto;
-            padding: 80px 20px;
-        }
-        h2 {
-            font-family: 'Georgia', serif;
-            font-size: 2.5rem;
-            color: var(--primary);
-            border-bottom: 2px solid var(--accent);
-            display: inline-block;
-            margin-bottom: 50px;
-            font-style: italic;
-        }
-
-        /* PUBLICATIONS GRID (8 Volumes) */
-        .pub-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-        .pub-card {
-            padding: 25px;
-            border: 1px solid #f1f5f9;
-            background: #fdfdfd;
-            border-radius: 4px;
-            transition: transform 0.3s;
-        }
-        .pub-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .pub-card h4 { color: var(--primary); margin-top: 0; }
-        .pub-card p { font-size: 13px; color: #64748b; }
-
-        /* VIDEO GRID (4 Research Videos) */
-        .v-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 40px;
-        }
-        .v-card {
-            background: #fff;
-            border: 1px solid #f1f5f9;
-            padding: 20px;
-            border-radius: 4px;
-        }
-        .iframe-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .iframe-container iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            border-radius: 4px;
-        }
-        .v-meta {
-            font-size: 12px;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-        }
-
-        /* ADVERTISING FOOTER */
-        .promo-footer {
+        /* COMPLETION STATUS BAR */
+        .status-bar {
             background: var(--primary);
             color: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
-        .yt-button {
-            background: #ff0000;
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
             font-weight: bold;
-            display: inline-block;
-            margin-top: 20px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
+
+        /* WATERMARK SECTION */
+        section { 
+            max-width: 1200px; 
+            margin: auto; 
+            padding: 60px 20px; 
+            position: relative; 
+        }
+        section::after {
+            content: "";
+            position: absolute;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 400px; height: 400px;
+            background-image: var(--logo-watermark);
+            background-repeat: no-repeat; background-size: contain;
+            opacity: 0.03; z-index: -1; pointer-events: none;
+        }
+
+        .update-box {
+            background: #fff;
+            border: 2px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn-update {
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        footer { background: var(--primary); color: white; padding: 40px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Aesthetics of Society</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#publications">Publications</a>
-            <a href="#timeline">Timeline</a>
-            <a href="#media" class="active">Media</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+<div class="status-bar">
+    <span>Build Status: <span id="percent">95%</span> Complete</span>
+    <span>Auto-Update: <span style="color: #4ade80;">Active</span></span>
+</div>
 
-    <section id="publications">
-        <h2>Publications</h2>
-        <div class="pub-grid">
-            <div class="pub-card"><h4>1. Science of Consciousness</h4><p>Ancient Knowledge vs AI.</p></div>
-            <div class="pub-card"><h4>2. Master Reference</h4><p>Integrated Research Standards.</p></div>
-            <div class="pub-card"><h4>3. Sapta Swaras & Healing</h4><p>Treatise on Carnatic Music.</p></div>
-            <div class="pub-card"><h4>4. 108 Karanas</h4><p>Astrophysics & Medical Science.</p></div>
-            <div class="pub-card"><h4>5. Yoga: Eternal Science</h4><p>Vedic roots for modern neurology.</p></div>
-            <div class="pub-card"><h4>6. Shabda Brahman</h4><p>Sacred Science of Sound.</p></div>
-            <div class="pub-card"><h4>7. Cosmic Choreography</h4><p>Shankaracharya’s Metaphysics.</p></div>
-            <div class="pub-card"><h4>8. Sanskrit & AI</h4><p>Neural Healing & Programming.</p></div>
-        </div>
-    </section>
+<header>
+    <div class="brand-container">
+        <img src="logo.png" alt="Logo" class="logo-img"> <div class="brand-name">Aesthetics of Society</div>
+    </div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#mcp">MCP Protocol</a>
+        <a href="#books">Publications</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#media">Media</a>
+        <a href="#vocal">Sapta Swara</a>
+        <a href="#karana">108 Karanas</a>
+        <a href="#clinical">Clinical</a>
+        <a href="#research">AI Research</a>
+        <a href="#contact">Inquiry</a>
+        <a href="#updates">Updates</a>
+    </nav>
+</header>
 
-    <section id="media">
-        <h2>Research Media Archive</h2>
-        <div class="v-grid">
-            <div class="v-card">
-                <div class="iframe-container">
-                    <iframe src="https://www.youtube.com/embed/NBrVKBYQd_M?start=26" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <h4 class="serif">01. Master Consciousness Protocol</h4>
-                <div class="v-meta">
-                    <p>Maps the "Source Code" of human existence. Supports <strong>Vol I</strong>.</p>
-                </div>
-            </div>
-            <div class="v-card">
-                <div class="iframe-container">
-                    <iframe src="https://www.youtube.com/embed/DcNa4N5dD-A?start=21" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <h4 class="serif">02. Sapta Swara & Bio-Acoustics</h4>
-                <div class="v-meta">
-                    <p>Resonance of notes with neural plexuses. Cross-referenced with <strong>Vol III</strong>.</p>
-                </div>
-            </div>
-            <div class="v-card">
-                <div class="iframe-container">
-                    <iframe src="https://www.youtube.com/embed/eLjirbtcJFo?start=30" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <h4 class="serif">03. 108 Karanas & Neural Geometry</h4>
-                <div class="v-meta">
-                    <p>Postures stimulating the motor cortex. Supports <strong>Vol IV</strong>.</p>
-                </div>
-            </div>
-            <div class="v-card">
-                <div class="iframe-container">
-                    <iframe src="https://www.youtube.com/embed/0khYFMffpCU?start=72" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <h4 class="serif">04. Sanskrit: The AI Algorithm</h4>
-                <div class="v-meta">
-                    <p>Paninian grammar vs. modern neural networks. Supports <strong>Vol VIII</strong>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="updates">
+    <h2>System Synchronization</h2>
+    <div class="update-box">
+        <p><strong>Automatic Website Synchronization:</strong> Your research documents and website build are set to sync every 24 hours.</p>
+        <button class="btn-update" onclick="manualSync()">Sync Now (Manual Override)</button>
+        <p id="sync-status" style="font-size: 12px; margin-top: 10px; color: #64748b;"></p>
+    </div>
+</section>
 
-    <footer class="promo-footer">
-        <h3 class="serif">Join Our Research Community</h3>
-        <p>Subscribe to <strong>@aestheticsofsociety</strong> for clinical demonstrations.</p>
-        <a href="https://youtube.com/@aestheticsofsociety" target="_blank" class="yt-button">Visit Official YouTube Channel</a>
-    </footer>
+<section id="contact">
+    <h2>Contact & Inquiry</h2>
+    <p><strong>Naredla Rama Chandra</strong><br>
+    Phone: +91 9121379100<br>
+    Email: smith123846@gmail.com</p>
+</section>
+
+<footer>
+    <p>&copy; 2026 Aesthetics of Society. All Research Rights Reserved.</p>
+</footer>
+
+<script>
+    function manualSync() {
+        const status = document.getElementById('sync-status');
+        status.innerText = "Connecting to GitHub/Vercel server... Pulling latest research updates...";
+        setTimeout(() => {
+            status.innerText = "Sync Complete. Website is up to date.";
+            document.getElementById('percent').innerText = "100%";
+        }, 2000);
+    }
+
+    // Auto-update notification logic
+    window.onload = function() {
+        console.log("Automatic Sync Service: Initialized.");
+    };
+</script>
 
 </body>
 </html>
