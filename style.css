@@ -1,26 +1,26 @@
 CSS
 /* GLOBAL DESIGN FOR AESTHETICS OF SOCIETY */
+CSS
+/* GLOBAL DESIGN FOR AESTHETICS OF SOCIETY */
 :root {
     --primary: #1a365d; 
     --accent: #d4af37;
-    /* We removed the dots and slashes to make it very direct */
-    --bg-file: url('background.png'); 
-    --logo-file: url('logo.jpg');
 }
 
-/* Apply the background to the body directly */
 body {
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), var(--bg-file);
+    /* This line links to your background.png file */
+    background-image: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('background.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
     min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
-/* Ensure the watermark is visible */
+/* This creates the Logo Watermark in the center */
 body::before {
     content: "";
     position: fixed;
@@ -28,11 +28,13 @@ body::before {
     transform: translate(-50%, -50%);
     width: 450px; 
     height: 450px;
-    background-image: var(--logo-file);
+    background-image: url('logo.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    opacity: 0.15;
+    opacity: 0.12;
     z-index: -1; 
     pointer-events: none;
 }
+
+.serif { font-family: 'Georgia', serif; }
