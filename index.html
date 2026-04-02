@@ -23,8 +23,7 @@ HTML
         }
 
         body {
-            /* Background with overlay for text readability */
-            background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url('background.png');
+            background-image: linear-gradient(rgba(255,255,255,0.25), rgba(255,255,255,0.25)), url('background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -32,38 +31,38 @@ HTML
             flex-direction: column;
         }
 
-        /* LOGO WATERMARK */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 350px; height: 350px;
-            background-image: url('logo.jpg');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.08;
-            z-index: -1;
-            pointer-events: none;
-        }
-
+        /* NAVIGATION HEADER */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 5%;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
+            padding: 10px 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             position: fixed;
             top: 0; width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
+        .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
         .brand-text { font-family: 'Georgia', serif; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
 
-        /* CENTERED CONTENT SECTION */
+        /* DROPDOWN MENU STYLE */
+        .nav-dropdown {
+            padding: 8px 12px;
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            background: white;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        /* HERO AREA */
         .hero-section {
             flex: 1;
             display: flex;
@@ -71,100 +70,113 @@ HTML
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 100px 20px;
+            padding: 120px 20px;
             min-height: 100vh;
         }
 
         .author-name {
             letter-spacing: 4px;
             text-transform: uppercase;
-            font-size: clamp(1rem, 3vw, 1.4rem);
+            font-size: clamp(1rem, 3vw, 1.3rem);
             color: #000;
             font-weight: 700;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.4);
-            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 15px 25px;
+            border-radius: 2px;
         }
 
-        .btn-group { display: flex; gap: 15px; }
+        /* INQUIRY SECTION */
+        .inquiry-card {
+            background: white;
+            max-width: 700px;
+            width: 90%;
+            margin: 100px auto;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .contact-box {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
         .btn {
-            padding: 12px 25px;
+            padding: 12px 30px;
             border: none;
             cursor: pointer;
             font-weight: bold;
             text-transform: uppercase;
             font-size: 0.8rem;
             text-decoration: none;
-            transition: 0.3s;
-        }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-secondary { background: white; color: var(--primary); border: 1px solid var(--primary); }
-
-        /* INQUIRY SECTION */
-        .inquiry-card {
-            background: rgba(255, 255, 255, 0.95);
-            max-width: 600px;
-            width: 90%;
-            margin: 50px auto;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
+            display: inline-block;
         }
 
-        .contact-details { margin: 20px 0; line-height: 1.8; border-top: 1px solid #eee; padding-top: 20px; }
-        .contact-details b { color: var(--primary); }
+        .btn-primary { background: var(--primary); color: white; margin-top: 20px; }
 
-        /* DEPLOYMENT STATUS FOOTER */
+        /* FOOTER */
         footer {
             background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
+            padding: 30px;
             text-align: center;
             font-size: 0.8rem;
             color: #555;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid #eee;
         }
-        .status-dot { color: #2ecc71; font-size: 1.2rem; vertical-align: middle; }
     </style>
 </head>
 <body>
 
     <header>
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <img src="logo.jpg" style="width:35px;">
+        <a href="#" class="brand-container">
+            <img src="logo.jpg" style="width:35px; height:35px; object-fit: contain;">
             <span class="brand-text">Aesthetics of Society</span>
-        </div>
+        </a>
+        
+        <nav>
+            <select class="nav-dropdown" onchange="if (this.value) window.location.href = this.value;">
+                <option value="">Menu</option>
+                <option value="#">Home</option>
+                <option value="#about">About the Author</option>
+                <option value="#mcp">MCP Protocol</option>
+                <option value="#publications">Publications</option>
+                <option value="#media">Media</option>
+                <option value="#inquiry">Inquiry</option>
+            </select>
+        </nav>
     </header>
 
     <main class="hero-section">
         <p class="author-name">Independent Researcher • Naredla Rama Chandra</p>
         
-        <div class="btn-group">
-            <a href="#inquiry" class="btn btn-primary">Make an Inquiry</a>
-            <a href="#" class="btn btn-secondary">About the Author</a>
+        <div style="margin-top: 30px;">
+            <a href="#inquiry" class="btn btn-primary">Contact for Research</a>
         </div>
     </main>
 
     <section id="inquiry" class="inquiry-card">
-        <h2 style="font-family: 'Georgia', serif; color: var(--primary);">Professional Inquiry</h2>
-        <p>For research collaborations regarding the Master Consciousness Protocol or other academic queries:</p>
+        <h2 style="font-family: 'Georgia', serif; color: var(--primary);">Research Inquiry</h2>
+        <p>Direct communication for collaborations and scholarly queries.</p>
         
-        <div class="contact-details">
+        <div class="contact-box">
             <p><b>Phone:</b> +91 9121379100</p>
             <p><b>Email:</b> smith123846@gmail.com</p>
         </div>
 
-        <form style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
-            <input type="text" placeholder="Your Name" style="padding: 10px; border: 1px solid #ccc;">
-            <input type="email" placeholder="Your Email" style="padding: 10px; border: 1px solid #ccc;">
-            <textarea placeholder="Your Message" rows="4" style="padding: 10px; border: 1px solid #ccc;"></textarea>
-            <button type="button" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
+        <form style="display: flex; flex-direction: column; gap: 10px;">
+            <input type="text" placeholder="Full Name" style="padding: 12px; border: 1px solid #ddd;">
+            <input type="email" placeholder="Email Address" style="padding: 12px; border: 1px solid #ddd;">
+            <textarea placeholder="Your Message" rows="4" style="padding: 12px; border: 1px solid #ddd;"></textarea>
+            <button type="button" class="btn btn-primary">Submit Inquiry</button>
         </form>
     </section>
 
     <footer>
-        <p><span class="status-dot">●</span> <b>Site Status:</b> Deployment Successful & Live</p>
-        <p>Vercel Automatic Updation Active | © 2026 Aesthetics of Society</p>
+        <p><b>System Status:</b> <span style="color: #27ae60;">● Deployment Live</span></p>
+        <p>Naredla Rama Chandra | © 2026 Aesthetics of Society</p>
     </footer>
 
 </body>
