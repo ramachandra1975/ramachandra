@@ -4,10 +4,11 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inquiry | Naredla Rama Chandra</title>
+    <title>Aesthetics of Society | Naredla Rama Chandra</title>
     <style>
         :root {
             --primary: #1a365d; 
+            --accent: #d4af37;
         }
 
         * { box-sizing: border-box; }
@@ -16,11 +17,35 @@ HTML
             margin: 0;
             padding: 0;
             width: 100%;
+            min-height: 100vh;
             font-family: 'Segoe UI', sans-serif;
-            background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('background.png');
+            scroll-behavior: smooth;
+        }
+
+        body {
+            /* Background with overlay for text readability */
+            background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url('background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* LOGO WATERMARK */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px; height: 350px;
+            background-image: url('logo.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.08;
+            z-index: -1;
+            pointer-events: none;
         }
 
         header {
@@ -29,56 +54,77 @@ HTML
             align-items: center;
             padding: 12px 5%;
             background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 0; width: 100%;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .brand-text { font-family: 'Georgia', serif; font-weight: bold; color: var(--primary); }
+        .brand-text { font-family: 'Georgia', serif; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
 
-        .container {
-            max-width: 800px;
-            margin: 120px auto 50px;
+        /* CENTERED CONTENT SECTION */
+        .hero-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 100vh;
+        }
+
+        .author-name {
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: #000;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 10px 20px;
+        }
+
+        .btn-group { display: flex; gap: 15px; }
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-secondary { background: white; color: var(--primary); border: 1px solid var(--primary); }
+
+        /* INQUIRY SECTION */
+        .inquiry-card {
             background: rgba(255, 255, 255, 0.95);
+            max-width: 600px;
+            width: 90%;
+            margin: 50px auto;
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
         }
 
-        h2 { font-family: 'Georgia', serif; color: var(--primary); margin-bottom: 10px; }
-        
-        .contact-info {
-            margin: 20px 0;
+        .contact-details { margin: 20px 0; line-height: 1.8; border-top: 1px solid #eee; padding-top: 20px; }
+        .contact-details b { color: var(--primary); }
+
+        /* DEPLOYMENT STATUS FOOTER */
+        footer {
+            background: rgba(255, 255, 255, 0.9);
             padding: 20px;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            line-height: 1.8;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px solid #ddd;
         }
-
-        .contact-info b { color: var(--primary); }
-
-        form { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
-
-        input, textarea {
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-        }
-
-        .btn-submit {
-            background: var(--primary);
-            color: white;
-            padding: 15px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .btn-submit:hover { opacity: 0.9; }
+        .status-dot { color: #2ecc71; font-size: 1.2rem; vertical-align: middle; }
     </style>
 </head>
 <body>
@@ -90,22 +136,36 @@ HTML
         </div>
     </header>
 
-    <div class="container">
-        <h2>Professional Inquiry</h2>
-        <p>For research collaborations or academic queries, please use the details below.</p>
+    <main class="hero-section">
+        <p class="author-name">Independent Researcher • Naredla Rama Chandra</p>
+        
+        <div class="btn-group">
+            <a href="#inquiry" class="btn btn-primary">Make an Inquiry</a>
+            <a href="#" class="btn btn-secondary">About the Author</a>
+        </div>
+    </main>
 
-        <div class="contact-info">
+    <section id="inquiry" class="inquiry-card">
+        <h2 style="font-family: 'Georgia', serif; color: var(--primary);">Professional Inquiry</h2>
+        <p>For research collaborations regarding the Master Consciousness Protocol or other academic queries:</p>
+        
+        <div class="contact-details">
             <p><b>Phone:</b> +91 9121379100</p>
             <p><b>Email:</b> smith123846@gmail.com</p>
         </div>
 
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message or Research Inquiry" rows="5" required></textarea>
-            <button type="submit" class="btn-submit">Send Message</button>
+        <form style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+            <input type="text" placeholder="Your Name" style="padding: 10px; border: 1px solid #ccc;">
+            <input type="email" placeholder="Your Email" style="padding: 10px; border: 1px solid #ccc;">
+            <textarea placeholder="Your Message" rows="4" style="padding: 10px; border: 1px solid #ccc;"></textarea>
+            <button type="button" class="btn btn-primary" style="width: 100%;">Send Inquiry</button>
         </form>
-    </div>
+    </section>
+
+    <footer>
+        <p><span class="status-dot">●</span> <b>Site Status:</b> Deployment Successful & Live</p>
+        <p>Vercel Automatic Updation Active | © 2026 Aesthetics of Society</p>
+    </footer>
 
 </body>
 </html>
