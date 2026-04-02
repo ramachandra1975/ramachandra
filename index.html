@@ -4,12 +4,11 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Naredla Rama Chandra</title>
+    <title>Naredla Rama Chandra | Independent Researcher</title>
     <style>
         /* GLOBAL SETTINGS */
         :root {
             --primary: #1a365d; 
-            --accent: #d4af37;
         }
 
         * { box-sizing: border-box; }
@@ -19,35 +18,18 @@ HTML
             padding: 0;
             height: 100%;
             width: 100%;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         body {
-            /* Loads your sunrise background */
-            background-image: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('background.png');
+            /* Background image with light overlay for readability */
+            background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url('background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             display: flex;
             flex-direction: column;
-        }
-
-        /* LOGO WATERMARK IN THE CENTER */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 350px; 
-            height: 350px;
-            background-image: url('logo.jpg');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.1; /* Subtle transparency */
-            z-index: -1;
-            pointer-events: none;
         }
 
         /* NAVIGATION HEADER */
@@ -55,108 +37,73 @@ HTML
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
+            padding: 12px 5%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             text-decoration: none;
             color: var(--primary);
         }
 
-        .header-logo {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-        }
+        .header-logo { width: 35px; height: 35px; object-fit: contain; }
+        .brand-text { font-family: 'Georgia', serif; font-weight: bold; font-size: 1.1rem; }
 
-        .brand-text {
-            font-family: 'Georgia', serif;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* CENTERED CONTENT AREA */
+        /* POSITIONING THE NAME BETWEEN THE SCRIPT LINES */
         .hero-container {
             flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centers horizontally */
-            justify-content: center; /* Centers vertically */
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 20px;
-            margin-top: 60px; /* Space for fixed header */
-        }
-
-        .main-title {
-            font-family: 'Georgia', serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem); /* Responsive size */
-            margin: 0;
-            color: #000;
-            line-height: 1.1;
+            /* Adjust this percentage to move your name up or down between the script lines */
+            padding-top: 12vh; 
         }
 
         .author-name {
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            font-size: clamp(0.7rem, 2vw, 1rem);
-            margin: 20px 0 40px 0;
-            color: var(--primary);
-            font-weight: 600;
+            font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+            color: #000;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.4); /* Subtle glow behind text */
+            padding: 10px 20px;
+            border-radius: 4px;
         }
 
-        /* CENTERED BUTTONS */
+        /* BUTTONS AT THE BOTTOM */
         .btn-group {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
         }
 
         .btn {
-            padding: 15px 35px;
+            padding: 12px 28px;
             border: none;
             cursor: pointer;
             font-weight: bold;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
+            transition: 0.3s;
             text-decoration: none;
-            display: inline-block;
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 4px 15px rgba(26, 54, 93, 0.3);
-        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-secondary { background: white; color: var(--primary); border: 1px solid var(--primary); }
 
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-
-        /* MOBILE OPTIMIZATION */
-        @media (max-width: 600px) {
-            .btn-group { flex-direction: column; width: 100%; max-width: 280px; }
-            .btn { width: 100%; }
-        }
     </style>
 </head>
 <body>
@@ -166,13 +113,9 @@ HTML
             <img src="logo.jpg" alt="Logo" class="header-logo">
             <span class="brand-text">Aesthetics of Society</span>
         </a>
-        <nav>
-            </nav>
     </header>
 
     <main class="hero-container">
-        <h1 class="main-title">Aesthetics of Society</h1>
-        
         <p class="author-name">Independent Researcher • Naredla Rama Chandra</p>
         
         <div class="btn-group">
