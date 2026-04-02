@@ -9,96 +9,105 @@ HTML
         :root {
             --primary: #1a365d; 
             --accent: #d4af37;
-            /* Matches your uploaded GitHub file */
+            /* Pointing to your specific uploaded files */
+            --bg-image: url('background_image.png.jpg');
             --logo-file: url('logo.jpg');
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, sans-serif;
             margin: 0;
-            color: #334155;
-            background-color: #fdfdfd;
-            /* Subtle paper texture */
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            color: #ffffff; /* White text looks better on the mountain background */
+            background-color: #000;
+            /* FULL PAGE BACKGROUND IMAGE */
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             line-height: 1.6;
             min-height: 100vh;
         }
 
-        /* THE WATERMARK: Fixed to the center of the screen */
-        body::before {
+        /* DECENT LOGO WATERMARK: Positioned behind content but clearly viewed */
+        body::after {
             content: "";
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 600px; /* Large professional size */
-            height: 600px;
+            width: 500px; 
+            height: 500px;
             background-image: var(--logo-file);
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
-            opacity: 0.08; /* Subtle but visible */
+            opacity: 0.25; /* Decent visibility over the sunrise */
             z-index: -1;
             pointer-events: none;
         }
 
         .serif { font-family: 'Georgia', serif; }
 
-        /* HEADER & STATUS BAR */
+        /* HEADER & STATUS */
         .status-bar {
-            background: var(--primary);
+            background: rgba(26, 54, 93, 0.9);
             color: white;
-            padding: 8px 5%;
+            padding: 10px 5%;
             font-size: 11px;
             display: flex;
             justify-content: space-between;
+            backdrop-filter: blur(5px);
         }
 
         header {
             display: flex;
             justify-content: space-between;
             padding: 25px 5%;
-            background: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid #eee;
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .brand { font-size: 1.4rem; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); }
+        .brand { font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; color: #fff; }
 
-        nav { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 10px; text-transform: uppercase; font-weight: bold; }
-        nav a { text-decoration: none; color: #64748b; }
+        nav a { text-decoration: none; color: #ddd; font-size: 11px; font-weight: bold; text-transform: uppercase; margin-left: 20px; }
         nav a:hover { color: var(--accent); }
 
-        /* MAIN CONTENT - NO BOX */
         main {
-            max-width: 1100px;
+            max-width: 900px;
             margin: auto;
-            padding: 100px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
-        .sync-section h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
-        .sync-section p { font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px; }
+        /* GLASS EFFECT: Makes text readable over the image */
+        .content-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
 
         .sync-btn {
             background: var(--accent);
-            color: var(--primary);
+            color: #000;
             border: none;
             padding: 15px 40px;
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 5px;
             transition: 0.3s;
         }
-        .sync-btn:hover { background: #e2c04f; transform: translateY(-2px); }
+        .sync-btn:hover { background: #fff; transform: scale(1.05); }
 
-        /* CONTACT SECTION */
-        .contact-area {
-            margin-top: 150px;
-            text-align: left;
-            border-top: 1px solid #eee;
-            padding-top: 40px;
+        .author-img {
+            width: 200px;
+            border-radius: 10px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -109,56 +118,54 @@ HTML
 </audio>
 
 <div class="status-bar">
-    <div>Build Status: 100% Complete</div>
-    <div style="color: #4ade80;">Auto-Update: Active</div>
+    <div>SYSTEM STATUS: ONLINE</div>
+    <div style="color: #4ade80;">PROTOCOL SYNCHRONIZATION: ACTIVE</div>
 </div>
 
 <header>
     <div class="brand serif">Aesthetics of Society</div>
     <nav>
-        <div style="display: flex; flex-direction: column; gap: 5px;">
-            <a href="#">Home</a><a href="#">About</a><a href="#">MCP Protocol</a><a href="#">Publications</a>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 5px;">
-            <a href="#">Timeline</a><a href="#">Media</a><a href="#">Inquiry</a><a href="#">Updates</a>
-        </div>
+        <a href="#">Home</a>
+        <a href="#">MCP Protocol</a>
+        <a href="#">Inquiry</a>
     </nav>
 </header>
 
 <main>
-    <div class="sync-section">
-        <h2 class="serif">System Synchronization</h2>
-        <p>Your research documents and website build are set to sync every 24 hours. Use the manual override to initiate immediate frequency alignment.</p>
-        
-        <button id="syncBtn" onclick="startExperience()" class="sync-btn">Sync Now (Manual Override)</button>
-        
-        <p id="statusMsg" style="font-size: 12px; color: #94a3b8; margin-top: 20px; display: none;">Sync Complete. Audio Experience Active.</p>
+    <div class="content-overlay">
+        <h2 class="serif" style="font-size: 2.5rem; margin-top: 0;">System Synchronization</h2>
+        <p>Aligning research data with the Master Consciousness Protocol. The audio experience will initialize upon synchronization.</p>
+        <button id="syncBtn" onclick="runSync()" class="sync-btn">Sync Now (Manual Override)</button>
     </div>
 
-    <div class="contact-area">
-        <h3 class="serif" style="color: var(--primary);">Contact & Inquiry</h3>
-        <p><strong>Naredla Rama Chandra</strong><br>
-        Phone: +91 9121379100<br>
-        Email: smith123846@gmail.com</p>
+    <div class="content-overlay" style="text-align: left;">
+        <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+            <img src="photo.jpg" alt="Profile" class="author-img" onerror="this.style.display='none';">
+            <div>
+                <h3 class="serif" style="font-size: 1.8rem; margin: 0;">Naredla Rama Chandra</h3>
+                <p style="color: var(--accent); margin: 5px 0;">Researcher & Author</p>
+                <p style="font-size: 0.95rem;">Integrating Vedic wisdom with neuroscience and AI.</p>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; opacity: 0.8; font-size: 0.9rem;">
+        Contact: +91 9121379100 | smith123846@gmail.com
     </div>
 </main>
 
 <script>
-    function startExperience() {
+    function runSync() {
         const music = document.getElementById('bgMusic');
         const btn = document.getElementById('syncBtn');
-        const msg = document.getElementById('statusMsg');
-
-        // Play the flute.mp3
-        music.play().catch(e => console.log("Audio waiting for interaction."));
-
-        // Visual Feedback
-        btn.innerHTML = "Syncing...";
-        setTimeout(() => {
-            btn.innerHTML = "Synchronized";
-            msg.style.display = "block";
-        }, 1500);
+        music.play();
+        btn.innerHTML = "SYNCHRONIZED";
+        btn.style.background = "#4ade80";
     }
+</script>
+
+</body>
+</html>
 </script>
 
 </body>
