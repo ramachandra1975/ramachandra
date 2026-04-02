@@ -9,8 +9,7 @@ HTML
         :root {
             --primary: #1a365d; 
             --accent: #d4af37;
-            /* CRITICAL: Ensure these filenames match your GitHub exactly */
-            --bg-file: url('background_image.png.jpg');
+            --bg-file: url('background.png');
             --logo-file: url('logo.jpg');
         }
 
@@ -20,9 +19,10 @@ HTML
             height: 100%;
             width: 100%;
             font-family: 'Segoe UI', Tahoma, sans-serif;
+            overflow-x: hidden;
         }
 
-        /* 1. THE FULL BACKGROUND IMAGE */
+        /* FULL SCREEN BACKGROUND */
         .main-wrapper {
             position: relative;
             min-height: 100vh;
@@ -35,7 +35,7 @@ HTML
             flex-direction: column;
         }
 
-        /* 2. THE CENTERED LOGO WATERMARK */
+        /* CENTERED LOGO WATERMARK - 0.15 Opacity */
         .main-wrapper::before {
             content: "";
             position: fixed;
@@ -48,51 +48,49 @@ HTML
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
-            opacity: 0.15; /* "Decent" visibility - clearly viewed */
+            opacity: 0.15;
             z-index: 1;
             pointer-events: none;
         }
 
         .serif { font-family: 'Georgia', serif; }
 
-        /* HEADER WITH FITTED LOGO TOP-LEFT */
+        /* HEADER WITH 12-ITEM GRID MENU */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
+            padding: 20px 5%;
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             z-index: 10;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        .brand-container { display: flex; align-items: center; gap: 12px; }
-        
-        .header-logo {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
+        .brand-container { display: flex; align-items: center; gap: 15px; }
+        .header-logo { width: 45px; height: 45px; object-fit: contain; }
+        .brand-text h1 { font-size: 1.3rem; margin: 0; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); }
+
+        /* THE 12-PAGE MENU GRID */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns for 12 items */
+            gap: 8px 30px;
         }
 
-        .brand-text h1 { 
-            font-size: 1.2rem; 
-            margin: 0; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
+        .menu-grid a {
+            text-decoration: none;
             color: var(--primary);
+            font-size: 9px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
 
-        nav a { 
-            text-decoration: none; 
-            color: var(--primary); 
-            font-size: 10px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            margin-left: 20px; 
-        }
+        .menu-grid a:hover { color: var(--accent); }
 
-        /* HERO CONTENT & BUTTONS */
+        /* HERO CONTENT */
         .hero-content {
             flex-grow: 1;
             display: flex;
@@ -101,38 +99,33 @@ HTML
             justify-content: center;
             text-align: center;
             z-index: 5;
-            padding: 20px;
         }
 
-        .main-title { 
-            font-size: 5rem; 
-            margin: 0; 
-            color: var(--primary);
-            font-weight: normal;
-        }
+        .main-title { font-size: 5.5rem; margin: 0; color: var(--primary); font-weight: normal; }
         .main-title span { color: var(--accent); font-style: italic; }
 
-        /* THE TWO BUTTONS */
+        /* TWO MAIN BUTTONS */
         .button-group {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             margin-top: 50px;
         }
 
         .action-btn {
-            padding: 18px 40px;
+            padding: 18px 45px;
             font-size: 11px;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
             border: 1px solid rgba(0,0,0,0.1);
-            transition: 0.3s;
+            transition: 0.4s;
+            border-radius: 2px;
         }
 
         .btn-dark { background: var(--primary); color: white; }
-        .btn-light { background: rgba(255,255,255,0.8); color: var(--primary); }
-        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .btn-light { background: rgba(255,255,255,0.7); color: var(--primary); }
+        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
 
     </style>
 </head>
@@ -146,17 +139,28 @@ HTML
                 <h1 class="serif">Aesthetics of Society</h1>
             </div>
         </div>
-        <nav>
+
+        <nav class="menu-grid">
+            <a href="#">Home</a>
+            <a href="#">Timeline</a>
             <a href="#">About</a>
+            <a href="#">Media</a>
+            <a href="#">MCP Protocol</a>
+            <a href="#">Inquiry</a>
             <a href="#">Publications</a>
+            <a href="#">Updates</a>
+            <a href="#">Research</a>
+            <a href="#">Gallery</a>
+            <a href="#">Archives</a>
             <a href="#">Contact</a>
         </nav>
     </header>
 
     <main class="hero-content">
         <h2 class="main-title serif">Aesthetics <span>of Society</span></h2>
-        <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 11px; color: var(--primary); margin-top: 15px;">
-            Naredla Rama Chandra — Independent Researcher
+        
+        <p style="letter-spacing: 4px; text-transform: uppercase; font-size: 11px; color: var(--primary); margin-top: 20px;">
+            Independent Research & Clinical Studies
         </p>
 
         <div class="button-group">
