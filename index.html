@@ -4,183 +4,132 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naredla Rama Chandra | Master Consciousness Protocol</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Cultural Musings | Naredla Rama Chandra</title>
     <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #fcfcfc; margin: 0; padding: 0; }
-        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
-
-        /* LOGO WATERMARK PROTOCOL - FIXED ATTACHMENT */
-        /* This ensures your 'logo.jpg' remains a static background seal */
-        .watermark-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('logo.jpg'); 
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 40%;
-            background-attachment: fixed;
-            opacity: 0.03; 
-            z-index: -1;
-            pointer-events: none;
+        :root {
+            --deep-red: #800000;
+            --gold: #d4af37;
+            --content-bg: rgba(255, 252, 245, 0.94); 
         }
 
-        /* RADIO NAVIGATION LOGIC */
-        .nav-radio { display: none; }
-        .nav-label { 
-            cursor: pointer; font-size: 8px; letter-spacing: 0.25em; font-weight: 700; 
-            text-transform: uppercase; color: #94a3b8; transition: all 0.4s ease;
-            border-bottom: 2px solid transparent; padding-bottom: 6px;
-        }
-        .nav-radio:checked + .nav-label { 
-            color: #1e3a8a; border-bottom: 2px solid #1e3a8a; transform: scale(1.05);
+        body {
+            margin: 0; font-family: 'Georgia', serif;
+            background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), 
+                        url('your-background-image.jpg') no-repeat center center fixed;
+            background-size: cover; color: #333;
         }
 
-        /* PAGE VISIBILITY */
-        .page-section { display: none; opacity: 0; transform: translateY(10px); transition: all 0.5s ease; }
-        .page-section.active { display: block; opacity: 1; transform: translateY(0); }
+        /* Branding & Subtle Watermark */
+        .brand-header { position: fixed; top: 12px; left: 20px; display: flex; align-items: center; gap: 12px; z-index: 2000; }
+        .brand-logo { width: 42px; height: auto; opacity: 0.85; }
+        .brand-text { color: var(--deep-red); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-5deg); opacity: 0.03; font-size: 6rem; z-index: -1; pointer-events: none; font-weight: bold; }
 
-        .glass-panel { background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.03); }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        /* Navigation - Adjusted for 12 Items */
+        nav { background: rgba(128, 0, 0, 0.98); padding: 12px 30px; position: fixed; top: 0; width: 100%; display: flex; justify-content: flex-end; flex-wrap: wrap; z-index: 1500; }
+        nav a { color: #fdf5e6; margin-left: 14px; text-decoration: none; font-size: 0.65rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; padding: 5px 0; }
+        nav a:hover { color: var(--gold); }
+
+        /* Content Sections */
+        .page-section { display: none; max-width: 1050px; margin: 130px auto 60px; padding: 50px; background: var(--content-bg); border: 1px solid rgba(212, 175, 55, 0.15); box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+        .active-section { display: block; animation: fadeIn 0.6s; }
+
+        /* Grids & Cards */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
+        .card { background: #fff; padding: 20px; border: 1px solid #eee; border-left: 4px solid var(--gold); }
+        .card h4 { color: var(--deep-red); margin-top: 0; margin-bottom: 10px; }
+        .ref-tag { font-size: 0.72rem; color: #777; font-style: italic; margin-top: 10px; display: block; border-top: 1px solid #f0f0f0; padding-top: 5px; }
+
+        /* Video/Media */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 10px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
-<body class="text-gray-900">
+<body>
 
-    <div class="watermark-overlay"></div>
-    <audio id="siteAudio" loop><source src="flute.mp3" type="audio/mpeg"></audio>
+    <div class="brand-header">
+        <img src="logo.png" alt="Logo" class="brand-logo">
+        <span class="brand-text">Aesthetics of Society</span>
+    </div>
+    <div class="watermark">AESTHETICS OF SOCIETY</div>
 
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-6">
-        <div class="max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
-            <div class="flex justify-center gap-x-8 whitespace-nowrap">
-                <input type="radio" name="site" id="r1" class="nav-radio" checked onclick="showPage('p1')">
-                <label for="r1" class="nav-label">01 Abstract</label>
+    <nav>
+        <a onclick="showSection('home')">Home</a>
+        <a onclick="showSection('intro')">Intro</a>
+        <a onclick="showSection('vols')">8 Volumes</a>
+        <a onclick="showSection('karanas')">10 Karanas</a>
+        <a onclick="showSection('mudras')">Mudras</a>
+        <a onclick="showSection('swaras')">Swaras</a>
+        <a onclick="showSection('future')">Future Research</a>
+        <a onclick="showSection('clan')">Clan</a>
+        <a onclick="showSection('rationale')">Rationale</a>
+        <a onclick="showSection('refs')">References</a>
+        <a onclick="showSection('media')">Media</a>
+        <a onclick="showSection('contact')">Contact</a>
+    </nav>
 
-                <input type="radio" name="site" id="r2" class="nav-radio" onclick="showPage('p2')">
-                <label for="r2" class="nav-label">02 MCP Protocol</label>
+    <section id="home" class="page-section active-section" style="text-align: center;">
+        <h1 style="color: var(--deep-red); font-size: 2.8rem; margin-bottom: 5px;">Naredla Rama Chandra</h1>
+        <p style="letter-spacing: 4px; color: #666; font-size: 0.85rem;">INDEPENDENT RESEARCHER & AUTHOR</p>
+        <hr style="width: 60px; border: 1px solid var(--gold); margin: 25px auto;">
+        <h2 style="font-weight: 400;">Master Consciousness Protocol</h2>
+        <p style="font-style: italic; max-width: 700px; margin: auto;">An empirical bridge between the 108 Karanas, Sapta Swaras, and Modern Neuro-Biological Inferences.</p>
+    </section>
 
-                <input type="radio" name="site" id="r3" class="nav-radio" onclick="showPage('p3')">
-                <label for="r3" class="nav-label">03 Bibliography</label>
-
-                <input type="radio" name="site" id="r4" class="nav-radio" onclick="showPage('p4')">
-                <label for="r4" class="nav-label">04 108 Karanas</label>
-
-                <input type="radio" name="site" id="r5" class="nav-radio" onclick="showPage('p5')">
-                <label for="r5" class="nav-label">05 Neuro-Study</label>
-
-                <input type="radio" name="site" id="r6" class="nav-radio" onclick="showPage('p6')">
-                <label for="r6" class="nav-label">06 Bio-Acoustics</label>
-
-                <input type="radio" name="site" id="r7" class="nav-radio" onclick="showPage('p7')">
-                <label for="r7" class="nav-label">07 Astrophysics</label>
-
-                <input type="radio" name="site" id="r8" class="nav-radio" onclick="showPage('p8')">
-                <label for="r8" class="nav-label">08 Guru's Clan</label>
-
-                <input type="radio" name="site" id="r9" class="nav-radio" onclick="showPage('p9')">
-                <label for="r9" class="nav-label">09 YouTube Hub</label>
-
-                <input type="radio" name="site" id="r10" class="nav-radio" onclick="showPage('p10')">
-                <label for="r10" class="nav-label">10 Inquiry</label>
+    <!-- NEW SECTION: Future & Ongoing Research -->
+    <section id="future" class="page-section">
+        <h3 style="color: var(--deep-red); border-bottom: 1px solid var(--gold); padding-bottom: 10px;">Future & Ongoing Research Works</h3>
+        <p>Current explorations focus on the medical and scientific validation of the <strong>Master Consciousness Protocol</strong>.</p>
+        <div class="grid-container">
+            <div class="card">
+                <h4>Neuro-Medical Inferences</h4>
+                <p>Analyzing the correlation between Karana-induced bio-rhythms and neuroplasticity markers.</p>
+                <span class="ref-tag">Phase: Data Validation | Ref: MCP Section VII</span>
+            </div>
+            <div class="card">
+                <h4>Clinical Applications</h4>
+                <p>Ongoing studies on the therapeutic use of Beeja Aksharas in stress-response modulation.</p>
+                <span class="ref-tag">Status: Collaborative Review</span>
             </div>
         </div>
-    </header>
+    </section>
 
-    <main class="max-w-6xl mx-auto px-6 py-20 min-h-screen relative">
-
-        <section id="p3" class="page-section space-y-16">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold italic">Reference Archive: The Eight Books</h2>
+    <!-- NEW SECTION: Mudra Studies -->
+    <section id="mudras" class="page-section">
+        <h3 style="color: var(--deep-red); border-bottom: 1px solid var(--gold); padding-bottom: 10px;">In-Depth Study: Mudras</h3>
+        <p>A technical study of hand gestures as vibrational and neurological triggers.</p>
+        <div class="grid-container">
+            <div class="card">
+                <h4>Physiological Impact</h4>
+                <p>Detailed analysis of how finger postures affect specific brain regions and meridian points.</p>
+                <span class="ref-tag">Publication: "The Science of Mudras"</span>
             </div>
-            
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="glass-panel p-10 border-t-2 border-blue-900 shadow-sm">
-                    <h3 class="font-bold text-xl mb-6">Vol III: Sapta Swaras & Healing</h3>
-                    <div class="space-y-6">
-                        <div class="p-4 bg-gray-50/50 rounded border-l-2 border-gray-200">
-                            <h4 class="text-[10px] font-bold uppercase text-blue-900 mb-1">Textual Reference</h4>
-                            <p class="text-xs text-gray-600 leading-relaxed italic">Primary source: Naradiya Shiksha and Sangeeta Ratnakara; Analysis of Vedic phonetics in Gandharva Veda.</p>
-                        </div>
-                        <div class="p-4 bg-blue-50/30 rounded border-l-2 border-blue-200">
-                            <h4 class="text-[10px] font-bold uppercase text-blue-900 mb-1">Contextual Reference</h4>
-                            <p class="text-xs text-gray-600 leading-relaxed">Clinical mapping of Shadja (S) and Panchama (P) frequencies to alpha-wave entrainment and autonomic nervous system regulation.</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Additional Mudra cards can be pasted here -->
+        </div>
+    </section>
 
-                <div class="glass-panel p-10 border-t-2 border-blue-900 shadow-sm">
-                    <h3 class="font-bold text-xl mb-6">Vol IV: 108 Karanas & Beeja Aksharas</h3>
-                    <div class="space-y-6">
-                        <div class="p-4 bg-gray-50/50 rounded border-l-2 border-gray-200">
-                            <h4 class="text-[10px] font-bold uppercase text-blue-900 mb-1">Textual Reference</h4>
-                            <p class="text-xs text-gray-600 leading-relaxed italic">Primary source: Natya Shastra, Chapter 4 (Karanas) and Tantric Matrika Shastra (Beejas).</p>
-                        </div>
-                        <div class="p-4 bg-blue-50/30 rounded border-l-2 border-blue-200">
-                            <h4 class="text-[10px] font-bold uppercase text-blue-900 mb-1">Contextual Reference</h4>
-                            <p class="text-xs text-gray-600 leading-relaxed">Analysis of kinetic symmetry in Karanas as a mechanism for optimizing cerebrospinal fluid (CSF) flow and neural homeostasis.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="p9" class="page-section space-y-10">
-            <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b pb-8">
-                <div>
-                    <h2 class="text-3xl font-bold italic">8th Channel: Video Archive</h2>
-                    <p class="text-xs font-bold text-blue-900 tracking-widest uppercase mt-2">YouTube: @aestheticsofsociety</p>
-                </div>
-                <input type="text" id="ytSearch" onkeyup="ytFilter()" placeholder="Search (e.g. 'Cosmic Vak', 'Episode 1', 'Frequency')..." 
-                       class="border-b border-blue-900 bg-transparent text-sm p-3 w-full md:w-72 outline-none">
-            </div>
-
-            <div id="ytGallery" class="grid md:grid-cols-2 gap-12">
-                <div class="video-card group" data-keywords="cosmic vak language episode 1 sarswati matrika alphabet">
-                    <div class="aspect-video bg-black rounded shadow-lg overflow-hidden group-hover:shadow-2xl transition-all">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/VIDEO_ID_HERE" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <h4 class="font-bold text-lg mt-4 group-hover:text-blue-900 transition-colors">Cosmic Vak: The Story of Language</h4>
-                    <p class="text-[12px] text-gray-500 mt-2 leading-relaxed italic">Episode 01: Investigating the vibrational origin of the Sanskrit Matrikas and their neurological mapping.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="p1" class="page-section active text-center py-20">
-            <h1 class="text-6xl font-bold tracking-tight text-gray-800">Naredla Rama Chandra</h1>
-            <p class="text-2xl italic text-blue-900 mt-4 serif">"Bridging Ancient Indian Systems with Modern Empirical Science"</p>
-            <div class="mt-24 max-w-2xl mx-auto glass-panel p-12">
-                <p class="text-sm font-light leading-loose text-gray-600">The <strong>Master Consciousness Protocol (MCP)</strong> serves as a clinical bridge between the 108 Karanas, Sapta Swara science, and modern neuro-rehabilitation.</p>
-            </div>
-        </section>
-
-    </main>
+    <!-- Media Section with YouTube Search -->
+    <section id="media" class="page-section">
+        <h3>Research Media & Demonstrations</h3>
+        <div class="grid-container">
+            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/ID1"></iframe></div></div>
+            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/ID2"></iframe></div></div>
+            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/ID3"></iframe></div></div>
+            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/ID4"></iframe></div></div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; font-style: italic; color: var(--deep-red);">
+            For in-depth studies, search YouTube for: <strong>@aestheticsofsociety</strong>
+        </p>
+    </section>
 
     <script>
-        // Page Switching Engine
-        function showPage(id) {
-            document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
-            const target = document.getElementById(id);
-            if(target) {
-                target.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
+        function showSection(id) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
+            document.getElementById(id).classList.add('active-section');
+            window.scrollTo(0,0);
         }
-
-        // Search Engine for Media
-        function ytFilter() {
-            let input = document.getElementById('ytSearch').value.toLowerCase();
-            let items = document.querySelectorAll('.video-card');
-            items.forEach(item => {
-                let keywords = item.getAttribute('data-keywords').toLowerCase();
-                item.style.display = keywords.includes(input) ? "block" : "none";
-            });
-        }
-
-        // Audio Activation
-        window.addEventListener('click', () => {
-            const audio = document.getElementById('siteAudio');
-            if (audio.paused) { audio.volume = 0.15; audio.play(); }
-        }, { once: true });
     </script>
 </body>
 </html>
