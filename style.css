@@ -3,8 +3,9 @@ CSS
 :root {
     --primary: #1a365d; 
     --accent: #d4af37;
-    --bg-file: url('./background.png'); 
-    --logo-file: url('./logo.jpg');
+    /* Removed the ./ to make it a direct path */
+    --bg-file: url('background.png'); 
+    --logo-file: url('logo.jpg');
 }
 
 * {
@@ -24,10 +25,12 @@ body, html {
     position: relative;
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), var(--bg-file);
+    /* Added a light overlay so your text is easy to read against the sunrise */
+    background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), var(--bg-file);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
 }
@@ -38,7 +41,8 @@ body, html {
     position: fixed;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 450px; height: 450px;
+    width: 450px; 
+    height: 450px;
     background-image: var(--logo-file);
     background-repeat: no-repeat;
     background-position: center;
@@ -56,10 +60,10 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 5%;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95); /* Slightly more solid for better contrast */
     backdrop-filter: blur(10px);
     z-index: 100;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .brand-container { display: flex; align-items: center; gap: 12px; }
@@ -75,6 +79,7 @@ header {
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: bold;
 }
 
 .dropdown-content {
@@ -82,18 +87,25 @@ header {
     position: absolute;
     right: 0;
     background-color: white;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    min-width: 220px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
     z-index: 101;
 }
 
 .dropdown-content a {
     color: var(--primary);
-    padding: 12px 16px;
+    padding: 14px 20px;
     text-decoration: none;
     display: block;
     font-size: 11px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #f0f0f0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f9f9f9;
+    color: var(--accent);
 }
 
 .dropdown:hover .dropdown-content { display: block; }
