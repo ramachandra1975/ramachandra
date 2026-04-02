@@ -12,15 +12,16 @@ HTML
         h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
 
         /* LOGO WATERMARK PROTOCOL - FIXED ATTACHMENT */
+        /* This ensures your 'logo.jpg' remains a static background seal */
         .watermark-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('logo.jpg'); /* Your specific logo file */
+            background-image: url('logo.jpg'); 
             background-repeat: no-repeat;
             background-position: center;
-            background-size: 45%;
-            background-attachment: fixed; /* Fixed as an attachment */
-            opacity: 0.03; /* Extremely subtle for academic reading */
+            background-size: 40%;
+            background-attachment: fixed;
+            opacity: 0.03; 
             z-index: -1;
             pointer-events: none;
         }
@@ -37,7 +38,7 @@ HTML
         }
 
         /* PAGE VISIBILITY */
-        .page-section { display: none; opacity: 0; transform: translateY(15px); transition: all 0.5s ease; }
+        .page-section { display: none; opacity: 0; transform: translateY(10px); transition: all 0.5s ease; }
         .page-section.active { display: block; opacity: 1; transform: translateY(0); }
 
         .glass-panel { background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.03); }
@@ -46,17 +47,14 @@ HTML
 </head>
 <body class="text-gray-900">
 
-    <!-- THE LOGO ATTACHMENT -->
     <div class="watermark-overlay"></div>
-    
     <audio id="siteAudio" loop><source src="flute.mp3" type="audio/mpeg"></audio>
 
-    <!-- 10-SECTION RADIO BAR -->
     <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 py-6">
         <div class="max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
             <div class="flex justify-center gap-x-8 whitespace-nowrap">
                 <input type="radio" name="site" id="r1" class="nav-radio" checked onclick="showPage('p1')">
-                <label for="r1" class="nav-label">01 Home</label>
+                <label for="r1" class="nav-label">01 Abstract</label>
 
                 <input type="radio" name="site" id="r2" class="nav-radio" onclick="showPage('p2')">
                 <label for="r2" class="nav-label">02 MCP Protocol</label>
@@ -73,7 +71,7 @@ HTML
                 <input type="radio" name="site" id="r6" class="nav-radio" onclick="showPage('p6')">
                 <label for="r6" class="nav-label">06 Bio-Acoustics</label>
 
-                <input type="radio" name="site" id="r7" class="nav-radio" onclick="showPage('r7')">
+                <input type="radio" name="site" id="r7" class="nav-radio" onclick="showPage('p7')">
                 <label for="r7" class="nav-label">07 Astrophysics</label>
 
                 <input type="radio" name="site" id="r8" class="nav-radio" onclick="showPage('p8')">
@@ -90,66 +88,75 @@ HTML
 
     <main class="max-w-6xl mx-auto px-6 py-20 min-h-screen relative">
 
-        <!-- SECTION 03: BIBLIOGRAPHY WITH SEPARATE REFERENCE PAGES -->
         <section id="p3" class="page-section space-y-16">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold italic">Publications & Bibliographic References</h2>
-                <p class="text-xs uppercase tracking-widest text-blue-900 mt-2">Textual & Contextual Analysis</p>
+                <h2 class="text-3xl font-bold italic">Reference Archive: The Eight Books</h2>
             </div>
             
             <div class="grid md:grid-cols-2 gap-12">
-                <div class="glass-panel p-10 border-t-2 border-blue-900">
+                <div class="glass-panel p-10 border-t-2 border-blue-900 shadow-sm">
+                    <h3 class="font-bold text-xl mb-6">Vol III: Sapta Swaras & Healing</h3>
+                    <div class="space-y-6">
+                        <div class="p-4 bg-gray-50/50 rounded border-l-2 border-gray-200">
+                            <h4 class="text-[10px] font-bold uppercase text-blue-900 mb-1">Textual Reference</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed italic">Primary source: Naradiya Shiksha and Sangeeta Ratnakara; Analysis of Vedic phonetics in Gandharva Veda.</p>
+                        </div>
+                        <div class="p-4 bg-blue-50/30 rounded border-l-2 border-blue-200">
+                            <h4 class="text-[10px] font-bold uppercase text-blue-900 mb-1">Contextual Reference</h4>
+                            <p class="text-xs text-gray-600 leading-relaxed">Clinical mapping of Shadja (S) and Panchama (P) frequencies to alpha-wave entrainment and autonomic nervous system regulation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-10 border-t-2 border-blue-900 shadow-sm">
                     <h3 class="font-bold text-xl mb-6">Vol IV: 108 Karanas & Beeja Aksharas</h3>
                     <div class="space-y-6">
                         <div class="p-4 bg-gray-50/50 rounded border-l-2 border-gray-200">
                             <h4 class="text-[10px] font-bold uppercase text-blue-900 mb-1">Textual Reference</h4>
-                            <p class="text-xs text-gray-600 leading-relaxed italic">Primary source: Natya Shastra (Bharata Muni) and Abhinavagupta's Abhinavabharati.</p>
+                            <p class="text-xs text-gray-600 leading-relaxed italic">Primary source: Natya Shastra, Chapter 4 (Karanas) and Tantric Matrika Shastra (Beejas).</p>
                         </div>
                         <div class="p-4 bg-blue-50/30 rounded border-l-2 border-blue-200">
                             <h4 class="text-[10px] font-bold uppercase text-blue-900 mb-1">Contextual Reference</h4>
-                            <p class="text-xs text-gray-600 leading-relaxed">Mapping neuro-muscular feedback loops to specific astronomical alignments (Graha positions).</p>
+                            <p class="text-xs text-gray-600 leading-relaxed">Analysis of kinetic symmetry in Karanas as a mechanism for optimizing cerebrospinal fluid (CSF) flow and neural homeostasis.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 09: SEARCHABLE YOUTUBE ARCHIVE (@aestheticsofsociety) -->
         <section id="p9" class="page-section space-y-10">
             <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b pb-8">
                 <div>
-                    <h2 class="text-3xl font-bold italic">Research Archive</h2>
+                    <h2 class="text-3xl font-bold italic">8th Channel: Video Archive</h2>
                     <p class="text-xs font-bold text-blue-900 tracking-widest uppercase mt-2">YouTube: @aestheticsofsociety</p>
                 </div>
-                <input type="text" id="ytSearch" onkeyup="ytFilter()" placeholder="Search by topic (e.g. 'Vak', 'Music', 'Neuro')..." 
-                       class="border-b border-blue-900 bg-transparent text-sm p-3 w-full md:w-72 outline-none focus:bg-blue-50/20">
+                <input type="text" id="ytSearch" onkeyup="ytFilter()" placeholder="Search (e.g. 'Cosmic Vak', 'Episode 1', 'Frequency')..." 
+                       class="border-b border-blue-900 bg-transparent text-sm p-3 w-full md:w-72 outline-none">
             </div>
 
             <div id="ytGallery" class="grid md:grid-cols-2 gap-12">
-                <!-- Video Entry 1 -->
-                <div class="video-card group" data-keywords="cosmic vak language episode 1 sarswati matrika">
-                    <div class="aspect-video bg-black rounded shadow-lg overflow-hidden group-hover:shadow-2xl transition-all duration-300">
+                <div class="video-card group" data-keywords="cosmic vak language episode 1 sarswati matrika alphabet">
+                    <div class="aspect-video bg-black rounded shadow-lg overflow-hidden group-hover:shadow-2xl transition-all">
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/VIDEO_ID_HERE" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <h4 class="font-bold text-lg mt-4 group-hover:text-blue-900 transition-colors">Cosmic Vak: The Story of Language</h4>
-                    <p class="text-[12px] text-gray-500 mt-2 leading-relaxed italic">Description: Investigating the phoneme origins of the Sanskrit alphabet and their resonance in the human brain.</p>
+                    <p class="text-[12px] text-gray-500 mt-2 leading-relaxed italic">Episode 01: Investigating the vibrational origin of the Sanskrit Matrikas and their neurological mapping.</p>
                 </div>
             </div>
         </section>
 
-        <!-- HOME SECTION -->
         <section id="p1" class="page-section active text-center py-20">
             <h1 class="text-6xl font-bold tracking-tight text-gray-800">Naredla Rama Chandra</h1>
             <p class="text-2xl italic text-blue-900 mt-4 serif">"Bridging Ancient Indian Systems with Modern Empirical Science"</p>
             <div class="mt-24 max-w-2xl mx-auto glass-panel p-12">
-                <p class="text-sm font-light leading-loose text-gray-600">The <strong>Master Consciousness Protocol (MCP)</strong> offers a 300-page framework for researchers and clinical professionals to explore the healing potential of Karana bio-mechanics.</p>
+                <p class="text-sm font-light leading-loose text-gray-600">The <strong>Master Consciousness Protocol (MCP)</strong> serves as a clinical bridge between the 108 Karanas, Sapta Swara science, and modern neuro-rehabilitation.</p>
             </div>
         </section>
 
     </main>
 
     <script>
-        // Page Selection Engine
+        // Page Switching Engine
         function showPage(id) {
             document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
             const target = document.getElementById(id);
@@ -159,7 +166,7 @@ HTML
             }
         }
 
-        // Search Engine for YouTube Archive
+        // Search Engine for Media
         function ytFilter() {
             let input = document.getElementById('ytSearch').value.toLowerCase();
             let items = document.querySelectorAll('.video-card');
@@ -169,7 +176,7 @@ HTML
             });
         }
 
-        // Audio Management
+        // Audio Activation
         window.addEventListener('click', () => {
             const audio = document.getElementById('siteAudio');
             if (audio.paused) { audio.volume = 0.15; audio.play(); }
