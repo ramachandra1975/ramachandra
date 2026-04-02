@@ -4,120 +4,137 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cultural Musings | Naredla Rama Chandra</title>
+    <title>Aesthetics of Society | Naredla Rama Chandra</title>
     <style>
-        /* 1. The Background Layer */
+        /* 1. CORE STYLES & BACKGROUND */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Georgia', serif;
-            background-image: url('background.jpg'); /* Rename your mountain photo to background.jpg */
-            background-attachment: fixed;
+            /* Ensure your image is named 'background.jpg' in your folder */
+            background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            color: #2c3e50;
+            color: #1a365d; /* Deep Navy */
         }
 
-        /* 2. The Parchment Overlay */
-        .main-wrapper {
-            background-color: rgba(255, 252, 245, 0.92); /* Light parchment feel */
-            max-width: 1000px;
-            margin: 40px auto;
+        /* 2. PARCHMENT OVERLAY CONTAINER */
+        .container {
+            background-color: rgba(255, 252, 245, 0.94); /* Parchment effect */
+            max-width: 1100px;
+            margin: 50px auto;
             padding: 40px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            border-radius: 8px;
-            min-height: 90vh;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 4px;
+            min-height: 100vh;
+            border: 1px solid #d4af37; /* Gold trim */
         }
 
+        /* 3. BRANDING HEADER */
         header {
             text-align: center;
-            border-bottom: 2px solid #8e44ad;
+            border-bottom: 2px solid #b8924e;
             padding-bottom: 20px;
             margin-bottom: 30px;
         }
 
         .logo {
-            max-width: 150px;
+            max-width: 120px; /* Adjust based on your 'logo.png' size */
             margin-bottom: 10px;
         }
 
-        /* 3. The 10-Page Navigation */
+        h1 { margin: 0; font-size: 2.5em; letter-spacing: 2px; text-transform: uppercase; }
+        .sub-title { color: #b8924e; font-style: italic; margin-top: 5px; }
+
+        /* 4. 10-PAGE NAVIGATION MENU */
         nav {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 30px;
-            background: #fdf6e3;
+            margin-bottom: 40px;
             padding: 10px;
+            background: rgba(26, 54, 93, 0.05);
             border-radius: 5px;
         }
 
         nav a {
             text-decoration: none;
-            color: #5d3f6a;
+            color: #1a365d;
             font-weight: bold;
-            font-size: 0.9em;
-            padding: 5px 10px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            padding: 8px 12px;
+            transition: 0.3s;
             border-bottom: 2px solid transparent;
         }
 
         nav a:hover {
-            border-bottom: 2px solid #8e44ad;
+            color: #b8924e;
+            border-bottom: 2px solid #b8924e;
         }
 
-        /* Content Sections */
-        .content-section {
-            line-height: 1.8;
-            text-align: justify;
-        }
+        /* 5. CONTENT SECTIONS */
+        .content-area { line-height: 1.8; text-align: justify; }
+        h2 { color: #1a365d; border-left: 4px solid #b8924e; padding-left: 15px; margin-top: 40px; }
 
-        h1 { color: #5d3f6a; margin-bottom: 5px; }
-        h2 { color: #8e44ad; border-left: 5px solid #8e44ad; padding-left: 15px; }
-
-        .audio-player {
-            margin-top: 20px;
+        /* AUDIO PLAYER STYLING */
+        .audio-dock {
             text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #fdf6e3;
+            border: 1px dashed #b8924e;
         }
+
+        footer { text-align: center; font-size: 0.8em; margin-top: 50px; opacity: 0.7; }
     </style>
 </head>
 <body>
 
-<div class="main-wrapper">
+<div class="container">
     <header>
         <img src="logo.png" alt="Aesthetics of Society Logo" class="logo">
         <h1>Naredla Rama Chandra</h1>
-        <p>Independent Researcher & Author | Master Consciousness Protocol</p>
+        <div class="sub-title">Cultural Musings | Master Consciousness Protocol</div>
     </header>
 
     <nav>
-        <a href="#profile">Profile</a>
+        <a href="#about">About</a>
         <a href="#mcp">MCP Protocol</a>
         <a href="#karanas">108 Karanas</a>
         <a href="#swaras">Sapta Swaras</a>
-        <a href="#books">Publications</a>
+        <a href="#publications">Publications</a>
         <a href="#neuro">Neuroscience</a>
         <a href="#bio">Bio-Acoustics</a>
         <a href="#astro">Astrophysics</a>
-        <a href="#blog">Musings</a>
+        <a href="#guru">Guru's Clan</a>
         <a href="#contact">Contact</a>
     </nav>
 
-    <div class="content-section">
-        <section id="profile">
-            <h2>Research Profile</h2>
-            <p>Bridging ancient Indian systems with modern empirical sciences, including neuroscience and microbiology. Focus on the vibrational significance of the Sanskrit alphabet and the healing properties of Carnatic music.</p>
+    <div class="content-area">
+        <section id="about">
+            <h2>Independent Research Profile</h2>
+            <p>Bridging the 5,000-year-old Vedic frameworks with contemporary bio-acoustics and neurology. This digital hub serves as a repository for findings on the vibrational significance of the Sanskrit alphabet and the neurological impact of the 108 Karanas.</p>
         </section>
 
-        <!-- Placeholder for your audio file -->
-        <div class="audio-player">
-            <p><em>Background Score: Divine Flute</em></p>
+        <div class="audio-dock">
+            <p><strong>Ambient Soundscape: Divine Flute & Om Chant</strong></p>
             <audio controls loop>
                 <source src="flute.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
         </div>
-    </div>
+
+        <section id="karanas">
+            <h2>The Science of 108 Karanas</h2>
+            <p>My study explores the clinical correlation between Bharatanatyam poses and vagus nerve stimulation. Each pose acts as a physical key to unlocking specific synaptic pathways in the prefrontal cortex.</p>
+        </section>
+        
+        </div>
+
+    <footer>
+        <p>&copy; 2026 Aesthetics of Society | culturalmusings.com</p>
+    </footer>
 </div>
 
 </body>
