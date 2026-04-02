@@ -1,252 +1,222 @@
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naredla Rama Chandra | Master Consciousness Protocol</title>
-    
+    <title>Naredla Rama Chandra | Cultural Musings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #1a2a44; 
-            --accent: #b8955a;  
-            --paper: #fdfaf5;   
-            --bg-img: url('./background.png');
-            --profile-img: url('./photo.jpg');
-            --logo-img: url('./logo.jpg');
-            --karanas-img: url('./karanas.jpg');
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            margin: 0;
-            background-color: var(--paper);
-            background-image: linear-gradient(rgba(253, 250, 245, 0.94), rgba(253, 250, 245, 0.94)), var(--bg-img);
-            background-attachment: fixed;
-            background-size: cover;
-            color: #2c3e50;
-            line-height: 1.8;
-        }
-
-        header {
-            background: #ffffff;
-            padding: 20px 5%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 4px solid var(--accent);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .brand { display: flex; align-items: center; }
-        .logo { 
-            width: 60px; height: 60px; 
-            background-image: var(--logo-img); 
-            background-size: cover; 
-            margin-right: 20px; 
-            border: 1px solid var(--accent); 
-            border-radius: 50%;
-        }
-        .header-text h1 { margin: 0; font-size: 1.4rem; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
-
-        nav { 
-            background: var(--primary); 
-            padding: 15px; 
-            text-align: center; 
-            position: sticky; 
-            top: 104px; 
-            z-index: 999; 
-            border-bottom: 2px solid var(--accent);
-            white-space: nowrap;
-            overflow-x: auto;
-        }
-        nav a { color: var(--paper); text-decoration: none; margin: 0 15px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
-        nav a:hover { color: var(--accent); }
-
-        .content { max-width: 1100px; margin: 50px auto; padding: 0 30px; }
-
-        section {
-            background: white;
-            padding: 50px;
-            margin-bottom: 60px;
-            border: 1px solid #e0d7c6;
-            box-shadow: 12px 12px 0px rgba(184, 149, 90, 0.04);
-        }
-
-        .deep-insight {
-            border-left: 4px solid var(--accent);
-            padding: 10px 25px;
-            font-style: italic;
-            color: #444;
-            margin: 30px 0;
-            font-size: 1.15rem;
-            background: #fffcf9;
-        }
-
-        .profile-box { display: flex; gap: 40px; align-items: flex-start; }
-        .p-img { 
-            width: 220px; height: 280px; 
-            background-image: var(--profile-img); 
-            background-size: cover; 
-            background-position: center;
-            border: 3px double var(--accent); 
-            flex-shrink: 0; 
-        }
-
-        .karana-banner { 
-            width: 100%; height: 400px; 
-            background-image: var(--karanas-img); 
-            background-size: contain; 
-            background-repeat: no-repeat;
-            background-position: center; 
-            margin: 30px 0;
-            border: 1px solid #eee;
-        }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .card { padding: 25px; background: #fffcf9; border-top: 3px solid var(--accent); border-right: 1px solid #eee; border-bottom: 1px solid #eee; border-left: 1px solid #eee; }
-        .card h4 { margin-top: 0; color: var(--primary); font-size: 1.1rem; }
-
-        .v-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(45%, 1fr)); gap: 25px; }
-        .v-card { position: relative; padding-bottom: 56.25%; height: 0; border: 1px solid var(--accent); }
-        .v-card iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-        footer { background: #1a2a44; color: white; padding: 60px 20px; text-align: center; border-top: 5px solid var(--accent); }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #fcfcfc; }
+        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
         
-        #music-btn { 
-            position: fixed; bottom: 30px; left: 30px; 
-            background: var(--accent); color: white; 
-            border: none; padding: 12px 24px; 
-            cursor: pointer; font-family: inherit; 
-            font-weight: bold; border-radius: 4px; 
-            z-index: 2000; transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        /* Background & Logo Protocol */
+        .bg-fixed-custom { 
+            background-image: url('background.png'); 
+            background-size: cover; 
+            background-attachment: fixed; 
+            background-position: center; 
+        }
+        .watermark-logo { 
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            opacity: 0.04; width: 45%; z-index: -1; pointer-events: none; 
         }
 
-        @media (max-width: 768px) { .profile-box { flex-direction: column; align-items: center; text-align: center; } }
+        /* Aesthetics & Layout */
+        .glass-panel { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); border: 1px solid rgba(0,0,0,0.04); }
+        .nav-text { font-size: 9px; letter-spacing: 0.3em; font-weight: 700; text-transform: uppercase; transition: color 0.3s; }
+        .karana-box { border-left: 4px solid #1e3a8a; padding-left: 2rem; margin-bottom: 5rem; }
+        .publication-card { border-top: 1px solid #eee; padding-top: 1.5rem; transition: transform 0.3s; }
+        .publication-card:hover { transform: translateY(-5px); }
+        
+        /* Navigation Scrollbar Hide */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body>
+<body class="bg-fixed-custom text-gray-900">
 
-<audio id="audio-branding"><source src="./branding.mp3" type="audio/mpeg"></audio>
-<audio id="bg-flute" loop><source src="./flute.mp3" type="audio/mpeg"></audio>
+    <img src="logo.jpg" class="watermark-logo" alt="Aesthetics of Society Logo">
 
-<button id="music-btn" onclick="startExperience()">ENABLE AUDIO ENVIRONMENT</button>
+    <audio id="siteAudio" loop>
+        <source src="flute.mp3" type="audio/mpeg">
+    </audio>
 
-<header>
-    <div class="brand">
-        <div class="logo"></div>
-        <div class="header-text">
-            <h1>Naredla Rama Chandra</h1>
-        </div>
-    </div>
-    <div style="font-family: 'Courier New', monospace; color: var(--accent); font-weight: bold; font-size: 0.9rem;">CULTURALMUSINGS.COM</div>
-</header>
+    <header class="relative z-10 pt-10 text-center">
+        <p class="text-[10px] tracking-[0.8em] uppercase text-gray-400 mb-2 font-bold">Aesthetics of Society</p>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-800">Naredla Rama Chandra</h1>
+        <p class="text-md italic text-blue-900 mt-2 font-medium">Independent Researcher & Author</p>
+        
+        <nav class="mt-10 border-t border-b border-gray-100 py-4 max-w-7xl mx-auto px-4 overflow-x-auto no-scrollbar">
+            <ul class="flex justify-center gap-x-8 whitespace-nowrap">
+                <li><a href="#intro" class="nav-text hover:text-blue-700">Introduction</a></li>
+                <li><a href="#publications" class="nav-text hover:text-blue-700">Publications</a></li>
+                <li><a href="#karanas" class="nav-text hover:text-blue-700">108 Karanas</a></li>
+                <li><a href="#guru" class="nav-text hover:text-blue-700">Guru’s Clan</a></li>
+                <li><a href="#media" class="nav-text hover:text-blue-700">Media</a></li>
+                <li><a href="#contact" class="nav-text hover:text-blue-700">Inquiry Sheet</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<nav>
-    <a href="#about">Research Profile</a>
-    <a href="#karanas">108 Karanas</a>
-    <a href="#medical">Neuro-Endocrinology</a>
-    <a href="#publications">Publications</a>
-    <a href="#media">Media</a>
-</nav>
+    <main class="relative z-10 max-w-6xl mx-auto px-6 py-20 space-y-40">
+        
+        <section id="intro" class="glass-panel p-16 rounded text-center">
+            <h2 class="text-3xl font-bold mb-6 italic">Master Consciousness Protocol</h2>
+            <p class="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto font-light">
+                Bridging the ancient bio-acoustic algorithms of India with modern neuro-rehabilitation. 
+                Our research documents the physiological restoration triggered by the 108 Karanas 
+                and the science of sound as recorded in the Vedic and Upanishadic traditions.
+            </p>
+        </section>
 
-<div class="content">
-
-    <section id="about">
-        <h2>The Master Consciousness Protocol</h2>
-        <div class="profile-box">
-            <div class="p-img"></div>
-            <div>
-                <p><strong>Naredla Rama Chandra</strong> is an independent researcher dedicated to the synthesis of ancient Indian musicology and modern empirical sciences. His work establishes a framework where the 108 Karanas and Sapta Swaras function as biological triggers for heightened states of consciousness.</p>
-                <div class="deep-insight">
-                    "My research posits that the human nervous system is a resonant chamber; through the geometric precision of the Karanas, we do not merely move—we recalibrate our biological frequency."
+        <section id="publications" class="space-y-16">
+            <h2 class="text-3xl font-bold uppercase tracking-widest text-center border-b-2 border-blue-900 inline-block pb-2 mx-auto block w-max">The Eight Books</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="publication-card">
+                    <h4 class="text-blue-900 font-bold text-xs mb-2">VOLUME I</h4>
+                    <h3 class="text-xl font-bold mb-2">Consciousness Studies</h3>
+                    <p class="text-sm text-gray-600 italic">Complete Science of Consciousness vs. Artificial Intelligence.</p>
+                </div>
+                <div class="publication-card">
+                    <h4 class="text-blue-900 font-bold text-xs mb-2">VOLUME II</h4>
+                    <h3 class="text-xl font-bold mb-2">Master Reference Compendium</h3>
+                    <p class="text-sm text-gray-600 italic">Standardizing Vedic-to-Clinical Research Methodologies.</p>
+                </div>
+                <div class="publication-card">
+                    <h4 class="text-blue-900 font-bold text-xs mb-2">VOLUME III</h4>
+                    <h3 class="text-xl font-bold mb-2">Sapta Swaras & Healing</h3>
+                    <p class="text-sm text-gray-600 italic">The Bio-Acoustic Science of Carnatic Music.</p>
+                </div>
+                <div class="publication-card">
+                    <h4 class="text-blue-900 font-bold text-xs mb-2">VOLUME IV</h4>
+                    <h3 class="text-xl font-bold mb-2">108 Karanas & Beeja Aksharas</h3>
+                    <p class="text-sm text-gray-600 italic">Connecting Classical Postures to Neuro-Astrophysics.</p>
+                </div>
+                <div class="publication-card">
+                    <h4 class="text-blue-900 font-bold text-xs mb-2">VOLUME V</h4>
+                    <h3 class="text-xl font-bold mb-2">Sampoorna Manovijnana Sangraha</h3>
+                    <p class="text-sm text-gray-600 italic">A Comprehensive Manual of Vedic Psychology.</p>
+                </div>
+                <div class="publication-card">
+                    <h4 class="text-blue-900 font-bold text-xs mb-2">VOLUME VI</h4>
+                    <h3 class="text-xl font-bold mb-2">Bio-Mechanics of Dance</h3>
+                    <p class="text-sm text-gray-600 italic">Clinical Analysis of Bharatnatyam Karanas.</p>
+                </div>
+                <div class="publication-card">
+                    <h4 class="text-blue-900 font-bold text-xs mb-2">VOLUME VII</h4>
+                    <h3 class="text-xl font-bold mb-2">Space & Sound Architecture</h3>
+                    <p class="text-sm text-gray-600 italic">The Physics of Akasha and Neural Resonance.</p>
+                </div>
+                <div class="publication-card">
+                    <h4 class="text-blue-900 font-bold text-xs mb-2">VOLUME VIII</h4>
+                    <h3 class="text-xl font-bold mb-2">Final Summary: Master Protocol</h3>
+                    <p class="text-sm text-gray-600 italic">The Unified Theory of Ancient Indian Healing Sciences.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="karanas">
-        <h3>II. 108 Karanas: Somatic Architectures</h3>
-        <p>Investigating the fundamental grammar of human movement as tools of resonance. This study maps the transitions of the <em>Natyashastra</em> against modern biomechanics and fluid dynamics.</p>
-        <div class="karana-banner"></div>
-    </section>
+        <section id="karanas" class="space-y-24">
+            <h2 class="text-3xl font-bold text-center uppercase tracking-widest">108 Karanas & Neuroscience</h2>
+            <div id="karana-container">
+                <script>
+                    const kData = [
+                        { t: "Talapuspaputa (Neural Sync)", p: "Philosophy: Geometric alignment mirroring Upanishadic patterns to link personal resonance with universal frequency.", n: "Neuroscience: Stabilizes the Vagus nerve and synchronizes brain hemispheres for immediate cognitive coherence.", r: "Ref: Consciousness Studies Vol. I.", u: "Importance: Baseline for neuro-plasticity and deep cellular restoration." },
+                        { t: "Lina (Internal Absorption)", p: "Philosophy: Total inward focus reflecting Advaita traditions of internal observation.", n: "Neuroscience: Regulates CSF pressure and metabolic waste clearance from the brain tissues.", r: "Ref: 108 Karanas & Beeja Aksharas.", u: "Importance: Critical for long-term spinal-cranial health and preventing mental fatigue." },
+                        { t: "Vartita (Dynamic Rotation)", p: "Philosophy: Mirrors orbital mechanics of the cosmos, reflecting the Shakti rotation in the physical body.", n: "Neuroscience: Complex limb movement engages the motor cortex for neuro-re-mapping of motor skills.", r: "Ref: Master Consciousness Protocol Vol. III.", u: "Importance: Enhances proprioception and spatial intelligence in researchers." },
+                        { t: "Valita (Bio-Acoustic Gateway)", p: "Philosophy: Aligning the throat to allow the Beeja Akshara sound to resonate without physical obstruction.", n: "Neuroscience: Stimulates the recurrent laryngeal nerve to trigger immediate Heart Rate Variability (HRV) improvement.", r: "Ref: Sapta Swaras & Healing Science.", u: "Importance: Primary tool for respiratory restoration and vocal therapy." },
+                        { t: "Nivritta (Cognitive Damping)", p: "Philosophy: The journey back to the source of consciousness by ceasing external distractions.", n: "Neuroscience: Induction of high-alpha brainwaves, managing modern anxiety and cortical overload.", r: "Ref: Sampoorna Manovijnana Sangraha.", u: "Importance: Natural anxiety management and focus enhancement." },
+                        { t: "Nikuttita (Immune Resonance)", p: "Philosophy: Rhythmic grounding to the Earth, acknowledging the Annamaya Kosha (physical body).", n: "Neuroscience: Rhythmic impact acts as a mechanical pump for lymphatic drainage and immune response.", r: "Ref: Vol VI - Bio-Mechanics of Vedic Dance.", u: "Importance: Natural immune booster and circulatory aid for modern lifestyles." },
+                        { t: "Ardha-Nikuttita (Neural Duality)", p: "Philosophy: Balancing Ardhanarishvara energies for unified movement.", n: "Neuroscience: Engages the Corpus Callosum for rapid cross-hemispheric communication.", r: "Ref: Master Consciousness Protocol Vol. IV.", u: "Importance: Strengthens analytical synthesis and creative problem-solving." },
+                        { t: "Recita (Expansion Protocol)", p: "Philosophy: Soul expansion into Akasha (Aether), defining the boundaries of the self in space.", n: "Neuroscience: Increases peripheral nerve sensitivity and metabolic clearance rates.", r: "Ref: Vol VII - Space & Sound Architecture.", u: "Importance: Recovery protocol for high-performance mental labor." },
+                        { t: "Katihasta (Core Integrity)", p: "Philosophy: Centering at the Kati (waist), the seat of stability within the Guru’s Clan teachings.", n: "Neuroscience: Stabilizes pelvic floor and lumbar nerves, preventing signal compression.", r: "Ref: Bio-Acoustics Monographs.", u: "Importance: Essential foundation for maintaining neurological signal clarity." },
+                        { t: "Pakshavanchita (Vestibular Ascent)", p: "Philosophy: Symbolizing the flight toward Moksha, mirroring Vedic avian metaphors.", n: "Neuroscience: Challenges the vestibular system to promote high-level neural coordination and balance.", r: "Ref: Master Consciousness Protocol Vol. VIII.", u: "Importance: Prevents age-related neurological decline and maintains equilibrium." }
+                    ];
 
-    <section id="medical">
-        <h3>III. Neuro-Endocrinology & Bio-Acoustics</h3>
-        <div class="grid">
-            <div class="card">
-                <h4>Glandular Stimulation</h4>
-                <p>Detailed research on how specific postures stimulate the Pineal and Pituitary glands to regulate the Master Consciousness state.</p>
+                    kData.forEach((k, index) => {
+                        document.write(`
+                        <div class="karana-box glass-panel p-10 md:p-14 rounded-r-lg flex flex-col md:flex-row gap-10 items-start">
+                            <div class="w-full md:w-1/3">
+                                <img src="karana\${index+1}.jpg" class="w-full h-auto object-cover rounded shadow-md border border-gray-100" alt="\${k.t}">
+                                <p class="text-[9px] text-center mt-4 tracking-widest text-blue-900 font-bold uppercase">Research Figure #\${index+1}</p>
+                            </div>
+                            <div class="w-full md:w-2/3 text-[13px] leading-relaxed text-gray-700 text-justify">
+                                <h3 class="text-2xl font-bold mb-4 border-b pb-2 text-gray-900 italic serif">\${k.t}</h3>
+                                <p class="mb-4"><strong class="italic text-blue-900">Philosophy & Ideology:</strong> \${k.p} Rooted in the Guru's Clan lineage.</p>
+                                <p class="mb-4"><strong class="italic text-blue-900">Neuroscience Perspective:</strong> \${k.n} My clinical analysis indicates this acts as a medical bridge to modern neuro-health.</p>
+                                <p class="mb-4"><strong class="italic text-blue-900">Publication Reference:</strong> \${k.r} Extensively documented in the 8-volume series.</p>
+                                <p><strong class="italic text-blue-900">Practical Importance:</strong> \${k.u} Essential for practitioners seeking natural healing restoration.</p>
+                            </div>
+                        </div>
+                        `);
+                    });
+                </script>
             </div>
-            <div class="card">
-                <h4>Frequency Mapping</h4>
-                <p>Correlation between the <strong>Sapta Swaras</strong> and brainwave entrainment (Alpha, Theta, and Gamma states).</p>
+        </section>
+
+        <section id="guru" class="glass-panel p-16 rounded text-center">
+            <h2 class="text-3xl font-bold mb-8 uppercase tracking-widest">Guru’s Clan & Vedic Lineage</h2>
+            <p class="text-gray-700 italic max-w-4xl mx-auto leading-loose mb-12">
+                Every publication is anchored in references from the Vedas and Upanishads, cross-referencing 
+                the Shankaracharya tradition to ensure traditional accuracy is translated into medical results.
+            </p>
+            <div class="grid md:grid-cols-2 gap-10 text-left border-t border-gray-100 pt-12">
+                <div>
+                    <h4 class="font-bold text-blue-900 text-xs uppercase mb-3">Textual References</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">Direct references from ancient manuscripts used to synthesize the eight-book series.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-blue-900 text-xs uppercase mb-3">Contextual References</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed">Defining the core ideology: to bring hidden medical perspectives of ancient India to the modern world.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="media" class="space-y-12">
+            <h2 class="text-3xl font-bold text-center uppercase tracking-widest">Research Media</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="aspect-video bg-black rounded shadow-lg overflow-hidden"><iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" frameborder="0" allowfullscreen></iframe></div>
+                <div class="aspect-video bg-black rounded shadow-lg overflow-hidden"><iframe class="w-full h-full" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" frameborder="0" allowfullscreen></iframe></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact" class="bg-white py-32 text-center border-t border-gray-100 relative z-10">
+        <h2 class="text-3xl font-bold mb-4 uppercase tracking-[0.3em] text-gray-800">Inquiry Sheet</h2>
+        <p class="text-sm text-gray-500 mb-16 italic max-w-2xl mx-auto leading-relaxed px-6 font-light">
+            For academic collaboration, clinical validation, or access to the digital manuscript archives.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-12 mb-24 px-6">
+            <div>
+                <p class="text-[9px] tracking-[0.4em] text-blue-900 font-bold mb-2 uppercase">Official Inquiry</p>
+                <a href="mailto:smith123846@gmail.com" class="text-xl md:text-2xl font-light text-gray-900 hover:text-blue-900 border-b border-gray-50 pb-1">smith123846@gmail.com</a>
+            </div>
+            <div>
+                <p class="text-[9px] tracking-[0.4em] text-blue-900 font-bold mb-2 uppercase">Direct Contact</p>
+                <a href="tel:+919121379100" class="text-xl md:text-2xl font-light text-gray-900 hover:text-blue-900 border-b border-gray-50 pb-1">+91 91213 79100</a>
+            </div>
+            <div>
+                <p class="text-[9px] tracking-[0.4em] text-blue-900 font-bold mb-2 uppercase">Digital Archive</p>
+                <a href="https://github.com/ramachandra1975" target="_blank" class="text-xl md:text-2xl font-light text-gray-900 hover:text-blue-900 border-b border-gray-50 pb-1">GitHub Profile</a>
             </div>
         </div>
-    </section>
 
-    <section id="publications">
-        <h3>IV. Core Publications</h3>
-        <div class="grid">
-            <div class="card"><strong>1. Master Consciousness Protocol</strong><br><small>300-page academic synthesis.</small></div>
-            <div class="card"><strong>2. Sapta Swaras & Healing</strong><br><small>The bio-physics of Carnatic music.</small></div>
-            <div class="card"><strong>3. 108 Karanas & Beeja Aksharas</strong><br><small>Somatic and phonetic integration.</small></div>
-            <div class="card"><strong>4. Cosmic Vak</strong><br><small>The evolution of consciousness through sound.</small></div>
-        </div>
-    </section>
+        <p class="mt-20 text-[9px] text-gray-300 tracking-[0.6em] uppercase font-bold italic">
+            © 2026 Naredla Rama Chandra | Cultural Musings
+        </p>
+    </footer>
 
-    <section id="media">
-        <h3>V. Research Media</h3>
-        <div class="v-grid">
-            <div class="v-card"><iframe src="https://www.youtube.com/embed/NBrVKBYQd_M"></iframe></div>
-            <div class="v-card"><iframe src="https://www.youtube.com/embed/DcNa4N5dD-A"></iframe></div>
-        </div>
-    </section>
-
-</div>
-
-<footer>
-    <p><strong>Naredla Rama Chandra</strong> | Researcher & Author</p>
-    <p>© 2026 MASTER CONSCIOUSNESS PROTOCOL</p>
-</footer>
-
-<script>
-    const branding = document.getElementById('audio-branding');
-    const flute = document.getElementById('bg-flute');
-    const btn = document.getElementById('music-btn');
-    
-    branding.volume = 0.7;
-    flute.volume = 0.25;
-
-    function startExperience() {
-        if (flute.paused && branding.paused) {
-            // Sequence Start
-            btn.innerHTML = "INITIALIZING...";
-            btn.style.background = "#666";
-            
-            // Play branding (2 seconds)
-            branding.play();
-
-            // After 2 seconds, switch to background flute
-            setTimeout(() => {
-                flute.play();
-                btn.innerHTML = "DISABLE AUDIO ENVIRONMENT";
-                btn.style.background = "#1a2a44";
-            }, 2000);
-        } else {
-            // Toggle Off
-            branding.pause();
-            flute.pause();
-            branding.currentTime = 0;
-            flute.currentTime = 0;
-            btn.innerHTML = "ENABLE AUDIO ENVIRONMENT";
-            btn.style.background = "#b8955a";
-        }
-    }
-</script>
-
+    <script>
+        // Start Carnatic Flute & Om sound on first user click
+        window.addEventListener('click', () => {
+            const audio = document.getElementById('siteAudio');
+            if (audio.paused) {
+                audio.volume = 0.2;
+                audio.play();
+            }
+        }, { once: true });
+    </script>
 </body>
 </html>
