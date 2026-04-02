@@ -4,107 +4,143 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Portfolio | Naredla Rama Chandra</title>
+    <title>Master Consciousness Protocol | Naredla Rama Chandra</title>
     <style>
-        :root { --primary: #1a365d; --accent: #d4af37; }
+        :root { --primary: #0a254d; --accent: #d4af37; }
         * { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; scroll-behavior: smooth; }
+        body, html { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; scroll-behavior: smooth; }
         
         body {
-            background-image: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('background.png');
+            background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url('background.png');
             background-size: cover; background-position: center; background-attachment: fixed;
-            color: #111;
+            color: #000;
         }
 
         header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 5%; background: rgba(255, 255, 255, 0.95);
-            position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 10px 5%; background: rgba(255, 255, 255, 0.85);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
         }
 
-        .brand-text { font-family: 'Georgia', serif; font-weight: bold; color: var(--primary); font-size: 1.1rem; }
-
-        /* AUDIO PLAYER STYLING */
-        .audio-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #f0f4f8;
-            padding: 5px 15px;
-            border-radius: 20px;
-            border: 1px solid var(--primary);
+        .nav-select { 
+            padding: 10px; border: 2px solid var(--primary); border-radius: 4px; 
+            background: white; color: var(--primary); font-weight: bold; cursor: pointer;
         }
 
-        .audio-label { font-size: 0.7rem; font-weight: bold; color: var(--primary); text-transform: uppercase; }
+        .container { max-width: 1000px; margin: 150px auto 80px; padding: 0 30px; }
 
-        .container { max-width: 1000px; margin: 120px auto 60px; padding: 0 20px; }
+        /* INTERACTIVE TOGGLES */
+        .selector-wrap { margin: 25px 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .selector-wrap input[type="radio"] { display: none; }
+        .selector-wrap label {
+            padding: 10px 20px; border: 2px solid var(--primary); border-radius: 25px;
+            cursor: pointer; font-weight: bold; transition: 0.3s; background: rgba(255,255,255,0.5);
+            color: var(--primary); text-transform: uppercase; font-size: 0.8rem;
+        }
+        .selector-wrap input[type="radio"]:checked + label { background: var(--primary); color: white; }
 
-        section { padding: 60px 0; border-bottom: 1px solid rgba(26, 54, 93, 0.1); }
-        h2 { font-family: 'Georgia', serif; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 35px; border-left: 4px solid var(--accent); padding-left: 15px; }
-        .book-entry { margin-bottom: 40px; }
-        .book-header { font-family: 'Georgia', serif; font-weight: bold; font-size: 1.25rem; color: var(--primary); display: block; margin-bottom: 10px; }
-        .book-content { line-height: 1.8; text-align: justify; color: #222; font-size: 1.05rem; }
+        .display-text {
+            min-height: 120px; padding: 20px 0; font-size: 1.15rem; line-height: 1.8;
+            color: #000; text-shadow: 0px 0px 8px white; text-align: justify;
+        }
 
-        footer { text-align: center; padding: 40px; font-size: 0.85rem; color: #444; border-top: 1px solid rgba(0,0,0,0.1); }
+        section { padding: 50px 0; border-bottom: 1px solid rgba(10, 37, 77, 0.1); }
+        h2 { font-family: 'Georgia', serif; color: var(--primary); text-shadow: 1px 1px 2px white; margin-bottom: 20px; }
+        
+        .footer { text-align: center; padding: 40px; font-size: 0.85rem; color: #222; }
     </style>
 </head>
 <body>
 
     <header>
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <img src="logo.jpg" style="width:35px; height:35px; object-fit: contain;">
-            <span class="brand-text">Aesthetics of Society</span>
-        </div>
-
-        <div class="audio-container">
-            <span class="audio-label">Ambient Flute</span>
-            <audio controls loop style="height: 30px; width: 150px;">
-                <source src="karnatic-flute.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="logo.jpg" style="width:50px; height:50px; border-radius: 50%;">
+            <span style="font-weight: bold; color: var(--primary); font-size: 1.1rem;">Aesthetics of Society</span>
         </div>
 
         <nav>
-            <select style="padding: 8px; border: 1px solid var(--primary); border-radius: 4px; font-weight: bold;" onchange="if(this.value) location.hash = this.value;">
-                <option value="">Navigation</option>
-                <option value="#karanas">108 Karanas</option>
-                <option value="#publications">Detailed Publications</option>
-                <option value="#inquiry">Inquiry & Contact</option>
+            <select class="nav-select" onchange="if(this.value) location.hash = this.value;">
+                <option value="">EXPLORE THE PROTOCOL</option>
+                <option value="#author">01. Author Introduction</option>
+                <option value="#karanas">02. 10 Karanas (Postures)</option>
+                <option value="#mcp">03. Master Consciousness Protocol</option>
+                <option value="#swaras">04. Sapta Swaras & Healing</option>
+                <option value="#cosmic">05. The Cosmic Choreography</option>
+                <option value="#psych">06. Sampoorna Manovijnana</option>
+                <option value="#yoga">07. Yoga: Eternal Science</option>
+                <option value="#dna">08. Beeja Akshara & DNA</option>
+                <option value="#bio">09. Vedic Bio-Acoustics</option>
+                <option value="#vak">10. Cosmic Vak Series</option>
+                <option value="#lineage">11. Guru Shishya Clan</option>
+                <option value="#contact">12. Research Inquiry</option>
             </select>
         </nav>
     </header>
 
     <div class="container">
         
+        <section id="author">
+            <h2 style="text-align: center;">Naredla Rama Chandra</h2>
+            <div class="selector-wrap">
+                <input type="radio" name="author-tab" id="auth1" checked onclick="showAuthor('auth1')">
+                <label for="auth1">Brief Profile</label>
+                <input type="radio" name="author-tab" id="auth2" onclick="showAuthor('auth2')">
+                <label for="auth2">Research Philosophy</label>
+            </div>
+            <div id="author-display" class="display-text"></div>
+        </section>
+
         <section id="karanas">
-            <h2>The 108 Karanas & Aesthetic Research</h2>
-            <div class="book-content">
-                The 108 Karanas, as detailed in the <i>Natya Shastra</i>, serve as the fundamental kinetic units of Indian classical tradition. My research redefines these movements as a <b>Master Consciousness Protocol</b>. By exploring the intersection of neuro-geometry and bio-acoustics, we observe how these transitions align human physiology with cosmic frequencies.
+            <h2>The 10 Karanas: Source Code Analysis</h2>
+            <div class="selector-wrap">
+                <script>
+                    for(let i=1; i<=10; i++) {
+                        document.write(`<input type="radio" name="karana" id="k${i}" ${i==1?'checked':''} onclick="showKarana('k${i}')"><label for="k${i}">K-${i < 10 ? '0'+i : i}</label>`);
+                    }
+                </script>
             </div>
+            <div id="karana-display" class="display-text"></div>
         </section>
 
-        <section id="publications">
-            <h2>Core Research Publications</h2>
-            <div class="book-entry">
-                <span class="book-header">01. Master Consciousness Protocol (MCP)</span>
-                <p class="book-content">A 300-page foundational volume establishing a multi-disciplinary framework for studying Ragas and their physiological effects. It includes the 365-day Daily Raga Calendar, mapping sounds to chakras and endocrine systems for clinical wellness.</p>
-            </div>
-            </section>
-
-        <section id="inquiry" style="border: none;">
-            <h2>Professional Inquiry</h2>
-            <div style="text-align: center; font-size: 1.2rem; line-height: 2;">
-                <p>For academic collaboration or access to research volumes:</p>
-                <p><b>Phone:</b> +91 9121379100<br><b>Email:</b> smith123846@gmail.com</p>
-            </div>
+        <section id="mcp">
+            <h2>Core Publications</h2>
+            <p style="font-weight:bold; color:var(--primary); font-size:1.2rem;">Master Consciousness Protocol (MCP)</p>
+            <p class="display-text" style="min-height:auto;">
+                A comprehensive 300-page research volume establishing the integration of ancient Raga science with modern neuro-immunology and physiological wellness.
+            </p>
         </section>
 
+        <section id="contact" style="border: none; text-align: center;">
+            <h2>Contact & Collaboration</h2>
+            <p style="font-weight: bold; color: var(--primary); font-size: 1.2rem;">+91 9121379100 | smith123846@gmail.com</p>
+        </section>
     </div>
 
-    <footer>
-        <p><b>System Status:</b> <span style="color: #27ae60;">● Live</span> | Ambient Sound Active</p>
-        <p>© 2026 Naredla Rama Chandra | Aesthetics of Society Portal</p>
-    </footer>
+    <script>
+        const authorData = {
+            'auth1': 'Naredla Rama Chandra is an independent researcher and author specializing in the integration of Indian Classical Arts, Bio-Acoustics, and Neuroscience. His work focuses on the "Source Code" of ancient texts to develop practical protocols for human consciousness.',
+            'auth2': 'The research philosophy centers on the "Master Consciousness Protocol," a multi-disciplinary framework that bridges the gap between the Natya Shastra’s kinetic units and modern clinical cellular wellness.'
+        };
 
+        const karanaData = {
+            'k1': 'Karana 01: Focuses on the primary vertical alignment of the spine to facilitate electromagnetic resonance within the human nervous system.',
+            'k2': 'Karana 02: Integrates lateral movement to stimulate hemispheric synchronization and neuroplasticity in the brain.',
+            'k3': 'Karana 03: Analyzes the geometric intersection of hand mudras (Nritta Hastas) with bio-acoustic frequencies.',
+            'k4': 'Karana 04: Grounding transitions designed to tune the practitioner to the terrestrial rhythms and Earth’s electromagnetic field.',
+            'k5': 'Karana 05: Explores the rotational dynamics and kinetic units as described in the Master Consciousness Protocol.',
+            'k6': 'Karana 06: Focuses on neuro-geometric patterns derived from the Natya Shastra for physiological alignment.',
+            'k7': 'Karana 07: Resonance mapping between specific leg movements (Charis) and cellular bio-acoustics.',
+            'k8': 'Karana 8: Aligning the 108 Karana logic with astrophysical cycles and cosmic choreography.',
+            'k9': 'Karana 9: The transitional bridge between static meditative states and dynamic kinetic movement.',
+            'k10': 'Karana 10: Final synthesis of vibrational movement and sound medicine for the Master Consciousness Protocol.'
+        };
+
+        function showAuthor(id) { document.getElementById('author-display').innerText = authorData[id]; }
+        function showKarana(id) { document.getElementById('karana-display').innerText = karanaData[id]; }
+        
+        // Initial load
+        showAuthor('auth1');
+        showKarana('k1');
+    </script>
 </body>
 </html>
