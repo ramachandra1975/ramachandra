@@ -3,13 +3,21 @@ HTML
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Consciousness Protocol | Aesthetics of Society</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Serif font for that academic/Vedic feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="watermark-overlay"></div>
+    <!-- Subtle Background Branding Layer -->
+    <div class="bg-texture"></div>
+    <div class="watermark-container">
+        <div class="watermark-text">AESTHETICS OF SOCIETY</div>
+    </div>
 
+    <!-- Background Resonance (Flute/OM) -->
     <audio id="ambient" loop>
         <source src="flute.mp3" type="audio/mpeg">
     </audio>
@@ -20,7 +28,7 @@ HTML
             <h1>MASTER CONSCIOUSNESS PROTOCOL</h1>
             <p class="tagline">Bridging Ancient Indian Systems with Modern Science</p>
         </div>
-        <nav>
+        <nav class="main-nav">
             <a href="#" onclick="showSection('home')">Home</a>
             <a href="#" onclick="showSection('karanas')">108 Karanas</a>
             <a href="#" onclick="showSection('publications')">Publications</a>
@@ -29,6 +37,7 @@ HTML
     </header>
 
     <main id="content">
+        <!-- SECTION: HOME -->
         <section id="home" class="active">
             <div class="hero-text">
                 <h2>Introduction to the MCP</h2>
@@ -37,14 +46,16 @@ HTML
             </div>
         </section>
 
+        <!-- SECTION: KARANAS -->
         <section id="karanas">
             <h2>The 108 Karanas & Neuro-Mapping</h2>
             <div class="karana-container">
                 <p>Mapping the physical geometry of the 108 Karanas to specific neurological triggers in the pre-frontal cortex.</p>
-                <div class="image-placeholder">Karana Visuals from MCP Vol IV</div>
+                <div class="image-placeholder">Visual Data: MCP Volume IV</div>
             </div>
         </section>
 
+        <!-- SECTION: CONTACT -->
         <section id="contact">
             <h2>Research Inquiries</h2>
             <p><strong>Naredla Rama Chandra</strong></p>
