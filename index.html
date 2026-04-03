@@ -4,243 +4,201 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Master Consciousness Protocol</title>
-    <style>
-        :root {
-            --primary-dark: #041631;
-            --gold-accent: #b8860b;
-            --vellum-bg: #fcfaf5;
-        }
-
-        /* 1. ENTRY OVERLAY FOR AUDIO PERMISSION */
-        #enter-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--primary-dark); color: white;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 10001; transition: opacity 1s ease;
-        }
-
-        /* 2. MAIN BODY STYLING WITH WATERMARKS */
-        body { 
-            margin: 0; padding: 0; font-family: 'Times New Roman', serif; 
-            background-color: var(--vellum-bg); color: var(--primary-dark);
-            background-image: url('logo.jpg'), url('background.png');
-            background-position: center 180px, center center;
-            background-repeat: no-repeat;
-            background-size: 160px, 85%;
-            background-attachment: fixed;
-            scroll-behavior: smooth;
-            opacity: 0; transition: opacity 1.5s ease;
-        }
-
-        body.loaded { opacity: 1; }
-
-        body::after {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(252, 250, 245, 0.93); z-index: -1;
-        }
-
-        /* 3. NAVIGATION HEADER */
-        header {
-            background-color: var(--primary-dark); color: white; position: fixed; 
-            top: 0; width: 100%; z-index: 9999; border-bottom: 4px solid var(--gold-accent); 
-            text-align: center; padding: 15px 0;
-        }
-        .brand-header { font-size: 18px; letter-spacing: 3px; text-transform: uppercase; font-weight: bold; }
-        nav { margin-top: 10px; }
-        nav a { color: white; text-decoration: none; margin: 0 10px; font-weight: bold; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* 4. CONTENT SECTIONS */
-        .container { max-width: 900px; margin: 160px auto 100px auto; }
-        section {
-            background: rgba(255, 255, 255, 0.85);
-            padding: 60px; border: 1px solid #d4af37; margin-bottom: 80px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: justify; line-height: 1.9;
-        }
-        h1, h2 { text-align: center; color: var(--primary-dark); text-transform: uppercase; }
-        h1 { border-bottom: 2px solid var(--gold-accent); padding-bottom: 15px; margin-bottom: 40px; }
-        .divider { width: 80px; height: 3px; background: var(--gold-accent); margin: 20px auto; }
-
-        /* 5. VIDEO GRID & MEDIA */
-        .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; border: 1px solid var(--gold-accent); }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        .video-desc { font-size: 13px; line-height: 1.5; margin-top: 10px; color: #444; }
-
-        /* 6. BUTTONS & FORMS */
-        .submit-btn { background: var(--gold-accent); color: white; border: none; padding: 15px 40px; cursor: pointer; text-transform: uppercase; font-weight: bold; border-radius: 4px; }
-        .enquiry-box { background: #fff; border: 2px solid var(--primary-dark); padding: 40px; text-align: center; }
-        .contact-detail { font-size: 1.2rem; margin: 15px 0; font-weight: bold; color: var(--gold-accent); }
-        .enquiry-form input, .enquiry-form textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; font-family: serif; box-sizing: border-box; }
-
-        /* 7. MODAL (POP-UP) */
-        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); overflow: auto; }
-        .modal-content { background-color: #fff; margin: 5% auto; padding: 40px; border: 3px solid var(--gold-accent); width: 80%; max-width: 800px; position: relative; }
-        .close { color: #aaa; position: absolute; right: 20px; top: 10px; font-size: 28px; font-weight: bold; cursor: pointer; }
-
-        /* Audio Control */
-        #audio-control { position: fixed; top: 20px; right: 20px; z-index: 10000; background: var(--gold-accent); color: white; border: none; padding: 8px 15px; cursor: pointer; font-size: 10px; display: none; border-radius: 20px; }
-
-        footer { text-align: center; padding: 40px; font-size: 11px; color: #777; }
-    </style>
+    <title>Aesthetics of Society | Cultural Musings</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Vedic Aesthetics -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="bg-audio" loop>
-        <source src="karnatic-flute.mp3" type="audio/mpeg">
+    <!-- Persistent Background Music -->
+    <audio id="bgMusic" loop autoplay>
+        <source src="flute.mp3" type="audio/mpeg">
+        <source src="om.mp3" type="audio/mpeg">
     </audio>
-    <button id="audio-control" onclick="toggleAudio()">MUTE AUDIO</button>
 
-    <div id="enter-overlay">
-        <img src="logo.jpg" alt="Logo" style="width:140px; margin-bottom:20px; border:1px solid var(--gold-accent);">
-        <h2 style="letter-spacing:5px;">AESTHETICS OF SOCIETY</h2>
-        <p style="margin-bottom:30px; font-style:italic; opacity:0.8;">16 Years of Independent Research & Publication</p>
-        <button class="submit-btn" onclick="startResearch()">Begin Experience</button>
-    </div>
+    <!-- Navigation Overlay -->
+    <nav class="main-nav">
+        <div class="logo-container">
+            <img src="logo.png" alt="Aesthetics of Society" class="nav-logo">
+            <span>CULTURALMUSINGS.COM</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#karanas">108 Karanas & Neuro</a></li>
+            <li><a href="#guru-clan">Guru Clan</a></li>
+            <li><a href="#textual-ref">Textual References</a></li>
+            <li><a href="#media">Media</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="intro-btn">INTRODUCTION</button>
+    </nav>
 
-    <header>
-        <div class="brand-header">Aesthetics of Society</div>
-        <nav>
-            <a href="#intro">Introduction</a>
-            <a href="#science">Science</a>
-            <a href="#media">Media</a>
-            <a href="#publications">Publications</a>
-            <a href="#enquiry">Enquiry</a>
-            <a href="#epilogue">Epilogue</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <section id="intro">
-            <h1>Master Consciousness Protocol</h1>
-            <p>Welcome to the digital synthesis of 16 years of independent research. This project bridges the mathematical precision of the <strong>Natya Shastra</strong> with modern neuroscience, bio-acoustics, and astrophysics. As the Karnatic flute resonates, we invite you to explore the foundational algorithms of human potential.</p>
-        </section>
-
-        <section id="science">
-            <h2>Scientific Frontiers</h2>
-            <div class="divider"></div>
-            <p><strong>I. Neural Geometry:</strong> The 108 Karanas serve as sophisticated neuro-geometric postures that influence neural oscillations and brain-state transitions, facilitating hemispheric synchronization.</p>
-            <p><strong>II. Bio-Acoustic Resonance:</strong> Our mapping of the Sapta Swaras to biological plexuses provides a technical framework for cellular resonance and stress modulation through sound.</p>
-            <p><strong>III. Astro-Science:</strong> We establish a protocol for circadian synchronization with the 108 zodiacal units, moving ancient wisdom into the realm of participative science.</p>
-        </section>
-
-        <section id="media">
-            <h2>Research Media Gallery</h2>
-            <div class="divider"></div>
-            <div class="video-grid">
-                <div class="video-item">
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/NBrVKBYQd_M?start=26"></iframe></div>
-                    <p class="video-desc">Master Consciousness Protocol: Mapping the source code of human existence. It explores foundational algorithms of perception. Visual companion to Volume I.</p>
-                </div>
-                <div class="video-item">
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/DcNa4N5dD-A?start=21"></iframe></div>
-                    <p class="video-desc">Bio-Acoustics & Healing: Exploring Swara interaction with neural plexuses. Demonstrates clinical efficacy of sound in stress modulation. Essential for Volume III.</p>
-                </div>
-                <div class="video-item">
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/eLjirbtcJFo?start=30"></iframe></div>
-                    <p class="video-desc">108 Karanas & Neural Geometry: Postures as geometric stimulants for the motor cortex. Explains neuro-plasticity triggered by movement synchronization. Volume IV.</p>
-                </div>
-                <div class="video-item">
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/0khYFMffpCU?start=72"></iframe></div>
-                    <p class="video-desc">Sanskrit AI Algorithm: Comparative study of Paninian grammar and neural networks. Mathematical precision of Maheshvara Sutras for AI development. Volume VIII.</p>
-                </div>
-                <div class="video-item">
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/1U_7b4l82Ys"></iframe></div>
-                    <p class="video-desc">Classical Dance Phenomena: Impact on spatial awareness and rhythm. Theoretical basis for Cosmic Choreography. Bridging art with objective physical laws.</p>
-                </div>
-                <div class="video-item">
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/6w1QZZjy4No"></iframe></div>
-                    <p class="video-desc">Shastras & Genesis: Evolution of ancient psychological frameworks. Supports the Sampoorna Manovijnana Sangraha framework for human excellence.</p>
-                </div>
-                <div class="video-item">
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/z0lIQHzRec8"></iframe></div>
-                    <p class="video-desc">Aesthetics of Society Promo: Thematic introduction to our mission. Integrating arts, science, and consciousness for global academic collaboration.</p>
-                </div>
-                <div class="video-item">
-                    <div class="video-container"><iframe src="https://www.youtube.com/embed/yiz30h73-BQ"></iframe></div>
-                    <p class="video-desc">Program Shrividya: Matrika Nyasa as the source code of sound syllables. Scientific perspective on mantra resonance and vibrational physics.</p>
+    <!-- Content Sections -->
+    <main id="content-wrapper">
+        
+        <!-- SECTION 1: HOME (HERO) -->
+        <section id="home" class="hero-page">
+            <div class="watermark-bg"></div>
+            <div class="hero-content">
+                <h2 class="subtitle">INDEPENDENT RESEARCHER & AUTHOR · EST. 2010</h2>
+                <h1>Aesthetics <span>of Society</span></h1>
+                <p>Bridging Ancient Indian Systems with Modern Neuroscience & Bio-Acoustics</p>
+                <div class="cta-group">
+                    <button onclick="showSection('publications')">EXPLORE PUBLICATIONS</button>
+                    <button onclick="showSection('about')">ABOUT THE AUTHOR</button>
                 </div>
             </div>
         </section>
 
-        <section id="publications">
-            <h2>9-Volume Research Series</h2>
-            <div class="divider"></div>
-            <p style="text-align:center;">Bridging ancient Vedic sciences with modern neurology and astrophysics.</p>
-            <button class="submit-btn" style="margin: 20px auto;" onclick="openModal()">Read More: 9 Volumes & Author Profile</button>
+        <!-- SECTION 4: 108 KARANAS & NEURO (New Page) -->
+        <section id="karanas" class="sub-page hidden">
+            <header class="page-header">
+                <h2>108 Karanas & Neuro-Science</h2>
+                <p>Cross-reference study of Classical Dance and Medical Science Foundations</p>
+            </header>
+            <div class="karana-grid">
+                <!-- Template for 10 AI generated Karana poses -->
+                <div class="karana-card">
+                    <img src="karana1.jpg" alt="Karana Pose">
+                    <div class="karana-info">
+                        <h3>Karana Reference: MCP Vol IV</h3>
+                        <p>This pose activates the pre-frontal cortex through specific mudra-vibration alignment. [10-line explanation here...]</p>
+                    </div>
+                </div>
+                <!-- Repeat x10 -->
+            </div>
         </section>
 
-        <section id="enquiry">
-            <h2>Research Enquiry & Collaboration</h2>
-            <div class="divider"></div>
-            <div class="enquiry-box">
-                <div class="contact-detail">Mobile: +91 9121379100</div>
-                <div class="contact-detail">Email: smith123846@gmail.com</div>
-                <form class="enquiry-form">
-                    <input type="text" placeholder="Your Name / Institution" required>
-                    <input type="email" placeholder="Your Official Email" required>
-                    <textarea rows="4" placeholder="Nature of Research Inquiry (Clinical, Neuro-Science, Publication)"></textarea>
-                    <button type="submit" class="submit-btn">Submit Inquiry</button>
+        <!-- SECTION 10: CONTACT -->
+        <section id="contact" class="sub-page hidden">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Collaborate <span>With Us</span></h2>
+                    <p>Seeking partners for clinical studies into ancient knowledge systems.</p>
+                    <p><strong>Phone:</strong> +91 9121379100</p>
+                    <p><strong>Email:</strong> smith123846@gmail.com</p>
+                </div>
+                <form action="mailto:smith123846@gmail.com" method="post" enctype="text/plain">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="text" placeholder="Institution">
+                    <textarea placeholder="Research Interest / Message"></textarea>
+                    <button type="submit">SEND INQUIRY</button>
                 </form>
             </div>
         </section>
 
-        <section id="epilogue">
-            <h2>Epilogue: The Unified Source Code</h2>
-            <div class="divider"></div>
-            <p>This journey has proven that ancient seers were master engineers of consciousness. The Master Consciousness Protocol stands as a roadmap for rediscovering the divine architecture within ourselves and achieving a state of masters consciousness that transcends the limitations of the modern age.</p>
-        </section>
-    </div>
+    </main>
 
-    <div id="pubModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h3>About the Author</h3>
-            <p><strong>Naredla Rama Chandra</strong> (b. 1975) is an Independent Researcher and Author. Over 16 years, he has synthesized ancient Shastras with contemporary clinical science to develop the Master Consciousness Protocol.</p>
-            <hr>
-            <h3>The 9-Volume Series</h3>
-            <ul style="line-height:1.8;">
-                <li>Vol I: Master Consciousness Protocol</li>
-                <li>Vol II: The Cosmic Choreography</li>
-                <li>Vol III: Bio-Acoustics & Healing</li>
-                <li>Vol IV: 108 Karanas: Neural Geometry</li>
-                <li>Vol V: Shabda Brahman</li>
-                <li>Vol VI: Sampoorna Manovijnana Sangraha</li>
-                <li>Vol VII: Source Code of Sound: Matrika Nyasa</li>
-                <li>Vol VIII: Paninian Algorithms (AI Blueprint)</li>
-                <li>Vol IX: The Akasha Interface</li>
-            </ul>
-        </div>
-    </div>
-
-    <footer>
-        © 2026 Aesthetics of Society | Research Hub of Naredla Rama Chandra | culturalmusings.com
+    <footer class="main-footer">
+        <p>&copy; 2026 NAREDLA RAMA CHANDRA</p>
     </footer>
 
-    <script>
-        var audio = document.getElementById("bg-audio");
-        var audioBtn = document.getElementById("audio-control");
-
-        function startResearch() {
-            audio.play().catch(function(error) { console.log("Audio play failed:", error); });
-            audioBtn.style.display = "block";
-            var overlay = document.getElementById("enter-overlay");
-            overlay.style.opacity = "0";
-            setTimeout(function() {
-                overlay.style.display = "none";
-                document.body.classList.add("loaded");
-            }, 1000);
-        }
-
-        function toggleAudio() {
-            if (audio.paused) { audio.play(); audioBtn.innerHTML = "MUTE AUDIO"; }
-            else { audio.pause(); audioBtn.innerHTML = "UNMUTE AUDIO"; }
-        }
-
-        function openModal() { document.getElementById("pubModal").style.display = "block"; }
-        function closeModal() { document.getElementById("pubModal").style.display = "none"; }
-        window.onclick = function(event) { if (event.target == document.getElementById("pubModal")) { closeModal(); } }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
+2. Visual Styling (style.css)
+This handles the "Aesthetics of Society" watermark and the specific font treatments you requested.
+
+CSS
+:root {
+    --primary-blue: #1a365d;
+    --gold: #b39359;
+    --parchment: #f9f7f2;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--parchment);
+    color: var(--primary-blue);
+    overflow-x: hidden;
+}
+
+h1, h2, .nav-links {
+    font-family: 'Cinzel', serif;
+}
+
+/* Watermark Implementation */
+.watermark-bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: url('logo.png') no-repeat center;
+    background-size: contain;
+    opacity: 0.03; /* Very faint background logo */
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Navigation */
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    align-items: center;
+    border-bottom: 1px solid rgba(26, 54, 93, 0.1);
+}
+
+.nav-logo {
+    height: 40px;
+    margin-right: 15px;
+}
+
+.hero-content h1 {
+    font-size: 5rem;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.hero-content h1 span {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+    font-size: 4rem;
+}
+
+/* New Pages Grid */
+.karana-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding: 50px;
+}
+
+.sub-page {
+    padding: 100px 10% 50px;
+}
+
+.hidden { display: none; }
+3. Interaction & Logic (script.js)
+Controls the navigation between your 10 pages and ensures the audio plays on user interaction.
+
+JavaScript
+// Navigation Logic
+function showSection(sectionId) {
+    // Hide all sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach(s => s.classList.add('hidden'));
+    
+    // Show target section
+    document.getElementById(sectionId).classList.remove('hidden');
+    
+    // Scroll to top
+    window.scrollTo(0, 0);
+}
+
+// Ensure audio plays (Browsers block autoplay until first click)
+document.addEventListener('click', () => {
+    const audio = document.getElementById('bgMusic');
+    if (audio.paused) {
+        audio.play();
+    }
+}, { once: true });
