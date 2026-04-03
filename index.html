@@ -5,181 +5,150 @@ HTML
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Consciousness Protocol | Naredla Rama Chandra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
     <style>
-        :root { --navy: #041631; --gold: #b8860b; }
-        * { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; font-family: 'Times New Roman', serif; scroll-behavior: smooth; }
+        :root { --navy: #041631; --gold: #c9a84c; --gold-dark: #7a5c1e; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
-        body {
-            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('background.png');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            color: #000;
+        body { 
+            background: #0a0a0a; 
+            color: #d4d4d4; 
+            font-family: 'Cormorant Garamond', serif; 
+            line-height: 1.6;
         }
 
-        /* HEADER & DROPDOWN */
+        /* HEADER & NAVIGATION */
         header {
-            display: flex; justify-content: space-between; align-items: center; padding: 15px 5%;
-            background: rgba(255, 255, 255, 0.98); position: fixed; top: 0; width: 100%; 
-            z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 5%; background: rgba(255, 255, 255, 0.98);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .nav-dropdown { position: relative; }
-        .dropbtn { 
-            background: var(--navy); color: white; border: none; padding: 10px 20px; 
-            font-weight: bold; cursor: pointer; border-radius: 4px; font-family: serif;
-        }
-        .dropdown-content {
-            display: none; position: absolute; right: 0; background: white;
-            min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
-            border-top: 3px solid var(--navy);
-        }
-        .dropdown-content.show { display: block; }
-        .dropdown-content a {
-            color: var(--navy); padding: 12px 16px; text-decoration: none; 
-            display: block; font-weight: bold; border-bottom: 1px solid #eee;
-        }
-        .dropdown-content a:hover { background: #f8f8f8; color: var(--gold); }
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .header-logo { height: 50px; width: auto; border: 1px solid var(--navy); }
+        .site-title { font-family: 'Cinzel', serif; font-weight: bold; color: var(--navy); font-size: 1.2rem; }
 
-        .container { max-width: 1150px; margin: 160px auto 80px; padding: 0 40px; }
-
-        /* TEXT STYLING */
-        .readable-text { text-shadow: 0px 0px 10px #fff; font-weight: 600; line-height: 1.8; font-size: 1.3rem; }
-
-        .radio-group { display: flex; gap: 8px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
-        .radio-group input { display: none; }
-        .radio-group label {
-            padding: 10px 22px; border: 2px solid var(--navy); border-radius: 40px;
-            cursor: pointer; font-weight: bold; background: white; font-size: 0.9rem; color: var(--navy);
+        nav select {
+            padding: 8px 15px; font-family: 'Cinzel', serif; font-weight: bold;
+            background: var(--navy); color: white; border: none; border-radius: 4px;
+            cursor: pointer;
         }
-        .radio-group input:checked + label { background: var(--navy); color: white; }
 
-        /* CONTENT LAYOUT */
-        .content-wrap { display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
-        .media-side { flex: 1; min-width: 320px; }
-        .text-side { flex: 1.5; min-width: 350px; text-align: justify; }
+        .container { max-width: 1300px; margin: 120px auto 80px; padding: 0 20px; }
 
-        .image-frame { 
-            width: 100%; border: 3px solid var(--navy); 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2); border-radius: 4px;
+        /* AUTHOR SECTION */
+        #author { background: white; color: black; padding: 60px; border-radius: 8px; margin-bottom: 60px; }
+        .author-title { font-family: 'Cinzel', serif; color: var(--navy); text-align: center; margin-bottom: 30px; font-size: 2.5rem; }
+        .content-wrap { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+        .author-img { width: 300px; border: 5px solid var(--navy); box-shadow: 10px 10px 0px var(--gold); }
+
+        /* KARANA CARD STYLES (Your Exact Verbiage) */
+        .karana-card {
+            width: 100%; height: auto; min-height: 600px; background: #000;
+            position: relative; display: flex; align-items: stretch;
+            overflow: hidden; margin-bottom: 80px; border: 2px solid var(--gold-dark);
         }
-        
-        section { padding: 60px 0; border-bottom: 1px solid rgba(10,37,77,0.1); }
-        h2 { text-align: center; color: var(--navy); letter-spacing: 1px; font-size: 2.2rem; margin-bottom: 30px; }
+        .karana-card::before { content: ''; position: absolute; width: 60px; height: 60px; border-color: var(--gold); border-style: solid; top: 8px; left: 8px; border-width: 3px 0 0 3px; z-index: 10; }
+        .karana-card::after { content: ''; position: absolute; width: 60px; height: 60px; border-color: var(--gold); border-style: solid; bottom: 8px; right: 8px; border-width: 0 3px 3px 0; z-index: 10; }
 
-        .read-more-btn {
-            margin-top: 20px; padding: 12px 25px; background: var(--gold); color: white;
-            border: none; border-radius: 5px; cursor: pointer; font-weight: bold;
-            text-transform: uppercase; transition: 0.3s;
+        .left-panel { width: 280px; padding: 40px 25px; z-index: 2; border-right: 1px solid var(--gold-dark); }
+        .label { font-family: 'Cinzel', serif; font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; margin-top: 20px; }
+        .panel-text { font-size: 14px; color: #e0e0e0; }
+
+        .center-panel { flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle, #3d2600 0%, #000 70%); }
+        .karana-image { height: 350px; object-fit: contain; z-index: 5; filter: drop-shadow(0 0 20px rgba(200,140,0,0.4)); }
+        .karana-num-big { font-family: 'Cinzel', serif; font-size: 80px; color: rgba(201, 168, 76, 0.1); position: absolute; top: 20px; }
+
+        .right-panel { width: 260px; padding: 40px 25px; border-left: 1px solid var(--gold-dark); text-align: center; }
+        .neuro-box { background: rgba(201, 168, 76, 0.1); padding: 15px; border-radius: 50%; margin: 20px auto; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gold); }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .karana-card { flex-direction: column; }
+            .left-panel, .right-panel { width: 100%; border: none; }
         }
-        .read-more-btn:hover { background: var(--navy); }
     </style>
 </head>
 <body>
 
     <header>
-        <div style="font-weight: bold; color: var(--navy); font-size: 1.3rem;">AESTHETICS OF SOCIETY</div>
-        <div class="nav-dropdown">
-            <button class="dropbtn" onclick="toggleMenu()">EXPLORE ☰</button>
-            <div id="myDropdown" class="dropdown-content">
-                <a href="#author">About the Author</a>
-                <a href="#karanas">10 Karanas</a>
-                <a href="#contact">Contact</a>
-            </div>
+        <div class="logo-container">
+            <img src="logo.jpg" class="header-logo" alt="Logo">
+            <div class="site-title">AESTHETICS OF SOCIETY</div>
         </div>
+        <nav>
+            <select onchange="window.location.hash=this.value">
+                <option value="#author">1. Introduction</option>
+                <option value="#K1">2. Karana 01: Talapushpaputam</option>
+                <option value="#K2">3. Karana 02: Lina</option>
+                <option value="#K3">4. Karana 03: Vartita</option>
+                <option value="#K4">5. Karana 04: Valita</option>
+                <option value="#K5">6. Karana 05: Nivritta</option>
+                <option value="#K6">7. Karana 06: Nikuttita</option>
+                <option value="#K7">8. Karana 07: Ardha-Nikuttita</option>
+                <option value="#K8">9. Karana 08: Recita</option>
+                <option value="#K9">10. Karana 09: Katihasta</option>
+                <option value="#K10">11. Karana 10: Pakshavanchita</option>
+                <option value="#contact">12. Contact & Research</option>
+            </select>
+        </nav>
     </header>
 
     <div class="container">
         <section id="author">
-            <h2>NAREDLA RAMA CHANDRA</h2>
-            <div class="radio-group">
-                <input type="radio" name="atab" id="p" checked onclick="updateAuth('p')">
-                <label for="p">Brief Profile</label>
-                <input type="radio" name="atab" id="ph" onclick="updateAuth('ph')">
-                <label for="ph">Research Philosophy</label>
-            </div>
+            <h1 class="author-title">Naredla Rama Chandra</h1>
             <div class="content-wrap">
-                <div class="media-side" id="auth-img-container">
-                    <img src="author.jpg" class="image-frame" alt="Naredla Rama Chandra">
+                <img src="author.jpg" class="author-img" alt="Chandra">
+                <div style="flex: 1; font-size: 1.2rem;">
+                    <p>Independent researcher and author specializing in the integration of ancient Indian knowledge systems with modern neuroscience. Architect of the <strong>Master Consciousness Protocol (MCP)</strong>.</p>
                 </div>
-                <div class="text-side readable-text" id="auth-display"></div>
             </div>
         </section>
 
-        <section id="karanas">
-            <h2>THE 10 KARANAS: SOURCE CODE</h2>
-            <div class="radio-group">
-                <script>
-                    for(let i=1; i<=10; i++) {
-                        document.write(`<input type="radio" name="ktab" id="k${i}" ${i==1?'checked':''} onclick="updateK(${i})">
-                                       <label for="k${i}">K-${i<10?'0'+i:i}</label>`);
-                    }
-                </script>
-            </div>
-            <div class="content-wrap">
-                <div class="media-side"><img src="k1.jpg" id="k-img" class="image-frame"></div>
-                <div class="text-side">
-                    <h3 id="k-title" style="color:var(--navy); margin-top:0; border-bottom: 2px solid var(--navy); display:inline-block;"></h3>
-                    <div id="k-desc" class="readable-text" style="white-space: pre-line; margin-top:15px;"></div>
-                    <button class="read-more-btn" id="read-more-node" onclick="showFullCode()">Read Full Source Code</button>
-                </div>
-            </div>
-        </section>
+        <div id="karana-display"></div>
     </div>
 
     <script>
-        let currentK = 1;
-        const library = {
-            profile: "Naredla Rama Chandra is an independent researcher and author specializing in the 'Source Code' of ancient Indian knowledge systems. His work integrates the Natya Shastra with modern neuroscience and bio-acoustics, creating a scientific bridge for clinical physiological wellness. He is the architect of the Master Consciousness Protocol (MCP).",
-            philosophy: "His research posits that ancient Karanas are biochemical switches. By aligning neuro-geometric movements with Raga frequencies, the Protocol triggers cellular resonance, offering a scientific pathway to sound-based healing and consciousness expansion through the aesthetics of ancient society.",
-            karanas: {
-                1: { 
-                    title: "K-01: Talapushpaputam", 
-                    summary: "Establishes primary vertical alignment and bio-acoustic reception. Utilizes the thoracic cage as a resonant chamber for terrestrial frequency alignment.",
-                    full: "1. Primary Vertical Alignment\n2. Bio-acoustic reception logic\n3. Thoracic resonant chamber\n4. CNS terrestrial sync\n5. Alpha-wave foundation\n6. Geometric stillness\n7. EMF field calibration\n8. Mudra-sound intersection\n9. MCP Foundation Node\n10. Clinical resonance baseline\n11. Respiratory rhythm sync\n12. Neural pathway priming\n13. Bio-mechanical anchor\n14. Frequency stabilization\n15. Cellular reception active."
-                },
-                2: { 
-                    title: "K-02: Vartitam", 
-                    summary: "Activates the wrist-brain axis through inward/outward rotation, priming synaptic pathways for fine motor control and neuro-geometric mapping.",
-                    full: "1. Wrist-neural mapping\n2. Inward energy flow\n3. Wrist-brain frequency axis\n4. Kinetic redirection\n5. Synaptic priming\n6. Forearm geometry\n7. Flow state entry\n8. Pranic regulation\n9. Dual-hemisphere link\n10. Motor-cortex activation\n11. Cognitive clarity\n12. Neuromuscular feedback\n13. Limbic system calming\n14. Radial nerve stimulation\n15. Spatial awareness boost."
-                },
-                // Additional 15-line Source Codes for K-03 to K-10 follow the same structure...
-            }
-        };
+        const data = [
+            { id: "K1", name: "TALAPUSHPAPUTA", sa: "तलपुष्पपुट", meaning: "Flower hands on head.", pose: "Vertical alignment, thoracic resonance.", phil: "Baseline for neuro-plasticity.", neuro: "Stabilizes Vagus nerve & cognitive coherence.", benefit: "Improves balance and composure.", chakra: "SRI CHAKRA - 1st AVARANA" },
+            { id: "K2", name: "LINA", sa: "लीन", meaning: "Internal absorption.", pose: "Folding inward, internal observation.", phil: "Unity of self with cosmos.", neuro: "Regulates CSF pressure & metabolic waste clearance.", benefit: "Prevents mental fatigue.", chakra: "SRI CHAKRA - 1st AVARANA" },
+            { id: "K3", name: "VARTITA", sa: "वर्तित", meaning: "Dynamic rotation.", pose: "Pivoting on foot, fluid spine.", phil: "Mirrors orbital mechanics.", neuro: "Engages motor cortex for re-mapping skills.", benefit: "Enhances spatial intelligence.", chakra: "SRI CHAKRA - 1st AVARANA" },
+            { id: "K4", name: "VALITA", sa: "वलित", meaning: "Bio-Acoustic Gateway.", pose: "Throat open, arm arc.", phil: "Resonance of Beeja Akshara.", neuro: "Stimulates laryngeal nerve; HRV improvement.", benefit: "Respiratory and vocal therapy.", chakra: "SRI CHAKRA - 1st AVARANA" },
+            { id: "K5", name: "NIVRITTA", sa: "निवृत्त", meaning: "Cognitive Damping.", pose: "Inward arms, half-closed eyes.", phil: "Journey back to source.", neuro: "Induces high-alpha brainwaves.", benefit: "Anxiety management.", chakra: "SRI CHAKRA - 2nd AVARANA" },
+            { id: "K6", name: "NIKUTTITA", sa: "निकुट्टित", meaning: "Immune Resonance.", pose: "Rhythmic stamping, swinging arms.", phil: "Grounding the physical body.", neuro: "Mechanical pump for lymphatic drainage.", benefit: "Immune system boost.", chakra: "SRI CHAKRA - 2nd AVARANA" },
+            { id: "K7", name: "ARDHA-NIKUTTITA", sa: "अर्धनिकुट्टित", meaning: "Neural Duality.", pose: "Half stamp, opposite arm raised.", phil: "Balancing Ardhanarishvara energies.", neuro: "Engages Corpus Callosum for hemispheric sync.", benefit: "Creative problem solving.", chakra: "SRI CHAKRA - 2nd AVARANA" },
+            { id: "K8", name: "RECITA", sa: "रेचित", meaning: "Expansion Protocol.", pose: "Arms wide, chest open.", phil: "Soul expansion into Akasha.", neuro: "Peripheral nerve sensitivity increase.", benefit: "High-performance recovery.", chakra: "SRI CHAKRA - 3rd AVARANA" },
+            { id: "K9", name: "KATIHASTA", sa: "कटिहस्त", meaning: "Core Integrity.", pose: "Hands at waist, grounded stance.", phil: "Seat of stability.", neuro: "Stabilizes pelvic floor & lumbar nerves.", benefit: "Neurological signal clarity.", chakra: "SRI CHAKRA - 3rd AVARANA" },
+            { id: "K10", name: "PAKSHAVANCHITA", sa: "पक्षवञ्चित", meaning: "Vestibular Ascent.", pose: "Wings spread, one leg lifted.", phil: "Symbolizing flight toward Moksha.", neuro: "Challenges vestibular coordination.", benefit: "Prevents neurological decline.", chakra: "SRI CHAKRA - 3rd AVARANA" }
+        ];
 
-        function toggleMenu() { document.getElementById("myDropdown").classList.toggle("show"); }
+        const container = document.getElementById('karana-display');
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show');
-                }
-            }
-        }
-
-        function updateAuth(type) {
-            document.getElementById('auth-display').innerText = type === 'p' ? library.profile : library.philosophy;
-            // Hide image only when Research Philosophy is active
-            document.getElementById('auth-img-container').style.display = type === 'p' ? 'block' : 'none';
-        }
-
-        function updateK(id) {
-            currentK = id;
-            const k = library.karanas[id] || {title: "Karana "+id, summary: "Details coming soon...", full: "Full analysis pending."};
-            document.getElementById('k-img').src = `k${id}.jpg`;
-            document.getElementById('k-title').innerText = k.title;
-            document.getElementById('k-desc').innerText = k.summary;
-            document.getElementById('read-more-node').style.display = "block";
-        }
-
-        function showFullCode() {
-            const k = library.karanas[currentK];
-            document.getElementById('k-desc').innerText = k.full;
-            document.getElementById('read-more-node').style.display = "none";
-        }
-
-        // Initialize view
-        updateAuth('p'); updateK(1);
+        data.forEach(k => {
+            container.innerHTML += `
+                <div class="karana-card" id="${k.id}">
+                    <div class="left-panel">
+                        <div class="label">Meaning</div><p class="panel-text">${k.meaning}</p>
+                        <div class="label">Pose</div><p class="panel-text">${k.pose}</p>
+                        <div class="label">Philosophy</div><p class="panel-text">${k.phil}</p>
+                    </div>
+                    <div class="center-panel">
+                        <div class="karana-num-big">${k.id}</div>
+                        <h2 style="color:var(--gold); font-family:'Cinzel'; margin-bottom:20px;">${k.name}</h2>
+                        <img src="karana${k.id.substring(1)}.jpg" class="karana-image" onerror="this.src='https://via.placeholder.com/300x400?text=Karana+Image'">
+                        <div style="margin-top:20px; color:var(--gold); letter-spacing:3px;">${k.chakra}</div>
+                    </div>
+                    <div class="right-panel">
+                        <div class="label">Neuroscience</div>
+                        <div class="neuro-box">🧠</div>
+                        <p class="panel-text">${k.neuro}</p>
+                        <div class="label">Benefit</div>
+                        <p class="panel-text">${k.benefit}</p>
+                    </div>
+                </div>
+            `;
+        });
     </script>
 </body>
 </html>
