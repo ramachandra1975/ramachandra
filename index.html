@@ -6,163 +6,147 @@ HTML
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Consciousness Protocol | Naredla Rama Chandra</title>
     <style>
-        :root { --navy: #041631; --gold: #b8860b; --soft-bg: rgba(255, 255, 255, 0.85); }
+        :root { --navy: #041631; --gold: #b8860b; }
         * { box-sizing: border-box; }
-        body, html { margin: 0; padding: 0; font-family: 'Times New Roman', serif; scroll-behavior: smooth; }
         
+        body, html { margin: 0; padding: 0; font-family: 'Times New Roman', serif; color: #1a1a1a; overflow-x: hidden; }
+
+        /* MULTI-LAYERED WATERMARK BACKGROUND */
         body {
-            background: linear-gradient(var(--soft-bg), var(--soft-bg)), url('background.png');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            color: #000;
+            background-color: #fff;
+            position: relative;
+            min-height: 100vh;
         }
 
-        /* HEADER & LOGO FIX */
+        /* The Centered Logo Watermark */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px; height: 600px;
+            background: url('logo.jpg') no-repeat center;
+            background-size: contain;
+            opacity: 0.07; /* Very subtle watermark */
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Floating Research Watermarks */
+        .watermark-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; pointer-events: none; opacity: 0.12;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px; padding: 20px;
+        }
+        .watermark-bg img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(50%); }
+
         header {
-            display: flex; justify-content: space-between; align-items: center; padding: 10px 5%;
-            background: white; position: fixed; top: 0; width: 100%; 
-            z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-between; align-items: center; padding: 15px 5%;
+            background: rgba(255, 255, 255, 0.9); border-bottom: 2px solid var(--navy);
+            position: sticky; top: 0; z-index: 1000;
         }
         .logo-area { display: flex; align-items: center; gap: 15px; }
         .logo-img { height: 50px; border-radius: 50%; border: 1px solid var(--navy); }
         .site-title { font-weight: bold; color: var(--navy); font-size: 1.2rem; letter-spacing: 1px; }
 
-        .nav-dropdown { position: relative; }
-        .dropbtn { 
-            background: var(--navy); color: white; border: none; padding: 8px 16px; 
-            font-weight: bold; cursor: pointer; border-radius: 4px;
+        .container { max-width: 900px; margin: 60px auto; padding: 0 25px; position: relative; z-index: 10; }
+
+        /* AUTHOR PROFILE */
+        .profile-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; margin-bottom: 60px; }
+        .profile-img { width: 100%; border: 4px solid var(--navy); border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .bio-content h1 { color: var(--navy); margin-top: 0; font-size: 2.2rem; border-bottom: 2px solid var(--gold); display: inline-block; }
+        .verbiage { font-size: 1.25rem; line-height: 1.8; text-align: justify; }
+
+        /* CLINICAL HIGHLIGHTS */
+        .research-box { 
+            background: rgba(255, 255, 255, 0.8); border: 1px solid var(--navy); 
+            padding: 30px; border-radius: 8px; backdrop-filter: blur(5px);
         }
-        .dropdown-content {
-            display: none; position: absolute; right: 0; background: white;
-            min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-top: 3px solid var(--gold);
-        }
-        .dropdown-content.show { display: block; }
-        .dropdown-content a {
-            color: var(--navy); padding: 12px 16px; text-decoration: none; 
-            display: block; font-weight: bold; border-bottom: 1px solid #eee;
+        .clinical-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .point { padding: 10px; border-left: 3px solid var(--gold); font-size: 1.1rem; }
+
+        /* FORM */
+        .inquiry-section { background: rgba(4, 22, 49, 0.95); color: white; padding: 40px; border-radius: 8px; margin-top: 50px; }
+        .inquiry-section h2 { color: var(--gold); text-align: center; margin-bottom: 25px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        input, select, textarea { width: 100%; padding: 12px; border: none; border-radius: 4px; font-size: 1rem; }
+        .full-width { grid-column: span 2; }
+        .submit-btn { 
+            grid-column: span 2; background: var(--gold); color: white; border: none; 
+            padding: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; 
         }
 
-        .container { max-width: 1100px; margin: 120px auto 60px; padding: 0 25px; }
+        footer { text-align: center; padding: 40px; color: #444; font-weight: bold; }
 
-        /* AUTHOR SECTION FIX */
-        .content-wrap { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; margin-top: 20px; }
-        .media-side { flex: 1; min-width: 300px; }
-        .text-side { flex: 1.5; min-width: 350px; }
-        .image-frame { width: 100%; border: 4px solid var(--navy); border-radius: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        .readable-text { font-size: 1.25rem; line-height: 1.7; color: #1a1a1a; text-align: justify; }
-
-        /* KARANA INTERFACE */
-        .radio-group { display: flex; gap: 10px; justify-content: center; margin: 30px 0; flex-wrap: wrap; }
-        .radio-group input { display: none; }
-        .radio-group label {
-            padding: 8px 15px; border: 2px solid var(--navy); border-radius: 20px;
-            cursor: pointer; font-weight: bold; background: white; color: var(--navy); transition: 0.3s;
-        }
-        .radio-group input:checked + label { background: var(--navy); color: white; }
-
-        .clinical-box { background: rgba(184, 134, 11, 0.1); border-left: 5px solid var(--gold); padding: 20px; border-radius: 0 8px 8px 0; }
-        h2 { color: var(--navy); text-align: center; font-size: 2rem; border-bottom: 2px solid var(--gold); display: inline-block; width: 100%; padding-bottom: 10px; }
-        
-        .read-more-btn { margin-top: 15px; padding: 10px 20px; background: var(--gold); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        @media (max-width: 768px) { .profile-grid, .clinical-grid, .form-grid { grid-template-columns: 1fr; } .full-width, .submit-btn { grid-column: span 1; } }
     </style>
 </head>
 <body>
 
+    <div class="watermark-bg">
+        <img src="k1.jpg">
+        <img src="k2.jpg">
+        <img src="k3.jpg">
+        <img src="k4.jpg">
+        <img src="k5.jpg">
+    </div>
+
     <header>
         <div class="logo-area">
-            <img src="logo.jpg" class="logo-img" alt="MCP Logo">
+            <img src="logo.jpg" class="logo-img" alt="Logo">
             <div class="site-title">AESTHETICS OF SOCIETY</div>
         </div>
-        <div class="nav-dropdown">
-            <button class="dropbtn" onclick="toggleMenu()">MENU ☰</button>
-            <div id="myDropdown" class="dropdown-content">
-                <a href="#author">About the Author</a>
-                <a href="#karanas">Master Protocol</a>
-            </div>
-        </div>
+        <div style="font-weight: bold; color: var(--navy);">Master Consciousness Protocol</div>
     </header>
 
     <div class="container">
-        <section id="author">
-            <h2>Naredla Rama Chandra</h2>
-            <div class="radio-group">
-                <input type="radio" name="atab" id="p" checked onclick="updateAuth('p')">
-                <label for="p">Brief Profile</label>
-                <input type="radio" name="atab" id="ph" onclick="updateAuth('ph')">
-                <label for="ph">Research Philosophy</label>
-            </div>
-            <div class="content-wrap">
-                <div class="media-side" id="auth-img-container"><img src="author.jpg" class="image-frame"></div>
-                <div class="text-side readable-text" id="auth-display"></div>
-            </div>
-        </section>
-
-        <section id="karanas">
-            <h2>THE 10 KARANAS: SOURCE CODE</h2>
-            <div class="radio-group">
-                <script>
-                    for(let i=1; i<=10; i++) {
-                        document.write(`<input type="radio" name="ktab" id="k${i}" ${i==1?'checked':''} onclick="updateK(${i})">
-                                       <label for="k${i}">K-${i<10?'0'+i:i}</label>`);
-                    }
-                </script>
-            </div>
-            <div class="content-wrap">
-                <div class="media-side" id="k-media-container"><img src="k1.jpg" id="k-img" class="image-frame"></div>
-                <div class="text-side">
-                    <h3 id="k-title" style="color:var(--navy); margin-top:0;"></h3>
-                    <div id="k-desc" class="readable-text"></div>
-                    <div id="k-benefits" class="clinical-box" style="display:none; margin-top:20px;"></div>
-                    <button class="read-more-btn" id="read-btn" onclick="showFullCode()">View Clinical Benefits</button>
+        <div class="profile-grid">
+            <img src="author.jpg" class="profile-img" alt="Author Profile">
+            <div class="bio-content">
+                <h1>Naredla Rama Chandra</h1>
+                <div class="verbiage">
+                    <p><strong>Brief Profile:</strong> Independent researcher and author specializing in the "Source Code" of ancient Indian knowledge systems. Architect of the Master Consciousness Protocol (MCP), integrating Natya Shastra with modern neuroscience and bio-acoustics.</p>
+                    <p><strong>Research Philosophy:</strong> Utilizing Vedic literature and Sanskrit linguistics (Beeja Aksharas) to map biochemical switches within the human body. The Protocol aligns neuro-geometric movements with Raga frequencies for clinical physiological recalibration.</p>
                 </div>
             </div>
+        </div>
+
+        <div class="research-box">
+            <h2 style="margin-top:0; color:var(--navy);">Neuro-Kinematic Integration</h2>
+            <div class="clinical-grid">
+                <div class="point"><strong>CNS Sync:</strong> Terrestrial frequency alignment through 108 Karana geometries.</div>
+                <div class="point"><strong>Bio-Acoustics:</strong> Sapta Swara resonance for autonomic nervous system (ANS) stability.</div>
+                <div class="point"><strong>Kinematics:</strong> Thoracic cage optimization and neuro-geometric spinal resets.</div>
+                <div class="point"><strong>Clinical:</strong> Reduction of bio-mechanical stress and stabilization of respiratory rhythms.</div>
+            </div>
+        </div>
+
+        <section class="inquiry-section">
+            <h2>Research Inquiry Sheet</h2>
+            <form action="#" method="POST">
+                <div class="form-grid">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <select required>
+                        <option value="" disabled selected>Nature of Inquiry</option>
+                        <option value="research">Research Collaboration</option>
+                        <option value="clinical">Clinical Discussion</option>
+                        <option value="publication">Publication/Media</option>
+                    </select>
+                    <input type="text" placeholder="Institution">
+                    <textarea placeholder="How can the Master Consciousness Protocol assist your research?" class="full-width" rows="4" required></textarea>
+                    <button type="submit" class="submit-btn">Submit Inquiry</button>
+                </div>
+            </form>
         </section>
     </div>
 
-    <script>
-        const library = {
-            profile: "Naredla Rama Chandra is an independent researcher and author specializing in the 'Source Code' of ancient Indian knowledge systems. His work integrates the Natya Shastra with modern neuroscience and bio-acoustics, creating a scientific bridge for clinical physiological wellness.",
-            philosophy: "The research focuses on the 'Sapta Swaras' and their biochemical effects on the human body. By utilizing Vedic literature and Sanskrit linguistics, the Master Consciousness Protocol (MCP) aims to provide a structured map for sound-based neurological recalibration.",
-            karanas: {
-                1: { t: "Talapushpaputam", s: "Visual Reference Active.", b: "Kinematics: Establishes thoracic resonance.\nNeuroscience: CNS terrestrial frequency sync.\nPhysiological: Respiratory rhythm stabilization." },
-                2: { t: "Vartitam", s: "Visual Reference Active.", b: "Kinematics: Wrist-neural axis activation.\nNeuroscience: Synaptic priming for fine motor control.\nPhysiological: Radial nerve stimulation." },
-                3: { t: "Valitorukam", s: "Visual Reference Active.", b: "Kinematics: Thigh-torso torque optimization.\nNeuroscience: Root-nerve cluster activation.\nPhysiological: Pelvic floor strengthening." },
-                4: { t: "Apaviddham", s: "Visual Reference Active.", b: "Kinematics: Lateral chest expansion.\nNeuroscience: Vagus nerve toning via sweeping motion.\nPhysiological: Arterial pressure balance." },
-                5: { t: "Samanakham", s: "Visual Reference Active.", b: "Kinematics: Digit-neural precision.\nNeuroscience: High-fidelity motor cortex activation.\nPhysiological: Bio-magnetic projection baseline." },
-                6: { t: "Gangavataranam", s: "Technical Description Mode.", b: "Kinematics: Cascading downward motion.\nNeuroscience: Cerebral-fluid pulse regulation.\nPhysiological: Parasympathetic shift (Cooling Mode)." },
-                7: { t: "Lalitam", s: "Technical Description Mode.", b: "Kinematics: Aesthetic soft-tissue release.\nNeuroscience: Mirror neuron firing patterns.\nPhysiological: Dopamine-serotonin balance." },
-                8: { t: "Dandapaksham", s: "Technical Description Mode.", b: "Kinematics: Rigid staff-like extension.\nNeuroscience: Linear energy path focus.\nPhysiological: Bone density and skeletal alignment focus." },
-                9: { t: "Chaturam", s: "Technical Description Mode.", b: "Kinematics: Small-muscle control logic.\nNeuroscience: Pre-frontal cortex cognitive links.\nPhysiological: Intellectual clarity and vision-focus." },
-                10: { t: "Nikunchitam", s: "Technical Description Mode.", b: "Kinematics: Spinal reset geometry.\nNeuroscience: Autonomic Nervous System recalibration.\nPhysiological: Deep-tissue tension release." }
-            }
-        };
+    <footer>
+        &copy; 2026 Naredla Rama Chandra | <a href="mailto:smith123846@gmail.com" style="color:var(--navy);">smith123846@gmail.com</a>
+    </footer>
 
-        function toggleMenu() { document.getElementById("myDropdown").classList.toggle("show"); }
-        function updateAuth(type) { 
-            document.getElementById('auth-display').innerText = type === 'p' ? library.profile : library.philosophy;
-            document.getElementById('auth-img-container').style.opacity = type === 'p' ? "1" : "0.3";
-        }
-        function updateK(id) {
-            const data = library.karanas[id];
-            document.getElementById('k-title').innerText = "K-" + (id<10?'0'+id:id) + ": " + data.t;
-            document.getElementById('k-desc').innerText = data.s;
-            document.getElementById('k-benefits').style.display = "none";
-            document.getElementById('read-btn').style.display = "block";
-            
-            // Handle images vs text-only
-            if(id > 5) {
-                document.getElementById('k-img').style.display = "none";
-                document.getElementById('k-media-container').innerHTML = `<div style="padding:40px; border:2px dashed var(--navy); text-align:center;">Clinical Analysis Mode Active</div>`;
-            } else {
-                document.getElementById('k-media-container').innerHTML = `<img src="k${id}.jpg" id="k-img" class="image-frame">`;
-            }
-        }
-        function showFullCode() {
-            const id = Array.from(document.getElementsByName('ktab')).find(r => r.checked).id.replace('k','');
-            document.getElementById('k-benefits').innerText = library.karanas[id].b;
-            document.getElementById('k-benefits').style.display = "block";
-            document.getElementById('read-btn').style.display = "none";
-        }
-        updateAuth('p'); updateK(1);
-    </script>
 </body>
 </html>
