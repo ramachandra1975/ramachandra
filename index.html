@@ -4,129 +4,131 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Naredla Rama Chandra</title>
+    <title>Enquiry | Aesthetics of Society | Master Consciousness Protocol</title>
     <style>
-        /* 1. TRIPLE LAYERED BACKGROUND SYSTEM */
+        :root {
+            --primary-dark: #041631;
+            --gold-accent: #b8860b;
+            --vellum-bg: #fcfaf5;
+        }
+
         body { 
-            margin: 0; 
-            padding-top: 120px; 
-            font-family: 'Times New Roman', serif; 
-            
-            /* LAYER 1: logo.png (Top Watermark) */
-            /* LAYER 2: karana.png (Middle Image) */
-            /* LAYER 3: base-bg.jpg (The background attachment you shared) */
-            background-image: url('logo.png'), url('karana.png'), url('base-bg.jpg');
-            
-            /* All three are centered so the logo sits exactly in the middle of the Karana */
-            background-position: center center, center center, center center;
-            background-repeat: no-repeat, no-repeat, no-repeat;
-            
-            /* Sizing: Logo is smaller, Karana is medium, Base-BG covers the screen */
-            background-size: 200px, 500px, cover; 
+            margin: 0; padding: 0; font-family: 'Times New Roman', serif; 
+            background-color: var(--vellum-bg); color: var(--primary-dark);
+            background-image: url('logo.jpg'), url('background.png');
+            background-position: center 180px, center center;
+            background-repeat: no-repeat;
+            background-size: 160px, 85%;
             background-attachment: fixed;
+            scroll-behavior: smooth;
         }
 
-        /* 2. SEMI-TRANSPARENT OVERLAY (For readability) */
         body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(249, 247, 242, 0.6); /* Adjust this to make watermark darker/lighter */
-            z-index: -1;
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(252, 250, 245, 0.94); z-index: -1;
         }
 
-        /* 3. HEADER & NAV (Small font, top middle) */
         header {
-            background-color: #041631;
-            color: #f9f7f2;
-            position: fixed; top: 0; width: 100%; z-index: 9999;
-            border-bottom: 4px solid #b8860b;
-            text-align: center;
-            padding: 12px 0;
+            background-color: var(--primary-dark); color: white; position: fixed; 
+            top: 0; width: 100%; z-index: 9999; border-bottom: 4px solid var(--gold-accent); 
+            text-align: center; padding: 15px 0;
         }
-        .brand-text {
-            font-size: 15px; 
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 8px;
-        }
-        nav a { color: #f9f7f2; text-decoration: none; margin: 0 12px; font-weight: bold; font-size: 11px; text-transform: uppercase; }
-
-        /* 4. MAIN CONTENT PANEL */
-        .content-panel {
-            max-width: 800px;
-            margin: 0 auto 50px auto;
-            background: rgba(255, 255, 255, 0.88); 
-            padding: 55px;
-            border: 1px solid #d4af37;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
+        
+        .brand-header { font-size: 18px; letter-spacing: 3px; text-transform: uppercase; font-weight: bold; }
+        
+        nav { margin-top: 10px; }
+        nav a { 
+            color: white; text-decoration: none; margin: 0 10px; font-weight: bold; 
+            font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
         }
 
-        /* 5. RADIO SELECTORS */
-        .pathway-selector {
-            text-align: center;
-            margin: 20px 0 35px 0;
-            padding: 15px;
-            border: 1px solid #b8860b;
-        }
-        .radio-label { margin: 0 18px; font-weight: bold; color: #041631; font-size: 14px; cursor: pointer;}
-        input[type="radio"] { accent-color: #b8860b; transform: scale(1.2); vertical-align: middle; }
+        .container { max-width: 900px; margin: 160px auto 100px auto; }
 
-        h1 { color: #041631; text-align: center; font-size: 2.2rem; margin-top: 0; }
-        h2 { color: #041631; border-bottom: 2px solid #b8860b; padding-bottom: 8px; }
+        section {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 60px; border: 1px solid #d4af37; margin-bottom: 80px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: justify; line-height: 1.9;
+        }
+
+        h1, h2 { text-align: center; color: var(--primary-dark); text-transform: uppercase; }
+        h1 { border-bottom: 2px solid var(--gold-accent); padding-bottom: 15px; margin-bottom: 40px; }
+        .divider { width: 80px; height: 3px; background: var(--gold-accent); margin: 20px auto; }
+
+        /* Enquiry Sheet Styles */
+        .enquiry-box {
+            background: #fff; border: 2px solid var(--primary-dark);
+            padding: 40px; margin-top: 20px; text-align: center;
+        }
+        .contact-detail {
+            font-size: 1.2rem; margin: 15px 0; font-weight: bold; color: var(--gold-accent);
+        }
+        .enquiry-form input, .enquiry-form textarea {
+            width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; font-family: serif;
+        }
+        .submit-btn {
+            background: var(--primary-dark); color: white; border: none;
+            padding: 15px 30px; cursor: pointer; text-transform: uppercase; font-weight: bold;
+        }
+
+        /* Video Grid Styles */
+        .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; border: 1px solid var(--gold-accent); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .video-desc { font-size: 13px; line-height: 1.5; margin-top: 10px; color: #444; }
+
+        footer { text-align: center; padding: 40px; font-size: 12px; color: #777; }
     </style>
 </head>
 <body>
 
 <header>
-    <span class="brand-text">Aesthetics of Society</span>
+    <div class="brand-header">Aesthetics of Society</div>
     <nav>
-        <a href="index.html">Introduction</a>
-        <a href="lineage.html">Guru Clan</a>
-        <a href="publications.html">Publications</a>
-        <a href="references.html">References</a>
-        <a href="media.html">Media</a>
-        <a href="contact.html">Inquiry</a>
+        <a href="#intro">Introduction</a>
+        <a href="#karanas">Karanas</a>
+        <a href="#mudras">Mudras</a>
+        <a href="#media">Media</a>
+        <a href="#enquiry">Enquiry</a>
+        <a href="#epilogue">Epilogue</a>
     </nav>
 </header>
 
-<div class="content-panel">
-    <p style="text-align: center; font-weight: bold; color: #b8860b; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Research Output</p>
-    <p style="text-align: center; font-weight: bold; margin-top: 0;">Publications & Manuscripts</p>
-    
-    <div class="pathway-selector">
-        <label class="radio-label"><input type="radio" name="view" checked> Clinical & Scientific</label>
-        <label class="radio-label"><input type="radio" name="view"> Cultural & Aesthetic</label>
-    </div>
+<div class="container">
 
-    <h1>Naredla Rama Chandra</h1>
+    <section id="intro">
+        <h1>Master Consciousness Protocol</h1>
+        <p>This research represents a 16-year deep-dive into the synthesis of Indian Classical Sciences and modern analytical frameworks...</p>
+    </section>
 
-    <h2>Consciousness Studies VOL. I</h2>
-    <p><strong>Complete Science of Consciousness</strong><br>
-    Ancient Knowledge vs Artificial Intelligence<br>
-    <span style="color: #b8860b; font-weight: bold;">Flagship Work</span></p>
+    <section id="enquiry">
+        <h2>Research Enquiry & Collaboration</h2>
+        <div class="divider"></div>
+        <p style="text-align:center;">For academic inquiries, clinical collaborations, or publication requests regarding the 9-volume series, please use the details below.</p>
+        
+        <div class="enquiry-box">
+            <div class="contact-detail">Mobile: +91 9121379100</div>
+            <div class="contact-detail">Email: smith123846@gmail.com</div>
+            
+            <form class="enquiry-form">
+                <input type="text" placeholder="Your Name / Institution" required>
+                <input type="email" placeholder="Your Official Email" required>
+                <textarea rows="4" placeholder="Nature of Research Inquiry (e.g., Clinical, Neuro-Science, Publication)"></textarea>
+                <button type="submit" class="submit-btn">Submit Inquiry</button>
+            </form>
+        </div>
+    </section>
 
-    <p>This landmark work presents a comprehensive framework comparing the ancient Vedic science of consciousness with modern artificial intelligence paradigms. Drawing from thousands of years of accumulated wisdom encoded in Sanskrit texts, the author demonstrates how ancient seers mapped the full spectrum of human consciousness with a precision that modern neuroscience is only beginning to approach. The work challenges the reductionist view of mind and offers a unified theory of consciousness rooted in Vedic epistemology.</p>
+    <section id="epilogue">
+        <h2>Epilogue: The Unified Source Code</h2>
+        <div class="divider"></div>
+        <p>In conclusion, the "Aesthetics of Society" serves as a bridge between the timeless past and the technological future...</p>
+    </section>
 
-    <div style="font-style: italic; border-left: 4px solid #b8860b; padding-left: 20px; margin: 30px 0; color: #444; background: #fdfaf4; padding: 15px;">
-        “Ancient seers mapped the cosmos of consciousness with a precision that modern science is only beginning to rediscover.”<br>
-        — Naredla Rama Chandra
-    </div>
-
-    <h3>Key Themes</h3>
-    <ul>
-        <li>Vedic models of consciousness vs. computational models</li>
-        <li>The role of Prana and Kundalini in neural activation</li>
-        <li>Sanskrit as a programming language for the mind</li>
-        <li>Comparison of AI neural networks with Vedic chakras</li>
-    </ul>
 </div>
 
-<footer style="text-align: center; padding: 40px; color: #041631; font-weight: bold; font-size: 0.8rem;">
-    &copy; 2026 aesthetics of society | culturalmusings.com | +91 9121379100
+<footer>
+    © 2026 Aesthetics of Society | Research Hub of Naredla Rama Chandra | culturalmusings.com
 </footer>
 
 </body>
