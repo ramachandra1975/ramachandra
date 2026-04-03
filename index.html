@@ -4,148 +4,162 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Consciousness Protocol | Naredla Rama Chandra</title>
+    <title>Cultural Musings | A Customary Perspective</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
     <style>
-        :root { --navy: #041631; --gold: #b8860b; }
-        * { box-sizing: border-box; }
-        
-        body, html { margin: 0; padding: 0; font-family: 'Times New Roman', serif; color: #1a1a1a; overflow-x: hidden; }
+        /* CONSOLIDATED STYLES */
+        :root {
+            --text-main: #1a1a1a;
+            --gold-accent: #8e7f5e;
+            --paper-white: #fcfaf7;
+        }
 
-        /* MULTI-LAYERED WATERMARK BACKGROUND */
         body {
-            background-color: #fff;
-            position: relative;
-            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background-color: var(--paper-white);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* The Centered Logo Watermark */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px; height: 600px;
-            background: url('logo.jpg') no-repeat center;
-            background-size: contain;
-            opacity: 0.07; /* Very subtle watermark */
-            z-index: -1;
-            pointer-events: none;
+        /* Header Section */
+        .main-header {
+            padding: 80px 20px 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
-        /* Floating Research Watermarks */
-        .watermark-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2; pointer-events: none; opacity: 0.12;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            gap: 20px; padding: 20px;
-        }
-        .watermark-bg img { width: 100%; height: 100%; object-fit: contain; filter: grayscale(50%); }
-
-        header {
-            display: flex; justify-content: space-between; align-items: center; padding: 15px 5%;
-            background: rgba(255, 255, 255, 0.9); border-bottom: 2px solid var(--navy);
-            position: sticky; top: 0; z-index: 1000;
-        }
-        .logo-area { display: flex; align-items: center; gap: 15px; }
-        .logo-img { height: 50px; border-radius: 50%; border: 1px solid var(--navy); }
-        .site-title { font-weight: bold; color: var(--navy); font-size: 1.2rem; letter-spacing: 1px; }
-
-        .container { max-width: 900px; margin: 60px auto; padding: 0 25px; position: relative; z-index: 10; }
-
-        /* AUTHOR PROFILE */
-        .profile-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; margin-bottom: 60px; }
-        .profile-img { width: 100%; border: 4px solid var(--navy); border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .bio-content h1 { color: var(--navy); margin-top: 0; font-size: 2.2rem; border-bottom: 2px solid var(--gold); display: inline-block; }
-        .verbiage { font-size: 1.25rem; line-height: 1.8; text-align: justify; }
-
-        /* CLINICAL HIGHLIGHTS */
-        .research-box { 
-            background: rgba(255, 255, 255, 0.8); border: 1px solid var(--navy); 
-            padding: 30px; border-radius: 8px; backdrop-filter: blur(5px);
-        }
-        .clinical-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-        .point { padding: 10px; border-left: 3px solid var(--gold); font-size: 1.1rem; }
-
-        /* FORM */
-        .inquiry-section { background: rgba(4, 22, 49, 0.95); color: white; padding: 40px; border-radius: 8px; margin-top: 50px; }
-        .inquiry-section h2 { color: var(--gold); text-align: center; margin-bottom: 25px; }
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        input, select, textarea { width: 100%; padding: 12px; border: none; border-radius: 4px; font-size: 1rem; }
-        .full-width { grid-column: span 2; }
-        .submit-btn { 
-            grid-column: span 2; background: var(--gold); color: white; border: none; 
-            padding: 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; 
+        .logo-area h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 400;
+            letter-spacing: 8px;
+            margin: 0;
+            text-transform: uppercase;
         }
 
-        footer { text-align: center; padding: 40px; color: #444; font-weight: bold; }
+        .divider {
+            width: 50px;
+            height: 1px;
+            background: var(--gold-accent);
+            margin: 25px auto;
+        }
 
-        @media (max-width: 768px) { .profile-grid, .clinical-grid, .form-grid { grid-template-columns: 1fr; } .full-width, .submit-btn { grid-column: span 1; } }
+        /* Navigation */
+        .customary-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 40px 0 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .customary-nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            opacity: 0.7;
+        }
+
+        .customary-nav a:hover {
+            opacity: 1;
+            color: var(--gold-accent);
+        }
+
+        /* Main Content - Using your exact verbiage */
+        .content-container {
+            max-width: 750px;
+            margin: 80px auto;
+            padding: 0 30px;
+            text-align: center;
+        }
+
+        .intro-tag {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--gold-accent);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin: 0 0 40px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .verbiage-body p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        .site-footer {
+            margin-top: 100px;
+            padding: 50px 20px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 600px) {
+            .logo-area h1 { font-size: 2rem; letter-spacing: 4px; }
+            .customary-nav ul { gap: 15px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="watermark-bg">
-        <img src="k1.jpg">
-        <img src="k2.jpg">
-        <img src="k3.jpg">
-        <img src="k4.jpg">
-        <img src="k5.jpg">
-    </div>
-
-    <header>
+    <header class="main-header">
         <div class="logo-area">
-            <img src="logo.jpg" class="logo-img" alt="Logo">
-            <div class="site-title">AESTHETICS OF SOCIETY</div>
+            <h1>CULTURAL MUSINGS</h1>
+            <div class="divider"></div>
         </div>
-        <div style="font-weight: bold; color: var(--navy);">Master Consciousness Protocol</div>
+        
+        <nav class="customary-nav">
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="#">CULTURE</a></li>
+                <li><a href="#">HISTORY</a></li>
+                <li><a href="#">ESSAYS</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="container">
-        <div class="profile-grid">
-            <img src="author.jpg" class="profile-img" alt="Author Profile">
-            <div class="bio-content">
-                <h1>Naredla Rama Chandra</h1>
-                <div class="verbiage">
-                    <p><strong>Brief Profile:</strong> Independent researcher and author specializing in the "Source Code" of ancient Indian knowledge systems. Architect of the Master Consciousness Protocol (MCP), integrating Natya Shastra with modern neuroscience and bio-acoustics.</p>
-                    <p><strong>Research Philosophy:</strong> Utilizing Vedic literature and Sanskrit linguistics (Beeja Aksharas) to map biochemical switches within the human body. The Protocol aligns neuro-geometric movements with Raga frequencies for clinical physiological recalibration.</p>
-                </div>
+    <main class="content-container">
+        <article>
+            <span class="intro-tag">Welcome to Cultural Musings.</span>
+            
+            <h2 class="article-title">A Customary Perspective</h2>
+            
+            <div class="verbiage-body">
+                <p>This space is dedicated to the deep dive into our collective heritage and the traditions that shape our modern world.</p>
+                <p>Exploring the intersections of art, history, and society through a lens that honors the past while engaging with the present.</p>
             </div>
-        </div>
+        </article>
+    </main>
 
-        <div class="research-box">
-            <h2 style="margin-top:0; color:var(--navy);">Neuro-Kinematic Integration</h2>
-            <div class="clinical-grid">
-                <div class="point"><strong>CNS Sync:</strong> Terrestrial frequency alignment through 108 Karana geometries.</div>
-                <div class="point"><strong>Bio-Acoustics:</strong> Sapta Swara resonance for autonomic nervous system (ANS) stability.</div>
-                <div class="point"><strong>Kinematics:</strong> Thoracic cage optimization and neuro-geometric spinal resets.</div>
-                <div class="point"><strong>Clinical:</strong> Reduction of bio-mechanical stress and stabilization of respiratory rhythms.</div>
-            </div>
-        </div>
-
-        <section class="inquiry-section">
-            <h2>Research Inquiry Sheet</h2>
-            <form action="#" method="POST">
-                <div class="form-grid">
-                    <input type="text" placeholder="Full Name" required>
-                    <input type="email" placeholder="Email Address" required>
-                    <select required>
-                        <option value="" disabled selected>Nature of Inquiry</option>
-                        <option value="research">Research Collaboration</option>
-                        <option value="clinical">Clinical Discussion</option>
-                        <option value="publication">Publication/Media</option>
-                    </select>
-                    <input type="text" placeholder="Institution">
-                    <textarea placeholder="How can the Master Consciousness Protocol assist your research?" class="full-width" rows="4" required></textarea>
-                    <button type="submit" class="submit-btn">Submit Inquiry</button>
-                </div>
-            </form>
-        </section>
-    </div>
-
-    <footer>
-        &copy; 2026 Naredla Rama Chandra | <a href="mailto:smith123846@gmail.com" style="color:var(--navy);">smith123846@gmail.com</a>
+    <footer class="site-footer">
+        <p>&copy; 2026 CULTURAL MUSINGS — ESTABLISHED IN TRADITION</p>
     </footer>
 
 </body>
