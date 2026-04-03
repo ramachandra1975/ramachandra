@@ -1,52 +1,54 @@
 CSS
-/* Container for the background branding */
-.watermark-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; /* Sits behind all text */
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
+:root {
+    --deep-blue: #0a192f;
+    --gold: #c5a059;
+    --parchment: #fdfbf7;
 }
 
-/* The Graphical Logo Watermark */
-.watermark-container::before {
-    content: "";
-    width: 300px; /* Adjust based on your logo size */
-    height: 300px;
-    background: url('logo.png') no-repeat center;
-    background-size: contain;
-    opacity: 0.04; 
-    margin-bottom: 20px;
+body {
+    background-color: var(--parchment);
+    color: var(--deep-blue);
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    overflow-x: hidden;
 }
 
-/* The "Aesthetics of Society" Text Watermark */
-.watermark-container::after {
-    content: "AESTHETICS OF SOCIETY";
-    font-family: 'Cinzel', serif;
-    font-size: 0.8rem; /* Smaller font size as requested */
-    color: #1a365d;
-    letter-spacing: 8px;
-    opacity: 0.06; /* Slightly more visible than the logo */
-    text-align: center;
-}
-
-/* Optional: Tiled effect for long pages */
+/* 1. Background Grid Texture (Very Faint) */
 .bg-texture {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     opacity: 0.02;
-    background-image: linear-gradient(#b39359 0.5px, transparent 0.5px), 
-                      linear-gradient(90deg, #b39359 0.5px, transparent 0.5px);
-    background-size: 50px 50px; /* Subtle grid for the research look */
+    background-image: radial-gradient(var(--gold) 0.5px, transparent 0.5px);
+    background-size: 30px 30px;
     z-index: -2;
+    pointer-events: none;
 }
+
+/* 2. The Watermark Layer */
+.watermark-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0.05; /* Light but visible */
+}
+
+/* The Logo part of the watermark */
+.watermark-container::before {
+    content: "";
+    display: block;
+    width: 250px;
+    height: 250px;
+    background: url('logo.png') no-repeat center;
+    background-size: contain;
+    margin: 0 auto 10px;
+}
+
+/* The "Aesthetics of Society" lessened font watermark */
+.watermark-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem; /* Small font size */
+    letter-
