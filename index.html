@@ -4,7 +4,7 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enquiry | Aesthetics of Society | Master Consciousness Protocol</title>
+    <title>Aesthetics of Society | Master Consciousness Protocol</title>
     <style>
         :root {
             --primary-dark: #041631;
@@ -37,10 +37,7 @@ HTML
         .brand-header { font-size: 18px; letter-spacing: 3px; text-transform: uppercase; font-weight: bold; }
         
         nav { margin-top: 10px; }
-        nav a { 
-            color: white; text-decoration: none; margin: 0 10px; font-weight: bold; 
-            font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
-        }
+        nav a { color: white; text-decoration: none; margin: 0 10px; font-weight: bold; font-size: 10px; text-transform: uppercase; }
 
         .container { max-width: 900px; margin: 160px auto 100px auto; }
 
@@ -55,23 +52,21 @@ HTML
         h1 { border-bottom: 2px solid var(--gold-accent); padding-bottom: 15px; margin-bottom: 40px; }
         .divider { width: 80px; height: 3px; background: var(--gold-accent); margin: 20px auto; }
 
-        /* Enquiry Sheet Styles */
-        .enquiry-box {
-            background: #fff; border: 2px solid var(--primary-dark);
-            padding: 40px; margin-top: 20px; text-align: center;
-        }
-        .contact-detail {
-            font-size: 1.2rem; margin: 15px 0; font-weight: bold; color: var(--gold-accent);
-        }
-        .enquiry-form input, .enquiry-form textarea {
-            width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; font-family: serif;
-        }
         .submit-btn {
             background: var(--primary-dark); color: white; border: none;
-            padding: 15px 30px; cursor: pointer; text-transform: uppercase; font-weight: bold;
+            padding: 15px 30px; cursor: pointer; text-transform: uppercase; font-weight: bold; display: block; margin: 20px auto;
         }
 
-        /* Video Grid Styles */
+        /* Modal (Pop-up) Styles */
+        .modal {
+            display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8); overflow: auto;
+        }
+        .modal-content {
+            background-color: #fff; margin: 5% auto; padding: 40px; border: 3px solid var(--gold-accent); width: 80%; max-width: 800px;
+        }
+        .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+
         .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; border: 1px solid var(--gold-accent); }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -87,8 +82,8 @@ HTML
     <nav>
         <a href="#intro">Introduction</a>
         <a href="#karanas">Karanas</a>
-        <a href="#mudras">Mudras</a>
         <a href="#media">Media</a>
+        <a href="#publications">Publications</a>
         <a href="#enquiry">Enquiry</a>
         <a href="#epilogue">Epilogue</a>
     </nav>
@@ -98,38 +93,79 @@ HTML
 
     <section id="intro">
         <h1>Master Consciousness Protocol</h1>
-        <p>This research represents a 16-year deep-dive into the synthesis of Indian Classical Sciences and modern analytical frameworks...</p>
+        <p>A 16-year deep-dive into the synthesis of Indian Classical Sciences and Neuroscience. Bridging the gap between the Natya Shastra and modern analytical frameworks to establish a clinical pathway for human potential.</p>
+    </section>
+
+    <section id="karanas">
+        <h2>108 Karanas & Neural Geometry</h2>
+        <div class="divider"></div>
+        <p>From the perspective of modern neuroscience, the 108 Karanas represent a sophisticated system of neuro-geometric postures that influence neural oscillations and brain-state transitions...</p>
+    </section>
+
+    <section id="media">
+        <h2>Research Media Gallery</h2>
+        <div class="divider"></div>
+        <div class="video-grid">
+            <div class="video-item">
+                <div class="video-container"><iframe src="https://www.youtube.com/embed/NBrVKBYQd_M?start=26"></iframe></div>
+                <p class="video-desc">Master Consciousness Protocol: Mapping the source code of human existence through Vedic metaphysics. A visual companion to Volume I.</p>
+            </div>
+            </div>
+    </section>
+
+    <section id="publications">
+        <h2>9-Volume Research Series</h2>
+        <div class="divider"></div>
+        <p style="text-align:center;">Independent research bridging ancient Vedic sciences with modern neurology and astrophysics.</p>
+        <button class="submit-btn" onclick="openModal()">Read More: 9 Volumes & Author Profile</button>
     </section>
 
     <section id="enquiry">
-        <h2>Research Enquiry & Collaboration</h2>
+        <h2>Research Enquiry</h2>
         <div class="divider"></div>
-        <p style="text-align:center;">For academic inquiries, clinical collaborations, or publication requests regarding the 9-volume series, please use the details below.</p>
-        
-        <div class="enquiry-box">
-            <div class="contact-detail">Mobile: +91 9121379100</div>
-            <div class="contact-detail">Email: smith123846@gmail.com</div>
-            
-            <form class="enquiry-form">
-                <input type="text" placeholder="Your Name / Institution" required>
-                <input type="email" placeholder="Your Official Email" required>
-                <textarea rows="4" placeholder="Nature of Research Inquiry (e.g., Clinical, Neuro-Science, Publication)"></textarea>
-                <button type="submit" class="submit-btn">Submit Inquiry</button>
-            </form>
-        </div>
+        <p style="text-align:center;">Mobile: +91 9121379100 | Email: smith123846@gmail.com</p>
     </section>
 
     <section id="epilogue">
         <h2>Epilogue: The Unified Source Code</h2>
         <div class="divider"></div>
-        <p>In conclusion, the "Aesthetics of Society" serves as a bridge between the timeless past and the technological future...</p>
+        <p>This 16-year journey into the Aesthetics of Society proves that ancient seers were master engineers of consciousness. The discoveries of tomorrow are hidden in the sacred geometries of yesterday.</p>
     </section>
 
 </div>
 
+<div id="pubModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>About the Author</h3>
+        <p><strong>Naredla Rama Chandra</strong> (b. 1975) is an Independent Researcher exploring the "Master Consciousness Protocol." His work integrates 16 years of study in Bio-Acoustics, Shastras, and modern clinical science.</p>
+        <hr>
+        <h3>The 9-Volume Series</h3>
+        <ul style="line-height:1.8;">
+            <li><strong>Vol I: Master Consciousness Protocol</strong></li>
+            <li><strong>Vol II: The Cosmic Choreography</strong></li>
+            <li><strong>Vol III: Bio-Acoustics & Healing</strong></li>
+            <li><strong>Vol IV: 108 Karanas: Neural Geometry</strong></li>
+            <li><strong>Vol V: Shabda Brahman</strong></li>
+            <li><strong>Vol VI: Sampoorna Manovijnana Sangraha</strong></li>
+            <li><strong>Vol VII: Source Code of Sound: Matrika Nyasa</strong></li>
+            <li><strong>Vol VIII: Paninian Algorithms (AI Blueprint)</strong></li>
+            <li><strong>Vol IX: The Akasha Interface</strong></li>
+        </ul>
+    </div>
+</div>
+
 <footer>
-    © 2026 Aesthetics of Society | Research Hub of Naredla Rama Chandra | culturalmusings.com
+    © 2026 Aesthetics of Society | culturalmusings.com
 </footer>
+
+<script>
+    function openModal() { document.getElementById("pubModal").style.display = "block"; }
+    function closeModal() { document.getElementById("pubModal").style.display = "none"; }
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("pubModal")) { closeModal(); }
+    }
+</script>
 
 </body>
 </html>
