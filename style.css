@@ -1,63 +1,55 @@
 CSS
 :root {
-    --bg-color: #f4f1ea;
-    --text-color: #1a2a3a;
-    --accent: #8e7341;
+    --deep-blue: #0a192f;
+    --gold: #c5a059;
+    --parchment: #fdfbf7;
 }
 
 body {
+    background-color: var(--parchment);
+    color: var(--deep-blue);
+    font-family: 'Georgia', serif;
     margin: 0;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
 }
 
-/* The Watermark */
-.watermark {
+/* Fixed Watermark Effect */
+.watermark-overlay {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
-    height: 70%;
-    background-image: url('logo.png');
-    background-repeat: no-repeat;
-    background-position: center;
+    width: 60%;
+    height: 60%;
+    background: url('logo.png') no-repeat center;
     background-size: contain;
-    opacity: 0.04; /* Adjust this for faintness */
+    opacity: 0.05; /* Keeps it very subtle as requested */
     z-index: -1;
     pointer-events: none;
 }
 
-/* Overlay for Music Activation */
-#overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: var(--bg-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+header {
     text-align: center;
+    padding: 40px 20px;
+    border-bottom: 2px solid var(--gold);
 }
 
-.overlay-logo { width: 120px; margin-bottom: 20px; }
+.main-logo { width: 100px; margin-bottom: 15px; }
 
-button {
-    background: var(--accent);
+h1 { font-size: 2.5rem; letter-spacing: 3px; color: var(--gold); }
+
+nav { margin-top: 20px; }
+nav a { margin: 0 15px; text-decoration: none; color: var(--deep-blue); font-weight: bold; }
+
+section { display: none; padding: 60px 15%; text-align: center; }
+section.active { display: block; }
+
+.play-btn {
+    background: var(--gold);
     color: white;
     border: none;
-    padding: 15px 30px;
+    padding: 12px 24px;
     cursor: pointer;
-    font-family: 'Cinzel', serif;
-    letter-spacing: 2px;
+    font-size: 1rem;
+    margin-top: 20px;
 }
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 5%;
-    background: rgba(255,255,255,0.8);
-}
-
-.page { padding: 50px 10%; }
