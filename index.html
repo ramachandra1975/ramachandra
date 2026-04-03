@@ -4,309 +4,89 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cultural Musings | A Customary Perspective</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
+    <title>Master Consciousness Protocol | Naredla Rama Chandra</title>
     <style>
-        :root {
-            --text-main: #1a1a1a;
-            --gold-accent: #8e7f5e;
-            --paper-white: #fcfaf7;
-            --border-light: rgba(0,0,0,0.08);
+        /* 1. FORCE BACKGROUND COLOR */
+        html, body { 
+            background-color: #f9f7f2 !important; /* Parchment White */
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Times New Roman', serif;
         }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--paper-white);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Branding & Header */
-        .main-header {
-            padding: 80px 20px 40px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .logo-area h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 3.8rem);
-            font-weight: 400;
-            letter-spacing: 10px;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        .divider {
-            width: 40px;
-            height: 1.5px;
-            background: var(--gold-accent);
-            margin: 25px auto;
-        }
-
-        /* Navigation */
-        .customary-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 40px 0 0;
-            display: flex;
+        /* 2. FORCE NAVIGATION VISIBILITY */
+        #FIXED-MENU {
+            background-color: #041631 !important; /* Navy Blue */
+            width: 100% !important;
+            height: 70px !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 999999 !important; /* Above everything */
+            border-bottom: 4px solid #b8860b !important; /* Gold */
+            display: flex !important;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 35px;
+            align-items: center;
         }
 
-        .customary-nav a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.7rem;
-            font-weight: 500;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transition: 0.3s;
-            opacity: 0.8;
+        #FIXED-MENU a {
+            color: #f9f7f2 !important; /* White text */
+            text-decoration: none !important;
+            margin: 0 15px !important;
+            font-weight: bold !important;
+            text-transform: uppercase !important;
+            font-size: 13px !important;
+            letter-spacing: 1px !important;
         }
 
-        .customary-nav a:hover { opacity: 1; color: var(--gold-accent); }
+        #FIXED-MENU a:hover {
+            color: #b8860b !important; /* Gold hover */
+        }
 
-        /* Main Content */
-        .content-container {
-            max-width: 800px;
-            margin: 80px auto;
-            padding: 0 30px;
+        /* 3. CONTENT AREA */
+        .main-content {
+            max-width: 1000px;
+            margin: 100px auto 50px auto; /* Margin-top accounts for fixed menu */
+            background: #ffffff !important;
+            padding: 40px;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* 4. FOOTER */
+        footer {
+            background-color: #041631 !important;
+            color: #f9f7f2 !important;
+            padding: 50px 20px;
             text-align: center;
-        }
-
-        .intro-tag {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.3rem;
-            color: var(--gold-accent);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .article-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin: 0 0 50px;
-            font-weight: 400;
-            line-height: 1.2;
-        }
-
-        .verbiage-body p {
-            font-size: 1.2rem;
-            margin-bottom: 35px;
-            color: #333;
-            font-weight: 300;
-        }
-
-        /* Author Bio */
-        .author-section {
-            margin: 100px auto;
-            padding: 60px 40px;
-            border-top: 1px double var(--border-light);
-            border-bottom: 1px double var(--border-light);
-            max-width: 600px;
-        }
-
-        .author-label {
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold-accent);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .author-bio {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            line-height: 1.6;
-            color: var(--text-main);
-            font-style: italic;
-        }
-
-        /* --- ENQUIRY SECTION & RADIO BUTTONS --- */
-        .enquiry-section {
-            margin-top: 60px;
-            padding: 60px 30px;
-            background-color: #ffffff;
-            border: 1px solid var(--border-light);
-            border-radius: 4px;
-            text-align: left; /* Aligned for form readability */
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .enquiry-section h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .radio-group {
-            margin-bottom: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .radio-container {
-            display: block;
-            position: relative;
-            padding-left: 35px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            user-select: none;
-        }
-
-        /* Hide browser default radio */
-        .radio-container input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        /* Custom radio checkmark */
-        .checkmark {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 18px;
-            width: 18px;
-            background-color: #eee;
-            border-radius: 50%;
-            border: 1px solid #ccc;
-        }
-
-        .radio-container:hover input ~ .checkmark { background-color: #ddd; }
-        .radio-container input:checked ~ .checkmark { background-color: var(--text-main); border-color: var(--text-main); }
-
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-        }
-
-        .radio-container input:checked ~ .checkmark:after { display: block; }
-
-        .radio-container .checkmark:after {
-            top: 5px; left: 5px; width: 6px; height: 6px;
-            border-radius: 50%; background: white;
-        }
-
-        .contact-info {
-            text-align: center;
-            border-top: 1px solid var(--border-light);
-            padding-top: 30px;
-            font-size: 1rem;
-        }
-
-        .contact-info strong { color: var(--gold-accent); }
-
-        .enquiry-button {
-            display: block;
-            margin: 30px auto 0;
-            padding: 15px 40px;
-            background: var(--text-main);
-            text-decoration: none;
-            color: #fff;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-align: center;
-            transition: 0.4s;
-            border: 1px solid var(--text-main);
-        }
-
-        .enquiry-button:hover { background: transparent; color: var(--text-main); }
-
-        .site-footer {
-            margin-top: 120px;
-            padding: 60px 20px;
-            border-top: 1px solid var(--border-light);
-            text-align: center;
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            opacity: 0.6;
-            text-transform: uppercase;
+            border-top: 5px solid #b8860b;
         }
     </style>
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="logo-area">
-            <h1>CULTURAL MUSINGS</h1>
-            <div class="divider"></div>
-        </div>
-        
-        <nav class="customary-nav">
-            <ul>
-                <li><a href="/">HOME</a></li>
-                <li><a href="#">CULTURE</a></li>
-                <li><a href="#">HISTORY</a></li>
-                <li><a href="#">ESSAYS</a></li>
-                <li><a href="#">ABOUT</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav id="FIXED-MENU">
+        <a href="index.html">Profile</a>
+        <a href="bridge.html">The Bridge</a>
+        <a href="library.html">Publications</a>
+        <a href="science.html">Clinical Science</a>
+        <a href="media.html">Media</a>
+        <a href="cosmic-vak.html">Cosmic Vak</a>
+        <a href="contact.html">Inquiry</a>
+    </nav>
 
-    <main class="content-container">
-        <article>
-            <span class="intro-tag">Welcome to Cultural Musings.</span>
-            <h2 class="article-title">A Customary Perspective</h2>
-            <div class="verbiage-body">
-                <p>This space is dedicated to the deep dive into our collective heritage and the traditions that shape our modern world.</p>
-                <p>Exploring the intersections of art, history, and society through a lens that honors the past while engaging with the present.</p>
-            </div>
-        </article>
+    <div class="main-content">
+        <h1 style="color: #041631; border-bottom: 2px solid #b8860b;">Research Summary</h1>
+        <p>Your 16-year research content goes here...</p>
+    </div>
 
-        <section class="author-section">
-            <span class="author-label">The Author</span>
-            <div class="author-bio">
-                "Driven by a passion for historical continuity and the subtle nuances of human culture, I seek to bridge the gap between ancient traditions and contemporary understanding."
-            </div>
-        </section>
-
-        <section class="enquiry-section">
-            <h3>Enquiry Type</h3>
-            
-            <div class="radio-group">
-                <label class="radio-container">General Enquiry
-                    <input type="radio" checked="checked" name="enquiry">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="radio-container">Editorial Collaboration
-                    <input type="radio" name="enquiry">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="radio-container">Archive Access
-                    <input type="radio" name="enquiry">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-
-            <div class="contact-info">
-                <p><strong>+91 91213 79100</strong></p>
-                <p>smith123846@gmail.com</p>
-            </div>
-            
-            <a href="mailto:smith123846@gmail.com" class="enquiry-button">Proceed to Email</a>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <p>&copy; 2026 CULTURAL MUSINGS — ESTABLISHED IN TRADITION</p>
+    <footer>
+        <p><strong>Naredla Rama Chandra</strong> | Master Consciousness Protocol</p>
+        <p>
+            <a href="https://youtube.com/@aestheticsofsociety" style="color:#b8860b;">YouTube</a> | 
+            <a href="https://github.com/smith123846" style="color:#b8860b;">GitHub</a>
+        </p>
+        <p style="font-size: 0.8rem; opacity: 0.7;">+91 9121379100 | smith123846@gmail.com</p>
     </footer>
 
 </body>
