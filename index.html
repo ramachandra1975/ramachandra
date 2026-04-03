@@ -4,201 +4,145 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Cultural Musings</title>
+    <title>Aesthetics of Society | Research Portal</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for Vedic Aesthetics -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Persistent Background Music -->
-    <audio id="bgMusic" loop autoplay>
+    <div id="overlay">
+        <div class="overlay-content">
+            <img src="logo.png" alt="Logo" class="overlay-logo">
+            <h1>CULTURAL MUSINGS</h1>
+            <p>Master Consciousness Protocol</p>
+            <button onclick="enterSite()">ENTER RESEARCH PORTAL</button>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
         <source src="flute.mp3" type="audio/mpeg">
         <source src="om.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Navigation Overlay -->
-    <nav class="main-nav">
-        <div class="logo-container">
-            <img src="logo.png" alt="Aesthetics of Society" class="nav-logo">
-            <span>CULTURALMUSINGS.COM</span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#karanas">108 Karanas & Neuro</a></li>
-            <li><a href="#guru-clan">Guru Clan</a></li>
-            <li><a href="#textual-ref">Textual References</a></li>
-            <li><a href="#media">Media</a></li>
-            <li><a href="#contact">Contact</a></li>
+    <div class="watermark"></div>
+
+    <nav class="navbar">
+        <div class="nav-brand">AESTHETICS OF SOCIETY</div>
+        <ul class="nav-menu">
+            <li><a href="#" onclick="showPage('home')">Home</a></li>
+            <li><a href="#" onclick="showPage('karanas')">108 Karanas</a></li>
+            <li><a href="#" onclick="showPage('publications')">Publications</a></li>
+            <li><a href="#" onclick="showPage('contact')">Contact</a></li>
         </ul>
-        <button class="intro-btn">INTRODUCTION</button>
     </nav>
 
-    <!-- Content Sections -->
-    <main id="content-wrapper">
-        
-        <!-- SECTION 1: HOME (HERO) -->
-        <section id="home" class="hero-page">
-            <div class="watermark-bg"></div>
-            <div class="hero-content">
-                <h2 class="subtitle">INDEPENDENT RESEARCHER & AUTHOR · EST. 2010</h2>
-                <h1>Aesthetics <span>of Society</span></h1>
-                <p>Bridging Ancient Indian Systems with Modern Neuroscience & Bio-Acoustics</p>
-                <div class="cta-group">
-                    <button onclick="showSection('publications')">EXPLORE PUBLICATIONS</button>
-                    <button onclick="showSection('about')">ABOUT THE AUTHOR</button>
-                </div>
-            </div>
+    <main id="main-content">
+        <section id="home" class="page">
+            <h2>Independent Research & Analysis</h2>
+            <p>Bridging ancient systems with modern scientific inquiry.</p>
         </section>
 
-        <!-- SECTION 4: 108 KARANAS & NEURO (New Page) -->
-        <section id="karanas" class="sub-page hidden">
-            <header class="page-header">
-                <h2>108 Karanas & Neuro-Science</h2>
-                <p>Cross-reference study of Classical Dance and Medical Science Foundations</p>
-            </header>
+        <section id="karanas" class="page" style="display:none;">
+            <h2>108 Karanas & Neurological Mapping</h2>
             <div class="karana-grid">
-                <!-- Template for 10 AI generated Karana poses -->
-                <div class="karana-card">
-                    <img src="karana1.jpg" alt="Karana Pose">
-                    <div class="karana-info">
-                        <h3>Karana Reference: MCP Vol IV</h3>
-                        <p>This pose activates the pre-frontal cortex through specific mudra-vibration alignment. [10-line explanation here...]</p>
-                    </div>
-                </div>
-                <!-- Repeat x10 -->
+                <p>Detailed study of physical postures and bio-acoustic resonance.</p>
             </div>
         </section>
 
-        <!-- SECTION 10: CONTACT -->
-        <section id="contact" class="sub-page hidden">
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h2>Collaborate <span>With Us</span></h2>
-                    <p>Seeking partners for clinical studies into ancient knowledge systems.</p>
-                    <p><strong>Phone:</strong> +91 9121379100</p>
-                    <p><strong>Email:</strong> smith123846@gmail.com</p>
-                </div>
-                <form action="mailto:smith123846@gmail.com" method="post" enctype="text/plain">
-                    <input type="text" placeholder="Full Name" required>
-                    <input type="email" placeholder="Email Address" required>
-                    <input type="text" placeholder="Institution">
-                    <textarea placeholder="Research Interest / Message"></textarea>
-                    <button type="submit">SEND INQUIRY</button>
-                </form>
-            </div>
+        <section id="contact" class="page" style="display:none;">
+            <h2>Contact Research Office</h2>
+            <p>Email: smith123846@gmail.com</p>
+            <p>Phone: +91 9121379100</p>
         </section>
-
     </main>
-
-    <footer class="main-footer">
-        <p>&copy; 2026 NAREDLA RAMA CHANDRA</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
-2. Visual Styling (style.css)
-This handles the "Aesthetics of Society" watermark and the specific font treatments you requested.
+2. Updated CSS (style.css)
+This handles the faint logo watermark and the professional layout.
 
 CSS
 :root {
-    --primary-blue: #1a365d;
-    --gold: #b39359;
-    --parchment: #f9f7f2;
+    --bg-color: #f4f1ea;
+    --text-color: #1a2a3a;
+    --accent: #8e7341;
 }
 
 body {
     margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     font-family: 'Inter', sans-serif;
-    background-color: var(--parchment);
-    color: var(--primary-blue);
-    overflow-x: hidden;
 }
 
-h1, h2, .nav-links {
-    font-family: 'Cinzel', serif;
-}
-
-/* Watermark Implementation */
-.watermark-bg {
+/* The Watermark */
+.watermark {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
-    height: 60%;
-    background: url('logo.png') no-repeat center;
+    width: 70%;
+    height: 70%;
+    background-image: url('logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: contain;
-    opacity: 0.03; /* Very faint background logo */
+    opacity: 0.04; /* Adjust this for faintness */
     z-index: -1;
     pointer-events: none;
 }
 
-/* Navigation */
-.main-nav {
+/* Overlay for Music Activation */
+#overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    text-align: center;
+}
+
+.overlay-logo { width: 120px; margin-bottom: 20px; }
+
+button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+}
+
+.navbar {
     display: flex;
     justify-content: space-between;
-    padding: 20px 50px;
-    align-items: center;
-    border-bottom: 1px solid rgba(26, 54, 93, 0.1);
+    padding: 20px 5%;
+    background: rgba(255,255,255,0.8);
 }
 
-.nav-logo {
-    height: 40px;
-    margin-right: 15px;
-}
-
-.hero-content h1 {
-    font-size: 5rem;
-    text-align: center;
-    margin: 10px 0;
-}
-
-.hero-content h1 span {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    color: var(--gold);
-    display: block;
-    font-size: 4rem;
-}
-
-/* New Pages Grid */
-.karana-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-    padding: 50px;
-}
-
-.sub-page {
-    padding: 100px 10% 50px;
-}
-
-.hidden { display: none; }
-3. Interaction & Logic (script.js)
-Controls the navigation between your 10 pages and ensures the audio plays on user interaction.
+.page { padding: 50px 10%; }
+3. Updated Logic (script.js)
+This manages the music and the page transitions.
 
 JavaScript
-// Navigation Logic
-function showSection(sectionId) {
-    // Hide all sections
-    const sections = document.querySelectorAll('section');
-    sections.forEach(s => s.classList.add('hidden'));
+function enterSite() {
+    // Play Music
+    const music = document.getElementById('bgMusic');
+    music.play();
     
-    // Show target section
-    document.getElementById(sectionId).classList.remove('hidden');
-    
-    // Scroll to top
-    window.scrollTo(0, 0);
+    // Hide Overlay
+    document.getElementById('overlay').style.display = 'none';
 }
 
-// Ensure audio plays (Browsers block autoplay until first click)
-document.addEventListener('click', () => {
-    const audio = document.getElementById('bgMusic');
-    if (audio.paused) {
-        audio.play();
-    }
-}, { once: true });
+function showPage(pageId) {
+    // Hide all sections
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.style.display = 'none');
+    
+    // Show the selected one
+    document.getElementById(pageId).style.display = 'block';
+}
