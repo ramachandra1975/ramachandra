@@ -1,73 +1,127 @@
 HTML
-<section id="publications">
-    <div class="pub-header">
-        <h2>Published Research & Treatises</h2>
-        <p>A 9-volume series bridging Vedic antiquity with modern clinical science.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Consciousness Protocol | Aesthetics of Society</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-texture"></div>
+    <div class="watermark-container">
+        <div class="watermark-logo"></div>
+        <div class="watermark-text">AESTHETICS OF SOCIETY</div>
     </div>
 
-    <div class="publication-grid">
-        <!-- Volume 1 -->
-        <div class="pub-item">
-            <span class="vol-tag">Vol. I</span>
-            <h3>Master Consciousness Protocol</h3>
-            <p>The foundational 300-page thesis on bio-acoustic resonance and neurological mapping.</p>
-            <button class="request-btn" onclick="requestManuscript('Vol I: Master Consciousness Protocol')">Request Manuscript</button>
-        </div>
+    <audio id="ambient" loop>
+        <source src="flute.mp3" type="audio/mpeg">
+    </audio>
 
-        <!-- Volume 2 -->
-        <div class="pub-item">
-            <span class="vol-tag">Vol. II</span>
-            <h3>Shabda Brahman</h3>
-            <p>Inquiry into the primordial sound and its impact on cellular vibration.</p>
-            <button class="request-btn" onclick="requestManuscript('Vol II: Shabda Brahman')">Request Manuscript</button>
+    <header>
+        <div class="branding">
+            <img src="logo.png" class="main-logo" alt="Logo">
+            <h1>MASTER CONSCIOUSNESS PROTOCOL</h1>
+            <p class="tagline">Bridging Ancient Indian Systems with Modern Science</p>
         </div>
+        <nav class="main-nav">
+            <a href="#" onclick="showSection('home')">Home</a>
+            <a href="#" onclick="showSection('karanas')">108 Karanas</a>
+            <a href="#" onclick="showSection('publications')">Publications</a>
+            <a href="#" onclick="showSection('contact')">Contact</a>
+        </nav>
+    </header>
 
-        <!-- Volume 3 -->
-        <div class="pub-item">
-            <span class="vol-tag">Vol. III</span>
-            <h3>Sapta Swaras & Neuro-Biology</h3>
-            <p>The relationship between the seven musical notes and the human nervous system.</p>
-            <button class="request-btn" onclick="requestManuscript('Vol III: Sapta Swaras')">Request Manuscript</button>
-        </div>
+    <main id="content">
+        <section id="home" class="active">
+            <div class="hero-text">
+                <h2>Introduction to the MCP</h2>
+                <p>An Independent Research inquiry into the bio-acoustic and neurological foundations of the Sapta Swaras and Natya Shastra.</p>
+                <button class="play-btn" onclick="toggleAudio()">Listen to Resonance (Flute/OM)</button>
+            </div>
+        </section>
 
-        <!-- Volume 4 -->
-        <div class="pub-item">
-            <span class="vol-tag">Vol. IV</span>
-            <h3>108 Karanas: Physical Geometry</h3>
-            <p>A visual study of Natya Shastra postures and pre-frontal cortex triggers.</p>
-            <button class="request-btn" onclick="requestManuscript('Vol IV: 108 Karanas')">Request Manuscript</button>
-        </div>
+        <section id="karanas">
+            <h2>The 108 Karanas & Neuro-Mapping</h2>
+            <div class="karana-container">
+                <p>Mapping the physical geometry of the 108 Karanas to specific neurological triggers in the pre-frontal cortex.</p>
+                <div class="image-placeholder">Visual Research: MCP Volume IV</div>
+            </div>
+        </section>
 
-        <!-- Volume 5 -->
-        <div class="pub-item">
-            <span class="vol-tag">Vol. V</span>
-            <h3>Sampoorna Manovijnana Sangraha</h3>
-            <p>A complete compendium of psychological insights from ancient Indian sciences.</p>
-            <button class="request-btn" onclick="requestManuscript('Vol V: Sampoorna Manovijnana')">Request Manuscript</button>
-        </div>
+        <section id="publications">
+            <div class="pub-header">
+                <h2>Published Research & Treatises</h2>
+                <p>Explore the 9-volume series bridging Vedic antiquity with modern clinical science.</p>
+            </div>
+            <div class="publication-grid">
+                <div class="pub-item">
+                    <span class="vol-tag">Vol. I</span>
+                    <h3>Master Consciousness Protocol</h3>
+                    <p>Foundational 300-page thesis on bio-acoustic resonance.</p>
+                    <button class="request-btn" onclick="requestManuscript('Vol I: Master Consciousness Protocol')">Request Manuscript</button>
+                </div>
+                <div class="pub-item">
+                    <span class="vol-tag">Vol. II</span>
+                    <h3>Shabda Brahman</h3>
+                    <p>Inquiry into primordial sound and cellular vibration.</p>
+                    <button class="request-btn" onclick="requestManuscript('Vol II: Shabda Brahman')">Request Manuscript</button>
+                </div>
+                <div class="pub-item">
+                    <span class="vol-tag">Vol. III</span>
+                    <h3>Sapta Swaras & Neuro-Biology</h3>
+                    <p>Musical notes and the human nervous system.</p>
+                    <button class="request-btn" onclick="requestManuscript('Vol III: Sapta Swaras')">Request Manuscript</button>
+                </div>
+                <div class="pub-item">
+                    <span class="vol-tag">Vol. IV</span>
+                    <h3>108 Karanas: Physical Geometry</h3>
+                    <p>Visual study of Natya Shastra and cortical triggers.</p>
+                    <button class="request-btn" onclick="requestManuscript('Vol IV: 108 Karanas')">Request Manuscript</button>
+                </div>
+                <div class="pub-item">
+                    <span class="vol-tag">Vol. V</span>
+                    <h3>Sampoorna Manovijnana Sangraha</h3>
+                    <p>Psychological insights from ancient Indian sciences.</p>
+                    <button class="request-btn" onclick="requestManuscript('Vol V: Sampoorna Manovijnana')">Request Manuscript</button>
+                </div>
+                <div class="pub-item">
+                    <span class="vol-tag">Vol. VI</span>
+                    <h3>Bio-Acoustics of the 51 Matrikas</h3>
+                    <p>Linguistic phonemes and biological resonance.</p>
+                    <button class="request-btn" onclick="requestManuscript('Vol VI: 51 Matrikas')">Request Manuscript</button>
+                </div>
+                <div class="pub-item">
+                    <span class="vol-tag">Vol. VII</span>
+                    <h3>The 22 Shrutis & Astrophysics</h3>
+                    <p>Micro-tonal intervals and macro-cosmic frequencies.</p>
+                    <button class="request-btn" onclick="requestManuscript('Vol VII: 22 Shrutis')">Request Manuscript</button>
+                </div>
+                <div class="pub-item">
+                    <span class="vol-tag">Vol. VIII</span>
+                    <h3>Aesthetics of Society</h3>
+                    <p>Philosophical application of MCP to social structures.</p>
+                    <button class="request-btn" onclick="requestManuscript('Vol VIII: Aesthetics of Society')">Request Manuscript</button>
+                </div>
+            </div>
+        </section>
 
-        <!-- Volume 6 -->
-        <div class="pub-item">
-            <span class="vol-tag">Vol. VI</span>
-            <h3>Bio-Acoustics of the 51 Matrikas</h3>
-            <p>Mapping linguistic phonemes to biological resonance points.</p>
-            <button class="request-btn" onclick="requestManuscript('Vol VI: 51 Matrikas')">Request Manuscript</button>
-        </div>
+        <section id="contact">
+            <h2>Research Enquiry</h2>
+            <form action="https://formspree.io/f/smith123846@gmail.com" method="POST" class="enquiry-form">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <textarea name="message" rows="6" placeholder="Describe your interest..."></textarea>
+                <button type="submit" class="submit-btn">SUBMIT ENQUIRY</button>
+            </form>
+            <div class="contact-footer">
+                <p>Naredla Rama Chandra | +91 9121379100</p>
+            </div>
+        </section>
+    </main>
 
-        <!-- Volume 7 -->
-        <div class="pub-item">
-            <span class="vol-tag">Vol. VII</span>
-            <h3>The 22 Shrutis & Astrophysics</h3>
-            <p>Connecting micro-tonal musical intervals with macro-cosmic frequencies.</p>
-            <button class="request-btn" onclick="requestManuscript('Vol VII: 22 Shrutis')">Request Manuscript</button>
-        </div>
-
-        <!-- Volume 8 -->
-        <div class="pub-item">
-            <span class="vol-tag">Vol. VIII</span>
-            <h3>Aesthetics of Society</h3>
-            <p>Philosophical application of MCP to modern social and cultural structures.</p>
-            <button class="request-btn" onclick="requestManuscript('Vol VIII: Aesthetics of Society')">Request Manuscript</button>
-        </div>
-    </div>
-</section>
+    <script src="script.js"></script>
+</body>
+</html>
