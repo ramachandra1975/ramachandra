@@ -4,201 +4,142 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naredla Rama Chandra | Aesthetics of Society</title>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Naredla Rama Chandra | culturalmusings.com</title>
     
+    <meta name="description" content="Official research hub of Naredla Rama Chandra. Exploring Sapta Swaras, 108 Karanas, and the Master Consciousness Protocol.">
+    <link rel="canonical" href="https://culturalmusings.com" />
+
     <style>
         :root {
-            --navy: #0A192F;
-            --gold: #C5A059;
-            --ivory: #F9F7F2;
-            --white: #FFFFFF;
+            --primary: #1a365d;
+            --accent: #e0c38c;
+            --bg-img: url('23Pink Blue Mountain Top Photo Motivational Quote Facebook Post.jpg');
+            --profile-img: url('images.jpg');
+            --logo-img: url('download.jpg');
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background-color: var(--ivory); 
-            color: var(--navy); 
-            font-family: 'Crimson Text', serif; 
-            line-height: 1.7; 
-            overflow-x: hidden; 
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), var(--bg-img) no-repeat center center fixed;
+            background-size: cover;
+            color: #2c3e50;
         }
 
-        /* Central Watermark Logo (Brain Silhouette) */
-        .watermark {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 70vh; height: 70vh; 
-            background: url('logo-silhouette.png') no-repeat center;
-            background-size: contain; opacity: 0.04; z-index: -1; pointer-events: none;
+        /* Simplified Header */
+        header {
+            background: white;
+            padding: 10px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        /* Navigation Bar */
-        nav {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1.2rem 5%; background: var(--white); 
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            position: sticky; top: 0; z-index: 100;
+        .brand { display: flex; align-items: center; }
+        .logo { width: 45px; height: 45px; border-radius: 50%; background-image: var(--logo-image); background-size: cover; margin-right: 12px; border: 1px solid #ddd; }
+        .title { font-size: 1.2rem; font-weight: bold; color: var(--primary); letter-spacing: 1px; }
+
+        nav { background: var(--primary); padding: 10px; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
+
+        .content { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+
+        section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        .brand { font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 2px; font-size: 0.85rem; line-height: 1.2; }
-        .nav-links a { margin-left: 18px; text-decoration: none; color: var(--navy); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s; }
-        .nav-links a:hover { color: var(--gold); }
+
+        /* Profile Area */
+        .profile-box { display: flex; gap: 30px; align-items: center; }
+        .p-img { width: 180px; height: 220px; border-radius: 10px; background-image: var(--profile-img); background-size: cover; background-position: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); flex-shrink: 0; }
         
-        .audio-ctrl { 
-            background: transparent; border: 1px solid var(--gold); color: var(--gold); 
-            padding: 6px 14px; cursor: pointer; font-size: 0.7rem; margin-left: 15px; 
-            font-family: 'Montserrat'; text-transform: uppercase; border-radius: 2px;
-        }
+        /* Publications Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .card { background: white; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); }
+        .card h4 { margin: 0 0 5px 0; color: var(--primary); }
 
-        /* Content Architecture */
-        .content-section { max-width: 1000px; margin: 4rem auto; padding: 0 5%; display: none; min-height: 70vh; }
-        .active { display: block; animation: fadeIn 0.8s ease forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        /* Video Area */
+        .v-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .v-card { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 8px; overflow: hidden; }
+        .v-card iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 400; color: var(--navy); }
-        .gold-line { width: 60px; height: 2px; background: var(--gold); margin-bottom: 2.5rem; }
-        .para { margin-bottom: 2rem; text-align: justify; font-size: 1.25rem; color: #2c3e50; }
-        
-        /* Grid Layouts */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 3rem; }
-        .card { background: var(--white); padding: 30px; border: 1px solid rgba(197, 160, 89, 0.1); border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-        .footer { text-align: center; padding: 4rem 0; font-size: 0.85rem; opacity: 0.7; border-top: 1px solid rgba(0,0,0,0.05); letter-spacing: 1px; }
+        footer { background: var(--primary); color: white; padding: 40px 20px; text-align: center; border-radius: 12px; }
+        footer a { color: var(--accent); text-decoration: none; font-weight: bold; }
 
-        /* Media Search Box */
-        .search-box { width: 100%; padding: 18px; border: 1px solid var(--gold); margin: 2rem 0; font-family: 'Montserrat'; font-size: 1rem; outline: none; background: #fff; }
+        @media (max-width: 600px) { .profile-box { flex-direction: column; text-align: center; } .v-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <div class="watermark"></div>
-    
-    <audio id="mcp-audio" loop>
-        <source src="flute.mp3" type="audio/mpeg">
-    </audio>
-
-    <nav>
-        <div class="brand">NAREDLA RAMA CHANDRA <br><span style="color:var(--gold); font-size:0.7rem;">CULTURALMUSINGS.COM</span></div>
-        <div class="nav-links">
-            <a onclick="showPage('home')">Home</a>
-            <a onclick="showPage('mcp')">MCP Thesis</a>
-            <a onclick="showPage('karanas')">108 Karanas</a>
-            <a onclick="showPage('media')">Media/Ref</a>
-            <a onclick="showPage('inquiry')">Inquiry</a>
-            <button class="audio-ctrl" id="audioBtn" onclick="toggleAudio()">FLUTE PROTOCOL: OFF</button>
-        </div>
-    </nav>
-
-    <section id="home" class="content-section active">
-        <p style="color: var(--gold); font-weight: 600; letter-spacing: 2px;">EST. 2011</p>
-        <h1>Aesthetics of Society</h1>
-        <div class="gold-line"></div>
-        <p class="para">Welcome to the central digital archive of Naredla Rama Chandra. This repository documents 15 years of independent research dedicated to the <b>Master Consciousness Protocol (MCP)</b>—a scientific framework translating ancient Indian wisdom into modern neurological and bio-acoustic data.</p>
-        <div class="grid">
-            <div class="card">
-                <h3 style="color: var(--gold);">8 Publication Volumes</h3>
-                <p>Spanning from the <i>Complete Science of Consciousness</i> to <i>The Cosmic Choreography</i>.</p>
-            </div>
-            <div class="card">
-                <h3 style="color: var(--gold);">300-Page Thesis</h3>
-                <p>The core MCP protocol, designed for clinical validation and neurological optimization.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="mcp" class="content-section">
-        <p style="color:var(--gold); font-weight:bold;">CORE PUBLICATION | VOL I & II</p>
-        <h1>Master Consciousness Protocol</h1>
-        <div class="gold-line"></div>
-        <p class="para">The <b>Master Consciousness Protocol</b> is a comprehensive framework designed to bridge internal biological mastery and external physical geometries. By mapping ancient terminologies like <i>Prana</i> onto modern bio-electricity, we present a repeatable science of consciousness.</p>
-        <p class="para">The architecture of the MCP is built upon three foundational pillars: <b>Bio-Acoustics</b> (Frequency), <b>Bio-Geometry</b> (Structure), and <b>Neuro-Programming</b> (Logic). Utilizing the <i>Sapta Swaras</i> for emotional regulation and the 108 Karanas for spinal activation, the MCP offers a non-invasive path toward global mental health.</p>
-    </section>
-
-    <section id="karanas" class="content-section">
-        <p style="color:var(--gold); font-weight:bold;">RESEARCH DEEP-DIVE</p>
-        <h1>108 Karanas Introduction</h1>
-        <div class="gold-line"></div>
-        <p class="para">The 108 Karanas, documented in the <i>Natya Shastra</i>, are reclaimed here as a precise biological alphabet—body-mind keys designed to lock the human frame into geometric alignments that optimize the flow of bio-electric energy.</p>
-        <p class="para">This work establishes the revolutionary link between these 108 postures and the 108 units of the Vedic Zodiac. Each posture acts as a receiver for specific celestial frequencies. Clinically, these configurations trigger the parasympathetic nervous system, providing a rigorous medical basis for traditional Indian movement.</p>
-    </section>
-
-    <section id="media" class="content-section">
-        <p style="color:var(--gold); font-weight:bold;">DIGITAL ARCHIVE</p>
-        <h1>Media & Reference Portal</h1>
-        <div class="gold-line"></div>
-        <p class="para">Search the digital archive for clinical data, acoustic samples, and cross-linked Sanskrit manuscripts within the 300-page MCP thesis.</p>
-        <input type="text" class="search-box" placeholder="Search references: e.g. 'Karana 45', 'Vagus Nerve', 'Sanskrit Logic'...">
-        <div class="grid">
-            <div class="card"><h4>Flute Audio Samples</h4><p>High-fidelity recordings of the Sapta Swaras for vagal tone testing.</p></div>
-            <div class="card"><h4>Neural Mapping</h4><p>Visual overlays of Karana postures against spinal nerve clusters.</p></div>
-            <div class="card"><h4>Publication Index</h4><p>Access citations for all 8 volumes of the "Aesthetics of Society" series.</p></div>
-        </div>
-    </section>
-
-    <section id="inquiry" class="content-section">
-        <p style="color:var(--gold); font-weight:bold;">PARTNERSHIPS</p>
-        <h1>Inquiry for Clinical Studies</h1>
-        <div class="gold-line"></div>
-        <p class="para">Seeking academic institutions and medical organizations for the formal validation phase of the <b>Master Consciousness Protocol</b>. Focus areas include Bio-Acoustic healing and Sanskrit-based AI logic models.</p>
-        <div class="card" style="border-left: 4px solid var(--gold);">
-            <p><b>Principal Author:</b> Naredla Rama Chandra</p>
-            <p><b>Email:</b> smith123846@gmail.com</p>
-            <p><b>Phone:</b> +91 91213 79100</p>
-            <p><b>Location:</b> Vizianagaram, India</p>
-        </div>
-    </section>
-
-    <div class="footer">
-        <p>© 2026 NAREDLA RAMA CHANDRA | CULTURALMUSINGS.COM</p>
-        <p style="font-size: 0.7rem; margin-top: 10px; opacity: 0.5;">BRIDGING ANCIENT WISDOM & MODERN SCIENCE</p>
+<header>
+    <div class="brand">
+        <div class="logo" style="background-image: var(--logo-img);"></div>
+        <div class="title">AESTHETICS OF SOCIETY</div>
     </div>
+    <div style="font-size: 0.8rem; color: #888;">culturalmusings.com</div>
+</header>
 
-    <script>
-        // PAGE NAVIGATION LOGIC
-        function showPage(pageId) {
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            const target = document.getElementById(pageId);
-            if(target) {
-                target.classList.add('active');
-                window.scrollTo(0, 0);
-                // Update URL hash without reload
-                history.pushState(null, null, '#' + pageId);
-            }
-        }
+<nav>
+    <a href="#about">About</a>
+    <a href="#books">Books</a>
+    <a href="#videos">Media</a>
+    <a href="#contact">Contact</a>
+</nav>
 
-        // AUDIO PROTOCOL LOGIC (FLUTE.MP3)
-        const audio = document.getElementById('mcp-audio');
-        const btn = document.getElementById('audioBtn');
-        
-        // Default volume setting
-        audio.volume = 0.5;
+<div class="content">
 
-        function toggleAudio() {
-            if (audio.paused) { 
-                audio.play(); 
-                btn.innerText = "FLUTE PROTOCOL: ON"; 
-                btn.style.background = "#C5A059";
-                btn.style.color = "#FFF";
-            } else { 
-                audio.pause(); 
-                btn.innerText = "FLUTE PROTOCOL: OFF"; 
-                btn.style.background = "transparent";
-                btn.style.color = "#C5A059";
-            }
-        }
+    <section id="about">
+        <div class="profile-box">
+            <div class="p-img"></div>
+            <div>
+                <h2 style="margin-top: 0;">Naredla Rama Chandra</h2>
+                <p>Independent Researcher & Author bridging Ancient Indian Systems (Sapta Swaras, 108 Karanas) with Modern Bio-acoustics and Neuroscience.</p>
+                <p><strong>Goal:</strong> To establish the "Master Consciousness Protocol" for natural healing and the liberation of human potential.</p>
+            </div>
+        </div>
+    </section>
 
-        // Handle direct links and back button
-        window.addEventListener('popstate', () => {
-            const hash = window.location.hash.replace('#', '') || 'home';
-            showPage(hash);
-        });
+    <section id="books">
+        <h3 style="color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 5px;">Publications</h3>
+        <div class="grid">
+            <div class="card"><h4>1. Complete Science of Consciousness</h4><p>Ancient Knowledge vs Artificial Intelligence.</p></div>
+            <div class="card"><h4>2. Master Reference Compendium</h4><p>Integrated Research Standards.</p></div>
+            <div class="card"><h4>3. Sapta Swaras & Healing</h4><p>Treatise on Carnatic Music Science.</p></div>
+            <div class="card"><h4>4. 108 Karanas & Beeja Aksharas</h4><p>Astrophysics & Medical Science foundations.</p></div>
+            <div class="card"><h4>5. Yoga: The Eternal Science</h4><p>Vedic roots for modern neurology.</p></div>
+            <div class="card"><h4>6. Shabda Brahman</h4><p>Sacred Science of Sound.</p></div>
+            <div class="card"><h4>7. The Cosmic Choreography</h4><p>Study of Shankaracharya’s Metaphysics.</p></div>
+            <div class="card"><h4>8. Sanskrit & AI</h4><p>Neurological Healing & Programming.</p></div>
+        </div>
+    </section>
 
-        // Initial Load
-        window.onload = () => {
-            const initialHash = window.location.hash.replace('#', '') || 'home';
-            showPage(initialHash);
-        };
-    </script>
+    <section id="videos">
+        <h3 style="color: var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 5px;">Research Media</h3>
+        <div class="v-grid">
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/NBrVKBYQd_M?start=26"></iframe></div>
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/DcNa4N5dD-A?start=21"></iframe></div>
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/eLjirbtcJFo?start=30"></iframe></div>
+            <div class="v-card"><iframe src="https://www.youtube.com/embed/0khYFMffpCU?start=72"></iframe></div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h3>Collaborate With Us</h3>
+        <p>Seeking partners for clinical studies and scientific research.</p>
+        <p>📞 +91 9121379100 | ✉️ <a href="mailto:smith123846@gmail.com">smith123846@gmail.com</a></p>
+    </footer>
+
+</div>
+
 </body>
 </html>
+
+
+
