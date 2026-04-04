@@ -8,10 +8,9 @@ HTML
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bright-red: #d62828;
             --primary-gold: #c5a059;
-            --bg-overlay: rgba(255, 255, 255, 0.97); /* 97% White for a clean look */
-            --text-main: #1a1a1a;
+            --glass: rgba(255, 255, 255, 0.9);
+            --dark: #1a1a1a;
         }
 
         body, html {
@@ -19,9 +18,9 @@ HTML
             padding: 0;
             height: 100%;
             font-family: 'Inter', sans-serif;
-            color: var(--text-main);
-            /* The Background: Vedic Manuscript + Light Layer */
-            background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
+            color: var(--dark);
+            /* Original Background: More visible manuscript */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
                         url('https://img.rocket.new/generatedImages/rocket_gen_img_1e93f7ba1-1765676387903.png');
             background-size: cover;
             background-position: center;
@@ -29,196 +28,117 @@ HTML
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        /* TOP LEFT: BRANDING */
-        .site-header {
-            position: absolute;
-            top: 40px;
-            left: 50px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            z-index: 100;
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 3.5rem;
+            border-radius: 20px;
+            max-width: 650px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.4);
         }
 
-        .header-logo {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        .header-text h2 {
+        h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin: 0;
-            letter-spacing: -0.5px;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: #111;
         }
 
-        .header-text p {
-            font-size: 0.75rem;
-            margin: 0;
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--primary-gold);
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: var(--primary-gold);
             font-weight: 600;
+            margin-bottom: 2rem;
+            display: block;
         }
 
-        /* CENTER WATERMARK (Extremely Subtle) */
-        body::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 850px;
-            height: 850px;
-            background: url('https://img.rocket.new/generatedImages/rocket_gen_img_f901a1f0d-1766624976472.png') no-repeat center center;
-            background-size: contain;
-            opacity: 0.02; /* Dropped to 2% for maximum elegance */
-            z-index: 0;
-            pointer-events: none;
+        .options-container {
+            display: grid;
+            gap: 15px;
+            margin-top: 2.5rem;
         }
 
-        /* MAIN CONTENT */
-        .main-content {
-            text-align: center;
-            z-index: 10;
-            max-width: 750px;
-            width: 90%;
-        }
-
-        h1.hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
-            margin: 0 0 20px 0;
-            line-height: 1.1;
-            color: #000;
-        }
-
-        .hero-description {
-            font-size: 1.25rem;
-            line-height: 1.7;
-            margin-bottom: 45px;
-            color: #333;
-            font-weight: 300;
-        }
-
-        /* RED RADIO NAVIGATION */
-        .radio-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 22px;
-            max-width: 580px;
-            margin: 0 auto;
-        }
-
-        .nav-card {
+        /* The Original Radio Button Style */
+        .nav-option {
             display: flex;
             align-items: center;
-            background: #ffffff;
-            padding: 25px 35px;
-            border-radius: 18px;
+            background: white;
+            padding: 18px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
             text-decoration: none;
             color: inherit;
-            border: 1px solid #eaeaea;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .nav-card:hover {
-            border-color: var(--bright-red);
-            transform: translateX(12px);
-            box-shadow: 0 12px 30px rgba(214, 40, 40, 0.08);
+        .nav-option:hover {
+            transform: translateY(-3px);
+            border-color: #d62828; /* The red you liked */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        /* The Red Radio Circle */
-        .red-indicator {
-            height: 26px;
-            width: 26px;
+        .radio-circle {
+            height: 22px;
+            width: 22px;
             border: 2px solid #ddd;
             border-radius: 50%;
-            margin-right: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: 0.3s;
+            margin-right: 18px;
+            position: relative;
         }
 
-        .nav-card:hover .red-indicator {
-            border-color: var(--bright-red);
+        .nav-option:hover .radio-circle {
+            border-color: #d62828;
         }
 
-        /* Pulsing Red Dot on Hover */
-        .nav-card:hover .red-indicator::after {
+        .nav-option:hover .radio-circle::after {
             content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
             width: 14px;
             height: 14px;
-            background: var(--bright-red);
+            background: #d62828;
             border-radius: 50%;
-            animation: bio-pulse 1.8s infinite;
         }
 
-        @keyframes bio-pulse {
-            0% { transform: scale(0.9); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(0.9); opacity: 0.8; }
-        }
-
-        .label-group {
-            text-align: left;
-        }
-
-        .label-title {
-            display: block;
+        .option-text {
             font-weight: 600;
-            font-size: 1.3rem;
-            margin-bottom: 3px;
+            font-size: 1.15rem;
         }
 
-        .label-sub {
-            font-size: 0.95rem;
-            color: #666;
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #444;
             font-weight: 300;
         }
     </style>
 </head>
 <body>
 
-    <header class="site-header">
-        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_f901a1f0d-1766624976472.png" alt="Logo" class="header-logo">
-        <div class="header-text">
-            <h2>Naredla Rama Chandra</h2>
-            <p>Independent Researcher & Author</p>
+    <div class="glass-card">
+        <span class="subtitle">Independent Researcher & Author</span>
+        <h1>Aesthetics of Society</h1>
+        <p class="description">Bridging Ancient Indian Systems (Sapta Swaras & 108 Karanas) with Modern Neuroscience & Bio-acoustics.</p>
+
+        <div class="options-container">
+            <a href="/publications" class="nav-option">
+                <div class="radio-circle"></div>
+                <span class="option-text">Complete Science of Consciousness</span>
+            </a>
+            <a href="/protocol" class="nav-option">
+                <div class="radio-circle"></div>
+                <span class="option-text">Master Consciousness Protocol</span>
+            </a>
         </div>
-    </header>
-
-    <div class="main-content">
-        <h1 class="hero-title">Master Consciousness Protocol</h1>
-        <p class="hero-description">
-            Synthesizing ancient Vedic algorithms (Sapta Swaras and 108 Karanas) with modern clinical neuro-rehabilitation and bio-acoustics.
-        </p>
-
-        <nav class="radio-nav">
-            <a href="/publications" class="nav-card">
-                <div class="red-indicator"></div>
-                <div class="label-group">
-                    <span class="label-title">Complete Science of Consciousness</span>
-                    <span class="label-sub">Explore the 8-Volume Series on Vedic Science & AI.</span>
-                </div>
-            </a>
-
-            <a href="/protocol" class="nav-card">
-                <div class="red-indicator"></div>
-                <div class="label-group">
-                    <span class="label-title">Research Protocol & Studies</span>
-                    <span class="label-sub">Case Studies in Neuro-Rehabilitation & Sound Science.</span>
-                </div>
-            </a>
-        </nav>
     </div>
 
 </body>
