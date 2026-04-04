@@ -1,127 +1,195 @@
-# Master Consciousness Protocol | Aesthetics of Society
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Consciousness Protocol | Aesthetics of Society</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Aesthetics of Society | Naredla Rama Chandra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bright-red: #e63946; /* The main color for the radio buttons */
+            --primary-gold: #c5a059;
+            --light-overlay: rgba(255, 255, 255, 0.9); /* The lighting layer */
+            --text-dark: #2c3e50;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            /* Step 1: The Lighter Background */
+            background: linear-gradient(var(--light-overlay), var(--light-overlay)), 
+                        url('https://img.rocket.new/generatedImages/rocket_gen_img_1e93f7ba1-1765676387903.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Step 2: The Logo as Watermark */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            /* Replace with your specific logo image URL */
+            background: url('https://img.rocket.new/generatedImages/rocket_gen_img_f901a1f0d-1766624976472.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.1; /* High transparency for the watermark effect */
+            z-index: 0; /* Keep it behind the content */
+            pointer-events: none;
+        }
+
+        .main-content {
+            text-align: center;
+            z-index: 10; /* Keep the content on top */
+            position: relative;
+            max-width: 650px;
+            width: 90%;
+            padding: 20px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin: 0 0 15px 0;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Step 3: Two Red Radio Buttons */
+        .radio-button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .large-radio-button {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.7);
+            padding: 20px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            border: 2px solid #ddd;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .large-radio-button:hover {
+            border-color: var(--bright-red);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.1);
+        }
+
+        /* Custom Red Radio Circle */
+        .radio-circle {
+            height: 24px;
+            width: 24px;
+            border: 3px solid #ddd;
+            border-radius: 50%;
+            margin-right: 20px;
+            position: relative;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        .large-radio-button:hover .radio-circle {
+            border-color: var(--bright-red);
+        }
+
+        /* The inner 'active' red dot, always shown to indicate a choice on hover */
+        .radio-circle::after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 16px;
+            height: 16px;
+            background: var(--bright-red);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: 0.3s;
+        }
+
+        .large-radio-button:hover .radio-circle::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .option-text-group {
+            text-align: left;
+        }
+
+        .option-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #222;
+        }
+
+        .option-desc {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 300;
+        }
+
+    </style>
 </head>
 <body>
 
-    <div class="bg-texture"></div>
-    <div class="watermark-container">
-        <div class="watermark-logo"></div>
-        <div class="watermark-text">AESTHETICS OF SOCIETY</div>
+    <div class="main-content">
+        <p class="subtitle">Independent Researcher & Author</p>
+        <h1>Aesthetics of Society</h1>
+        <p class="description">Bridging Ancient Indian Knowledge Systems with Modern Neuroscience & Bio-acoustics Research</p>
+
+        <div class="radio-button-container">
+            <a href="https://culturalmusings.com/publications" class="large-radio-button">
+                <div class="radio-circle"></div>
+                <div class="option-text-group">
+                    <span class="option-title">Explore Research Publications</span>
+                    <span class="option-desc">From Vedic Quantum Physics to Carnatic Sound Science</span>
+                </div>
+            </a>
+
+            <a href="https://culturalmusings.com/about" class="large-radio-button">
+                <div class="radio-circle"></div>
+                <div class="option-text-group">
+                    <span class="option-title">The Master Consciousness Protocol</span>
+                    <span class="option-desc">A Roadmap for Natural Healing & Liberation of Human Potential</span>
+                </div>
+            </a>
+        </div>
     </div>
 
-    <audio id="ambient" loop>
-        <source src="flute.mp3" type="audio/mpeg">
-    </audio>
-
-    <header>
-        <div class="branding">
-            <img src="logo.png" class="main-logo" alt="Logo">
-            <h1>MASTER CONSCIOUSNESS PROTOCOL</h1>
-            <p class="tagline">Bridging Ancient Indian Systems with Modern Science</p>
-        </div>
-        <nav class="main-nav">
-            <a href="#" onclick="showSection('home')">Home</a>
-            <a href="#" onclick="showSection('karanas')">108 Karanas</a>
-            <a href="#" onclick="showSection('publications')">Publications</a>
-            <a href="#" onclick="showSection('contact')">Contact</a>
-        </nav>
-    </header>
-
-    <main id="content">
-        <section id="home" class="active">
-            <div class="hero-text">
-                <h2>Introduction to the MCP</h2>
-                <p>An Independent Research inquiry into the bio-acoustic and neurological foundations of the Sapta Swaras and Natya Shastra.</p>
-                <button class="play-btn" onclick="toggleAudio()">Listen to Resonance (Flute/OM)</button>
-            </div>
-        </section>
-
-        <section id="karanas">
-            <h2>The 108 Karanas & Neuro-Mapping</h2>
-            <div class="karana-container">
-                <p>Mapping the physical geometry of the 108 Karanas to specific neurological triggers in the pre-frontal cortex.</p>
-                <div class="image-placeholder">Visual Research: MCP Volume IV</div>
-            </div>
-        </section>
-
-        <section id="publications">
-            <div class="pub-header">
-                <h2>Published Research & Treatises</h2>
-                <p>Explore the 9-volume series bridging Vedic antiquity with modern clinical science.</p>
-            </div>
-            <div class="publication-grid">
-                <div class="pub-item">
-                    <span class="vol-tag">Vol. I</span>
-                    <h3>Master Consciousness Protocol</h3>
-                    <p>Foundational 300-page thesis on bio-acoustic resonance.</p>
-                    <button class="request-btn" onclick="requestManuscript('Vol I: Master Consciousness Protocol')">Request Manuscript</button>
-                </div>
-                <div class="pub-item">
-                    <span class="vol-tag">Vol. II</span>
-                    <h3>Shabda Brahman</h3>
-                    <p>Inquiry into primordial sound and cellular vibration.</p>
-                    <button class="request-btn" onclick="requestManuscript('Vol II: Shabda Brahman')">Request Manuscript</button>
-                </div>
-                <div class="pub-item">
-                    <span class="vol-tag">Vol. III</span>
-                    <h3>Sapta Swaras & Neuro-Biology</h3>
-                    <p>Musical notes and the human nervous system.</p>
-                    <button class="request-btn" onclick="requestManuscript('Vol III: Sapta Swaras')">Request Manuscript</button>
-                </div>
-                <div class="pub-item">
-                    <span class="vol-tag">Vol. IV</span>
-                    <h3>108 Karanas: Physical Geometry</h3>
-                    <p>Visual study of Natya Shastra and cortical triggers.</p>
-                    <button class="request-btn" onclick="requestManuscript('Vol IV: 108 Karanas')">Request Manuscript</button>
-                </div>
-                <div class="pub-item">
-                    <span class="vol-tag">Vol. V</span>
-                    <h3>Sampoorna Manovijnana Sangraha</h3>
-                    <p>Psychological insights from ancient Indian sciences.</p>
-                    <button class="request-btn" onclick="requestManuscript('Vol V: Sampoorna Manovijnana')">Request Manuscript</button>
-                </div>
-                <div class="pub-item">
-                    <span class="vol-tag">Vol. VI</span>
-                    <h3>Bio-Acoustics of the 51 Matrikas</h3>
-                    <p>Linguistic phonemes and biological resonance.</p>
-                    <button class="request-btn" onclick="requestManuscript('Vol VI: 51 Matrikas')">Request Manuscript</button>
-                </div>
-                <div class="pub-item">
-                    <span class="vol-tag">Vol. VII</span>
-                    <h3>The 22 Shrutis & Astrophysics</h3>
-                    <p>Micro-tonal intervals and macro-cosmic frequencies.</p>
-                    <button class="request-btn" onclick="requestManuscript('Vol VII: 22 Shrutis')">Request Manuscript</button>
-                </div>
-                <div class="pub-item">
-                    <span class="vol-tag">Vol. VIII</span>
-                    <h3>Aesthetics of Society</h3>
-                    <p>Philosophical application of MCP to social structures.</p>
-                    <button class="request-btn" onclick="requestManuscript('Vol VIII: Aesthetics of Society')">Request Manuscript</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Research Enquiry</h2>
-            <form action="https://formspree.io/f/smith123846@gmail.com" method="POST" class="enquiry-form">
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <textarea name="message" rows="6" placeholder="Describe your interest..."></textarea>
-                <button type="submit" class="submit-btn">SUBMIT ENQUIRY</button>
-            </form>
-            <div class="contact-footer">
-                <p>Naredla Rama Chandra | +91 9121379100</p>
-            </div>
-        </section>
-    </main>
-
-    <script src="script.js"></script>
 </body>
 </html>
+
