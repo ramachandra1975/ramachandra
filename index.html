@@ -5,13 +5,13 @@ HTML
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aesthetics of Society | Naredla Rama Chandra</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bright-red: #e63946; /* The main color for the radio buttons */
+            --bright-red: #d62828;
             --primary-gold: #c5a059;
-            --light-overlay: rgba(255, 255, 255, 0.9); /* The lighting layer */
-            --text-dark: #2c3e50;
+            --light-overlay: rgba(255, 255, 255, 0.97);
+            --text-dark: #1a1a1a;
         }
 
         body, html {
@@ -20,7 +20,7 @@ HTML
             height: 100%;
             font-family: 'Inter', sans-serif;
             color: var(--text-dark);
-            /* Step 1: The Lighter Background */
+            /* Background: Vedic Manuscript with Light White Overlay */
             background: linear-gradient(var(--light-overlay), var(--light-overlay)), 
                         url('https://img.rocket.new/generatedImages/rocket_gen_img_1e93f7ba1-1765676387903.png');
             background-size: cover;
@@ -30,166 +30,214 @@ HTML
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow: hidden;
         }
 
-        /* Step 2: The Logo as Watermark */
+        /* 1. TOP LEFT HEADER: Logo & Researcher Name */
+        .site-header {
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            z-index: 100;
+        }
+
+        .header-logo {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+        }
+
+        .header-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin: 0;
+            color: var(--text-dark);
+        }
+
+        .header-text p {
+            font-size: 0.8rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+
+        /* 2. SUBTLE WATERMARK: Logo in Center */
         body::after {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 700px;
-            height: 700px;
-            /* Replace with your specific logo image URL */
+            width: 800px;
+            height: 800px;
             background: url('https://img.rocket.new/generatedImages/rocket_gen_img_f901a1f0d-1766624976472.png') no-repeat center center;
             background-size: contain;
-            opacity: 0.1; /* High transparency for the watermark effect */
-            z-index: 0; /* Keep it behind the content */
+            opacity: 0.03; /* Very light watermark */
+            z-index: 0;
             pointer-events: none;
         }
 
+        /* 3. CENTER CONTENT */
         .main-content {
             text-align: center;
-            z-index: 10; /* Keep the content on top */
-            position: relative;
-            max-width: 650px;
+            z-index: 10;
+            max-width: 700px;
             width: 90%;
-            padding: 20px;
         }
 
-        .subtitle {
-            font-size: 1rem;
-            color: var(--primary-gold);
+        .hero-tag {
+            font-size: 0.9rem;
+            color: #888;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 500;
-            margin-bottom: 10px;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+            display: block;
         }
 
-        h1 {
+        h1.hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin: 0 0 15px 0;
-            color: #1a1a1a;
+            font-size: 3.2rem;
+            margin: 0 0 25px 0;
+            color: #111;
             line-height: 1.2;
         }
 
-        .description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            color: #444;
             font-weight: 300;
         }
 
-        /* Step 3: Two Red Radio Buttons */
-        .radio-button-container {
+        /* 4. TWO RED RADIO NAVIGATION BUTTONS */
+        .radio-nav {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            margin-top: 2rem;
+            gap: 25px;
+            max-width: 580px;
+            margin: 0 auto;
         }
 
-        .large-radio-button {
+        .nav-card {
             display: flex;
             align-items: center;
-            background: rgba(255,255,255,0.7);
-            padding: 20px 25px;
-            border-radius: 12px;
-            cursor: pointer;
+            background: #ffffff;
+            padding: 28px;
+            border-radius: 20px;
             text-decoration: none;
-            color: inherit;
-            border: 2px solid #ddd;
-            transition: 0.3s;
-            position: relative;
+            color: #1a1a1a;
+            border: 2px solid #f2f2f2;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.03);
         }
 
-        .large-radio-button:hover {
+        /* Hover Effect: Pulsing Red */
+        .nav-card:hover {
             border-color: var(--bright-red);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.1);
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(214, 40, 40, 0.12);
         }
 
-        /* Custom Red Radio Circle */
-        .radio-circle {
-            height: 24px;
-            width: 24px;
+        .red-indicator {
+            height: 28px;
+            width: 28px;
             border: 3px solid #ddd;
             border-radius: 50%;
-            margin-right: 20px;
-            position: relative;
-            background: #fff;
+            margin-right: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
             transition: 0.3s;
         }
 
-        .large-radio-button:hover .radio-circle {
+        .nav-card:hover .red-indicator {
             border-color: var(--bright-red);
         }
 
-        /* The inner 'active' red dot, always shown to indicate a choice on hover */
-        .radio-circle::after {
+        .nav-card:hover .red-indicator::after {
             content: '';
-            position: absolute;
-            top: 4px;
-            left: 4px;
             width: 16px;
             height: 16px;
             background: var(--bright-red);
             border-radius: 50%;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: 0.3s;
+            animation: pulse-effect 1.5s infinite;
         }
 
-        .large-radio-button:hover .radio-circle::after {
-            opacity: 1;
-            transform: scale(1);
+        @keyframes pulse-effect {
+            0% { transform: scale(0.85); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(0.85); opacity: 0.8; }
         }
 
-        .option-text-group {
+        .text-group {
             text-align: left;
         }
 
-        .option-title {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #222;
+        .label-title {
+            display: block;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 4px;
         }
 
-        .option-desc {
+        .label-desc {
             font-size: 0.95rem;
             color: #666;
             font-weight: 300;
         }
 
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .site-header { top: 20px; left: 20px; }
+            h1.hero-title { font-size: 2.2rem; }
+            .hero-description { font-size: 1rem; }
+            .site-header img { width: 45px; height: 45px; }
+            .header-text h2 { font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="main-content">
-        <p class="subtitle">Independent Researcher & Author</p>
-        <h1>Aesthetics of Society</h1>
-        <p class="description">Bridging Ancient Indian Knowledge Systems with Modern Neuroscience & Bio-acoustics Research</p>
-
-        <div class="radio-button-container">
-            <a href="https://culturalmusings.com/publications" class="large-radio-button">
-                <div class="radio-circle"></div>
-                <div class="option-text-group">
-                    <span class="option-title">Explore Research Publications</span>
-                    <span class="option-desc">From Vedic Quantum Physics to Carnatic Sound Science</span>
-                </div>
-            </a>
-
-            <a href="https://culturalmusings.com/about" class="large-radio-button">
-                <div class="radio-circle"></div>
-                <div class="option-text-group">
-                    <span class="option-title">The Master Consciousness Protocol</span>
-                    <span class="option-desc">A Roadmap for Natural Healing & Liberation of Human Potential</span>
-                </div>
-            </a>
+    <header class="site-header">
+        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_f901a1f0d-1766624976472.png" alt="Researcher Logo" class="header-logo">
+        <div class="header-text">
+            <h2>Naredla Rama Chandra</h2>
+            <p>Independent Researcher & Author</p>
         </div>
+    </header>
+
+    <div class="main-content">
+        <span class="hero-tag">Aesthetics of Society</span>
+        <h1 class="hero-title">Master Consciousness Protocol</h1>
+        <p class="hero-description">
+            Synthesizing ancient Vedic algorithms (Sapta Swaras, Beeja Aksharas, and 108 Karanas) with modern clinical neuro-rehabilitation.
+        </p>
+
+        <nav class="radio-nav">
+            <a href="/publications" class="nav-card">
+                <div class="red-indicator"></div>
+                <div class="text-group">
+                    <span class="label-title">Complete Science of Consciousness</span>
+                    <span class="label-sub">8-Volume Research Series on Bio-Acoustics & Healing Science.</span>
+                </div>
+            </a>
+
+            <a href="/protocol" class="nav-card">
+                <div class="red-indicator"></div>
+                <div class="text-group">
+                    <span class="label-title">Research Protocol Documentation</span>
+                    <span class="label-sub">Methodology for Natural Healing & Human Potential.</span>
+                </div>
+            </a>
+        </nav>
     </div>
 
 </body>
 </html>
-
