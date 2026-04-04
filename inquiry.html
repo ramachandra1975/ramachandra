@@ -1,0 +1,230 @@
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Inquiry | Aesthetics of Society</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark: #121212;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.95);
+            --bright-red: #d62828;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            /* THE BACKGROUND: Matching the Rocket site exactly */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://img.rocket.new/generatedImages/rocket_gen_img_1e93f7ba1-1765676387903.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inquiry-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.3);
+            position: relative;
+        }
+
+        /* Back Button */
+        .back-link {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            text-decoration: none;
+            color: #888;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--gold);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header img {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .header p {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .span-2 { grid-column: span 2; }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .field input, .field select, .field textarea {
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        .field input:focus, .field textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1);
+        }
+
+        .interest-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .submit-btn {
+            background: var(--bright-red);
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.4s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #b11d1d;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .span-2 { grid-column: span 1; }
+            .inquiry-card { padding: 40px 20px; }
+            .interest-box { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="inquiry-card">
+        <a href="index.html" class="back-link">← Back to Profile</a>
+        
+        <div class="header">
+            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_f901a1f0d-1766624976472.png" alt="Logo">
+            <h1>Research Inquiry</h1>
+            <p>Master Consciousness Protocol</p>
+        </div>
+
+        <form class="form-grid" action="https://formspree.io/f/smith123846@gmail.com" method="POST">
+            
+            <div class="field">
+                <label>Full Name</label>
+                <input type="text" name="name" placeholder="Dr. / Mr. / Ms. Name" required>
+            </div>
+
+            <div class="field">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="example@university.edu" required>
+            </div>
+
+            <div class="field">
+                <label>Organization</label>
+                <input type="text" name="organization" placeholder="Institution Name">
+            </div>
+
+            <div class="field">
+                <label>Inquiry Type</label>
+                <select name="type">
+                    <option>Clinical Validation</option>
+                    <option>Academic Peer Review</option>
+                    <option>Media/Publication Inquiry</option>
+                    <option>General Research Interest</option>
+                </select>
+            </div>
+
+            <div class="field span-2">
+                <label>Research Interest (Select all that apply)</label>
+                <div class="interest-box">
+                    <label class="check-item"><input type="checkbox" name="interest" value="Sapta Swaras"> Sapta Swaras</label>
+                    <label class="check-item"><input type="checkbox" name="interest" value="108 Karanas"> 108 Karanas</label>
+                    <label class="check-item"><input type="checkbox" name="interest" value="Sanskrit/AI"> Sanskrit / AI</label>
+                    <label class="check-item"><input type="checkbox" name="interest" value="Quantum Physics"> Vedic Quantum Physics</label>
+                </div>
+            </div>
+
+            <div class="field span-2">
+                <label>Message / Research Proposal Summary</label>
+                <textarea name="message" rows="5" placeholder="Please provide details about your interest..."></textarea>
+            </div>
+
+            <div class="span-2" style="text-align: center; margin-top: 20px;">
+                <button type="submit" class="submit-btn">Submit Research Request</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
