@@ -10,8 +10,8 @@ HTML
         :root {
             --bright-red: #d62828;
             --primary-gold: #c5a059;
-            --light-overlay: rgba(255, 255, 255, 0.97);
-            --text-dark: #1a1a1a;
+            --bg-overlay: rgba(255, 255, 255, 0.97); /* 97% White for a clean look */
+            --text-main: #1a1a1a;
         }
 
         body, html {
@@ -19,9 +19,9 @@ HTML
             padding: 0;
             height: 100%;
             font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            /* Background: Vedic Manuscript with Light White Overlay */
-            background: linear-gradient(var(--light-overlay), var(--light-overlay)), 
+            color: var(--text-main);
+            /* The Background: Vedic Manuscript + Light Layer */
+            background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
                         url('https://img.rocket.new/generatedImages/rocket_gen_img_1e93f7ba1-1765676387903.png');
             background-size: cover;
             background-position: center;
@@ -33,7 +33,7 @@ HTML
             overflow: hidden;
         }
 
-        /* 1. TOP LEFT HEADER: Logo & Researcher Name */
+        /* TOP LEFT: BRANDING */
         .site-header {
             position: absolute;
             top: 40px;
@@ -45,20 +45,20 @@ HTML
         }
 
         .header-logo {
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             object-fit: contain;
         }
 
         .header-text h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             margin: 0;
-            color: var(--text-dark);
+            letter-spacing: -0.5px;
         }
 
         .header-text p {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -66,60 +66,51 @@ HTML
             font-weight: 600;
         }
 
-        /* 2. SUBTLE WATERMARK: Logo in Center */
+        /* CENTER WATERMARK (Extremely Subtle) */
         body::after {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
+            width: 850px;
+            height: 850px;
             background: url('https://img.rocket.new/generatedImages/rocket_gen_img_f901a1f0d-1766624976472.png') no-repeat center center;
             background-size: contain;
-            opacity: 0.03; /* Very light watermark */
+            opacity: 0.02; /* Dropped to 2% for maximum elegance */
             z-index: 0;
             pointer-events: none;
         }
 
-        /* 3. CENTER CONTENT */
+        /* MAIN CONTENT */
         .main-content {
             text-align: center;
             z-index: 10;
-            max-width: 700px;
+            max-width: 750px;
             width: 90%;
-        }
-
-        .hero-tag {
-            font-size: 0.9rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 12px;
-            display: block;
         }
 
         h1.hero-title {
             font-family: 'Playfair Display', serif;
             font-size: 3.2rem;
-            margin: 0 0 25px 0;
-            color: #111;
-            line-height: 1.2;
+            margin: 0 0 20px 0;
+            line-height: 1.1;
+            color: #000;
         }
 
         .hero-description {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             line-height: 1.7;
-            margin-bottom: 50px;
-            color: #444;
+            margin-bottom: 45px;
+            color: #333;
             font-weight: 300;
         }
 
-        /* 4. TWO RED RADIO NAVIGATION BUTTONS */
+        /* RED RADIO NAVIGATION */
         .radio-nav {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 22px;
             max-width: 580px;
             margin: 0 auto;
         }
@@ -128,26 +119,26 @@ HTML
             display: flex;
             align-items: center;
             background: #ffffff;
-            padding: 28px;
-            border-radius: 20px;
+            padding: 25px 35px;
+            border-radius: 18px;
             text-decoration: none;
-            color: #1a1a1a;
-            border: 2px solid #f2f2f2;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+            color: inherit;
+            border: 1px solid #eaeaea;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
         }
 
-        /* Hover Effect: Pulsing Red */
         .nav-card:hover {
             border-color: var(--bright-red);
-            transform: translateX(10px);
-            box-shadow: 0 15px 40px rgba(214, 40, 40, 0.12);
+            transform: translateX(12px);
+            box-shadow: 0 12px 30px rgba(214, 40, 40, 0.08);
         }
 
+        /* The Red Radio Circle */
         .red-indicator {
-            height: 28px;
-            width: 28px;
-            border: 3px solid #ddd;
+            height: 26px;
+            width: 26px;
+            border: 2px solid #ddd;
             border-radius: 50%;
             margin-right: 25px;
             display: flex;
@@ -161,52 +152,44 @@ HTML
             border-color: var(--bright-red);
         }
 
+        /* Pulsing Red Dot on Hover */
         .nav-card:hover .red-indicator::after {
             content: '';
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             background: var(--bright-red);
             border-radius: 50%;
-            animation: pulse-effect 1.5s infinite;
+            animation: bio-pulse 1.8s infinite;
         }
 
-        @keyframes pulse-effect {
-            0% { transform: scale(0.85); opacity: 0.8; }
-            50% { transform: scale(1.15); opacity: 1; }
-            100% { transform: scale(0.85); opacity: 0.8; }
+        @keyframes bio-pulse {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.9); opacity: 0.8; }
         }
 
-        .text-group {
+        .label-group {
             text-align: left;
         }
 
         .label-title {
             display: block;
-            font-weight: 700;
-            font-size: 1.25rem;
-            margin-bottom: 4px;
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 3px;
         }
 
-        .label-desc {
+        .label-sub {
             font-size: 0.95rem;
             color: #666;
             font-weight: 300;
-        }
-
-        /* Mobile Optimization */
-        @media (max-width: 768px) {
-            .site-header { top: 20px; left: 20px; }
-            h1.hero-title { font-size: 2.2rem; }
-            .hero-description { font-size: 1rem; }
-            .site-header img { width: 45px; height: 45px; }
-            .header-text h2 { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
     <header class="site-header">
-        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_f901a1f0d-1766624976472.png" alt="Researcher Logo" class="header-logo">
+        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_f901a1f0d-1766624976472.png" alt="Logo" class="header-logo">
         <div class="header-text">
             <h2>Naredla Rama Chandra</h2>
             <p>Independent Researcher & Author</p>
@@ -214,26 +197,25 @@ HTML
     </header>
 
     <div class="main-content">
-        <span class="hero-tag">Aesthetics of Society</span>
         <h1 class="hero-title">Master Consciousness Protocol</h1>
         <p class="hero-description">
-            Synthesizing ancient Vedic algorithms (Sapta Swaras, Beeja Aksharas, and 108 Karanas) with modern clinical neuro-rehabilitation.
+            Synthesizing ancient Vedic algorithms (Sapta Swaras and 108 Karanas) with modern clinical neuro-rehabilitation and bio-acoustics.
         </p>
 
         <nav class="radio-nav">
             <a href="/publications" class="nav-card">
                 <div class="red-indicator"></div>
-                <div class="text-group">
+                <div class="label-group">
                     <span class="label-title">Complete Science of Consciousness</span>
-                    <span class="label-sub">8-Volume Research Series on Bio-Acoustics & Healing Science.</span>
+                    <span class="label-sub">Explore the 8-Volume Series on Vedic Science & AI.</span>
                 </div>
             </a>
 
             <a href="/protocol" class="nav-card">
                 <div class="red-indicator"></div>
-                <div class="text-group">
-                    <span class="label-title">Research Protocol Documentation</span>
-                    <span class="label-sub">Methodology for Natural Healing & Human Potential.</span>
+                <div class="label-group">
+                    <span class="label-title">Research Protocol & Studies</span>
+                    <span class="label-sub">Case Studies in Neuro-Rehabilitation & Sound Science.</span>
                 </div>
             </a>
         </nav>
