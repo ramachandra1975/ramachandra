@@ -4,142 +4,139 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Naredla Rama Chandra</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Naredla Rama Chandra | Aesthetics of Society</title>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-gold: #c5a059;
-            --glass: rgba(255, 255, 255, 0.9);
-            --dark: #1a1a1a;
+            --navy: #0A192F;
+            --gold: #C5A059;
+            --ivory: #F9F7F2;
+            --white: #FFFFFF;
         }
 
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Inter', sans-serif;
-            color: var(--dark);
-            /* Original Background: More visible manuscript */
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('https://img.rocket.new/generatedImages/rocket_gen_img_1e93f7ba1-1765676387903.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--ivory); color: var(--navy); font-family: 'Crimson Text', serif; line-height: 1.7; overflow-x: hidden; }
+
+        /* The Central Watermark Logo */
+        .watermark {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 70vh; height: 70vh; background: url('logo-silhouette.png') no-repeat center;
+            background-size: contain; opacity: 0.04; z-index: -1; pointer-events: none;
         }
 
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            padding: 3.5rem;
-            border-radius: 20px;
-            max-width: 650px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.4);
+        /* Navigation */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%; background: var(--white); border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            position: sticky; top: 0; z-index: 100;
         }
+        .brand { font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 2px; font-size: 0.8rem; line-height: 1.2; }
+        .nav-links a { margin-left: 15px; text-decoration: none; color: var(--navy); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
+        
+        .audio-ctrl { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; cursor: pointer; font-size: 0.7rem; margin-left: 15px; }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            color: #111;
-        }
+        /* Content Sections */
+        .content-section { max-width: 950px; margin: 3rem auto; padding: 0 5%; display: none; min-height: 70vh; }
+        .active { display: block; animation: fadeIn 0.6s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--primary-gold);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            display: block;
-        }
+        h1 { font-size: 2.8rem; margin-bottom: 1rem; font-weight: 400; }
+        .gold-line { width: 50px; height: 2px; background: var(--gold); margin-bottom: 2rem; }
+        .para { margin-bottom: 1.8rem; text-align: justify; font-size: 1.2rem; }
+        
+        /* Grid & Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 2rem; }
+        .card { background: var(--white); padding: 25px; border: 1px solid rgba(197, 160, 89, 0.1); border-radius: 4px; }
+        .footer { text-align: center; padding: 3rem 0; font-size: 0.8rem; opacity: 0.6; border-top: 1px solid rgba(0,0,0,0.05); }
 
-        .options-container {
-            display: grid;
-            gap: 15px;
-            margin-top: 2.5rem;
-        }
-
-        /* The Original Radio Button Style */
-        .nav-option {
-            display: flex;
-            align-items: center;
-            background: white;
-            padding: 18px 25px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            text-decoration: none;
-            color: inherit;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .nav-option:hover {
-            transform: translateY(-3px);
-            border-color: #d62828; /* The red you liked */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .radio-circle {
-            height: 22px;
-            width: 22px;
-            border: 2px solid #ddd;
-            border-radius: 50%;
-            margin-right: 18px;
-            position: relative;
-        }
-
-        .nav-option:hover .radio-circle {
-            border-color: #d62828;
-        }
-
-        .nav-option:hover .radio-circle::after {
-            content: '';
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 14px;
-            height: 14px;
-            background: #d62828;
-            border-radius: 50%;
-        }
-
-        .option-text {
-            font-weight: 600;
-            font-size: 1.15rem;
-        }
-
-        .description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #444;
-            font-weight: 300;
-        }
+        /* Reference Search Bar */
+        .search-box { width: 100%; padding: 15px; border: 1px solid var(--gold); margin: 1.5rem 0; font-family: 'Montserrat'; outline: none; }
     </style>
 </head>
 <body>
 
-    <div class="glass-card">
-        <span class="subtitle">Independent Researcher & Author</span>
-        <h1>Aesthetics of Society</h1>
-        <p class="description">Bridging Ancient Indian Systems (Sapta Swaras & 108 Karanas) with Modern Neuroscience & Bio-acoustics.</p>
+    <div class="watermark"></div>
+    <audio id="mcp-audio" loop><source src="nada-brahman.mp3" type="audio/mpeg"></audio>
 
-        <div class="options-container">
-            <a href="/publications" class="nav-option">
-                <div class="radio-circle"></div>
-                <span class="option-text">Complete Science of Consciousness</span>
-            </a>
-            <a href="/protocol" class="nav-option">
-                <div class="radio-circle"></div>
-                <span class="option-text">Master Consciousness Protocol</span>
-            </a>
+    <nav>
+        <div class="brand">NAREDLA RAMA CHANDRA <br><span style="color:var(--gold);">AESTHETICS OF SOCIETY</span></div>
+        <div class="nav-links">
+            <a onclick="showPage('home')">Home</a>
+            <a onclick="showPage('mcp')">MCP Thesis</a>
+            <a onclick="showPage('karanas')">108 Karanas</a>
+            <a onclick="showPage('media')">Media/Ref</a>
+            <a onclick="showPage('inquiry')">Inquiry</a>
+            <button class="audio-ctrl" id="audioBtn" onclick="toggleAudio()">AUDIO: OFF</button>
         </div>
+    </nav>
+
+    <section id="home" class="content-section active">
+        <h1>The Unified Field of Ancient Science</h1>
+        <div class="gold-line"></div>
+        <p class="para">Welcome to the digital repository of Naredla Rama Chandra. This portal serves as a bridge between the profound insights of ancient Indian knowledge systems and the rigorous demands of modern clinical science. Explore 15 years of independent research across musicology, neuroscience, and astrophysics.</p>
+        <div class="grid">
+            <div class="card"><h3>8 Landmark Volumes</h3><p>A library ranging from Sanskrit AI to Bio-Acoustics.</p></div>
+            <div class="card"><h3>300-Page Protocol</h3><p>The Master Consciousness Protocol for human optimization.</p></div>
+        </div>
+    </section>
+
+    <section id="mcp" class="content-section">
+        <p style="color:var(--gold); font-weight:bold;">CORE PUBLICATION</p>
+        <h1>Master Consciousness Protocol</h1>
+        <div class="gold-line"></div>
+        <p class="para"><b>The Foundations:</b> The MCP is a 300-page comprehensive framework designed to decode the evolutionary secrets of the ancient Vedic seers. It acts as a standardized curriculum for human optimization, bridging the <i>Yoga Sutras</i> with the <i>Natya Shastra</i>. By mapping ancient terminologies like Prana onto modern bio-electricity, we remove the veil of mysticism.</p>
+        <p class="para"><b>The Architecture:</b> Built upon three pillars—Bio-Acoustics, Bio-Geometry, and Neuro-Programming—the MCP uses the Sapta Swaras for emotional regulation and the 108 Karanas for spinal activation. It is the central processing unit of this entire research repository, ready for clinical validation and academic scrutiny.</p>
+    </section>
+
+    <section id="karanas" class="content-section">
+        <h1>108 Karanas: Applied Astrophysics</h1>
+        <div class="gold-line"></div>
+        <p class="para">The 108 Karanas are reclaimed here as a precise biological alphabet—body-mind keys designed to optimize the flow of bio-electric energy. This work establishes the link between these postures and the 108 units of the Vedic Zodiac, demonstrating that ancient dance was a form of "Applied Astrophysics."</p>
+        <p class="para">Clinically, these configurations trigger the parasympathetic nervous system. By pairing each Karana with a Beeja Akshara, we create a sonic-physical resonance for deep neurological healing.</p>
+    </section>
+
+    <section id="media" class="content-section">
+        <h1>Media & Reference Portal</h1>
+        <div class="gold-line"></div>
+        <input type="text" class="search-box" placeholder="Search references: e.g. 'Karana 45', 'Vagus Nerve', 'Sanskrit Logic'...">
+        <div class="grid">
+            <div class="card"><h4>Acoustic Samples</h4><p>Frequency recordings of the Sapta Swaras.</p></div>
+            <div class="card"><h4>Visual Protocols</h4><p>High-definition neural maps of physical postures.</p></div>
+            <div class="card"><h4>Case Studies</h4><p>Clinical data on Mudra-based cortisol reduction.</p></div>
+        </div>
+    </section>
+
+    <section id="inquiry" class="content-section">
+        <h1>Inquiry for Clinical Studies</h1>
+        <div class="gold-line"></div>
+        <p class="para">I am currently seeking academic and medical partners for the formal validation phase of the MCP. Areas of focus include Bio-Acoustic healing and Sanskrit-based AI logic models.</p>
+        <div class="card" style="border-left: 4px solid var(--gold);">
+            <p><b>Principal Author:</b> Naredla Rama Chandra</p>
+            <p><b>Email:</b> smith123846@gmail.com</p>
+            <p><b>Phone:</b> +91 91213 79100</p>
+            <p><b>Location:</b> Vizianagaram, India</p>
+        </div>
+    </section>
+
+    <div class="footer">
+        <p>© 2026 NAREDLA RAMA CHANDRA | CULTURALMUSINGS.COM</p>
     </div>
 
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        const audio = document.getElementById('mcp-audio');
+        const btn = document.getElementById('audioBtn');
+        function toggleAudio() {
+            if (audio.paused) { audio.play(); btn.innerText = "AUDIO: ON (136.1Hz)"; }
+            else { audio.pause(); btn.innerText = "AUDIO: OFF"; }
+        }
+    </script>
 </body>
 </html>
