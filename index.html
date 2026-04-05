@@ -4,209 +4,180 @@ HTML
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Naredla Rama Chandra</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;600&family=Great+Vibes&display=swap" rel="stylesheet">
-    
+    <title>Aesthetics of Society | Cultural Musings</title>
     <style>
         :root {
-            --primary-blue: #1a365d;
-            --gold-accent: #c5a059;
-            --bg-cream: rgba(255, 252, 240, 0.85); /* Matches the warm screenshot tint */
+            --primary-navy: #1a365d;
+            --accent-gold: #c5a059;
+            --bg-cream: #fdfbf7;
+            --text-dark: #2d3748;
         }
 
-        body, html {
+        body {
             margin: 0;
             padding: 0;
-            height: 100%;
-            font-family: 'Montserrat', sans-serif;
-            background-color: #fdfaf0;
-            overflow-x: hidden;
+            font-family: 'Georgia', serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
-        /* HERO CONTAINER */
-        .hero-wrapper {
+        /* Hero Section with Fixed Background Overlap Fix */
+        .hero {
             position: relative;
-            width: 100%;
             height: 100vh;
-            /* Update background.png with your mountain sunrise image */
-            background: linear-gradient(var(--bg-cream), var(--bg-cream)), 
-                        url('background.png') no-repeat center center/cover;
+            min-height: 600px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+                        url('https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll; /* Prevents background overlapping on mobile */
+            padding: 0 20px;
         }
 
-        /* HEADER & NAVIGATION */
-        header {
+        /* Navigation */
+        nav {
             position: absolute;
             top: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 5%;
+            padding: 20px 50px;
             box-sizing: border-box;
-            z-index: 100;
         }
 
-        .header-left { display: flex; align-items: center; gap: 15px; }
-        .header-left img { width: 45px; height: auto; }
-        .brand-name { color: var(--primary-blue); font-weight: 700; letter-spacing: 3px; font-size: 0.95rem; display: block; }
-        .brand-url { color: var(--gold-accent); font-size: 0.75rem; letter-spacing: 1.5px; display: block; margin-top: 2px; }
-
-        nav { display: flex; gap: 25px; align-items: center; }
-        nav a { text-decoration: none; color: var(--primary-blue); font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; }
-        .nav-highlight { border: 1px solid var(--gold-accent); padding: 8px 20px; color: var(--gold-accent); }
-
-        /* THE BACKGROUND SCRIPT ("Let the light shine") */
-        .script-bg {
-            position: absolute;
-            font-family: 'Great Vibes', cursive;
-            font-size: 11rem;
-            color: #fff;
-            opacity: 0.55;
-            white-space: nowrap;
-            z-index: 1;
-            pointer-events: none;
-            top: 48%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .brand {
+            text-align: left;
         }
 
-        /* SIDE IMAGE ADJUSTMENTS */
-        .side-visuals {
-            position: absolute;
-            width: 94%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        .img-card {
-            background: white;
-            padding: 10px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-            width: 175px;
-            text-align: center;
-        }
-
-        .img-card img { width: 100%; height: 240px; object-fit: cover; }
-        .img-label { 
-            font-size: 0.65rem; 
-            color: var(--gold-accent); 
-            margin-top: 12px; 
+        .brand h1 {
+            font-size: 1.2rem;
             letter-spacing: 2px;
-            font-weight: 600;
-        }
-
-        /* MAIN CENTER CONTENT */
-        .main-hero-content { position: relative; z-index: 10; margin-top: 40px; }
-        .author-tag { color: var(--gold-accent); letter-spacing: 5px; font-size: 0.8rem; margin-bottom: 12px; text-transform: uppercase; }
-        
-        .title-top {
-            font-family: 'Playfair Display', serif;
-            font-size: 105px;
-            color: var(--primary-blue);
             margin: 0;
-            line-height: 0.85;
-            font-weight: 700;
-        }
-
-        .title-bottom {
-            font-family: 'Playfair Display', serif;
-            font-size: 115px;
-            color: var(--gold-accent);
-            font-style: italic;
-            margin: -15px 0 25px 0;
-            font-weight: 700;
-        }
-
-        .hero-tagline {
-            color: var(--primary-blue);
-            font-size: 1.05rem;
-            letter-spacing: 2.5px;
+            color: var(--primary-navy);
             text-transform: uppercase;
-            line-height: 1.8;
-            font-weight: 600;
-            margin-bottom: 40px;
         }
 
-        /* FUSED BUTTONS */
-        .button-row { display: flex; justify-content: center; }
-        .btn-base {
-            padding: 20px 45px;
+        .brand p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-navy);
+            margin-left: 25px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Main Content Titles */
+        .hero-content {
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-size: clamp(3rem, 10vw, 5rem);
+            margin: 0;
+            line-height: 1;
+        }
+
+        .main-title .navy { color: var(--primary-navy); }
+        .main-title .gold { color: var(--accent-gold); font-style: italic; }
+
+        .mission {
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 30px 0;
+            color: var(--primary-navy);
+            font-weight: bold;
+        }
+
+        /* Buttons */
+        .cta-container {
+            display: flex;
+            gap: 0;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 15px 40px;
             text-decoration: none;
             font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-weight: bold;
             text-transform: uppercase;
-            transition: 0.4s;
+            transition: 0.3s;
         }
-        .btn-primary { background: var(--primary-blue); color: white; border: 1px solid var(--primary-blue); }
-        .btn-secondary { 
-            background: rgba(255,255,255,0.4); 
-            color: var(--primary-blue); 
-            border: 1px solid #d1d1d1; 
-            border-left: none; /* This connects the buttons */
-        }
-        .btn-base:hover { background: var(--gold-accent); color: white; border-color: var(--gold-accent); }
 
+        .btn-navy {
+            background: var(--primary-navy);
+            color: white;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(0,0,0,0.1);
+            color: var(--text-dark);
+            background: rgba(255,255,255,0.5);
+        }
+
+        /* Responsive Fix for Mobile Overlap */
+        @media (max-width: 768px) {
+            nav { padding: 20px; flex-direction: column; }
+            .nav-links { margin-top: 20px; }
+            .cta-container { flex-direction: column; width: 100%; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-left">
-            <img src="logo.jpg" alt="Aesthetics Logo">
-            <div class="brand-info">
-                <span class="brand-name">AESTHETICS OF SOCIETY</span>
-                <span class="brand-url">culturalmusings.com</span>
-            </div>
-        </div>
+    <section class="hero">
         <nav>
-            <a href="#about">ABOUT</a>
-            <a href="#publications">PUBLICATIONS</a>
-            <a href="#timeline">TIMELINE</a>
-            <a href="#media">MEDIA</a>
-            <a href="#contact">CONTACT</a>
-            <a href="#intro" class="nav-highlight">INTRODUCTION</a>
+            <div class="brand">
+                <h1>Aesthetics of Society</h1>
+                <p>culturalmusings.com</p>
+            </div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#publications">Publications</a>
+                <a href="#timeline">Timeline</a>
+                <a href="#media">Media</a>
+                <a href="#contact">Contact</a>
+            </div>
         </nav>
-    </header>
 
-    <section class="hero-wrapper">
-        
-        <div class="script-bg">Let the light shine</div>
-
-        <div class="side-visuals">
-            <div class="img-card">
-                <img src="vedic.jpg" alt="Vedic Manuscripts">
-                <div class="img-label">VEDIC MANUSCRIPTS</div>
-            </div>
-            <div class="img-card">
-                <img src="karanas.jpg" alt="108 Karanas">
-                <div class="img-label">108 KARANAS</div>
-            </div>
-        </div>
-
-        <div class="main-hero-content">
-            <div class="author-tag">Independent Researcher & Author • Est. 2010</div>
+        <div class="hero-content">
+            <div class="tagline">Independent Researcher & Author</div>
             
-            <h1 class="title-top">Aesthetics</h1>
-            <h1 class="title-bottom">of Society</h1>
+            <h1 class="main-title">
+                <span class="navy">Aesthetics</span><br>
+                <span class="gold">of Society</span>
+            </h1>
 
-            <p class="hero-tagline">
+            <div class="mission">
                 Bridging Ancient Indian Systems with Modern<br>
-                Neuroscience & Bio-acoustics
-            </p>
+                Neuroscience & Bio-Acoustics
+            </div>
 
-            <div class="button-row">
-                <a href="#publications" class="btn-base btn-primary">Explore Publications</a>
-                <a href="#author" class="btn-base btn-secondary">About the Author</a>
+            <div class="cta-container">
+                <a href="#publications" class="btn btn-navy">Explore Publications</a>
+                <a href="#author" class="btn btn-outline">About the Author</a>
             </div>
         </div>
     </section>
