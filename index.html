@@ -3,6 +3,7 @@ HTML
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aesthetics of Society</title>
     <style>
         body, html {
@@ -14,8 +15,8 @@ HTML
             background-color: #fdfbf7;
         }
 
-        /* THE BACKGROUND & MASKING */
-        .hero {
+        /* 1. MAIN HERO & BACKGROUND */
+        .hero-section {
             position: relative;
             width: 100%;
             height: 100vh;
@@ -27,70 +28,70 @@ HTML
             overflow: hidden;
         }
 
-        /* The Mask: This creates the faded/lightened effect from your second image */
-        .hero::before {
+        /* The Mask: Softens background.png for better text contrast */
+        .hero-section::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.5); /* Semi-transparent white mask */
+            background: rgba(255, 255, 255, 0.45); 
             z-index: 1;
         }
 
-        /* LOGO WATERMARK (Subtle Center) */
+        /* 2. THE WATERMARK (Centered logo.jpg) */
         .logo-watermark {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 350px;
-            opacity: 0.08; /* Very subtle */
+            width: 350px; /* Adjust size as needed */
+            opacity: 0.12; /* Controls the subtlety of the watermark */
             z-index: 2;
             pointer-events: none;
         }
 
-        /* TOP NAVIGATION & LOGO */
-        nav {
+        /* 3. HEADER: LOGO & BRANDING */
+        header {
             position: absolute;
             top: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            padding: 25px 50px;
             box-sizing: border-box;
             z-index: 100;
         }
 
-        .header-branding {
+        .branding {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
-        .header-logo {
-            width: 40px; /* Small logo for top left */
+        .logo-top-left {
+            width: 50px;
             height: auto;
+            display: block;
         }
 
-        .header-text h1 {
+        .branding-text h1 {
             font-size: 1.1rem;
             margin: 0;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             color: #1a365d;
             text-transform: uppercase;
         }
 
-        .header-text p {
+        .branding-text p {
             margin: 0;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             color: #c5a059;
-            font-weight: bold;
         }
 
-        .nav-links a {
+        .navigation a {
             text-decoration: none;
             color: #1a365d;
             margin-left: 20px;
@@ -99,24 +100,16 @@ HTML
             text-transform: uppercase;
         }
 
-        /* MAIN CONTENT - ALIGNED TO PREVENT OVERLAP */
-        .content-box {
+        /* 4. MAIN CONTENT */
+        .main-content {
             position: relative;
             z-index: 10;
             text-align: center;
             width: 100%;
         }
 
-        .tagline {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            color: #c5a059;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
         .main-title {
-            font-size: 5rem;
+            font-size: clamp(3rem, 10vw, 5.5rem);
             line-height: 0.9;
             margin: 0;
         }
@@ -124,75 +117,74 @@ HTML
         .navy { color: #1a365d; }
         .gold { color: #c5a059; font-style: italic; }
 
-        .mission {
-            font-size: 0.85rem;
+        .mission-line {
+            font-size: 0.9rem;
             font-weight: bold;
             color: #1a365d;
             text-transform: uppercase;
             margin-top: 30px;
+            line-height: 1.5;
             letter-spacing: 1px;
         }
 
-        /* BUTTONS */
-        .cta-group {
+        /* 5. CTA BUTTONS */
+        .btn-group {
             margin-top: 40px;
             display: flex;
             justify-content: center;
         }
 
         .btn {
-            padding: 18px 45px;
+            padding: 18px 40px;
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        .btn-navy { background: #1a365d; color: white; }
-        .btn-beige { background: #e8e6e1; color: #333; border: 1px solid #ddd; }
-
-        /* NO SIDEBARS */
+        .btn-primary { background: #1a365d; color: white; }
+        .btn-secondary { background: #e6e1d7; color: #333; border: 1px solid #ccc; }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <!-- Center Watermark -->
-        <img src="logo.png" class="logo-watermark">
+    <section class="hero-section">
+        <!-- Logo as Watermark -->
+        <img src="logo.jpg" class="logo-watermark" alt="">
 
-        <nav>
-            <div class="header-branding">
-                <img src="logo.png" class="header-logo">
-                <div class="header-text">
+        <header>
+            <div class="branding">
+                <img src="logo.jpg" class="logo-top-left" alt="Aesthetics of Society Logo">
+                <div class="branding-text">
                     <h1>Aesthetics of Society</h1>
                     <p>culturalmusings.com</p>
                 </div>
             </div>
-            <div class="nav-links">
+            <div class="navigation">
                 <a href="#">About</a>
                 <a href="#">Publications</a>
                 <a href="#">Timeline</a>
                 <a href="#">Media</a>
                 <a href="#">Contact</a>
             </div>
-        </nav>
+        </header>
 
-        <div class="content-box">
-            <p class="tagline">Independent Researcher & Author — Est. 2010</p>
+        <div class="main-content">
+            <p style="letter-spacing: 4px; color: #c5a059; text-transform: uppercase; margin-bottom: 5px;">Independent Researcher & Author</p>
             
             <h1 class="main-title">
                 <span class="navy">Aesthetics</span><br>
                 <span class="gold">of Society</span>
             </h1>
 
-            <div class="mission">
+            <div class="mission-line">
                 Bridging Ancient Indian Systems with Modern<br>
                 Neuroscience & Bio-Acoustics
             </div>
 
-            <div class="cta-group">
-                <a href="#" class="btn btn-navy">Explore Publications</a>
-                <a href="#" class="btn btn-beige">About the Author</a>
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">Explore Publications</a>
+                <a href="#" class="btn btn-secondary">About the Author</a>
             </div>
         </div>
     </section>
