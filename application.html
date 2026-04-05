@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Research Portfolio</title>
+    <title>Aesthetics of Society | Naredla Rama Chandra</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* Unified Global Styles */
         :root {
             --primary-blue: #1a365d;
             --gold-accent: #c5a059;
-            --bg-overlay: rgba(255, 253, 248, 0.82);
             --bg-cream: #fdfaf5;
+            --bg-overlay: rgba(255, 253, 248, 0.82);
             --card-shadow: 0 10px 40px rgba(0,0,0,0.04);
         }
 
@@ -25,7 +24,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Nav & Header Persistence */
+        /* Fixed Navigation */
         header {
             position: fixed; top: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
@@ -33,26 +32,31 @@
             z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             box-sizing: border-box;
         }
-
         nav a { text-decoration: none; color: var(--primary-blue); font-size: 0.8rem; font-weight: bold; margin-left: 20px; }
 
-        /* Publication Cards */
+        /* Typography & Utility */
+        .playfair { font-family: 'Playfair Display', serif; }
+        .italic { font-style: italic; }
+        .gold { color: var(--gold-accent); }
+        .label { text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; font-weight: 700; color: var(--gold-accent); display: block; margin-bottom: 15px; }
+
+        /* Sections */
+        section { padding: 100px 10%; position: relative; }
+        
+        .hero-section {
+            height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('background.png') no-repeat center/cover;
+        }
+
+        /* Publications Grid */
         .publications-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; padding: 50px 0;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px;
         }
         .pub-card {
             background: #fff; border: 1px solid #f2f2f2; padding: 40px;
             transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between;
         }
         .pub-card:hover { transform: translateY(-8px); box-shadow: var(--card-shadow); border-color: var(--gold-accent); }
-
-        /* Preserving your original layout classes */
-        .hero-section {
-            height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
-            background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('background.png') no-repeat center/cover;
-        }
-        
-        section { padding: 100px 10%; position: relative; }
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem !important; }
@@ -63,75 +67,72 @@
 <body>
 
     <header>
-        <div style="font-weight: bold; color: var(--primary-blue); letter-spacing: 1px;">AESTHETICS OF SOCIETY</div>
+        <div class="playfair" style="font-weight: bold; color: var(--primary-blue); letter-spacing: 1px;">AESTHETICS OF SOCIETY</div>
         <nav>
             <a href="#home">HOME</a>
             <a href="#publications">PUBLICATIONS</a>
             <a href="#about">ABOUT</a>
-            <a href="#contact">CONTACT</a>
+            <a href="#consortium">CONSORTIUM</a>
         </nav>
     </header>
 
     <section id="home" class="hero-section">
         <div class="main-content">
-            <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; font-weight: 700; color: var(--gold-accent);">Independent Researcher & Author</span>
-            <h1 style="font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--primary-blue); margin: 0;">Aesthetics</h1>
-            <h1 style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 6rem; color: var(--gold-accent); margin-top: -20px;">of Society</h1>
+            <span class="label">Independent Researcher & Author</span>
+            <h1 class="playfair" style="font-size: 5rem; color: var(--primary-blue); margin: 0;">Aesthetics</h1>
+            <h1 class="playfair italic" style="font-size: 6rem; color: var(--gold-accent); margin-top: -20px;">of Society</h1>
             <p style="max-width: 650px; margin: 20px auto; line-height: 1.8;">Bridging Ancient Indian Systems with Modern Neuroscience & Bio-acoustics</p>
             <div style="margin-top: 30px;">
-                <a href="#publications" style="background: var(--primary-blue); color: white; padding: 18px 35px; text-decoration: none; font-weight: bold; display: inline-block;">EXPLORE RESEARCH</a>
+                <a href="#publications" style="background: var(--primary-blue); color: white; padding: 18px 35px; text-decoration: none; font-weight: bold; display: inline-block;">EXPLORE THE RESEARCH</a>
             </div>
         </div>
     </section>
 
-    <section id="philosophy" style="text-align: center; background: var(--bg-cream);">
-        <p style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary-blue); line-height: 1.4;">
-            "Ancient <span style="font-style: italic;">wisdom</span> does not contradict <br> 
-            modern <span style="color: var(--gold-accent);">science</span> — it precedes it."
-        </p>
-    </section>
-
-    <section id="publications">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--primary-blue);">Publications & <span style="color: var(--gold-accent); font-style: italic;">Manuscripts</span></h2>
+    <section id="publications" style="background: #fff;">
+        <span class="label">The 9-Volume Series</span>
+        <h2 class="playfair" style="font-size: 3.5rem; color: var(--primary-blue); margin-bottom: 50px;">Publications & <span class="gold italic">Manuscripts</span></h2>
+        
         <div class="publications-grid">
             <div class="pub-card">
                 <div>
-                    <span style="color: var(--gold-accent); font-weight: bold; font-size: 0.7rem;">VOL. I</span>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 10px 0;">Complete Science of Consciousness</h3>
-                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">A comprehensive framework comparing Vedic science with modern AI paradigms.</p>
+                    <span class="gold" style="font-size: 0.7rem; font-weight: bold;">VOL. I</span>
+                    <h3 class="playfair" style="font-size: 1.8rem; margin: 10px 0;">Complete Science of Consciousness</h3>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">Ancient Knowledge vs Artificial Intelligence paradigms.</p>
                 </div>
-                <a href="#" style="color: var(--gold-accent); text-decoration: none; font-weight: bold; margin-top: 20px;">READ OVERVIEW &rarr;</a>
+                <a href="#" class="gold" style="text-decoration: none; font-weight: bold; margin-top: 20px;">OVERVIEW &rarr;</a>
             </div>
-            
+
             <div class="pub-card">
                 <div>
-                    <span style="color: var(--gold-accent); font-weight: bold; font-size: 0.7rem;">VOL. II</span>
-                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 10px 0;">Sapta Swaras & Healing</h3>
-                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">The bio-acoustic impact of Indian classical scales on the human nervous system.</p>
+                    <span class="gold" style="font-size: 0.7rem; font-weight: bold;">VOL. II</span>
+                    <h3 class="playfair" style="font-size: 1.8rem; margin: 10px 0;">Sapta Swaras & Healing</h3>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">Bio-acoustic impact of Indian classical scales on the nervous system.</p>
                 </div>
-                <a href="#" style="color: var(--gold-accent); text-decoration: none; font-weight: bold; margin-top: 20px;">READ OVERVIEW &rarr;</a>
+                <a href="#" class="gold" style="text-decoration: none; font-weight: bold; margin-top: 20px;">OVERVIEW &rarr;</a>
             </div>
+            
             </div>
     </section>
 
-    <section id="about" style="display: flex; gap: 60px; align-items: center; background: #fff;">
-        <div style="flex: 1;"><img src="author.jpg" alt="Author" style="width: 100%; border: 1px solid #ddd;"></div>
-        <div style="flex: 1.5;">
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--primary-blue);">The Researcher</h2>
-            <p style="line-height: 1.8; color: #444; font-size: 1.1rem;">
-                Based on extensive Indological research, his work focuses on the neurological and physiological benefits of the 108 Karanas and Sanskrit Beejas.
-            </p>
+    <section id="consortium" style="background: var(--primary-blue); color: white; text-align: center;">
+        <h2 class="playfair" style="font-size: 3rem; margin-bottom: 10px;">Scholarly Consortium</h2>
+        <p class="gold" style="letter-spacing: 2px; text-transform: uppercase;">Anchoring Ancient Wisdom in Empirical Science</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 60px;">
+            <div style="border-top: 1px solid rgba(197, 160, 89, 0.3); padding-top: 20px;">
+                <h4 class="gold">Indological Precision</h4>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Decoding Beeja Aksharas and Shastra injunctions with scholarly accuracy.</p>
+            </div>
+            <div style="border-top: 1px solid rgba(197, 160, 89, 0.3); padding-top: 20px;">
+                <h4 class="gold">Neuro-Scientific Validation</h4>
+                <p style="font-size: 0.9rem; opacity: 0.8;">Clinical support for measuring brainwave states and HRV during practice.</p>
+            </div>
         </div>
     </section>
 
-    <section id="contact" style="background: var(--primary-blue); color: white; text-align: center; padding: 60px 10%;">
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem;">Scholarly Consortium</h2>
-        <p style="color: var(--gold-accent); letter-spacing: 2px;">ANCHORING ANCIENT WISDOM IN EMPIRICAL SCIENCE</p>
-        <div style="margin-top: 40px;">
-            <p>Email: smith123846@gmail.com</p>
-            <p>Phone: +91 91213 79100</p>
-        </div>
-    </section>
+    <footer style="padding: 40px 10%; background: #0d1b2e; color: #fff; text-align: center; font-size: 0.8rem;">
+        <p>&copy; 2026 Naredla Rama Chandra | Aesthetics of Society Research Hub</p>
+    </footer>
 
 </body>
 </html>
