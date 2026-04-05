@@ -5,181 +5,203 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aesthetics of Society</title>
     <style>
+        /* Importing a Serif font similar to the image */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Montserrat:wght@300;400&display=swap');
+
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            font-family: 'Georgia', serif;
-            background-color: #fdfbf7;
+            background-color: #edeae4; /* Base light beige */
+            font-family: 'Montserrat', sans-serif;
             overflow: hidden;
         }
 
-        /* 1. BACKGROUND */
-        .hero {
+        /* 1. THE DYNAMIC BACKGROUND */
+        .hero-container {
             position: relative;
             width: 100%;
             height: 100vh;
+            /* Replace 'mountains.jpg' with your mountain image */
             background: url('background.png') no-repeat center center;
             background-size: cover;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        .hero::before {
+        /* 2. THE SUNRISE GLOW (Watermarked light effect) */
+        .hero-container::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.15); 
+            /* This creates the soft golden haze from the top */
+            background: linear-gradient(to bottom, 
+                rgba(255, 248, 220, 0.8) 0%, 
+                rgba(255, 255, 255, 0.4) 40%, 
+                rgba(237, 234, 228, 0.9) 100%);
             z-index: 1;
         }
 
-        /* 2. TOP LEFT BRANDING & RESPECTABLE LOGO SIZE */
+        /* 3. HEADER BRANDING (From your reference image) */
         header {
             position: absolute;
             top: 0; width: 100%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 40px 60px;
+            justify-content: flex-start;
+            padding: 30px 60px;
             box-sizing: border-box;
             z-index: 100;
         }
 
-        .branding-left {
+        .branding {
             display: flex;
             align-items: center;
-            gap: 30px; 
+            gap: 20px;
         }
 
-        /* LOGO SET TO A RESPECTABLE 160PX */
-        .nav-logo {
-            width: 160px; 
-            opacity: 0.75; 
-            mix-blend-mode: multiply; /* Removes white JPG box */
-            filter: contrast(1.1);
+        .logo-watermark {
+            width: 80px;
+            mix-blend-mode: multiply;
+            opacity: 0.8;
         }
 
-        .brand-text h1 {
-            font-size: 1.6rem; 
+        .brand-text h2 {
+            font-size: 1.5rem;
             margin: 0;
-            letter-spacing: 3px;
-            color: #0d1b2e;
+            letter-spacing: 5px;
+            color: #1a304d;
             text-transform: uppercase;
-            line-height: 1.2;
+            font-weight: 400;
         }
 
         .brand-text p {
             margin: 0;
-            font-size: 1rem; 
-            color: #a68b4c; 
-            font-weight: bold;
-            letter-spacing: 2px;
+            font-size: 0.9rem;
+            color: #b39356;
+            letter-spacing: 3px;
         }
 
-        nav a {
-            text-decoration: none;
-            color: #0d1b2e;
-            margin-left: 30px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        /* 3. CENTRAL CONTENT */
-        .content {
+        /* 4. MAIN TEXT (MATCHING IMAGE 2) */
+        .main-content {
             position: relative;
             z-index: 10;
             text-align: center;
         }
 
-        .tagline-watermark {
-            font-size: 1rem;
-            letter-spacing: 6px;
-            font-weight: bold;
+        .est-tagline {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: #b39356;
             text-transform: uppercase;
-            color: #c5a66d; 
-            opacity: 0.85;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-weight: 600;
         }
 
-        .mission-watermark {
-            font-size: 1.3rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            line-height: 1.7;
-            color: #5c6d85; 
-            opacity: 0.85;
-            margin-top: 25px;
+        .title-aesthetics {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 9vw, 6.5rem);
+            color: #1a304d;
+            margin: 0;
+            font-weight: 500;
+            letter-spacing: -1px;
         }
 
-        /* 4. RADIO PILL BUTTONS */
-        .btn-container {
-            margin-top: 45px;
+        .title-society {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            color: #d4af37;
+            font-style: italic;
+            margin-top: -15px;
+            display: block;
+        }
+
+        .mission-text {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: #4a5a71;
+            text-transform: uppercase;
+            margin-top: 35px;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        /* 5. THE BUTTON BOXES (MATCHING IMAGE 2) */
+        .button-group {
+            margin-top: 50px;
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            gap: 0; /* They sit close in the image */
         }
 
         .btn {
-            padding: 10px 26px;
+            padding: 24px 45px;
             text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: bold;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            border-radius: 50px;
-            border: 1px solid #0d1b2e;
-            transition: 0.3s ease;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        .btn-navy { background: #0d1b2e; color: #fff; }
-        .btn-outline { background: transparent; color: #0d1b2e; }
-        .btn:hover { opacity: 0.8; transform: translateY(-1px); }
+        .btn-dark {
+            background: #1a304d;
+            color: white;
+            border: 1px solid #1a304d;
+        }
+
+        .btn-light {
+            background: rgba(255, 255, 255, 0.4);
+            color: #1a304d;
+            border: 1px solid rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .scroll-text {
+            position: absolute;
+            bottom: 30px;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            color: #b39356;
+            text-transform: uppercase;
+        }
 
     </style>
 </head>
 <body>
 
-    <section class="hero">
+    <div class="hero-container">
         
         <header>
-            <div class="branding-left">
-                <img src="logo.jpg" class="nav-logo" alt="Logo">
-                
+            <div class="branding">
+                <img src="logo.jpg" class="logo-watermark" alt="Logo">
                 <div class="brand-text">
-                    <h1>Aesthetics of Society</h1>
+                    <h2>Aesthetics of Society</h2>
                     <p>culturalmusings.com</p>
                 </div>
             </div>
-            
-            <nav>
-                <a href="#">About</a>
-                <a href="#">Publications</a>
-                <a href="#">Timeline</a>
-                <a href="#">Media</a>
-                <a href="#">Contact</a>
-            </nav>
         </header>
 
-        <div class="content">
-            <div class="tagline-watermark">
-                Independent Researcher & Author
-            </div>
+        <div class="main-content">
+            <div class="est-tagline">Independent Researcher & Author · EST. 2010</div>
             
-            <div class="mission-watermark">
+            <h1 class="title-aesthetics">Aesthetics</h1>
+            <h1 class="title-society">of Society</h1>
+
+            <div class="mission-text">
                 Bridging Ancient Indian Systems with Modern<br>
                 Neuroscience & Bio-Acoustics
             </div>
 
-            <div class="btn-container">
-                <a href="#" class="btn btn-navy">Publications</a>
-                <a href="#" class="btn btn-outline">The Author</a>
+            <div class="button-group">
+                <a href="#" class="btn btn-dark">Explore Publications</a>
+                <a href="#" class="btn btn-light">About the Author</a>
             </div>
         </div>
 
-    </section>
+        <div class="scroll-text">Scroll</div>
+    </div>
 
 </body>
 </html>
