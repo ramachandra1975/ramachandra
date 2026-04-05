@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Journey | Naredla Rama Chandra</title>
+    <title>Publications & Manuscripts | Aesthetics of Society</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #c5a059;
             --navy: #1a2b48;
-            --bg-sand: #fdfaf5;
-            --border-light: #ececec;
-            --text-main: #333;
-            --text-muted: #666;
+            --cream: #fdfaf5;
+            --border: #ececec;
+            --text: #333;
+            --muted: #666;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,307 +20,213 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background: #fff;
-            color: var(--text-main);
+            color: var(--text);
             line-height: 1.6;
         }
 
         /* ── NAV ── */
         .site-nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #fff;
-            border-bottom: 1px solid var(--border-light);
+            position: sticky; top: 0; z-index: 100;
+            background: #fff; border-bottom: 1px solid var(--border);
             padding: 0 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: flex; align-items: center; justify-content: space-between;
             height: 64px;
         }
-        .nav-brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: var(--navy);
-            text-decoration: none;
-        }
+        .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--navy); text-decoration: none; }
         .nav-brand span { color: var(--gold); font-style: italic; }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a {
-            text-decoration: none;
-            font-size: 0.68rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--gold); }
-        .nav-links a.active { color: var(--gold); font-weight: 700; }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { text-decoration: none; font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); transition: color .2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
-        /* ── PAGE WRAPPER ── */
-        .page {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 80px 40px 120px;
-        }
+        /* ── WRAPPER ── */
+        .wrapper { max-width: 1200px; margin: 0 auto; padding: 60px 40px 120px; }
+        .hidden { display: none !important; }
 
-        /* ── HEADER ── */
-        .tl-header {
-            margin-bottom: 100px;
+        /* ══════════════════════════════
+           HUB VIEW
+        ══════════════════════════════ */
+        .hub-header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 60px; padding-bottom: 40px; border-bottom: 1px solid var(--border);
+            gap: 40px;
         }
-        .tl-overline {
-            display: block;
-            font-size: 0.65rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--gold);
-            font-weight: 700;
-            margin-bottom: 14px;
-        }
-        .tl-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
-            color: var(--navy);
-            font-weight: 400;
-            line-height: 1.1;
-        }
-        .tl-title em {
-            color: var(--gold);
-            font-style: italic;
-            display: block;
-        }
+        .hub-overline { font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); font-weight: 700; display: block; margin-bottom: 12px; }
+        .hub-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--navy); font-weight: 400; line-height: 1; }
+        .hub-title span { color: var(--gold); font-style: italic; display: block; }
+        .hub-intro { max-width: 340px; font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
 
-        /* ── TIMELINE CONTAINER ── */
-        /*
-         * FIX: The original used position:absolute for the spine and year markers
-         * inside a flex container — unreliable across viewports.
-         * NEW APPROACH: CSS Grid with 3 columns: left | center(spine) | right
-         * The spine is a real column with a visible border. Year markers sit in
-         * the center column. Cards alternate left/right columns via CSS classes.
-         */
-        .timeline {
-            position: relative;
-        }
-
-        .tl-entry {
+        /* GRID */
+        .pub-grid {
             display: grid;
-            grid-template-columns: 1fr 80px 1fr;
-            grid-template-rows: auto;
-            gap: 0;
-            margin-bottom: 0;
-            align-items: start;
-            position: relative;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px; background: var(--border);
+            border: 1px solid var(--border);
         }
-
-        /* The vertical spine line — drawn as a left border on the center column */
-        .tl-entry::before {
-            content: '';
-            position: absolute;
-            left: calc(50% - 0.5px);
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: #e5ddd0;
-            z-index: 0;
+        .pub-card {
+            background: #fff; padding: 36px 30px;
+            cursor: pointer; position: relative;
+            display: flex; flex-direction: column;
+            min-height: 260px;
+            transition: background .2s;
         }
+        .pub-card:hover { background: var(--cream); }
+        .pub-card.flagship { grid-column: span 2; }
 
-        /* extend the spine through gaps between entries */
-        .tl-entry + .tl-entry::before {
-            top: 0;
+        .card-vol { position: absolute; top: 24px; right: 24px; font-size: 0.58rem; letter-spacing: 2px; color: #ccc; font-weight: 700; }
+        .card-cat { font-size: 0.58rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 14px; display: block; }
+        .card-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--navy); font-weight: 400; line-height: 1.25; margin-bottom: 8px; flex: 1; }
+        .pub-card.flagship .card-title { font-size: 1.65rem; }
+        .card-sub { font-size: 0.65rem; letter-spacing: 1.5px; color: var(--muted); text-transform: uppercase; }
+        .card-foot { margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.62rem; letter-spacing: 2px; color: var(--gold); font-weight: 700; text-transform: uppercase; }
+
+        /* ══════════════════════════════
+           DETAIL VIEW
+        ══════════════════════════════ */
+        .back-btn {
+            background: none; border: none; cursor: pointer;
+            color: var(--gold); font-size: 0.68rem; letter-spacing: 2px;
+            text-transform: uppercase; font-weight: 700; font-family: 'Montserrat', sans-serif;
+            padding: 0; margin-bottom: 50px; display: inline-flex; align-items: center; gap: 8px;
         }
+        .back-btn:hover { text-decoration: underline; }
 
-        /* ── YEAR NODE (center column) ── */
-        .tl-year {
-            grid-column: 2;
+        .detail-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 70px; }
+
+        .overline { font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; display: block; margin-bottom: 18px; }
+
+        .detail-cat { font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 10px; display: block; }
+        .detail-title { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--navy); font-weight: 400; line-height: 1.15; margin-bottom: 28px; }
+        .detail-overview { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #444; line-height: 1.85; margin-bottom: 36px; font-weight: 400; }
+
+        .pull-quote { background: var(--cream); border-left: 3px solid var(--gold); padding: 36px 40px; margin-bottom: 36px; border-radius: 0; }
+        .pull-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; color: var(--navy); line-height: 1.4; margin: 0 0 14px; }
+        .pull-quote cite { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-style: normal; }
+
+        .theme-item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+        .t-dash { width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
+
+        /* Sidebar */
+        .sidebar-card { border: 1px solid var(--border); padding: 28px; margin-bottom: 22px; }
+        .tag-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+        .tag { font-size: 0.58rem; padding: 4px 9px; background: var(--cream); border: 1px solid #e0d8cc; letter-spacing: 1px; text-transform: uppercase; color: var(--navy); }
+        .s-author { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--navy); font-weight: 400; margin: 8px 0 4px; }
+        .s-title { font-size: 0.62rem; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+        .s-link { text-decoration: none; color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; }
+        .collab-card { background: var(--cream); border: none; }
+        .collab-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); font-weight: 400; margin-bottom: 8px; }
+        .collab-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+        .contact-link { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 18px; }
+        .contact-link::after { content: ""; width: 26px; height: 1px; background: var(--gold); }
+
+        /* Prev/Next nav */
+        .nav-footer { margin-top: 80px; display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 32px; }
+        .nav-btn { background: none; border: none; cursor: pointer; font-family: 'Montserrat', sans-serif; padding: 0; text-align: left; }
+        .nav-btn.right { text-align: right; }
+        .nav-label { font-size: 0.58rem; color: var(--gold); letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 8px; }
+        .nav-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); font-weight: 400; }
+
+        /* ══════════════════════════════
+           FLOATING MUSIC PLAYER
+        ══════════════════════════════ */
+        .music-player {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 999;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 36px 0;
-            position: relative;
-            z-index: 2;
-        }
-
-        .year-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: #ccc;
-            line-height: 1;
-            margin-bottom: 8px;
-            writing-mode: horizontal-tb;
-        }
-
-        .year-dot {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background: var(--gold);
-            flex-shrink: 0;
-        }
-
-        .year-dot.hollow {
-            background: #fff;
-            border: 2px solid var(--gold);
-        }
-
-        /* ── CARD ── */
-        .tl-card {
-            padding: 36px 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Left-side card: sits in column 1, right-aligned */
-        .tl-entry.left .tl-card {
-            grid-column: 1;
-            padding-right: 50px;
-            text-align: right;
-        }
-
-        /* Right-side card: sits in column 3 */
-        .tl-entry.right .tl-card {
-            grid-column: 3;
-            padding-left: 50px;
-            text-align: left;
-        }
-
-        /* Empty spacer for the opposite column */
-        .tl-spacer {
-            display: block;
-        }
-        .tl-entry.left .tl-spacer { grid-column: 3; }
-        .tl-entry.right .tl-spacer { grid-column: 1; }
-
-        .card-inner {
-            background: #fff;
-            border: 1px solid var(--border-light);
-            padding: 32px 36px;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            display: inline-block;
-            width: 100%;
-            text-align: left;
-        }
-
-        .card-inner:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.06);
-        }
-
-        /* Featured card: gold left border */
-        .card-inner.featured {
-            border-left: 3px solid var(--gold);
-        }
-
-        /* For left-side cards the gold accent should be on the right edge */
-        .tl-entry.left .card-inner.featured {
-            border-left: 1px solid var(--border-light);
-            border-right: 3px solid var(--gold);
-        }
-
-        .entry-label {
-            display: block;
-            font-size: 0.58rem;
-            letter-spacing: 2px;
-            color: var(--gold);
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .card-inner h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.35rem;
-            color: var(--navy);
-            font-weight: 400;
-            margin-bottom: 10px;
-            line-height: 1.3;
-        }
-
-        .card-inner p {
-            font-size: 0.84rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        /* ── CLOSING LINE ── */
-        .tl-end {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 20px;
+            align-items: flex-end;
             gap: 8px;
         }
-        .tl-end-line {
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, #e5ddd0, transparent);
+
+        .music-panel {
+            background: var(--navy);
+            color: #fff;
+            border-radius: 0;
+            padding: 16px 18px;
+            width: 260px;
+            display: none;
+            border-left: 3px solid var(--gold);
         }
-        .tl-end-label {
-            font-size: 0.6rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--gold);
-            font-weight: 700;
+        .music-panel.open { display: block; animation: slideUp .25s ease; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        .music-label { font-size: 0.55rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 6px; display: block; }
+        .music-track { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: #fff; margin-bottom: 14px; line-height: 1.3; }
+        .music-desc { font-size: 0.68rem; color: rgba(255,255,255,0.55); margin-bottom: 14px; line-height: 1.5; }
+
+        /* Progress bar */
+        .music-progress { width: 100%; height: 2px; background: rgba(255,255,255,0.15); margin-bottom: 14px; position: relative; cursor: pointer; }
+        .music-progress-fill { height: 100%; background: var(--gold); width: 0%; transition: width 1s linear; }
+
+        /* Track selector */
+        .track-list { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; margin-top: 4px; }
+        .track-item {
+            display: flex; align-items: center; gap: 8px;
+            padding: 6px 0; cursor: pointer; border-radius: 2px;
+            transition: background .15s;
         }
+        .track-item:hover { background: rgba(255,255,255,0.05); }
+        .track-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.25); flex-shrink: 0; transition: background .2s; }
+        .track-item.playing .track-dot { background: var(--gold); }
+        .track-name { font-size: 0.68rem; color: rgba(255,255,255,0.65); }
+        .track-item.playing .track-name { color: #fff; font-weight: 600; }
+
+        /* Controls */
+        .music-controls { display: flex; align-items: center; gap: 10px; }
+        .ctrl-btn {
+            background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.7);
+            font-size: 16px; padding: 4px; transition: color .2s; line-height: 1;
+        }
+        .ctrl-btn:hover { color: var(--gold); }
+        .ctrl-btn.play-pause { font-size: 18px; color: #fff; }
+        .music-vol { flex: 1; height: 2px; -webkit-appearance: none; background: rgba(255,255,255,0.15); cursor: pointer; border-radius: 1px; }
+        .music-vol::-webkit-slider-thumb { -webkit-appearance: none; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); cursor: pointer; }
+
+        /* Toggle button */
+        .music-toggle {
+            width: 48px; height: 48px;
+            background: var(--navy);
+            border: none; border-radius: 50%;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            transition: background .2s, transform .2s;
+            position: relative;
+        }
+        .music-toggle:hover { background: var(--gold); transform: scale(1.05); }
+        .music-toggle svg { width: 20px; height: 20px; }
+        .music-toggle .ripple {
+            position: absolute; inset: -3px;
+            border-radius: 50%; border: 1px solid var(--gold);
+            opacity: 0; animation: none;
+        }
+        .music-toggle.playing .ripple { animation: pulse 2s ease-out infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: .6; } 100% { transform: scale(1.4); opacity: 0; } }
+
+        /* Hidden YouTube iframe */
+        #ytFrame { display: none; }
 
         /* ── FOOTER ── */
-        .site-footer {
-            border-top: 1px solid var(--border-light);
-            padding: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.72rem;
-            color: var(--text-muted);
-        }
-        .footer-brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.9rem;
-            color: var(--navy);
-            letter-spacing: 0.5px;
-        }
+        .site-footer { border-top: 1px solid var(--border); padding: 36px 40px; display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; color: var(--muted); }
+        .footer-brand { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--navy); }
         .footer-brand span { color: var(--gold); font-style: italic; }
-        .footer-nav { display: flex; gap: 24px; }
-        .footer-nav a {
-            text-decoration: none;
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
+        .footer-nav a { margin-left: 20px; text-decoration: none; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
         .footer-nav a:hover { color: var(--gold); }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .site-nav { padding: 0 20px; }
             .nav-links { display: none; }
-            .page { padding: 50px 20px 80px; }
-            .tl-title { font-size: 2.5rem; }
-
-            /* Stack to single column on mobile */
-            .tl-entry {
-                grid-template-columns: 40px 1fr;
-            }
-            .tl-entry::before { left: 20px; }
-            .tl-year {
-                grid-column: 1;
-                padding: 20px 0;
-                align-items: center;
-            }
-            .year-number { display: none; }
-            .tl-entry.left .tl-card,
-            .tl-entry.right .tl-card {
-                grid-column: 2;
-                grid-row: 1;
-                padding-left: 20px;
-                padding-right: 0;
-                text-align: left;
-            }
-            .tl-spacer { display: none; }
-            .tl-entry.left .card-inner.featured {
-                border-left: 3px solid var(--gold);
-                border-right: 1px solid var(--border-light);
-            }
+            .wrapper { padding: 40px 20px 100px; }
+            .hub-title { font-size: 2.4rem; }
+            .hub-header { flex-direction: column; align-items: flex-start; }
+            .pub-grid { grid-template-columns: 1fr; }
+            .pub-card.flagship { grid-column: span 1; }
+            .detail-grid { grid-template-columns: 1fr; }
+            .detail-title { font-size: 1.8rem; }
+            .music-player { bottom: 16px; right: 16px; }
+            .music-panel { width: 240px; }
         }
     </style>
 </head>
@@ -330,181 +236,88 @@
     <a href="index.html" class="nav-brand">Aesthetics <span>of Society</span></a>
     <ul class="nav-links">
         <li><a href="about.html">About</a></li>
-        <li><a href="publications.html">Publications</a></li>
-        <li><a href="timeline.html" class="active">Timeline</a></li>
+        <li><a href="publications.html" class="active">Publications</a></li>
+        <li><a href="timeline.html">Timeline</a></li>
         <li><a href="media.html">Media</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="inquiry.html">Contact</a></li>
     </ul>
 </nav>
 
-<div class="page">
+<div class="wrapper">
 
-    <header class="tl-header">
-        <span class="tl-overline">Research Journey</span>
-        <h1 class="tl-title">Timeline of <em>Discovery</em></h1>
-    </header>
-
-    <div class="timeline">
-
-        <!-- 2010 -->
-        <div class="tl-entry left">
-            <div class="tl-spacer"></div>
-            <div class="tl-year">
-                <span class="year-number">2010</span>
-                <div class="year-dot"></div>
+    <!-- ══ HUB VIEW ══ -->
+    <div id="hubView">
+        <div class="hub-header">
+            <div>
+                <span class="hub-overline">Research Output</span>
+                <h1 class="hub-title">Publications &<br><span>Manuscripts</span></h1>
             </div>
-            <div class="tl-card">
-                <div class="card-inner featured">
-                    <span class="entry-label">Milestone</span>
-                    <h3>Research Begins</h3>
-                    <p>Commenced independent research into ancient Indian knowledge systems, focusing on the scientific foundations of Vedic traditions.</p>
-                </div>
-            </div>
+            <p class="hub-intro">Eight landmark works bridging ancient Vedic science with contemporary research disciplines.</p>
         </div>
 
-        <!-- 2012 -->
-        <div class="tl-entry right">
-            <div class="tl-spacer"></div>
-            <div class="tl-year">
-                <div class="year-dot hollow"></div>
-                <span class="year-number">2012</span>
+        <div class="pub-grid">
+            <div class="pub-card flagship" onclick="showDetail(0)">
+                <span class="card-vol">VOL. I</span>
+                <span class="card-cat">Consciousness Studies</span>
+                <div class="card-title">Complete Science of Consciousness</div>
+                <div class="card-sub">Ancient Knowledge vs Artificial Intelligence</div>
+                <div class="card-foot">Flagship Work · Read More →</div>
             </div>
-            <div class="tl-card">
-                <div class="card-inner">
-                    <h3>Sapta Swaras Study</h3>
-                    <p>Deep investigation into Carnatic music's seven sacred notes and their neurological effects on human consciousness and healing.</p>
-                </div>
+            <div class="pub-card" onclick="showDetail(1)">
+                <span class="card-cat">Reference Work</span>
+                <div class="card-title">Master Reference Compendium</div>
+                <div class="card-sub">Integrated Research Standards</div>
+                <div class="card-foot">Reference · Read More →</div>
             </div>
-        </div>
-
-        <!-- 2014 -->
-        <div class="tl-entry left">
-            <div class="tl-spacer"></div>
-            <div class="tl-year">
-                <span class="year-number">2014</span>
-                <div class="year-dot hollow"></div>
+            <div class="pub-card" onclick="showDetail(2)">
+                <span class="card-vol">03 / 08</span>
+                <span class="card-cat">Music Science</span>
+                <div class="card-title">Sapta Swaras & Healing</div>
+                <div class="card-sub">Treatise on Carnatic Music Science</div>
+                <div class="card-foot">Read More →</div>
             </div>
-            <div class="tl-card">
-                <div class="card-inner">
-                    <h3>108 Karanas Documentation</h3>
-                    <p>Systematic study of Bharatanatyam's 108 Karanas, establishing connections to astrophysics and medical science.</p>
-                </div>
+            <div class="pub-card" onclick="showDetail(3)">
+                <span class="card-vol">04 / 08</span>
+                <span class="card-cat">Classical Arts</span>
+                <div class="card-title">108 Karanas & Beeja Aksharas</div>
+                <div class="card-sub">Astrophysics & Medical Science Foundations</div>
+                <div class="card-foot">Read More →</div>
             </div>
-        </div>
-
-        <!-- 2016 -->
-        <div class="tl-entry right">
-            <div class="tl-spacer"></div>
-            <div class="tl-year">
-                <div class="year-dot"></div>
-                <span class="year-number">2016</span>
+            <div class="pub-card" onclick="showDetail(4)">
+                <span class="card-vol">05 / 08</span>
+                <span class="card-cat">Yoga & Neuroscience</span>
+                <div class="card-title">Yoga: The Eternal Science</div>
+                <div class="card-sub">Vedic Roots for Modern Neurology</div>
+                <div class="card-foot">Read More →</div>
             </div>
-            <div class="tl-card">
-                <div class="card-inner featured">
-                    <span class="entry-label">Milestone</span>
-                    <h3>Bio-acoustics Framework</h3>
-                    <p>Developed the bio-acoustic healing protocol linking Sanskrit phonetics to measurable physiological responses.</p>
-                </div>
+            <div class="pub-card" onclick="showDetail(5)">
+                <span class="card-vol">06 / 08</span>
+                <span class="card-cat">Sound Science</span>
+                <div class="card-title">Shabda Brahman</div>
+                <div class="card-sub">Sacred Science of Sound</div>
+                <div class="card-foot">Read More →</div>
             </div>
-        </div>
-
-        <!-- 2017 -->
-        <div class="tl-entry left">
-            <div class="tl-spacer"></div>
-            <div class="tl-year">
-                <span class="year-number">2017</span>
-                <div class="year-dot hollow"></div>
+            <div class="pub-card" onclick="showDetail(6)">
+                <span class="card-vol">07 / 08</span>
+                <span class="card-cat">Philosophy</span>
+                <div class="card-title">The Cosmic Choreography</div>
+                <div class="card-sub">Study of Shankaracharya's Metaphysics</div>
+                <div class="card-foot">Read More →</div>
             </div>
-            <div class="tl-card">
-                <div class="card-inner">
-                    <h3>Shabda Brahman Research</h3>
-                    <p>Explored the sacred science of sound — how primordial vibrations encoded in Sanskrit mantras interact with the nervous system.</p>
-                </div>
+            <div class="pub-card" onclick="showDetail(7)">
+                <span class="card-vol">08 / 08</span>
+                <span class="card-cat">Technology</span>
+                <div class="card-title">Sanskrit & AI</div>
+                <div class="card-sub">Neurological Healing & Programming</div>
+                <div class="card-foot">Read More →</div>
             </div>
         </div>
-
-        <!-- 2018 -->
-        <div class="tl-entry right">
-            <div class="tl-spacer"></div>
-            <div class="tl-year">
-                <div class="year-dot hollow"></div>
-                <span class="year-number">2018</span>
-            </div>
-            <div class="tl-card">
-                <div class="card-inner">
-                    <h3>Yoga & Neuroscience Integration</h3>
-                    <p>Published findings on Vedic yoga's neurological underpinnings, bridging ancient practice with modern brain science.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2019 -->
-        <div class="tl-entry left">
-            <div class="tl-spacer"></div>
-            <div class="tl-year">
-                <span class="year-number">2019</span>
-                <div class="year-dot"></div>
-            </div>
-            <div class="tl-card">
-                <div class="card-inner featured">
-                    <span class="entry-label">Milestone</span>
-                    <h3>Consciousness Science Synthesis</h3>
-                    <p>Began compiling the landmark work on consciousness — comparing ancient Vedic models with modern AI and cognitive science.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2021 -->
-        <div class="tl-entry right">
-            <div class="tl-spacer"></div>
-            <div class="tl-year">
-                <div class="year-dot hollow"></div>
-                <span class="year-number">2021</span>
-            </div>
-            <div class="tl-card">
-                <div class="card-inner">
-                    <h3>Sanskrit & AI Publication</h3>
-                    <p>Groundbreaking research connecting Sanskrit's grammatical precision to artificial intelligence programming paradigms.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2023 -->
-        <div class="tl-entry left">
-            <div class="tl-spacer"></div>
-            <div class="tl-year">
-                <span class="year-number">2023</span>
-                <div class="year-dot"></div>
-            </div>
-            <div class="tl-card">
-                <div class="card-inner featured">
-                    <span class="entry-label">Milestone</span>
-                    <h3>Master Reference Compendium</h3>
-                    <p>Completed the comprehensive reference work integrating all research streams into unified standards for ancient-modern synthesis.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2024 -->
-        <div class="tl-entry right">
-            <div class="tl-spacer"></div>
-            <div class="tl-year">
-                <div class="year-dot hollow"></div>
-                <span class="year-number">2024</span>
-            </div>
-            <div class="tl-card">
-                <div class="card-inner">
-                    <h3>Ongoing Clinical Studies</h3>
-                    <p>Seeking partners for clinical validation of bio-acoustic healing protocols and consciousness expansion methodologies.</p>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <div class="tl-end">
-        <div class="tl-end-line"></div>
-        <span class="tl-end-label">Ongoing</span>
+    <!-- ══ DETAIL VIEW ══ -->
+    <div id="detailView" class="hidden">
+        <button class="back-btn" onclick="showHub()">← Back to Publications</button>
+        <div id="detailContent"></div>
     </div>
 
 </div>
@@ -514,11 +327,304 @@
     <nav class="footer-nav">
         <a href="about.html">About</a>
         <a href="publications.html">Publications</a>
+        <a href="timeline.html">Timeline</a>
         <a href="media.html">Media</a>
-        <a href="contact.html">Contact</a>
+        <a href="inquiry.html">Contact</a>
     </nav>
-    <div style="font-size:0.6rem; letter-spacing:1px;">&copy; 2026 Naredla Rama Chandra</div>
+    <div style="font-size:0.6rem;letter-spacing:1px;">© 2026 Naredla Rama Chandra</div>
 </footer>
+
+<!-- ══ FLOATING MUSIC PLAYER ══ -->
+<div class="music-player" id="musicPlayer">
+
+    <div class="music-panel" id="musicPanel">
+        <span class="music-label">Now Playing — Carnatic Healing Ragas</span>
+        <div class="music-track" id="trackName">Sapta Swaras — Raga Bhairavi</div>
+        <div class="music-desc" id="trackDesc">Morning raga · Evokes compassion and inner peace</div>
+
+        <div class="music-progress" onclick="seekMusic(event)">
+            <div class="music-progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="music-controls">
+            <button class="ctrl-btn" onclick="prevTrack()" title="Previous">&#9664;&#9664;</button>
+            <button class="ctrl-btn play-pause" id="playPauseBtn" onclick="togglePlay()">&#9654;</button>
+            <button class="ctrl-btn" onclick="nextTrack()" title="Next">&#9654;&#9654;</button>
+            <input type="range" class="music-vol" id="volSlider" min="0" max="100" value="50" oninput="setVolume(this.value)">
+        </div>
+
+        <div class="track-list" id="trackList"></div>
+    </div>
+
+    <button class="music-toggle" id="musicToggle" onclick="togglePanel()" title="Carnatic Music Player">
+        <div class="ripple"></div>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c5a059" stroke-width="1.8" stroke-linecap="round">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+        </svg>
+    </button>
+</div>
+
+<!-- Hidden YouTube iFrame for audio -->
+<iframe id="ytFrame" width="1" height="1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<script>
+/* ══════════════════════════════════════════
+   ALL 8 VOLUMES — COMPLETE DATA
+══════════════════════════════════════════ */
+const volumes = [
+    {
+        title: "Complete Science of Consciousness",
+        cat: "Consciousness Studies · Vol. I · Flagship Work",
+        overview: "This landmark work presents a comprehensive framework comparing the ancient Vedic science of consciousness with modern artificial intelligence paradigms. Drawing from thousands of years of accumulated wisdom encoded in Sanskrit texts, the author demonstrates how ancient seers mapped the full spectrum of human consciousness with a precision that modern neuroscience is only beginning to approach. The work challenges the reductionist view of mind and offers a unified theory of consciousness rooted in Vedic epistemology.",
+        quote: "Ancient seers mapped the cosmos of consciousness with a precision that modern science is only now beginning to rediscover.",
+        themes: ["Vedic models of consciousness vs. computational models", "The role of Prana and Kundalini in neural activation", "Sanskrit as a programming language for the mind", "Comparison of AI neural networks with Vedic chakra systems", "Consciousness as the fundamental substrate of reality"],
+        tags: ["Consciousness Studies", "Artificial Intelligence", "Vedic Philosophy", "Neuroscience"]
+    },
+    {
+        title: "Master Reference Compendium",
+        cat: "Reference Work · Vol. II",
+        overview: "The definitive reference work synthesizing decades of cross-disciplinary research into a unified compendium. This volume establishes integrated standards for studying ancient Indian knowledge systems through the lens of modern science. It serves as the foundational reference for researchers, scholars, and practitioners seeking to bridge Vedic wisdom with contemporary scientific methodology, covering terminology, measurement frameworks, and research protocols.",
+        quote: "A bridge between the language of the ancients and the vocabulary of modern science.",
+        themes: ["Unified terminology for ancient-modern synthesis", "Research protocols for studying Vedic sciences", "Cross-referencing ancient texts with modern findings", "Measurement frameworks for subtle energy systems", "Standards for consciousness research"],
+        tags: ["Research Methodology", "Vedic Sciences", "Interdisciplinary Studies"]
+    },
+    {
+        title: "Sapta Swaras & Healing",
+        cat: "Music Science · 03 / 08",
+        overview: "An in-depth scientific treatise on the seven sacred notes of Carnatic music and their profound healing properties. This work reveals how the Sapta Swaras encode precise bio-acoustic frequencies that directly modulate the human nervous system. Each swara corresponds to a specific physiological and psychological state, functioning as a targeted therapeutic frequency with measurable neurological effects.",
+        quote: "Every note in Carnatic music is a key that unlocks a specific chamber of the human nervous system.",
+        themes: ["Seven Swaras and their physiological correlates", "Raga therapy and bio-acoustic healing", "Frequency mapping to brainwave states", "Carnatic music as neuro-modulation", "Tonal mathematics and harmonic healing"],
+        tags: ["Music Science", "Bio-Acoustics", "Neurology", "Healing"]
+    },
+    {
+        title: "108 Karanas & Beeja Aksharas",
+        cat: "Classical Arts · 04 / 08",
+        overview: "A rigorous multidisciplinary analysis of Bharatanatyam's 108 Karanas as a system of bio-mechanical engineering and neurological tuning. Each Karana functions as a dynamic posture that optimizes the human skeletal-muscular frame through precise geometric alignments. The number 108 itself is a cosmic constant, reflecting the distance ratios between the Earth, Sun, and Moon — each Karana designed to harmonize the practitioner's micro-cosmic energy with macro-cosmic celestial cycles.",
+        quote: "The 108 Karanas are a terrestrial mirror of celestial mechanics — the human body becomes a living antenna for higher consciousness.",
+        themes: ["Bio-mechanical engineering and structural resonance", "Neuroplasticity and hemispheric synchronization via cross-lateral movement", "BDNF release and cognitive longevity", "Cosmic ratio of 108 in Vedic astronomy", "Matrika Nyasa and phonetic energy activation"],
+        tags: ["Classical Arts", "Bio-Mechanics", "Astrophysics", "Medical Science"]
+    },
+    {
+        title: "Yoga: The Eternal Science",
+        cat: "Yoga & Neuroscience · 05 / 08",
+        overview: "This volume establishes the neurological underpinnings of Vedic yoga practices, demonstrating how ancient asana and pranayama systems encode precise protocols for autonomic nervous system regulation, endocrine optimization, and consciousness expansion. The work maps specific yoga postures to their neurological effects, validating 5,000-year-old practice frameworks through the lens of modern brain science and physiological research.",
+        quote: "Yoga is not a practice of the body alone — it is a complete operating system for human consciousness.",
+        themes: ["Vedic roots of modern neurological therapy", "Pranayama and autonomic nervous system regulation", "Asana as bio-mechanical healing protocols", "Yogic states and brainwave entrainment", "Kundalini and endocrine system activation"],
+        tags: ["Yoga", "Neuroscience", "Vedic Science", "Neuro-Vedic Synthesis"]
+    },
+    {
+        title: "Shabda Brahman",
+        cat: "Sound Science · 06 / 08",
+        overview: "An exploration of the sacred science of primordial sound, revealing how Sanskrit mantras and Vedic phonetics encode precise vibrational frequencies that interact directly with the human nervous system. Drawing from ancient Shastra and modern bio-acoustics, this work establishes sound as the most fundamental medium of both creation and healing — demonstrating that the universe itself is a sonic phenomenon.",
+        quote: "In the beginning was the Word — and that Word is a frequency the body already knows how to receive.",
+        themes: ["Primordial sound and cosmic vibration", "Sanskrit phonetics as bio-acoustic medicine", "Mantra and the autonomic nervous system", "Nada Brahman — the universe as sound", "Shabda and quantum field resonance"],
+        tags: ["Sound Science", "Sanskrit", "Bio-Acoustics", "Metaphysical Research"]
+    },
+    {
+        title: "The Cosmic Choreography",
+        cat: "Philosophy · 07 / 08",
+        overview: "A deep philosophical study of Shankaracharya's Advaita Vedanta metaphysics through the lens of modern cosmology and quantum physics. This work reveals how ancient non-dualist philosophy anticipates and surpasses contemporary theories of the unified field and quantum consciousness. The Cosmic Choreography demonstrates that the dance of Shiva is not mythology — it is an accurate description of quantum field dynamics.",
+        quote: "Advaita is not a philosophy of renunciation — it is a scientific map of the non-local nature of consciousness itself.",
+        themes: ["Advaita Vedanta and quantum non-locality", "Shankaracharya's metaphysics and unified field theory", "Maya, consciousness, and modern physics", "The cosmic dance of Shiva and quantum entropy", "Non-dualism as the foundation of all scientific inquiry"],
+        tags: ["Philosophy", "Vedanta", "Quantum Physics", "Cosmology"]
+    },
+    {
+        title: "Sanskrit & AI",
+        cat: "Technology · 08 / 08",
+        overview: "A groundbreaking exploration of how Sanskrit's unique grammatical precision and phonetic structure offer a natural framework for artificial intelligence systems. This work establishes the Paninian grammar — codified 2,500 years ago — as an anticipatory model for modern computational linguistics and neural network architecture. Sanskrit's context-free grammar and recursive rule structures mirror the mathematical foundations of contemporary AI.",
+        quote: "Panini's grammar is the world's first formal language specification — and it runs on consciousness, not silicon.",
+        themes: ["Paninian grammar as computational framework", "Sanskrit phonetics and neural network design principles", "Beeja Aksharas as machine learning primitives", "Sanskrit-Neural bridge for cognitive healing applications", "Ancient linguistic precision in modern AI architecture"],
+        tags: ["Technology", "Artificial Intelligence", "Sanskrit", "Computational Linguistics"]
+    }
+];
+
+/* ══════════════════════════════════════════
+   PUBLICATIONS LOGIC
+══════════════════════════════════════════ */
+function showDetail(idx) {
+    const v = volumes[idx];
+    const prev = (idx - 1 + volumes.length) % volumes.length;
+    const next = (idx + 1) % volumes.length;
+
+    document.getElementById('detailContent').innerHTML = `
+        <div class="detail-grid">
+            <main>
+                <span class="detail-cat">${v.cat}</span>
+                <h2 class="detail-title">${v.title}</h2>
+                <p class="detail-overview">${v.overview}</p>
+                <div class="pull-quote">
+                    <p>"${v.quote}"</p>
+                    <cite>— Naredla Rama Chandra</cite>
+                </div>
+                <span class="overline">Key Themes</span>
+                ${v.themes.map(t => `<div class="theme-item"><div class="t-dash"></div>${t}</div>`).join('')}
+            </main>
+            <aside>
+                <div class="sidebar-card">
+                    <span class="overline">Research Areas</span>
+                    <div class="tag-wrap">${v.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+                </div>
+                <div class="sidebar-card">
+                    <span class="overline">Author</span>
+                    <div class="s-author">Naredla Rama Chandra</div>
+                    <div class="s-title">Independent Researcher & Author</div>
+                    <hr style="opacity:.15; margin-bottom:14px;">
+                    <a href="about.html" class="s-link">View Profile →</a>
+                </div>
+                <div class="sidebar-card collab-card">
+                    <h3>Interested in collaboration?</h3>
+                    <p>Reach out to discuss research partnerships and academic inquiries.</p>
+                    <a href="inquiry.html" class="contact-link">Get in Touch</a>
+                </div>
+            </aside>
+        </div>
+        <div class="nav-footer">
+            <button class="nav-btn" onclick="showDetail(${prev})">
+                <span class="nav-label">← Previous</span>
+                <div class="nav-title">${volumes[prev].title}</div>
+            </button>
+            <button class="nav-btn right" onclick="showDetail(${next})">
+                <span class="nav-label">Next →</span>
+                <div class="nav-title">${volumes[next].title}</div>
+            </button>
+        </div>`;
+
+    document.getElementById('hubView').classList.add('hidden');
+    document.getElementById('detailView').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showHub() {
+    document.getElementById('hubView').classList.remove('hidden');
+    document.getElementById('detailView').classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ══════════════════════════════════════════
+   MUSIC PLAYER
+══════════════════════════════════════════ */
+const tracks = [
+    { name: "Sapta Swaras — Raga Bhairavi",    desc: "Morning raga · Evokes compassion and inner peace",        ytId: "DcNa4N5dD-A" },
+    { name: "Bio-Acoustic Foundations",          desc: "Healing frequencies in classical Indian structures",       ytId: "0khYFMffpCU" },
+    { name: "Thesis Introduction",               desc: "Exploring Vedic knowledge and modern neuroscience",        ytId: "eLjirbtcJFo" },
+    { name: "Master Consciousness Protocol",     desc: "Core research thesis and foundational findings",           ytId: "NBrVKBYQd_M" },
+    { name: "Neuro-Linguistic Structures",       desc: "Phonetic patterns and their impact on brain activity",     ytId: "-tI6ofhU04w" },
+    { name: "The 108 Karanas",                   desc: "Kinetic movements of the Natya Shastra — deep dive",      ytId: "v-lZl0XnW8g" },
+    { name: "Mechanics of Ancient Ritual",       desc: "Physical & mental correlations in traditional systems",    ytId: "etMW6ehC5pI" },
+    { name: "Synthesis & Future Vision",         desc: "Roadmap for the Digital Research Archive",                 ytId: "5EIxfn_5Gyk" }
+];
+
+let currentTrack = 0;
+let isPlaying = false;
+let panelOpen = false;
+let progressInterval = null;
+let progressVal = 0;
+
+function buildTrackList() {
+    const list = document.getElementById('trackList');
+    list.innerHTML = tracks.map((t, i) => `
+        <div class="track-item ${i === currentTrack ? 'playing' : ''}" onclick="selectTrack(${i})">
+            <div class="track-dot"></div>
+            <span class="track-name">${t.name}</span>
+        </div>`).join('');
+}
+
+function updateUI() {
+    document.getElementById('trackName').textContent = tracks[currentTrack].name;
+    document.getElementById('trackDesc').textContent = tracks[currentTrack].desc;
+    document.getElementById('playPauseBtn').innerHTML = isPlaying ? '&#9646;&#9646;' : '&#9654;';
+    document.getElementById('musicToggle').classList.toggle('playing', isPlaying);
+
+    // Update track list highlights
+    document.querySelectorAll('.track-item').forEach((el, i) => {
+        el.classList.toggle('playing', i === currentTrack);
+    });
+}
+
+function loadTrack(idx, autoplay) {
+    currentTrack = idx;
+    progressVal = 0;
+    document.getElementById('progressFill').style.width = '0%';
+    clearInterval(progressInterval);
+
+    const vol = document.getElementById('volSlider').value;
+    const frame = document.getElementById('ytFrame');
+    const play = autoplay ? 1 : 0;
+    frame.src = `https://www.youtube.com/embed/${tracks[idx].ytId}?autoplay=${play}&loop=1&playlist=${tracks[idx].ytId}&controls=0&volume=${vol / 100}`;
+
+    isPlaying = autoplay;
+
+    if (autoplay) {
+        startProgress();
+    }
+    updateUI();
+}
+
+function startProgress() {
+    clearInterval(progressInterval);
+    progressInterval = setInterval(() => {
+        progressVal = (progressVal + 0.05) % 100;
+        document.getElementById('progressFill').style.width = progressVal + '%';
+    }, 300);
+}
+
+function togglePlay() {
+    if (isPlaying) {
+        // Pause — reload without autoplay
+        const frame = document.getElementById('ytFrame');
+        frame.src = '';
+        clearInterval(progressInterval);
+        isPlaying = false;
+    } else {
+        loadTrack(currentTrack, true);
+    }
+    updateUI();
+}
+
+function prevTrack() {
+    loadTrack((currentTrack - 1 + tracks.length) % tracks.length, isPlaying);
+}
+
+function nextTrack() {
+    loadTrack((currentTrack + 1) % tracks.length, isPlaying);
+}
+
+function selectTrack(idx) {
+    loadTrack(idx, true);
+}
+
+function setVolume(val) {
+    // Reload with new volume if playing
+    if (isPlaying) {
+        const frame = document.getElementById('ytFrame');
+        frame.src = `https://www.youtube.com/embed/${tracks[currentTrack].ytId}?autoplay=1&loop=1&playlist=${tracks[currentTrack].ytId}&controls=0&volume=${val / 100}`;
+    }
+}
+
+function seekMusic(e) {
+    const bar = e.currentTarget;
+    const pct = (e.offsetX / bar.offsetWidth) * 100;
+    progressVal = pct;
+    document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function togglePanel() {
+    panelOpen = !panelOpen;
+    const panel = document.getElementById('musicPanel');
+    if (panelOpen) {
+        panel.classList.add('open');
+        buildTrackList();
+    } else {
+        panel.classList.remove('open');
+    }
+}
+
+// Init
+buildTrackList();
+updateUI();
+</script>
 
 </body>
 </html>
