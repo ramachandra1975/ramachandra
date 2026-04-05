@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetics of Society | Research Hub</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* All CSS consolidated into one block */
+        :root {
+            --primary-blue: #1a365d;
+            --gold-accent: #c5a059;
+            --bg-cream: #fdfaf5;
+            --bg-overlay: rgba(255, 253, 248, 0.82);
+            --card-shadow: 0 10px 40px rgba(0,0,0,0.04);
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed; top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: rgba(255, 255, 255, 0.98);
+            z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-sizing: border-box;
+        }
+
+        nav a { text-decoration: none; color: var(--primary-blue); font-size: 0.8rem; font-weight: bold; margin-left: 20px; }
+        section { padding: 100px 10%; position: relative; min-height: 80vh; }
+
+        .hero-section {
+            height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('background.png') no-repeat center/cover;
+        }
+
+        .publications-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px;
+        }
+
+        .pub-card {
+            background: #fff; border: 1px solid #f2f2f2; padding: 40px;
+            transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between;
+        }
+
+        .playfair { font-family: 'Playfair Display', serif; }
+        .gold { color: var(--gold-accent); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="playfair" style="font-weight: bold; color: var(--primary-blue);">AESTHETICS OF SOCIETY</div>
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#volumes">RESEARCH VOLUMES</a>
+            <a href="#consortium">CONSORTIUM</a>
+            <a href="#about">ABOUT</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div>
+            <h1 class="playfair" style="font-size: 5rem; color: var(--primary-blue); margin: 0;">Aesthetics</h1>
+            <h1 class="playfair" style="font-size: 6rem; color: var(--gold-accent); font-style: italic; margin-top: -20px;">of Society</h1>
+            <p style="letter-spacing: 2px; text-transform: uppercase; font-weight: 600;">Bridging Ancient Indian Systems with Modern Neuroscience</p>
+        </div>
+    </section>
+
+    <section id="volumes">
+        <h2 class="playfair" style="font-size: 3rem; color: var(--primary-blue); margin-bottom: 40px;">The 9-Volume Series</h2>
+        <div class="publications-grid">
+            <div class="pub-card">
+                <div>
+                    <span class="gold" style="font-size: 0.7rem; font-weight: bold;">VOL. I</span>
+                    <h3 class="playfair">Complete Science of Consciousness</h3>
+                    <p style="font-size: 0.9rem; color: #666;">A framework comparing Vedic science with modern AI.</p>
+                </div>
+                <a href="#" class="gold" style="text-decoration: none; font-weight: bold; margin-top: 20px;">OVERVIEW &rarr;</a>
+            </div>
+            <div class="pub-card">
+                <div>
+                    <span class="gold" style="font-size: 0.7rem; font-weight: bold;">VOL. II</span>
+                    <h3 class="playfair">Sapta Swaras & Healing</h3>
+                    <p style="font-size: 0.9rem; color: #666;">Bio-acoustic impact of classical music on the nervous system.</p>
+                </div>
+                <a href="#" class="gold" style="text-decoration: none; font-weight: bold; margin-top: 20px;">OVERVIEW &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="consortium" style="background: var(--primary-blue); color: white; text-align: center;">
+        <h2 class="playfair" style="font-size: 3rem;">Scholarly Consortium</h2>
+        <p class="gold" style="letter-spacing: 2px;">ANCHORING ANCIENT WISDOM IN EMPIRICAL SCIENCE</p>
+    </section>
+
+</body>
+</html>
