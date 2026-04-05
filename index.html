@@ -6,6 +6,7 @@ HTML
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aesthetics of Society</title>
     <style>
+        /* RESET & BASE */
         body, html {
             margin: 0;
             padding: 0;
@@ -15,8 +16,8 @@ HTML
             background-color: #fdfbf7;
         }
 
-        /* 1. MAIN HERO & BACKGROUND */
-        .hero-section {
+        /* 1. BACKGROUND & MASKING */
+        .hero-container {
             position: relative;
             width: 100%;
             height: 100vh;
@@ -28,8 +29,8 @@ HTML
             overflow: hidden;
         }
 
-        /* The Mask: Softens background.png for better text contrast */
-        .hero-section::before {
+        /* The Mask: Softening background.png for contrast */
+        .hero-container::before {
             content: "";
             position: absolute;
             top: 0;
@@ -46,13 +47,13 @@ HTML
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 350px; /* Adjust size as needed */
-            opacity: 0.12; /* Controls the subtlety of the watermark */
+            width: 350px;
+            opacity: 0.15; /* Subtle but visible */
             z-index: 2;
             pointer-events: none;
         }
 
-        /* 3. HEADER: LOGO & BRANDING */
+        /* 3. HEADER: LOGO & BRANDING (Top Left) */
         header {
             position: absolute;
             top: 0;
@@ -65,42 +66,42 @@ HTML
             z-index: 100;
         }
 
-        .branding {
+        .branding-left {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .logo-top-left {
+        .logo-small {
             width: 50px;
             height: auto;
             display: block;
         }
 
-        .branding-text h1 {
+        .brand-text h1 {
             font-size: 1.1rem;
             margin: 0;
             letter-spacing: 2px;
-            color: #1a365d;
+            color: #0d1b2e; /* DARKER NAVY */
             text-transform: uppercase;
         }
 
-        .branding-text p {
+        .brand-text p {
             margin: 0;
-            font-size: 0.8rem;
-            color: #c5a059;
+            font-size: 0.85rem;
+            color: #9e7d3a; /* DARKER GOLD */
         }
 
-        .navigation a {
+        .nav-links a {
             text-decoration: none;
-            color: #1a365d;
+            color: #0d1b2e; /* DARKER NAVY */
             margin-left: 20px;
             font-size: 0.75rem;
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        /* 4. MAIN CONTENT */
+        /* 4. MAIN CONTENT (Center) */
         .main-content {
             position: relative;
             z-index: 10;
@@ -114,21 +115,21 @@ HTML
             margin: 0;
         }
 
-        .navy { color: #1a365d; }
-        .gold { color: #c5a059; font-style: italic; }
+        .navy { color: #0d1b2e; } /* DARKER NAVY */
+        .gold { color: #9e7d3a; font-style: italic; } /* DARKER GOLD */
 
-        .mission-line {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #1a365d;
+        .mission-text {
+            font-size: 0.95rem;
+            font-weight: 900; /* BOLDER */
+            color: #0d1b2e;
             text-transform: uppercase;
             margin-top: 30px;
             line-height: 1.5;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
-        /* 5. CTA BUTTONS */
-        .btn-group {
+        /* 5. BUTTONS */
+        .btn-wrap {
             margin-top: 40px;
             display: flex;
             justify-content: center;
@@ -142,25 +143,27 @@ HTML
             text-transform: uppercase;
         }
 
-        .btn-primary { background: #1a365d; color: white; }
-        .btn-secondary { background: #e6e1d7; color: #333; border: 1px solid #ccc; }
+        .btn-navy { background: #0d1b2e; color: white; }
+        .btn-author { background: #e0d9cf; color: #111; border: 1px solid #bbb; }
+
+        /* RECTIFICATION: Sidebars (Vedic/Karanas) completely removed */
     </style>
 </head>
 <body>
 
-    <section class="hero-section">
-        <!-- Logo as Watermark -->
+    <section class="hero-container">
+        <!-- Logo Watermark -->
         <img src="logo.jpg" class="logo-watermark" alt="">
 
         <header>
-            <div class="branding">
-                <img src="logo.jpg" class="logo-top-left" alt="Aesthetics of Society Logo">
-                <div class="branding-text">
+            <div class="branding-left">
+                <img src="logo.jpg" class="logo-small" alt="Logo">
+                <div class="brand-text">
                     <h1>Aesthetics of Society</h1>
                     <p>culturalmusings.com</p>
                 </div>
             </div>
-            <div class="navigation">
+            <div class="nav-links">
                 <a href="#">About</a>
                 <a href="#">Publications</a>
                 <a href="#">Timeline</a>
@@ -170,21 +173,23 @@ HTML
         </header>
 
         <div class="main-content">
-            <p style="letter-spacing: 4px; color: #c5a059; text-transform: uppercase; margin-bottom: 5px;">Independent Researcher & Author</p>
+            <p style="letter-spacing: 4px; color: #9e7d3a; font-weight: bold; text-transform: uppercase; margin-bottom: 5px;">
+                Independent Researcher & Author
+            </p>
             
             <h1 class="main-title">
                 <span class="navy">Aesthetics</span><br>
                 <span class="gold">of Society</span>
             </h1>
 
-            <div class="mission-line">
+            <div class="mission-text">
                 Bridging Ancient Indian Systems with Modern<br>
                 Neuroscience & Bio-Acoustics
             </div>
 
-            <div class="btn-group">
-                <a href="#" class="btn btn-primary">Explore Publications</a>
-                <a href="#" class="btn btn-secondary">About the Author</a>
+            <div class="btn-wrap">
+                <a href="#" class="btn btn-navy">Explore Publications</a>
+                <a href="#" class="btn btn-author">About the Author</a>
             </div>
         </div>
     </section>
