@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
             overflow: hidden;
         }
 
-        /* 1. MAIN BACKGROUND & FADE MASK */
+        /* 1. BACKGROUND & FADE MASK */
         .hero {
             position: relative;
             width: 100%;
@@ -27,7 +28,6 @@
             justify-content: center;
         }
 
-        /* The Mask: Softens the background script */
         .hero::before {
             content: "";
             position: absolute;
@@ -36,42 +36,21 @@
             z-index: 1;
         }
 
-        /* 2. THE SIDEBARS - RE-ADDED & FIXED */
-        .sidebar {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            width: 15%; /* Fixed width to prevent crashing into center */
-            z-index: 5;
-            opacity: 0.6; /* Faded so they don't distract */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .sidebar-left { left: 0; }
-        .sidebar-right { right: 0; }
-
-        .sidebar img {
-            height: 80%; /* Vertical alignment */
-            width: auto;
-            object-fit: contain;
-        }
-
-        /* 3. LOGO WATERMARK (logo.jpg) */
-        .logo-watermark {
+        /* 2. THE WATERMARK - REMOVING THE JPG WHITE BOX */
+        .watermark {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 320px;
-            opacity: 0.12;
+            width: 350px;
+            opacity: 0.15; 
             z-index: 2;
-            mix-blend-mode: multiply;
+            /* CRITICAL: This removes the white square box around the logo.jpg */
+            mix-blend-mode: multiply; 
             pointer-events: none;
         }
 
-        /* 4. HEADER: TOP-LEFT LOGO & BRANDING */
+        /* 3. HEADER & TOP LEFT LOGO */
         header {
             position: absolute;
             top: 0;
@@ -93,20 +72,23 @@
         .logo-top {
             width: 50px;
             height: auto;
+            /* Removes the white box from the small logo too */
+            mix-blend-mode: multiply; 
         }
 
         .brand-text h1 {
             font-size: 1.15rem;
             margin: 0;
             letter-spacing: 2px;
-            color: #0d1b2e; /* Darker Navy */
+            color: #0d1b2e;
             text-transform: uppercase;
         }
 
         .brand-text p {
             margin: 0;
             font-size: 0.85rem;
-            color: #9e7d3a; /* Darker Gold */
+            color: #9e7d3a;
+            font-weight: bold;
         }
 
         nav a {
@@ -118,12 +100,12 @@
             text-transform: uppercase;
         }
 
-        /* 5. MAIN CONTENT (CENTERED) */
+        /* 4. MAIN CONTENT - FIXED SPACING */
         .content {
             position: relative;
-            z-index: 20; /* Sits above sidebars */
+            z-index: 20;
             text-align: center;
-            width: 50%; /* Constrained to the center */
+            width: 100%;
         }
 
         .tagline {
@@ -132,11 +114,11 @@
             color: #9e7d3a;
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 25px; /* Added more space to stop overlap */
         }
 
         .main-title {
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-size: clamp(3.5rem, 8vw, 5.5rem);
             line-height: 0.95;
             margin: 0;
         }
@@ -149,14 +131,14 @@
             font-weight: 900;
             color: #0d1b2e;
             text-transform: uppercase;
-            margin-top: 35px;
+            margin-top: 40px;
             letter-spacing: 1.5px;
             line-height: 1.6;
         }
 
-        /* 6. BUTTONS */
+        /* 5. BUTTONS */
         .btn-container {
-            margin-top: 45px;
+            margin-top: 50px;
             display: flex;
             justify-content: center;
         }
@@ -176,20 +158,11 @@
 <body>
 
     <section class="hero">
-        <!-- Center Watermark -->
-        <img src="logo.jpg" class="logo-watermark">
-
-        <!-- Sidebars -->
-        <div class="sidebar sidebar-left">
-            <img src="vedic.png" alt="Vedic Manuscript">
-        </div>
-        <div class="sidebar sidebar-right">
-            <img src="karanas.png" alt="Karanas Pose">
-        </div>
+        <img src="logo.jpg" class="watermark" alt="">
 
         <header>
             <div class="branding-left">
-                <img src="logo.jpg" class="logo-top">
+                <img src="logo.jpg" class="logo-top" alt="">
                 <div class="brand-text">
                     <h1>Aesthetics of Society</h1>
                     <p>culturalmusings.com</p>
