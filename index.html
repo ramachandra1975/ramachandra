@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Independent Researcher</title>
+    <title>Aesthetics of Society</title>
     <style>
         body, html {
             margin: 0;
@@ -27,7 +27,6 @@
             justify-content: center;
         }
 
-        /* Subtle warm tint to the whole screen */
         .hero::before {
             content: "";
             position: absolute;
@@ -36,49 +35,58 @@
             z-index: 1;
         }
 
-        /* 2. THE LOGO WATERMARK - LIGHT & ETCHED */
-        .central-watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 220px; /* Even smaller size */
-            opacity: 0.4; /* Higher opacity so it's visible */
-            z-index: 2;
-            /* Screen/Overlay makes it look like a light watermark on the sky */
-            mix-blend-mode: soft-light; 
-            filter: grayscale(100%) brightness(1.2);
-            pointer-events: none;
-        }
-
-        /* 3. NAVIGATION */
+        /* 2. TOP LEFT BRANDING & INCREASED LOGO */
         header {
             position: absolute;
             top: 0; width: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 12px 35px;
+            align-items: center;
+            padding: 35px 60px; /* Generous padding for the larger logo */
             box-sizing: border-box;
             z-index: 100;
         }
 
+        .branding-left {
+            display: flex;
+            align-items: center;
+            gap: 25px; /* More space between logo and text */
+        }
+
+        /* LOGO INCREASED TO 125PX - WATERMARKED */
         .nav-logo {
-            width: 25px;
-            mix-blend-mode: multiply;
-            opacity: 0.5;
+            width: 125px; 
+            opacity: 0.65; 
+            mix-blend-mode: multiply; /* Removes white box from logo.jpg */
+            filter: grayscale(10%);
+        }
+
+        .brand-text h1 {
+            font-size: 1.4rem; /* Scaled up to match logo */
+            margin: 0;
+            letter-spacing: 2px;
+            color: #0d1b2e;
+            text-transform: uppercase;
+        }
+
+        .brand-text p {
+            margin: 0;
+            font-size: 0.9rem; /* Scaled up URL */
+            color: #a68b4c; 
+            font-weight: bold;
+            letter-spacing: 1.5px;
         }
 
         nav a {
             text-decoration: none;
             color: #0d1b2e;
-            margin-left: 12px;
-            font-size: 0.6rem;
+            margin-left: 25px;
+            font-size: 0.75rem;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* 4. TEXT WATERMARK - LIGHT COLOURS BUT VISIBLE */
+        /* 3. CENTRAL CONTENT */
         .content {
             position: relative;
             z-index: 10;
@@ -86,58 +94,46 @@
         }
 
         .tagline-watermark {
-            font-size: 0.75rem;
-            letter-spacing: 4px;
+            font-size: 0.95rem;
+            letter-spacing: 5px;
             font-weight: bold;
             text-transform: uppercase;
-            /* Using a light sand/gold color */
             color: #c5a66d; 
-            opacity: 0.9;
-            text-shadow: 0px 1px 2px rgba(255,255,255,0.5); /* Subtle lift for visibility */
-            margin-bottom: 8px;
+            opacity: 0.8;
+            margin-bottom: 15px;
         }
 
         .mission-watermark {
-            font-size: 0.95rem;
+            font-size: 1.2rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
-            line-height: 1.4;
-            /* Using a muted slate blue (light navy) */
-            color: #5c6d85;
-            opacity: 0.85;
-            margin-top: 12px;
+            line-height: 1.6;
+            color: #5c6d85; 
+            opacity: 0.8;
+            margin-top: 20px;
         }
 
-        /* 5. TINY RADIO BUTTONS */
+        /* 4. RADIO PILL BUTTONS (STILL COMPACT) */
         .btn-container {
-            margin-top: 30px;
+            margin-top: 40px;
             display: flex;
             justify-content: center;
-            gap: 6px;
+            gap: 12px;
         }
 
         .btn {
-            padding: 5px 15px; /* Extremely compact */
+            padding: 8px 22px;
             text-decoration: none;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             font-weight: bold;
             text-transform: uppercase;
-            border-radius: 30px; /* Full radio pill shape */
-            transition: 0.3s;
+            border-radius: 40px;
+            border: 1px solid #0d1b2e;
         }
 
-        .btn-navy { 
-            background: #0d1b2e; 
-            color: #fff; 
-            border: 1px solid #0d1b2e;
-        }
-        
-        .btn-outline { 
-            background: transparent; 
-            color: #0d1b2e; 
-            border: 1px solid #0d1b2e;
-        }
+        .btn-navy { background: #0d1b2e; color: #fff; }
+        .btn-outline { background: transparent; color: #0d1b2e; }
 
     </style>
 </head>
@@ -145,11 +141,17 @@
 
     <section class="hero">
         
-        <!-- Light Logo Watermark -->
-        <img src="logo.jpg" class="central-watermark" alt="">
-
         <header>
-            <img src="logo.jpg" class="nav-logo" alt="">
+            <div class="branding-left">
+                <!-- Watermarked Logo (125px) -->
+                <img src="logo.jpg" class="nav-logo" alt="Logo">
+                
+                <div class="brand-text">
+                    <h1>Aesthetics of Society</h1>
+                    <p>culturalmusings.com</p>
+                </div>
+            </div>
+            
             <nav>
                 <a href="#">About</a>
                 <a href="#">Publications</a>
@@ -160,7 +162,6 @@
         </header>
 
         <div class="content">
-            <!-- Light but Visible Text Watermarks -->
             <div class="tagline-watermark">
                 Independent Researcher & Author
             </div>
@@ -170,7 +171,6 @@
                 Neuroscience & Bio-Acoustics
             </div>
 
-            <!-- Tiny Radio Pill Buttons -->
             <div class="btn-container">
                 <a href="#" class="btn btn-navy">Publications</a>
                 <a href="#" class="btn btn-outline">The Author</a>
