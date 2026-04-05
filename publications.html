@@ -2,106 +2,130 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Publications | Aesthetics of Society</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Publications | 9-Volume Series | Naredla Rama Chandra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --navy: #1a365d; --gold: #c5a059; }
-        body { margin: 0; font-family: 'Montserrat'; background: white; color: var(--navy); }
+        :root { --navy: #1a365d; --gold: #c5a059; --light-gray: #f9f9f9; }
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #fff; color: var(--navy); }
         
-        header { 
-            padding: 30px 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 1px solid #f0f0f0;
-            position: sticky;
-            top: 0;
-            background: white;
-            z-index: 100;
-        }
-        
-        .logo-nav { height: 45px; }
-        
-        .page-title { padding: 60px 5% 20px 5%; text-align: center; }
-        .page-title h1 { font-family: 'Playfair Display'; font-size: 3.5rem; margin: 0; }
-        .page-title p { color: var(--gold); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-top: 10px; }
+        header { padding: 25px 5%; display: flex; justify-content: space-between; align-items: center; background: #fff; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+        .logo-img { height: 45px; }
 
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-            gap: 30px; 
-            padding: 40px 5% 100px 5%; 
-        }
+        .intro { padding: 80px 10% 40px 10%; text-align: center; background: var(--light-gray); }
+        .intro h1 { font-family: 'Playfair Display'; font-size: 3.5rem; margin-bottom: 10px; }
+        .intro p { color: var(--gold); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
 
-        .pub-card { 
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 40px; padding: 60px 5%; }
+        
+        .card { 
+            background: #fff; 
             border: 1px solid #eee; 
             padding: 40px; 
-            position: relative; 
             transition: 0.4s; 
-            background: #fafafa;
+            display: flex; 
+            flex-direction: column;
+            border-bottom: 5px solid var(--navy);
         }
+        .card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
         
-        .pub-card:hover { 
-            border-color: var(--gold); 
-            transform: translateY(-5px); 
-            background: #fff;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-        }
-
-        .pub-card span { 
-            font-size: 0.75rem; 
-            color: var(--gold); 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-        }
-
-        .pub-card h3 { 
-            font-family: 'Playfair Display'; 
-            font-size: 1.5rem; 
-            margin: 15px 0; 
-            line-height: 1.3;
-        }
-
-        .pub-card p { 
-            font-size: 0.95rem; 
-            color: #555; 
-            line-height: 1.6; 
-            margin-bottom: 0;
-        }
-
-        .back-link { text-decoration: none; color: var(--navy); font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; }
-        .back-link:hover { color: var(--gold); }
+        .vol-tag { font-weight: 700; color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; }
+        .card h3 { font-family: 'Playfair Display'; font-size: 1.8rem; margin: 15px 0; line-height: 1.2; }
+        .abstract-title { font-weight: 700; font-size: 0.7rem; text-transform: uppercase; margin-top: 20px; color: #888; letter-spacing: 1px; }
+        .card p { font-size: 0.95rem; line-height: 1.7; color: #444; margin-top: 10px; }
+        
+        .footer-note { text-align: center; padding: 60px; font-style: italic; color: #888; }
+        .back-home { text-decoration: none; color: var(--navy); font-weight: 700; border-bottom: 2px solid var(--gold); padding-bottom: 5px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="logo.png" alt="Aesthetics of Society Logo" class="logo-nav">
-        <nav><a href="index.html" class="back-link">BACK TO HOME</a></nav>
-    </header>
+<header>
+    <img src="logo.png" alt="Aesthetics of Society" class="logo-img">
+    <nav><a href="index.html" class="back-home">BACK TO PORTFOLIO</a></nav>
+</header>
 
-    <div class="page-title">
-        <h1>Academic Works</h1>
-        <p>The 9-Volume Research Series</p>
+<section class="intro">
+    <h1>The Master Research Series</h1>
+    <p>9 Volumes of Integrated Indological Science</p>
+</section>
+
+<div class="grid">
+    <!-- Vol 1 -->
+    <div class="card">
+        <span class="vol-tag">VOLUME 01</span>
+        <h3>Complete Science of Consciousness</h3>
+        <span class="abstract-title">Technical Abstract</span>
+        <p>A flagship 300-page academic work comparing ancient Vedic cognitive models with modern AI neural networks and computational logic.</p>
     </div>
 
-    <div class="grid">
-        <!-- VOL 1-3 -->
-        <div class="pub-card"><span>Vol 01</span><h3>Master Consciousness Protocol</h3><p>The foundational 300-page academic thesis for consciousness researchers.</p></div>
-        <div class="pub-card"><span>Vol 02</span><h3>Healing Science of Carnatic Music</h3><p>Detailed analysis of frequency mapping and biological resonance in classical ragas.</p></div>
-        <div class="pub-card"><span>Vol 03</span><h3>Cosmic Vak</h3><p>The metaphysical journey of language, vibration, and the primordial sound.</p></div>
-
-        <!-- VOL 4-6 -->
-        <div class="pub-card"><span>Vol 04</span><h3>Sampoorna Manovijnana</h3><p>A comprehensive study of Indian psychology and the science of the inner self.</p></div>
-        <div class="pub-card"><span>Vol 05</span><h3>108 Karanas: Neuro-Aesthetics</h3><p>Mapping the 108 movement patterns of Natya Shastra to neural motor coordination.</p></div>
-        <div class="pub-card"><span>Vol 06</span><h3>Rhythmic Bio-Acoustics</h3><p>Examining how Tala (rhythm) influences heart-rate variability and cellular cycles.</p></div>
-
-        <!-- VOL 7-9 -->
-        <div class="pub-card"><span>Vol 07</span><h3>Vedic Astrophysics</h3><p>Exploring celestial mechanics and cosmological time as described in Vedic literature.</p></div>
-        <div class="pub-card"><span>Vol 08</span><h3>The Aesthetics of Society</h3><p>The philosophical namesake of this hub, analyzing cultural architecture and social well-being.</p></div>
-        <div class="pub-card"><span>Vol 09</span><h3>The Guru's Clan</h3><p>A biographical and historical documentation of the lineage and oral traditions of my Gurus.</p></div>
+    <!-- Vol 2 -->
+    <div class="card">
+        <span class="vol-tag">VOLUME 02</span>
+        <h3>Master Reference Compendium</h3>
+        <span class="abstract-title">Technical Abstract</span>
+        <p>The core procedural framework establishing integrated research standards for decoding Shastra through empirical scientific lenses.</p>
     </div>
+
+    <!-- Vol 3 -->
+    <div class="card">
+        <span class="vol-tag">VOLUME 03</span>
+        <h3>Sapta Swaras & Healing</h3>
+        <span class="abstract-title">Technical Abstract</span>
+        <p>An in-depth treatise on Carnatic bio-acoustics, analyzing the frequency triggers of the seven notes on human neurological health.</p>
+    </div>
+
+    <!-- Vol 4 -->
+    <div class="card">
+        <span class="vol-tag">VOLUME 04</span>
+        <h3>108 Karanas & Beeja Aksharas</h3>
+        <span class="abstract-title">Technical Abstract</span>
+        <p>Exploring the intersection of Natya Shastra kinetic patterns with Vedic astrophysics and cellular medical science.</p>
+    </div>
+
+    <!-- Vol 5 -->
+    <div class="card">
+        <span class="vol-tag">VOLUME 05</span>
+        <h3>Yoga: The Eternal Science</h3>
+        <span class="abstract-title">Technical Abstract</span>
+        <p>Mapping the historical roots of Hatha and Raja Yoga directly to cortical activation and modern neuro-biological findings.</p>
+    </div>
+
+    <!-- Vol 6 -->
+    <div class="card">
+        <span class="vol-tag">VOLUME 06</span>
+        <h3>Shabda Brahman</h3>
+        <span class="abstract-title">Technical Abstract</span>
+        <p>Researching the primordial science of sound (Vibration Theory) and its role as the fundamental substrate of physical reality.</p>
+    </div>
+
+    <!-- Vol 7 -->
+    <div class="card">
+        <span class="vol-tag">VOLUME 07</span>
+        <h3>The Cosmic Choreography</h3>
+        <span class="abstract-title">Technical Abstract</span>
+        <p>A metaphysical analysis of Adi Shankaracharya’s Advaita philosophy viewed through the lens of Quantum Mechanics.</p>
+    </div>
+
+    <!-- Vol 8 -->
+    <div class="card">
+        <span class="vol-tag">VOLUME 08</span>
+        <h3>Sanskrit & Artificial Intelligence</h3>
+        <span class="abstract-title">Technical Abstract</span>
+        <p>Technical exploration into Sanskrit's algorithmic structure as a superior language for future programming and AI healing protocols.</p>
+    </div>
+
+    <!-- Vol 9 -->
+    <div class="card">
+        <span class="vol-tag">VOLUME 09</span>
+        <h3>The Guru's Clan</h3>
+        <span class="abstract-title">Technical Abstract</span>
+        <p>Biographical documentation of the sacred lineage and oral traditions of the masters who preserved this scientific wisdom.</p>
+    </div>
+</div>
+
+<div class="footer-note">
+    <p>For detailed excerpts or academic collaboration, please use the <a href="mailto:smith123846@gmail.com" style="color:var(--navy)">Inquiry</a> link.</p>
+</div>
 
 </body>
 </html>
