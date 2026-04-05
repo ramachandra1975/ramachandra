@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aesthetics of Society</title>
     <style>
+        /* Essential Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Montserrat:wght@300;400;600&display=swap');
 
         body, html {
@@ -14,7 +15,7 @@
             overflow-x: hidden;
         }
 
-        /* 1. BACKGROUND WITH LIGHT RADIANCE */
+        /* 1. BACKGROUND & LAYOUT */
         .hero {
             position: relative;
             width: 100%;
@@ -27,54 +28,71 @@
             justify-content: center;
         }
 
+        /* The Soft Morning Glow Overlay */
         .hero::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(244,241,236,0.5));
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(244,241,236,0.4));
             z-index: 1;
         }
 
-        /* 2. TOP NAVIGATION BAR (MATCHING IMAGE 3) */
+        /* 2. TOP NAV (Matching Image Exactly) */
         header {
             position: absolute;
             top: 0; width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 50px;
+            padding: 20px 50px;
             box-sizing: border-box;
             z-index: 100;
         }
 
         .brand-corner { display: flex; align-items: center; gap: 15px; }
-        .logo-small { width: 55px; mix-blend-mode: multiply; opacity: 0.9; }
-        .brand-text h1 { font-size: 1rem; margin: 0; letter-spacing: 2px; color: #1a304d; text-transform: uppercase; font-weight: 600; }
-        .brand-text p { margin: 0; font-size: 0.7rem; color: #b39356; letter-spacing: 1.5px; }
+        .logo-small { width: 55px; mix-blend-mode: multiply; }
+        .brand-text h1 { font-size: 0.85rem; margin: 0; letter-spacing: 2px; color: #1a304d; text-transform: uppercase; font-weight: 600; }
+        .brand-text p { margin: 0; font-size: 0.65rem; color: #b39356; letter-spacing: 1px; font-weight: 400; }
 
-        nav { display: flex; align-items: center; gap: 30px; }
-        nav a { text-decoration: none; color: #1a304d; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
-        
-        /* The gold Introduction box from your image */
-        .btn-intro { 
-            border: 1px solid #b39356; 
-            padding: 10px 25px; 
-            color: #b39356 !important; 
-            transition: 0.3s;
+        nav { display: flex; align-items: center; gap: 20px; }
+        nav a { text-decoration: none; color: #1a304d; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        .btn-intro { border: 1px solid #b39356; padding: 6px 18px; color: #b39356; transition: 0.3s; }
+        .btn-intro:hover { background: #b39356; color: white; }
+
+        /* 3. SIDE CARDS (Vedic Manuscripts & 108 Karanas) */
+        .side-card {
+            position: absolute;
+            bottom: 12%;
+            z-index: 10;
+            text-align: center;
         }
-        .btn-intro:hover { background: #b39356; color: white !important; }
+        .left-card { left: 4%; }
+        .right-card { right: 4%; }
+        
+        .frame {
+            width: 170px;
+            height: 230px;
+            border: 10px solid white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 12px;
+            background-color: #ddd; /* Placeholder color */
+        }
+        .side-label { font-size: 0.6rem; color: #b39356; text-transform: uppercase; letter-spacing: 3px; font-weight: 600; }
 
-        /* 3. CENTRAL CONTENT & SCRIPT WATERMARK */
+        /* 4. CENTER CONTENT & SCRIPT WATERMARK */
         .center-wrap {
             position: relative;
             z-index: 10;
             text-align: center;
+            width: 100%;
         }
 
-        /* The flowing white script behind the text */
+        /* Flowing Script behind Title */
         .script-watermark {
             position: absolute;
-            top: 50%; left: 50%;
+            top: 55%; left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Brush Script MT', cursive;
             font-size: 10rem;
@@ -84,26 +102,25 @@
             pointer-events: none;
         }
 
-        .est-text { font-size: 0.75rem; letter-spacing: 5px; color: #b39356; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+        .est-text { font-size: 0.65rem; letter-spacing: 5px; color: #b39356; text-transform: uppercase; margin-bottom: 5px; font-weight: 600; }
         
-        .main-title { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 10vw, 7rem); line-height: 0.85; margin: 0; }
-        .navy { color: #1a304d; }
+        .main-title { font-family: 'Playfair Display', serif; font-size: 6.5rem; line-height: 0.8; margin: 0; }
+        .navy { color: #1a304d; display: block; }
         .gold { color: #d4af37; font-style: italic; display: block; }
 
-        .mission { font-size: 0.85rem; letter-spacing: 4px; color: #4a5a71; text-transform: uppercase; margin-top: 40px; line-height: 1.8; font-weight: 600; }
+        .mission { font-size: 0.7rem; letter-spacing: 3px; color: #4a5a71; text-transform: uppercase; margin-top: 40px; line-height: 1.8; font-weight: 600; }
 
-        /* 4. BUTTON GROUP (FLAT BOX STYLE) */
-        .btn-group { display: flex; margin-top: 50px; justify-content: center; }
-        
+        /* 5. BUTTON GROUP (Square Rectangles) */
+        .btn-group { display: flex; justify-content: center; margin-top: 45px; }
         .hero-btn {
-            padding: 24px 55px;
+            padding: 24px 50px;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.65rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             font-weight: bold;
             min-width: 220px;
-            box-sizing: border-box;
+            text-align: center;
         }
         .btn-filled { background: #1a304d; color: white; border: 1px solid #1a304d; }
         .btn-ghost { background: rgba(255,255,255,0.4); color: #1a304d; border: 1px solid rgba(0,0,0,0.1); backdrop-filter: blur(4px); }
@@ -112,4 +129,53 @@
 </head>
 <body>
 
-    <div
+    <div class="hero">
+        <header>
+            <div class="brand-corner">
+                <img src="logo.jpg" class="logo-small" alt="Logo">
+                <div class="brand-text">
+                    <h1>Aesthetics of Society</h1>
+                    <p>culturalmusings.com</p>
+                </div>
+            </div>
+            <nav>
+                <a href="#">About</a>
+                <a href="#">Publications</a>
+                <a href="#">Timeline</a>
+                <a href="#">Media</a>
+                <a href="#">Contact</a>
+                <a href="#" class="btn-intro">Introduction</a>
+            </nav>
+        </header>
+
+        <div class="side-card left-card">
+            <div class="frame"></div> <div class="side-label">Vedic Manuscripts</div>
+        </div>
+
+        <div class="center-wrap">
+            <div class="script-watermark">Let the light shine</div>
+            <div class="est-text">Independent Researcher & Author · EST. 2010</div>
+            
+            <h1 class="main-title">
+                <span class="navy">Aesthetics</span>
+                <span class="gold">of Society</span>
+            </h1>
+
+            <div class="mission">
+                Bridging Ancient Indian Systems with Modern<br>
+                Neuroscience & Bio-Acoustics
+            </div>
+
+            <div class="btn-group">
+                <a href="#" class="hero-btn btn-filled">Explore Publications</a>
+                <a href="#" class="hero-btn btn-ghost">About the Author</a>
+            </div>
+        </div>
+
+        <div class="side-card right-card">
+            <div class="frame"></div> <div class="side-label">108 Karanas</div>
+        </div>
+    </div>
+
+</body>
+</html>
