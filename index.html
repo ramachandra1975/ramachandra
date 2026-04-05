@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aesthetics of Society</title>
     <style>
-        /* RESET & BASE */
         body, html {
             margin: 0;
             padding: 0;
@@ -14,10 +12,11 @@
             height: 100%;
             font-family: 'Georgia', serif;
             background-color: #fdfbf7;
+            overflow: hidden;
         }
 
-        /* 1. BACKGROUND & MASKING */
-        .hero-container {
+        /* 1. MAIN BACKGROUND & FADE MASK */
+        .hero {
             position: relative;
             width: 100%;
             height: 100vh;
@@ -26,34 +25,53 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
         }
 
-        /* The Mask: Softening background.png for contrast */
-        .hero-container::before {
+        /* The Mask: Softens the background script */
+        .hero::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(255, 255, 255, 0.45); 
             z-index: 1;
         }
 
-        /* 2. THE WATERMARK (Centered logo.jpg) */
+        /* 2. THE SIDEBARS - RE-ADDED & FIXED */
+        .sidebar {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 15%; /* Fixed width to prevent crashing into center */
+            z-index: 5;
+            opacity: 0.6; /* Faded so they don't distract */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-left { left: 0; }
+        .sidebar-right { right: 0; }
+
+        .sidebar img {
+            height: 80%; /* Vertical alignment */
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* 3. LOGO WATERMARK (logo.jpg) */
         .logo-watermark {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 350px;
-            opacity: 0.15; /* Subtle but visible */
+            width: 320px;
+            opacity: 0.12;
             z-index: 2;
+            mix-blend-mode: multiply;
             pointer-events: none;
         }
 
-        /* 3. HEADER: LOGO & BRANDING (Top Left) */
+        /* 4. HEADER: TOP-LEFT LOGO & BRANDING */
         header {
             position: absolute;
             top: 0;
@@ -72,71 +90,79 @@
             gap: 15px;
         }
 
-        .logo-small {
+        .logo-top {
             width: 50px;
             height: auto;
-            display: block;
         }
 
         .brand-text h1 {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             margin: 0;
             letter-spacing: 2px;
-            color: #0d1b2e; /* DARKER NAVY */
+            color: #0d1b2e; /* Darker Navy */
             text-transform: uppercase;
         }
 
         .brand-text p {
             margin: 0;
             font-size: 0.85rem;
-            color: #9e7d3a; /* DARKER GOLD */
+            color: #9e7d3a; /* Darker Gold */
         }
 
-        .nav-links a {
+        nav a {
             text-decoration: none;
-            color: #0d1b2e; /* DARKER NAVY */
+            color: #0d1b2e;
             margin-left: 20px;
             font-size: 0.75rem;
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        /* 4. MAIN CONTENT (Center) */
-        .main-content {
+        /* 5. MAIN CONTENT (CENTERED) */
+        .content {
             position: relative;
-            z-index: 10;
+            z-index: 20; /* Sits above sidebars */
             text-align: center;
-            width: 100%;
+            width: 50%; /* Constrained to the center */
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            color: #9e7d3a;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
         }
 
         .main-title {
-            font-size: clamp(3rem, 10vw, 5.5rem);
-            line-height: 0.9;
+            font-size: clamp(3rem, 7vw, 5rem);
+            line-height: 0.95;
             margin: 0;
         }
 
-        .navy { color: #0d1b2e; } /* DARKER NAVY */
-        .gold { color: #9e7d3a; font-style: italic; } /* DARKER GOLD */
+        .navy { color: #0d1b2e; }
+        .gold { color: #9e7d3a; font-style: italic; }
 
-        .mission-text {
+        .mission {
             font-size: 0.95rem;
-            font-weight: 900; /* BOLDER */
+            font-weight: 900;
             color: #0d1b2e;
             text-transform: uppercase;
-            margin-top: 30px;
-            line-height: 1.5;
+            margin-top: 35px;
             letter-spacing: 1.5px;
+            line-height: 1.6;
         }
 
-        /* 5. BUTTONS */
-        .btn-wrap {
-            margin-top: 40px;
+        /* 6. BUTTONS */
+        .btn-container {
+            margin-top: 45px;
             display: flex;
             justify-content: center;
         }
 
         .btn {
-            padding: 18px 40px;
+            padding: 18px 45px;
             text-decoration: none;
             font-size: 0.8rem;
             font-weight: bold;
@@ -144,52 +170,56 @@
         }
 
         .btn-navy { background: #0d1b2e; color: white; }
-        .btn-author { background: #e0d9cf; color: #111; border: 1px solid #bbb; }
-
-        /* RECTIFICATION: Sidebars (Vedic/Karanas) completely removed */
+        .btn-beige { background: #e0d9cf; color: #111; border: 1px solid #bbb; }
     </style>
 </head>
 <body>
 
-    <section class="hero-container">
-        <!-- Logo Watermark -->
-        <img src="logo.jpg" class="logo-watermark" alt="">
+    <section class="hero">
+        <!-- Center Watermark -->
+        <img src="logo.jpg" class="logo-watermark">
+
+        <!-- Sidebars -->
+        <div class="sidebar sidebar-left">
+            <img src="vedic.png" alt="Vedic Manuscript">
+        </div>
+        <div class="sidebar sidebar-right">
+            <img src="karanas.png" alt="Karanas Pose">
+        </div>
 
         <header>
             <div class="branding-left">
-                <img src="logo.jpg" class="logo-small" alt="Logo">
+                <img src="logo.jpg" class="logo-top">
                 <div class="brand-text">
                     <h1>Aesthetics of Society</h1>
                     <p>culturalmusings.com</p>
                 </div>
             </div>
-            <div class="nav-links">
+            <nav>
                 <a href="#">About</a>
                 <a href="#">Publications</a>
                 <a href="#">Timeline</a>
                 <a href="#">Media</a>
                 <a href="#">Contact</a>
-            </div>
+            </nav>
         </header>
 
-        <div class="main-content">
-            <p style="letter-spacing: 4px; color: #9e7d3a; font-weight: bold; text-transform: uppercase; margin-bottom: 5px;">
-                Independent Researcher & Author
-            </p>
+        <div class="content">
+            <p class="tagline">Independent Researcher & Author</p>
             
             <h1 class="main-title">
                 <span class="navy">Aesthetics</span><br>
                 <span class="gold">of Society</span>
             </h1>
 
-            <div class="mission-text">
+            <div class="mission">
                 Bridging Ancient Indian Systems with Modern<br>
                 Neuroscience & Bio-Acoustics
             </div>
 
-            <div class="btn-wrap">
+            <div class="btn-container">
                 <a href="#" class="btn btn-navy">Explore Publications</a>
-                <a href="#" class="btn btn-author">About the Author</a>
+                <a href="#" class="btn btn-beige">About the Author</a>
             </div>
         </div>
     </section>
