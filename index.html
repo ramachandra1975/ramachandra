@@ -16,12 +16,7 @@ HTML
         html { scroll-behavior: smooth; }
         body { font-family: 'Cormorant Garamond', serif; color: var(--text); background: var(--white); overflow-x: hidden; line-height: 1.6; }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--cream); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
-
-        /* Navigation */
+        /* ── NAVIGATION (Using Logo) ── */
         .main-nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 999;
             display: flex; justify-content: space-between; align-items: center;
@@ -29,45 +24,47 @@ HTML
             backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197, 160, 89, 0.2);
         }
         .nav-brand { display: flex; align-items: center; gap: 14px; }
+        /* Logo used here */
         .nav-logo { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
         .brand-text-stack { display: flex; flex-direction: column; line-height: 1.2; }
         .brand-title { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; color: var(--navy); text-transform: uppercase; }
         .brand-url { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; color: var(--gold); letter-spacing: 1.5px; font-weight: 600; }
-        
         .nav-links { display: flex; gap: 20px; list-style: none; }
         .nav-links a { text-decoration: none; color: var(--navy); font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* Section Universal Styling */
-        section { padding: 100px 10%; position: relative; border-bottom: 1px solid var(--border); }
-        .sec-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--navy); margin-bottom: 30px; text-align: center; }
-        .sec-label { display: block; text-align: center; font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
-
-        /* Hero (Section 10) */
-        #hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
-        .hero-bg { 
-            position: absolute; inset: 0; z-index: 1;
-            background: linear-gradient(rgba(255, 253, 248, 0.83), rgba(255, 253, 248, 0.83)), url('author.jpg'); 
-            background-size: cover; background-position: center; 
+        /* ── LOGO WATERMARK EFFECT ── */
+        section::before {
+            content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 350px; height: 350px; background: url('logo.png') no-repeat center;
+            background-size: contain; opacity: 0.04; z-index: -1; pointer-events: none;
         }
+
+        /* ── HERO ── */
+        #hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; background: var(--cream); }
         .hero-content { position: relative; z-index: 10; }
 
-        /* Volume Grid (Sections 1-9) */
-        .volumes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
-        .volume-card { padding: 40px; border: 1px solid var(--border); background: var(--cream); transition: 0.3s; text-align: left; }
-        .volume-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .vol-num { font-family: 'Montserrat'; font-size: 0.8rem; color: var(--gold); font-weight: 700; }
-        .vol-title { font-family: 'Playfair Display'; font-size: 1.4rem; color: var(--navy); margin: 15px 0; }
+        /* ── ABOUT AUTHOR (Photo used here) ── */
+        .author-grid { display: flex; align-items: center; gap: 50px; max-width: 1000px; margin: 0 auto; text-align: left; }
+        .author-photo { width: 300px; height: 400px; object-fit: cover; border: 1px solid var(--gold); padding: 10px; background: white; flex-shrink: 0; }
 
-        /* Footer/Contact (Section 15) */
-        #contact { background: var(--navy); color: var(--white); text-align: center; }
-        #contact .sec-title { color: var(--white); }
+        /* ── RADIO BUTTONS & READ MORE ── */
+        .filter-box { text-align: center; margin: 30px 0; font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 2px; }
+        .filter-box label { margin: 0 15px; cursor: pointer; font-weight: 700; color: var(--navy); }
+        .volumes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .volume-card { padding: 35px; border: 1px solid var(--border); background: rgba(255,255,255,0.8); }
+        .more-text { display: none; margin-top: 15px; font-size: 0.9rem; border-top: 1px solid var(--border); padding-top: 10px; }
+        .btn-read { background: none; border: none; color: var(--gold); font-family: 'Montserrat'; font-weight: 700; font-size: 0.65rem; text-transform: uppercase; cursor: pointer; margin-top: 15px; }
+
+        section { padding: 100px 10%; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+        .sec-title { font-family: 'Playfair Display'; font-size: 2.8rem; color: var(--navy); text-align: center; margin-bottom: 40px; }
+        #contact { background: var(--navy); color: white; text-align: center; }
     </style>
 </head>
 <body>
 
     <nav class="main-nav">
         <div class="nav-brand">
-            <img src="author.jpg" alt="Logo" class="nav-logo">
+            <img src="logo.png" alt="Logo" class="nav-logo">
             <div class="brand-text-stack">
                 <span class="brand-title">Aesthetics of Society</span>
                 <span class="brand-url">culturalmusings.com</span>
@@ -75,72 +72,66 @@ HTML
         </div>
         <ul class="nav-links">
             <li><a href="#hero">Intro</a></li>
-            <li><a href="#about">About Author</a></li>
-            <li><a href="#volumes">Volumes</a></li>
-            <li><a href="#media">Media</a></li>
+            <li><a href="#about">Author</a></li>
+            <li><a href="#volumes">Research</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <header id="hero">
-        <div class="hero-bg"></div>
         <div class="hero-content">
-            <span class="sec-label">An Inquiry Into</span>
-            <h1 style="font-size: 4rem; color: var(--navy); font-family: 'Playfair Display';">The Aesthetics of Society</h1>
-            <p style="font-family:'Montserrat'; letter-spacing: 6px; color: var(--gold); text-transform: uppercase;">Naredla Rama Chandra</p>
+            <span style="font-family:'Montserrat'; letter-spacing: 4px; color:var(--gold); text-transform: uppercase; font-size: 0.7rem;">An Inquiry Into</span>
+            <h1 style="font-size: 4rem; font-family:'Playfair Display'; color:var(--navy); margin: 10px 0;">The Aesthetics of Society</h1>
+            <p style="font-family:'Montserrat'; letter-spacing: 6px; color: var(--gold); text-transform: uppercase; font-weight: 600;">Naredla Rama Chandra</p>
         </div>
     </header>
 
     <section id="about">
-        <span class="sec-label">Section 11</span>
         <h2 class="sec-title">About the Author</h2>
-        <div style="max-width: 850px; margin: 0 auto; text-align: center;">
-            <p style="font-size: 1.35rem; font-style: italic; color: var(--text);">
-                Independent researcher, author, and scholar bridging the ancient wisdom of Indian systems with the precision of modern neuroscience and astrophysics.
-            </p>
+        <div class="author-grid">
+            <img src="author.jpg" alt="Naredla Rama Chandra" class="author-photo">
+            <div>
+                <p style="font-size: 1.4rem; font-family: 'Cormorant Garamond'; font-style: italic; margin-bottom: 20px;">
+                    Independent Researcher, Scholar, and Author.
+                </p>
+                <p>Naredla Rama Chandra is dedicated to bridging ancient Indian systems—including Natya Shastra, the 108 Karanas, and Vedic acoustics—with modern neuroscience, astrophysics, and bio-acoustics. His work seeks to establish scientific parallels between traditional knowledge and modern neurological healing.</p>
+            </div>
         </div>
     </section>
 
     <section id="volumes">
-        <span class="sec-label">Research Archive: Sections 01-09</span>
         <h2 class="sec-title">The 9-Volume Series</h2>
-        <div class="volumes-grid">
-            <div class="volume-card"><span class="vol-num">VOL 01</span><h3 class="vol-title">Sampoorna Manovijnana Sangraha</h3><p>Vedic Psychology & Mental Sciences.</p></div>
-            <div class="volume-card"><span class="vol-num">VOL 02</span><h3 class="vol-title">Sapta Swaras & Healing Science</h3><p>The Bio-acoustics of Carnatic Music.</p></div>
-            <div class="volume-card"><span class="vol-num">VOL 03</span><h3 class="vol-title">The Resonant Universe</h3><p>Astrophysics & Vibrational Science.</p></div>
-            <div class="volume-card"><span class="vol-num">VOL 04</span><h3 class="vol-title">Natya Shastra & 108 Karanas</h3><p>Neuro-aesthetics of Ancient Dance.</p></div>
-            <div class="volume-card"><span class="vol-num">VOL 05</span><h3 class="vol-title">Matrika Nyasas & Beeja Aksharas</h3><p>Sanskrit as a Neural Programming Language.</p></div>
-            <div class="volume-card"><span class="vol-num">VOL 06</span><h3 class="vol-title">Master Consciousness Protocol</h3><p>Core Academic Thesis (300 Pages).</p></div>
-            <div class="volume-card"><span class="vol-num">VOL 07</span><h3 class="vol-title">Vedic Systems & Neuroscience</h3><p>Bridging Tradition with Modern Biology.</p></div>
-            <div class="volume-card"><span class="vol-num">VOL 08</span><h3 class="vol-title">Aesthetics of Society</h3><p>The Structure of Cultural Harmony.</p></div>
-            <div class="volume-card"><span class="vol-num">VOL 09</span><h3 class="vol-title">Clinical Applications</h3><p>Research Methodology & Healing Practice.</p></div>
+        <div class="filter-box">
+            <label><input type="radio" name="view" value="all" checked> View All</label>
+            <label><input type="radio" name="view" value="featured"> Featured</label>
         </div>
-    </section>
-
-    <section id="media">
-        <span class="sec-label">Section 12</span>
-        <h2 class="sec-title">Media Archive</h2>
-        <p style="text-align: center;">Video lectures and acoustic research documenting cultural resonance.</p>
-    </section>
-
-    <section id="portfolio">
-        <span class="sec-label">Section 13</span>
-        <h2 class="sec-title">Digital Portfolio</h2>
-        <p style="text-align: center;">Visual documentation of the 108 Karanas and architectural aesthetics.</p>
-    </section>
-
-    <section id="gallery">
-        <span class="sec-label">Section 14</span>
-        <h2 class="sec-title">Interactive Gallery</h2>
-        <p style="text-align: center;">Curated artifacts and interdisciplinary research findings.</p>
+        <div class="volumes-grid">
+            <div class="volume-card">
+                <span style="color:var(--gold); font-weight:700; font-size:0.8rem;">VOL 01</span>
+                <h3 style="font-family:'Playfair Display'; margin:10px 0;">Sampoorna Manovijnana Sangraha</h3>
+                <p>Comprehensive Vedic Psychology.</p>
+                <div id="text-1" class="more-text">Detailed integration of Sanskrit cognitive frameworks with modern theory.</div>
+                <button class="btn-read" onclick="toggleText('text-1', this)">Read More +</button>
+            </div>
+            </div>
     </section>
 
     <section id="contact">
-        <span class="sec-label">Section 15</span>
-        <h2 class="sec-title">Inquiry & Collaboration</h2>
-        <p style="margin-bottom: 25px;">For scholarly discourse and academic partnership.</p>
-        <p style="font-family: 'Montserrat'; letter-spacing: 2px; color: var(--gold);">CULTURALMUSINGS.COM</p>
+        <h2 class="sec-title" style="color:white;">Contact</h2>
+        <p style="font-family:'Montserrat'; letter-spacing: 2px; color:var(--gold);">CULTURALMUSINGS.COM</p>
     </section>
 
+    <script>
+        function toggleText(id, btn) {
+            var el = document.getElementById(id);
+            if (el.style.display === "block") {
+                el.style.display = "none";
+                btn.innerText = "Read More +";
+            } else {
+                el.style.display = "block";
+                btn.innerText = "Read Less -";
+            }
+        }
+    </script>
 </body>
 </html>
