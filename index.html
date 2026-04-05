@@ -35,14 +35,14 @@
             z-index: 1;
         }
 
-        /* 2. THE LOGO WATERMARK - NO BOX, CLEARLY SEEN */
+        /* 2. LOGO WATERMARK - SMALLER & BLENDED */
         .central-watermark {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 400px; 
-            opacity: 0.28; /* Balanced visibility */
+            width: 320px; /* Reduced size */
+            opacity: 0.25; 
             z-index: 2;
             mix-blend-mode: multiply; /* Removes white JPG box */
             pointer-events: none;
@@ -55,81 +55,87 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
+            padding: 15px 40px;
             box-sizing: border-box;
             z-index: 100;
         }
 
         .nav-logo {
-            width: 45px;
+            width: 35px; /* Smaller Nav Logo */
             mix-blend-mode: multiply;
         }
 
         nav a {
             text-decoration: none;
             color: #0d1b2e;
-            margin-left: 20px;
-            font-size: 0.7rem;
+            margin-left: 15px;
+            font-size: 0.65rem;
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        /* 4. WATERMARKED TEXT CONTENT */
+        /* 4. TRUE TEXT WATERMARKING */
         .content {
             position: relative;
             z-index: 10;
             text-align: center;
         }
 
-        /* Watermarked Tagline */
         .tagline {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 4px;
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 20px;
-            color: rgba(138, 109, 47, 0.75); /* Watermark Gold */
+            margin-bottom: 15px;
+            /* Watermark effect: */
+            color: #8a6d2f;
+            opacity: 0.6;
+            mix-blend-mode: multiply;
         }
 
-        /* Watermarked Main Title */
         .main-title {
-            font-size: clamp(3rem, 7vw, 5rem);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             line-height: 1;
             margin: 0;
-            color: rgba(13, 27, 46, 0.85); /* Watermark Navy */
+            /* Watermark effect: */
+            color: #0d1b2e;
+            opacity: 0.8;
+            mix-blend-mode: multiply;
         }
 
         .gold-italic { 
-            color: rgba(138, 109, 47, 0.8); /* Watermark Gold */
+            color: #8a6d2f;
             font-style: italic; 
         }
 
-        /* Watermarked Mission */
         .mission {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 900;
             text-transform: uppercase;
-            margin-top: 35px;
+            margin-top: 30px;
             letter-spacing: 1.5px;
-            line-height: 1.5;
-            color: rgba(13, 27, 46, 0.75); /* Watermark Navy */
+            line-height: 1.4;
+            /* Watermark effect: */
+            color: #0d1b2e;
+            opacity: 0.65;
+            mix-blend-mode: multiply;
         }
 
-        /* 5. SHORTENED BUTTONS */
+        /* 5. SMALLER COMPACT BUTTONS */
         .btn-container {
-            margin-top: 40px;
+            margin-top: 35px;
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .btn {
-            padding: 12px 28px; /* Shortened padding */
+            padding: 8px 22px; /* Very short padding */
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.7rem; /* Smaller font */
             font-weight: bold;
             text-transform: uppercase;
-            border-radius: 2px; /* Slight edge for a modern look */
+            border-radius: 1px;
         }
 
         .btn-navy { background: #0d1b2e; color: white; }
@@ -145,9 +151,9 @@
         <img src="logo.jpg" class="central-watermark" alt="">
 
         <header>
-            <div style="display:flex; align-items:center; gap:12px;">
+            <div style="display:flex; align-items:center; gap:10px;">
                 <img src="logo.jpg" class="nav-logo" alt="">
-                <div style="color:#0d1b2e; text-transform:uppercase; font-size:1rem; letter-spacing:1px; font-weight:bold;">
+                <div style="color:#0d1b2e; text-transform:uppercase; font-size:0.9rem; letter-spacing:1px; font-weight:bold;">
                     Aesthetics of Society
                 </div>
             </div>
