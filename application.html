@@ -1,57 +1,137 @@
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Practical Applications | Aesthetics of Society</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetics of Society | Research Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        body { 
-            margin: 0; padding-top: 140px; font-family: 'Times New Roman', serif; 
-            background-color: #fcfaf5; color: #041631;
-            background-image: url('logo.jpg'), url('background.png');
-            background-position: center 160px, center center;
-            background-repeat: no-repeat;
-            background-size: 160px, 80%;
-            background-attachment: fixed;
+        /* Unified Global Styles */
+        :root {
+            --primary-blue: #1a365d;
+            --gold-accent: #c5a059;
+            --bg-overlay: rgba(255, 253, 248, 0.82);
+            --bg-cream: #fdfaf5;
+            --card-shadow: 0 10px 40px rgba(0,0,0,0.04);
         }
-        body::after {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(252, 250, 245, 0.92); z-index: -1;
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            scroll-behavior: smooth;
         }
+
+        /* Nav & Header Persistence */
         header {
-            background-color: #041631; color: #f9f7f2; position: fixed; top: 0; width: 100%; 
-            z-index: 9999; border-bottom: 4px solid #b8860b; text-align: center; padding: 15px 0;
+            position: fixed; top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: rgba(255, 255, 255, 0.98);
+            z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-sizing: border-box;
         }
-        .brand-header { font-size: 16px; letter-spacing: 2px; text-transform: uppercase; font-weight: bold; }
-        nav { margin-top: 10px; }
-        nav a { color: white; text-decoration: none; margin: 0 12px; font-weight: bold; font-size: 11px; text-transform: uppercase; }
-        .content-card {
-            max-width: 850px; margin: 0 auto 60px auto; background: rgba(255, 255, 255, 0.6);
-            padding: 60px; border: 1px solid #d4af37; line-height: 1.9; text-align: justify;
+
+        nav a { text-decoration: none; color: var(--primary-blue); font-size: 0.8rem; font-weight: bold; margin-left: 20px; }
+
+        /* Publication Cards */
+        .publications-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; padding: 50px 0;
         }
-        h1 { color: #041631; text-align: center; border-bottom: 2px solid #b8860b; padding-bottom: 10px; }
+        .pub-card {
+            background: #fff; border: 1px solid #f2f2f2; padding: 40px;
+            transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .pub-card:hover { transform: translateY(-8px); box-shadow: var(--card-shadow); border-color: var(--gold-accent); }
+
+        /* Preserving your original layout classes */
+        .hero-section {
+            height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), url('background.png') no-repeat center/cover;
+        }
+        
+        section { padding: 100px 10%; position: relative; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem !important; }
+            section { padding: 60px 5%; }
+        }
     </style>
 </head>
 <body>
-<header>
-    <div class="brand-header">Aesthetics of Society</div>
-    <nav>
-        <a href="index.html">Intro</a> <a href="karanas.html">Karanas</a> 
-        <a href="mudras.html">Mudras</a> <a href="applications.html">Applications</a> 
-        <a href="epilogue.html">Epilogue</a>
-    </nav>
-</header>
 
-<div class="content-card">
-    <h1>Practical Applications: The Triad of Science</h1>
-    
-    <p><strong>I. Neuro-Scientific Implementation:</strong> The primary application of this research lies in the development of non-invasive cognitive enhancement protocols. By utilizing specific Karanas and Mudras as "neural primers," we can stimulate the motor cortex to improve neuro-plasticity in patients with coordination disorders or age-related cognitive decline. This protocol translates ancient aesthetic theory into a clinical reality, offering a structured method for hemispheric synchronization through rhythmic, geometric physical engagement.</p>
+    <header>
+        <div style="font-weight: bold; color: var(--primary-blue); letter-spacing: 1px;">AESTHETICS OF SOCIETY</div>
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#publications">PUBLICATIONS</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+    </header>
 
-    <p><strong>II. The Bio-Acoustic Framework:</strong> In the field of general science and bio-physics, the application involves the use of the Sapta Swaras as localized vibrational tools. By mapping specific frequencies to biological plexuses, we create a "Sound-Matrika" system for cellular resonance. This can be applied in clinical settings to modulate stress responses and metabolic rates, proving that the acoustic properties of Sanskrit and Carnatic music are functional mathematical tools for physiological homeostasis.</p>
+    <section id="home" class="hero-section">
+        <div class="main-content">
+            <span style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; font-weight: 700; color: var(--gold-accent);">Independent Researcher & Author</span>
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--primary-blue); margin: 0;">Aesthetics</h1>
+            <h1 style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 6rem; color: var(--gold-accent); margin-top: -20px;">of Society</h1>
+            <p style="max-width: 650px; margin: 20px auto; line-height: 1.8;">Bridging Ancient Indian Systems with Modern Neuroscience & Bio-acoustics</p>
+            <div style="margin-top: 30px;">
+                <a href="#publications" style="background: var(--primary-blue); color: white; padding: 18px 35px; text-decoration: none; font-weight: bold; display: inline-block;">EXPLORE RESEARCH</a>
+            </div>
+        </div>
+    </section>
 
-    <p><strong>III. Astro-Scientific Synchronization:</strong> The cosmological application bridges the gap between human biological rhythms and the 108 units of the zodiac (27 Nakshatras x 4 Padas). By performing specific movements during calculated astrological windows, the researcher can align their circadian rhythm with larger cosmic cycles. This application moves astrology from a predictive art to a participative science, where human movement acts as a corrective frequency to mitigate environmental or planetary dissonances.</p>
+    <section id="philosophy" style="text-align: center; background: var(--bg-cream);">
+        <p style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary-blue); line-height: 1.4;">
+            "Ancient <span style="font-style: italic;">wisdom</span> does not contradict <br> 
+            modern <span style="color: var(--gold-accent);">science</span> — it precedes it."
+        </p>
+    </section>
 
-    <p><strong>IV. Integrative Research Methodology:</strong> Ultimately, these practical applications provide a blueprint for a new "Master Consciousness" curriculum. This interdisciplinary approach allows modern researchers to use the Natya Shastra not as a book of art, but as a manual of human engineering. By integrating these three fronts, we offer a finalized system for self-regulation, cognitive optimization, and biological alignment that is universally applicable across global healthcare and research sectors.</p>
-</div>
+    <section id="publications">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--primary-blue);">Publications & <span style="color: var(--gold-accent); font-style: italic;">Manuscripts</span></h2>
+        <div class="publications-grid">
+            <div class="pub-card">
+                <div>
+                    <span style="color: var(--gold-accent); font-weight: bold; font-size: 0.7rem;">VOL. I</span>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 10px 0;">Complete Science of Consciousness</h3>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">A comprehensive framework comparing Vedic science with modern AI paradigms.</p>
+                </div>
+                <a href="#" style="color: var(--gold-accent); text-decoration: none; font-weight: bold; margin-top: 20px;">READ OVERVIEW &rarr;</a>
+            </div>
+            
+            <div class="pub-card">
+                <div>
+                    <span style="color: var(--gold-accent); font-weight: bold; font-size: 0.7rem;">VOL. II</span>
+                    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; margin: 10px 0;">Sapta Swaras & Healing</h3>
+                    <p style="font-size: 0.9rem; color: #666; line-height: 1.6;">The bio-acoustic impact of Indian classical scales on the human nervous system.</p>
+                </div>
+                <a href="#" style="color: var(--gold-accent); text-decoration: none; font-weight: bold; margin-top: 20px;">READ OVERVIEW &rarr;</a>
+            </div>
+            </div>
+    </section>
+
+    <section id="about" style="display: flex; gap: 60px; align-items: center; background: #fff;">
+        <div style="flex: 1;"><img src="author.jpg" alt="Author" style="width: 100%; border: 1px solid #ddd;"></div>
+        <div style="flex: 1.5;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--primary-blue);">The Researcher</h2>
+            <p style="line-height: 1.8; color: #444; font-size: 1.1rem;">
+                Based on extensive Indological research, his work focuses on the neurological and physiological benefits of the 108 Karanas and Sanskrit Beejas.
+            </p>
+        </div>
+    </section>
+
+    <section id="contact" style="background: var(--primary-blue); color: white; text-align: center; padding: 60px 10%;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem;">Scholarly Consortium</h2>
+        <p style="color: var(--gold-accent); letter-spacing: 2px;">ANCHORING ANCIENT WISDOM IN EMPIRICAL SCIENCE</p>
+        <div style="margin-top: 40px;">
+            <p>Email: smith123846@gmail.com</p>
+            <p>Phone: +91 91213 79100</p>
+        </div>
+    </section>
+
 </body>
 </html>
