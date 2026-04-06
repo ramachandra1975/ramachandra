@@ -18,7 +18,6 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -51,47 +50,34 @@
       text-decoration: none;
     }
     .nav-brand img {
-      width: 42px;
-      height: 42px;
-      object-fit: cover;
-      border-radius: 2px;
+      width: 42px; height: 42px;
+      object-fit: cover; border-radius: 2px;
     }
     .nav-brand-text .name {
       display: block;
       font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.78rem;
-      letter-spacing: 2.5px;
-      color: var(--primary-blue);
+      font-weight: 700; font-size: 0.78rem;
+      letter-spacing: 2.5px; color: var(--primary-blue);
     }
     .nav-brand-text .url {
       display: block;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.65rem;
-      color: var(--gold);
-      letter-spacing: 1px;
+      font-size: 0.65rem; color: var(--gold); letter-spacing: 1px;
     }
 
     .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      list-style: none;
+      display: flex; gap: 22px; align-items: center; list-style: none;
     }
     .nav-links a {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: var(--primary-blue);
-      text-decoration: none;
-      transition: color 0.2s;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 1.5px; color: var(--primary-blue);
+      text-decoration: none; transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--gold); }
     .nav-links .nav-cta {
       border: 1px solid var(--gold);
-      padding: 7px 18px;
-      color: var(--gold);
+      padding: 7px 16px; color: var(--gold);
     }
     .nav-links .nav-cta:hover { background: var(--gold); color: #fff; }
 
@@ -99,10 +85,8 @@
     #hero {
       position: relative;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       text-align: center;
       padding: 120px 20px 80px;
       background: linear-gradient(rgba(253,250,245,0.88), rgba(253,250,245,0.88)),
@@ -110,11 +94,7 @@
       overflow: hidden;
     }
 
-    .hero-wm {
-      position: absolute;
-      pointer-events: none;
-      opacity: 0.06;
-    }
+    .hero-wm { position: absolute; pointer-events: none; opacity: 0.06; }
     .hero-wm-logo { width: 40%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
     .hero-wm-side { width: 200px; top: 50%; transform: translateY(-50%); filter: sepia(30%); }
     .hero-wm-left { left: 3%; }
@@ -122,62 +102,43 @@
 
     .hero-tag {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 4px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 20px;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 4px; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 20px;
       animation: fadeUp 0.8s ease both;
     }
     .hero-title-1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(60px, 9vw, 100px);
-      font-weight: 800;
-      color: var(--primary-blue);
-      line-height: 0.9;
-      animation: fadeUp 0.9s 0.1s ease both;
+      font-weight: 800; color: var(--primary-blue);
+      line-height: 0.9; animation: fadeUp 0.9s 0.1s ease both;
     }
     .hero-title-2 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(72px, 11vw, 125px);
-      font-weight: 700;
-      font-style: italic;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 28px;
-      animation: fadeUp 1s 0.2s ease both;
+      font-weight: 700; font-style: italic;
+      color: var(--gold); line-height: 1;
+      margin-bottom: 28px; animation: fadeUp 1s 0.2s ease both;
     }
     .hero-tagline {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      color: var(--primary-blue);
-      line-height: 2;
-      text-transform: uppercase;
-      max-width: 600px;
-      margin: 0 auto 48px;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 2.5px; color: var(--primary-blue);
+      line-height: 2; text-transform: uppercase;
+      max-width: 600px; margin: 0 auto 48px;
       animation: fadeUp 1s 0.3s ease both;
     }
     .hero-btns {
-      display: flex;
-      justify-content: center;
-      gap: 0;
+      display: flex; justify-content: center; gap: 0;
       animation: fadeUp 1s 0.4s ease both;
     }
     .btn {
-      display: inline-block;
-      padding: 17px 38px;
+      display: inline-block; padding: 17px 38px;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: all 0.3s;
-      cursor: pointer;
-      border: none;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s;
+      cursor: pointer; border: none;
     }
     .btn-primary { background: var(--primary-blue); color: #fff; border: 1px solid var(--primary-blue); }
     .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
@@ -190,78 +151,104 @@
     }
 
     /* ─── SECTION SHARED ─── */
-    .section-wrapper {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 40px;
-    }
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
     .section-label {
       display: block;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 14px;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
     }
     .section-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.4rem, 5vw, 4.5rem);
-      color: var(--primary-blue);
-      font-weight: 700;
-      line-height: 1.05;
-      margin-bottom: 0;
+      color: var(--primary-blue); font-weight: 700;
+      line-height: 1.05; margin-bottom: 0;
     }
-    .section-title em {
-      color: var(--gold);
-      font-style: italic;
-    }
+    .section-title em { color: var(--gold); font-style: italic; }
 
     /* ─── PHILOSOPHY STRIP ─── */
     #philosophy {
       background: var(--cream);
       border-top: 1px solid rgba(197,160,89,0.2);
       border-bottom: 1px solid rgba(197,160,89,0.2);
-      padding: 80px 20px;
-      text-align: center;
+      padding: 80px 20px; text-align: center;
     }
     .philosophy-text {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.6rem, 3.5vw, 3rem);
-      color: var(--primary-blue);
-      line-height: 1.5;
-      max-width: 1000px;
-      margin: 0 auto;
+      color: var(--primary-blue); line-height: 1.5;
+      max-width: 1000px; margin: 0 auto;
     }
     .philosophy-text .italic { font-style: italic; font-weight: 400; }
     .philosophy-text .gold { color: var(--gold); }
     .philosophy-text .bold-sans {
       font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: clamp(1.5rem, 3.2vw, 2.8rem);
-      letter-spacing: -1px;
+      font-weight: 900; font-size: clamp(1.5rem, 3.2vw, 2.8rem); letter-spacing: -1px;
     }
     .philosophy-text .dash { color: var(--gold); margin: 0 8px; }
+
+    /* ─── NEW PAGES PROMO STRIP ─── */
+    #pages-promo {
+      background: var(--navy);
+      padding: 70px 40px;
+    }
+    .pages-promo-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    }
+    .promo-card {
+      border: 1px solid rgba(197,160,89,0.3);
+      padding: 44px; position: relative; overflow: hidden;
+      transition: all 0.35s;
+      text-decoration: none; display: block;
+    }
+    .promo-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+    .promo-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 3px; height: 0;
+      background: var(--gold); transition: height 0.4s;
+    }
+    .promo-card:hover::before { height: 100%; }
+    .promo-card .pc-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem; font-weight: 800;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px; display: block;
+    }
+    .promo-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem; color: #fff; font-weight: 700;
+      margin-bottom: 14px; line-height: 1.15;
+    }
+    .promo-card p {
+      font-size: 0.98rem; color: rgba(255,255,255,0.6);
+      line-height: 1.75; margin-bottom: 28px;
+    }
+    .promo-card .pc-link {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .promo-card .pc-bg {
+      position: absolute; right: -20px; bottom: -20px;
+      font-size: 9rem; opacity: 0.04; line-height: 1;
+      pointer-events: none;
+    }
 
     /* ─── PUBLICATIONS ─── */
     #publications { background: #fff; }
     .pub-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 70px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--border);
-      gap: 40px;
-      flex-wrap: wrap;
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 70px;
+      padding-bottom: 40px; border-bottom: 1px solid var(--border);
+      gap: 40px; flex-wrap: wrap;
     }
     .pub-intro {
       max-width: 360px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      line-height: 1.7;
+      font-size: 1.1rem; color: var(--text-muted); line-height: 1.7;
     }
     .pub-grid {
       display: grid;
@@ -269,16 +256,10 @@
       gap: 24px;
     }
     .pub-card {
-      border: 1px solid var(--border);
-      padding: 42px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 300px;
-      cursor: pointer;
-      transition: all 0.35s ease;
-      background: #fff;
+      border: 1px solid var(--border); padding: 42px;
+      position: relative; display: flex; flex-direction: column;
+      justify-content: space-between; min-height: 300px;
+      cursor: pointer; transition: all 0.35s ease; background: #fff;
     }
     .pub-card:hover {
       transform: translateY(-6px);
@@ -286,747 +267,417 @@
       border-color: var(--gold);
     }
     .pub-card .card-tag {
-      display: inline-block;
-      background: #f0f4f8;
+      display: inline-block; background: #f0f4f8;
       color: var(--primary-blue);
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      margin-bottom: 22px;
+      font-size: 0.6rem; font-weight: 800;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 12px; margin-bottom: 22px;
     }
     .pub-card .vol-num {
-      position: absolute;
-      top: 42px; right: 42px;
+      position: absolute; top: 42px; right: 42px;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 1px;
+      font-size: 0.65rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 1px;
     }
     .pub-card h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.9rem;
-      color: var(--primary-blue);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 10px;
+      font-size: 1.9rem; color: var(--primary-blue);
+      font-weight: 700; line-height: 1.2; margin-bottom: 10px;
     }
     .pub-card .pub-sub {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 2px;
-      color: #999;
-      text-transform: uppercase;
-      margin-bottom: 30px;
+      font-size: 0.68rem; letter-spacing: 2px;
+      color: #999; text-transform: uppercase; margin-bottom: 30px;
     }
     .card-footer {
-      border-top: 1px solid #f5f5f5;
-      padding-top: 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      border-top: 1px solid #f5f5f5; padding-top: 22px;
+      display: flex; justify-content: space-between; align-items: center;
     }
     .footer-label {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: var(--gold);
-      text-transform: uppercase;
+      font-size: 0.6rem; font-weight: 800;
+      letter-spacing: 2px; color: var(--gold); text-transform: uppercase;
     }
     .read-link {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: var(--primary-blue);
-      text-transform: uppercase;
-      text-decoration: none;
+      font-size: 0.68rem; font-weight: 800;
+      letter-spacing: 2px; color: var(--primary-blue);
+      text-transform: uppercase; text-decoration: none;
       transition: color 0.2s;
     }
     .read-link:hover { color: var(--gold); }
 
     /* ─── DETAIL OVERLAY ─── */
     #detailOverlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
+      display: none; position: fixed;
+      inset: 0; z-index: 2000;
       background: rgba(10,25,47,0.6);
-      backdrop-filter: blur(6px);
-      overflow-y: auto;
+      backdrop-filter: blur(6px); overflow-y: auto;
     }
     #detailOverlay.open { display: block; animation: overlayIn 0.3s ease; }
     @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
 
     .detail-panel {
-      background: #fff;
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 60px;
-      position: relative;
-      animation: panelUp 0.35s ease;
+      background: #fff; max-width: 1100px;
+      margin: 40px auto; padding: 60px;
+      position: relative; animation: panelUp 0.35s ease;
     }
     @keyframes panelUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
     .detail-close {
-      position: absolute;
-      top: 30px; right: 40px;
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: #aaa;
-      transition: color 0.2s;
-      line-height: 1;
+      position: absolute; top: 30px; right: 40px;
+      background: none; border: none; font-size: 1.8rem;
+      cursor: pointer; color: #aaa; transition: color 0.2s; line-height: 1;
     }
     .detail-close:hover { color: var(--primary-blue); }
 
     .detail-back {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: var(--gold);
-      text-transform: uppercase;
-      background: none;
-      border: none;
-      cursor: pointer;
-      margin-bottom: 40px;
-      display: inline-block;
-      padding: 0;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 1.5px; color: var(--gold);
+      text-transform: uppercase; background: none;
+      border: none; cursor: pointer; margin-bottom: 40px;
+      display: inline-block; padding: 0;
     }
     .detail-layout {
-      display: grid;
-      grid-template-columns: 1.8fr 1fr;
-      gap: 70px;
+      display: grid; grid-template-columns: 1.8fr 1fr; gap: 70px;
     }
     .detail-overline {
       display: block;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 18px;
+      font-size: 0.65rem; letter-spacing: 3px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 18px;
     }
-    .detail-overview {
-      font-size: 1.1rem;
-      color: #444;
-      line-height: 1.8;
-      margin-bottom: 40px;
-    }
+    .detail-overview { font-size: 1.1rem; color: #444; line-height: 1.8; margin-bottom: 40px; }
     .pull-quote {
-      background: var(--cream);
-      border-left: 3px solid var(--gold);
-      padding: 44px;
-      margin: 36px 0;
+      background: var(--cream); border-left: 3px solid var(--gold);
+      padding: 44px; margin: 36px 0;
     }
     .pull-quote p {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-style: italic;
-      color: var(--primary-blue);
-      margin: 0 0 16px;
-      line-height: 1.4;
+      font-size: 1.6rem; font-style: italic;
+      color: var(--primary-blue); margin: 0 0 16px; line-height: 1.4;
     }
     .pull-quote cite {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-style: normal;
+      font-size: 0.78rem; letter-spacing: 2px;
+      text-transform: uppercase; font-style: normal;
     }
     .theme-item {
-      display: flex;
-      align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 1rem;
-      color: #444;
+      display: flex; align-items: center;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+      font-size: 1rem; color: #444;
     }
     .gold-dash { width: 30px; height: 1px; background: var(--gold); margin-right: 18px; flex-shrink: 0; }
 
-    .sidebar-card {
-      border: 1px solid var(--border);
-      padding: 30px;
-      margin-bottom: 24px;
-    }
+    .sidebar-card { border: 1px solid var(--border); padding: 30px; margin-bottom: 24px; }
     .tag {
-      display: inline-block;
-      background: #f5f5f5;
+      display: inline-block; background: #f5f5f5;
       border: 1px solid #e0e0e0;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 1px;
-      padding: 5px 10px;
-      margin: 3px;
+      font-size: 0.6rem; letter-spacing: 1px;
+      padding: 5px 10px; margin: 3px;
     }
     .collab-box { background: var(--cream); border: none; }
-    .collab-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--primary-blue);
-      margin: 0 0 12px;
-    }
+    .collab-box h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--primary-blue); margin: 0 0 12px; }
     .collab-box p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
     .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 0.72rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: #000;
-      text-decoration: none;
-      margin-top: 18px;
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+      color: #000; text-decoration: none; margin-top: 18px;
     }
     .contact-link::after { content: ''; width: 30px; height: 1px; background: var(--gold); }
 
     .detail-nav-footer {
-      margin-top: 80px;
-      display: flex;
-      justify-content: space-between;
-      border-top: 1px solid var(--border);
-      padding-top: 36px;
+      margin-top: 80px; display: flex; justify-content: space-between;
+      border-top: 1px solid var(--border); padding-top: 36px;
     }
     .nav-btn-detail {
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      font-family: 'Cormorant Garamond', serif;
+      background: none; border: none; cursor: pointer;
+      text-align: left; font-family: 'Cormorant Garamond', serif;
     }
     .nav-btn-detail.right { text-align: right; }
     .nav-label-detail {
-      display: block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 2px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 8px;
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem; letter-spacing: 2px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 8px;
     }
-    .nav-title-detail {
-      font-size: 1.2rem;
-      color: var(--primary-blue);
-      transition: color 0.2s;
-    }
+    .nav-title-detail { font-size: 1.2rem; color: var(--primary-blue); transition: color 0.2s; }
     .nav-btn-detail:hover .nav-title-detail { color: var(--gold); }
 
     /* ─── ABOUT AUTHOR ─── */
     #about { background: var(--cream); }
-    .about-grid {
-      display: flex;
-      gap: 80px;
-      align-items: flex-start;
-    }
-    .about-img-wrap {
-      flex: 1;
-      position: relative;
-    }
+    .about-grid { display: flex; gap: 80px; align-items: flex-start; }
+    .about-img-wrap { flex: 1; position: relative; }
     .about-img-wrap img {
-      width: 100%;
-      height: auto;
-      filter: grayscale(15%);
-      border: 1px solid #ddd;
-      display: block;
+      width: 100%; height: auto;
+      filter: grayscale(15%); border: 1px solid #ddd; display: block;
     }
     .stats-badge {
-      position: absolute;
-      bottom: -28px; right: -18px;
-      background: #fff;
-      padding: 22px 32px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      text-align: center;
+      position: absolute; bottom: -28px; right: -18px;
+      background: #fff; padding: 22px 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center;
     }
     .stats-badge .num {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: var(--primary-blue);
-      line-height: 1;
+      display: block; font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; color: var(--primary-blue); line-height: 1;
     }
     .stats-badge .lbl {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
+      font-size: 0.6rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--gold); font-weight: 700;
     }
     .about-content { flex: 1.5; }
     .author-name-big {
       font-family: 'Playfair Display', serif;
       font-size: clamp(3rem, 5vw, 4.5rem);
-      color: var(--primary-blue);
-      line-height: 1;
-      margin: 0 0 36px;
+      color: var(--primary-blue); line-height: 1; margin: 0 0 36px;
     }
     .author-name-big em { color: var(--gold); font-style: italic; }
     .bio-text { font-size: 1.08rem; line-height: 1.85; color: #555; margin-bottom: 36px; }
     .bio-text p { margin-bottom: 18px; }
     .focus-list { list-style: none; padding: 0; margin-bottom: 44px; }
     .focus-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+      display: flex; align-items: center; gap: 14px;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 600;
-      color: #444;
-      margin-bottom: 14px;
+      font-size: 0.78rem; text-transform: uppercase;
+      letter-spacing: 1.5px; font-weight: 600;
+      color: #444; margin-bottom: 14px;
     }
     .focus-item::before { content: ''; width: 38px; height: 1px; background: var(--gold); }
     .mission-box {
       border-left: 2px solid var(--gold);
-      padding: 20px 0 20px 38px;
-      background: #fff;
+      padding: 20px 0 20px 38px; background: #fff;
     }
     .mission-lbl {
-      display: block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 3px;
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 14px;
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem; letter-spacing: 3px;
+      color: var(--gold); text-transform: uppercase;
+      font-weight: 700; margin-bottom: 14px;
     }
     .mission-quote {
       font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.3rem;
-      color: var(--primary-blue);
-      line-height: 1.55;
+      font-style: italic; font-size: 1.3rem;
+      color: var(--primary-blue); line-height: 1.55;
     }
 
     /* ─── TIMELINE ─── */
     #timeline { background: #fff; overflow: hidden; }
-    .timeline-inner {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 100px 40px;
-    }
+    .timeline-inner { position: relative; max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
     .timeline-spine {
-      position: absolute;
-      left: 50%;
-      top: 260px;
-      bottom: 60px;
-      width: 1px;
-      background: #e8dfc8;
-      transform: translateX(-50%);
+      position: absolute; left: 50%; top: 260px; bottom: 60px;
+      width: 1px; background: #e8dfc8; transform: translateX(-50%);
     }
     .timeline-entry {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 90px;
-      position: relative;
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 90px; position: relative;
     }
     .timeline-entry.left { flex-direction: row; }
     .timeline-entry.right { flex-direction: row-reverse; }
     .timeline-year {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: #d8cebc;
-      background: #fff;
-      padding: 6px 0;
-      z-index: 5;
-      line-height: 1;
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-family: 'Playfair Display', serif; font-size: 1.8rem;
+      color: #d8cebc; background: #fff; padding: 6px 0; z-index: 5; line-height: 1;
     }
     .year-dot {
-      width: 12px; height: 12px;
-      background: var(--gold);
-      border-radius: 50%;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 30px;
-      z-index: 6;
+      width: 12px; height: 12px; background: var(--gold);
+      border-radius: 50%; position: absolute; left: 50%;
+      transform: translateX(-50%); top: 30px; z-index: 6;
     }
     .year-dot.hollow { background: #fff; border: 2px solid var(--gold); }
     .timeline-box {
-      width: 43%;
-      border: 1px solid var(--border);
-      padding: 38px;
-      transition: transform 0.3s ease, box-shadow 0.3s;
-      background: #fff;
+      width: 43%; border: 1px solid var(--border); padding: 38px;
+      transition: transform 0.3s ease, box-shadow 0.3s; background: #fff;
     }
     .timeline-box:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
     .timeline-box.featured { border-left: 3px solid var(--gold); }
     .entry-label {
-      display: block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 2px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 14px;
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem; letter-spacing: 2px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 14px;
     }
     .timeline-box h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--primary-blue);
-      font-weight: 400;
-      margin: 0 0 12px;
+      font-family: 'Playfair Display', serif; font-size: 1.4rem;
+      color: var(--primary-blue); font-weight: 400; margin: 0 0 12px;
     }
     .timeline-box p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin: 0; }
 
     /* ─── MEDIA ─── */
     #media { background: var(--cream); }
     .media-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 60px;
-      gap: 30px;
-      flex-wrap: wrap;
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 60px; gap: 30px; flex-wrap: wrap;
     }
     .media-desc {
       max-width: 340px;
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      line-height: 1.6;
+      font-size: 1.05rem; color: var(--text-muted); line-height: 1.6;
     }
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-      gap: 44px 60px;
-    }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 44px 60px; }
     .video-card { border-left: 1px solid #ddd; padding-left: 18px; }
     .video-frame {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      margin-bottom: 18px;
+      position: relative; padding-bottom: 56.25%;
+      height: 0; overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 18px;
     }
-    .video-frame iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: 0;
-    }
+    .video-frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     .video-caption h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      color: var(--primary-blue);
-      margin: 0 0 6px;
-      font-weight: 500;
+      font-family: 'Playfair Display', serif; font-size: 1.15rem;
+      color: var(--primary-blue); margin: 0 0 6px; font-weight: 500;
     }
-    .video-caption p {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
+    .video-caption p { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
 
     /* ─── KARANAS / MUDRAS ─── */
     #karanas { background: #fff; }
     .content-blocks { display: flex; flex-direction: column; gap: 50px; }
     .para-block {
-      padding: 38px;
-      border-left: 2px solid var(--gold);
-      background: var(--cream);
-      transition: transform 0.3s;
+      padding: 38px; border-left: 2px solid var(--gold);
+      background: var(--cream); transition: transform 0.3s;
     }
     .para-block:hover { transform: translateX(8px); }
     .para-block h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: var(--primary-blue);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 14px;
-      margin-bottom: 18px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.82rem;
+      font-weight: 800; color: var(--primary-blue);
+      letter-spacing: 2px; text-transform: uppercase;
+      border-bottom: 1px solid #eee; padding-bottom: 14px; margin-bottom: 18px;
     }
     .para-block p { font-size: 1.08rem; line-height: 1.85; text-align: justify; color: #444; }
 
     .highlights-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 18px;
-      margin-top: 70px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px; margin-top: 70px;
     }
-    .highlight-item {
-      padding: 22px;
-      border: 1px solid var(--border);
-      text-align: center;
-    }
+    .highlight-item { padding: 22px; border: 1px solid var(--border); text-align: center; }
     .highlight-item h4 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 1.5px;
-      color: var(--gold);
-      margin-bottom: 10px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.68rem;
+      letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px;
     }
     .highlight-item p { font-size: 0.88rem; color: #777; margin: 0; line-height: 1.5; }
 
     /* ─── EPILOGUE ─── */
-    #epilogue {
-      background: var(--cream);
-      border-top: 1px solid rgba(197,160,89,0.3);
-    }
-    .epilogue-inner {
-      max-width: 940px;
-      margin: 0 auto;
-      padding: 100px 40px;
-      text-align: center;
-    }
+    #epilogue { background: var(--cream); border-top: 1px solid rgba(197,160,89,0.3); }
+    .epilogue-inner { max-width: 940px; margin: 0 auto; padding: 100px 40px; text-align: center; }
     .epilogue-inner h2 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.5rem, 5vw, 3.5rem);
-      color: var(--primary-blue);
-      font-style: italic;
-      font-weight: 400;
-      margin: 14px 0 50px;
+      color: var(--primary-blue); font-style: italic;
+      font-weight: 400; margin: 14px 0 50px;
     }
-    .epilogue-text {
-      font-size: 1.12rem;
-      line-height: 1.9;
-      color: #444;
-      text-align: left;
-      margin-bottom: 28px;
-    }
+    .epilogue-text { font-size: 1.12rem; line-height: 1.9; color: #444; text-align: left; margin-bottom: 28px; }
     .epilogue-pull {
-      border-left: 3px solid var(--gold);
-      padding: 20px 30px;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.2rem;
-      color: var(--primary-blue);
-      text-align: left;
-      margin: 36px 0;
+      border-left: 3px solid var(--gold); padding: 20px 30px;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 1.2rem; color: var(--primary-blue); text-align: left; margin: 36px 0;
     }
 
     /* ─── FUTURE / MCP ─── */
     #future { background: #fff; }
-    .mcp-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      margin-bottom: 90px;
-      align-items: center;
-    }
+    .mcp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 90px; align-items: center; }
     .mcp-content h2 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 4vw, 3rem);
-      color: var(--primary-blue);
-      font-weight: 400;
-      margin: 14px 0 22px;
+      color: var(--primary-blue); font-weight: 400; margin: 14px 0 22px;
     }
     .mcp-content h2 em { color: var(--gold); font-style: italic; }
     .mcp-content p { font-size: 1.08rem; color: #555; line-height: 1.8; text-align: justify; }
-    .mcp-list-box {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      padding: 38px;
-    }
+    .mcp-list-box { background: var(--cream); border: 1px solid var(--border); padding: 38px; }
     .mcp-list-box ul { list-style: none; padding: 0; }
     .mcp-list-box li {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      color: var(--primary-blue);
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
+      font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+      color: var(--primary-blue); padding: 10px 0; border-bottom: 1px solid var(--border);
     }
     .mcp-list-box li:last-child { border-bottom: none; }
     .mcp-list-box li strong {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 1px;
-      font-weight: 700;
-      display: block;
-      color: var(--gold);
-      margin-bottom: 3px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.7rem;
+      letter-spacing: 1px; font-weight: 700; display: block;
+      color: var(--gold); margin-bottom: 3px;
     }
-
-    .consortium {
-      background: var(--primary-blue);
-      color: #fff;
-      padding: 80px 60px;
-    }
-    .consortium h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 400;
-      margin: 0 0 8px;
-    }
+    .consortium { background: var(--primary-blue); color: #fff; padding: 80px 60px; }
+    .consortium h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400; margin: 0 0 8px; }
     .consortium .sub {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 50px;
-      display: block;
+      font-family: 'Montserrat', sans-serif; font-size: 0.7rem;
+      letter-spacing: 2px; color: var(--gold); text-transform: uppercase;
+      margin-bottom: 50px; display: block;
     }
-    .consortium-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-    }
-    .consortium-item {
-      border-top: 1px solid rgba(197,160,89,0.3);
-      padding-top: 20px;
-    }
-    .consortium-item h4 {
-      font-family: 'Playfair Display', serif;
-      color: var(--gold);
-      font-size: 1.15rem;
-      margin-bottom: 12px;
-    }
+    .consortium-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+    .consortium-item { border-top: 1px solid rgba(197,160,89,0.3); padding-top: 20px; }
+    .consortium-item h4 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.15rem; margin-bottom: 12px; }
     .consortium-item p { font-size: 0.95rem; opacity: 0.85; line-height: 1.65; }
 
     /* ─── CONTACT ─── */
     #contact { background: var(--cream); }
-    .contact-flex {
-      display: flex;
-      gap: 70px;
-      align-items: flex-start;
-      flex-wrap: wrap;
-    }
+    .contact-flex { display: flex; gap: 70px; align-items: flex-start; flex-wrap: wrap; }
     .contact-info { flex: 1; min-width: 300px; }
     .contact-h2 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.5rem, 5vw, 3.8rem);
-      color: var(--primary-blue);
-      font-weight: 400;
-      line-height: 1;
-      margin: 14px 0 24px;
+      color: var(--primary-blue); font-weight: 400; line-height: 1; margin: 14px 0 24px;
     }
     .contact-h2 em { color: var(--gold); font-style: italic; display: block; }
-    .contact-intro {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.7;
-      margin-bottom: 38px;
-    }
+    .contact-intro { font-size: 1rem; color: #555; line-height: 1.7; margin-bottom: 38px; }
     .contact-entries { display: flex; flex-direction: column; gap: 18px; }
     .contact-entry { display: flex; align-items: center; gap: 14px; }
     .contact-icon {
-      width: 40px; height: 40px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
+      width: 40px; height: 40px; background: #fff;
+      border: 1px solid var(--border); border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
     }
     .contact-data label {
-      display: block;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 2px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 2px;
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem; letter-spacing: 2px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 2px;
     }
-    .contact-data p {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: var(--primary-blue);
-    }
+    .contact-data p { font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-blue); }
 
     .contact-form-wrap { flex: 1.2; min-width: 340px; position: relative; }
     .contact-form-wrap::after {
-      content: 'ॐ';
-      position: absolute;
-      right: -10px; top: -30px;
-      font-size: 14rem;
-      color: rgba(0,0,0,0.025);
-      pointer-events: none;
+      content: 'ॐ'; position: absolute; right: -10px; top: -30px;
+      font-size: 14rem; color: rgba(0,0,0,0.025); pointer-events: none;
     }
     .contact-form-wrap h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--primary-blue);
-      font-weight: 400;
-      margin-bottom: 32px;
+      font-family: 'Playfair Display', serif; font-size: 1.8rem;
+      color: var(--primary-blue); font-weight: 400; margin-bottom: 32px;
     }
     .form-field { margin-bottom: 24px; }
     .form-field input,
     .form-field select,
     .form-field textarea {
-      width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem;
-      color: #333;
-      outline: none;
-      transition: border-color 0.3s;
+      width: 100%; background: transparent; border: none;
+      border-bottom: 1px solid #ccc; padding: 10px 0;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.05rem;
+      color: #333; outline: none; transition: border-color 0.3s;
     }
     .form-field input:focus,
     .form-field select:focus,
     .form-field textarea:focus { border-bottom-color: var(--gold); }
     .btn-send {
-      background: transparent;
-      border: none;
-      color: var(--primary-blue);
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 18px 0;
+      background: transparent; border: none; color: var(--primary-blue);
+      font-family: 'Montserrat', sans-serif; font-size: 0.82rem;
+      font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 18px 0;
     }
     .btn-send .arr { color: var(--gold); font-size: 1.4rem; transition: transform 0.3s; }
     .btn-send:hover .arr { transform: translateX(8px); }
 
     /* ─── SITE FOOTER ─── */
     #site-footer {
-      background: var(--primary-blue);
-      color: rgba(255,255,255,0.7);
+      background: var(--primary-blue); color: rgba(255,255,255,0.7);
       padding: 50px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 20px;
     }
     .footer-brand .name {
-      display: block;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      letter-spacing: 2px;
-      font-size: 0.82rem;
-      color: #fff;
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-weight: 700; letter-spacing: 2px; font-size: 0.82rem; color: #fff;
     }
     .footer-brand .url { color: var(--gold); font-size: 0.72rem; font-family: 'Montserrat', sans-serif; }
     .footer-nav a {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 1px;
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      margin-right: 20px;
-      transition: color 0.2s;
+      font-family: 'Montserrat', sans-serif; font-size: 0.68rem;
+      letter-spacing: 1px; color: rgba(255,255,255,0.5);
+      text-decoration: none; margin-right: 18px; transition: color 0.2s;
     }
     .footer-nav a:hover { color: var(--gold); }
     .footer-copy { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.4); }
@@ -1048,6 +699,7 @@
       .detail-panel { padding: 36px 24px; margin: 0; }
       .mcp-grid { grid-template-columns: 1fr; }
       .consortium { padding: 50px 24px; }
+      .pages-promo-inner { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .nav-links { display: none; }
@@ -1060,7 +712,7 @@
 
 <!-- ═══════════════════ NAV ═══════════════════ -->
 <nav id="main-nav">
-  <a href="#hero" class="nav-brand">
+  <a href="index.html" class="nav-brand">
     <img src="logo.jpg" alt="Logo" onerror="this.style.display='none'" />
     <div class="nav-brand-text">
       <span class="name">AESTHETICS OF SOCIETY</span>
@@ -1072,8 +724,9 @@
     <li><a href="#publications">PUBLICATIONS</a></li>
     <li><a href="#timeline">TIMELINE</a></li>
     <li><a href="#media">MEDIA</a></li>
-    <li><a href="#contact">CONTACT</a></li>
-    <li><a href="#publications" class="nav-cta">INTRODUCTION</a></li>
+    <li><a href="gurus-clan.html">GURU'S CLAN</a></li>
+    <li><a href="natya-shastra.html">NATYA SHASTRA</a></li>
+    <li><a href="#contact" class="nav-cta">INTRODUCTION</a></li>
   </ul>
 </nav>
 
@@ -1106,6 +759,26 @@
   </p>
 </div>
 
+<!-- ═══════════════════ NEW PAGES PROMO ═══════════════════ -->
+<div id="pages-promo">
+  <div class="pages-promo-inner">
+    <a href="gurus-clan.html" class="promo-card">
+      <span class="pc-label">New · Deep Research</span>
+      <h3>The Guru's Clan</h3>
+      <p>The unbroken lineage from Hiranyagarbha to the 18 Siddhas — eight illumined masters from the Vedas and Upanishads whose teachings form the scientific backbone of this entire research archive. Explore the Parampara, the Upanishadic foundations, and their direct links to neuroscience and healing.</p>
+      <span class="pc-link">Explore the Lineage →</span>
+      <span class="pc-bg">ॐ</span>
+    </a>
+    <a href="natya-shastra.html" class="promo-card">
+      <span class="pc-label">New · Applied Research</span>
+      <h3>Natya Shastra &amp; 108 Karanas</h3>
+      <p>Inferences and applications drawn from Bharata Muni's cosmic choreography — across bio-mechanics, neuroscience, bio-acoustics, cosmology, and psycho-spiritual dimensions. Includes the 5-Phase Master Consciousness Protocol clinical framework and the holistic system mandala.</p>
+      <span class="pc-link">Explore the Science →</span>
+      <span class="pc-bg">🕉</span>
+    </a>
+  </div>
+</div>
+
 <!-- ═══════════════════ PUBLICATIONS ═══════════════════ -->
 <section id="publications">
   <div class="section-wrapper">
@@ -1116,10 +789,7 @@
       </div>
       <p class="pub-intro">Eight landmark works bridging ancient Vedic science with contemporary research disciplines.</p>
     </div>
-
-    <div class="pub-grid" id="pubGrid">
-      <!-- Cards injected by JS -->
-    </div>
+    <div class="pub-grid" id="pubGrid"></div>
   </div>
 </section>
 
@@ -1173,7 +843,6 @@
       <span class="section-label">Research Journey</span>
       <h2 class="section-title">Timeline of<br /><em>Discovery</em></h2>
     </div>
-
     <div class="timeline-entry left">
       <div class="timeline-year">2010<div class="year-dot"></div></div>
       <div class="timeline-box featured">
@@ -1325,6 +994,9 @@
       <div class="highlight-item"><h4>COSMIC RATIO</h4><p>Alignment with 108 astronomical constants.</p></div>
       <div class="highlight-item"><h4>RESONANCE</h4><p>Vibrational healing via Matrika Nyasa.</p></div>
     </div>
+    <div style="text-align:center;margin-top:60px;">
+      <a href="natya-shastra.html" class="btn btn-primary" style="display:inline-block;">Full Research: Natya Shastra →</a>
+    </div>
   </div>
 </section>
 
@@ -1401,6 +1073,10 @@
             <div class="contact-icon">📍</div>
             <div class="contact-data"><label>Base</label><p>India</p></div>
           </div>
+          <div class="contact-entry">
+            <div class="contact-icon">💻</div>
+            <div class="contact-data"><label>GitHub Repository</label><p>github.com/ramachandra1975/ramachandra</p></div>
+          </div>
         </div>
       </div>
       <div class="contact-form-wrap">
@@ -1418,6 +1094,8 @@
               <option>Bio-acoustics &amp; Resonant Universe</option>
               <option>Sampoorna Manovijnana Sangraha</option>
               <option>Paninian Grammar &amp; AI Frameworks</option>
+              <option>Guru's Clan &amp; Vedic Lineage</option>
+              <option>Natya Shastra Research</option>
             </select>
           </div>
           <div class="form-field"><textarea placeholder="Research Interest / Message" rows="4"></textarea></div>
@@ -1437,14 +1115,21 @@
   <nav class="footer-nav">
     <a href="#about">ABOUT</a>
     <a href="#publications">PUBLICATIONS</a>
+    <a href="gurus-clan.html">GURU'S CLAN</a>
+    <a href="natya-shastra.html">NATYA SHASTRA</a>
     <a href="#media">MEDIA</a>
     <a href="#contact">CONTACT</a>
   </nav>
   <div class="footer-copy">© 2026 NAREDLA RAMA CHANDRA</div>
 </footer>
 
+<!-- ═══════════════════ AUDIO ═══════════════════ -->
+<audio id="vedic-audio" loop>
+  <source src="audio/vedic-tamil.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-  /* ── NAV SCROLL EFFECT ── */
+  /* ── NAV SCROLL ── */
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
@@ -1457,7 +1142,7 @@
       title: 'Complete Science of Consciousness',
       sub: 'Ancient Knowledge vs Artificial Intelligence',
       footerLabel: 'Flagship Work',
-      overview: 'This landmark work presents a comprehensive framework comparing the ancient Vedic science of consciousness with modern artificial intelligence paradigms. Drawing from thousands of years of accumulated wisdom encoded in Sanskrit texts, the author demonstrates how ancient seers mapped the full spectrum of human consciousness with a precision that modern neuroscience is only beginning to approach. The work challenges the reductionist view of mind and offers a unified theory of consciousness rooted in Vedic epistemology.',
+      overview: 'This landmark work presents a comprehensive framework comparing the ancient Vedic science of consciousness with modern artificial intelligence paradigms. Drawing from thousands of years of accumulated wisdom encoded in Sanskrit texts, the author demonstrates how ancient seers mapped the full spectrum of human consciousness with a precision that modern neuroscience is only beginning to approach.',
       quote: 'Ancient seers mapped the cosmos of consciousness with a precision that modern science is only beginning to rediscover.',
       themes: ['Vedic models of consciousness vs. computational models','The role of Prana and Kundalini in neural activation','Sanskrit as a programming language for the mind','Comparison of AI neural networks with Vedic chakra systems','Consciousness as the fundamental substrate of reality'],
       areas: ['CONSCIOUSNESS STUDIES','ARTIFICIAL INTELLIGENCE','VEDIC PHILOSOPHY','NEUROSCIENCE']
@@ -1467,7 +1152,7 @@
       title: 'Master Reference Compendium',
       sub: 'Integrated Research Standards',
       footerLabel: 'Reference',
-      overview: 'The definitive reference work synthesizing decades of cross-disciplinary research into a unified compendium. This volume establishes integrated standards for studying ancient Indian knowledge systems through the lens of modern science. It serves as the foundational reference for researchers, scholars, and practitioners seeking to bridge Vedic wisdom with contemporary scientific methodology, covering terminology, measurement frameworks, and research protocols.',
+      overview: 'The definitive reference work synthesizing decades of cross-disciplinary research into a unified compendium. This volume establishes integrated standards for studying ancient Indian knowledge systems through the lens of modern science.',
       quote: 'A bridge between the language of the ancients and the vocabulary of modern science.',
       themes: ['Unified terminology for ancient-modern synthesis','Research protocols for studying Vedic sciences','Cross-referencing ancient texts with modern findings','Measurement frameworks for subtle energy systems','Standards for consciousness research'],
       areas: ['RESEARCH METHODOLOGY','VEDIC SCIENCES','INTERDISCIPLINARY STUDIES']
@@ -1477,7 +1162,7 @@
       title: 'Sapta Swaras &amp; Healing',
       sub: 'Treatise on Carnatic Music Science',
       footerLabel: 'Acoustic Research',
-      overview: 'An in-depth scientific treatise on the seven sacred notes of Carnatic music and their profound healing properties. This work explores how each swara creates measurable physiological and neurological responses, providing the scientific basis for music therapy rooted in ancient traditions.',
+      overview: 'An in-depth scientific treatise on the seven sacred notes of Carnatic music and their profound healing properties. This work explores how each swara creates measurable physiological and neurological responses.',
       quote: 'Every note in Carnatic music is a key that unlocks a specific chamber of the human nervous system.',
       themes: ['Seven swaras and physiological correlates','Raga therapy and its scientific basis','Bio-acoustic frequencies and brainwave entrainment','Classical ragas as healing protocols'],
       areas: ['MUSIC SCIENCE','BIO-ACOUSTICS','NEUROLOGY','CARNATIC TRADITIONS']
@@ -1497,7 +1182,7 @@
       title: 'Yoga: The Eternal Science',
       sub: 'Vedic Roots for Modern Neurology',
       footerLabel: 'Neuro-Vedic Synthesis',
-      overview: 'This work establishes the neuroscientific foundations of classical Vedic yoga, demonstrating how ancient practices systematically restructure the nervous system, balance the autonomic system, and promote neuroplasticity through precisely calibrated physical and meditative disciplines.',
+      overview: 'This work establishes the neuroscientific foundations of classical Vedic yoga, demonstrating how ancient practices systematically restructure the nervous system and promote neuroplasticity.',
       quote: 'Yoga is not exercise — it is the original neuroscience of the self.',
       themes: ['Vedic yoga and neuroplasticity','Pranayama as respiratory neuroscience','Dhyana and default mode network modulation','Bandhas as neuro-somatic locks'],
       areas: ['YOGA SCIENCE','NEUROSCIENCE','VEDIC PHILOSOPHY','CLINICAL APPLICATIONS']
@@ -1507,7 +1192,7 @@
       title: 'Shabda Brahman',
       sub: 'Sacred Science of Sound',
       footerLabel: 'Metaphysical Research',
-      overview: 'An exploration of the sacred science of primordial sound as encoded in Sanskrit. This work investigates how specific phonemes and mantras interact with the human nervous system, demonstrating the biological basis of Vedic acoustic science through the lens of modern bio-acoustics and quantum physics.',
+      overview: 'An exploration of the sacred science of primordial sound as encoded in Sanskrit. This work investigates how specific phonemes and mantras interact with the human nervous system.',
       quote: 'Before matter, there was vibration. Shabda is not merely sound — it is the architectural blueprint of reality.',
       themes: ['Sanskrit phonemes and neural stimulation','Mantra as bio-acoustic medicine','Nada Brahman and cosmic vibration theory','Beeja aksharas and glandular activation'],
       areas: ['SOUND SCIENCE','BIO-ACOUSTICS','QUANTUM PHYSICS','SANSKRIT STUDIES']
@@ -1517,7 +1202,7 @@
       title: 'The Cosmic Choreography',
       sub: "Study of Shankaracharya's Metaphysics",
       footerLabel: 'Vedantic Theory',
-      overview: "A deep study of Adi Shankaracharya's Advaita Vedanta through the lens of modern physics and consciousness studies, demonstrating how his non-dual metaphysics anticipates quantum field theory, observer-dependent reality, and modern theories of consciousness.",
+      overview: "A deep study of Adi Shankaracharya's Advaita Vedanta through the lens of modern physics and consciousness studies.",
       quote: 'Shankaracharya did not describe a religion — he described the physics of consciousness.',
       themes: ['Advaita Vedanta and quantum non-locality','Maya as observer-dependent reality','Brahman as unified field theory','Consciousness as the ground of all being'],
       areas: ['VEDANTIC PHILOSOPHY','QUANTUM PHYSICS','CONSCIOUSNESS STUDIES','COMPARATIVE METAPHYSICS']
@@ -1527,7 +1212,7 @@
       title: 'Sanskrit &amp; AI',
       sub: 'Neurological Healing &amp; Programming',
       footerLabel: 'Future Systems',
-      overview: "This forward-looking work explores the profound structural parallels between Sanskrit's highly formalized grammatical system (Paninian grammar) and modern artificial intelligence programming paradigms, arguing that Sanskrit is the ideal natural-language interface for AI systems due to its inherent computational precision.",
+      overview: "This forward-looking work explores the profound structural parallels between Sanskrit's highly formalized grammatical system and modern artificial intelligence programming paradigms.",
       quote: 'Panini wrote the first formal grammar. He also wrote the future programming language of AI.',
       themes: ['Paninian grammar and computational linguistics','Sanskrit as a natural AI language','Beeja aksharas as programming tokens','Sanskrit neural interfaces for healing'],
       areas: ['ARTIFICIAL INTELLIGENCE','SANSKRIT LINGUISTICS','COMPUTATIONAL SCIENCE','FUTURE TECHNOLOGY']
@@ -1617,12 +1302,9 @@
     document.getElementById('detailOverlay').scrollTop = 0;
   }
 
-  /* close overlay on backdrop click */
   document.getElementById('detailOverlay').addEventListener('click', function(e) {
     if (e.target === this) closeDetail();
   });
-
-  /* close on ESC */
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
 
   /* ── FORM ── */
@@ -1631,39 +1313,32 @@
     const btn = e.target.querySelector('.btn-send');
     btn.textContent = 'Inquiry Sent ✓';
     btn.style.color = 'var(--gold)';
-    setTimeout(() => { btn.innerHTML = 'Send Inquiry <span class="arr">→</span>'; btn.style.color = ''; e.target.reset(); }, 3000);
+    setTimeout(() => {
+      btn.innerHTML = 'Send Inquiry <span class="arr">→</span>';
+      btn.style.color = '';
+      e.target.reset();
+    }, 3000);
   }
-</script>
-<!-- VEDIC AUDIO -->
-<audio id="vedic-audio" loop>
-  <source src="audio/vedic-tamil.mp3" type="audio/mpeg">
-</audio>
 
-<script>
-const audio = document.getElementById("vedic-audio");
-let started = false;
-
-function fadeInAudio() {
-  audio.volume = 0;
-  audio.play();
-
-  let vol = 0;
-  const fade = setInterval(() => {
-    if (vol < 0.2) {
-      vol += 0.01;
-      audio.volume = vol;
-    } else {
-      clearInterval(fade);
-    }
-  }, 200);
-}
-
-document.addEventListener("click", function init() {
-  if (!started) {
-    fadeInAudio();
-    started = true;
+  /* ── AUDIO (FIXED) ── */
+  const audio = document.getElementById("vedic-audio");
+  let started = false;
+  function fadeInAudio() {
+    audio.volume = 0;
+    audio.play().catch(() => {});
+    let vol = 0;
+    const fade = setInterval(() => {
+      if (vol < 0.2) {
+        vol += 0.01;
+        audio.volume = Math.min(vol, 0.2);
+      } else {
+        clearInterval(fade);
+      }
+    }, 200);
   }
-});
+  document.addEventListener("click", function() {
+    if (!started) { fadeInAudio(); started = true; }
+  }, { once: true });
 </script>
 </body>
 </html>
