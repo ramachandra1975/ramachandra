@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natya Shastra | Aesthetics of Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a365d; --gold: #c5a059; --gold-light: #e2c98a;
+      --cream: #fdfaf5; --navy: #0f2240; --border: #ececec;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ─── FIXED BACKGROUND (Same as all pages) ─── */
+    body { 
+      font-family: 'Cormorant Garamond', serif; 
+      color: #333; 
+      overflow-x: hidden;
+      background: linear-gradient(rgba(253,250,245,0.92), rgba(253,250,245,0.92)), 
+                  url('background.png') center/top fixed no-repeat;
+      background-size: cover;
+    }
+
+    /* NAV */
+    #main-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 5%; background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197,160,89,0.2);
+    }
+    .nav-brand-text .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 2.5px; color: var(--primary-blue); text-decoration: none; }
+    .nav-brand-text .url { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--gold); letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 22px; list-style: none; }
+    .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; text-decoration: none; color: var(--primary-blue); }
+
+    /* PAGE HERO (Consistent with Guru's Clan) */
+    #page-hero {
+      min-height: 60vh; background: linear-gradient(160deg, var(--navy) 0%, var(--primary-blue) 65%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 140px 40px 80px;
+    }
+    #page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem,7vw,6rem); color: #fff; }
+    #page-hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-subtitle { color: rgba(255,255,255,0.7); max-width: 700px; margin-top: 20px; font-style: italic; font-size: 1.2rem; }
+
+    /* CONTENT SECTIONS */
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .section-label { display: block; font-family: 'Montserrat'; font-size: 0.7rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 15px; }
+    .section-title { font-family: 'Playfair Display'; font-size: 3rem; color: var(--primary-blue); margin-bottom: 30px; }
+
+    /* KARANA GRID */
+    .karana-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+    .karana-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(5px); padding: 45px; border: 1px solid var(--border); }
+    .karana-card h3 { font-family: 'Playfair Display'; color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 15px; }
+    .karana-card p { line-height: 1.7; color: #555; }
+
+    @media (max-width: 768px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" style="text-decoration:none">
+    <div class="nav-brand-text">
+      <span class="name">NAREDLA RAMA CHANDRA</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="gurus-clan.html">GURU'S CLAN</a></li>
+    <li><a href="natya-shastra.html" style="color:var(--gold)">NATYA SHASTRA</a></li>
+  </ul>
+</nav>
+
+<header id="page-hero">
+  <span class="section-label" style="color:rgba(255,255,255,0.6)">Ancient Science of Arts</span>
+  <h1>Natya <em>Shastra</em></h1>
+  <p class="hero-subtitle">Exploring the 108 Karanas, Astrophysical Constants, and Neural Bio-mechanics.</p>
+</header>
+
+<section class="section-wrapper">
+  <span class="section-label">Research Domains</span>
+  <h2 class="section-title">The Science of <em>Movement</em></h2>
+  
+  <div class="karana-grid">
+    <div class="karana-card">
+      <h3>The 108 Karanas</h3>
+      <p>A systematic study of the fundamental units of dance as codified by Bharata Muni, analyzed through modern kinematics.</p>
+    </div>
+    
+    <div class="karana-card">
+      <h3>Neural Bio-mechanics</h3>
+      <p>Researching how specific Karanas stimulate neural pathways and their relationship with proprioception and cognitive health.</p>
+    </div>
+
+    <div class="karana-card">
+      <h3>Cosmic Choreography</h3>
+      <p>Identifying mathematical constants within temple sculptures and their alignment with celestial patterns.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIO ELEMENT (SAME AS INDEX) -->
+<audio id="vedic-audio" loop preload="auto">
+  <source src="vedic-tamil.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  /* ── AUDIO FIX ── */
+  const audio = document.getElementById("vedic-audio");
+  let audioStarted = false;
+
+  function initAudio() {
+    if (!audioStarted) {
+      audio.volume = 0.2;
+      audio.play().catch(e => console.log("Audio waiting for interaction"));
+      audioStarted = true;
+    }
+  }
+
+  // Starts audio on the first click anywhere on the page
+  document.addEventListener('click', initAudio, { once: true });
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('main-nav').style.boxShadow = window.scrollY > 50 ? "0 4px 20px rgba(0,0,0,0.1)" : "none";
+  });
+</script>
+
+</body>
+</html>
