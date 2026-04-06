@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetics of Society | Naredla Rama Chandra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --cream-dark: #f5efe3;
+      --text-muted: #666;
+      --border: #ececec;
+      --navy: #0f2240;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: #fff;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    #main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5%;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+      transition: box-shadow 0.3s;
+    }
+    #main-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+    .nav-brand-text .name {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 2.5px;
+      color: var(--primary-blue);
+    }
+    .nav-brand-text .url {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--primary-blue);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .nav-cta {
+      border: 1px solid var(--gold);
+      padding: 7px 18px;
+      color: var(--gold);
+    }
+    .nav-links .nav-cta:hover { background: var(--gold); color: #fff; }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background: linear-gradient(rgba(253,250,245,0.88), rgba(253,250,245,0.88)),
+        url('background.png') center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    .hero-wm {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.06;
+    }
+    .hero-wm-logo { width: 40%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-wm-side { width: 200px; top: 50%; transform: translateY(-50%); filter: sepia(30%); }
+    .hero-wm-left { left: 3%; }
+    .hero-wm-right { right: 3%; }
+
+    .hero-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-title-1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(60px, 9vw, 100px);
+      font-weight: 800;
+      color: var(--primary-blue);
+      line-height: 0.9;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+    .hero-title-2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(72px, 11vw, 125px);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 28px;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+    .hero-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      color: var(--primary-blue);
+      line-height: 2;
+      text-transform: uppercase;
+      max-width: 600px;
+      margin: 0 auto 48px;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      animation: fadeUp 1s 0.4s ease both;
+    }
+    .btn {
+      display: inline-block;
+      padding: 17px 38px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--primary-blue); color: #fff; border: 1px solid var(--primary-blue); }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+    .btn-outline-hero { background: rgba(255,255,255,0.5); color: var(--primary-blue); border: 1px solid #ccc; border-left: none; }
+    .btn-outline-hero:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION SHARED ─── */
+    .section-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 40px;
+    }
+    .section-label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      color: var(--primary-blue);
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 0;
+    }
+    .section-title em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    /* ─── PHILOSOPHY STRIP ─── */
+    #philosophy {
+      background: var(--cream);
+      border-top: 1px solid rgba(197,160,89,0.2);
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .philosophy-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 3rem);
+      color: var(--primary-blue);
+      line-height: 1.5;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .philosophy-text .italic { font-style: italic; font-weight: 400; }
+    .philosophy-text .gold { color: var(--gold); }
+    .philosophy-text .bold-sans {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.5rem, 3.2vw, 2.8rem);
+      letter-spacing: -1px;
+    }
+    .philosophy-text .dash { color: var(--gold); margin: 0 8px; }
+
+    /* ─── PUBLICATIONS ─── */
+    #publications { background: #fff; }
+    .pub-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 70px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .pub-intro {
+      max-width: 360px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 24px;
+    }
+    .pub-card {
+      border: 1px solid var(--border);
+      padding: 42px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 300px;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      background: #fff;
+    }
+    .pub-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+      border-color: var(--gold);
+    }
+    .pub-card .card-tag {
+      display: inline-block;
+      background: #f0f4f8;
+      color: var(--primary-blue);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      margin-bottom: 22px;
+    }
+    .pub-card .vol-num {
+      position: absolute;
+      top: 42px; right: 42px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+    .pub-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      color: var(--primary-blue);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .pub-card .pub-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      color: #999;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+    .card-footer {
+      border-top: 1px solid #f5f5f5;
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+    .read-link {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--primary-blue);
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .read-link:hover { color: var(--gold); }
+
+    /* ─── DETAIL OVERLAY ─── */
+    #detailOverlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(10,25,47,0.6);
+      backdrop-filter: blur(6px);
+      overflow-y: auto;
+    }
+    #detailOverlay.open { display: block; animation: overlayIn 0.3s ease; }
+    @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .detail-panel {
+      background: #fff;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 60px;
+      position: relative;
+      animation: panelUp 0.35s ease;
+    }
+    @keyframes panelUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    .detail-close {
+      position: absolute;
+      top: 30px; right: 40px;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #aaa;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .detail-close:hover { color: var(--primary-blue); }
+
+    .detail-back {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 40px;
+      display: inline-block;
+      padding: 0;
+    }
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 70px;
+    }
+    .detail-overline {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .detail-overview {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .pull-quote {
+      background: var(--cream);
+      border-left: 3px solid var(--gold);
+      padding: 44px;
+      margin: 36px 0;
+    }
+    .pull-quote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--primary-blue);
+      margin: 0 0 16px;
+      line-height: 1.4;
+    }
+    .pull-quote cite {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-style: normal;
+    }
+    .theme-item {
+      display: flex;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 1rem;
+      color: #444;
+    }
+    .gold-dash { width: 30px; height: 1px; background: var(--gold); margin-right: 18px; flex-shrink: 0; }
+
+    .sidebar-card {
+      border: 1px solid var(--border);
+      padding: 30px;
+      margin-bottom: 24px;
+    }
+    .tag {
+      display: inline-block;
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      padding: 5px 10px;
+      margin: 3px;
+    }
+    .collab-box { background: var(--cream); border: none; }
+    .collab-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--primary-blue);
+      margin: 0 0 12px;
+    }
+    .collab-box p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #000;
+      text-decoration: none;
+      margin-top: 18px;
+    }
+    .contact-link::after { content: ''; width: 30px; height: 1px; background: var(--gold); }
+
+    .detail-nav-footer {
+      margin-top: 80px;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 36px;
+    }
+    .nav-btn-detail {
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .nav-btn-detail.right { text-align: right; }
+    .nav-label-detail {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .nav-title-detail {
+      font-size: 1.2rem;
+      color: var(--primary-blue);
+      transition: color 0.2s;
+    }
+    .nav-btn-detail:hover .nav-title-detail { color: var(--gold); }
+
+    /* ─── ABOUT AUTHOR ─── */
+    #about { background: var(--cream); }
+    .about-grid {
+      display: flex;
+      gap: 80px;
+      align-items: flex-start;
+    }
+    .about-img-wrap {
+      flex: 1;
+      position: relative;
+    }
+    .about-img-wrap img {
+      width: 100%;
+      height: auto;
+      filter: grayscale(15%);
+      border: 1px solid #ddd;
+      display: block;
+    }
+    .stats-badge {
+      position: absolute;
+      bottom: -28px; right: -18px;
+      background: #fff;
+      padding: 22px 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .stats-badge .num {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--primary-blue);
+      line-height: 1;
+    }
+    .stats-badge .lbl {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .about-content { flex: 1.5; }
+    .author-name-big {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      color: var(--primary-blue);
+      line-height: 1;
+      margin: 0 0 36px;
+    }
+    .author-name-big em { color: var(--gold); font-style: italic; }
+    .bio-text { font-size: 1.08rem; line-height: 1.85; color: #555; margin-bottom: 36px; }
+    .bio-text p { margin-bottom: 18px; }
+    .focus-list { list-style: none; padding: 0; margin-bottom: 44px; }
+    .focus-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 14px;
+    }
+    .focus-item::before { content: ''; width: 38px; height: 1px; background: var(--gold); }
+    .mission-box {
+      border-left: 2px solid var(--gold);
+      padding: 20px 0 20px 38px;
+      background: #fff;
+    }
+    .mission-lbl {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .mission-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--primary-blue);
+      line-height: 1.55;
+    }
+
+    /* ─── TIMELINE ─── */
+    #timeline { background: #fff; overflow: hidden; }
+    .timeline-inner {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 40px;
+    }
+    .timeline-spine {
+      position: absolute;
+      left: 50%;
+      top: 260px;
+      bottom: 60px;
+      width: 1px;
+      background: #e8dfc8;
+      transform: translateX(-50%);
+    }
+    .timeline-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 90px;
+      position: relative;
+    }
+    .timeline-entry.left { flex-direction: row; }
+    .timeline-entry.right { flex-direction: row-reverse; }
+    .timeline-year {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: #d8cebc;
+      background: #fff;
+      padding: 6px 0;
+      z-index: 5;
+      line-height: 1;
+    }
+    .year-dot {
+      width: 12px; height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 30px;
+      z-index: 6;
+    }
+    .year-dot.hollow { background: #fff; border: 2px solid var(--gold); }
+    .timeline-box {
+      width: 43%;
+      border: 1px solid var(--border);
+      padding: 38px;
+      transition: transform 0.3s ease, box-shadow 0.3s;
+      background: #fff;
+    }
+    .timeline-box:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
+    .timeline-box.featured { border-left: 3px solid var(--gold); }
+    .entry-label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .timeline-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--primary-blue);
+      font-weight: 400;
+      margin: 0 0 12px;
+    }
+    .timeline-box p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin: 0; }
+
+	/* ─── natyashastra ─── */
+    #natyashastra { background: var(--cream); }
+    .natyashastra-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .natyashastra-desc {
+      max-width: 340px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 44px 60px;
+    }
+    .video-card { border-left: 1px solid #ddd; padding-left: 18px; }
+    .video-frame {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 18px;
+    }
+    .video-frame iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .video-caption h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--primary-blue);
+      margin: 0 0 6px;
+      font-weight: 500;
+    }
+    .video-caption p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+	
+    /* ─── MEDIA ─── */
+    #media { background: var(--cream); }
+    .media-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .media-desc {
+      max-width: 340px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 44px 60px;
+    }
+    .video-card { border-left: 1px solid #ddd; padding-left: 18px; }
+    .video-frame {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 18px;
+    }
+    .video-frame iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .video-caption h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--primary-blue);
+      margin: 0 0 6px;
+      font-weight: 500;
+    }
+    .video-caption p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── KARANAS / MUDRAS ─── */
+    #karanas { background: #fff; }
+    .content-blocks { display: flex; flex-direction: column; gap: 50px; }
+    .para-block {
+      padding: 38px;
+      border-left: 2px solid var(--gold);
+      background: var(--cream);
+      transition: transform 0.3s;
+    }
+    .para-block:hover { transform: translateX(8px); }
+    .para-block h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--primary-blue);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+    .para-block p { font-size: 1.08rem; line-height: 1.85; text-align: justify; color: #444; }
+
+    .highlights-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      margin-top: 70px;
+    }
+    .highlight-item {
+      padding: 22px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .highlight-item h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .highlight-item p { font-size: 0.88rem; color: #777; margin: 0; line-height: 1.5; }
+
+    /* ─── EPILOGUE ─── */
+    #epilogue {
+      background: var(--cream);
+      border-top: 1px solid rgba(197,160,89,0.3);
+    }
+    .epilogue-inner {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 100px 40px;
+      text-align: center;
+    }
+    .epilogue-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      color: var(--primary-blue);
+      font-style: italic;
+      font-weight: 400;
+      margin: 14px 0 50px;
+    }
+    .epilogue-text {
+      font-size: 1.12rem;
+      line-height: 1.9;
+      color: #444;
+      text-align: left;
+      margin-bottom: 28px;
+    }
+    .epilogue-pull {
+      border-left: 3px solid var(--gold);
+      padding: 20px 30px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--primary-blue);
+      text-align: left;
+      margin: 36px 0;
+    }
+
+    /* ─── FUTURE / MCP ─── */
+    #future { background: #fff; }
+    .mcp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 90px;
+      align-items: center;
+    }
+    .mcp-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--primary-blue);
+      font-weight: 400;
+      margin: 14px 0 22px;
+    }
+    .mcp-content h2 em { color: var(--gold); font-style: italic; }
+    .mcp-content p { font-size: 1.08rem; color: #555; line-height: 1.8; text-align: justify; }
+    .mcp-list-box {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      padding: 38px;
+    }
+    .mcp-list-box ul { list-style: none; padding: 0; }
+    .mcp-list-box li {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--primary-blue);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mcp-list-box li:last-child { border-bottom: none; }
+    .mcp-list-box li strong {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+      display: block;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+
+    .consortium {
+      background: var(--primary-blue);
+      color: #fff;
+      padding: 80px 60px;
+    }
+    .consortium h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 400;
+      margin: 0 0 8px;
+    }
+    .consortium .sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 50px;
+      display: block;
+    }
+    .consortium-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+    .consortium-item {
+      border-top: 1px solid rgba(197,160,89,0.3);
+      padding-top: 20px;
+    }
+    .consortium-item h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+    }
+    .consortium-item p { font-size: 0.95rem; opacity: 0.85; line-height: 1.65; }
+
+/* ─── guruclan ─── */
+    #guruclan { background: var(--cream); }
+    .guruclan-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .guruclan-desc {
+      max-width: 340px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 44px 60px;
+    }
+    .video-card { border-left: 1px solid #ddd; padding-left: 18px; }
+    .video-frame {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      margin-bottom: 18px;
+    }
+    .video-frame iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
+    }
+    .video-caption h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--primary-blue);
+      margin: 0 0 6px;
+      font-weight: 500;
+    }
+    .video-caption p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--cream); }
+    .contact-flex {
+      display: flex;
+      gap: 70px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .contact-info { flex: 1; min-width: 300px; }
+    .contact-h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      color: var(--primary-blue);
+      font-weight: 400;
+      line-height: 1;
+      margin: 14px 0 24px;
+    }
+    .contact-h2 em { color: var(--gold); font-style: italic; display: block; }
+    .contact-intro {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 38px;
+    }
+    .contact-entries { display: flex; flex-direction: column; gap: 18px; }
+    .contact-entry { display: flex; align-items: center; gap: 14px; }
+    .contact-icon {
+      width: 40px; height: 40px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-data label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .contact-data p {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--primary-blue);
+    }
+
+    .contact-form-wrap { flex: 1.2; min-width: 340px; position: relative; }
+    .contact-form-wrap::after {
+      content: 'ॐ';
+      position: absolute;
+      right: -10px; top: -30px;
+      font-size: 14rem;
+      color: rgba(0,0,0,0.025);
+      pointer-events: none;
+    }
+    .contact-form-wrap h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--primary-blue);
+      font-weight: 400;
+      margin-bottom: 32px;
+    }
+    .form-field { margin-bottom: 24px; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      color: #333;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-bottom-color: var(--gold); }
+    .btn-send {
+      background: transparent;
+      border: none;
+      color: var(--primary-blue);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 0;
+    }
+    .btn-send .arr { color: var(--gold); font-size: 1.4rem; transition: transform 0.3s; }
+    .btn-send:hover .arr { transform: translateX(8px); }
+
+    /* ─── SITE FOOTER ─── */
+    #site-footer {
+      background: var(--primary-blue);
+      color: rgba(255,255,255,0.7);
+      padding: 50px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-brand .name {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 0.82rem;
+      color: #fff;
+    }
+    .footer-brand .url { color: var(--gold); font-size: 0.72rem; font-family: 'Montserrat', sans-serif; }
+    .footer-nav a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      margin-right: 20px;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.4); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .section-wrapper { padding: 70px 24px; }
+      .pub-grid { grid-template-columns: 1fr; }
+      .about-grid { flex-direction: column; gap: 50px; }
+      .stats-badge { right: 16px; }
+      .timeline-spine { left: 28px; }
+      .timeline-year { left: 28px; transform: none; font-size: 1.3rem; }
+      .year-dot { left: 28px; transform: none; }
+      .timeline-box { width: 80%; margin-left: 60px; }
+      .timeline-entry.left,
+      .timeline-entry.right { flex-direction: row; }
+      .video-grid { grid-template-columns: 1fr; }
+      .detail-layout { grid-template-columns: 1fr; }
+      .detail-panel { padding: 36px 24px; margin: 0; }
+      .mcp-grid { grid-template-columns: 1fr; }
+      .consortium { padding: 50px 24px; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .pub-header { flex-direction: column; }
+      .media-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<bgsound src="flute.mp3" loop="true">
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-brand">
+    <img src="logo.jpg" alt="Logo" onerror="this.style.display='none'" />
+    <div class="nav-brand-text">
+      <span class="name">AESTHETICS OF SOCIETY</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+	<li><a href="#about">ABOUT</a></li>
+    <li><a href="#publications">PUBLICATIONS</a></li>
+    <li><a href="#timeline">TIMELINE</a></li>
+    <li><a href="#natyashastra">NATYA-SHASHTRA</a></li>
+	<li><a href="#guruclan">GURU-CLAN</a></li>
+	<li><a href="#media">MEDIA</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+    <li><a href="#publications" class="nav-cta">INTRODUCTION</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section id="hero">
+  <img src="logo.jpg" class="hero-wm hero-wm-logo" alt="" onerror="this.style.display='none'" />
+  <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400" class="hero-wm hero-wm-side hero-wm-left" alt="" />
+  <img src="https://images.unsplash.com/photo-1583089892943-e02e5b017b6a?q=80&w=400" class="hero-wm hero-wm-side hero-wm-right" alt="" />
+
+  <div class="hero-tag">Independent Researcher &amp; Author · Est. 2010</div>
+  <h1 class="hero-title-1">Aesthetics</h1>
+  <h1 class="hero-title-2">of Society</h1>
+  <p class="hero-tagline">
+    Bridging Ancient Indian Systems with Modern<br />
+    Neuroscience &amp; Bio-acoustics
+  </p>
+  <div class="hero-btns">
+    <a href="#publications" class="btn btn-primary">Explore Publications</a>
+    <a href="#about" class="btn btn-outline-hero">About the Author</a>
+  </div>
+</section>
+<!-- ═══════════════════ natya-shastra ═══════════════════ -->
+<center> <section id="natyashastra"> 
+  <div class="natyashastra-inner">
+    <div class="natyashastra-spine"></div>
+    <div style="margin-bottom:100px;">
+      <span class="section-label">Natya Shastra</span>
+      <h2 class="section-title">Natya<br /><em>Shastra</em></h2>
+	  <h3>Exploring 108 Karanas, astrophysics, and neural bio-mechanics.</h3>
+    </div>
+  </div> </center>
+<!-- ═══════════════════ PHILOSOPHY STRIP ═══════════════════ -->
+<div id="philosophy">
+  <p class="philosophy-text">
+    Ancient <span class="italic">wisdom</span> does not contradict<br />
+    modern <span class="gold">science</span><span class="dash">—</span>it precedes it. The<br />
+    <span class="italic">Sapta Swaras</span> are <span class="bold-sans">frequencies.</span> The 108<br />
+    <span class="italic">Karanas</span> are <span class="bold-sans">neuroscience.</span>
+  </p>
+</div>
+
+<!-- ═══════════════════ PUBLICATIONS ═══════════════════ -->
+<section id="publications">
+  <div class="section-wrapper">
+    <div class="pub-header">
+      <div>
+        <span class="section-label">Research Output</span>
+        <h2 class="section-title">Publications &amp;<br /><em>Manuscripts</em></h2>
+      </div>
+      <p class="pub-intro">Eight landmark works bridging ancient Vedic science with contemporary research disciplines.</p>
+    </div>
+
+    <div class="pub-grid" id="pubGrid">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ DETAIL OVERLAY ═══════════════════ -->
+<div id="detailOverlay">
+  <div class="detail-panel">
+    <button class="detail-close" onclick="closeDetail()">×</button>
+    <button class="detail-back" onclick="closeDetail()">← Back to Publications</button>
+    <div id="detailContent"></div>
+  </div>
+</div>
+<!-- ═══════════════════ guruclan ═══════════════════ -->
+<center> <section id="guruclan">
+  <div class="guruclan-inner">
+    <div class="guruclan-spine"></div>
+    <div style="margin-bottom:100px;">
+      <span class="section-label">GuruClan</span>
+      <h2 class="section-title">The Guru's<br /><em>Clan</em></h2>
+	  <h3 class="focus-item">The unbroken lineage from Hiranyagarbha to the 18 Siddhas</h3>
+    </div>
+    </div></center>
+<!-- ═══════════════════ ABOUT AUTHOR ═══════════════════ -->
+<section id="about">
+  <div class="section-wrapper">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img src="author.jpg" alt="Naredla Rama Chandra" onerror="this.style.background='#e8e0cc';this.style.minHeight='400px'" />
+        <div class="stats-badge">
+          <span class="num">8+</span>
+          <span class="lbl">Research Works</span>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="section-label">About the Researcher</span>
+        <h2 class="author-name-big">Naredla<br />Rama <em>Chandra</em></h2>
+        <div class="bio-text">
+          <p>Independent Researcher and Author with a singular mission: to demonstrate the profound scientific foundations embedded in India's ancient knowledge systems. His work bridges the gap between 5,000-year-old Vedic frameworks and contemporary neuroscience, bio-acoustics, and quantum physics.</p>
+          <p>Through rigorous cross-disciplinary study, Rama Chandra reveals how classical systems — from Carnatic music's Sapta Swaras to Bharatanatyam's 108 Karanas — encode precise physiological and neurological protocols for human healing and consciousness expansion.</p>
+        </div>
+        <ul class="focus-list">
+          <li class="focus-item">Ancient Indian Systems (Sapta Swaras, 108 Karanas)</li>
+          <li class="focus-item">Bio-acoustics &amp; Neuroscience Research</li>
+          <li class="focus-item">Vedic Quantum Physics &amp; Astrophysics</li>
+          <li class="focus-item">Sanskrit Linguistics &amp; AI Applications</li>
+        </ul>
+        <div class="mission-box">
+          <span class="mission-lbl">Mission</span>
+          <p class="mission-quote">"To establish the Master Consciousness Protocol for natural healing and the liberation of human potential."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TIMELINE ═══════════════════ -->
+<section id="timeline">
+  <div class="timeline-inner">
+    <div class="timeline-spine"></div>
+    <div style="margin-bottom:100px;">
+      <span class="section-label">Research Journey</span>
+      <h2 class="section-title">Timeline of<br /><em>Discovery</em></h2>
+    </div>
+
+    <div class="timeline-entry left">
+      <div class="timeline-year">2010<div class="year-dot"></div></div>
+      <div class="timeline-box featured">
+        <span class="entry-label">Milestone</span>
+        <h3>Research Begins</h3>
+        <p>Commenced independent research into ancient Indian knowledge systems, focusing on the scientific foundations of Vedic traditions.</p>
+      </div>
+    </div>
+    <div class="timeline-entry right">
+      <div class="timeline-year">2012<div class="year-dot hollow"></div></div>
+      <div class="timeline-box">
+        <h3>Sapta Swaras Study</h3>
+        <p>Deep investigation into Carnatic music's seven sacred notes and their neurological effects on human consciousness and healing.</p>
+      </div>
+    </div>
+    <div class="timeline-entry left">
+      <div class="timeline-year">2014<div class="year-dot hollow"></div></div>
+      <div class="timeline-box">
+        <h3>108 Karanas Documentation</h3>
+        <p>Systematic study of Bharatanatyam's 108 Karanas, establishing connections to astrophysics and medical science.</p>
+      </div>
+    </div>
+    <div class="timeline-entry right">
+      <div class="timeline-year">2016<div class="year-dot"></div></div>
+      <div class="timeline-box featured">
+        <span class="entry-label">Milestone</span>
+        <h3>Bio-acoustics Framework</h3>
+        <p>Developed the bio-acoustic healing protocol linking Sanskrit phonetics to measurable physiological responses.</p>
+      </div>
+    </div>
+    <div class="timeline-entry left">
+      <div class="timeline-year">2017<div class="year-dot hollow"></div></div>
+      <div class="timeline-box">
+        <h3>Shabda Brahman Research</h3>
+        <p>Explored the sacred science of sound — how primordial vibrations encoded in Sanskrit mantras interact with the nervous system.</p>
+      </div>
+    </div>
+    <div class="timeline-entry right">
+      <div class="timeline-year">2018<div class="year-dot hollow"></div></div>
+      <div class="timeline-box">
+        <h3>Yoga &amp; Neuroscience Integration</h3>
+        <p>Published findings on Vedic yoga's neurological underpinnings, bridging ancient practice with modern brain science.</p>
+      </div>
+    </div>
+    <div class="timeline-entry left">
+      <div class="timeline-year">2019<div class="year-dot"></div></div>
+      <div class="timeline-box featured">
+        <span class="entry-label">Milestone</span>
+        <h3>Consciousness Science Synthesis</h3>
+        <p>Began compiling the landmark work on consciousness — comparing ancient Vedic models with modern AI and cognitive science.</p>
+      </div>
+    </div>
+    <div class="timeline-entry right">
+      <div class="timeline-year">2021<div class="year-dot hollow"></div></div>
+      <div class="timeline-box">
+        <h3>Sanskrit &amp; AI Publication</h3>
+        <p>Groundbreaking research connecting Sanskrit's grammatical precision to artificial intelligence programming paradigms.</p>
+      </div>
+    </div>
+    <div class="timeline-entry left">
+      <div class="timeline-year">2023<div class="year-dot"></div></div>
+      <div class="timeline-box featured">
+        <span class="entry-label">Milestone</span>
+        <h3>Master Reference Compendium</h3>
+        <p>Completed the comprehensive reference work integrating all research streams into unified standards for ancient-modern synthesis.</p>
+      </div>
+    </div>
+    <div class="timeline-entry right">
+      <div class="timeline-year">2024<div class="year-dot hollow"></div></div>
+      <div class="timeline-box">
+        <h3>Ongoing Clinical Studies</h3>
+        <p>Seeking partners for clinical validation of bio-acoustic healing protocols and consciousness expansion methodologies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ MEDIA ═══════════════════ -->
+<section id="media">
+  <div class="section-wrapper">
+    <div class="media-header">
+      <div>
+        <span class="section-label">Digital Research Archive</span>
+        <h2 class="section-title">Research in<br /><em>Motion</em></h2>
+      </div>
+      <p class="media-desc">Watch Naredla Rama Chandra present his findings on consciousness, sound science, and ancient knowledge systems.</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/eLjirbtcJFo" allowfullscreen></iframe></div>
+        <div class="video-caption"><h3>Thesis Work Introduction</h3><p>Exploring the intersection of Vedic knowledge and modern neuroscience.</p></div>
+      </div>
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/0khYFMffpCU" allowfullscreen></iframe></div>
+        <div class="video-caption"><h3>Bio-Acoustic Foundations</h3><p>An introduction to the sound science encoded in classical structures.</p></div>
+      </div>
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/DcNa4N5dD-A" allowfullscreen></iframe></div>
+        <div class="video-caption"><h3>Sapta Swaras &amp; Healing</h3><p>The bio-acoustic science encoded in Carnatic classical music.</p></div>
+      </div>
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/NBrVKBYQd_M" allowfullscreen></iframe></div>
+        <div class="video-caption"><h3>Master Consciousness Protocol</h3><p>A brief introduction to the core research thesis and findings.</p></div>
+      </div>
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/-tI6ofhU04w" allowfullscreen></iframe></div>
+        <div class="video-caption"><h3>Neuro-Linguistic Structures</h3><p>Understanding the impact of specific phonetic patterns on brain activity.</p></div>
+      </div>
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/etMW6ehC5pI" allowfullscreen></iframe></div>
+        <div class="video-caption"><h3>Mechanics of Ancient Ritual</h3><p>Scientific documentation of the physical and mental correlations in traditional systems.</p></div>
+      </div>
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/v-lZl0XnW8g" allowfullscreen></iframe></div>
+        <div class="video-caption"><h3>The 108 Karanas</h3><p>Deep dive into the kinetic movements of the Natya Shastra.</p></div>
+      </div>
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/5EIxfn_5Gyk" allowfullscreen></iframe></div>
+        <div class="video-caption"><h3>Synthesis &amp; Future Vision</h3><p>Concluding remarks on the roadmap for the Digital Research Archive.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 108 KARANAS ═══════════════════ -->
+<section id="karanas">
+  <div class="section-wrapper">
+    <div style="text-align:center;margin-bottom:70px;">
+      <span class="section-label">The Architecture of Sacred Motion</span>
+      <h2 class="section-title" style="display:inline-block;">The 108 <em>Karanas</em></h2>
+    </div>
+    <div class="content-blocks">
+      <article class="para-block">
+        <h2>I. Bio-Mechanical Engineering</h2>
+        <p>The 108 Karanas of the Natya Shastra represent far more than codified dance movements; they are a sophisticated system of bio-mechanical engineering and structural resonance. Each Karana functions as a "dynamic posture" that optimizes the human skeletal-muscular frame through precise geometric alignments. These movements act as high-intensity functional training, engaging deep stabilizer muscles and enhancing proprioception. By transitioning through specific kinetic chains, the practitioner achieves structural alignment where the physical body moves with its natural center of gravity, reducing joint stress and maximizing caloric efficiency.</p>
+      </article>
+      <article class="para-block">
+        <h2>II. Neuro-Science &amp; Healing</h2>
+        <p>From a neuroscience and medical standpoint, the Karanas serve as a profound tool for neuroplasticity and vestibular rehabilitation. Each movement requires complex cross-lateral coordination, which stimulates the corpus callosum and synchronizes the left and right hemispheres of the brain. This "neural choreography" triggers the release of brain-derived neurotrophic factor (BDNF), aiding in cognitive longevity and emotional regulation. In bio-acoustics, the rhythmic Tala accompanying these movements creates a vibrational frequency correlating with Alpha and Theta brainwave states, effectively acting as a moving meditation that lowers cortisol and repairs the nervous system's stress response.</p>
+      </article>
+      <article class="para-block">
+        <h2>III. Astrological &amp; Cosmic Alignment</h2>
+        <p>On the astrological and cosmological front, the 108 Karanas are a terrestrial mirror of celestial mechanics. The number 108 itself is a cosmic constant, reflecting the distance between the Earth, Sun, and Moon. Each Karana is designed to harmonize the practitioner's micro-cosmic energy with the macro-cosmic cycles of the planets (Grahas) and constellations (Nakshatras). By performing these movements, the individual activates specific Matrika Nyasas within the body, effectively re-coding their biological rhythm to match the resonant frequency of the universe — transforming the human body into a living antenna for higher consciousness and systemic healing.</p>
+      </article>
+    </div>
+    <div class="highlights-bar">
+      <div class="highlight-item"><h4>BIO-DYNAMICS</h4><p>Proprioceptive alignment and joint longevity.</p></div>
+      <div class="highlight-item"><h4>NEURAL MAPPING</h4><p>Hemispheric synchronization and BDNF release.</p></div>
+      <div class="highlight-item"><h4>COSMIC RATIO</h4><p>Alignment with 108 astronomical constants.</p></div>
+      <div class="highlight-item"><h4>RESONANCE</h4><p>Vibrational healing via Matrika Nyasa.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ EPILOGUE ═══════════════════ -->
+<section id="epilogue">
+  <div class="epilogue-inner">
+    <span class="section-label" style="display:block;text-align:center;">Final Synthesis</span>
+    <h2>Epilogue</h2>
+    <p class="epilogue-text">The research presented across these volumes serves as both a conclusion and a commencement — a final synthesis of the <strong>Master Consciousness Protocol</strong> that transitions from theoretical inquiry into a living application of Vedic science in the modern age. We have seen that the "ancient" and the "modern" are not separate points on a timeline, but two lenses viewing the same reality.</p>
+    <p class="epilogue-text">This journey suggests a future where medicine is not merely the management of symptoms, but the <strong>tuning of frequencies</strong>. By aligning our biological rhythms with the mathematical constants of the cosmos and using the body as an instrument of neuro-modulation, we move toward a state of <em>Samatva</em> (Equanimity).</p>
+    <div class="epilogue-pull">The Digital Research Archive is not a static monument; it is a dynamic foundation — an invitation for the global scientific community to join in the rigorous validation of these systems, creating a bridge that empowers humanity to reclaim its innate capacity for healing and higher consciousness.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FUTURE / MCP ═══════════════════ -->
+<section id="future">
+  <div class="section-wrapper">
+    <div class="mcp-grid">
+      <div class="mcp-content">
+        <span class="section-label">Roadmap 2026–2030</span>
+        <h2>The Future of <em>MCP</em></h2>
+        <p>The next phase of the Master Consciousness Protocol involves the creation of a Neuro-Acoustic Bio-Feedback Interface. By utilizing motion-capture and EEG data, we are mapping the 108 Karanas and Mudras against real-time neural oscillation patterns. This "Sanskrit-Neural" bridge aims to provide a "Digital Pharmacopeia," where sound and motion are prescribed as precisely as biochemical medicine for cognitive longevity and stress-resilience.</p>
+      </div>
+      <div class="mcp-list-box">
+        <ul>
+          <li><strong>AI Integration</strong>Real-time Karana tracking with neural feedback.</li>
+          <li><strong>Neural Mapping</strong>Matrika Nyasa vs. EEG oscillation patterns.</li>
+          <li><strong>Global Access</strong>Digital archive for practitioners worldwide.</li>
+          <li><strong>Clinical Validation</strong>Multi-center trials for healing protocols.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="consortium">
+      <div style="text-align:center;margin-bottom:50px;">
+        <h2>Scholarly Consortium</h2>
+        <span class="sub">Anchoring Ancient Wisdom in Empirical Science</span>
+      </div>
+      <div class="consortium-grid">
+        <div class="consortium-item">
+          <h4>Indological Precision</h4>
+          <p>Guidance from Sanskrit scholars to ensure the precise decoding of Beeja Aksharas and Shastra injunctions.</p>
+        </div>
+        <div class="consortium-item">
+          <h4>Neuro-Scientific Validation</h4>
+          <p>Clinical support for measuring HRV, brainwave states, and cortical changes during Mudra and Karana practice.</p>
+        </div>
+        <div class="consortium-item">
+          <h4>Bio-Mechanical Research</h4>
+          <p>Engineering perspectives on joint torque, skeletal alignment, and functional movement efficiency within the 108 Karanas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section id="contact">
+  <div class="section-wrapper">
+    <div class="contact-flex">
+      <div class="contact-info">
+        <span class="section-label">Collaboration</span>
+        <h2 class="contact-h2">Collaborate<em>With Us</em></h2>
+        <p class="contact-intro">Seeking partners for clinical studies and scientific research into ancient knowledge systems, consciousness science, and bio-acoustic healing protocols.</p>
+        <div class="contact-entries">
+          <div class="contact-entry">
+            <div class="contact-icon">📞</div>
+            <div class="contact-data"><label>Phone</label><p>+91 9121379100</p></div>
+          </div>
+          <div class="contact-entry">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-data"><label>Email</label><p>smith123846@gmail.com</p></div>
+          </div>
+          <div class="contact-entry">
+            <div class="contact-icon">📍</div>
+            <div class="contact-data"><label>Base</label><p>India</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <h3>Send an Inquiry</h3>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-field"><input type="text" placeholder="Full Name" required /></div>
+          <div class="form-field"><input type="email" placeholder="Email Address" required /></div>
+          <div class="form-field"><input type="text" placeholder="Institution / Organization" /></div>
+          <div class="form-field">
+            <select required>
+              <option value="" disabled selected>Select Research Focus / Publication</option>
+              <option>Master Consciousness Protocol</option>
+              <option>Sapta Swaras &amp; Healing Science</option>
+              <option>108 Karanas &amp; Physical Mechanics</option>
+              <option>Bio-acoustics &amp; Resonant Universe</option>
+              <option>Sampoorna Manovijnana Sangraha</option>
+              <option>Paninian Grammar &amp; AI Frameworks</option>
+            </select>
+          </div>
+          <div class="form-field"><textarea placeholder="Research Interest / Message" rows="4"></textarea></div>
+          <button type="submit" class="btn-send">Send Inquiry <span class="arr">→</span></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer id="site-footer">
+  <div class="footer-brand">
+    <span class="name">AESTHETICS OF SOCIETY</span>
+    <span class="url">culturalmusings.com</span>
+  </div>
+  <nav class="footer-nav">
+    <a href="#about">ABOUT</a>
+    <a href="#publications">PUBLICATIONS</a>
+    <a href="#media">MEDIA</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+  <div class="footer-copy">© 2026 NAREDLA RAMA CHANDRA</div>
+</footer>
+
+<script>
+  /* ── NAV SCROLL EFFECT ── */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* ── PUBLICATIONS DATA ── */
+  const volumes = [
+    {
+      cat: 'Consciousness Studies', vol: 'VOL. I', flagship: true,
+      title: 'Complete Science of Consciousness',
+      sub: 'Ancient Knowledge vs Artificial Intelligence',
+      footerLabel: 'Flagship Work',
+      overview: 'This landmark work presents a comprehensive framework comparing the ancient Vedic science of consciousness with modern artificial intelligence paradigms. Drawing from thousands of years of accumulated wisdom encoded in Sanskrit texts, the author demonstrates how ancient seers mapped the full spectrum of human consciousness with a precision that modern neuroscience is only beginning to approach. The work challenges the reductionist view of mind and offers a unified theory of consciousness rooted in Vedic epistemology.',
+      quote: 'Ancient seers mapped the cosmos of consciousness with a precision that modern science is only beginning to rediscover.',
+      themes: ['Vedic models of consciousness vs. computational models','The role of Prana and Kundalini in neural activation','Sanskrit as a programming language for the mind','Comparison of AI neural networks with Vedic chakra systems','Consciousness as the fundamental substrate of reality'],
+      areas: ['CONSCIOUSNESS STUDIES','ARTIFICIAL INTELLIGENCE','VEDIC PHILOSOPHY','NEUROSCIENCE']
+    },
+    {
+      cat: 'Reference Work', vol: '', flagship: false,
+      title: 'Master Reference Compendium',
+      sub: 'Integrated Research Standards',
+      footerLabel: 'Reference',
+      overview: 'The definitive reference work synthesizing decades of cross-disciplinary research into a unified compendium. This volume establishes integrated standards for studying ancient Indian knowledge systems through the lens of modern science. It serves as the foundational reference for researchers, scholars, and practitioners seeking to bridge Vedic wisdom with contemporary scientific methodology, covering terminology, measurement frameworks, and research protocols.',
+      quote: 'A bridge between the language of the ancients and the vocabulary of modern science.',
+      themes: ['Unified terminology for ancient-modern synthesis','Research protocols for studying Vedic sciences','Cross-referencing ancient texts with modern findings','Measurement frameworks for subtle energy systems','Standards for consciousness research'],
+      areas: ['RESEARCH METHODOLOGY','VEDIC SCIENCES','INTERDISCIPLINARY STUDIES']
+    },
+    {
+      cat: 'Music Science', vol: '03 / 08', flagship: false,
+      title: 'Sapta Swaras &amp; Healing',
+      sub: 'Treatise on Carnatic Music Science',
+      footerLabel: 'Acoustic Research',
+      overview: 'An in-depth scientific treatise on the seven sacred notes of Carnatic music and their profound healing properties. This work explores how each swara creates measurable physiological and neurological responses, providing the scientific basis for music therapy rooted in ancient traditions.',
+      quote: 'Every note in Carnatic music is a key that unlocks a specific chamber of the human nervous system.',
+      themes: ['Seven swaras and physiological correlates','Raga therapy and its scientific basis','Bio-acoustic frequencies and brainwave entrainment','Classical ragas as healing protocols'],
+      areas: ['MUSIC SCIENCE','BIO-ACOUSTICS','NEUROLOGY','CARNATIC TRADITIONS']
+    },
+    {
+      cat: 'Classical Arts', vol: '04 / 08', flagship: false,
+      title: '108 Karanas &amp; Beeja Aksharas',
+      sub: 'Astrophysics &amp; Medical Science Foundations',
+      footerLabel: 'Bio-Geometric Study',
+      overview: 'A comprehensive study of the 108 Karanas of the Natya Shastra and their connections to astrophysics, medical science, and bio-mechanics. This work demonstrates how each sacred movement encodes cosmic mathematical constants and triggers specific neurological and physiological responses.',
+      quote: 'The Karanas are not choreography — they are a cosmic language written in the language of the body.',
+      themes: ['Bio-mechanical analysis of 108 Karanas','Cosmic ratio 108 in astronomical constants','Neural choreography and BDNF release','Matrika Nyasas and energy activation'],
+      areas: ['CLASSICAL ARTS','ASTROPHYSICS','BIO-MECHANICS','MEDICAL SCIENCE']
+    },
+    {
+      cat: 'Yoga &amp; Neuroscience', vol: '05 / 08', flagship: false,
+      title: 'Yoga: The Eternal Science',
+      sub: 'Vedic Roots for Modern Neurology',
+      footerLabel: 'Neuro-Vedic Synthesis',
+      overview: 'This work establishes the neuroscientific foundations of classical Vedic yoga, demonstrating how ancient practices systematically restructure the nervous system, balance the autonomic system, and promote neuroplasticity through precisely calibrated physical and meditative disciplines.',
+      quote: 'Yoga is not exercise — it is the original neuroscience of the self.',
+      themes: ['Vedic yoga and neuroplasticity','Pranayama as respiratory neuroscience','Dhyana and default mode network modulation','Bandhas as neuro-somatic locks'],
+      areas: ['YOGA SCIENCE','NEUROSCIENCE','VEDIC PHILOSOPHY','CLINICAL APPLICATIONS']
+    },
+    {
+      cat: 'Sound Science', vol: '06 / 08', flagship: false,
+      title: 'Shabda Brahman',
+      sub: 'Sacred Science of Sound',
+      footerLabel: 'Metaphysical Research',
+      overview: 'An exploration of the sacred science of primordial sound as encoded in Sanskrit. This work investigates how specific phonemes and mantras interact with the human nervous system, demonstrating the biological basis of Vedic acoustic science through the lens of modern bio-acoustics and quantum physics.',
+      quote: 'Before matter, there was vibration. Shabda is not merely sound — it is the architectural blueprint of reality.',
+      themes: ['Sanskrit phonemes and neural stimulation','Mantra as bio-acoustic medicine','Nada Brahman and cosmic vibration theory','Beeja aksharas and glandular activation'],
+      areas: ['SOUND SCIENCE','BIO-ACOUSTICS','QUANTUM PHYSICS','SANSKRIT STUDIES']
+    },
+    {
+      cat: 'Philosophy', vol: '07 / 08', flagship: false,
+      title: 'The Cosmic Choreography',
+      sub: "Study of Shankaracharya's Metaphysics",
+      footerLabel: 'Vedantic Theory',
+      overview: "A deep study of Adi Shankaracharya's Advaita Vedanta through the lens of modern physics and consciousness studies, demonstrating how his non-dual metaphysics anticipates quantum field theory, observer-dependent reality, and modern theories of consciousness.",
+      quote: 'Shankaracharya did not describe a religion — he described the physics of consciousness.',
+      themes: ['Advaita Vedanta and quantum non-locality','Maya as observer-dependent reality','Brahman as unified field theory','Consciousness as the ground of all being'],
+      areas: ['VEDANTIC PHILOSOPHY','QUANTUM PHYSICS','CONSCIOUSNESS STUDIES','COMPARATIVE METAPHYSICS']
+    },
+    {
+      cat: 'Technology', vol: '08 / 08', flagship: false,
+      title: 'Sanskrit &amp; AI',
+      sub: 'Neurological Healing &amp; Programming',
+      footerLabel: 'Future Systems',
+      overview: "This forward-looking work explores the profound structural parallels between Sanskrit's highly formalized grammatical system (Paninian grammar) and modern artificial intelligence programming paradigms, arguing that Sanskrit is the ideal natural-language interface for AI systems due to its inherent computational precision.",
+      quote: 'Panini wrote the first formal grammar. He also wrote the future programming language of AI.',
+      themes: ['Paninian grammar and computational linguistics','Sanskrit as a natural AI language','Beeja aksharas as programming tokens','Sanskrit neural interfaces for healing'],
+      areas: ['ARTIFICIAL INTELLIGENCE','SANSKRIT LINGUISTICS','COMPUTATIONAL SCIENCE','FUTURE TECHNOLOGY']
+    }
+  ];
+
+  /* ── RENDER CARDS ── */
+  const grid = document.getElementById('pubGrid');
+  volumes.forEach((v, i) => {
+    const card = document.createElement('div');
+    card.className = 'pub-card';
+    card.onclick = () => openDetail(i);
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="card-tag">${v.cat}</span>
+        ${v.vol ? `<span class="vol-num">${v.vol}</span>` : ''}
+        <h2>${v.title}</h2>
+        <p class="pub-sub">${v.sub}</p>
+      </div>
+      <div class="card-footer">
+        <span class="footer-label">${v.footerLabel}</span>
+        <span class="read-link">Read More →</span>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  /* ── DETAIL VIEW ── */
+  let currentIdx = 0;
+
+  function openDetail(idx) {
+    currentIdx = idx;
+    renderDetail(idx);
+    document.getElementById('detailOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDetail() {
+    document.getElementById('detailOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function renderDetail(idx) {
+    const v = volumes[idx];
+    const prev = (idx - 1 + volumes.length) % volumes.length;
+    const next = (idx + 1) % volumes.length;
+    document.getElementById('detailContent').innerHTML = `
+      <div class="detail-layout">
+        <main>
+          <span class="detail-overline">Overview</span>
+          <p class="detail-overview">${v.overview}</p>
+          <blockquote class="pull-quote">
+            <p>"${v.quote}"</p>
+            <cite>— Naredla Rama Chandra</cite>
+          </blockquote>
+          <span class="detail-overline">Key Themes</span>
+          ${v.themes.map(t => `<div class="theme-item"><div class="gold-dash"></div>${t}</div>`).join('')}
+        </main>
+        <aside>
+          <div class="sidebar-card">
+            <span class="detail-overline">Research Areas</span>
+            <div style="margin-top:12px;">${v.areas.map(a => `<span class="tag">${a}</span>`).join('')}</div>
+          </div>
+          <div class="sidebar-card">
+            <span class="detail-overline">Author</span>
+            <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--primary-blue);margin:8px 0 4px;">Naredla Rama Chandra</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:#888;letter-spacing:1px;margin-bottom:16px;">INDEPENDENT RESEARCHER &amp; AUTHOR</div>
+            <hr style="opacity:0.15;margin-bottom:16px;" />
+            <a href="#about" onclick="closeDetail()" style="font-family:'Montserrat',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:1.5px;color:var(--gold);text-decoration:none;">VIEW AUTHOR PROFILE →</a>
+          </div>
+          <div class="sidebar-card collab-box">
+            <h3>Interested in collaboration?</h3>
+            <p>Reach out to discuss research partnerships and academic inquiries.</p>
+            <a href="mailto:smith123846@gmail.com" class="contact-link">GET IN TOUCH</a>
+          </div>
+        </aside>
+      </div>
+      <div class="detail-nav-footer">
+        <button class="nav-btn-detail" onclick="renderDetail(${prev})">
+          <span class="nav-label-detail">PREVIOUS</span>
+          <div class="nav-title-detail">${volumes[prev].title.replace(/&amp;/g,'&')}</div>
+        </button>
+        <button class="nav-btn-detail right" onclick="renderDetail(${next})">
+          <span class="nav-label-detail">NEXT</span>
+          <div class="nav-title-detail">${volumes[next].title.replace(/&amp;/g,'&')}</div>
+        </button>
+      </div>`;
+    document.getElementById('detailOverlay').scrollTop = 0;
+  }
+
+  /* close overlay on backdrop click */
+  document.getElementById('detailOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDetail();
+  });
+
+  /* close on ESC */
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDetail(); });
+
+  /* ── FORM ── */
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-send');
+    btn.textContent = 'Inquiry Sent ✓';
+    btn.style.color = 'var(--gold)';
+    setTimeout(() => { btn.innerHTML = 'Send Inquiry <span class="arr">→</span>'; btn.style.color = ''; e.target.reset(); }, 3000);
+  }
+</script>
+<!-- VEDIC AUDIO -->
+<audio id="vedic-audio" loop>
+  <source src="audio/vedic-tamil.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const audio = document.getElementById("vedic-audio");
+let started = false;
+
+function fadeInAudio() {
+  audio.volume = 0;
+  audio.play();
+
+  let vol = 0;
+  const fade = setInterval(() => {
+    if (vol < 0.5) {
+      vol += 0.01;
+      audio.volume = vol;
+    } else {
+      clearInterval(fade);
+    }
+  }, 200);
+}
+
+document.addEventListener("click", function init() {
+  if (!started) {
+    fadeInAudio();
+    started = true;
+  }
+});
+</script>
+</body>
+</html>
+
+
+
+ 
