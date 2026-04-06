@@ -4,22 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aesthetics of Society | Naredla Rama Chandra</title>
+  
+  <!-- Browser Tab Icon -->
+  <link rel="icon" type="image/png" href="logo.jpg">
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  
   <style>
     :root {
       --primary-blue: #1a365d; --gold: #c5a059; --navy: #0f2240; --border: #ececec;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     
-    /* ─── BACKGROUND FIX ─── */
+    /* ─── GLOBAL BACKGROUND (Same for all pages) ─── */
     body { 
-      font-family: 'Cormorant Garamond', serif; color: #333; overflow-x: hidden;
+      font-family: 'Cormorant Garamond', serif; 
+      color: #333; 
+      margin: 0;
+      min-height: 100vh;
+      /* Fixed background image with cream overlay */
       background: linear-gradient(rgba(253,250,245,0.92), rgba(253,250,245,0.92)), 
-                  url('background.png') center/top fixed no-repeat;
+                  url('background.png') center top fixed no-repeat;
       background-size: cover;
     }
 
-    /* NAV */
+    /* NAVIGATION */
     #main-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
@@ -28,25 +37,42 @@
     }
     .nav-brand-text .name { display: block; font-family: 'Montserrat'; font-weight: 700; font-size: 0.78rem; letter-spacing: 2.5px; color: var(--primary-blue); text-decoration: none; }
     .nav-brand-text .url { display: block; font-family: 'Montserrat'; font-size: 0.65rem; color: var(--gold); letter-spacing: 1px; }
+    
     .nav-links { display: flex; gap: 22px; list-style: none; }
-    .nav-links a { font-family: 'Montserrat'; font-size: 0.68rem; font-weight: 700; text-decoration: none; color: var(--primary-blue); }
+    .nav-links a { font-family: 'Montserrat'; font-size: 0.68rem; font-weight: 700; text-decoration: none; color: var(--primary-blue); transition: 0.3s; }
+    .nav-links a:hover { color: var(--gold); }
 
-    /* HERO */
-    #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 20px; }
+    /* HERO SECTION */
+    #hero { 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      text-align: center; 
+      padding: 120px 20px;
+      background: transparent; 
+    }
     .hero-title-1 { font-family: 'Playfair Display'; font-size: clamp(60px, 9vw, 100px); color: var(--primary-blue); }
     .hero-title-2 { font-family: 'Playfair Display'; font-size: clamp(72px, 11vw, 125px); font-style: italic; color: var(--gold); }
 
-    /* NEW PAGES PROMO */
+    /* PROMO CARDS (New Pages Link) */
     #pages-promo { background: var(--navy); padding: 70px 40px; margin: 40px 0; }
     .pages-promo-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
     .promo-card { border: 1px solid rgba(197,160,89,0.3); padding: 44px; text-decoration: none; color: #fff; transition: 0.3s; }
     .promo-card:hover { border-color: var(--gold); background: rgba(255,255,255,0.05); }
     .promo-card h3 { font-family: 'Playfair Display'; font-size: 1.8rem; color: var(--gold); margin-bottom: 10px; }
 
-    /* PUBLICATIONS */
+    /* PUBLICATIONS GRID */
     .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 80px 40px; }
     .pub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px; }
-    .pub-card { border: 1px solid var(--border); padding: 42px; background: rgba(255,255,255,0.6); backdrop-filter: blur(5px); transition: 0.3s; }
+    .pub-card { 
+      border: 1px solid var(--border); 
+      padding: 42px; 
+      background: rgba(255,255,255,0.6); 
+      backdrop-filter: blur(8px); 
+      transition: 0.3s; 
+    }
     .pub-card:hover { border-color: var(--gold); transform: translateY(-5px); }
 
     @media (max-width: 768px) { .nav-links, .pages-promo-inner { display: none; } .pages-promo-inner { grid-template-columns: 1fr; } }
@@ -62,27 +88,28 @@
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="index.html">HOME</a></li>
+    <li><a href="index.html" style="color:var(--gold)">HOME</a></li>
     <li><a href="gurus-clan.html">GURU'S CLAN</a></li>
     <li><a href="natya-shastra.html">NATYA SHASTRA</a></li>
   </ul>
 </nav>
 
 <section id="hero">
-  <div style="text-transform: uppercase; letter-spacing: 4px; color: var(--gold); margin-bottom: 10px;">Aesthetics of Society</div>
+  <div style="text-transform: uppercase; letter-spacing: 4px; color: var(--gold); margin-bottom: 10px; font-family: Montserrat; font-size: 0.7rem;">Aesthetics of Society</div>
   <h1 class="hero-title-1">Naredla</h1>
   <h1 class="hero-title-2">Rama Chandra</h1>
 </section>
 
+<!-- PROMO SECTION TO NEW PAGES -->
 <div id="pages-promo">
   <div class="pages-promo-inner">
     <a href="gurus-clan.html" class="promo-card">
       <h3>The Guru's Clan →</h3>
-      <p>The unbroken lineage from Hiranyagarbha to the 18 Siddhas.</p>
+      <p>Research on the unbroken lineage from Hiranyagarbha to the 18 Siddhas.</p>
     </a>
     <a href="natya-shastra.html" class="promo-card">
       <h3>Natya Shastra & 108 Karanas →</h3>
-      <p>Scientific applications of cosmic choreography.</p>
+      <p>Exploring the neural bio-mechanics and cosmic choreography.</p>
     </a>
   </div>
 </div>
@@ -92,34 +119,39 @@
   <div class="pub-grid">
     <div class="pub-card">
       <h2 style="font-family: Playfair Display; margin-bottom: 15px;">Science of Consciousness</h2>
-      <p>Ancient Vedic Knowledge vs Modern Artificial Intelligence.</p>
+      <p>A comparative study of Ancient Vedic Knowledge vs Modern AI.</p>
     </div>
     <div class="pub-card">
       <h2 style="font-family: Playfair Display; margin-bottom: 15px;">Sapta Swaras & Healing</h2>
-      <p>Physiological responses to the seven sacred notes.</p>
+      <p>Treatise on Carnatic Music and physiological resonance.</p>
     </div>
   </div>
 </section>
 
-<!-- AUDIO ELEMENT (FIXED ID) -->
+<!-- AUDIO ELEMENT (FIXED) -->
 <audio id="vedic-audio" loop preload="auto">
   <source src="vedic-tamil.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-  /* ── AUDIO FIX ── */
+  /* ── AUDIO LOGIC ── */
   const audio = document.getElementById("vedic-audio");
   let started = false;
 
   function initAudio() {
     if (!started) {
-      audio.volume = 0.2;
+      audio.volume = 0.2; // Low background volume
       audio.play().catch(e => console.log("Click page to start audio"));
       started = true;
     }
   }
   // Audio starts on first click anywhere on screen
   document.body.addEventListener('click', initAudio, { once: true });
+
+  /* ── NAV SHADOW ON SCROLL ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('main-nav').style.boxShadow = window.scrollY > 50 ? "0 4px 20px rgba(0,0,0,0.1)" : "none";
+  });
 </script>
 
 </body>
