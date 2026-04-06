@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetics of Society | Naredla Rama Chandra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --cream-dark: #f5efe3;
+      --text-muted: #666;
+      --border: #ececec;
+      --navy: #0f2240;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Cormorant Garamond', serif; background: #fff; color: #333; overflow-x: hidden; }
+
+    /* --- NAVIGATION --- */
+    #main-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 5%; background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197,160,89,0.2);
+      transition: box-shadow 0.3s;
+    }
+    #main-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; cursor: pointer; }
+    .nav-brand img { width: 42px; height: 42px; object-fit: cover; border-radius: 2px; }
+    .nav-brand-text .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 2.5px; color: var(--primary-blue); }
+    .nav-brand-text .url { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--gold); letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 28px; align-items: center; list-style: none; }
+    .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; color: var(--primary-blue); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* --- PAGE VISIBILITY --- */
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+
+    /* --- SHARED HERO DESIGN --- */
+    .hero-container {
+      position: relative; min-height: 90vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 120px 20px 80px;
+      background: linear-gradient(rgba(253,250,245,0.88), rgba(253,250,245,0.88)), url('background.png') center/cover no-repeat;
+      overflow: hidden;
+    }
+    .hero-wm { position: absolute; pointer-events: none; opacity: 0.06; }
+    .hero-wm-logo { width: 40%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-wm-side { width: 200px; top: 50%; transform: translateY(-50%); filter: sepia(30%); }
+    .hero-wm-left { left: 3%; }
+    .hero-wm-right { right: 3%; }
+
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .section-label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 4.5rem); color: var(--primary-blue); font-weight: 700; line-height: 1.05; margin-bottom: 0; }
+    .section-title em { color: var(--gold); font-style: italic; text-decoration: none; }
+
+    /* --- GURU'S CLAN GRID --- */
+    .siddha-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+    .siddha-card { border: 1px solid var(--border); padding: 40px; background: #fff; transition: all 0.3s; position: relative; }
+    .siddha-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
+    .siddha-card .id { position: absolute; top: 30px; right: 30px; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #f0f0f0; line-height: 1; }
+    .siddha-card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--primary-blue); margin-bottom: 5px; }
+    .siddha-card .title { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 800; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; display: block; }
+
+    /* --- NATYA SHASTRA MCP --- */
+    .dimension-item { display: flex; gap: 40px; margin-bottom: 60px; }
+    .dim-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: rgba(197,160,89,0.2); line-height: 1; min-width: 50px; }
+    .mcp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .mcp-card { border: 1px solid var(--border); padding: 30px; background: #fff; }
+
+    /* --- FOOTER --- */
+    #site-footer { background: var(--primary-blue); color: rgba(255,255,255,0.7); padding: 50px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-brand .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 0.82rem; color: #fff; }
+    .footer-copy { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.4); }
+
+    @media (max-width: 900px) {
+      .dimension-item { flex-direction: column; gap: 15px; }
+      .hero-wm-side { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="main-nav">
+  <div class="nav-brand" onclick="showPage('home')">
+    <img src="logo.jpg" alt="Logo" onerror="this.style.display='none'" />
+    <div class="nav-brand-text">
+      <span class="name">AESTHETICS OF SOCIETY</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')">HOME</a></li>
+    <li><a onclick="showPage('gurus-clan')">GURU'S CLAN</a></li>
+    <li><a onclick="showPage('natya-shastra')">NATYA SHASTRA</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════ HOME PAGE ═══════════════════ -->
+<div id="home-page" class="page-section active">
+  <section class="hero-container">
+    <img src="logo.jpg" class="hero-wm hero-wm-logo" alt="" onerror="this.style.display='none'" />
+    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400" class="hero-wm hero-wm-side hero-wm-left" alt="" />
+    <img src="https://images.unsplash.com/photo-1583089892943-e02e5b017b6a?q=80&w=400" class="hero-wm hero-wm-side hero-wm-right" alt="" />
+    <div class="hero-tag">Independent Researcher & Author · Est. 2010</div>
+    <h1 class="hero-title-1">Aesthetics</h1>
+    <h1 class="hero-title-2">of Society</h1>
+    <p class="hero-tagline">Bridging Ancient Indian Systems with Modern<br />Neuroscience & Bio-acoustics</p>
+    <div style="display:flex; gap:10px; margin-top:40px;">
+      <a href="#publications" class="btn btn-primary" style="text-decoration:none">Explore Publications</a>
+      <a href="#about" class="btn btn-outline" style="text-decoration:none">About the Author</a>
+    </div>
+  </section>
+
+  <section class="section-wrapper">
+    <span class="section-label">Research Output</span>
+    <h2 class="section-title">Publications &<br /><em>Manuscripts</em></h2>
+    <p style="margin-top:20px; color:#666; max-width:600px;">Eight landmark works bridging ancient Vedic science with contemporary research disciplines.</p>
+    <!-- Publications grid would be here -->
+  </section>
+</div>
+
+<!-- ═══════════════════ GURU'S CLAN PAGE ═══════════════════ -->
+<div id="gurus-clan-page" class="page-section">
+  <section class="hero-container">
+    <img src="logo.jpg" class="hero-wm hero-wm-logo" alt="" onerror="this.style.display='none'" />
+    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400" class="hero-wm hero-wm-side hero-wm-left" alt="" />
+    <img src="https://images.unsplash.com/photo-1583089892943-e02e5b017b6a?q=80&w=400" class="hero-wm hero-wm-side hero-wm-right" alt="" />
+    <span class="section-label">DEEP RESEARCH · VEDIC LINEAGE</span>
+    <h1 class="hero-title-1">The Guru's</h1>
+    <h1 class="hero-title-2">Clan</h1>
+    <p class="hero-tagline">The unbroken lineage from Hiranyagarbha to the 18 Siddhas.</p>
+  </section>
+
+  <section class="section-wrapper">
+    <div class="siddha-grid" id="siddhaGrid"></div>
+  </section>
+</div>
+
+<!-- ═══════════════════ NATYA SHASTRA PAGE ═══════════════════ -->
+<div id="natya-shastra-page" class="page-section">
+  <section class="hero-container">
+    <img src="logo.jpg" class="hero-wm hero-wm-logo" alt="" onerror="this.style.display='none'" />
+    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400" class="hero-wm hero-wm-side hero-wm-left" alt="" />
+    <img src="https://images.unsplash.com/photo-1583089892943-e02e5b017b6a?q=80&w=400" class="hero-wm hero-wm-side hero-wm-right" alt="" />
+    <span class="section-label">APPLIED RESEARCH · SACRED SCIENCE</span>
+    <h1 class="hero-title-1">Natya</h1>
+    <h1 class="hero-title-2">Shastra</h1>
+    <p class="hero-tagline">The Architecture of Sacred Motion and Neural Activation.</p>
+  </section>
+
+  <section class="section-wrapper">
+    <div id="dimensionsList"></div>
+  </section>
+
+  <section class="section-wrapper" style="background:var(--cream)">
+    <div style="text-align:center; margin-bottom:60px;">
+      <span class="section-label">CLINICAL FRAMEWORK</span>
+      <h2 class="section-title">The 5-Phase Master<br /><em>Consciousness Protocol</em></h2>
+    </div>
+    <div class="mcp-grid" id="mcpGrid"></div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer id="site-footer">
+  <div class="footer-brand">
+    <span class="name">AESTHETICS OF SOCIETY</span>
+    <span class="url">culturalmusings.com</span>
+  </div>
+  <div class="footer-copy">© 2026 NAREDLA RAMA CHANDRA</div>
+</footer>
+
+<!-- VEDIC AUDIO -->
+<audio id="vedic-audio" loop>
+  <source src="audio/vedic-tamil.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  /* --- PAGE ROUTER --- */
+  function showPage(pageId) {
+    document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+    document.getElementById(pageId + '-page').classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  /* --- DATA RENDERING --- */
+  const siddhas = [
+    { id: '01', name: 'Agastya Muni', title: 'FATHER OF TAMIL SIDDHA SCIENCE', desc: 'Primordial Siddha credited with systematizing Tamil language and Siddha medicine.' },
+    { id: '02', name: 'Thirumoolar', title: 'AUTHOR OF THIRUMANTIRAM', desc: 'Author of the 3,000-verse treatise on Yoga, Tantra, and consciousness.' },
+    { id: '18', name: 'Bharata Muni', title: 'AUTHOR OF NATYA SHASTRA', desc: 'Author of the world\'s most complete treatise on neuro-somatics.' }
+  ];
+
+  const dimensions = [
+    { id: 'I', title: 'Bio-Mechanical Engineering', desc: 'The 108 Karanas represent a system of structural resonance and geometric alignment.' },
+    { id: 'II', title: 'Neuroscience & Healing', desc: 'Tool for neuroplasticity and vestibular rehabilitation through neural choreography.' }
+  ];
+
+  const mcpPhases = [
+    { id: '01', title: 'Samskara Shuddhi', desc: 'Purification of the bio-field through foundational Karanas.' },
+    { id: '05', title: 'Samatva Sthapana', desc: 'Stabilization in equanimity and integration of daily protocols.' }
+  ];
+
+  function render() {
+    const siddhaGrid = document.getElementById('siddhaGrid');
+    siddhas.forEach(s => {
+      siddhaGrid.innerHTML += `<div class="siddha-card"><div class="id">${s.id}</div><h3>${s.name}</h3><span class="title">${s.title}</span><p style="color:#666; line-height:1.7;">${s.desc}</p></div>`;
+    });
+
+    const dimList = document.getElementById('dimensionsList');
+    dimensions.forEach(d => {
+      dimList.innerHTML += `<div class="dimension-item"><div class="dim-num">${d.id}</div><div><h3 style="font-family:'Playfair Display'; font-size:1.8rem; color:var(--primary-blue); margin-bottom:10px;">${d.title}</h3><p style="color:#555; line-height:1.8;">${d.desc}</p></div></div>`;
+    });
+
+    const mcpGrid = document.getElementById('mcpGrid');
+    mcpPhases.forEach(p => {
+      mcpGrid.innerHTML += `<div class="mcp-card"><span style="color:var(--gold); font-weight:800; font-size:0.6rem; letter-spacing:2px; display:block; margin-bottom:10px;">PHASE ${p.id}</span><h4 style="font-family:'Playfair Display'; font-size:1.3rem; color:var(--primary-blue); margin-bottom:10px;">${p.title}</h4><p style="color:#666; font-size:0.9rem; line-height:1.6;">${p.desc}</p></div>`;
+    });
+  }
+
+  /* --- AUDIO LOGIC --- */
+  const audio = document.getElementById("vedic-audio");
+  let started = false;
+
+  function fadeInAudio() {
+    audio.volume = 0;
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        let vol = 0;
+        const fade = setInterval(() => {
+          if (vol < 0.2) {
+            vol += 0.01;
+            audio.volume = vol;
+          } else {
+            clearInterval(fade);
+          }
+        }, 200);
+      }).catch(error => {
+        console.log("Audio file missing or blocked by browser:", error);
+      });
+    }
+  }
+
+  document.addEventListener("click", function init() {
+    if (!started) {
+      fadeInAudio();
+      started = true;
+    }
+  });
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  render();
+</script>
+</body>
+</html>
