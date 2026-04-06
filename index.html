@@ -1320,17 +1320,10 @@
       e.target.reset();
     }, 3000);
   }
-
-  /* ── AUDIO (FIXED) ── */
-  // To enable background music:
-  // 1. Create a folder called "audio" next to this index.html file
-  // 2. Place your MP3 file inside it named "vedic-tamil.mp3"
-  // 3. Audio will then play automatically on first user click
   const audio = document.getElementById('vedic-audio');
   let audioStarted = false;
 
   function fadeInAudio() {
-    // Check if browser can potentially play the source
     if (!audio || audio.querySelectorAll('source').length === 0) return;
     audio.volume = 0;
     const playPromise = audio.play();
@@ -1347,8 +1340,7 @@
           }
         }, 200);
       }).catch(() => {
-        // File missing or browser blocked autoplay — silently do nothing
-      });
+       
     }
   }
 
