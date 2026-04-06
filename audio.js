@@ -1,4 +1,5 @@
 /* ── AUDIO ── */
+javascript/* ── AUDIO ── */
 const audio = document.getElementById("vedic-audio");
 let started = false;
 function fadeInAudio() {
