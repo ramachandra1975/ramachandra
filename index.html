@@ -760,6 +760,419 @@
 </div>
 
 <!-- ═══════════════════ NEW PAGES PROMO ═══════════════════ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Guru's Clan | Aesthetics of Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --primary-blue: #1a365d; --gold: #c5a059; --navy: #0f2240; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* SAME BACKGROUND AS INDEX */
+    body { 
+      font-family: 'Cormorant Garamond', serif; 
+      color: #333; 
+      background: linear-gradient(rgba(253,250,245,0.92), rgba(253,250,245,0.92)), 
+                  url('background.png') center top fixed no-repeat;
+      background-size: cover;
+    }
+
+    #main-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 18px 5%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197,160,89,0.2); }
+    .nav-links { display: flex; gap: 22px; list-style: none; }
+    .nav-links a { font-family: 'Montserrat'; font-size: 0.68rem; font-weight: 700; text-decoration: none; color: var(--primary-blue); }
+
+    /* TRANSPARENT HERO */
+    #page-hero { 
+      min-height: 50vh; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      text-align: center; 
+      padding: 140px 40px 60px;
+      background: rgba(15, 34, 64, 0.85); /* Semi-transparent Navy */
+      color: white;
+    }
+    #page-hero h1 { font-family: 'Playfair Display'; font-size: clamp(3rem, 6vw, 5rem); }
+    #page-hero h1 em { color: var(--gold); font-style: italic; }
+    
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 80px 40px; background: transparent; }
+  </style>
+</head>
+<body>
+<nav id="main-nav">
+  <a href="index.html" style="text-decoration:none; color:var(--primary-blue); font-family:Montserrat; font-weight:700;">NAREDLA RAMA CHANDRA</a>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="gurus-clan.html" style="color:var(--gold)">GURU'S CLAN</a></li>
+    <li><a href="natya-shastra.html">NATYA SHASTRA</a></li>
+  </ul>
+</nav>
+<header id="page-hero">
+  <h1>The Guru's <em>Clan</em></h1>
+  <p style="margin-top:20px; font-style:italic; font-size:1.2rem;">The unbroken lineage from Hiranyagarbha to the 18 Siddhas.</p>
+</header>
+<div class="section-wrapper">
+</div>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Guru's Clan | Aesthetics of Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --cream-dark: #f5efe3;
+      --text-muted: #666;
+      --border: #ececec;
+      --navy: #0f2240;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Cormorant Garamond', serif; background: #fff; color: #333; overflow-x: hidden; }
+
+    /* NAV */
+    #main-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 5%; background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197,160,89,0.2);
+      transition: box-shadow 0.3s;
+    }
+    #main-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-brand img { width: 42px; height: 42px; object-fit: cover; border-radius: 2px; }
+    .nav-brand-text .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 2.5px; color: var(--primary-blue); }
+    .nav-brand-text .url { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--gold); letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 22px; align-items: center; list-style: none; }
+    .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; color: var(--primary-blue); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-links .nav-cta { border: 1px solid var(--gold); padding: 7px 16px; color: var(--gold); }
+    .nav-links .nav-cta:hover { background: var(--gold); color: #fff; }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* HERO */
+    #page-hero {
+      min-height: 72vh; background: linear-gradient(160deg, var(--navy) 0%, var(--primary-blue) 65%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 140px 40px 80px; position: relative; overflow: hidden;
+    }
+    .hero-om { position: absolute; font-size: 42vw; color: rgba(255,255,255,0.025); top: 50%; left: 50%; transform: translate(-50%,-52%); pointer-events: none; font-family: serif; line-height: 1; }
+    .hero-line { width: 44px; height: 2px; background: var(--gold); margin: 0 auto 22px; animation: fadeUp 0.7s ease both; }
+    .hero-label { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; animation: fadeUp 0.8s 0.06s ease both; }
+    #page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem,7vw,6rem); color: #fff; font-weight: 700; line-height: 1.05; margin-bottom: 22px; animation: fadeUp 0.9s 0.12s ease both; }
+    #page-hero h1 em { color: var(--gold); font-style: italic; }
+    .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.1rem,2.2vw,1.5rem); color: rgba(255,255,255,0.6); max-width: 680px; line-height: 1.7; margin: 0 auto 38px; animation: fadeUp 1s 0.18s ease both; }
+    .breadcrumb { font-family: 'Montserrat', sans-serif; font-size: 0.64rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; animation: fadeUp 1s 0.24s ease both; }
+    .breadcrumb a { color: rgba(255,255,255,0.38); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: var(--gold); margin: 0 10px; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* SHARED */
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .section-label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,4.5vw,3.8rem); color: var(--primary-blue); font-weight: 700; line-height: 1.05; }
+    .section-title em { color: var(--gold); font-style: italic; }
+
+    /* INTRO */
+    #intro { background: var(--cream); border-bottom: 1px solid rgba(197,160,89,0.18); }
+    .intro-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: start; }
+    .intro-text { font-size: 1.1rem; line-height: 1.9; color: #444; }
+    .intro-text p { margin-bottom: 22px; }
+    .pull-quote { border-left: 3px solid var(--gold); padding: 24px 32px; background: #fff; margin: 36px 0; }
+    .pull-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--primary-blue); line-height: 1.5; }
+    .intro-sidebar { padding-top: 8px; }
+    .info-box { border: 1px solid var(--border); padding: 32px; margin-bottom: 22px; background: #fff; position: relative; }
+    .info-box::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); }
+    .info-box h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 10px; }
+    .info-box p { font-size: 0.97rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* CHAIN BANNER */
+    #origin { background: var(--navy); padding: 96px 40px; text-align: center; position: relative; overflow: hidden; }
+    .origin-bg { position: absolute; font-size: 28vw; color: rgba(197,160,89,0.04); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; font-family: serif; line-height: 1; }
+    .origin-inner { max-width: 960px; margin: 0 auto; position: relative; }
+    .origin-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4.5vw,3.5rem); color: #fff; font-weight: 400; font-style: italic; margin: 14px 0 28px; line-height: 1.15; }
+    .origin-inner p { font-size: 1.08rem; color: rgba(255,255,255,0.65); line-height: 1.85; text-align: left; margin-bottom: 20px; }
+    .origin-chain { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 60px; gap: 0; }
+    .chain-node { text-align: center; padding: 18px 26px; border: 1px solid rgba(197,160,89,0.28); }
+    .chain-node .cn-name { display: block; font-family: 'Playfair Display', serif; font-size: 1.05rem; color: #fff; margin-bottom: 4px; }
+    .chain-node .cn-role { font-family: 'Montserrat', sans-serif; font-size: 0.56rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+    .chain-arrow { color: var(--gold); font-size: 1.3rem; padding: 0 4px; }
+
+    /* 18 SIDDHAS */
+    #siddhas { background: #fff; }
+    .siddhas-intro { max-width: 760px; font-size: 1.08rem; color: #555; line-height: 1.82; margin-bottom: 70px; }
+    .siddha-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2px; border: 1px solid var(--border); margin-bottom: 80px; }
+    .siddha-card { padding: 36px; transition: all 0.3s; position: relative; background: #fff; }
+    .siddha-card:hover { background: var(--cream); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); z-index: 2; }
+    .siddha-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: rgba(197,160,89,0.13); line-height: 1; position: absolute; top: 20px; right: 26px; }
+    .siddha-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 6px; }
+    .siddha-card .s-title { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; display: block; }
+    .siddha-card p { font-size: 0.96rem; color: #555; line-height: 1.7; }
+    .s-domain { display: inline-block; background: #f0f4f8; color: var(--primary-blue); font-family: 'Montserrat', sans-serif; font-size: 0.54rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; margin-top: 14px; }
+
+    /* UPANISHADIC */
+    #upanishad { background: var(--cream); }
+    .upanishad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .u-blocks { display: flex; flex-direction: column; gap: 24px; }
+    .u-block { background: #fff; border: 1px solid var(--border); padding: 30px; border-top: 3px solid var(--gold); transition: transform 0.3s; }
+    .u-block:hover { transform: translateY(-4px); }
+    .u-block h3 { font-family: 'Playfair Display', serif; font-size: 1.18rem; color: var(--primary-blue); margin-bottom: 10px; }
+    .u-block p { font-size: 0.97rem; color: #555; line-height: 1.7; }
+    .upanishad-sticky { position: sticky; top: 100px; }
+    .big-quote { background: var(--primary-blue); padding: 48px; }
+    .big-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.45rem; color: #fff; line-height: 1.5; margin-bottom: 22px; }
+    .big-quote cite { font-family: 'Montserrat', sans-serif; font-size: 0.66rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-style: normal; }
+    .conn-box { background: #fff; border: 1px solid var(--border); padding: 32px; margin-top: 22px; }
+    .conn-box h3 { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .conn-item { display: flex; align-items: center; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 0.97rem; color: #444; }
+    .conn-item:last-child { border-bottom: none; }
+    .conn-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+
+    /* SCIENCE */
+    #science { background: #fff; }
+    .sci-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 60px; }
+    .sci-card { border: 1px solid var(--border); padding: 40px; position: relative; overflow: hidden; transition: all 0.35s; }
+    .sci-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s; }
+    .sci-card:hover::after { width: 100%; }
+    .sci-card:hover { transform: translateY(-5px); box-shadow: 0 18px 48px rgba(0,0,0,0.06); }
+    .sci-icon { font-size: 2rem; margin-bottom: 18px; display: block; }
+    .sci-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--primary-blue); margin-bottom: 12px; }
+    .sci-card p { font-size: 0.97rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* CTA */
+    #cta-strip { background: linear-gradient(135deg, var(--primary-blue), var(--navy)); padding: 80px 40px; text-align: center; }
+    .cta-inner { max-width: 700px; margin: 0 auto; }
+    .cta-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,4vw,2.8rem); color: #fff; font-weight: 400; font-style: italic; margin-bottom: 18px; }
+    .cta-inner p { font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 38px; }
+    .btn-group { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 16px 36px; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+    .btn-gold { background: var(--gold); color: #fff; }
+    .btn-gold:hover { background: var(--gold-light); color: #333; }
+    .btn-outline-white { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.28); border-left: none; }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+
+    /* FOOTER */
+    #site-footer { background: var(--primary-blue); color: rgba(255,255,255,0.7); padding: 50px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-brand .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 0.82rem; color: #fff; }
+    .footer-brand .url { color: var(--gold); font-size: 0.72rem; font-family: 'Montserrat', sans-serif; }
+    .footer-nav a { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; letter-spacing: 1px; color: rgba(255,255,255,0.5); text-decoration: none; margin-right: 18px; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.4); }
+
+    @media (max-width: 900px) {
+      .section-wrapper { padding: 70px 24px; }
+      .intro-grid, .upanishad-grid { grid-template-columns: 1fr; gap: 40px; }
+      .upanishad-sticky { position: static; }
+      .origin-chain { flex-direction: column; align-items: center; }
+      .chain-arrow { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.jpg" alt="Logo" onerror="this.style.display='none'" />
+    <div class="nav-brand-text">
+      <span class="name">AESTHETICS OF SOCIETY</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">ABOUT</a></li>
+    <li><a href="index.html#publications">PUBLICATIONS</a></li>
+    <li><a href="index.html#timeline">TIMELINE</a></li>
+    <li><a href="index.html#media">MEDIA</a></li>
+    <li><a href="gurus-clan.html" class="active">GURU'S CLAN</a></li>
+    <li><a href="natya-shastra.html">NATYA SHASTRA</a></li>
+    <li><a href="index.html#contact" class="nav-cta">INTRODUCTION</a></li>
+  </ul>
+</nav>
+
+<section id="page-hero">
+  <div class="hero-om">ॐ</div>
+  <div class="hero-line"></div>
+  <div class="hero-label">Deep Research · Vedic Lineage</div>
+  <h1>The Guru's <em>Clan</em></h1>
+  <p class="hero-subtitle">The unbroken lineage from Hiranyagarbha to the 18 Siddhas — illumined masters whose teachings form the scientific backbone of this entire research archive.</p>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span>›</span>The Guru's Clan
+  </div>
+</section>
+
+<section id="intro">
+  <div class="section-wrapper">
+    <div class="intro-grid">
+      <div>
+        <span class="section-label">The Parampara</span>
+        <h2 class="section-title" style="margin-bottom:40px;">An <em>Unbroken</em><br />Transmission</h2>
+        <div class="intro-text">
+          <p>The Guru-Shishya Parampara — the sacred lineage of teacher to student — is not merely a cultural tradition. It is the world's oldest peer-reviewed transmission system. For thousands of years, the great seers of India encoded the laws of physics, biology, acoustics, and consciousness into living oral and textual traditions, validated by direct experiential verification.</p>
+          <p>This research archive traces its roots to that unbroken chain, beginning with Hiranyagarbha — the Cosmic Womb of Creation — whose primordial consciousness gave birth to all Vedic knowledge. From this source, illumined masters carried the flame forward, eventually crystallizing in the tradition of the 18 Siddhas.</p>
+          <div class="pull-quote">
+            <p>"The Parampara is not a chain of authority — it is a river of living experience, flowing from the Absolute into the particular."</p>
+          </div>
+          <p>Each master in this lineage did not merely repeat what was taught. They verified, expanded, and re-encoded the knowledge in forms accessible to their era — in verse, in movement, in musical scales, in geometric forms. This iterative refinement across millennia is what makes Vedic science uniquely robust.</p>
+        </div>
+      </div>
+      <div class="intro-sidebar">
+        <div class="info-box">
+          <h3>What is Parampara?</h3>
+          <p>Literally "one after another" in Sanskrit — the unbroken succession of masters and disciples through which sacred knowledge is transmitted without corruption across generations.</p>
+        </div>
+        <div class="info-box">
+          <h3>Why 18 Siddhas?</h3>
+          <p>The number 18 appears throughout Vedic cosmology — 18 Puranas, 18 chapters of the Gita, 18 Maha Vidyas. The 18 Siddhas represent the 18 primary streams of Vedic science as living transmissions.</p>
+        </div>
+        <div class="info-box">
+          <h3>The Scientific Relevance</h3>
+          <p>The knowledge encoded in this lineage spans acoustics, biomechanics, neurology, astrophysics, and linguistics — fields now being validated by modern science millennia after they were first articulated.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="origin">
+  <div class="origin-bg">ॐ</div>
+  <div class="origin-inner">
+    <span class="section-label">The Primordial Source</span>
+    <h2>Hiranyagarbha — The Cosmic Womb</h2>
+    <p>In Vedic cosmology, Hiranyagarbha (हिरण्यगर्भ) — the "Golden Womb" — is the primordial being who existed before creation. This concept corresponds remarkably to modern cosmology's "quantum vacuum" or "zero-point field." The Rig Veda (10.121) describes Hiranyagarbha as the singular consciousness from which all vibration, matter, and intelligence emerged.</p>
+    <p>In the context of this research, Hiranyagarbha is the conceptual origin point — the hypothesis that consciousness precedes and generates matter. Everything in the Guru's Clan lineage flows as a refinement and application of this singular insight: the universe is fundamentally acoustic, intentional, and self-aware.</p>
+    <div class="origin-chain">
+      <div class="chain-node"><span class="cn-name">Hiranyagarbha</span><span class="cn-role">Primordial Source</span></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node"><span class="cn-name">Brahma</span><span class="cn-role">Creator · Vedas</span></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node"><span class="cn-name">Sapta Rishis</span><span class="cn-role">Seven Seers</span></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node"><span class="cn-name">18 Siddhas</span><span class="cn-role">Living Masters</span></div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node"><span class="cn-name">Modern Synthesis</span><span class="cn-role">This Archive</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="siddhas">
+  <div class="section-wrapper">
+    <span class="section-label">The Living Transmissions</span>
+    <h2 class="section-title" style="margin-bottom:20px;">The 18 <em>Siddhas</em></h2>
+    <p class="siddhas-intro">The 18 Siddhas (Pathinetthu Siddhar) were accomplished masters of South India who attained Siddhi — the perfection of body, mind, and spirit. Each Siddha mastered a specific domain of Vedic science, leaving behind texts and practices now the subject of active scientific inquiry.</p>
+    <div class="siddha-grid">
+      <div class="siddha-card"><div class="siddha-num">01</div><h3>Agastya Muni</h3><span class="s-title">Father of Tamil Siddha Science</span><p>The primordial Siddha credited with systematizing Tamil language, Siddha medicine, and the science of Pranayama. His texts on Marma Vidya (vital points) directly parallel modern acupuncture meridian maps and neurovascular anatomy.</p><span class="s-domain">Bio-Medicine · Linguistics</span></div>
+      <div class="siddha-card"><div class="siddha-num">02</div><h3>Thirumoolar</h3><span class="s-title">Author of Thirumantiram</span><p>Author of the 3,000-verse Thirumantiram — a comprehensive treatise on Yoga, Tantra, and the science of consciousness. His mapping of the Chakra system as a functional model of the endocrine-nervous system is of direct clinical relevance.</p><span class="s-domain">Consciousness · Yoga Science</span></div>
+      <div class="siddha-card"><div class="siddha-num">03</div><h3>Nandidevar</h3><span class="s-title">Master of Shaiva Agamas</span><p>The great systematizer of the Shaiva Siddhanta philosophy and the Agamic tradition. His contributions to temple architecture as encoded cosmology reveal a deep understanding of sacred geometry and resonant space design.</p><span class="s-domain">Sacred Geometry · Cosmology</span></div>
+      <div class="siddha-card"><div class="siddha-num">04</div><h3>Kalangi Nathar</h3><span class="s-title">Master of Kaya Kalpa</span><p>Renowned for Kaya Kalpa — the science of physical rejuvenation. His practices of specific herbal protocols combined with breath control and precise postures foreshadow modern integrative anti-aging medicine.</p><span class="s-domain">Longevity Science · Herbal Medicine</span></div>
+      <div class="siddha-card"><div class="siddha-num">05</div><h3>Boganathar</h3><span class="s-title">Alchemist &amp; Cosmologist</span><p>The great Siddha alchemist whose works describe transmutation of metals and consciousness simultaneously. His texts on Nava Pashanam represent an early form of pharmaceutical chemistry and homeopathic principles.</p><span class="s-domain">Alchemy · Quantum Chemistry</span></div>
+      <div class="siddha-card"><div class="siddha-num">06</div><h3>Pambatti Siddhar</h3><span class="s-title">Master of Kundalini Science</span><p>Using the metaphor of the serpent, Pambatti's verses are precise technical descriptions of Kundalini Shakti — the bio-electric current that travels the spine, mapping directly onto modern spinal nerve and vagus nerve activation research.</p><span class="s-domain">Neuroscience · Bio-Electricity</span></div>
+      <div class="siddha-card"><div class="siddha-num">07</div><h3>Konganar</h3><span class="s-title">Medical Siddha</span><p>A master physician whose texts on diagnosis through pulse reading (Naadi Pariksha) describe physiological sensitivity now studied through advanced biofeedback technologies and heart rate variability (HRV) analysis.</p><span class="s-domain">Naadi Vidya · Clinical Medicine</span></div>
+      <div class="siddha-card"><div class="siddha-num">08</div><h3>Sattaimuni</h3><span class="s-title">Master of Varma Kalai</span><p>The systematizer of Varma Kalai — the science of vital energy points (Varmam). His 108 Varmam points map precisely onto known neurovascular junctions, forming the clinical basis for Siddha physiotherapy.</p><span class="s-domain">Varmam · Physiotherapy</span></div>
+      <div class="siddha-card"><div class="siddha-num">09</div><h3>Sundaranandar</h3><span class="s-title">Sound &amp; Devotion Master</span><p>A master of Nada Yoga — the yoga of sound. His understanding of how devotional singing (Bhakti) reorganizes the stress-response system through vagal toning prefigures contemporary music therapy and polyvagal theory.</p><span class="s-domain">Nada Yoga · Sound Therapy</span></div>
+      <div class="siddha-card"><div class="siddha-num">10</div><h3>Ramadevar</h3><span class="s-title">Master of Breath Science</span><p>Known as the "Siddha of the Breath," his writings on Pranayama describe 72,000 Nadis (energy channels) now correlated with the peripheral nervous system. His breathing ratios correspond to modern respiratory physiology research.</p><span class="s-domain">Pranayama · Respiratory Neuroscience</span></div>
+      <div class="siddha-card"><div class="siddha-num">11</div><h3>Kudambai Siddhar</h3><span class="s-title">Master of Inner Space</span><p>His enigmatic verses describe the inner universe of the human body using astronomical metaphors — a cognitive map aligning Vedic micro-cosmology with modern understandings of the body's self-organizing complexity.</p><span class="s-domain">Micro-cosmology · Cognitive Science</span></div>
+      <div class="siddha-card"><div class="siddha-num">12</div><h3>Idaikkadar</h3><span class="s-title">Astro-Biological Master</span><p>His research into the timing of biological rhythms with planetary cycles establishes a sophisticated system of chrono-biology aligning with modern research on circadian rhythms and gravitational biology.</p><span class="s-domain">Chrono-Biology · Astro-Physics</span></div>
+      <div class="siddha-card"><div class="siddha-num">13</div><h3>Karuvoorar</h3><span class="s-title">Temple Science Master</span><p>The architect of sacred spaces whose principles of temple construction encode understanding of acoustic resonance, electromagnetic energy fields, and the psycho-somatic effects of geometric forms on human consciousness.</p><span class="s-domain">Sacred Architecture · Acoustics</span></div>
+      <div class="siddha-card"><div class="siddha-num">14</div><h3>Machamuni</h3><span class="s-title">Father of Hatha Yoga</span><p>The legendary Matsyendranath whose work forms the foundation of Hatha Yoga. His systematization of asanas as bio-mechanical postures has direct applications in modern sports science and physical therapy.</p><span class="s-domain">Hatha Yoga · Bio-Mechanics</span></div>
+      <div class="siddha-card"><div class="siddha-num">15</div><h3>Gorakshanath</h3><span class="s-title">Nath Tradition Founder</span><p>The great master of Nath Yoga who codified techniques for activating higher states of consciousness. His Shat Karma (six cleansing practices) form the basis of modern detoxification medicine.</p><span class="s-domain">Cleansing Science · Yoga Medicine</span></div>
+      <div class="siddha-card"><div class="siddha-num">16</div><h3>Patanjali Maharishi</h3><span class="s-title">Codifier of Yoga Science</span><p>Author of the Yoga Sutras — the most systematic codification of consciousness science ever written. His eight-limbed path is now the subject of neuroimaging research demonstrating measurable changes in cortical thickness and neural connectivity.</p><span class="s-domain">Yoga Sutras · Neuroscience</span></div>
+      <div class="siddha-card"><div class="siddha-num">17</div><h3>Dhanvantari</h3><span class="s-title">Father of Ayurveda</span><p>The divine physician from whom the entire Ayurvedic tradition flows. His understanding of the three Doshas as a constitutional framework maps onto modern psycho-neuro-immunology and systems biology with remarkable precision.</p><span class="s-domain">Ayurveda · Systems Biology</span></div>
+      <div class="siddha-card"><div class="siddha-num">18</div><h3>Bharata Muni</h3><span class="s-title">Author of Natya Shastra</span><p>Author of the Natya Shastra — the world's most complete treatise on performing arts. His 108 Karanas, Mudras, and Rasas constitute a unified system of neuro-somatic programming and bio-acoustic medicine central to this entire research archive.</p><span class="s-domain">Natya Shastra · Neuro-Somatics</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="upanishad">
+  <div class="section-wrapper">
+    <div class="upanishad-grid">
+      <div>
+        <span class="section-label">Textual Roots</span>
+        <h2 class="section-title" style="margin-bottom:40px;">Upanishadic <em>Foundations</em></h2>
+        <div class="u-blocks">
+          <div class="u-block"><h3>Mandukya Upanishad</h3><p>The 12-verse Mandukya describes the four states of consciousness — Waking, Dreaming, Deep Sleep, and Turiya — with a precision that aligns with modern neuroscience's classification of brain states and the Gamma states of deep meditation masters.</p></div>
+          <div class="u-block"><h3>Taittiriya Upanishad</h3><p>Describes the Pancha Kosha model — five sheaths of existence, from the gross physical body to pure consciousness. This layered model prefigures modern systems biology and the emerging science of the body-mind continuum.</p></div>
+          <div class="u-block"><h3>Chandogya Upanishad</h3><p>Contains the famous "Tat Tvam Asi" (That Thou Art) — the equation of individual consciousness with universal consciousness. In scientific terms, this maps to non-local quantum entanglement and the holographic principle.</p></div>
+          <div class="u-block"><h3>Brihadaranyaka Upanishad</h3><p>The largest of the Upanishads, containing systematic analyses of consciousness, breath, and the nature of reality. Its model of Prana as the primary substance of existence aligns with the emerging science of bio-fields.</p></div>
+        </div>
+      </div>
+      <div class="upanishad-sticky">
+        <div class="big-quote">
+          <p>"The knower of Brahman becomes Brahman. Science does not contradict this — it has yet to catch up to it."</p>
+          <cite>— Naredla Rama Chandra</cite>
+        </div>
+        <div class="conn-box">
+          <h3>Direct Links to Modern Science</h3>
+          <div class="conn-item"><div class="conn-dot"></div>Pancha Kosha → Systems Biology</div>
+          <div class="conn-item"><div class="conn-dot"></div>Prana → Bio-electromagnetic Fields</div>
+          <div class="conn-item"><div class="conn-dot"></div>Turiya State → Gamma Brainwaves</div>
+          <div class="conn-item"><div class="conn-dot"></div>Nada Brahman → Quantum Acoustics</div>
+          <div class="conn-item"><div class="conn-dot"></div>Chakras → Endocrine Network</div>
+          <div class="conn-item"><div class="conn-dot"></div>Nadis → Peripheral Nervous System</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="science">
+  <div class="section-wrapper">
+    <span class="section-label">Research Intersections</span>
+    <h2 class="section-title">Where Lineage Meets <em>Science</em></h2>
+    <div class="sci-grid">
+      <div class="sci-card"><span class="sci-icon">🧠</span><h3>Neuroscience</h3><p>The Siddha model of consciousness, mapped through Chakras, Nadis, and states of awareness, provides a functional framework that modern neuroscience is beginning to validate through EEG, fMRI, and HRV studies.</p></div>
+      <div class="sci-card"><span class="sci-icon">🔊</span><h3>Bio-Acoustics</h3><p>The masters of this lineage understood sound as medicine. The specific frequencies of Beeja Aksharas, Ragas, and mantras are now measurable in their effects on cortisol levels, brainwave patterns, and immune function.</p></div>
+      <div class="sci-card"><span class="sci-icon">⚛️</span><h3>Quantum Physics</h3><p>Vedantic concepts of non-duality, the observer effect, and the primacy of consciousness find precise parallels in quantum mechanics — particularly in the Copenhagen interpretation and the holographic principle.</p></div>
+      <div class="sci-card"><span class="sci-icon">🌿</span><h3>Systems Biology</h3><p>The holistic body-mind-spirit model of the Siddhas, with its emphasis on inter-system communication, anticipates the emerging field of systems biology and the science of the microbiome-gut-brain axis.</p></div>
+      <div class="sci-card"><span class="sci-icon">💻</span><h3>Computational Science</h3><p>The precision grammar of Panini and the algorithmic structure of Sanskrit mantras provide a natural language framework for AI programming — a connection being actively explored in computational linguistics research.</p></div>
+      <div class="sci-card"><span class="sci-icon">🌌</span><h3>Astrophysics</h3><p>The cosmic constants encoded in Vedic numerology — particularly the 108 ratio linking Earth, Sun, and Moon — reveal astronomical precision that speaks to a sophisticated ancient understanding of celestial mechanics.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="cta-strip">
+  <div class="cta-inner">
+    <span class="section-label" style="color:var(--gold-light);">Continue the Exploration</span>
+    <h2>Explore the Natya Shastra &amp; 108 Karanas</h2>
+    <p>The 18th Siddha — Bharata Muni — left behind the most detailed scientific manual of ancient India. Discover how the 108 Karanas encode neuroscience, astrophysics, and consciousness science.</p>
+    <div class="btn-group">
+      <a href="natya-shastra.html" class="btn btn-gold">Explore Natya Shastra →</a>
+      <a href="index.html" class="btn btn-outline-white">Return Home</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer">
+  <div class="footer-brand">
+    <span class="name">AESTHETICS OF SOCIETY</span>
+    <span class="url">culturalmusings.com</span>
+  </div>
+  <nav class="footer-nav">
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#publications">PUBLICATIONS</a>
+    <a href="gurus-clan.html">GURU'S CLAN</a>
+    <a href="natya-shastra.html">NATYA SHASTRA</a>
+    <a href="index.html#media">MEDIA</a>
+    <a href="index.html#contact">CONTACT</a>
+  </nav>
+  <div class="footer-copy">© 2026 NAREDLA RAMA CHANDRA</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+</script>
+</body>
+</html>
 <div id="pages-promo">
   <div class="pages-promo-inner">
     <a href="gurus-clan.html" class="promo-card">
