@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natya Shastra &amp; 108 Karanas | Aesthetics of Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --text-muted: #666;
+      --border: #ececec;
+      --navy: #0f2240;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Cormorant Garamond', serif; background: #fff; color: #333; overflow-x: hidden; }
+
+    /* NAV — identical to gurus-clan */
+    #main-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 18px 5%; background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197,160,89,0.2); transition: box-shadow 0.3s; }
+    #main-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-brand img { width: 42px; height: 42px; object-fit: cover; border-radius: 2px; }
+    .nav-brand-text .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 2.5px; color: var(--primary-blue); }
+    .nav-brand-text .url { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--gold); letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 22px; align-items: center; list-style: none; }
+    .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; color: var(--primary-blue); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-links .nav-cta { border: 1px solid var(--gold); padding: 7px 16px; color: var(--gold); }
+    .nav-links .nav-cta:hover { background: var(--gold); color: #fff; }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* HERO — same dark navy gradient as gurus-clan */
+    #page-hero {
+      min-height: 72vh;
+      background: linear-gradient(160deg, var(--navy) 0%, var(--primary-blue) 65%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 140px 40px 80px; position: relative; overflow: hidden;
+    }
+    /* Pure CSS rotating ring — no image needed */
+    .hero-ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(197,160,89,0.1);
+      animation: spin 80s linear infinite;
+    }
+    .hero-ring-1 { width: 70vmin; height: 70vmin; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .hero-ring-2 { width: 50vmin; height: 50vmin; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(197,160,89,0.07); animation-direction: reverse; animation-duration: 55s; }
+    .hero-ring-3 { width: 30vmin; height: 30vmin; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(197,160,89,0.12); animation-duration: 40s; }
+    @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .hero-num { position: absolute; font-family: 'Playfair Display', serif; font-size: 28vw; color: rgba(255,255,255,0.02); top: 50%; left: 50%; transform: translate(-50%,-50%); line-height: 1; pointer-events: none; }
+    .hero-line { width: 44px; height: 2px; background: var(--gold); margin: 0 auto 22px; animation: fadeUp 0.7s ease both; position: relative; z-index: 2; }
+    .hero-label { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; animation: fadeUp 0.8s 0.06s ease both; position: relative; z-index: 2; }
+    #page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,6.5vw,5.5rem); color: #fff; font-weight: 700; line-height: 1.05; margin-bottom: 14px; animation: fadeUp 0.9s 0.12s ease both; position: relative; z-index: 2; }
+    #page-hero h1 em { color: var(--gold); font-style: italic; display: block; }
+    .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.1rem,2.2vw,1.5rem); color: rgba(255,255,255,0.6); max-width: 700px; line-height: 1.7; margin: 14px auto 38px; animation: fadeUp 1s 0.18s ease both; position: relative; z-index: 2; }
+    .breadcrumb { font-family: 'Montserrat', sans-serif; font-size: 0.64rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; animation: fadeUp 1s 0.24s ease both; position: relative; z-index: 2; }
+    .breadcrumb a { color: rgba(255,255,255,0.38); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: var(--gold); margin: 0 10px; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* STATS STRIP */
+    #stats-strip { background: var(--cream); border-bottom: 1px solid rgba(197,160,89,0.18); padding: 0 40px; }
+    .stats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(5,1fr); }
+    .stat-item { text-align: center; padding: 40px 20px; border-right: 1px solid rgba(197,160,89,0.18); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { display: block; font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--primary-blue); line-height: 1; margin-bottom: 8px; }
+    .stat-lbl { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+
+    /* SHARED */
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .section-label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,4.5vw,3.8rem); color: var(--primary-blue); font-weight: 700; line-height: 1.05; }
+    .section-title em { color: var(--gold); font-style: italic; }
+
+    /* OVERVIEW — 2-col like gurus-clan intro */
+    #overview { background: var(--cream); border-bottom: 1px solid rgba(197,160,89,0.18); }
+    .overview-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: start; }
+    .overview-text { font-size: 1.1rem; line-height: 1.9; color: #444; }
+    .overview-text p { margin-bottom: 22px; }
+    .pull-quote { border-left: 3px solid var(--gold); padding: 24px 32px; background: #fff; margin: 36px 0; }
+    .pull-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--primary-blue); line-height: 1.5; }
+    .info-box { border: 1px solid var(--border); padding: 32px; margin-bottom: 22px; background: #fff; position: relative; }
+    .info-box::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); }
+    .info-box h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 10px; }
+    .info-box p { font-size: 0.97rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* 5 DIMENSIONS — styled like the 18 Siddhas grid */
+    #dimensions { background: #fff; }
+    .dim-intro { max-width: 760px; font-size: 1.08rem; color: #555; line-height: 1.82; margin-bottom: 70px; }
+    .dim-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 2px; border: 1px solid var(--border); margin-bottom: 80px; }
+    .dim-card { padding: 42px; transition: all 0.3s; position: relative; background: #fff; }
+    .dim-card:hover { background: var(--cream); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); z-index: 2; }
+    .dim-roman { font-family: 'Playfair Display', serif; font-size: 3rem; color: rgba(197,160,89,0.13); line-height: 1; position: absolute; top: 20px; right: 26px; }
+    .dim-card .dim-label { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; display: block; }
+    .dim-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 14px; }
+    .dim-card p { font-size: 0.96rem; color: #555; line-height: 1.75; }
+    .dim-domain { display: inline-block; background: #f0f4f8; color: var(--primary-blue); font-family: 'Montserrat', sans-serif; font-size: 0.54rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; margin-top: 14px; }
+
+    /* 5-PHASE MCP — dark navy like origin banner in gurus-clan */
+    #mcp { background: var(--navy); padding: 100px 40px; position: relative; overflow: hidden; }
+    #mcp::before { content: '॰'; font-family: 'Tiro Devanagari Sanskrit', serif; position: absolute; font-size: 50vw; color: rgba(197,160,89,0.03); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; line-height: 1; }
+    .mcp-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+    .mcp-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4.5vw,3.5rem); color: #fff; font-weight: 400; font-style: italic; margin: 14px 0 28px; line-height: 1.15; }
+    .mcp-intro-text { font-size: 1.08rem; color: rgba(255,255,255,0.65); line-height: 1.85; max-width: 780px; margin-bottom: 70px; }
+    .phases-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 0; }
+    .phase-item { border: 1px solid rgba(197,160,89,0.2); padding: 38px 26px; transition: all 0.3s; }
+    .phase-item:hover { background: rgba(197,160,89,0.06); border-color: rgba(197,160,89,0.5); }
+    .phase-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: rgba(197,160,89,0.25); line-height: 1; margin-bottom: 14px; display: block; }
+    .phase-tag { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: 0.52rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(197,160,89,0.3); padding: 3px 8px; margin-bottom: 14px; }
+    .phase-item h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin-bottom: 12px; }
+    .phase-item p { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* BEEJA AKSHARAS — 2-col like upanishad section in gurus-clan */
+    #beeja { background: var(--cream); }
+    .beeja-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .b-blocks { display: flex; flex-direction: column; gap: 24px; }
+    .b-block { background: #fff; border: 1px solid var(--border); padding: 32px; border-top: 3px solid var(--gold); transition: transform 0.3s; }
+    .b-block:hover { transform: translateY(-4px); }
+    .b-block h3 { font-family: 'Playfair Display', serif; font-size: 1.18rem; color: var(--primary-blue); margin-bottom: 10px; }
+    .b-block p { font-size: 0.97rem; color: #555; line-height: 1.7; }
+    .beeja-sticky { position: sticky; top: 100px; }
+    .dark-box { background: var(--primary-blue); padding: 44px; }
+    .dark-box h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; font-weight: 400; font-style: italic; margin-bottom: 18px; }
+    .dark-box p { font-size: 0.97rem; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 16px; }
+    .aksharas-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-top: 28px; }
+    .akshara-cell { background: rgba(255,255,255,0.08); border: 1px solid rgba(197,160,89,0.2); padding: 12px; text-align: center; }
+    .akshara-cell .dev { font-family: 'Tiro Devanagari Sanskrit', serif; font-size: 1.5rem; color: var(--gold); display: block; margin-bottom: 4px; line-height: 1.4; }
+    .akshara-cell .roman { font-family: 'Montserrat', sans-serif; font-size: 0.52rem; letter-spacing: 1px; color: rgba(255,255,255,0.5); text-transform: uppercase; }
+
+    /* SCIENCE LINKS — same as gurus-clan science section */
+    #science { background: #fff; }
+    .sci-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 28px; margin-top: 60px; }
+    .sci-card { border: 1px solid var(--border); padding: 40px; position: relative; overflow: hidden; transition: all 0.35s; }
+    .sci-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s; }
+    .sci-card:hover::after { width: 100%; }
+    .sci-card:hover { transform: translateY(-5px); box-shadow: 0 18px 48px rgba(0,0,0,0.06); }
+    .sci-icon { font-size: 2rem; margin-bottom: 18px; display: block; }
+    .sci-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--primary-blue); margin-bottom: 12px; }
+    .sci-card p { font-size: 0.97rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* CTA — same as gurus-clan */
+    #cta-strip { background: linear-gradient(135deg, var(--primary-blue), var(--navy)); padding: 80px 40px; text-align: center; }
+    .cta-inner { max-width: 700px; margin: 0 auto; }
+    .cta-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,4vw,2.8rem); color: #fff; font-weight: 400; font-style: italic; margin-bottom: 18px; }
+    .cta-inner p { font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 38px; }
+    .btn-group { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 16px 36px; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+    .btn-gold { background: var(--gold); color: #fff; }
+    .btn-gold:hover { background: var(--gold-light); color: #333; }
+    .btn-outline-white { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.28); border-left: none; }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+
+    /* FOOTER */
+    #site-footer { background: var(--primary-blue); color: rgba(255,255,255,0.7); padding: 50px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-brand .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 0.82rem; color: #fff; }
+    .footer-brand .url { color: var(--gold); font-size: 0.72rem; font-family: 'Montserrat', sans-serif; }
+    .footer-nav a { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; letter-spacing: 1px; color: rgba(255,255,255,0.5); text-decoration: none; margin-right: 18px; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.4); }
+
+    @media (max-width: 900px) {
+      .section-wrapper { padding: 70px 24px; }
+      .overview-grid, .beeja-grid { grid-template-columns: 1fr; gap: 40px; }
+      .beeja-sticky { position: static; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(197,160,89,0.18); }
+      .phases-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .phases-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-brand">
+    <img src="logo.jpg" alt="Logo" onerror="this.style.display='none'" />
+    <div class="nav-brand-text">
+      <span class="name">AESTHETICS OF SOCIETY</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">ABOUT</a></li>
+    <li><a href="index.html#publications">PUBLICATIONS</a></li>
+    <li><a href="index.html#timeline">TIMELINE</a></li>
+    <li><a href="index.html#media">MEDIA</a></li>
+    <li><a href="gurus-clan.html">GURU'S CLAN</a></li>
+    <li><a href="natya-shastra.html" class="active">NATYA SHASTRA</a></li>
+    <li><a href="index.html#contact" class="nav-cta">INTRODUCTION</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="page-hero">
+  <div class="hero-ring hero-ring-1"></div>
+  <div class="hero-ring hero-ring-2"></div>
+  <div class="hero-ring hero-ring-3"></div>
+  <div class="hero-num">108</div>
+  <div class="hero-line"></div>
+  <div class="hero-label">Applied Research · Sacred Science</div>
+  <h1>Natya Shastra &amp;<em>108 Karanas</em></h1>
+  <p class="hero-subtitle">Inferences and applications from Bharata Muni's cosmic choreography — across bio-mechanics, neuroscience, bio-acoustics, cosmology, and psycho-spiritual dimensions.</p>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span>›</span>
+    <a href="gurus-clan.html">Guru's Clan</a><span>›</span>
+    Natya Shastra
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div id="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num">108</span><span class="stat-lbl">Sacred Karanas</span></div>
+    <div class="stat-item"><span class="stat-num">36</span><span class="stat-lbl">Chapters</span></div>
+    <div class="stat-item"><span class="stat-num">6000+</span><span class="stat-lbl">Verses</span></div>
+    <div class="stat-item"><span class="stat-num">5</span><span class="stat-lbl">MCP Phases</span></div>
+    <div class="stat-item"><span class="stat-num">2200+</span><span class="stat-lbl">Years of Tradition</span></div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="section-wrapper">
+    <div class="overview-grid">
+      <div>
+        <span class="section-label">The Cosmic Manual</span>
+        <h2 class="section-title" style="margin-bottom:40px;">Bharata Muni's<br /><em>Natya Shastra</em></h2>
+        <div class="overview-text">
+          <p>The Natya Shastra (नाट्यशास्त्र) — composed by the sage Bharata Muni between 200 BCE and 200 CE — is not merely a treatise on dance and drama. It is the most comprehensive scientific manual produced by ancient India: a unified theory of human consciousness, physiology, acoustics, and cosmology encoded in the language of the performing arts.</p>
+          <p>With 36 chapters and over 6,000 verses, the Natya Shastra describes the mechanics of movement (Karanas), gesture (Mudras), emotional states (Rasas), musical scales (Swaras), and theatrical performance in a unified system that maps the entire spectrum of human experience onto the stage of consciousness.</p>
+          <div class="pull-quote">
+            <p>"The Karanas are not choreography — they are a cosmic language written in the grammar of the human body."</p>
+          </div>
+          <p>This research examines the Natya Shastra not as a cultural artifact but as a living scientific system. The 108 Karanas emerge as a complete bio-mechanical, neurological, and cosmological protocol — one that encodes the laws of the universe in the kinetic vocabulary of the human body.</p>
+        </div>
+      </div>
+      <div>
+        <div class="info-box">
+          <h3>What are Karanas?</h3>
+          <p>A Karana is a complete unit of movement combining a specific body position (Sthana), hand gesture (Hasta), and foot pattern (Pada). Each of the 108 Karanas is a self-contained neuro-somatic protocol with measurable physiological effects.</p>
+        </div>
+        <div class="info-box">
+          <h3>What are Beeja Aksharas?</h3>
+          <p>Seed syllables of Sanskrit — primordial phonemes whose vibration, when correctly produced, triggers specific physiological responses. The Natya Shastra integrates these throughout its movement sequences as sonic anchors.</p>
+        </div>
+        <div class="info-box">
+          <h3>Why the Number 108?</h3>
+          <p>108 is a cosmic constant: the Earth-Sun distance equals approximately 108 solar diameters. Earth-Moon equals approximately 108 lunar diameters. The same ratio governs the Karanas — a terrestrial mirror of celestial mechanics.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 DIMENSIONS -->
+<section id="dimensions">
+  <div class="section-wrapper">
+    <span class="section-label">Research Framework</span>
+    <h2 class="section-title" style="margin-bottom:20px;">Five Dimensions of <em>Scientific Inquiry</em></h2>
+    <p class="dim-intro">The Natya Shastra yields discoveries across five distinct scientific domains — each illuminating a different facet of its encoded knowledge, each connecting directly to a modern discipline.</p>
+    <div class="dim-grid">
+
+      <div class="dim-card">
+        <div class="dim-roman">I</div>
+        <span class="dim-label">Dimension One</span>
+        <h3>Bio-Mechanical Engineering</h3>
+        <p>The 108 Karanas represent a sophisticated system of structural resonance. Each functions as a dynamic posture that optimizes the skeletal-muscular frame through precise geometric alignments, engaging deep stabilizer muscles and enhancing proprioception. Transitioning through specific kinetic chains achieves structural alignment that reduces joint stress and maximizes caloric efficiency.</p>
+        <span class="dim-domain">Bio-Mechanics · Structural Engineering</span>
+      </div>
+
+      <div class="dim-card">
+        <div class="dim-roman">II</div>
+        <span class="dim-label">Dimension Two</span>
+        <h3>Neuroscience &amp; Healing</h3>
+        <p>Each Karana requires complex cross-lateral coordination, stimulating the corpus callosum and synchronizing both brain hemispheres. This neural choreography triggers release of Brain-Derived Neurotrophic Factor (BDNF), aiding cognitive longevity. The rhythmic Tala correlates with Alpha and Theta brainwave states — a moving meditation that lowers cortisol and repairs the nervous system's stress response.</p>
+        <span class="dim-domain">Neuroscience · Clinical Medicine</span>
+      </div>
+
+      <div class="dim-card">
+        <div class="dim-roman">III</div>
+        <span class="dim-label">Dimension Three</span>
+        <h3>Cosmic &amp; Astrological Alignment</h3>
+        <p>The 108 Karanas are a terrestrial mirror of celestial mechanics. Each harmonizes the practitioner's micro-cosmic energy with the macro-cosmic cycles of planets (Grahas) and constellations (Nakshatras). Performing these movements activates specific Matrika Nyasas within the body, re-coding biological rhythms to match the resonant frequency of the universe.</p>
+        <span class="dim-domain">Astrophysics · Cosmology</span>
+      </div>
+
+      <div class="dim-card">
+        <div class="dim-roman">IV</div>
+        <span class="dim-label">Dimension Four</span>
+        <h3>Bio-Acoustics &amp; Sound Science</h3>
+        <p>The Natya Shastra's integration of Tala (rhythm), Swara (pitch), and Karana (movement) creates a tri-dimensional bio-acoustic system. When Beeja Aksharas are sounded with the Karanas, they create resonant standing waves in the body's fluid systems, affecting lymphatic circulation, cerebrospinal fluid, and the vibrational state of cellular membranes.</p>
+        <span class="dim-domain">Bio-Acoustics · Sound Medicine</span>
+      </div>
+
+      <div class="dim-card">
+        <div class="dim-roman">V</div>
+        <span class="dim-label">Dimension Five</span>
+        <h3>Psycho-Spiritual &amp; Consciousness Science</h3>
+        <p>The Natya Shastra describes nine primary Rasas (emotional essences) — each corresponding to a specific neurochemical state. By deliberately embodying these states through the Karanas, the practitioner develops meta-cognitive awareness and emotional mastery, bridging the Vedantic concept of Chitta with modern neuroscience's understanding of the default mode network.</p>
+        <span class="dim-domain">Consciousness Studies · Psycho-Neurology</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 5-PHASE MCP -->
+<section id="mcp">
+  <div class="mcp-inner">
+    <span class="section-label">Clinical Framework</span>
+    <h2>The 5-Phase Master Consciousness Protocol</h2>
+    <p class="mcp-intro-text">The Master Consciousness Protocol (MCP) is the clinical application framework derived from the Natya Shastra research. It provides a structured, evidence-informed pathway for using movement, sound, and breath as precision instruments of neuro-modulation and healing.</p>
+    <div class="phases-grid">
+      <div class="phase-item">
+        <span class="phase-num">01</span>
+        <span class="phase-tag">Foundation</span>
+        <h3>Samskara Shuddhi</h3>
+        <p>Purification of the bio-field through foundational Karanas and pranayama. Establishes physiological baseline — HRV, cortisol levels, and brainwave states — before deeper intervention.</p>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num">02</span>
+        <span class="phase-tag">Activation</span>
+        <h3>Shakti Prabodhana</h3>
+        <p>Activation of dormant energy pathways (Nadis) through Karana sequences that stimulate the vagus nerve, activate the parasympathetic system, and initiate the BDNF cascade for neuroplasticity.</p>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num">03</span>
+        <span class="phase-tag">Integration</span>
+        <h3>Nada Tarana</h3>
+        <p>Sound bridge phase. Beeja Aksharas and Raga therapy are introduced in alignment with the movement sequences. The bio-acoustic layer entrains brainwaves to Alpha-Theta states and initiates deep somatic integration.</p>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num">04</span>
+        <span class="phase-tag">Expansion</span>
+        <h3>Chit Vikasa</h3>
+        <p>Consciousness expansion through Rasa cultivation. Karanas corresponding to each of the nine Rasas are practiced, developing the full emotional-cognitive spectrum and building meta-awareness.</p>
+      </div>
+      <div class="phase-item">
+        <span class="phase-num">05</span>
+        <span class="phase-tag">Stabilisation</span>
+        <h3>Samatva Sthapana</h3>
+        <p>Stabilization in equanimity (Samatva). The final phase integrates all prior work into a sustainable daily protocol — a personalized digital pharmacopeia of movement and sound for long-term cognitive and somatic health.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEEJA AKSHARAS -->
+<section id="beeja">
+  <div class="section-wrapper">
+    <div class="beeja-grid">
+      <div>
+        <span class="section-label">Phonetic Science</span>
+        <h2 class="section-title" style="margin-bottom:40px;">Beeja Aksharas &amp;<br /><em>Neural Activation</em></h2>
+        <div class="b-blocks">
+          <div class="b-block">
+            <h3>What are Beeja Aksharas?</h3>
+            <p>Seed syllables are the atomic units of Sanskrit's bio-acoustic system. Each syllable, when correctly articulated, creates a specific pattern of vibration in the vocal apparatus, skull, chest cavity, and spinal column — triggering measurable neurological and endocrine responses.</p>
+          </div>
+          <div class="b-block">
+            <h3>The Sanskrit-Neural Interface</h3>
+            <p>Modern phonetics confirms that Sanskrit's 52-letter alphabet was designed to systematically stimulate every region of the vocal tract. This oral geography maps precisely onto the neural pathways of the cranial nerves, creating a direct link between sound production and nervous system modulation.</p>
+          </div>
+          <div class="b-block">
+            <h3>Integration with the Karanas</h3>
+            <p>In performance, each Karana is accompanied by specific Beeja Aksharas — creating a synchronized movement-sound protocol that simultaneously engages the motor cortex, auditory cortex, and limbic system. This tri-cortical activation is the basis of the MCP's neuro-modulation approach.</p>
+          </div>
+          <div class="b-block">
+            <h3>The AI Connection</h3>
+            <p>The precise, rule-governed grammar of Sanskrit — described by Panini in 3,959 sutras — provides a formal language framework with direct application to artificial intelligence. Beeja Aksharas function as programming tokens, a concept now being explored in neural interface computing research.</p>
+          </div>
+        </div>
+      </div>
+      <div class="beeja-sticky">
+        <div class="dark-box">
+          <h3>Primary Beeja Aksharas &amp; Their Domains</h3>
+          <p>Each seed syllable activates a specific energetic centre and corresponding physiological system:</p>
+          <div class="aksharas-grid">
+            <div class="akshara-cell"><span class="dev">ॐ</span><span class="roman">OM · Universal</span></div>
+            <div class="akshara-cell"><span class="dev">ह्रीं</span><span class="roman">HREEM · Heart</span></div>
+            <div class="akshara-cell"><span class="dev">क्लीं</span><span class="roman">KLEEM · Mind</span></div>
+            <div class="akshara-cell"><span class="dev">ऐं</span><span class="roman">AIM · Voice</span></div>
+            <div class="akshara-cell"><span class="dev">श्रीं</span><span class="roman">SHREEM · Vitality</span></div>
+            <div class="akshara-cell"><span class="dev">गं</span><span class="roman">GAM · Root</span></div>
+            <div class="akshara-cell"><span class="dev">हं</span><span class="roman">HAM · Throat</span></div>
+            <div class="akshara-cell"><span class="dev">यं</span><span class="roman">YAM · Air</span></div>
+            <div class="akshara-cell"><span class="dev">रं</span><span class="roman">RAM · Fire</span></div>
+            <div class="akshara-cell"><span class="dev">वं</span><span class="roman">VAM · Water</span></div>
+            <div class="akshara-cell"><span class="dev">लं</span><span class="roman">LAM · Earth</span></div>
+            <div class="akshara-cell"><span class="dev">क्षं</span><span class="roman">KSHAM · Third Eye</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE CONNECTIONS -->
+<section id="science">
+  <div class="section-wrapper">
+    <span class="section-label">Modern Applications</span>
+    <h2 class="section-title">Where the Natya Shastra<br />Meets <em>Modern Science</em></h2>
+    <div class="sci-grid">
+      <div class="sci-card"><span class="sci-icon">🧠</span><h3>Neuroscience</h3><p>The Karanas' cross-lateral movement patterns, BDNF release, and hemispheric synchronization are now measurable through EEG, fMRI, and HRV studies — validating the ancient protocol through modern instrumentation.</p></div>
+      <div class="sci-card"><span class="sci-icon">🔊</span><h3>Bio-Acoustics</h3><p>The integrated Tala-Swara-Karana system creates measurable effects on cortisol levels, brainwave patterns, and immune function. The Beeja Aksharas now form the basis of clinical sound therapy research.</p></div>
+      <div class="sci-card"><span class="sci-icon">🏃</span><h3>Sports Science</h3><p>The bio-mechanical precision of the Karanas — joint torque optimization, kinetic chain sequencing, proprioceptive training — maps directly onto modern sports science and functional movement therapy.</p></div>
+      <div class="sci-card"><span class="sci-icon">💻</span><h3>AI &amp; Computing</h3><p>The algorithmic structure of Sanskrit's grammar, embedded in the Natya Shastra's technical language, provides a natural framework for AI programming — a connection explored in computational linguistics research.</p></div>
+      <div class="sci-card"><span class="sci-icon">🌿</span><h3>Integrative Medicine</h3><p>The five-phase MCP protocol provides a structured clinical framework for using the Karanas as precision medical interventions for stress, neurodegeneration, and psycho-somatic conditions.</p></div>
+      <div class="sci-card"><span class="sci-icon">🌌</span><h3>Astrophysics</h3><p>The cosmic constant 108 — embedded in the number of Karanas — reflects precise astronomical ratios between Earth, Sun, and Moon, revealing an ancient understanding of celestial-biological resonance.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-strip">
+  <div class="cta-inner">
+    <span class="section-label" style="color:rgba(197,160,89,0.8);">Continue the Journey</span>
+    <h2>Return to the Source — The Guru's Clan</h2>
+    <p>Discover the 18 Siddhas and the Upanishadic lineage from which Bharata Muni and the Natya Shastra emerged — the unbroken transmission that gave birth to this entire knowledge system.</p>
+    <div class="btn-group">
+      <a href="gurus-clan.html" class="btn btn-gold">← Explore The Guru's Clan</a>
+      <a href="index.html" class="btn btn-outline-white">Return Home</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer">
+  <div class="footer-brand">
+    <span class="name">AESTHETICS OF SOCIETY</span>
+    <span class="url">culturalmusings.com</span>
+  </div>
+  <nav class="footer-nav">
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#publications">PUBLICATIONS</a>
+    <a href="gurus-clan.html">GURU'S CLAN</a>
+    <a href="natya-shastra.html">NATYA SHASTRA</a>
+    <a href="index.html#media">MEDIA</a>
+    <a href="index.html#contact">CONTACT</a>
+  </nav>
+  <div class="footer-copy">© 2026 NAREDLA RAMA CHANDRA</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+</script>
+</body>
+</html>
