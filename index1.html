@@ -27,24 +27,6 @@
       overflow-x: hidden;
     }
 
-    /* ─── BACKDROP WATERMARK (all non-hero sections) ─── */
-    .wm-section {
-      position: relative;
-    }
-    .wm-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('backdrop1.png') center/cover no-repeat;
-      opacity: 0.13;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .wm-section > * {
-      position: relative;
-      z-index: 1;
-    }
-
     /* ─── NAV ─── */
     #main-nav {
       position: fixed;
@@ -107,10 +89,20 @@
       align-items: center; justify-content: center;
       text-align: center;
       padding: 120px 20px 80px;
-      background: linear-gradient(rgba(253,250,245,0.88), rgba(253,250,245,0.88)),
-        url('background.png') center/cover no-repeat;
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(ellipse at 15% 40%, rgba(197,160,89,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 60%, rgba(26,54,93,0.06) 0%, transparent 50%);
       overflow: hidden;
     }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: url('background.png') center/cover no-repeat;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    #hero > * { position: relative; z-index: 1; }
 
     .hero-wm { position: absolute; pointer-events: none; opacity: 0.06; }
     .hero-wm-logo { width: 40%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
@@ -206,135 +198,100 @@
     }
     .philosophy-text .dash { color: var(--gold); margin: 0 8px; }
 
-    /* ─── VEDIC SHLOKAS STRIP ─── */
-    #vedic-shlokas {
-      background: var(--navy);
-      padding: 90px 40px;
+    /* ─── SHLOKAS SECTION ─── */
+    #shlokas {
+      position: relative;
+      padding: 110px 40px;
+      border-top: 1px solid rgba(197,160,89,0.2);
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(ellipse at 18% 50%, rgba(197,160,89,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 82% 20%, rgba(26,54,93,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 55% 85%, rgba(197,160,89,0.06) 0%, transparent 45%);
     }
+    #shlokas::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: url('background.png') center/cover no-repeat;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    #shlokas .shlokas-inner { position: relative; z-index: 1; }
     .shlokas-inner {
-      max-width: 1100px;
-      margin: 0 auto;
+      max-width: 1100px; margin: 0 auto;
     }
     .shlokas-header {
-      text-align: center;
-      margin-bottom: 64px;
+      text-align: center; margin-bottom: 90px;
     }
+    .shlokas-header .section-label { display: inline-block; margin-bottom: 14px; }
     .shlokas-header h2 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: #fff;
-      font-weight: 400;
-      font-style: italic;
-      margin-top: 12px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--primary-blue); font-weight: 400;
+      font-style: italic; line-height: 1.2;
     }
-    .shloka-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
+    .shloka-row {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 60px; position: relative;
     }
-    .shloka-card {
-      border: 1px solid rgba(197,160,89,0.3);
-      padding: 44px 38px;
-      position: relative;
-      transition: border-color 0.35s, transform 0.35s;
-    }
-    .shloka-card:hover {
-      border-color: var(--gold);
-      transform: translateY(-5px);
-    }
-    .shloka-card::before {
+    .shloka-row::before {
       content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 0;
-      background: var(--gold);
-      transition: height 0.4s;
+      position: absolute; top: 0; left: 33.33%; height: 100%;
+      width: 1px; background: rgba(197,160,89,0.2);
     }
-    .shloka-card:hover::before { height: 100%; }
-    .shloka-source {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      font-weight: 800;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
+    .shloka-row::after {
+      content: '';
+      position: absolute; top: 0; left: 66.66%; height: 100%;
+      width: 1px; background: rgba(197,160,89,0.2);
+    }
+    .shloka-item {
+      padding: 0 30px; text-align: center;
+    }
+    .shloka-item:first-child { padding-left: 0; }
+    .shloka-item:last-child { padding-right: 0; }
+    .shloka-num {
       display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 4px; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 28px;
     }
     .shloka-sanskrit {
       font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
+      font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+      color: var(--primary-blue);
+      line-height: 1.7; margin-bottom: 20px;
       font-style: italic;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.7;
-      margin-bottom: 18px;
-      border-bottom: 1px solid rgba(197,160,89,0.2);
-      padding-bottom: 18px;
     }
-    .shloka-translation {
+    .shloka-divider {
+      width: 36px; height: 1px; background: var(--gold);
+      margin: 22px auto;
+    }
+    .shloka-transliteration {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 1.5px; color: var(--gold);
+      line-height: 1.8; margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    .shloka-meaning {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.75;
-      margin-bottom: 18px;
+      font-size: 1.05rem; color: var(--text-muted);
+      line-height: 1.75; font-style: italic;
     }
-    .shloka-relevance {
+    .shloka-source {
+      display: block; margin-top: 22px;
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: var(--gold-light);
-      border-top: 1px solid rgba(197,160,89,0.2);
-      padding-top: 16px;
-    }
-
-    /* ─── NEW PAGES PROMO STRIP ─── */
-    #pages-promo {
-      background: var(--navy);
-      padding: 70px 40px;
-    }
-    .pages-promo-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
-    }
-    .promo-card {
-      border: 1px solid rgba(197,160,89,0.3);
-      padding: 44px; position: relative; overflow: hidden;
-      transition: all 0.35s;
-      text-decoration: none; display: block;
-    }
-    .promo-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-    .promo-card::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; width: 3px; height: 0;
-      background: var(--gold); transition: height 0.4s;
-    }
-    .promo-card:hover::before { height: 100%; }
-    .promo-card .pc-label {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem; font-weight: 800;
-      letter-spacing: 3px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 14px; display: block;
-    }
-    .promo-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.9rem; color: #fff; font-weight: 700;
-      margin-bottom: 14px; line-height: 1.15;
-    }
-    .promo-card p {
-      font-size: 0.98rem; color: rgba(255,255,255,0.6);
-      line-height: 1.75; margin-bottom: 28px;
-    }
-    .promo-card .pc-link {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem; font-weight: 800;
+      font-size: 0.58rem; font-weight: 700;
       letter-spacing: 2px; text-transform: uppercase;
-      color: var(--gold);
+      color: rgba(26,54,93,0.35);
     }
-    .promo-card .pc-bg {
-      position: absolute; right: -20px; bottom: -20px;
-      font-size: 9rem; opacity: 0.04; line-height: 1;
-      pointer-events: none;
+    @media (max-width: 900px) {
+      .shloka-row { grid-template-columns: 1fr; gap: 60px; }
+      .shloka-row::before, .shloka-row::after { display: none; }
+      .shloka-item { padding: 0; border-bottom: 1px solid rgba(197,160,89,0.2); padding-bottom: 60px; }
+      .shloka-item:last-child { border-bottom: none; padding-bottom: 0; }
     }
 
     /* ─── PUBLICATIONS ─── */
@@ -800,7 +757,6 @@
       .mcp-grid { grid-template-columns: 1fr; }
       .consortium { padding: 50px 24px; }
       .pages-promo-inner { grid-template-columns: 1fr; }
-      .shloka-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 600px) {
       .nav-links { display: none; }
@@ -851,7 +807,7 @@
 </section>
 
 <!-- ═══════════════════ PHILOSOPHY STRIP ═══════════════════ -->
-<div id="philosophy" class="wm-section">
+<div id="philosophy">
   <p class="philosophy-text">
     Ancient <span class="italic">wisdom</span> does not contradict<br />
     modern <span class="gold">science</span><span class="dash">—</span>it precedes it. The<br />
@@ -860,90 +816,60 @@
   </p>
 </div>
 
-<!-- ═══════════════════ VEDIC SHLOKAS ═══════════════════ -->
-<section id="vedic-shlokas">
+<!-- ═══════════════════ UPANISHADIC SHLOKAS ═══════════════════ -->
+<section id="shlokas">
   <div class="shlokas-inner">
     <div class="shlokas-header">
-      <span class="section-label" style="color:var(--gold-light);">Scriptural Foundation</span>
-      <h2>The Vedic <em>Testimony</em></h2>
+      <span class="section-label">From the Upanishads</span>
+      <h2>The Voice of Ancient Science</h2>
     </div>
-    <div class="shloka-grid">
+    <div class="shloka-row">
 
-      <!-- Shloka 1: Rig Veda on Nada / Sound as origin -->
-      <div class="shloka-card">
-        <span class="shloka-source">Rig Veda · 10.71.1</span>
-        <div class="shloka-sanskrit">
-          बृहस्पते! प्रथमं वाचो अग्रं<br />
-          यत्प्रैरत नामधेयं दधानाः।<br />
-          यदेषां श्रेष्ठं यदरिप्रमासीत्<br />
-          प्रेणा तदेषां निहितं गुहाविः॥
-        </div>
-        <p class="shloka-translation">
-          "O Brihaspati! When the wise first gave names to things, they uttered the primal word — Vak. That which was most excellent, most pure, most hidden within them — they revealed through the gift of speech."
+      <div class="shloka-item">
+        <span class="shloka-num">Chandogya Upanishad · VI.8.7</span>
+        <p class="shloka-sanskrit">
+          सर्वं खल्विदं ब्रह्म<br />
+          तज्जलानिति शान्त उपासीत ।
         </p>
-        <p class="shloka-relevance">
-          ↳ Substantiates that primordial sound (Nada Brahman) is the origin of all knowledge — the bio-acoustic premise of this entire research archive.
-        </p>
+        <div class="shloka-divider"></div>
+        <p class="shloka-transliteration">Sarvaṁ khalvidaṁ Brahma<br />tajjalāniti śānta upāsīta</p>
+        <p class="shloka-meaning">"All this universe is verily Brahman — from it all things are born, into it they dissolve, and in it they breathe. Meditate on it in tranquility."</p>
+        <span class="shloka-source">On the Nature of Consciousness as the Substrate of All Creation</span>
       </div>
 
-      <!-- Shloka 2: Sama Veda on music as cosmic order -->
-      <div class="shloka-card">
-        <span class="shloka-source">Sama Veda · Chandogya Upanishad 1.1.1</span>
-        <div class="shloka-sanskrit">
-          ओमित्येतदक्षरमुद्गीथमुपासीत।<br />
-          ओमिति ह्युद्गायति।<br />
-          तस्योपव्याख्यानम्॥
-        </div>
-        <p class="shloka-translation">
-          "One should meditate on the syllable OM as the Udgitha (the sacred chant). OM — with this syllable alone does one sing forth. This is the explanation thereof."
+      <div class="shloka-item">
+        <span class="shloka-num">Taittiriya Upanishad · II.1.1</span>
+        <p class="shloka-sanskrit">
+          अन्नाद्वै प्रजाः प्रजायन्ते<br />
+          याः काश्च पृथिवीं श्रिताः ।<br />
+          अथो अन्नेनैव जीवन्ति<br />
+          अन्तं यन्त्यभिसंविशन्ति ।
         </p>
-        <p class="shloka-relevance">
-          ↳ Validates the Sapta Swaras as frequencies of cosmic consciousness — each note a resonant key to a specific neurological chamber.
-        </p>
+        <div class="shloka-divider"></div>
+        <p class="shloka-transliteration">Annādvai prajāḥ prajāyante<br />yāḥ kāśca pṛthivīṁ śritāḥ</p>
+        <p class="shloka-meaning">"From food all beings are born; by food they are sustained when born; and into food they merge at the end. Food is the eldest of all beings — therefore it is called the medicine of all."</p>
+        <span class="shloka-source">On the Five Sheaths of Existence — The Pancha Kosha Model</span>
       </div>
 
-      <!-- Shloka 3: Yajur Veda on movement and cosmic alignment -->
-      <div class="shloka-card">
-        <span class="shloka-source">Yajur Veda · 36.24</span>
-        <div class="shloka-sanskrit">
-          यत्ते रूपं कल्याणतमं तत्ते पश्यामि।<br />
-          योऽसावसौ पुरुषः सोऽहमस्मि॥<br />
-          नृत्यं सर्वं ब्रह्माण्डस्य प्रतिबिम्बम्।
-        </div>
-        <p class="shloka-translation">
-          "That most auspicious form of Thine — that I behold. That being who is there — I am he. All movement (Nritya) is the reflection of the cosmic order (Brahmaanda)."
+      <div class="shloka-item">
+        <span class="shloka-num">Mandukya Upanishad · I.2</span>
+        <p class="shloka-sanskrit">
+          सर्वं ह्येतद् ब्रह्म,<br />
+          अयमात्मा ब्रह्म ।<br />
+          सोऽयमात्मा चतुष्पात् ।
         </p>
-        <p class="shloka-relevance">
-          ↳ Directly substantiates the 108 Karanas of Natya Shastra as terrestrial mirrors of celestial mechanics — the body as a living map of the cosmos.
-        </p>
+        <div class="shloka-divider"></div>
+        <p class="shloka-transliteration">Sarvaṁ hyetad Brahma<br />ayamātmā Brahma<br />so'yamātmā catuṣpāt</p>
+        <p class="shloka-meaning">"All this is indeed Brahman. This Self is Brahman. This same Self has four quarters — waking, dreaming, deep sleep, and the transcendent fourth — the ground of all consciousness."</p>
+        <span class="shloka-source">On the Four States of Consciousness — The Basis of Neuro-Vedic Research</span>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════ NEW PAGES PROMO ═══════════════════ -->
-<div id="pages-promo">
-  <div class="pages-promo-inner">
-    <a href="gurus-clan.html" class="promo-card">
-      <span class="pc-label">Deep Research · Vedic Lineage</span>
-      <h3>The Guru's Clan</h3>
-      <p>The unbroken lineage from Hiranyagarbha to the 18 Siddhas — illumined masters whose teachings form the scientific backbone of this entire research archive. Explore the Parampara, the Upanishadic foundations, and their direct links to neuroscience and healing.</p>
-      <span class="pc-link">Explore the Lineage →</span>
-      <span class="pc-bg">ॐ</span>
-    </a>
-    <a href="natya-shastra.html" class="promo-card">
-      <span class="pc-label">Applied Research · Bharata Muni</span>
-      <h3>Natya Shastra &amp; 108 Karanas</h3>
-      <p>Inferences and applications drawn from Bharata Muni's cosmic choreography — across bio-mechanics, neuroscience, bio-acoustics, cosmology, and psycho-spiritual dimensions. Includes the 5-Phase Master Consciousness Protocol clinical framework.</p>
-      <span class="pc-link">Explore the Science →</span>
-      <span class="pc-bg">🕉</span>
-    </a>
-  </div>
-</div>
-
 <!-- ═══════════════════ PUBLICATIONS ═══════════════════ -->
-<section id="publications" class="wm-section">
+<section id="publications">
   <div class="section-wrapper">
     <div class="pub-header">
       <div>
@@ -966,7 +892,7 @@
 </div>
 
 <!-- ═══════════════════ ABOUT AUTHOR ═══════════════════ -->
-<section id="about" class="wm-section">
+<section id="about">
   <div class="section-wrapper">
     <div class="about-grid">
       <div class="about-img-wrap">
@@ -999,7 +925,7 @@
 </section>
 
 <!-- ═══════════════════ TIMELINE ═══════════════════ -->
-<section id="timeline" class="wm-section">
+<section id="timeline">
   <div class="timeline-inner">
     <div class="timeline-spine"></div>
     <div style="margin-bottom:100px;">
@@ -1084,7 +1010,7 @@
 </section>
 
 <!-- ═══════════════════ MEDIA ═══════════════════ -->
-<section id="media" class="wm-section">
+<section id="media">
   <div class="section-wrapper">
     <div class="media-header">
       <div>
@@ -1131,7 +1057,7 @@
 </section>
 
 <!-- ═══════════════════ 108 KARANAS ═══════════════════ -->
-<section id="karanas" class="wm-section">
+<section id="karanas">
   <div class="section-wrapper">
     <div style="text-align:center;margin-bottom:70px;">
       <span class="section-label">The Architecture of Sacred Motion</span>
@@ -1164,7 +1090,7 @@
 </section>
 
 <!-- ═══════════════════ EPILOGUE ═══════════════════ -->
-<section id="epilogue" class="wm-section">
+<section id="epilogue">
   <div class="epilogue-inner">
     <span class="section-label" style="display:block;text-align:center;">Final Synthesis</span>
     <h2>Epilogue</h2>
@@ -1175,7 +1101,7 @@
 </section>
 
 <!-- ═══════════════════ FUTURE / MCP ═══════════════════ -->
-<section id="future" class="wm-section">
+<section id="future">
   <div class="section-wrapper">
     <div class="mcp-grid">
       <div class="mcp-content">
@@ -1216,7 +1142,7 @@
 </section>
 
 <!-- ═══════════════════ CONTACT ═══════════════════ -->
-<section id="contact" class="wm-section">
+<section id="contact">
   <div class="section-wrapper">
     <div class="contact-flex">
       <div class="contact-info">
@@ -1230,7 +1156,7 @@
           </div>
           <div class="contact-entry">
             <div class="contact-icon">✉️</div>
-            <div class="contact-data"><label>Email</label><p>smith123846@gmail.com</p></div>
+            <div class="contact-data"><label>Email</label><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="21524c48554910131219151761464c40484d0f424e4c">[email&#160;protected]</a></p></div>
           </div>
           <div class="contact-entry">
             <div class="contact-icon">📍</div>
@@ -1286,11 +1212,13 @@
   <div class="footer-copy">© 2026 NAREDLA RAMA CHANDRA</div>
 </footer>
 
-<audio id="vedic-audio" loop>
+<!-- ═══════════════════ AUDIO ═══════════════════ -->
+<!-- Place your audio file at: audio/vedic-tamil.mp3 relative to this file -->
+<audio id="vedic-audio" loop preload="none">
   <source src="audio/vedic-tamil.mp3" type="audio/mpeg">
 </audio>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   /* ── NAV SCROLL ── */
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
@@ -1482,21 +1410,26 @@
     }, 3000);
   }
 
-  /* ── AUDIO ── */
-  const audio = document.getElementById("vedic-audio");
-  let started = false;
+  
+  const audio = document.getElementById('vedic-audio');
+  let audioStarted = false;
+
   function fadeInAudio() {
+    if (!audio || audio.querySelectorAll('source').length === 0) return;
     audio.volume = 0;
-    audio.play().catch(() => {});
-    let vol = 0;
-    const fade = setInterval(() => {
-      if (vol < 0.2) { vol += 0.01; audio.volume = Math.min(vol, 0.2); }
-      else { clearInterval(fade); }
-    }, 200);
-  }
-  document.addEventListener("click", function() {
-    if (!started) { fadeInAudio(); started = true; }
-  }, { once: true });
-</script>
-</body>
-</html>
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        // Playback started — fade in volume gently
+        let vol = 0;
+        const fade = setInterval(() => {
+          if (vol < 0.2) {
+            vol += 0.01;
+            audio.volume = Math.min(vol, 0.2);
+          } else {
+            clearInterval(fade);
+          }
+        }, 200);
+      }).catch(() => {
+             });
+    }
