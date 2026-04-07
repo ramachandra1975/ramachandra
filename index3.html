@@ -1,0 +1,223 @@
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramachandra - Bharatanatyam Artist & Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #800000; /* Maroon */
+            --secondary: #DAA520; /* Goldenrod */
+            --bg-light: #fffdfa;
+            --text-dark: #2c2c2c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+        /* Watermark Utility */
+        .wm-section {
+            position: relative;
+            background-color: #fffdfa;
+        }
+        .wm-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('backdrop1.png');
+            background-repeat: repeat;
+            background-size: 300px;
+            opacity: 0.13;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .wm-section > * { position: relative; z-index: 1; }
+
+        /* Header & Nav */
+        header {
+            background: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-weight: bold; color: var(--primary); font-size: 1.5rem; text-decoration: none; }
+
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 2rem; }
+        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+        nav ul li a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero-bg.jpg') center/cover;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; max-width: 700px; }
+
+        /* Section Styling */
+        section { padding: 80px 10%; }
+        h2 { text-align: center; color: var(--primary); margin-bottom: 40px; font-size: 2.5rem; }
+
+        /* Research Grid (Non-clickable) */
+        .pub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pub-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--secondary);
+            /* Removed cursor pointer and transition for non-clickable feel */
+        }
+
+        .pub-card h3 { color: var(--primary); margin-bottom: 15px; }
+
+        /* Timeline */
+        .timeline-container {
+            border-left: 2px solid var(--secondary);
+            padding-left: 30px;
+            margin-left: 20px;
+        }
+        .timeline-item { margin-bottom: 30px; position: relative; }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -41px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 50px 10% 20px;
+            text-align: center;
+        }
+        .footer-links { margin-bottom: 30px; }
+        .footer-links a { color: white; margin: 0 15px; text-decoration: none; opacity: 0.8; }
+        .contact-info { margin-bottom: 20px; font-size: 0.9rem; color: #ccc; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">RAMACHANDRA</a>
+        <nav>
+            <ul>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#publications">RESEARCH</a></li>
+                <li><a href="#timeline">JOURNEY</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Advancing the Science of Dance</h1>
+            <p>A bridge between the ancient wisdom of Natya Shastra and modern research methodologies.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About the Artist</h2>
+        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <p>Ramachandra is a dedicated Bharatanatyam artist and scholar whose work focuses on the technical precision and philosophical depth of Indian classical dance. With over two decades of practice, he explores the physiological and spiritual intersections of movement.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications" class="wm-section">
+        <h2>Research Output</h2>
+        <div class="pub-grid">
+            <div class="pub-card">
+                <h3>Vol 1: The Physics of Mudra</h3>
+                <p>A comprehensive study on the pressure points and neurological impact of hand gestures in classical dance forms.</p>
+            </div>
+            <div class="pub-card">
+                <h3>Vol 2: Kinetic Geometry</h3>
+                <p>Analyzing the spatial mathematical patterns found in the 108 Karanas as described in ancient texts.</p>
+            </div>
+            <div class="pub-card">
+                <h3>Vol 3: Rhythmic Structures</h3>
+                <p>An investigation into the complex time signatures of Carnatic music and their translation into footwork.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline" class="wm-section">
+        <h2>Professional Journey</h2>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <h4>2023 - Present</h4>
+                <p>Principal Researcher at the Vedic Arts Foundation.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>2018 - 2022</h4>
+                <p>International Performance Tour & Masterclasses across Europe and SE Asia.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>2010 - 2017</h4>
+                <p>Arangetram and specialized training under the Gurus of the Thanjavur Style.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="karanas" class="wm-section">
+        <h2>The 108 Karanas</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">Documenting the transition of movement from static sculpture to fluid performance. Our digital archives focus on the architectural precision of these ancient poses.</p>
+    </section>
+
+    <section id="future" class="wm-section">
+        <h2>Future Initiatives</h2>
+        <p style="text-align: center;">Developing a Movement Capture Project (MCP) to preserve the nuanced styles of veteran gurus for future generations through 3D modeling.</p>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-links">
+            <a href="#about">ABOUT</a>
+            <a href="#publications">RESEARCH</a>
+            <a href="#timeline">JOURNEY</a>
+        </div>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> smith123846@gmail.com</p>
+            <p><i class="fas fa-phone"></i> +91 9121379100</p>
+            <p><i class="fab fa-github"></i> github.com/ramachandra1975/ramachandra</p>
+        </div>
+        <p>&copy; 2026 Ramachandra. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
