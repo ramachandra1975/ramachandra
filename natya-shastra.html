@@ -1,54 +1,579 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Natya Shastra | Aesthetics of Society</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natya Shastra &amp; 108 Karanas | Aesthetics of Society</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
   <style>
-    /* SAME CSS AS GURUS-CLAN */
-    :root { --primary-blue: #1a365d; --gold: #c5a059; --navy: #0f2240; }
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --cream-dark: #f5efe3;
+      --text-muted: #666;
+      --border: #ececec;
+      --navy: #0f2240;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { 
-      font-family: 'Cormorant Garamond', serif; 
-      color: #333; 
-      background: linear-gradient(rgba(253,250,245,0.92), rgba(253,250,245,0.92)), 
-                  url('background.png') center top fixed no-repeat;
-      background-size: cover;
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Cormorant Garamond', serif; background: #fff; color: #333; overflow-x: hidden; }
+
+    /* BACKDROP WATERMARK */
+    .wm-section { position: relative; }
+    .wm-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('backdrop1.png') center/cover no-repeat;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
     }
-    #main-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 18px 5%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197,160,89,0.2); }
-    .nav-links { display: flex; gap: 22px; list-style: none; }
-    .nav-links a { font-family: 'Montserrat'; font-size: 0.68rem; font-weight: 700; text-decoration: none; color: var(--primary-blue); }
-    #page-hero { 
-      min-height: 50vh; 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center; 
-      text-align: center; 
-      padding: 140px 40px 60px;
-      background: rgba(15, 34, 64, 0.85); 
-      color: white;
+    .wm-section > * { position: relative; z-index: 1; }
+
+    /* NAV */
+    #main-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 5%; background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197,160,89,0.2);
+      transition: box-shadow 0.3s;
     }
-    #page-hero h1 { font-family: 'Playfair Display'; font-size: clamp(3rem, 6vw, 5rem); }
+    #main-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-brand img { width: 42px; height: 42px; object-fit: cover; border-radius: 2px; }
+    .nav-brand-text .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 2.5px; color: var(--primary-blue); }
+    .nav-brand-text .url { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--gold); letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 22px; align-items: center; list-style: none; }
+    .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; color: var(--primary-blue); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-links .nav-cta { border: 1px solid var(--gold); padding: 7px 16px; color: var(--gold); }
+    .nav-links .nav-cta:hover { background: var(--gold); color: #fff; }
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* HERO */
+    #page-hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 140px 40px 100px; position: relative; overflow: hidden;
+      background: linear-gradient(rgba(15,34,64,0.80), rgba(15,34,64,0.80)),
+        url('backdrop1.png') center/cover no-repeat fixed;
+    }
+    .hero-backdrop { display: none; }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-line { width: 44px; height: 2px; background: var(--gold); margin: 0 auto 22px; animation: fadeUp 0.7s ease both; }
+    .hero-label { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; animation: fadeUp 0.8s 0.06s ease both; }
+    #page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem,7vw,6rem); color: #fff; font-weight: 700; line-height: 1.05; margin-bottom: 22px; animation: fadeUp 0.9s 0.12s ease both; }
     #page-hero h1 em { color: var(--gold); font-style: italic; }
-    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 80px 40px; background: transparent; }
+    .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.1rem,2.2vw,1.5rem); color: rgba(255,255,255,0.6); max-width: 720px; line-height: 1.7; margin: 0 auto 38px; animation: fadeUp 1s 0.18s ease both; }
+    .breadcrumb { font-family: 'Montserrat', sans-serif; font-size: 0.64rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; animation: fadeUp 1s 0.24s ease both; }
+    .breadcrumb a { color: rgba(255,255,255,0.38); text-decoration: none; transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: var(--gold); margin: 0 10px; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* LINEAGE BRIDGE STRIP */
+    #lineage-bridge { background: var(--gold); padding: 40px; text-align: center; }
+    .bridge-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; }
+    .bridge-node { text-align: center; }
+    .bridge-node .bn-title { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(15,34,64,0.65); display: block; margin-bottom: 4px; }
+    .bridge-node .bn-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); }
+    .bridge-arrow { font-size: 1.6rem; color: var(--navy); opacity: 0.5; }
+    .bridge-highlight { background: var(--navy); padding: 16px 28px; }
+    .bridge-highlight .bn-title { color: var(--gold); }
+    .bridge-highlight .bn-name { color: #fff; }
+
+    /* SHARED */
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .section-label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem,4.5vw,3.8rem); color: var(--primary-blue); font-weight: 700; line-height: 1.05; }
+    .section-title em { color: var(--gold); font-style: italic; }
+
+    /* INTRO */
+    #intro { background: var(--cream); }
+    .intro-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: start; }
+    .intro-text { font-size: 1.08rem; line-height: 1.9; color: #444; }
+    .intro-text p { margin-bottom: 22px; }
+    .pull-quote { border-left: 3px solid var(--gold); padding: 24px 32px; background: #fff; margin: 36px 0; }
+    .pull-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--primary-blue); line-height: 1.5; }
+    .sidebar-stats { display: flex; flex-direction: column; gap: 20px; }
+    .stat-box { border: 1px solid var(--border); padding: 30px; background: #fff; text-align: center; position: relative; }
+    .stat-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--gold); }
+    .stat-box .stat-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--primary-blue); line-height: 1; display: block; }
+    .stat-box .stat-lbl { font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); display: block; margin-top: 6px; }
+    .stat-box .stat-desc { font-size: 0.92rem; color: var(--text-muted); margin-top: 10px; line-height: 1.5; }
+
+    /* 5 DIMENSIONS */
+    #dimensions { background: var(--navy); padding: 100px 40px; }
+    .dim-inner { max-width: 1200px; margin: 0 auto; }
+    .dim-header { text-align: center; margin-bottom: 70px; }
+    .dim-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color: #fff; font-weight: 400; font-style: italic; margin-top: 14px; }
+    .dim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2px; }
+    .dim-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(197,160,89,0.2); padding: 50px 44px; position: relative; transition: all 0.35s; overflow: hidden; }
+    .dim-card:hover { background: rgba(197,160,89,0.07); border-color: var(--gold); }
+    .dim-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s; }
+    .dim-card:hover::after { width: 100%; }
+    .dim-num { font-family: 'Playfair Display', serif; font-size: 5rem; color: rgba(197,160,89,0.08); position: absolute; top: 10px; right: 20px; line-height: 1; pointer-events: none; }
+    .dim-icon { font-size: 2.2rem; margin-bottom: 20px; display: block; }
+    .dim-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 8px; }
+    .dim-card .dim-sub { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: block; }
+    .dim-card p { font-size: 0.97rem; color: rgba(255,255,255,0.62); line-height: 1.78; }
+
+    /* 108 KARANAS DEEP DIVE */
+    #karanas-deep { background: #fff; }
+    .content-blocks { display: flex; flex-direction: column; gap: 40px; }
+    .para-block { padding: 44px; border-left: 3px solid var(--gold); background: var(--cream); transition: transform 0.3s; }
+    .para-block:hover { transform: translateX(8px); }
+    .para-block h3 { font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 800; color: var(--primary-blue); letter-spacing: 2.5px; text-transform: uppercase; border-bottom: 1px solid rgba(197,160,89,0.3); padding-bottom: 14px; margin-bottom: 18px; }
+    .para-block p { font-size: 1.08rem; line-height: 1.88; color: #444; text-align: justify; }
+
+    /* MCP PROTOCOL */
+    #mcp-protocol { background: var(--cream); }
+    .mcp-header { text-align: center; margin-bottom: 70px; }
+    .mcp-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color: var(--primary-blue); font-weight: 700; margin-top: 14px; }
+    .phases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .phase-card { background: #fff; border: 1px solid var(--border); padding: 36px; position: relative; overflow: hidden; transition: all 0.35s; }
+    .phase-card:hover { transform: translateY(-5px); box-shadow: 0 18px 48px rgba(0,0,0,0.07); border-color: var(--gold); }
+    .phase-num { font-family: 'Playfair Display', serif; font-size: 4rem; color: rgba(197,160,89,0.12); line-height: 1; position: absolute; top: 10px; right: 20px; }
+    .phase-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--primary-blue); margin-bottom: 8px; }
+    .phase-card .ph-label { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 16px; }
+    .phase-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+    .phase-outcomes { margin-top: 18px; }
+    .phase-outcomes li { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: var(--primary-blue); padding: 5px 0; border-bottom: 1px solid var(--border); list-style: none; display: flex; align-items: center; gap: 10px; }
+    .phase-outcomes li::before { content: ''; width: 18px; height: 1px; background: var(--gold); flex-shrink: 0; }
+
+    /* MUDRAS */
+    #mudras { background: #fff; }
+    .mudra-intro { max-width: 760px; font-size: 1.08rem; color: #555; line-height: 1.82; margin-bottom: 60px; }
+    .mudra-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+    .mudra-card { border: 1px solid var(--border); padding: 30px; transition: all 0.3s; }
+    .mudra-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+    .mudra-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 6px; }
+    .mudra-card .m-sanskrit { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.92rem; color: var(--gold); margin-bottom: 12px; display: block; }
+    .mudra-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; }
+    .mudra-card .m-effect { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary-blue); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); display: block; }
+
+    /* RASAS */
+    #rasas { background: var(--navy); padding: 100px 40px; }
+    .rasas-inner { max-width: 1200px; margin: 0 auto; }
+    .rasas-header { text-align: center; margin-bottom: 70px; }
+    .rasas-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color: #fff; font-weight: 400; font-style: italic; margin-top: 14px; }
+    .rasas-header p { font-size: 1.05rem; color: rgba(255,255,255,0.6); max-width: 700px; margin: 24px auto 0; line-height: 1.7; }
+    .rasa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px; }
+    .rasa-card { border: 1px solid rgba(197,160,89,0.2); padding: 36px 32px; transition: all 0.3s; }
+    .rasa-card:hover { background: rgba(197,160,89,0.06); border-color: var(--gold); }
+    .rasa-card .rasa-emoji { font-size: 2rem; display: block; margin-bottom: 14px; }
+    .rasa-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; margin-bottom: 4px; }
+    .rasa-card .r-sanskrit { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: var(--gold); margin-bottom: 14px; display: block; }
+    .rasa-card p { font-size: 0.9rem; color: rgba(255,255,255,0.58); line-height: 1.65; }
+
+    /* SCIENTIFIC SYNTHESIS */
+    #synthesis { background: var(--cream); }
+    .synthesis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .synthesis-content h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color: var(--primary-blue); font-weight: 400; margin: 14px 0 24px; line-height: 1.15; }
+    .synthesis-content h2 em { color: var(--gold); font-style: italic; }
+    .synthesis-content p { font-size: 1.08rem; color: #555; line-height: 1.82; margin-bottom: 20px; text-align: justify; }
+    .synth-links { display: flex; flex-direction: column; gap: 16px; }
+    .synth-link-item { display: flex; align-items: center; gap: 18px; padding: 20px; border: 1px solid var(--border); background: #fff; transition: all 0.3s; }
+    .synth-link-item:hover { border-color: var(--gold); transform: translateX(6px); }
+    .synth-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .synth-link-item h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--primary-blue); margin-bottom: 3px; }
+    .synth-link-item p { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--text-muted); margin: 0; }
+
+    /* HIGHLIGHTS */
+    .highlights-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; margin-top: 80px; }
+    .highlight-item { padding: 28px; border: 1px solid var(--border); text-align: center; background: #fff; }
+    .highlight-item h4 { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 10px; }
+    .highlight-item p { font-size: 0.88rem; color: #777; margin: 0; line-height: 1.5; }
+
+    /* CTA */
+    #cta-strip { background: linear-gradient(135deg, var(--primary-blue), var(--navy)); padding: 90px 40px; text-align: center; }
+    .cta-inner { max-width: 700px; margin: 0 auto; }
+    .cta-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,4vw,2.8rem); color: #fff; font-weight: 400; font-style: italic; margin-bottom: 18px; }
+    .cta-inner p { font-size: 1.05rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 38px; }
+    .btn-group { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 16px 36px; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+    .btn-gold { background: var(--gold); color: #fff; }
+    .btn-gold:hover { background: var(--gold-light); color: #333; }
+    .btn-outline-white { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.28); border-left: none; }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+
+    /* FOOTER */
+    #site-footer { background: var(--primary-blue); color: rgba(255,255,255,0.7); padding: 50px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-brand .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 0.82rem; color: #fff; }
+    .footer-brand .url { color: var(--gold); font-size: 0.72rem; font-family: 'Montserrat', sans-serif; }
+    .footer-nav a { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; letter-spacing: 1px; color: rgba(255,255,255,0.5); text-decoration: none; margin-right: 18px; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.4); }
+
+    @media (max-width: 900px) {
+      .section-wrapper { padding: 70px 24px; }
+      .intro-grid, .synthesis-grid { grid-template-columns: 1fr; gap: 40px; }
+      .dim-grid, .mudra-grid, .rasa-grid { grid-template-columns: 1fr; }
+      .bridge-inner { flex-direction: column; gap: 12px; }
+      .bridge-arrow { transform: rotate(90deg); }
+    }
   </style>
 </head>
 <body>
+
 <nav id="main-nav">
-  <a href="index.html" style="text-decoration:none; color:var(--primary-blue); font-family:Montserrat; font-weight:700;">NAREDLA RAMA CHANDRA</a>
+  <a href="index.html" class="nav-brand">
+    <img src="logo.jpg" alt="Logo" onerror="this.style.display='none'" />
+    <div class="nav-brand-text">
+      <span class="name">AESTHETICS OF SOCIETY</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </a>
   <ul class="nav-links">
-    <li><a href="index.html">HOME</a></li>
+    <li><a href="index.html#about">ABOUT</a></li>
+    <li><a href="index.html#publications">PUBLICATIONS</a></li>
+    <li><a href="index.html#timeline">TIMELINE</a></li>
+    <li><a href="index.html#media">MEDIA</a></li>
     <li><a href="gurus-clan.html">GURU'S CLAN</a></li>
-    <li><a href="natya-shastra.html" style="color:var(--gold)">NATYA SHASTRA</a></li>
+    <li><a href="natya-shastra.html" class="active">NATYA SHASTRA</a></li>
+    <li><a href="index.html#contact" class="nav-cta">INTRODUCTION</a></li>
   </ul>
 </nav>
-<header id="page-hero">
-  <h1>Natya <em>Shastra</em></h1>
-  <p style="margin-top:20px; font-style:italic; font-size:1.2rem;">Exploring 108 Karanas, astrophysics, and neural bio-mechanics.</p>
-</header>
-<div class="section-wrapper">
-  <!-- Content here -->
+
+<section id="page-hero">
+  <div class="hero-backdrop"></div>
+  <div class="hero-content">
+    <div class="hero-line"></div>
+    <div class="hero-label">Applied Research · Bharata Muni · 18th Siddha</div>
+    <h1>Natya Shastra &amp;<br />the 108 <em>Karanas</em></h1>
+    <p class="hero-subtitle">Continuing from the Guru's Clan — Bharata Muni, the 18th Siddha, left humanity the most complete scientific manual of the ancient world. This page explores its dimensions across neuroscience, bio-acoustics, astrophysics, and consciousness science.</p>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="gurus-clan.html">Guru's Clan</a><span>›</span>
+      Natya Shastra
+    </div>
+  </div>
+</section>
+
+<div id="lineage-bridge">
+  <div class="bridge-inner">
+    <div class="bridge-node">
+      <span class="bn-title">Primordial Source</span>
+      <span class="bn-name">Hiranyagarbha</span>
+    </div>
+    <div class="bridge-arrow">→</div>
+    <div class="bridge-node">
+      <span class="bn-title">The 18 Siddhas</span>
+      <span class="bn-name">Guru's Clan</span>
+    </div>
+    <div class="bridge-arrow">→</div>
+    <div class="bridge-highlight bridge-node">
+      <span class="bn-title">18th Siddha · Focus</span>
+      <span class="bn-name">Bharata Muni</span>
+    </div>
+    <div class="bridge-arrow">→</div>
+    <div class="bridge-node">
+      <span class="bn-title">His Masterwork</span>
+      <span class="bn-name">Natya Shastra</span>
+    </div>
+    <div class="bridge-arrow">→</div>
+    <div class="bridge-node">
+      <span class="bn-title">Modern Application</span>
+      <span class="bn-name">MCP Protocol</span>
+    </div>
+  </div>
 </div>
+
+<section id="intro" class="wm-section">
+  <div class="section-wrapper">
+    <div class="intro-grid">
+      <div>
+        <span class="section-label">The Sacred Treatise</span>
+        <h2 class="section-title" style="margin-bottom:40px;">Bharata Muni's<br /><em>Cosmic Manual</em></h2>
+        <div class="intro-text">
+          <p>The Natya Shastra (नाट्यशास्त्र) — composed by Bharata Muni, the 18th and culminating Siddha of the Guru's Clan — is not merely a treatise on dance and drama. It is the world's most complete manual of neuro-somatic science, encoding within its 36 chapters a precise system for tuning the human body and mind to universal harmonic frequencies.</p>
+          <p>Written between 200 BCE and 200 CE, its 6,000 verses describe with extraordinary precision the 108 Karanas (sacred movement-units), 36 Angaharas (movement sequences), 32 Mudras (sacred hand-gestures), and 9 Rasas (emotional-neurological states). Each element is not symbolic — each is functional, encoding a specific physiological, neurological, or cosmic protocol.</p>
+          <div class="pull-quote">
+            <p>"The Natya Shastra is not art theory — it is applied neuroscience written in the language of the body, 2,000 years before the brain could be scanned."</p>
+          </div>
+          <p>This page is the direct continuation of the Guru's Clan research — where the lineage of the 18 Siddhas reaches its most elaborate and practically applicable expression. Everything documented in the Parampara culminates here: in living movement, in audible frequency, in measurable physiological states.</p>
+        </div>
+      </div>
+      <div>
+        <div class="sidebar-stats">
+          <div class="stat-box">
+            <span class="stat-num">36</span>
+            <span class="stat-lbl">Chapters</span>
+            <p class="stat-desc">Systematically covering every aspect of performance, movement, sound, emotion, and their scientific correlations.</p>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">108</span>
+            <span class="stat-lbl">Sacred Karanas</span>
+            <p class="stat-desc">Each a bio-mechanical posture encoding cosmic mathematical constants and neurological activation sequences.</p>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">9</span>
+            <span class="stat-lbl">Nava Rasas</span>
+            <p class="stat-desc">The nine emotional-neurological states, each corresponding to measurable neurochemical and brainwave signatures.</p>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">6000</span>
+            <span class="stat-lbl">Sanskrit Verses</span>
+            <p class="stat-desc">A precision-encoded scientific document rivalling any modern textbook in systematic rigor and scope.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="dimensions">
+  <div class="dim-inner">
+    <div class="dim-header">
+      <span class="section-label" style="color:var(--gold-light);">Multi-Dimensional Research</span>
+      <h2>Five Dimensions of the <em>Natya Shastra</em></h2>
+    </div>
+    <div class="dim-grid">
+      <div class="dim-card">
+        <div class="dim-num">01</div>
+        <span class="dim-icon">🦴</span>
+        <h3>Bio-Mechanical Science</h3>
+        <span class="dim-sub">Body as Engineering System</span>
+        <p>The 108 Karanas are a sophisticated bio-mechanical engineering system. Each functions as a "dynamic posture" optimizing the skeletal-muscular frame through precise geometric alignments — engaging deep stabilizer muscles, enhancing proprioception, and transitioning through specific kinetic chains that reduce joint stress while maximizing structural efficiency.</p>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">02</div>
+        <span class="dim-icon">🧠</span>
+        <h3>Neuroscience &amp; Healing</h3>
+        <span class="dim-sub">Neural Choreography</span>
+        <p>Each Karana requires complex cross-lateral coordination stimulating the corpus callosum and synchronizing both brain hemispheres. This "neural choreography" triggers BDNF release — supporting cognitive longevity and emotional regulation. The accompanying Tala rhythms entrain Alpha-Theta brainwaves, activating deep parasympathetic healing.</p>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">03</div>
+        <span class="dim-icon">🔊</span>
+        <h3>Bio-Acoustics</h3>
+        <span class="dim-sub">Sound as Medicine</span>
+        <p>The Natya Shastra encodes a precise pharmacopoeia of acoustic medicine. Specific Ragas are prescribed for specific healing outcomes — not metaphorically, but measurably. Each Swara activates specific glands, each Beeja Akshara stimulates specific neural pathways. The Tala acts as a bio-entrainment mechanism for the autonomic nervous system.</p>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">04</div>
+        <span class="dim-icon">🌌</span>
+        <h3>Astrophysics &amp; Cosmos</h3>
+        <span class="dim-sub">Body as Celestial Mirror</span>
+        <p>The 108 Karanas are a terrestrial mirror of celestial mechanics. The number 108 itself encodes the Earth-Sun-Moon astronomical ratio. Each Karana harmonizes the practitioner's bio-rhythms with macro-cosmic planetary cycles (Grahas) and lunar mansions (Nakshatras), activating Matrika Nyasas that re-code biological rhythms to match universal resonant frequencies.</p>
+      </div>
+      <div class="dim-card">
+        <div class="dim-num">05</div>
+        <span class="dim-icon">🕉️</span>
+        <h3>Psycho-Spiritual Dimensions</h3>
+        <span class="dim-sub">Consciousness Expansion</span>
+        <p>The Natya Shastra's ultimate purpose is the systematic expansion of consciousness. Through the Nine Rasas — emotional-neurological states precisely induced through movement, sound, and intention — the practitioner traverses the full spectrum of human experience, documented in modern neuroscience as limbic regulation and default-mode network modulation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="karanas-deep" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">In-Depth Analysis</span>
+    <h2 class="section-title" style="margin-bottom:60px;">The 108 <em>Karanas</em> — Decoded</h2>
+    <div class="content-blocks">
+      <article class="para-block">
+        <h3>I. The Architecture of Sacred Motion</h3>
+        <p>A Karana (करण) is defined in the Natya Shastra as the simultaneous combination of a Nritta-hasta (hand gesture in motion), an Angahara (body position), and a Chari (foot movement). This triple-simultaneity is not choreographic convenience — it is functional engineering. The simultaneous engagement of three distinct neural processing systems (fine motor, postural, and proprioceptive) forces bilateral brain synchronization at the moment of performance. The Natya Shastra thus engineered a method for producing reliable, repeatable states of hemispheric coherence 2,000 years before neurofeedback technology confirmed its validity.</p>
+      </article>
+      <article class="para-block">
+        <h3>II. The Cosmic Number 108 — Decoded</h3>
+        <p>The number 108 is not arbitrary. The average distance from Earth to the Sun is approximately 108 times the Sun's diameter. The average distance from Earth to the Moon is approximately 108 times the Moon's diameter. Sanskrit has 54 letters, each with masculine (Shiva) and feminine (Shakti) aspects — totalling 108. The human body has 108 pressure points (Marma Sthanas). The Natya Shastra's 108 Karanas thus encode the complete bio-cosmic interface: every major Marma point is activated through the sequence of Karanas, and the numerical structure aligns the practitioner's body with the fundamental geometric constant of the solar system.</p>
+      </article>
+      <article class="para-block">
+        <h3>III. Karana as Clinical Protocol</h3>
+        <p>Modern clinical applications of Karana practice have demonstrated measurable outcomes in vestibular rehabilitation, Parkinson's tremor reduction, cognitive decline prevention in aging populations, PTSD-related limbic dysregulation, and post-stroke proprioceptive recovery. Each Karana, when analysed through motion-capture biomechanical modelling, produces a unique inertial loading pattern on the vestibular-cerebellar circuit — precisely the therapeutic targets identified in contemporary neurological rehabilitation. The Natya Shastra, in essence, is the world's oldest evidence-based movement therapy protocol.</p>
+      </article>
+      <article class="para-block">
+        <h3>IV. Matrika Nyasa — The Body as Sacred Map</h3>
+        <p>Each of the 108 Karanas activates a specific Matrika Nyasa — the placement of a sacred syllable onto a specific region of the body. This system, which appears metaphorical, is in fact a precise map of the body's 108 neurovascular junctions. When the practitioner performs a Karana while internally reciting the corresponding Beeja Akshara (seed syllable), they create a simultaneous somatic, acoustic, and intentional stimulus to that junction — producing effects on the peripheral nervous system, the endocrine system, and the electro-magnetic field of the body that are now measurable through HRV, EEG, and bio-photon analysis.</p>
+      </article>
+    </div>
+    <div class="highlights-bar">
+      <div class="highlight-item"><h4>BIO-DYNAMICS</h4><p>Proprioceptive alignment and joint longevity.</p></div>
+      <div class="highlight-item"><h4>NEURAL SYNC</h4><p>Bilateral hemispheric synchronization.</p></div>
+      <div class="highlight-item"><h4>COSMIC RATIO</h4><p>108 — Sun, Moon, Earth constant.</p></div>
+      <div class="highlight-item"><h4>MARMA ACTIVATION</h4><p>108 neurovascular junction mapping.</p></div>
+      <div class="highlight-item"><h4>BDNF RELEASE</h4><p>Neuroplasticity and cognitive longevity.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="mcp-protocol" class="wm-section">
+  <div class="section-wrapper">
+    <div class="mcp-header">
+      <span class="section-label">Clinical Framework</span>
+      <h2>5-Phase Master Consciousness <em>Protocol</em></h2>
+    </div>
+    <div class="phases-grid">
+      <div class="phase-card">
+        <div class="phase-num">1</div>
+        <span class="ph-label">Phase One · Foundation</span>
+        <h3>Shuddhi — Purification</h3>
+        <p>Preparation of the body-mind system through Pranayama sequences and Shat Karma protocols derived from Gorakshanath's Nath Yoga tradition — establishing baseline autonomic coherence.</p>
+        <ul class="phase-outcomes">
+          <li>HRV baseline elevation</li>
+          <li>Cortisol normalization</li>
+          <li>Vagal tone enhancement</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">2</div>
+        <span class="ph-label">Phase Two · Activation</span>
+        <h3>Nada — Acoustic Priming</h3>
+        <p>Systematic activation of the nervous system through specific Raga sequences — each Raga prescribed as a precise neurochemical protocol targeting specific brainwave states and glandular responses.</p>
+        <ul class="phase-outcomes">
+          <li>Alpha-Theta entrainment</li>
+          <li>Serotonin pathway activation</li>
+          <li>Limbic system regulation</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">3</div>
+        <span class="ph-label">Phase Three · Integration</span>
+        <h3>Karana — Movement Protocol</h3>
+        <p>Sequential performance of specific Karana subsets targeting identified neurological and physiological needs — activating corresponding Marma Sthanas and Matrika Nyasas with synchronized Beeja Akshara recitation.</p>
+        <ul class="phase-outcomes">
+          <li>BDNF release</li>
+          <li>Corpus callosum stimulation</li>
+          <li>Marma junction activation</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">4</div>
+        <span class="ph-label">Phase Four · Elevation</span>
+        <h3>Rasa — Emotional Navigation</h3>
+        <p>Guided traversal of the Nine Rasas — deliberately inducing and completing each emotional-neurological state cycle. This process achieves what modern psychology calls "affect regulation" through ancient systematic means.</p>
+        <ul class="phase-outcomes">
+          <li>Amygdala regulation</li>
+          <li>DMN modulation</li>
+          <li>Emotional completion cycles</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">5</div>
+        <span class="ph-label">Phase Five · Transcendence</span>
+        <h3>Samadhi — Coherence State</h3>
+        <p>Integration into the state of Samatva — equanimity. Through Dhyana and Yoga Nidra protocols, the practitioner stabilizes the coherent nervous system state achieved through the previous four phases into a lasting baseline shift.</p>
+        <ul class="phase-outcomes">
+          <li>Gamma brainwave stabilization</li>
+          <li>Default-mode quieting</li>
+          <li>Sustained HRV coherence</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="mudras" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">Sacred Hand Science</span>
+    <h2 class="section-title" style="margin-bottom:24px;">The 32 <em>Mudras</em></h2>
+    <p class="mudra-intro">The Mudras (hand gestures) of the Natya Shastra are not symbolic signs — they are precise neural activation protocols. Each finger corresponds to a specific acupressure meridian and neural pathway. The precise pressures, angles, and configurations of each Mudra create measurable changes in galvanic skin response, brainwave patterns, and autonomic tone.</p>
+    <div class="mudra-grid">
+      <div class="mudra-card"><h3>Pataka</h3><span class="m-sanskrit">पताक — The Flag</span><p>Four fingers extended, thumb bent. Activates the frontal lobe pathways associated with executive function and attention.</p><span class="m-effect">Neural Target: Prefrontal Cortex</span></div>
+      <div class="mudra-card"><h3>Tripataka</h3><span class="m-sanskrit">त्रिपताक — Three-Part Flag</span><p>Ring finger bent down. Shifts activation from executive to creative processing networks.</p><span class="m-effect">Neural Target: Right Temporal Lobe</span></div>
+      <div class="mudra-card"><h3>Ardhapataka</h3><span class="m-sanskrit">अर्धपताक — Half Flag</span><p>Little finger extended with ring. Engages auditory processing and musical cognition pathways.</p><span class="m-effect">Neural Target: Auditory Cortex</span></div>
+      <div class="mudra-card"><h3>Kartarimukha</h3><span class="m-sanskrit">कर्तरीमुख — Scissors Face</span><p>Index and little finger extended. Activates the vagal-cardiac coherence pathway and heart-brain axis.</p><span class="m-effect">Neural Target: Vagal-Cardiac Axis</span></div>
+      <div class="mudra-card"><h3>Mayura</h3><span class="m-sanskrit">मयूर — Peacock</span><p>Thumb touching bent middle finger, others extended. Stimulates the pineal gland meridian via pressure on the medial thumb point.</p><span class="m-effect">Neural Target: Pineal-Hypothalamic Axis</span></div>
+      <div class="mudra-card"><h3>Ardhachandra</h3><span class="m-sanskrit">अर्धचन्द्र — Half Moon</span><p>Thumb extended laterally, four fingers together. Regulates the parasympathetic-sympathetic balance at the solar plexus level.</p><span class="m-effect">Neural Target: Autonomic Balance</span></div>
+      <div class="mudra-card"><h3>Arala</h3><span class="m-sanskrit">अराल — Curved</span><p>Index finger bent, others extended. Corresponds to the pericardium meridian — directly influencing the cardiac stress response.</p><span class="m-effect">Neural Target: Cardiac Coherence</span></div>
+      <div class="mudra-card"><h3>Shukatunda</h3><span class="m-sanskrit">शुकतुण्ड — Parrot's Beak</span><p>Index finger bent at first joint. Activates the lung meridian, regulating respiratory rhythm and Prana flow.</p><span class="m-effect">Neural Target: Respiratory System</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="rasas">
+  <div class="rasas-inner">
+    <div class="rasas-header">
+      <span class="section-label" style="color:var(--gold-light);">Emotional Neuroscience</span>
+      <h2>The Nine <em>Rasas</em></h2>
+      <p>The Nava Rasas are not theatrical categories. They are nine fundamental neurological-emotional states — each with a distinct neurochemical signature, brainwave pattern, and autonomic profile. The Natya Shastra's genius is prescribing the exact movement, sound, and intention protocols to deliberately induce and complete each state cycle.</p>
+    </div>
+    <div class="rasa-grid">
+      <div class="rasa-card"><span class="rasa-emoji">❤️</span><h3>Shringara</h3><span class="r-sanskrit">श्रृंगार · Love &amp; Beauty</span><p>Activates the oxytocin-dopamine reward circuit. Associated with high-coherence cardiac brainwave patterns (0.1Hz).</p></div>
+      <div class="rasa-card"><span class="rasa-emoji">😄</span><h3>Hasya</h3><span class="r-sanskrit">हास्य · Joy &amp; Humour</span><p>Triggers endorphin and serotonin release. Measurably shifts brainwave patterns from Beta dominance to Alpha.</p></div>
+      <div class="rasa-card"><span class="rasa-emoji">😢</span><h3>Karuna</h3><span class="r-sanskrit">करुण · Compassion</span><p>Engages the anterior cingulate cortex — the neural seat of empathy. Reduces inflammatory markers in the bloodstream.</p></div>
+      <div class="rasa-card"><span class="rasa-emoji">⚡</span><h3>Raudra</h3><span class="r-sanskrit">रौद्र · Intensity &amp; Power</span><p>Controlled activation of the amygdala-adrenal axis — when deliberately induced and completed, reduces baseline anxiety.</p></div>
+      <div class="rasa-card"><span class="rasa-emoji">💪</span><h3>Vira</h3><span class="r-sanskrit">वीर · Courage &amp; Heroism</span><p>Activates the prefrontal cortex's inhibitory control over fear responses — building resilience through deliberate practice.</p></div>
+      <div class="rasa-card"><span class="rasa-emoji">😨</span><h3>Bhayanaka</h3><span class="r-sanskrit">भयानक · Awe &amp; Terror</span><p>Controlled amygdala stimulation — when systematically completed through performance, desensitizes trauma pathways.</p></div>
+      <div class="rasa-card"><span class="rasa-emoji">🤢</span><h3>Bibhatsa</h3><span class="r-sanskrit">बीभत्स · Disgust &amp; Aversion</span><p>Insula activation — the neural correlate of bodily self-awareness. Completing this Rasa enhances interoceptive intelligence.</p></div>
+      <div class="rasa-card"><span class="rasa-emoji">🌟</span><h3>Adbhuta</h3><span class="r-sanskrit">अद्भुत · Wonder &amp; Marvel</span><p>Activates the default mode network's "self-transcendence" mode — associated with Gamma brainwave surges and peak experiences.</p></div>
+      <div class="rasa-card"><span class="rasa-emoji">🕊️</span><h3>Shanta</h3><span class="r-sanskrit">शान्त · Peace &amp; Equanimity</span><p>The ninth and supreme Rasa — the integration state. Corresponds to sustained Gamma coherence, the state of Samadhi.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="synthesis" class="wm-section">
+  <div class="section-wrapper">
+    <div class="synthesis-grid">
+      <div class="synthesis-content">
+        <span class="section-label">Modern Validation</span>
+        <h2>Where Natya Shastra<br />Meets <em>Modern Science</em></h2>
+        <p>The convergence between Bharata Muni's 2,000-year-old prescriptions and contemporary neuroscience findings is not coincidental — it is the hallmark of a genuinely empirical tradition. A tradition that tested its hypotheses on thousands of practitioners across millennia, refining and encoding only what demonstrably worked.</p>
+        <p>The next phase of this research involves the development of a Neuro-Acoustic Bio-Feedback Interface — a digital system that tracks Karana performance through motion-capture while simultaneously monitoring EEG and HRV, providing real-time validation of the ancient protocols in modern clinical language.</p>
+      </div>
+      <div class="synth-links">
+        <div class="synth-link-item">
+          <span class="synth-icon">🧠</span>
+          <div><h4>Neuroimaging Validation</h4><p>fMRI studies confirming Karana practice alters default-mode network activity</p></div>
+        </div>
+        <div class="synth-link-item">
+          <span class="synth-icon">💓</span>
+          <div><h4>HRV Coherence Studies</h4><p>Heart rate variability improvements documented across Raga therapy protocols</p></div>
+        </div>
+        <div class="synth-link-item">
+          <span class="synth-icon">🌊</span>
+          <div><h4>EEG Brainwave Mapping</h4><p>Gamma coherence patterns during sustained Shanta Rasa states</p></div>
+        </div>
+        <div class="synth-link-item">
+          <span class="synth-icon">🔬</span>
+          <div><h4>Bio-Mechanical Analysis</h4><p>Motion-capture modeling of joint torque and kinetic chain efficiency in Karanas</p></div>
+        </div>
+        <div class="synth-link-item">
+          <span class="synth-icon">🧬</span>
+          <div><h4>Genomic Expression</h4><p>Preliminary studies on BDNF gene expression following 8-week Karana protocols</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta-strip">
+  <div class="cta-inner">
+    <span class="section-label" style="color:var(--gold-light);">The Complete Research</span>
+    <h2>Explore the Full Archive</h2>
+    <p>Return to the Guru's Clan to trace the complete lineage, or explore the full publication archive on the home page — eight landmark works bridging Vedic science and modern research.</p>
+    <div class="btn-group">
+      <a href="gurus-clan.html" class="btn btn-gold">← Guru's Clan</a>
+      <a href="index.html" class="btn btn-outline-white">Return Home</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer">
+  <div class="footer-brand">
+    <span class="name">AESTHETICS OF SOCIETY</span>
+    <span class="url">culturalmusings.com</span>
+  </div>
+  <nav class="footer-nav">
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#publications">PUBLICATIONS</a>
+    <a href="gurus-clan.html">GURU'S CLAN</a>
+    <a href="natya-shastra.html">NATYA SHASTRA</a>
+    <a href="index.html#media">MEDIA</a>
+    <a href="index.html#contact">CONTACT</a>
+  </nav>
+  <div class="footer-copy">© 2026 NAREDLA RAMA CHANDRA</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+</script>
 </body>
 </html>
+That's the complete file — select all from <!DOCTYPE html> to </html>, paste into a new blank file, save as natya-shastra.html. Make sure backdrop1.png and logo.jpg are in the same folder.You are out of free mes
