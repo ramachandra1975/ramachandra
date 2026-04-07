@@ -6,3 +6,33 @@ body {  font-family: 'Cormorant Garamond', serif;
               url('background.png') center/top fixed no-repeat;
   background-size: cover;
 }
+.wm-section {
+  position: relative;
+  background-color: #f8f5ef;
+  overflow: hidden;
+}
+
+.wm-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('backdrop1.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.13;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wm-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.no-click {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: inherit;
+}
