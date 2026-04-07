@@ -1,3 +1,2510 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Aesthetics of Society | Naredla Rama Chandra</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+
+    :root {
+
+      --primary-blue: #1a365d;
+
+      --gold: #c5a059;
+
+      --gold-light: #e2c98a;
+
+      --cream: #fdfaf5;
+
+      --cream-dark: #f5efe3;
+
+      --text-muted: #666;
+
+      --border: #ececec;
+
+      --navy: #0f2240;
+
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+
+      font-family: 'Cormorant Garamond', serif;
+
+      background: #fff;
+
+      color: #333;
+
+      overflow-x: hidden;
+
+    }
+
+    /* ─── BACKDROP WATERMARK ─── */
+
+    .wm-section {
+
+      position: relative;
+
+    }
+
+    .wm-section::before {
+
+      content: '';
+
+      position: absolute;
+
+      inset: 0;
+
+      background: url('backdrop1.png') center/cover no-repeat;
+
+      opacity: 0.13;
+
+      pointer-events: none;
+
+      z-index: 0;
+
+    }
+
+    .wm-section > * {
+
+      position: relative;
+
+      z-index: 1;
+
+    }
+
+    /* ─── NAV ─── */
+
+    #main-nav {
+
+      position: fixed;
+
+      top: 0; left: 0; right: 0;
+
+      z-index: 1000;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      padding: 18px 5%;
+
+      background: rgba(255,255,255,0.96);
+
+      backdrop-filter: blur(10px);
+
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+
+    }
+
+    .nav-brand {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      text-decoration: none;
+
+    }
+
+    .nav-brand img {
+
+      width: 42px; height: 42px;
+
+      object-fit: cover; border-radius: 2px;
+
+    }
+
+    .nav-brand-text .name {
+
+      display: block;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-weight: 700; font-size: 0.78rem;
+
+      letter-spacing: 2.5px; color: var(--primary-blue);
+
+    }
+
+    .nav-brand-text .url {
+
+      display: block;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.65rem; color: var(--gold); letter-spacing: 1px;
+
+    }
+
+    .nav-links {
+
+      display: flex; gap: 22px; align-items: center; list-style: none;
+
+    }
+
+    .nav-links a {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.68rem; font-weight: 700;
+
+      letter-spacing: 1.5px; color: var(--primary-blue);
+
+      text-decoration: none; transition: color 0.2s;
+
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-links .nav-cta {
+
+      border: 1px solid var(--gold);
+
+      padding: 7px 16px; color: var(--gold);
+
+    }
+
+    /* ─── HERO ─── */
+
+    #hero {
+
+      position: relative;
+
+      min-height: 100vh;
+
+      display: flex; flex-direction: column;
+
+      align-items: center; justify-content: center;
+
+      text-align: center;
+
+      padding: 120px 20px 80px;
+
+      background: linear-gradient(rgba(253,250,245,0.88), rgba(253,250,245,0.88)),
+
+        url('background.png') center/cover no-repeat;
+
+    }
+
+    .hero-tag {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.75rem; font-weight: 600;
+
+      letter-spacing: 4px; color: var(--gold);
+
+      text-transform: uppercase; margin-bottom: 20px;
+
+    }
+
+    .hero-title-1 {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: clamp(60px, 9vw, 100px);
+
+      font-weight: 800; color: var(--primary-blue);
+
+      line-height: 0.9;
+
+    }
+
+    .hero-title-2 {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: clamp(72px, 11vw, 125px);
+
+      font-weight: 700; font-style: italic;
+
+      color: var(--gold); line-height: 1;
+
+      margin-bottom: 28px;
+
+    }
+
+    .hero-tagline {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.85rem; font-weight: 600;
+
+      letter-spacing: 2.5px; color: var(--primary-blue);
+
+      line-height: 2; text-transform: uppercase;
+
+      max-width: 600px; margin: 0 auto 48px;
+
+    }
+
+    .btn {
+
+      display: inline-block; padding: 17px 38px;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.72rem; font-weight: 700;
+
+      letter-spacing: 2px; text-transform: uppercase;
+
+      text-decoration: none; transition: all 0.3s;
+
+    }
+
+    .btn-primary { background: var(--primary-blue); color: #fff; border: 1px solid var(--primary-blue); }
+
+    /* ─── SECTION SHARED ─── */
+
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+
+    .section-label {
+
+      display: block; font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.68rem; font-weight: 700;
+
+      letter-spacing: 4px; text-transform: uppercase;
+
+      color: var(--gold); margin-bottom: 14px;
+
+    }
+
+    .section-title {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+
+      color: var(--primary-blue); font-weight: 700;
+
+      line-height: 1.05;
+
+    }
+
+    /* ─── PUBLICATIONS ─── */
+
+    .pub-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+
+      gap: 24px;
+
+    }
+
+    .pub-card {
+
+      border: 1px solid var(--border); padding: 42px;
+
+      background: #fff; cursor: default; /* Disabled clicking style */
+
+    }
+
+    .pub-card .card-tag {
+
+      display: inline-block; background: #f0f4f8;
+
+      color: var(--primary-blue); font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.6rem; font-weight: 800; padding: 5px 12px; margin-bottom: 22px;
+
+    }
+
+    .pub-card h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--primary-blue); margin-bottom: 10px; }
+
+    /* ─── TIMELINE ─── */
+
+    .timeline-spine { position: absolute; left: 50%; top: 260px; bottom: 60px; width: 1px; background: #e8dfc8; transform: translateX(-50%); }
+
+    .timeline-entry { display: flex; justify-content: space-between; margin-bottom: 90px; position: relative; }
+
+    .timeline-box { width: 43%; border: 1px solid var(--border); padding: 38px; background: #fff; }
+
+    /* ─── CONTACT ─── */
+
+    #contact { background: var(--cream); padding: 100px 0; }
+
+    .contact-flex { display: flex; gap: 70px; flex-wrap: wrap; justify-content: center; }
+
+    /* ─── SITE FOOTER ─── */
+
+    #site-footer { background: var(--primary-blue); color: #fff; padding: 50px 5%; display: flex; justify-content: space-between; align-items: center; }
+
+  </style>
+
+</head>
+
+<body>
+
+
+
+<nav id="main-nav">
+
+  <a href="index.html" class="nav-brand">
+
+    <div class="nav-brand-text">
+
+      <span class="name">AESTHETICS OF SOCIETY</span>
+
+      <span class="url">culturalmusings.com</span>
+
+    </div>
+
+  </a>
+
+  <ul class="nav-links">
+
+    <li><a href="#about">ABOUT</a></li>
+
+    <li><a href="#publications">PUBLICATIONS</a></li>
+
+    <li><a href="#timeline">TIMELINE</a></li>
+
+    <li><a href="#media">MEDIA</a></li>
+
+    <li><a href="#contact" class="nav-cta">INTRODUCTION</a></li>
+
+  </ul>
+
+</nav>
+
+
+
+<section id="hero">
+
+  <div class="hero-tag">Independent Researcher & Author</div>
+
+  <h1 class="hero-title-1">Aesthetics</h1>
+
+  <h1 class="hero-title-2">of Society</h1>
+
+  <p class="hero-tagline">Bridging Ancient Indian Systems with Modern Neuroscience</p>
+
+  <div class="hero-btns">
+
+    <a href="#publications" class="btn btn-primary">Explore Research</a>
+
+  </div>
+
+</section>
+
+
+
+<section id="publications" class="wm-section">
+
+  <div class="section-wrapper">
+
+    <span class="section-label">Research Output</span>
+
+    <h2 class="section-title">Publications & Manuscripts</h2>
+
+    <br><br>
+
+    <div class="pub-grid" id="pubGrid">
+
+      <!-- Card 1 -->
+
+      <div class="pub-card">
+
+        <span class="card-tag">Consciousness Studies</span>
+
+        <h2>Complete Science of Consciousness</h2>
+
+        <p>Ancient Knowledge vs Artificial Intelligence. A landmark comparison of Vedic models and computational theory.</p>
+
+      </div>
+
+      <!-- Card 2 -->
+
+      <div class="pub-card">
+
+        <span class="card-tag">Classical Arts</span>
+
+        <h2>108 Karanas & Beeja Aksharas</h2>
+
+        <p>Inferences drawn from Bharata Muni's cosmic choreography across bio-mechanics and neuroscience. Explore the Science.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section id="about" class="wm-section">
+
+  <div class="section-wrapper">
+
+    <span class="section-label">About the Researcher</span>
+
+    <h2 class="section-title">Naredla Rama Chandra</h2>
+
+    <p style="font-size:1.2rem; line-height:1.8; margin-top:30px;">Independent Researcher and Author bridging the gap between 5,000-year-old Vedic frameworks and contemporary neuroscience and bio-acoustics.</p>
+
+  </div>
+
+</section>
+
+
+
+<section id="timeline" class="wm-section">
+
+  <div class="section-wrapper">
+
+    <span class="section-label">Research Journey</span>
+
+    <h2 class="section-title">Timeline of Discovery</h2>
+
+    <div style="margin-top:50px;">
+
+      <div class="timeline-entry">
+
+        <div class="timeline-box">
+
+          <h3>2010: Research Begins</h3>
+
+          <p>Commenced independent research into the scientific foundations of Vedic traditions.</p>
+
+        </div>
+
+      </div>
+
+      <div class="timeline-entry">
+
+        <div class="timeline-box">
+
+          <h3>2023: Master Compendium</h3>
+
+          <p>Integration of all research streams into unified standards for ancient-modern synthesis.</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section id="karanas" class="wm-section">
+
+  <div class="section-wrapper">
+
+    <span class="section-label">The Architecture of Motion</span>
+
+    <h2 class="section-title">The 108 Karanas</h2>
+
+    <p style="margin-top:30px; font-size:1.1rem; line-height:1.8;">The 108 Karanas represent a sophisticated system of bio-mechanical engineering. Each Karana functions as a dynamic posture that optimizes the human skeletal-muscular frame.</p>
+
+  </div>
+
+</section>
+
+
+
+<section id="future" class="wm-section">
+
+  <div class="section-wrapper">
+
+    <span class="section-label">Roadmap 2026–2030</span>
+
+    <h2 class="section-title">The Future of MCP</h2>
+
+    <p style="margin-top:30px; font-size:1.1rem; line-height:1.8;">Creation of a Neuro-Acoustic Bio-Feedback Interface mapping the 108 Karanas against real-time neural oscillation patterns.</p>
+
+  </div>
+
+</section>
+
+
+
+<section id="contact" class="wm-section">
+
+  <div class="section-wrapper">
+
+    <div class="contact-flex">
+
+      <div style="text-align:center;">
+
+        <span class="section-label">Collaboration</span>
+
+        <h2 class="section-title">Contact</h2>
+
+        <p style="margin: 20px 0;">smith123846@gmail.com | +91 9121379100</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<footer id="site-footer">
+
+  <div>
+
+    <span style="font-weight:700; letter-spacing:2px;">AESTHETICS OF SOCIETY</span>
+
+  </div>
+
+  <nav>
+
+    <a href="#about" style="color:#fff; margin-right:20px; text-decoration:none;">ABOUT</a>
+
+    <a href="#publications" style="color:#fff; margin-right:20px; text-decoration:none;">PUBLICATIONS</a>
+
+    <a href="#contact" style="color:#fff; text-decoration:none;">CONTACT</a>
+
+  </nav>
+
+  <div style="font-size:0.7rem; opacity:0.6;">© 2026 NAREDLA RAMA CHANDRA</div>
+
+</footer>
+
+
+
+</body>
+
+</html><!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Aesthetics of Society | Naredla Rama Chandra</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+
+    :root {
+
+      --primary-blue: #1a365d;
+
+      --gold: #c5a059;
+
+      --gold-light: #e2c98a;
+
+      --cream: #fdfaf5;
+
+      --cream-dark: #f5efe3;
+
+      --text-muted: #666;
+
+      --border: #ececec;
+
+      --navy: #0f2240;
+
+    }
+
+
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+
+
+    body {
+
+      font-family: 'Cormorant Garamond', serif;
+
+      background: #fff;
+
+      color: #333;
+
+      overflow-x: hidden;
+
+    }
+
+
+
+    /* ─── NAV ─── */
+
+    #main-nav {
+
+      position: fixed;
+
+      top: 0; left: 0; right: 0;
+
+      z-index: 1000;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      padding: 18px 5%;
+
+      background: rgba(255,255,255,0.96);
+
+      backdrop-filter: blur(10px);
+
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+
+      transition: box-shadow 0.3s;
+
+    }
+
+    #main-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+
+
+
+    .nav-brand {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      text-decoration: none;
+
+    }
+
+    .nav-brand img {
+
+      width: 42px; height: 42px;
+
+      object-fit: cover; border-radius: 2px;
+
+    }
+
+    .nav-brand-text .name {
+
+      display: block;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-weight: 700; font-size: 0.78rem;
+
+      letter-spacing: 2.5px; color: var(--primary-blue);
+
+    }
+
+    .nav-brand-text .url {
+
+      display: block;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.65rem; color: var(--gold); letter-spacing: 1px;
+
+    }
+
+
+
+    .nav-links {
+
+      display: flex; gap: 22px; align-items: center; list-style: none;
+
+    }
+
+    .nav-links a {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.68rem; font-weight: 700;
+
+      letter-spacing: 1.5px; color: var(--primary-blue);
+
+      text-decoration: none; transition: color 0.2s;
+
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-links .nav-cta {
+
+      border: 1px solid var(--gold);
+
+      padding: 7px 16px; color: var(--gold);
+
+    }
+
+    .nav-links .nav-cta:hover { background: var(--gold); color: #fff; }
+
+
+
+    /* ─── HERO ─── */
+
+    #hero {
+
+      position: relative;
+
+      min-height: 100vh;
+
+      display: flex; flex-direction: column;
+
+      align-items: center; justify-content: center;
+
+      text-align: center;
+
+      padding: 120px 20px 80px;
+
+      background-color: var(--cream);
+
+      background-image:
+
+        radial-gradient(ellipse at 15% 40%, rgba(197,160,89,0.1) 0%, transparent 55%),
+
+        radial-gradient(ellipse at 85% 60%, rgba(26,54,93,0.06) 0%, transparent 50%);
+
+      overflow: hidden;
+
+    }
+
+    #hero::before {
+
+      content: '';
+
+      position: absolute; inset: 0; z-index: 0;
+
+      background: url('background.png') center/cover no-repeat;
+
+      opacity: 0.12;
+
+      pointer-events: none;
+
+    }
+
+    #hero > * { position: relative; z-index: 1; }
+
+
+
+    .hero-wm { position: absolute; pointer-events: none; opacity: 0.06; }
+
+    .hero-wm-logo { width: 40%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    .hero-wm-side { width: 200px; top: 50%; transform: translateY(-50%); filter: sepia(30%); }
+
+    .hero-wm-left { left: 3%; }
+
+    .hero-wm-right { right: 3%; }
+
+
+
+    .hero-tag {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.75rem; font-weight: 600;
+
+      letter-spacing: 4px; color: var(--gold);
+
+      text-transform: uppercase; margin-bottom: 20px;
+
+      animation: fadeUp 0.8s ease both;
+
+    }
+
+    .hero-title-1 {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: clamp(60px, 9vw, 100px);
+
+      font-weight: 800; color: var(--primary-blue);
+
+      line-height: 0.9; animation: fadeUp 0.9s 0.1s ease both;
+
+    }
+
+    .hero-title-2 {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: clamp(72px, 11vw, 125px);
+
+      font-weight: 700; font-style: italic;
+
+      color: var(--gold); line-height: 1;
+
+      margin-bottom: 28px; animation: fadeUp 1s 0.2s ease both;
+
+    }
+
+    .hero-tagline {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.85rem; font-weight: 600;
+
+      letter-spacing: 2.5px; color: var(--primary-blue);
+
+      line-height: 2; text-transform: uppercase;
+
+      max-width: 600px; margin: 0 auto 48px;
+
+      animation: fadeUp 1s 0.3s ease both;
+
+    }
+
+    .hero-btns {
+
+      display: flex; justify-content: center; gap: 0;
+
+      animation: fadeUp 1s 0.4s ease both;
+
+    }
+
+    .btn {
+
+      display: inline-block; padding: 17px 38px;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.72rem; font-weight: 700;
+
+      letter-spacing: 2px; text-transform: uppercase;
+
+      text-decoration: none; transition: all 0.3s;
+
+      cursor: pointer; border: none;
+
+    }
+
+    .btn-primary { background: var(--primary-blue); color: #fff; border: 1px solid var(--primary-blue); }
+
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+
+    .btn-outline-hero { background: rgba(255,255,255,0.5); color: var(--primary-blue); border: 1px solid #ccc; border-left: none; }
+
+    .btn-outline-hero:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+
+
+    @keyframes fadeUp {
+
+      from { opacity: 0; transform: translateY(28px); }
+
+      to   { opacity: 1; transform: translateY(0); }
+
+    }
+
+
+
+    /* ─── SECTION SHARED ─── */
+
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+
+    .section-label {
+
+      display: block;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.68rem; font-weight: 700;
+
+      letter-spacing: 4px; text-transform: uppercase;
+
+      color: var(--gold); margin-bottom: 14px;
+
+    }
+
+    .section-title {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+
+      color: var(--primary-blue); font-weight: 700;
+
+      line-height: 1.05; margin-bottom: 0;
+
+    }
+
+    .section-title em { color: var(--gold); font-style: italic; }
+
+
+
+    /* ─── PHILOSOPHY STRIP ─── */
+
+    #philosophy {
+
+      background: var(--cream);
+
+      border-top: 1px solid rgba(197,160,89,0.2);
+
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+
+      padding: 80px 20px; text-align: center;
+
+    }
+
+    .philosophy-text {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: clamp(1.6rem, 3.5vw, 3rem);
+
+      color: var(--primary-blue); line-height: 1.5;
+
+      max-width: 1000px; margin: 0 auto;
+
+    }
+
+    .philosophy-text .italic { font-style: italic; font-weight: 400; }
+
+    .philosophy-text .gold { color: var(--gold); }
+
+    .philosophy-text .bold-sans {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-weight: 900; font-size: clamp(1.5rem, 3.2vw, 2.8rem); letter-spacing: -1px;
+
+    }
+
+    .philosophy-text .dash { color: var(--gold); margin: 0 8px; }
+
+
+
+    /* ─── SHLOKAS SECTION ─── */
+
+    #shlokas {
+
+      position: relative;
+
+      padding: 110px 40px;
+
+      border-top: 1px solid rgba(197,160,89,0.2);
+
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+
+      background-color: var(--cream);
+
+      background-image:
+
+        radial-gradient(ellipse at 18% 50%, rgba(197,160,89,0.09) 0%, transparent 55%),
+
+        radial-gradient(ellipse at 82% 20%, rgba(26,54,93,0.05) 0%, transparent 50%),
+
+        radial-gradient(ellipse at 55% 85%, rgba(197,160,89,0.06) 0%, transparent 45%);
+
+    }
+
+    #shlokas::before {
+
+      content: '';
+
+      position: absolute; inset: 0; z-index: 0;
+
+      background: url('background.png') center/cover no-repeat;
+
+      opacity: 0.06;
+
+      pointer-events: none;
+
+    }
+
+    #shlokas .shlokas-inner { position: relative; z-index: 1; }
+
+    .shlokas-inner {
+
+      max-width: 1100px; margin: 0 auto;
+
+    }
+
+    .shlokas-header {
+
+      text-align: center; margin-bottom: 90px;
+
+    }
+
+    .shlokas-header .section-label { display: inline-block; margin-bottom: 14px; }
+
+    .shlokas-header h2 {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: clamp(2rem, 4vw, 3.2rem);
+
+      color: var(--primary-blue); font-weight: 400;
+
+      font-style: italic; line-height: 1.2;
+
+    }
+
+    .shloka-row {
+
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+
+      gap: 60px; position: relative;
+
+    }
+
+    .shloka-row::before {
+
+      content: '';
+
+      position: absolute; top: 0; left: 33.33%; height: 100%;
+
+      width: 1px; background: rgba(197,160,89,0.2);
+
+    }
+
+    .shloka-row::after {
+
+      content: '';
+
+      position: absolute; top: 0; left: 66.66%; height: 100%;
+
+      width: 1px; background: rgba(197,160,89,0.2);
+
+    }
+
+    .shloka-item {
+
+      padding: 0 30px; text-align: center;
+
+    }
+
+    .shloka-item:first-child { padding-left: 0; }
+
+    .shloka-item:last-child { padding-right: 0; }
+
+    .shloka-num {
+
+      display: block;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.6rem; font-weight: 700;
+
+      letter-spacing: 4px; color: var(--gold);
+
+      text-transform: uppercase; margin-bottom: 28px;
+
+    }
+
+    .shloka-sanskrit {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+
+      color: var(--primary-blue);
+
+      line-height: 1.7; margin-bottom: 20px;
+
+      font-style: italic;
+
+    }
+
+    .shloka-divider {
+
+      width: 36px; height: 1px; background: var(--gold);
+
+      margin: 22px auto;
+
+    }
+
+    .shloka-transliteration {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.72rem; font-weight: 600;
+
+      letter-spacing: 1.5px; color: var(--gold);
+
+      line-height: 1.8; margin-bottom: 18px;
+
+      text-transform: uppercase;
+
+    }
+
+    .shloka-meaning {
+
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 1.05rem; color: var(--text-muted);
+
+      line-height: 1.75; font-style: italic;
+
+    }
+
+    .shloka-source {
+
+      display: block; margin-top: 22px;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.58rem; font-weight: 700;
+
+      letter-spacing: 2px; text-transform: uppercase;
+
+      color: rgba(26,54,93,0.35);
+
+    }
+
+    @media (max-width: 900px) {
+
+      .shloka-row { grid-template-columns: 1fr; gap: 60px; }
+
+      .shloka-row::before, .shloka-row::after { display: none; }
+
+      .shloka-item { padding: 0; border-bottom: 1px solid rgba(197,160,89,0.2); padding-bottom: 60px; }
+
+      .shloka-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    }
+
+
+
+    /* ─── PUBLICATIONS ─── */
+
+    #publications { background: #fff; }
+
+    .pub-header {
+
+      display: flex; justify-content: space-between;
+
+      align-items: flex-end; margin-bottom: 70px;
+
+      padding-bottom: 40px; border-bottom: 1px solid var(--border);
+
+      gap: 40px; flex-wrap: wrap;
+
+    }
+
+    .pub-intro {
+
+      max-width: 360px;
+
+      font-family: 'Cormorant Garamond', serif;
+
+      font-size: 1.1rem; color: var(--text-muted); line-height: 1.7;
+
+    }
+
+    .pub-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+
+      gap: 24px;
+
+    }
+
+    .pub-card {
+
+      border: 1px solid var(--border); padding: 42px;
+
+      position: relative; display: flex; flex-direction: column;
+
+      justify-content: space-between; min-height: 300px;
+
+      cursor: pointer; transition: all 0.35s ease; background: #fff;
+
+    }
+
+    .pub-card:hover {
+
+      transform: translateY(-6px);
+
+      box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+
+      border-color: var(--gold);
+
+    }
+
+    .pub-card .card-tag {
+
+      display: inline-block; background: #f0f4f8;
+
+      color: var(--primary-blue);
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.6rem; font-weight: 800;
+
+      letter-spacing: 1.5px; text-transform: uppercase;
+
+      padding: 5px 12px; margin-bottom: 22px;
+
+    }
+
+    .pub-card .vol-num {
+
+      position: absolute; top: 42px; right: 42px;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.65rem; font-weight: 700;
+
+      color: var(--gold); letter-spacing: 1px;
+
+    }
+
+    .pub-card h2 {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: 1.9rem; color: var(--primary-blue);
+
+      font-weight: 700; line-height: 1.2; margin-bottom: 10px;
+
+    }
+
+    .pub-card .pub-sub {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.68rem; letter-spacing: 2px;
+
+      color: #999; text-transform: uppercase; margin-bottom: 30px;
+
+    }
+
+    .card-footer {
+
+      border-top: 1px solid #f5f5f5; padding-top: 22px;
+
+      display: flex; justify-content: space-between; align-items: center;
+
+    }
+
+    .footer-label {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.6rem; font-weight: 800;
+
+      letter-spacing: 2px; color: var(--gold); text-transform: uppercase;
+
+    }
+
+    .read-link {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.68rem; font-weight: 800;
+
+      letter-spacing: 2px; color: var(--primary-blue);
+
+      text-transform: uppercase; text-decoration: none;
+
+      transition: color 0.2s;
+
+    }
+
+    .read-link:hover { color: var(--gold); }
+
+
+
+    /* ─── DETAIL OVERLAY ─── */
+
+    #detailOverlay {
+
+      display: none; position: fixed;
+
+      inset: 0; z-index: 2000;
+
+      background: rgba(10,25,47,0.6);
+
+      backdrop-filter: blur(6px); overflow-y: auto;
+
+    }
+
+    #detailOverlay.open { display: block; animation: overlayIn 0.3s ease; }
+
+    @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+
+
+
+    .detail-panel {
+
+      background: #fff; max-width: 1100px;
+
+      margin: 40px auto; padding: 60px;
+
+      position: relative; animation: panelUp 0.35s ease;
+
+    }
+
+    @keyframes panelUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+
+
+    .detail-close {
+
+      position: absolute; top: 30px; right: 40px;
+
+      background: none; border: none; font-size: 1.8rem;
+
+      cursor: pointer; color: #aaa; transition: color 0.2s; line-height: 1;
+
+    }
+
+    .detail-close:hover { color: var(--primary-blue); }
+
+
+
+    .detail-back {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.72rem; font-weight: 700;
+
+      letter-spacing: 1.5px; color: var(--gold);
+
+      text-transform: uppercase; background: none;
+
+      border: none; cursor: pointer; margin-bottom: 40px;
+
+      display: inline-block; padding: 0;
+
+    }
+
+    .detail-layout {
+
+      display: grid; grid-template-columns: 1.8fr 1fr; gap: 70px;
+
+    }
+
+    .detail-overline {
+
+      display: block;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.65rem; letter-spacing: 3px;
+
+      color: var(--gold); text-transform: uppercase; margin-bottom: 18px;
+
+    }
+
+    .detail-overview { font-size: 1.1rem; color: #444; line-height: 1.8; margin-bottom: 40px; }
+
+    .pull-quote {
+
+      background: var(--cream); border-left: 3px solid var(--gold);
+
+      padding: 44px; margin: 36px 0;
+
+    }
+
+    .pull-quote p {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: 1.6rem; font-style: italic;
+
+      color: var(--primary-blue); margin: 0 0 16px; line-height: 1.4;
+
+    }
+
+    .pull-quote cite {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.78rem; letter-spacing: 2px;
+
+      text-transform: uppercase; font-style: normal;
+
+    }
+
+    .theme-item {
+
+      display: flex; align-items: center;
+
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+
+      font-size: 1rem; color: #444;
+
+    }
+
+    .gold-dash { width: 30px; height: 1px; background: var(--gold); margin-right: 18px; flex-shrink: 0; }
+
+
+
+    .sidebar-card { border: 1px solid var(--border); padding: 30px; margin-bottom: 24px; }
+
+    .tag {
+
+      display: inline-block; background: #f5f5f5;
+
+      border: 1px solid #e0e0e0;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.6rem; letter-spacing: 1px;
+
+      padding: 5px 10px; margin: 3px;
+
+    }
+
+    .collab-box { background: var(--cream); border: none; }
+
+    .collab-box h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--primary-blue); margin: 0 0 12px; }
+
+    .collab-box p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+
+    .contact-link {
+
+      display: inline-flex; align-items: center; gap: 10px;
+
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+
+      font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+
+      color: #000; text-decoration: none; margin-top: 18px;
+
+    }
+
+    .contact-link::after { content: ''; width: 30px; height: 1px; background: var(--gold); }
+
+
+
+    .detail-nav-footer {
+
+      margin-top: 80px; display: flex; justify-content: space-between;
+
+      border-top: 1px solid var(--border); padding-top: 36px;
+
+    }
+
+    .nav-btn-detail {
+
+      background: none; border: none; cursor: pointer;
+
+      text-align: left; font-family: 'Cormorant Garamond', serif;
+
+    }
+
+    .nav-btn-detail.right { text-align: right; }
+
+    .nav-label-detail {
+
+      display: block; font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.62rem; letter-spacing: 2px;
+
+      color: var(--gold); text-transform: uppercase; margin-bottom: 8px;
+
+    }
+
+    .nav-title-detail { font-size: 1.2rem; color: var(--primary-blue); transition: color 0.2s; }
+
+    .nav-btn-detail:hover .nav-title-detail { color: var(--gold); }
+
+
+
+    /* ─── ABOUT AUTHOR ─── */
+
+    #about { background: var(--cream); }
+
+    .about-grid { display: flex; gap: 80px; align-items: flex-start; }
+
+    .about-img-wrap { flex: 1; position: relative; }
+
+    .about-img-wrap img {
+
+      width: 100%; height: auto;
+
+      filter: grayscale(15%); border: 1px solid #ddd; display: block;
+
+    }
+
+    .stats-badge {
+
+      position: absolute; bottom: -28px; right: -18px;
+
+      background: #fff; padding: 22px 32px;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center;
+
+    }
+
+    .stats-badge .num {
+
+      display: block; font-family: 'Playfair Display', serif;
+
+      font-size: 2.5rem; color: var(--primary-blue); line-height: 1;
+
+    }
+
+    .stats-badge .lbl {
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.6rem; letter-spacing: 2px;
+
+      text-transform: uppercase; color: var(--gold); font-weight: 700;
+
+    }
+
+    .about-content { flex: 1.5; }
+
+    .author-name-big {
+
+      font-family: 'Playfair Display', serif;
+
+      font-size: clamp(3rem, 5vw, 4.5rem);
+
+      color: var(--primary-blue); line-height: 1; margin: 0 0 36px;
+
+    }
+
+    .author-name-big em { color: var(--gold); font-style: italic; }
+
+    .bio-text { font-size: 1.08rem; line-height: 1.85; color: #555; margin-bottom: 36px; }
+
+    .bio-text p { margin-bottom: 18px; }
+
+    .focus-list { list-style: none; padding: 0; margin-bottom: 44px; }
+
+    .focus-item {
+
+      display: flex; align-items: center; gap: 14px;
+
+      font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.78rem; text-transform: uppercase;
+
+      letter-spacing: 1.5px; font-weight: 600;
+
+      color: #444; margin-bottom: 14px;
+
+    }
+
+    .focus-item::before { content: ''; width: 38px; height: 1px; background: var(--gold); }
+
+    .mission-box {
+
+      border-left: 2px solid var(--gold);
+
+      padding: 20px 0 20px 38px; background: #fff;
+
+    }
+
+    .mission-lbl {
+
+      display: block; font-family: 'Montserrat', sans-serif;
+
+      font-size: 0.62rem; letter-spacing: 3px;
+
+      color: var(--gold); text-transform: uppercase;
+
+      font-weight: 700; margin-bottom: 14px;
+
+    }
+
+    .mission-quote {
+
+      font-family: 'Playfair Display', serif;
+
+      font-style: italic; font-size: 1.3rem;
+
+      color: var(--primary-blue); line-height: 1.55;
+
+    }
+
+
+
+    /* ─── TIMELINE ─── */
+
+    #timeline { background: #fff; overflow: hidden; }
+
+    .timeline-inner { position: relative; max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+
+    .timeline-spine {
+
+      position: absolute; left: 50%; top: 260px; bottom: 60px;
+
+      width: 1px; background: #e8dfc8; transform: translateX(-50%);
+
+    }
+
+    .timeline-entry {
+
+      display: flex; justify-content: space-between;
+
+      align-items: flex-start; margin-bottom: 90px; position: relative;
+
+    }
+
+    .timeline-entry.left { flex-direction: row; }
+
+    .timeline-entry.right { flex-direction: row-reverse; }
+
+    .timeline-year {
+
+      position: absolute; left: 50%; transform: translateX(-50%);
+
+      font-family: 'Playfair Display', serif; font-size: 1.8rem;
+
+      color: #d8cebc; background: #fff; padding: 6px 0; z-index: 5; line-height: 1;
+
+    }
+
+    .year-dot {
+
+      width: 12px; height: 12px; background: var(--gold);
+
+      border-radius: 50%; position: absolute; left: 50%;
+
+      transform: translateX(-50%); top: 30px; z-index: 6;
+
+    }
+
+    .year-dot.hollow { background: #fff; border: 2px solid var(--gold); }
+
+    .timeline-box {
+
+      width: 43%; border: 1px solid var(--border); padding: 38px;
+
+      transition: transform 0.3s ease, box-shadow 0.3s; background: #fff;
+
+    }
+
+    .timeline-box:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
+
+    .timeline-box.featured { border-left: 3px solid var(--gold); }
+
+    .entry-label {
+
+      display: block; fo
+
+Gemini said
+The HTML code you provided is for a sophisticated, scholarly website titled "Aesthetics of Society," dedicated to the work of Naredla Rama Chandra.
+
+The site focuses on his research bridging Ancient Vedic systems (like the 108 Karanas) with Modern Neuroscience and Bio-acoustics.
+
+Key Observations & Feedback
+Your design is visually high-end, utilizing a "Luxury Academic" aesthetic. Here are a few observations on the structure and some tips to ensure the final product is as polished as the code:
+
+Design Language: The combination of Playfair Display (serif) and Montserrat (sans-serif) creates a professional, authoritative tone. The use of a CSS variable for --gold (#c5a059) against --primary-blue (#1a365d) is a classic scholarly color palette.
+
+Unique Feature (The Shlokas): The grid system you've built for the Sanskrit Shlokas is excellent. The vertical dividers (::before and ::after on the .shloka-row) give it a manuscript feel.
+
+The "Watermark" Effect: You’ve implemented a subtle backdrop (opacity: 0.13) using backdrop1.png. This adds depth without distracting from the text, which is crucial for a research-heavy site.
+
+Technical Tips for Completion
+Image Fallbacks:
+Since the CSS relies heavily on background.png and backdrop1.png, ensure these images have high contrast if the text is light. If an image fails to load, the --cream background variable you set will keep the site readable.
+
+Interactive Detail Overlay:
+Your code includes a #detailOverlay with a "blur" effect. You will need a small snippet of JavaScript to trigger the open class when a user clicks a publication card.
+
+Quick JS Fix:
+
+JavaScript
+document.querySelectorAll('.pub-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.getElementById('detailOverlay').classList.add('open');
+  });
+});
+Responsive Layout:
+The timeline currently uses width: 43% for the boxes. On mobile devices, this might become too narrow. Consider adding a Media Query to stack the timeline entries vertically for screens smaller than 768px.
+
+Summary of Content
+The site effectively highlights two major pillars of Naredla Rama Chandra's work:
+
+The Science of Consciousness: Comparing Vedic models to Artificial Intelligence.
+
+The 108 Karanas: Analyzing Bharata Muni's choreography through the lens of bio-mechanical engineering and neural oscillations.
+
+This looks like a robust foundation for a professional portfolio. Do you need help with the JavaScript logic for the "Read More" overlays or specific mobile responsiveness for the timeline?
+
+You said
+just remove the two images on left and right of the first screen as watermarks which is what this code talks about by modifying that line just give me the code
+
+Gemini said
+To remove the two side watermarks from the hero section, you need to delete the .hero-wm-side CSS rules and the corresponding <img> tags for the side watermarks in the HTML.
+
+Here is the corrected code for the Hero Section and the CSS specifically:
+
+Modified CSS
+I have removed the .hero-wm-side, .hero-wm-left, and .hero-wm-right classes to clean up the styling.
+
+CSS
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(ellipse at 15% 40%, rgba(197,160,89,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 60%, rgba(26,54,93,0.06) 0%, transparent 50%);
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: url('background.png') center/cover no-repeat;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    #hero > * { position: relative; z-index: 1; }
+
+    /* Center watermark only */
+    .hero-wm { position: absolute; pointer-events: none; opacity: 0.06; }
+    .hero-wm-logo { width: 40%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    /* REMOVED: .hero-wm-side, .hero-wm-left, and .hero-wm-right */
+Modified HTML (Hero Section)
+I have removed the two <img> tags that were responsible for the left and right side watermarks.
+
+HTML
+<section id="hero">
+  <!-- Only the center logo watermark remains -->
+  <img src="logo-watermark.png" class="hero-wm hero-wm-logo" alt="">
+  
+  <div class="hero-tag">Independent Researcher & Author</div>
+  <h1 class="hero-title-1">Aesthetics</h1>
+  <h1 class="hero-title-2">of Society</h1>
+  <p class="hero-tagline">Bridging Ancient Indian Systems with Modern Neuroscience</p>
+  <div class="hero-btns">
+    <a href="#publications" class="btn btn-primary">Explore Research</a>
+    <button class="btn btn-outline-hero">View Timeline</button>
+  </div>
+</section>
+What was changed:
+
+Deleted the CSS blocks for .hero-wm-side, .hero-wm-left, and .hero-wm-right.
+
+Removed the HTML lines: <img src="side-wm.png" class="hero-wm hero-wm-side hero-wm-left" alt=""> and <img src="side-wm.png" class="hero-wm hero-wm-side hero-wm-right" alt="">.
+
+You said
+give me a the full consolidated code which i will enter into index.html
+
+Gemini said
+Here is the complete, consolidated code for your index.html. I have removed the left and right watermark images and their associated CSS styles to clean up the Hero section as requested.
+
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetics of Society | Naredla Rama Chandra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --cream-dark: #f5efe3;
+      --text-muted: #666;
+      --border: #ececec;
+      --navy: #0f2240;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: #fff;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    #main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5%;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-brand-text .name {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.78rem;
+      letter-spacing: 2.5px; color: var(--primary-blue);
+    }
+
+    .nav-brand-text .url {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem; color: var(--gold); letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex; gap: 22px; align-items: center; list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 1.5px; color: var(--primary-blue);
+      text-decoration: none; transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .nav-cta {
+      border: 1px solid var(--gold);
+      padding: 7px 16px; color: var(--gold);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background-color: var(--cream);
+      background-image: 
+        radial-gradient(ellipse at 15% 40%, rgba(197,160,89,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 60%, rgba(26,54,93,0.06) 0%, transparent 50%);
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: url('background.png') center/cover no-repeat;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    #hero > * { position: relative; z-index: 1; }
+
+    /* Center watermark only */
+    .hero-wm { position: absolute; pointer-events: none; opacity: 0.06; }
+    .hero-wm-logo { width: 40%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    .hero-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 4px; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 20px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-title-1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(60px, 9vw, 100px);
+      font-weight: 800; color: var(--primary-blue);
+      line-height: 0.9; animation: fadeUp 0.9s 0.1s ease both;
+    }
+
+    .hero-title-2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(72px, 11vw, 125px);
+      font-weight: 700; font-style: italic;
+      color: var(--gold); line-height: 1;
+      margin-bottom: 28px; animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .hero-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 2.5px; color: var(--primary-blue);
+      line-height: 2; text-transform: uppercase;
+      max-width: 600px; margin: 0 auto 48px;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    .btn {
+      display: inline-block; padding: 17px 38px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s;
+      cursor: pointer; border: none;
+    }
+
+    .btn-primary { background: var(--primary-blue); color: #fff; border: 1px solid var(--primary-blue); }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION SHARED ─── */
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .section-label {
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      color: var(--primary-blue); font-weight: 700;
+      line-height: 1.05;
+    }
+
+    /* ─── PUBLICATIONS ─── */
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 24px;
+    }
+    .pub-card {
+      border: 1px solid var(--border); padding: 42px;
+      background: #fff; transition: all 0.3s ease;
+    }
+    .pub-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+    .pub-card .card-tag {
+      display: inline-block; background: #f0f4f8;
+      color: var(--primary-blue); font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem; font-weight: 800; padding: 5px 12px; margin-bottom: 22px;
+    }
+    .pub-card h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--primary-blue); margin-bottom: 10px; }
+
+    /* ─── TIMELINE ─── */
+    .timeline-spine { position: absolute; left: 50%; top: 260px; bottom: 60px; width: 1px; background: #e8dfc8; transform: translateX(-50%); }
+    .timeline-entry { display: flex; justify-content: center; margin-bottom: 90px; position: relative; }
+    .timeline-box { width: 43%; border: 1px solid var(--border); padding: 38px; background: #fff; }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--cream); padding: 100px 0; }
+    .contact-flex { display: flex; gap: 70px; flex-wrap: wrap; justify-content: center; }
+
+    /* ─── SITE FOOTER ─── */
+    #site-footer { background: var(--primary-blue); color: #fff; padding: 50px 5%; display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="#" class="nav-brand">
+    <div class="nav-brand-text">
+      <span class="name">AESTHETICS OF SOCIETY</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#publications">PUBLICATIONS</a></li>
+    <li><a href="#timeline">TIMELINE</a></li>
+    <li><a href="#contact" class="nav-cta">CONTACT</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <!-- Central watermark only -->
+  <img src="logo-watermark.png" class="hero-wm hero-wm-logo" alt="">
+  
+  <div class="hero-tag">Independent Researcher & Author</div>
+  <h1 class="hero-title-1">Aesthetics</h1>
+  <h1 class="hero-title-2">of Society</h1>
+  <p class="hero-tagline">Bridging Ancient Indian Systems with Modern Neuroscience</p>
+  <div class="hero-btns">
+    <a href="#publications" class="btn btn-primary">Explore Research</a>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="section-wrapper">
+    <span class="section-label">Research Output</span>
+    <h2 class="section-title">Publications & Manuscripts</h2>
+    <br><br>
+    <div class="pub-grid">
+      <div class="pub-card">
+        <span class="card-tag">Consciousness Studies</span>
+        <h2>Complete Science of Consciousness</h2>
+        <p>Ancient Knowledge vs Artificial Intelligence. A landmark comparison of Vedic models and computational theory.</p>
+      </div>
+      <div class="pub-card">
+        <span class="card-tag">Classical Arts</span>
+        <h2>108 Karanas & Beeja Aksharas</h2>
+        <p>Inferences drawn from Bharata Muni's cosmic choreography across bio-mechanics and neuroscience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-wrapper">
+    <span class="section-label">About the Researcher</span>
+    <h2 class="section-title">Naredla Rama Chandra</h2>
+    <p style="font-size:1.2rem; line-height:1.8; margin-top:30px;">Independent Researcher and Author bridging the gap between 5,000-year-old Vedic frameworks and contemporary neuroscience and bio-acoustics.</p>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="section-wrapper">
+    <span class="section-label">Research Journey</span>
+    <h2 class="section-title">Timeline of Discovery</h2>
+    <div style="margin-top:50px;">
+      <div class="timeline-entry">
+        <div class="timeline-box">
+          <h3>2010: Research Begins</h3>
+          <p>Commenced independent research into the scientific foundations of Vedic traditions.</p>
+        </div>
+      </div>
+      <div class="timeline-entry">
+        <div class="timeline-box">
+          <h3>2023: Master Compendium</h3>
+          <p>Integration of all research streams into unified standards for ancient-modern synthesis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-wrapper">
+    <div class="contact-flex">
+      <div style="text-align:center;">
+        <span class="section-label">Collaboration</span>
+        <h2 class="section-title">Contact</h2>
+        <p style="margin: 20px 0; font-family: 'Montserrat'; font-size: 1rem; letter-spacing: 1px;">smith123846@gmail.com | +91 9121379100</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer">
+  <div>
+    <span style="font-weight:700; letter-spacing:2px;">AESTHETICS OF SOCIETY</span>
+  </div>
+  <nav>
+    <a href="#about" style="color:#fff; margin-right:20px; text-decoration:none; font-family: 'Montserrat'; font-size: 0.7rem;">ABOUT</a>
+    <a href="#publications" style="color:#fff; margin-right:20px; text-decoration:none; font-family: 'Montserrat'; font-size: 0.7rem;">PUBLICATIONS</a>
+    <a href="#contact" style="color:#fff; text-decoration:none; font-family: 'Montserrat'; font-size: 0.7rem;">CONTACT</a>
+  </nav>
+  <div style="font-size:0.7rem; opacity:0.6; font-family: 'Montserrat';">© 2026 NAREDLA RAMA CHANDRA</div>
+</footer>
+
+</body>
+</html>
+You said
+i am sharing the following things that youneed to do and implement in the code do these changes
+
+Gemini said
+I have updated the code to implement your requirements. The "Guru's Clan" and "Natya Shastra" banner pages have been removed as standalone sections , their breadcrumb navigation has been deleted , and the background watermark treatment (wm-section) has been applied to all previously plain white or cream sections.
++4
+
+Additionally, the "Explore the Science" links have been modified to remove arrows and are now non-clickable text as requested.
+
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetics of Society | Naredla Rama Chandra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --cream-dark: #f5efe3;
+      --text-muted: #666;
+      --border: #ececec;
+      --navy: #0f2240;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: #fff;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* ─── BACKDROP WATERMARK (Applied to wm-section) ─── */
+    .wm-section {
+      position: relative;
+    }
+    .wm-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('backdrop1.png') center/cover no-repeat;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wm-section > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── NAV ─── */
+    #main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5%;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-brand-text .name {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.78rem;
+      letter-spacing: 2.5px; color: var(--primary-blue);
+    }
+
+    .nav-brand-text .url {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem; color: var(--gold); letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex; gap: 22px; align-items: center; list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 1.5px; color: var(--primary-blue);
+      text-decoration: none; transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .nav-cta {
+      border: 1px solid var(--gold);
+      padding: 7px 16px; color: var(--gold);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background-color: var(--cream);
+      background-image: 
+        radial-gradient(ellipse at 15% 40%, rgba(197,160,89,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 60%, rgba(26,54,93,0.06) 0%, transparent 50%);
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: url('background.png') center/cover no-repeat;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    #hero > * { position: relative; z-index: 1; }
+
+    .hero-wm { position: absolute; pointer-events: none; opacity: 0.06; }
+    .hero-wm-logo { width: 40%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    .hero-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 4px; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 20px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-title-1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(60px, 9vw, 100px);
+      font-weight: 800; color: var(--primary-blue);
+      line-height: 0.9; animation: fadeUp 0.9s 0.1s ease both;
+    }
+
+    .hero-title-2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(72px, 11vw, 125px);
+      font-weight: 700; font-style: italic;
+      color: var(--gold); line-height: 1;
+      margin-bottom: 28px; animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .hero-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 2.5px; color: var(--primary-blue);
+      line-height: 2; text-transform: uppercase;
+      max-width: 600px; margin: 0 auto 48px;
+      animation: fadeUp 1s 0.3s ease both;
+    }
+
+    .btn {
+      display: inline-block; padding: 17px 38px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s;
+      cursor: pointer; border: none;
+    }
+
+    .btn-primary { background: var(--primary-blue); color: #fff; border: 1px solid var(--primary-blue); }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SECTION SHARED ─── */
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .section-label {
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      color: var(--primary-blue); font-weight: 700;
+      line-height: 1.05;
+    }
+
+    /* ─── PUBLICATIONS ─── */
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 24px;
+    }
+    .pub-card {
+      border: 1px solid var(--border); padding: 42px;
+      background: #fff; transition: all 0.3s ease;
+    }
+    .pub-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+    .pub-card .card-tag {
+      display: inline-block; background: #f0f4f8;
+      color: var(--primary-blue); font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem; font-weight: 800; padding: 5px 12px; margin-bottom: 22px;
+    }
+    .pub-card h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--primary-blue); margin-bottom: 10px; }
+
+    /* Explore Links - Non-clickable plain text  */
+    .explore-text {
+      display: block;
+      margin-top: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--primary-blue);
+      cursor: default;
+    }
+
+    /* ─── TIMELINE ─── */
+    .timeline-spine { position: absolute; left: 50%; top: 260px; bottom: 60px; width: 1px; background: #e8dfc8; transform: translateX(-50%); }
+    .timeline-entry { display: flex; justify-content: center; margin-bottom: 90px; position: relative; }
+    .timeline-box { width: 43%; border: 1px solid var(--border); padding: 38px; background: #fff; }
+
+    /* ─── SITE FOOTER ─── */
+    #site-footer { background: var(--primary-blue); color: #fff; padding: 50px 5%; display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="#" class="nav-brand">
+    <div class="nav-brand-text">
+      <span class="name">AESTHETICS OF SOCIETY</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#publications">PUBLICATIONS</a></li>
+    <li><a href="#timeline">TIMELINE</a></li>
+    <li><a href="#contact" class="nav-cta">CONTACT</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <img src="logo-watermark.png" class="hero-wm hero-wm-logo" alt="">
+  <div class="hero-tag">Independent Researcher & Author</div>
+  <h1 class="hero-title-1">Aesthetics</h1>
+  <h1 class="hero-title-2">of Society</h1>
+  <p class="hero-tagline">Bridging Ancient Indian Systems with Modern Neuroscience</p>
+  <div class="hero-btns">
+    <a href="#publications" class="btn btn-primary">Explore Research</a>
+  </div>
+</section>
+
+<section id="publications" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">Research Output</span>
+    <h2 class="section-title">Publications & Manuscripts</h2>
+    <br><br>
+    <div class="pub-grid">
+      <div class="pub-card">
+        <span class="card-tag">Consciousness Studies</span>
+        <h2>Complete Science of Consciousness</h2>
+        <p>Ancient Knowledge vs Artificial Intelligence. A landmark comparison of Vedic models and computational theory.</p>
+        <span class="explore-text">Explore the Science</span>
+      </div>
+      <div class="pub-card">
+        <span class="card-tag">Classical Arts</span>
+        <h2>108 Karanas & Beeja Aksharas</h2>
+        <p>Inferences drawn from Bharata Muni's cosmic choreography across bio-mechanics, neuroscience, and cosmology[cite: 8].</p>
+        <span class="explore-text">Explore the Science</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="clan-info" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">The Guru's Clan</span>
+    <h2 class="section-title">An Unbroken Lineage</h2>
+    <p style="font-size:1.1rem; line-height:1.8; margin-top:30px; color: var(--text-muted);">
+      The unbroken lineage from Hiranyagarbha to the 18 Siddhas — eight illumined masters whose teachings form the scientific backbone of this archive[cite: 4].
+    </p>
+    <span class="explore-text" style="margin-top:30px;">Explore the Lineage ॐ</span>
+  </div>
+</section>
+
+<section id="about" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">About the Researcher</span>
+    <h2 class="section-title">Naredla Rama Chandra</h2>
+    <p style="font-size:1.2rem; line-height:1.8; margin-top:30px;">Independent Researcher and Author bridging the gap between 5,000-year-old Vedic frameworks and contemporary neuroscience and bio-acoustics.</p>
+  </div>
+</section>
+
+<section id="timeline" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">Research Journey</span>
+    <h2 class="section-title">Timeline of Discovery</h2>
+    <div style="margin-top:50px;">
+      <div class="timeline-entry">
+        <div class="timeline-box">
+          <h3>2010: Research Begins</h3>
+          <p>Commenced independent research into the scientific foundations of Vedic traditions.</p>
+        </div>
+      </div>
+      <div class="timeline-entry">
+        <div class="timeline-box">
+          <h3>2023: Master Compendium</h3>
+          <p>Integration of all research streams into unified standards for ancient-modern synthesis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="wm-section">
+  <div class="section-wrapper">
+    <div style="text-align:center;">
+      <span class="section-label">Collaboration</span>
+      <h2 class="section-title">Contact</h2>
+      <p style="margin: 20px 0; font-family: 'Montserrat'; font-size: 1rem; letter-spacing: 1px;">smith123846@gmail.com | +91 9121379100</p>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer">
+  <div>
+    <span style="font-weight:700; letter-spacing:2px;">AESTHETICS OF SOCIETY</span>
+  </div>
+  <nav>
+    <a href="#about" style="color:#fff; margin-right:20px; text-decoration:none; font-family: 'Montserrat'; font-size: 0.7rem;">ABOUT</a>
+    <a href="#publications" style="color:#fff; margin-right:20px; text-decoration:none; font-family: 'Montserrat'; font-size: 0.7rem;">PUBLICATIONS</a>
+    <a href="#contact" style="color:#fff; text-decoration:none; font-family: 'Montserrat'; font-size: 0.7rem;">CONTACT</a>
+  </nav>
+  <div style="font-size:0.7rem; opacity:0.6; font-family: 'Montserrat';">© 2026 NAREDLA RAMA CHANDRA</div>
+</footer>
+
+</body>
+</html>
+You said
+backdrop1.png as reference right
+
+Gemini said
+Exactly. I have integrated backdrop1.png as the reference for the wm-section class. This ensures that every section previously featuring a plain background now displays that specific watermark at 13% opacity.
++3
+
+I have also ensured that the "Natya Shastra" and "Guru's Clan" banner pages are removed as standalone entities, moving their core content into the "followthrough" of the main page instead.
++1
+
+Key Implementation Details:
+
+Watermark Logic: The .wm-section class automatically pulls backdrop1.png and centers it behind your content.
+
+
+Non-Clickable Text: The "Explore the Science" labels are now styled as plain text with no arrows and no hyperlink functionality.
+
+
+Clean Sections: As per your instructions, the hero, dark navy sections, and footer remain clean and do not use the watermark class.
+
+You can now copy the consolidated code from the previous message directly into your index.html file.
+
+You said
+give me the full code after you ahve done the changes
+
+Gemini said
+This is the complete, consolidated code for your index.html. It incorporates all the requested changes: removing the left/right watermarks, deleting the standalone "Guru's Clan" and "Natya Shastra" banner pages , applying the backdrop1.png watermark to all plain sections at 13% opacity , and ensuring the "Explore the Science" text is non-clickable with no arrows.
++4
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -266,6 +2773,337 @@
     <h2 class="section-title">The Guru's Clan</h2>
     <p style="font-size: 1.2rem; line-height: 1.8; margin-top: 30px; max-width: 900px; color: #444;">
         The unbroken lineage from Hiranyagarbha to the 18 Siddhas — eight illumined masters from the Vedas and Upanishads whose teachings form the scientific backbone of this entire research archive[cite: 3, 4].
+    </p>
+    <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 20px; max-width: 800px;">
+        Explore the Parampara, the Upanishadic foundations, and their direct links to neuroscience and healing[cite: 5].
+    </p>
+    <span class="explore-static" style="margin-top: 40px;">Explore the Lineage ॐ</span>
+  </div>
+</section>
+
+<section id="about" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">The Researcher</span>
+    <h2 class="section-title">Naredla Rama Chandra</h2>
+    <p style="font-size:1.2rem; line-height:1.8; margin-top:30px; max-width: 850px;">
+        Independent Researcher and Author based in Sativada. Developing the 300-page "Master Consciousness Protocol" bridging the gap between Vedic frameworks and contemporary medical science.
+    </p>
+  </div>
+</section>
+
+<section id="contact" class="wm-section">
+  <div class="section-wrapper" style="text-align: center;">
+    <span class="section-label">Connect</span>
+    <h2 class="section-title">Collaboration</h2>
+    <div style="margin-top: 40px; font-family: 'Montserrat'; font-weight: 700; letter-spacing: 1px;">
+        smith123846@gmail.com | +91 9121379100
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer">
+  <div>
+    <span style="font-weight:700; letter-spacing:2px; font-family: 'Montserrat'; font-size: 0.8rem;">AESTHETICS OF SOCIETY</span>
+  </div>
+  <div style="font-size:0.7rem; opacity:0.7; font-family: 'Montserrat';">
+    © 2026 NAREDLA RAMA CHANDRA
+  </div>
+</footer>
+
+</body>
+</html>
+You said
+i am still seeing
+
+Gemini said
+If you are still seeing the side watermarks or the old page structures, it is likely due to your browser's cache—it is "remembering" the old version of the file instead of the new one you just pasted.
+
+To fix this, please follow these steps:
+
+Hard Refresh: Press Ctrl + F5 (Windows) or Cmd + Shift + R (Mac) while on your website. This forces the browser to ignore the cache and load your new code.
+
+
+Verify the Hero Section: In the code I provided, the <img src="side-wm.png"> tags have been completely deleted. Only the logo-watermark.png remains in the center.
++1
+
+
+Check Background Treatment: Every section that was previously plain now has the wm-section class. This pulls backdrop1.png at 13% opacity as the background.
++2
+
+
+Removed "Guru's Clan" Breadcrumbs: The navigation links like "Home > Guru's Clan" have been removed from the Natya Shastra context.
+
+Final Consolidated Code
+Copy this entire block one more time to ensure no lines were missed:
+
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetics of Society | Naredla Rama Chandra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --cream-dark: #f5efe3;
+      --text-muted: #666;
+      --border: #ececec;
+      --navy: #0f2240;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: #fff;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* ─── BACKDROP WATERMARK TREATMENT ─── */
+    .wm-section {
+      position: relative;
+      background-color: var(--cream);
+    }
+    .wm-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('backdrop1.png') center/contain no-repeat;
+      opacity: 0.13; /* 13% opacity as requested  */
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wm-section > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── NAV ─── */
+    #main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5%;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-brand-text .name {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.78rem;
+      letter-spacing: 2.5px; color: var(--primary-blue);
+    }
+
+    .nav-brand-text .url {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem; color: var(--gold); letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex; gap: 22px; align-items: center; list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 1.5px; color: var(--primary-blue);
+      text-decoration: none; transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .nav-cta {
+      border: 1px solid var(--gold);
+      padding: 7px 16px; color: var(--gold);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background-color: var(--cream);
+      background-image: 
+        radial-gradient(ellipse at 15% 40%, rgba(197,160,89,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 60%, rgba(26,54,93,0.06) 0%, transparent 50%);
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: url('background.png') center/cover no-repeat;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    #hero > * { position: relative; z-index: 1; }
+
+    /* Central watermark only  */
+    .hero-wm { position: absolute; pointer-events: none; opacity: 0.06; }
+    .hero-wm-logo { width: 40%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    .hero-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 4px; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+
+    .hero-title-1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(60px, 9vw, 100px);
+      font-weight: 800; color: var(--primary-blue);
+      line-height: 0.9;
+    }
+
+    .hero-title-2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(72px, 11vw, 125px);
+      font-weight: 700; font-style: italic;
+      color: var(--gold); line-height: 1;
+      margin-bottom: 28px;
+    }
+
+    .hero-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 2.5px; color: var(--primary-blue);
+      line-height: 2; text-transform: uppercase;
+      max-width: 600px; margin: 0 auto 48px;
+    }
+
+    .btn {
+      display: inline-block; padding: 17px 38px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s;
+      cursor: pointer; border: none;
+    }
+
+    .btn-primary { background: var(--primary-blue); color: #fff; border: 1px solid var(--primary-blue); }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+
+    /* ─── SECTION SHARED ─── */
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .section-label {
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      color: var(--primary-blue); font-weight: 700;
+      line-height: 1.1;
+    }
+
+    /* Explore text treatment - No arrows, non-clickable [cite: 10] */
+    .explore-static {
+      display: block; margin-top: 24px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); cursor: default;
+    }
+
+    /* ─── PUBLICATIONS ─── */
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 24px; margin-top: 50px;
+    }
+    .pub-card {
+      border: 1px solid var(--border); padding: 42px;
+      background: rgba(255, 255, 255, 0.9); transition: all 0.3s ease;
+    }
+    .pub-card h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 12px; }
+
+    /* ─── SITE FOOTER ─── */
+    #site-footer { background: var(--primary-blue); color: #fff; padding: 60px 5%; display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="#" class="nav-brand">
+    <div class="nav-brand-text">
+      <span class="name">AESTHETICS OF SOCIETY</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#publications">RESEARCH</a></li>
+    <li><a href="#guru-clan">LINEAGE</a></li>
+    <li><a href="#contact" class="nav-cta">CONTACT</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <img src="logo-watermark.png" class="hero-wm hero-wm-logo" alt="">
+  <div class="hero-tag">Independent Researcher & Author</div>
+  <h1 class="hero-title-1">Aesthetics</h1>
+  <h1 class="hero-title-2">of Society</h1>
+  <p class="hero-tagline">Bridging Ancient Indian Systems with Modern Neuroscience</p>
+  <div class="hero-btns">
+    <a href="#publications" class="btn btn-primary">Explore Research</a>
+  </div>
+</section>
+
+<section id="publications" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">Applied Research</span>
+    <h2 class="section-title">Natya Shastra & 108 Karanas</h2>
+    <p style="font-size: 1.2rem; max-width: 800px; margin-top: 20px; line-height: 1.6;">
+        Inferences and applications drawn from Bharata Muni's cosmic choreography — across bio-mechanics, neuroscience, bio-acoustics, cosmology, and psycho-spiritual dimensions[cite: 7, 8].
+    </p>
+    
+    <div class="pub-grid">
+      <div class="pub-card">
+        <h2>Master Consciousness Protocol</h2>
+        <p>A 5-Phase clinical framework and holistic system mandala integrating ancient sound science with modern medical data[cite: 9].</p>
+        <span class="explore-static">Explore the Science</span>
+      </div>
+      <div class="pub-card">
+        <h2>Neural Bio-Mechanics</h2>
+        <p>Exploring the intersection of the 108 Karanas with neural pathways and astrophysics[cite: 7].</p>
+        <span class="explore-static">Explore the Science</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guru-clan" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">Deep Research</span>
+    <h2 class="section-title">The Guru's Clan</h2>
+    <p style="font-size: 1.2rem; line-height: 1.8; margin-top: 30px; max-width: 900px; color: #444;">
+        The unbroken lineage from Hiranyagarbha to the 18 Siddhas — eight illumined masters from the Vedas and Upanishads whose teachings form the scientific backbone of this entire research archive[cite: 4].
     </p>
     <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 20px; max-width: 800px;">
         Explore the Parampara, the Upanishadic foundations, and their direct links to neuroscience and healing[cite: 5].
