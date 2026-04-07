@@ -1,223 +1,298 @@
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramachandra - Bharatanatyam Artist & Researcher</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #800000; /* Maroon */
-            --secondary: #DAA520; /* Goldenrod */
-            --bg-light: #fffdfa;
-            --text-dark: #2c2c2c;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-
-        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
-
-        /* Watermark Utility */
-        .wm-section {
-            position: relative;
-            background-color: #fffdfa;
-        }
-        .wm-section::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('backdrop1.png');
-            background-repeat: repeat;
-            background-size: 300px;
-            opacity: 0.13;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .wm-section > * { position: relative; z-index: 1; }
-
-        /* Header & Nav */
-        header {
-            background: white;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo { font-weight: bold; color: var(--primary); font-size: 1.5rem; text-decoration: none; }
-
-        nav ul { display: flex; list-style: none; }
-        nav ul li { margin-left: 2rem; }
-        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
-        nav ul li a:hover { color: var(--primary); }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero-bg.jpg') center/cover;
-            color: white;
-            padding: 0 20px;
-        }
-
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; max-width: 700px; }
-
-        /* Section Styling */
-        section { padding: 80px 10%; }
-        h2 { text-align: center; color: var(--primary); margin-bottom: 40px; font-size: 2.5rem; }
-
-        /* Research Grid (Non-clickable) */
-        .pub-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .pub-card {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--secondary);
-            /* Removed cursor pointer and transition for non-clickable feel */
-        }
-
-        .pub-card h3 { color: var(--primary); margin-bottom: 15px; }
-
-        /* Timeline */
-        .timeline-container {
-            border-left: 2px solid var(--secondary);
-            padding-left: 30px;
-            margin-left: 20px;
-        }
-        .timeline-item { margin-bottom: 30px; position: relative; }
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: -41px;
-            top: 5px;
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border-radius: 50%;
-        }
-
-        /* Footer */
-        footer {
-            background: #222;
-            color: white;
-            padding: 50px 10% 20px;
-            text-align: center;
-        }
-        .footer-links { margin-bottom: 30px; }
-        .footer-links a { color: white; margin: 0 15px; text-decoration: none; opacity: 0.8; }
-        .contact-info { margin-bottom: 20px; font-size: 0.9rem; color: #ccc; }
-        
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            nav ul { display: none; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetics of Society | Naredla Rama Chandra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --cream-dark: #f5efe3;
+      --text-muted: #666;
+      --border: #ececec;
+      --navy: #0f2240;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: #fff;
+      color: #333;
+      overflow-x: hidden;
+    }
+    /* ─── BACKDROP WATERMARK ─── */
+    .wm-section {
+      position: relative;
+    }
+    .wm-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('backdrop1.png') center/cover no-repeat;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wm-section > * {
+      position: relative;
+      z-index: 1;
+    }
+    /* ─── NAV ─── */
+    #main-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5%;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-brand img {
+      width: 42px; height: 42px;
+      object-fit: cover; border-radius: 2px;
+    }
+    .nav-brand-text .name {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.78rem;
+      letter-spacing: 2.5px; color: var(--primary-blue);
+    }
+    .nav-brand-text .url {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem; color: var(--gold); letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex; gap: 22px; align-items: center; list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 1.5px; color: var(--primary-blue);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .nav-cta {
+      border: 1px solid var(--gold);
+      padding: 7px 16px; color: var(--gold);
+    }
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      background: linear-gradient(rgba(253,250,245,0.88), rgba(253,250,245,0.88)),
+        url('background.png') center/cover no-repeat;
+    }
+    .hero-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 4px; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .hero-title-1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(60px, 9vw, 100px);
+      font-weight: 800; color: var(--primary-blue);
+      line-height: 0.9;
+    }
+    .hero-title-2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(72px, 11vw, 125px);
+      font-weight: 700; font-style: italic;
+      color: var(--gold); line-height: 1;
+      margin-bottom: 28px;
+    }
+    .hero-tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 2.5px; color: var(--primary-blue);
+      line-height: 2; text-transform: uppercase;
+      max-width: 600px; margin: 0 auto 48px;
+    }
+    .btn {
+      display: inline-block; padding: 17px 38px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; transition: all 0.3s;
+    }
+    .btn-primary { background: var(--primary-blue); color: #fff; border: 1px solid var(--primary-blue); }
+    /* ─── SECTION SHARED ─── */
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .section-label {
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      color: var(--primary-blue); font-weight: 700;
+      line-height: 1.05;
+    }
+    /* ─── PUBLICATIONS ─── */
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 24px;
+    }
+    .pub-card {
+      border: 1px solid var(--border); padding: 42px;
+      background: #fff; cursor: default; /* Disabled clicking style */
+    }
+    .pub-card .card-tag {
+      display: inline-block; background: #f0f4f8;
+      color: var(--primary-blue); font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem; font-weight: 800; padding: 5px 12px; margin-bottom: 22px;
+    }
+    .pub-card h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--primary-blue); margin-bottom: 10px; }
+    /* ─── TIMELINE ─── */
+    .timeline-spine { position: absolute; left: 50%; top: 260px; bottom: 60px; width: 1px; background: #e8dfc8; transform: translateX(-50%); }
+    .timeline-entry { display: flex; justify-content: space-between; margin-bottom: 90px; position: relative; }
+    .timeline-box { width: 43%; border: 1px solid var(--border); padding: 38px; background: #fff; }
+    /* ─── CONTACT ─── */
+    #contact { background: var(--cream); padding: 100px 0; }
+    .contact-flex { display: flex; gap: 70px; flex-wrap: wrap; justify-content: center; }
+    /* ─── SITE FOOTER ─── */
+    #site-footer { background: var(--primary-blue); color: #fff; padding: 50px 5%; display: flex; justify-content: space-between; align-items: center; }
+  </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo">RAMACHANDRA</a>
-        <nav>
-            <ul>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#publications">RESEARCH</a></li>
-                <li><a href="#timeline">JOURNEY</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-            </ul>
-        </nav>
-    </header>
+<nav id="main-nav">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-brand-text">
+      <span class="name">AESTHETICS OF SOCIETY</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#publications">PUBLICATIONS</a></li>
+    <li><a href="#timeline">TIMELINE</a></li>
+    <li><a href="#media">MEDIA</a></li>
+    <li><a href="#contact" class="nav-cta">INTRODUCTION</a></li>
+  </ul>
+</nav>
 
-    <section class="hero">
-        <div>
-            <h1>Advancing the Science of Dance</h1>
-            <p>A bridge between the ancient wisdom of Natya Shastra and modern research methodologies.</p>
+<section id="hero">
+  <div class="hero-tag">Independent Researcher & Author</div>
+  <h1 class="hero-title-1">Aesthetics</h1>
+  <h1 class="hero-title-2">of Society</h1>
+  <p class="hero-tagline">Bridging Ancient Indian Systems with Modern Neuroscience</p>
+  <div class="hero-btns">
+    <a href="#publications" class="btn btn-primary">Explore Research</a>
+  </div>
+</section>
+
+<section id="publications" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">Research Output</span>
+    <h2 class="section-title">Publications & Manuscripts</h2>
+    <br><br>
+    <div class="pub-grid" id="pubGrid">
+      <!-- Card 1 -->
+      <div class="pub-card">
+        <span class="card-tag">Consciousness Studies</span>
+        <h2>Complete Science of Consciousness</h2>
+        <p>Ancient Knowledge vs Artificial Intelligence. A landmark comparison of Vedic models and computational theory.</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="pub-card">
+        <span class="card-tag">Classical Arts</span>
+        <h2>108 Karanas & Beeja Aksharas</h2>
+        <p>Inferences drawn from Bharata Muni's cosmic choreography across bio-mechanics and neuroscience. Explore the Science.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">About the Researcher</span>
+    <h2 class="section-title">Naredla Rama Chandra</h2>
+    <p style="font-size:1.2rem; line-height:1.8; margin-top:30px;">Independent Researcher and Author bridging the gap between 5,000-year-old Vedic frameworks and contemporary neuroscience and bio-acoustics.</p>
+  </div>
+</section>
+
+<section id="timeline" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">Research Journey</span>
+    <h2 class="section-title">Timeline of Discovery</h2>
+    <div style="margin-top:50px;">
+      <div class="timeline-entry">
+        <div class="timeline-box">
+          <h3>2010: Research Begins</h3>
+          <p>Commenced independent research into the scientific foundations of Vedic traditions.</p>
         </div>
-    </section>
-
-    <section id="about">
-        <h2>About the Artist</h2>
-        <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 300px;">
-                <p>Ramachandra is a dedicated Bharatanatyam artist and scholar whose work focuses on the technical precision and philosophical depth of Indian classical dance. With over two decades of practice, he explores the physiological and spiritual intersections of movement.</p>
-            </div>
+      </div>
+      <div class="timeline-entry">
+        <div class="timeline-box">
+          <h3>2023: Master Compendium</h3>
+          <p>Integration of all research streams into unified standards for ancient-modern synthesis.</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="publications" class="wm-section">
-        <h2>Research Output</h2>
-        <div class="pub-grid">
-            <div class="pub-card">
-                <h3>Vol 1: The Physics of Mudra</h3>
-                <p>A comprehensive study on the pressure points and neurological impact of hand gestures in classical dance forms.</p>
-            </div>
-            <div class="pub-card">
-                <h3>Vol 2: Kinetic Geometry</h3>
-                <p>Analyzing the spatial mathematical patterns found in the 108 Karanas as described in ancient texts.</p>
-            </div>
-            <div class="pub-card">
-                <h3>Vol 3: Rhythmic Structures</h3>
-                <p>An investigation into the complex time signatures of Carnatic music and their translation into footwork.</p>
-            </div>
-        </div>
-    </section>
+<section id="karanas" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">The Architecture of Motion</span>
+    <h2 class="section-title">The 108 Karanas</h2>
+    <p style="margin-top:30px; font-size:1.1rem; line-height:1.8;">The 108 Karanas represent a sophisticated system of bio-mechanical engineering. Each Karana functions as a dynamic posture that optimizes the human skeletal-muscular frame.</p>
+  </div>
+</section>
 
-    <section id="timeline" class="wm-section">
-        <h2>Professional Journey</h2>
-        <div class="timeline-container">
-            <div class="timeline-item">
-                <h4>2023 - Present</h4>
-                <p>Principal Researcher at the Vedic Arts Foundation.</p>
-            </div>
-            <div class="timeline-item">
-                <h4>2018 - 2022</h4>
-                <p>International Performance Tour & Masterclasses across Europe and SE Asia.</p>
-            </div>
-            <div class="timeline-item">
-                <h4>2010 - 2017</h4>
-                <p>Arangetram and specialized training under the Gurus of the Thanjavur Style.</p>
-            </div>
-        </div>
-    </section>
+<section id="future" class="wm-section">
+  <div class="section-wrapper">
+    <span class="section-label">Roadmap 2026–2030</span>
+    <h2 class="section-title">The Future of MCP</h2>
+    <p style="margin-top:30px; font-size:1.1rem; line-height:1.8;">Creation of a Neuro-Acoustic Bio-Feedback Interface mapping the 108 Karanas against real-time neural oscillation patterns.</p>
+  </div>
+</section>
 
-    <section id="karanas" class="wm-section">
-        <h2>The 108 Karanas</h2>
-        <p style="text-align: center; max-width: 800px; margin: 0 auto;">Documenting the transition of movement from static sculpture to fluid performance. Our digital archives focus on the architectural precision of these ancient poses.</p>
-    </section>
+<section id="contact" class="wm-section">
+  <div class="section-wrapper">
+    <div class="contact-flex">
+      <div style="text-align:center;">
+        <span class="section-label">Collaboration</span>
+        <h2 class="section-title">Contact</h2>
+        <p style="margin: 20px 0;">smith123846@gmail.com | +91 9121379100</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="future" class="wm-section">
-        <h2>Future Initiatives</h2>
-        <p style="text-align: center;">Developing a Movement Capture Project (MCP) to preserve the nuanced styles of veteran gurus for future generations through 3D modeling.</p>
-    </section>
-
-    <footer id="contact">
-        <div class="footer-links">
-            <a href="#about">ABOUT</a>
-            <a href="#publications">RESEARCH</a>
-            <a href="#timeline">JOURNEY</a>
-        </div>
-        <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> smith123846@gmail.com</p>
-            <p><i class="fas fa-phone"></i> +91 9121379100</p>
-            <p><i class="fab fa-github"></i> github.com/ramachandra1975/ramachandra</p>
-        </div>
-        <p>&copy; 2026 Ramachandra. All rights reserved.</p>
-    </footer>
+<footer id="site-footer">
+  <div>
+    <span style="font-weight:700; letter-spacing:2px;">AESTHETICS OF SOCIETY</span>
+  </div>
+  <nav>
+    <a href="#about" style="color:#fff; margin-right:20px; text-decoration:none;">ABOUT</a>
+    <a href="#publications" style="color:#fff; margin-right:20px; text-decoration:none;">PUBLICATIONS</a>
+    <a href="#contact" style="color:#fff; text-decoration:none;">CONTACT</a>
+  </nav>
+  <div style="font-size:0.7rem; opacity:0.6;">© 2026 NAREDLA RAMA CHANDRA</div>
+</footer>
 
 </body>
 </html>
