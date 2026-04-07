@@ -6,6 +6,35 @@
   <title>Aesthetics of Society | Naredla Rama Chandra</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
   <style>
+    /* === WATERMARK BACKGROUND SYSTEM === */
+.wm-section {
+  position: relative;
+  background-color: #f8f5ef;
+  overflow: hidden;
+}
+
+.wm-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('backdrop1.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.13;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wm-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.no-click {
+  pointer-events: none;
+  cursor: default;
+}
     :root {
       --primary-blue: #1a365d;
       --gold: #c5a059;
@@ -18,7 +47,10 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html 
+ <section id="something" class="wm-section">
+   <!-- your content -->
+</section>
 
     body {
       font-family: 'Cormorant Garamond', serif;
