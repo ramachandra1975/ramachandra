@@ -27,7 +27,8 @@
       overflow-x: hidden;
     }
 
-    /* ─── BACKDROP WATERMARK TREATMENT (13% Opacity) ─── */
+    /* ─── BACKDROP WATERMARK TREATMENT ─── */
+    /* Applied to all sections that previously had plain backgrounds [cite: 13, 15] */
     .wm-section {
       position: relative;
       background-color: var(--cream);
@@ -37,7 +38,7 @@
       position: absolute;
       inset: 0;
       background: url('backdrop1.png') center/contain no-repeat;
-      opacity: 0.13; 
+      opacity: 0.13; /* 13% opacity as requested [cite: 24] */
       pointer-events: none;
       z-index: 0;
     }
@@ -97,7 +98,7 @@
       padding: 7px 16px; color: var(--gold);
     }
 
-    /* ─── HERO (No Side Watermarks) ─── */
+    /* ─── HERO ─── */
     #hero {
       position: relative;
       min-height: 100vh;
@@ -122,6 +123,7 @@
 
     #hero > * { position: relative; z-index: 1; }
 
+    /* Central watermark only - Side watermarks removed */
     .hero-wm { position: absolute; pointer-events: none; opacity: 0.06; }
     .hero-wm-logo { width: 40%; top: 50%; left: 50%; transform: translate(-50%,-50%); }
 
@@ -182,7 +184,7 @@
       line-height: 1.1;
     }
 
-    /* Explore text - Static, No Arrows */
+    /* Explore text treatment  */
     .explore-static {
       display: block; margin-top: 24px;
       font-family: 'Montserrat', sans-serif;
@@ -203,7 +205,7 @@
     }
     .pub-card h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 12px; }
 
-    /* ─── FOOTER ─── */
+    /* ─── SITE FOOTER ─── */
     #site-footer { background: var(--primary-blue); color: #fff; padding: 60px 5%; display: flex; justify-content: space-between; align-items: center; }
   </style>
 </head>
@@ -240,13 +242,13 @@
     <span class="section-label">Applied Research</span>
     <h2 class="section-title">Natya Shastra & 108 Karanas</h2>
     <p style="font-size: 1.2rem; max-width: 800px; margin-top: 20px; line-height: 1.6;">
-        Inferences and applications drawn from Bharata Muni's cosmic choreography — across bio-mechanics, neuroscience, bio-acoustics, cosmology, and psycho-spiritual dimensions.
+        Inferences and applications drawn from Bharata Muni's cosmic choreography — across bio-mechanics, neuroscience, bio-acoustics, cosmology, and psycho-spiritual dimensions[cite: 7, 8].
     </p>
     
     <div class="pub-grid">
       <div class="pub-card">
         <h2>Master Consciousness Protocol</h2>
-        <p>A 5-Phase clinical framework and holistic system mandala integrating ancient sound science with modern medical data.</p>
+        <p>A 5-Phase clinical framework and holistic system mandala integrating ancient sound science with modern medical data[cite: 9].</p>
         <span class="explore-static">Explore the Science</span>
       </div>
       <div class="pub-card">
@@ -263,10 +265,10 @@
     <span class="section-label">Deep Research</span>
     <h2 class="section-title">The Guru's Clan</h2>
     <p style="font-size: 1.2rem; line-height: 1.8; margin-top: 30px; max-width: 900px; color: #444;">
-        The unbroken lineage from Hiranyagarbha to the 18 Siddhas — eight illumined masters from the Vedas and Upanishads whose teachings form the scientific backbone of this entire research archive.
+        The unbroken lineage from Hiranyagarbha to the 18 Siddhas — eight illumined masters from the Vedas and Upanishads whose teachings form the scientific backbone of this entire research archive[cite: 3, 4].
     </p>
     <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 20px; max-width: 800px;">
-        Explore the Parampara, the Upanishadic foundations, and their direct links to neuroscience and healing.
+        Explore the Parampara, the Upanishadic foundations, and their direct links to neuroscience and healing[cite: 5].
     </p>
     <span class="explore-static" style="margin-top: 40px;">Explore the Lineage ॐ</span>
   </div>
@@ -303,3 +305,4 @@
 
 </body>
 </html>
+
