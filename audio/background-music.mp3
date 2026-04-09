@@ -2,7 +2,7 @@
 
 <!-- VEDIC AUDIO -->
 <audio id="vedic-audio" loop>
-  <source src="audio/vedic-tamil.mp3" type="audio/mpeg">
+  <source src="audio/background-music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
