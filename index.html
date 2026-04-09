@@ -36,21 +36,53 @@
     #main-nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 18px 5%; background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(10px); border-bottom: 1px solid rgba(197,160,89,0.2);
+      padding: 0 5%; height: 68px;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(197,160,89,0.2);
       transition: box-shadow 0.3s;
     }
     #main-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
-    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .nav-brand img { width: 42px; height: 42px; object-fit: cover; border-radius: 2px; }
-    .nav-brand-text .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 2.5px; color: var(--primary-blue); }
-    .nav-brand-text .url { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; color: var(--gold); letter-spacing: 1px; }
-    .nav-links { display: flex; gap: 22px; align-items: center; list-style: none; }
-    .nav-links a { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; color: var(--primary-blue); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--gold); }
-    .nav-links .nav-cta { border: 1px solid var(--gold); padding: 7px 16px; color: var(--gold); }
-    .nav-links .nav-cta:hover { background: var(--gold); color: #fff; }
-    @media (max-width: 600px) { .nav-links { display: none; } }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-brand img { width: 40px; height: 40px; object-fit: cover; border-radius: 2px; }
+    .nav-brand-text .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.76rem; letter-spacing: 2.5px; color: var(--primary-blue); }
+    .nav-brand-text .url { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.63rem; color: var(--gold); letter-spacing: 1px; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-btn {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 1.5px; color: var(--primary-blue); text-transform: uppercase;
+      background: none; border: 1px solid rgba(197,160,89,0.4); padding: 8px 16px;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .nav-dropdown-btn:hover, .nav-dropdown.open .nav-dropdown-btn { border-color: var(--gold); color: var(--gold); }
+    .nav-dropdown-btn .arrow { font-size: 0.55rem; transition: transform 0.25s; display: inline-block; }
+    .nav-dropdown.open .arrow { transform: rotate(180deg); }
+    .nav-dropdown-panel {
+      display: none; position: absolute; top: calc(100% + 12px); right: 0;
+      width: 290px; background: #fff;
+      border: 1px solid rgba(197,160,89,0.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.13); z-index: 2000;
+      animation: dropIn 0.2s ease;
+    }
+    .nav-dropdown.open .nav-dropdown-panel { display: block; }
+    @keyframes dropIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+    .nav-panel-section { padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .nav-panel-section:last-child { border-bottom: none; }
+    .nav-panel-label { font-family:'Montserrat',sans-serif; font-size:0.54rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--gold); padding:10px 22px 5px; display:block; }
+    .nav-panel-link { display:block; font-family:'Montserrat',sans-serif; font-size:0.69rem; font-weight:600; letter-spacing:1px; color:var(--primary-blue); text-decoration:none; padding:9px 22px; transition:all 0.15s; }
+    .nav-panel-link:hover { background:var(--cream); color:var(--gold); padding-left:30px; }
+    .nav-cta-btn { font-family:'Montserrat',sans-serif; font-size:0.66rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; border:1px solid var(--gold); padding:8px 16px; color:var(--gold); text-decoration:none; transition:all 0.2s; white-space:nowrap; }
+    .nav-cta-btn:hover { background:var(--gold); color:#fff; }
+    .nav-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+    .nav-hamburger span { display:block; width:24px; height:2px; background:var(--primary-blue); transition:all 0.3s; }
+    .nav-mobile-panel { display:none; position:fixed; top:68px; left:0; right:0; bottom:0; background:#fff; z-index:999; overflow-y:auto; padding:10px 0; border-top:1px solid var(--border); }
+    .nav-mobile-panel.open { display:block; }
+    .nav-mobile-label { font-family:'Montserrat',sans-serif; font-size:0.56rem; font-weight:800; letter-spacing:3px; color:var(--gold); text-transform:uppercase; padding:16px 28px 5px; display:block; }
+    .nav-mobile-link { display:block; font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:700; letter-spacing:1.5px; color:var(--primary-blue); text-decoration:none; padding:13px 28px; border-bottom:1px solid var(--border); text-transform:uppercase; transition:all 0.2s; }
+    .nav-mobile-link:hover { color:var(--gold); background:var(--cream); }
+    @media (max-width: 768px) { .nav-right { display:none; } .nav-hamburger { display:flex; } }
 
     /* ── HERO ── */
     #hero {
@@ -476,17 +508,68 @@
       <span class="url">culturalmusings.com</span>
     </div>
   </a>
-  <ul class="nav-links">
-    <li><a href="#about">ABOUT</a></li>
-    <li><a href="#publications">PUBLICATIONS</a></li>
-    <li><a href="#gurus-clan-section">GURU'S CLAN</a></li>
-    <li><a href="#natya-section">NATYA SHASTRA</a></li>
-    <li><a href="#shabda-brahman">SHABDA BRAHMAN</a></li>
-    <li><a href="#mudras-full">MUDRAS</a></li>
-    <li><a href="#references">REFERENCES</a></li>
-    <li><a href="#contact" class="nav-cta">INTRODUCTION</a></li>
-  </ul>
+
+  <!-- Desktop: dropdown + CTA -->
+  <div class="nav-right">
+    <div class="nav-dropdown" id="navDropdown">
+      <button class="nav-dropdown-btn" onclick="toggleNav()">
+        Explore Pages <span class="arrow">▼</span>
+      </button>
+      <div class="nav-dropdown-panel">
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Main</span>
+          <a href="#about" class="nav-panel-link" onclick="closeNav()">About the Author</a>
+          <a href="#publications" class="nav-panel-link" onclick="closeNav()">Publications &amp; Manuscripts</a>
+          <a href="#timeline" class="nav-panel-link" onclick="closeNav()">Research Timeline</a>
+          <a href="#media" class="nav-panel-link" onclick="closeNav()">Media &amp; Videos</a>
+        </div>
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Deep Research</span>
+          <a href="#gurus-clan-section" class="nav-panel-link" onclick="closeNav()">The Guru's Clan</a>
+          <a href="#natya-section" class="nav-panel-link" onclick="closeNav()">Natya Shastra &amp; 108 Karanas</a>
+          <a href="#shabda-brahman" class="nav-panel-link" onclick="closeNav()">Shabda Brahman — Science of Sound</a>
+          <a href="#mudras-full" class="nav-panel-link" onclick="closeNav()">Mudras — Complete Reference</a>
+        </div>
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Reference</span>
+          <a href="#references" class="nav-panel-link" onclick="closeNav()">References &amp; Contextual Sources</a>
+          <a href="#epilogue" class="nav-panel-link" onclick="closeNav()">Epilogue</a>
+          <a href="#future" class="nav-panel-link" onclick="closeNav()">Future &amp; MCP Roadmap</a>
+        </div>
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Connect</span>
+          <a href="#contact" class="nav-panel-link" onclick="closeNav()">Collaborate With Us</a>
+        </div>
+      </div>
+    </div>
+    <a href="#contact" class="nav-cta-btn">Introduction</a>
+  </div>
+
+  <!-- Mobile: hamburger -->
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile slide-down panel -->
+<div class="nav-mobile-panel" id="mobilePanel">
+  <span class="nav-mobile-label">Main</span>
+  <a href="#about" class="nav-mobile-link" onclick="closeMobile()">About the Author</a>
+  <a href="#publications" class="nav-mobile-link" onclick="closeMobile()">Publications &amp; Manuscripts</a>
+  <a href="#timeline" class="nav-mobile-link" onclick="closeMobile()">Research Timeline</a>
+  <a href="#media" class="nav-mobile-link" onclick="closeMobile()">Media &amp; Videos</a>
+  <span class="nav-mobile-label">Deep Research</span>
+  <a href="#gurus-clan-section" class="nav-mobile-link" onclick="closeMobile()">The Guru's Clan</a>
+  <a href="#natya-section" class="nav-mobile-link" onclick="closeMobile()">Natya Shastra &amp; 108 Karanas</a>
+  <a href="#shabda-brahman" class="nav-mobile-link" onclick="closeMobile()">Shabda Brahman</a>
+  <a href="#mudras-full" class="nav-mobile-link" onclick="closeMobile()">Mudras — Complete Reference</a>
+  <span class="nav-mobile-label">Reference</span>
+  <a href="#references" class="nav-mobile-link" onclick="closeMobile()">References &amp; Contextual Sources</a>
+  <a href="#epilogue" class="nav-mobile-link" onclick="closeMobile()">Epilogue</a>
+  <a href="#future" class="nav-mobile-link" onclick="closeMobile()">Future &amp; MCP Roadmap</a>
+  <span class="nav-mobile-label">Connect</span>
+  <a href="#contact" class="nav-mobile-link" onclick="closeMobile()">Collaborate With Us</a>
+</div>
 
 <!-- ══════════════ HERO ══════════════ -->
 <section id="hero">
@@ -1540,6 +1623,7 @@
     <a href="#shabda-brahman">SHABDA BRAHMAN</a>
     <a href="#mudras-full">MUDRAS</a>
     <a href="#references">REFERENCES</a>
+    <a href="#timeline">TIMELINE</a>
     <a href="#media">MEDIA</a>
     <a href="#contact">CONTACT</a>
   </nav>
@@ -1548,6 +1632,7 @@
 
 <audio id="vedic-audio" loop preload="auto">
   <source src="background-music.mp3" type="audio/mpeg">
+  <source src="background-music.ogg" type="audio/ogg">
 </audio>
 
 <!-- Floating Music Player -->
@@ -1601,6 +1686,26 @@
   /* NAV SCROLL */
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+
+  /* DROPDOWN NAV */
+  function toggleNav() {
+    document.getElementById('navDropdown').classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('navDropdown').classList.remove('open');
+  }
+  document.addEventListener('click', function(e) {
+    const dd = document.getElementById('navDropdown');
+    if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+  });
+
+  /* MOBILE NAV */
+  function toggleMobile() {
+    document.getElementById('mobilePanel').classList.toggle('open');
+  }
+  function closeMobile() {
+    document.getElementById('mobilePanel').classList.remove('open');
+  }
 
   /* PUBLICATIONS DATA */
   const volumes = [
@@ -1678,50 +1783,62 @@
   const musicBars = document.getElementById('music-bars');
   let isPlaying = false;
 
+  function fadeVolume(targetVol, duration, callback) {
+    const startVol = audio.volume;
+    const steps = 30;
+    const interval = duration / steps;
+    const step = (targetVol - startVol) / steps;
+    let count = 0;
+    const timer = setInterval(() => {
+      count++;
+      audio.volume = Math.max(0, Math.min(1, startVol + step * count));
+      if (count >= steps) {
+        clearInterval(timer);
+        audio.volume = targetVol;
+        if (callback) callback();
+      }
+    }, interval);
+  }
+
   function toggleMusic() {
     if (!isPlaying) {
+      audio.currentTime = 0;
       audio.volume = 0;
-      audio.play().then(() => {
-        isPlaying = true;
-        // Fade in
-        let vol = 0;
-        const fade = setInterval(() => {
-          if (vol < 0.25) { vol += 0.01; audio.volume = Math.min(vol, 0.25); }
-          else { clearInterval(fade); }
-        }, 150);
-        musicIcon.textContent = '⏸';
-        musicStatus.textContent = 'Playing';
-        musicBars.style.opacity = '1';
-      }).catch(() => {
-        musicStatus.textContent = 'Try again';
-      });
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isPlaying = true;
+          fadeVolume(0.25, 2000);
+          musicIcon.textContent = '⏸';
+          musicStatus.textContent = 'Now Playing';
+          musicBars.style.opacity = '1';
+        }).catch(err => {
+          musicStatus.textContent = 'Click ▶ to play';
+          console.log('Audio play error:', err);
+        });
+      }
     } else {
-      // Fade out then pause
-      let vol = audio.volume;
-      const fade = setInterval(() => {
-        if (vol > 0.01) { vol -= 0.02; audio.volume = Math.max(vol, 0); }
-        else {
-          clearInterval(fade);
-          audio.pause();
-          isPlaying = false;
-          musicIcon.textContent = '▶';
-          musicStatus.textContent = 'Paused';
-          musicBars.style.opacity = '0';
-        }
-      }, 80);
+      fadeVolume(0, 1000, () => {
+        audio.pause();
+        isPlaying = false;
+        musicIcon.textContent = '▶';
+        musicStatus.textContent = 'Click to play';
+        musicBars.style.opacity = '0';
+      });
     }
   }
 
-  // Also try to play on any first scroll or touch
-  let firstInteraction = false;
-  function tryAutoPlay() {
-    if (!firstInteraction && !isPlaying) {
-      firstInteraction = true;
+  // Try on first user interaction (scroll, touch, keydown)
+  let audioStarted = false;
+  function tryStart() {
+    if (!audioStarted) {
+      audioStarted = true;
       toggleMusic();
     }
   }
-  window.addEventListener('scroll', tryAutoPlay, { once: true });
-  window.addEventListener('touchstart', tryAutoPlay, { once: true });
+  ['scroll','touchstart','keydown','mousemove'].forEach(evt => {
+    window.addEventListener(evt, tryStart, { once: true, passive: true });
+  });
 </script>
 </body>
 </html>
