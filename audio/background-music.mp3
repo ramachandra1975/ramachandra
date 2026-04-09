@@ -1,36 +1,63 @@
 </script>
 
-<!-- VEDIC AUDIO -->
-<audio id="vedic-audio" loop>
-  <source src="audio/background-music.mp3" type="audio/mpeg">
-</audio>
+  const audio = document.getElementById('vedic-audio');
+  const musicIcon = document.getElementById('music-icon');
+  const musicStatus = document.getElementById('music-status');
+  const musicBars = document.getElementById('music-bars');
+  let isPlaying = false;
 
-<script>
-const audio = document.getElementById("vedic-audio");
-let started = false;
-
-function fadeInAudio() {
-  audio.volume = 0;
-  audio.play();
-
-  let vol = 0;
-  const fade = setInterval(() => {
-    if (vol < 0.2) {
-      vol += 0.01;
-      audio.volume = vol;
-    } else {
-      clearInterval(fade);
-    }
-  }, 200);
-}
-
-document.addEventListener("click", function init() {
-  if (!started) {
-    fadeInAudio();
-    started = true;
+  function fadeVolume(targetVol, duration, callback) {
+    const startVol = audio.volume;
+    const steps = 30;
+    const interval = duration / steps;
+    const step = (targetVol - startVol) / steps;
+    let count = 0;
+    const timer = setInterval(() => {
+      count++;
+      audio.volume = Math.max(0, Math.min(1, startVol + step * count));
+      if (count >= steps) {
+        clearInterval(timer);
+        audio.volume = targetVol;
+        if (callback) callback();
+      }
+    }, interval);
   }
-});
-</script>
 
+  function toggleMusic() {
+    if (!isPlaying) {
+      audio.currentTime = 0;
+      audio.volume = 0;
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isPlaying = true;
+          fadeVolume(0.25, 2000);
+          musicIcon.textContent = '⏸';
+          musicStatus.textContent = 'Now Playing';
+          musicBars.style.opacity = '1';
+        }).catch(err => {
+          musicStatus.textContent = 'Click ▶ to play';
+          console.log('Audio play error:', err);
+        });
+      }
+    } else {
+      fadeVolume(0, 1000, () => {
+        audio.pause();
+        isPlaying = false;
+        musicIcon.textContent = '▶';
+        musicStatus.textContent = 'Click to play';
+        musicBars.style.opacity = '0';
+      });
+    }
+  }
+
+  // Try on first user interaction (scroll, touch, keydown)
+  let audioStarted = false;
+  function tryStart() {
+    if (!audioStarted) {
+      audioStarted = true;
+      toggleMusic();
+    }
+  }
 </body>
 </html>
