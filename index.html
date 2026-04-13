@@ -1610,40 +1610,59 @@
 <section id="contact" class="wm-section">
   <div class="section-wrapper">
     <div class="contact-flex">
+
       <div class="contact-info">
-        <span class="section-label">Collaboration</span>
-        <h2 class="contact-h2">Collaborate<em>With Us</em></h2>
-        <p class="contact-intro">Seeking partners for clinical studies and scientific research into ancient knowledge systems, consciousness science, and bio-acoustic healing protocols.</p>
+        <span class="section-label">Get In Touch</span>
+        <h2 class="contact-h2">Collaborate<br /><em>With Us</em></h2>
+        <p class="contact-intro">For research collaborations, publication inquiries, lectures, and media appearances — reach out directly.</p>
         <div class="contact-entries">
-          <div class="contact-entry"><div class="contact-icon">📞</div><div class="contact-data"><label>Phone</label><p>+91 9121379100</p></div></div>
-          <div class="contact-entry"><div class="contact-icon">✉️</div><div class="contact-data"><label>Email</label><p>smith123846@gmail.com</p></div></div>
-          <div class="contact-entry"><div class="contact-icon">📍</div><div class="contact-data"><label>Base</label><p>India</p></div></div>
-          <div class="contact-entry"><div class="contact-icon">💻</div><div class="contact-data"><label>GitHub Repository</label><p>github.com/ramachandra1975/ramachandra</p></div></div>
+          <div class="contact-entry">
+            <div class="contact-icon">📞</div>
+            <div class="contact-data">
+              <label>Phone</label>
+              <p><a href="tel:+919121379100" style="color:inherit;text-decoration:none;">+91 91213 79100</a></p>
+            </div>
+          </div>
+          <div class="contact-entry">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-data">
+              <label>Email</label>
+              <p><a href="mailto:smith123846@gmail.com" style="color:inherit;text-decoration:none;">smith123846@gmail.com</a></p>
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="contact-form-wrap">
-        <h3>Send an Inquiry</h3>
-        <form onsubmit="handleSubmit(event)">
-          <div class="form-field"><input type="text" placeholder="Full Name" required /></div>
-          <div class="form-field"><input type="email" placeholder="Email Address" required /></div>
-          <div class="form-field"><input type="text" placeholder="Institution / Organization" /></div>
-          <div class="form-field">
-            <select required>
-              <option value="" disabled selected>Select Research Focus / Publication</option>
-              <option>Master Consciousness Protocol</option>
-              <option>Sapta Swaras &amp; Healing Science</option>
-              <option>108 Karanas &amp; Physical Mechanics</option>
-              <option>Bio-acoustics &amp; Resonant Universe</option>
-              <option>Sampoorna Manovijnana Sangraha</option>
-              <option>Paninian Grammar &amp; AI Frameworks</option>
-              <option>Guru's Clan &amp; Vedic Lineage</option>
-              <option>Natya Shastra Research</option>
-            </select>
-          </div>
-          <div class="form-field"><textarea placeholder="Research Interest / Message" rows="4"></textarea></div>
-          <button type="submit" class="btn-send">Send Inquiry <span class="arr">→</span></button>
-        </form>
+        <h3>Send an Enquiry</h3>
+        <div class="form-field">
+          <input type="text" id="cf_name" placeholder="Your Full Name" />
+        </div>
+        <div class="form-field">
+          <input type="email" id="cf_email" placeholder="Your Email Address" />
+        </div>
+        <div class="form-field">
+          <input type="tel" id="cf_phone" placeholder="Your Phone Number" />
+        </div>
+        <div class="form-field">
+          <select id="cf_subject">
+            <option value="">— Area of Interest —</option>
+            <option value="Research Collaboration">Research Collaboration</option>
+            <option value="Publications">Publications &amp; Manuscripts</option>
+            <option value="Lecture / Talk">Lecture / Talk Invitation</option>
+            <option value="Media">Media &amp; Press</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <textarea id="cf_message" placeholder="Your Message" rows="5"></textarea>
+        </div>
+        <div id="cf_status" style="display:none;font-family:'Montserrat',sans-serif;font-size:0.82rem;padding:12px 0;"></div>
+        <button class="btn-send" id="cf_btn" onclick="submitEnquiry()">
+          Send Enquiry <span class="arr">→</span>
+        </button>
       </div>
+
     </div>
   </div>
 </section>
@@ -1918,4 +1937,38 @@
   }
 </script>
 </body>
+  <script>
+function submitEnquiry() {
+  var name    = document.getElementById('cf_name').value.trim();
+  var email   = document.getElementById('cf_email').value.trim();
+  var phone   = document.getElementById('cf_phone').value.trim();
+  var subject = document.getElementById('cf_subject').value;
+  var message = document.getElementById('cf_message').value.trim();
+  var status  = document.getElementById('cf_status');
+  var btn     = document.getElementById('cf_btn');
+
+  if (!name || !email || !message) {
+    status.style.display = 'block';
+    status.style.color   = '#cc2200';
+    status.textContent   = '✗ Please fill in your name, email and message.';
+    return;
+  }
+
+  var body = 'Name: ' + name
+           + '\nEmail: ' + email
+           + '\nPhone: ' + phone
+           + '\nInterest: ' + subject
+           + '\n\nMessage:\n' + message;
+
+  var mailto = 'mailto:smith123846@gmail.com'
+             + '?subject=' + encodeURIComponent('New Enquiry from Website – ' + name)
+             + '&body='    + encodeURIComponent(body);
+
+  window.location.href = mailto;
+
+  status.style.display = 'block';
+  status.style.color   = '#2a7a2a';
+  status.textContent   = '✓ Your email client has opened. Please click Send to complete your enquiry.';
+}
+</script>
 </html>
