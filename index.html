@@ -3,752 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inquiry | Master Consciousness Protocol</title>
+    <title>Master Consciousness Protocol | Research Archive</title>
     <style>
-        /* 1. Reset and Base Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body, html {
-            height: 100%;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #ffffff; /* Clean white base */
-            overflow-x: hidden;
-        }
-
-        /* 2. Background Watermark Integration */
-        .page-wrapper {
-            min-height: 100vh;
-            width: 100%;
-            position: relative;
-            /* Using your repository file background.png */
-            background-image: url('background.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a2a40; line-height: 1.6; }
+        
+        /* 1. Global Watermark & Opening Page */
+        .page-one {
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 40px 20px;
-        }
-
-        /* Subtle overlay to ensure text readability against background.png */
-        .page-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.85); /* Not so dark, not so light */
-            z-index: 1;
-        }
-
-        .content-container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 800px;
             text-align: center;
+            position: relative;
+            background-image: url('background.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
         }
-
-        /* 3. Logo Integration */
-        .logo-center {
-            margin-bottom: 40px;
+        .page-one::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.7); z-index: 1;
         }
+        .logo-center { z-index: 2; width: 160px; margin-bottom: 20px; }
+        .hero-text { z-index: 2; font-weight: 800; font-size: 2.5rem; }
+        .hero-sub { z-index: 2; font-weight: 700; color: #d4af37; font-size: 1.5rem; margin-top: 10px; }
 
-        .logo-center img {
-            width: 150px; /* Balanced size */
-            height: auto;
-            border: none;
+        /* 2. Research Content Sections */
+        .content-section {
+            padding: 80px 10% ;
+            background-image: url('backdrop1.png');
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            border-bottom: 1px solid #d4af37;
         }
-
-        /* 4. Bold Typography & Form Elements */
-        h1 {
-            color: #1a2a40; /* Navy Blue */
-            font-weight: 800; /* Extra Bold */
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            color: #d4af37; /* Gold */
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        form {
-            text-align: left;
-            padding: 20px;
-        }
-
-        .field-group {
-            margin-bottom: 30px;
-        }
-
-        label {
-            display: block;
-            font-weight: 700; /* Bold and readable */
-            color: #1a2a40;
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid #d4af37;
-            padding: 12px 5px;
-            font-size: 1.05rem;
-            color: #1a2a40;
-            font-weight: 600;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        textarea {
-            border: 2px solid #d4af37;
+        .research-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
             border-radius: 4px;
-            margin-top: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
+        h2 { font-weight: 800; font-size: 2rem; color: #1a2a40; margin-bottom: 20px; border-left: 5px solid #d4af37; padding-left: 15px; }
+        .shloka { font-style: italic; color: #d4af37; font-weight: 700; margin: 20px 0; font-size: 1.1rem; }
+        strong { font-weight: 800; }
 
-        input:focus, select:focus, textarea:focus {
-            border-color: #1a2a40;
+        /* 3. Enquiry Form Styles */
+        .form-container { max-width: 700px; margin: 0 auto; padding: 40px; }
+        label { display: block; font-weight: 800; margin-bottom: 8px; color: #1a2a40; }
+        input, select, textarea { 
+            width: 100%; padding: 12px; margin-bottom: 25px; 
+            background: transparent; border: none; border-bottom: 2px solid #d4af37;
+            font-weight: 700; font-size: 1rem; outline: none;
         }
-
-        /* 5. Submit Button */
-        .submit-btn {
-            background-color: #1a2a40;
-            color: #d4af37;
-            border: none;
-            padding: 18px 45px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-            border-radius: 2px;
-        }
-
-        .submit-btn:hover {
-            background-color: #d4af37;
-            color: #1a2a40;
-            transform: translateY(-2px);
-        }
-
-        /* Styling the Select Dropdown options */
-        option {
-            background-color: #ffffff;
-            color: #1a2a40;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .logo-center img { width: 120px; }
+        button { 
+            background: #1a2a40; color: #d4af37; padding: 18px 40px; 
+            border: none; font-weight: 800; cursor: pointer; font-size: 1.1rem; width: 100%;
         }
     </style>
 </head>
 <body>
 
-    <div class="page-wrapper">
-        <div class="content-container">
-            
-            <div class="logo-center">
-                <img src="logo.jpg" alt="Aesthetics of Society Logo">
-            </div>
+    <section class="page-one">
+        <img src="logo.jpg" class="logo-center" alt="Logo">
+        <h1 class="hero-text">Let the light deep within illumine</h1>
+        <p class="hero-sub">Show everyone your light.</p>
+    </section>
 
-            <h1>Let the light deep within illumine</h1>
-            <p class="subtitle">Show everyone your light.</p>
+    <section class="content-section">
+        <div class="research-card">
+            <h2>I. Neurological Front: The Hand-Brain Axis</h2>
+            <p><strong>Mechanism:</strong> The human hand occupies the largest territory of the motor cortex (Penfield’s Homunculus). Mudras function as <strong>Neural Activation Protocols</strong>.</p>
+            <div class="shloka">"अयं मे हस्तो भगवान् अयं मे भगवत्तरः" (Rig Veda 10.137.12)</div>
+            <p><strong>Clinical Detail:</strong> The <strong>Mayura Mudra</strong> applies specific pressure to stimulate the Pineal-Hypothalamic Axis, directly regulating melatonin and cortisol levels.</p>
+        </div>
+    </section>
 
-            <form id="enquiryForm" onsubmit="handleInquiry(event)">
-                
-                <div class="field-group">
-                    <label for="name">Full Name / Academic Institution</label>
-                    <input type="text" id="name" required placeholder="Enter your name">
-                </div>
+    <section class="content-section">
+        <div class="research-card">
+            <h2>II. Astrophysical Front: The 108 Constant</h2>
+            <p><strong>Mechanism:</strong> Mapping the mathematical ratio of the Earth, Sun, and Moon to the <strong>108 Marma Sthanas</strong> in the human body.</p>
+            <div class="shloka">"ऋतं च सत्यं चाभीद्धात्तपसोऽध्यजायत" (Rig Veda 10.190.1)</div>
+            <p><strong>Observation:</strong> The practitioner acts as a biological antenna to synchronize with <strong>Ritam</strong> (Cosmic Order).</p>
+        </div>
+    </section>
 
-                <div class="field-group">
-                    <label for="topic">Research Domain of Inquiry</label>
-                    <select id="topic" required>
-                        <option value="" disabled selected>Select a Research Area...</option>
-                        <optgroup label="Core Research">
-                            <option>Master Consciousness Protocol (MCP)</option>
-                            <option>108 Karanas - Bio-Mechanical Coding</option>
-                            <option>Mudra Science - Neural Activation</option>
-                        </optgroup>
-                        <optgroup label="Bio-Acoustics">
-                            <option>Sapta Swaras - Bio-Acoustic Foundations</option>
-                            <option>Beeja Aksharas - Cranial Resonance</option>
-                            <option>Shabda Brahman - The Science of Sound</option>
-                        </optgroup>
-                        <optgroup label="Modern Synthesis">
-                            <option>Sanskrit in Artificial Intelligence</option>
-                            <option>Neuroscience & Vedic Epigenetics</option>
-                            <option>Astrophysical Constants (Ritam)</option>
-                        </optgroup>
-                        <optgroup label="Collaboration">
-                            <option>Scholarly Consortium Membership</option>
-                            <option>Publication / Author Inquiry</option>
-                        </optgroup>
-                    </select>
-                </div>
+    <section class="content-section">
+        <div class="research-card">
+            <h2>III. Epigenetic Front: Prana Informatics</h2>
+            <p><strong>Mechanism:</strong> <strong>Beeja Aksharas</strong> combined with Mudra form produce cranial resonance that stimulates the <strong>Vagus Nerve</strong>.</p>
+            <div class="shloka">"प्राणो ह पिता प्राणो माता" (Atharva Veda 11.8.32)</div>
+            <p><strong>Outcome:</strong> This resonance triggers <strong>BDNF release</strong>, promoting neuroplasticity and modulating gene expression.</p>
+        </div>
+    </section>
 
-                <div class="field-group">
-                    <label for="message">Detailed Inquiry / Proposal</label>
-                    <textarea id="message" rows="5" required placeholder="Please provide details of your research inquiry..."></textarea>
-                </div>
+    <section class="content-section" style="background: #ffffff;">
+        <div class="form-container">
+            <h2>Research Inquiry Portal</h2>
+            <form onsubmit="sendInquiry(event)">
+                <label>Name / Institution</label>
+                <input type="text" id="name" required>
 
-                <div style="text-align: center;">
-                    <button type="submit" class="submit-btn">SEND INQUIRY</button>
-                </div>
+                <label>Research Topic</label>
+                <select id="topic" required>
+                    <option value="Neurological">Neuro-Acoustics & Mudra Science</option>
+                    <option value="Astrophysical">Astrophysical Constants (108 Ratio)</option>
+                    <option value="Epigenetic">Vedic Epigenetics & BDNF</option>
+                    <option value="MCP">Master Consciousness Protocol</option>
+                </select>
 
+                <label>Your Inquiry</label>
+                <textarea id="message" rows="5" required></textarea>
+
+                <button type="submit">Show everyone your light.</button>
             </form>
         </div>
-    </div>
+    </section>
 
     <script>
-        function handleInquiry(event) {
+        function sendInquiry(event) {
             event.preventDefault();
-
-            // 1. Capture Data
             const name = document.getElementById('name').value;
             const topic = document.getElementById('topic').value;
             const message = document.getElementById('message').value;
 
-            // 2. Validation
-            if (!name || !topic || !message) {
-                alert("Protocol Error: All fields must be completed to ensure academic alignment.");
-                return;
-            }
+            alert("Samatva Achieved. Routing inquiry to smith123846@gmail.com.");
 
-            // 3. Zen Confirmation
-            alert("Equanimity (Samatva) achieved. Your data is being routed to smith123846@gmail.com.");
-
-            // 4. Construct Email
-            const subject = encodeURIComponent(`Research Inquiry: ${topic}`);
-            const body = encodeURIComponent(
-                `Researcher/User: ${name}\n` +
-                `Selected Topic: ${topic}\n\n` +
-                `Inquiry Details:\n${message}\n\n` +
-                `--- End of Scientific Inquiry ---`
-            );
-
-            // 5. Trigger Mail Client
+            const subject = encodeURIComponent("Inquiry: " + topic);
+            const body = encodeURIComponent("From: " + name + "\n\nDetails:\n" + message);
             window.location.href = `mailto:smith123846@gmail.com?subject=${subject}&body=${body}`;
         }
     </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inquiry | Master Consciousness Protocol</title>
-    <style>
-        /* 1. Reset and Base Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body, html {
-            height: 100%;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #ffffff; /* Clean white base */
-            overflow-x: hidden;
-        }
-
-        /* 2. Background Watermark Integration */
-        .page-wrapper {
-            min-height: 100vh;
-            width: 100%;
-            position: relative;
-            /* Using your repository file background.png */
-            background-image: url('background.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-
-        /* Subtle overlay to ensure text readability against background.png */
-        .page-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.85); /* Not so dark, not so light */
-            z-index: 1;
-        }
-
-        .content-container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-        }
-
-        /* 3. Logo Integration */
-        .logo-center {
-            margin-bottom: 40px;
-        }
-
-        .logo-center img {
-            width: 150px; /* Balanced size */
-            height: auto;
-            border: none;
-        }
-
-        /* 4. Bold Typography & Form Elements */
-        h1 {
-            color: #1a2a40; /* Navy Blue */
-            font-weight: 800; /* Extra Bold */
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            color: #d4af37; /* Gold */
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        form {
-            text-align: left;
-            padding: 20px;
-        }
-
-        .field-group {
-            margin-bottom: 30px;
-        }
-
-        label {
-            display: block;
-            font-weight: 700; /* Bold and readable */
-            color: #1a2a40;
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid #d4af37;
-            padding: 12px 5px;
-            font-size: 1.05rem;
-            color: #1a2a40;
-            font-weight: 600;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        textarea {
-            border: 2px solid #d4af37;
-            border-radius: 4px;
-            margin-top: 10px;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: #1a2a40;
-        }
-
-        /* 5. Submit Button */
-        .submit-btn {
-            background-color: #1a2a40;
-            color: #d4af37;
-            border: none;
-            padding: 18px 45px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-            border-radius: 2px;
-        }
-
-        .submit-btn:hover {
-            background-color: #d4af37;
-            color: #1a2a40;
-            transform: translateY(-2px);
-        }
-
-        /* Styling the Select Dropdown options */
-        option {
-            background-color: #ffffff;
-            color: #1a2a40;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .logo-center img { width: 120px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="page-wrapper">
-        <div class="content-container">
-            
-            <div class="logo-center">
-                <img src="logo.jpg" alt="Aesthetics of Society Logo">
-            </div>
-
-            <h1>Let the light deep within illumine</h1>
-            <p class="subtitle">Show everyone your light.</p>
-
-            <form id="enquiryForm" onsubmit="handleInquiry(event)">
-                
-                <div class="field-group">
-                    <label for="name">Full Name / Academic Institution</label>
-                    <input type="text" id="name" required placeholder="Enter your name">
-                </div>
-
-                <div class="field-group">
-                    <label for="topic">Research Domain of Inquiry</label>
-                    <select id="topic" required>
-                        <option value="" disabled selected>Select a Research Area...</option>
-                        <optgroup label="Core Research">
-                            <option>Master Consciousness Protocol (MCP)</option>
-                            <option>108 Karanas - Bio-Mechanical Coding</option>
-                            <option>Mudra Science - Neural Activation</option>
-                        </optgroup>
-                        <optgroup label="Bio-Acoustics">
-                            <option>Sapta Swaras - Bio-Acoustic Foundations</option>
-                            <option>Beeja Aksharas - Cranial Resonance</option>
-                            <option>Shabda Brahman - The Science of Sound</option>
-                        </optgroup>
-                        <optgroup label="Modern Synthesis">
-                            <option>Sanskrit in Artificial Intelligence</option>
-                            <option>Neuroscience & Vedic Epigenetics</option>
-                            <option>Astrophysical Constants (Ritam)</option>
-                        </optgroup>
-                        <optgroup label="Collaboration">
-                            <option>Scholarly Consortium Membership</option>
-                            <option>Publication / Author Inquiry</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="field-group">
-                    <label for="message">Detailed Inquiry / Proposal</label>
-                    <textarea id="message" rows="5" required placeholder="Please provide details of your research inquiry..."></textarea>
-                </div>
-
-                <div style="text-align: center;">
-                    <button type="submit" class="submit-btn">SEND INQUIRY</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-
-    <script>
-        function handleInquiry(event) {
-            event.preventDefault();
-
-            // 1. Capture Data
-            const name = document.getElementById('name').value;
-            const topic = document.getElementById('topic').value;
-            const message = document.getElementById('message').value;
-
-            // 2. Validation
-            if (!name || !topic || !message) {
-                alert("Protocol Error: All fields must be completed to ensure academic alignment.");
-                return;
-            }
-
-            // 3. Zen Confirmation
-            alert("Equanimity (Samatva) achieved. Your data is being routed to smith123846@gmail.com.");
-
-            // 4. Construct Email
-            const subject = encodeURIComponent(`Research Inquiry: ${topic}`);
-            const body = encodeURIComponent(
-                `Researcher/User: ${name}\n` +
-                `Selected Topic: ${topic}\n\n` +
-                `Inquiry Details:\n${message}\n\n` +
-                `--- End of Scientific Inquiry ---`
-            );
-
-            // 5. Trigger Mail Client
-            window.location.href = `mailto:smith123846@gmail.com?subject=${subject}&body=${body}`;
-        }
-    </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inquiry | Master Consciousness Protocol</title>
-    <style>
-        /* 1. Reset and Base Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body, html {
-            height: 100%;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #ffffff; /* Clean white base */
-            overflow-x: hidden;
-        }
-
-        /* 2. Background Watermark Integration */
-        .page-wrapper {
-            min-height: 100vh;
-            width: 100%;
-            position: relative;
-            /* Using your repository file background.png */
-            background-image: url('background.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-
-        /* Subtle overlay to ensure text readability against background.png */
-        .page-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.85); /* Not so dark, not so light */
-            z-index: 1;
-        }
-
-        .content-container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-        }
-
-        /* 3. Logo Integration */
-        .logo-center {
-            margin-bottom: 40px;
-        }
-
-        .logo-center img {
-            width: 150px; /* Balanced size */
-            height: auto;
-            border: none;
-        }
-
-        /* 4. Bold Typography & Form Elements */
-        h1 {
-            color: #1a2a40; /* Navy Blue */
-            font-weight: 800; /* Extra Bold */
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
-
-        .subtitle {
-            color: #d4af37; /* Gold */
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        form {
-            text-align: left;
-            padding: 20px;
-        }
-
-        .field-group {
-            margin-bottom: 30px;
-        }
-
-        label {
-            display: block;
-            font-weight: 700; /* Bold and readable */
-            color: #1a2a40;
-            margin-bottom: 10px;
-            font-size: 1rem;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid #d4af37;
-            padding: 12px 5px;
-            font-size: 1.05rem;
-            color: #1a2a40;
-            font-weight: 600;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        textarea {
-            border: 2px solid #d4af37;
-            border-radius: 4px;
-            margin-top: 10px;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: #1a2a40;
-        }
-
-        /* 5. Submit Button */
-        .submit-btn {
-            background-color: #1a2a40;
-            color: #d4af37;
-            border: none;
-            padding: 18px 45px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-            border-radius: 2px;
-        }
-
-        .submit-btn:hover {
-            background-color: #d4af37;
-            color: #1a2a40;
-            transform: translateY(-2px);
-        }
-
-        /* Styling the Select Dropdown options */
-        option {
-            background-color: #ffffff;
-            color: #1a2a40;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-            .logo-center img { width: 120px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="page-wrapper">
-        <div class="content-container">
-            
-            <div class="logo-center">
-                <img src="logo.jpg" alt="Aesthetics of Society Logo">
-            </div>
-
-            <h1>Let the light deep within illumine</h1>
-            <p class="subtitle">Show everyone your light.</p>
-
-            <form id="enquiryForm" onsubmit="handleInquiry(event)">
-                
-                <div class="field-group">
-                    <label for="name">Full Name / Academic Institution</label>
-                    <input type="text" id="name" required placeholder="Enter your name">
-                </div>
-
-                <div class="field-group">
-                    <label for="topic">Research Domain of Inquiry</label>
-                    <select id="topic" required>
-                        <option value="" disabled selected>Select a Research Area...</option>
-                        <optgroup label="Core Research">
-                            <option>Master Consciousness Protocol (MCP)</option>
-                            <option>108 Karanas - Bio-Mechanical Coding</option>
-                            <option>Mudra Science - Neural Activation</option>
-                        </optgroup>
-                        <optgroup label="Bio-Acoustics">
-                            <option>Sapta Swaras - Bio-Acoustic Foundations</option>
-                            <option>Beeja Aksharas - Cranial Resonance</option>
-                            <option>Shabda Brahman - The Science of Sound</option>
-                        </optgroup>
-                        <optgroup label="Modern Synthesis">
-                            <option>Sanskrit in Artificial Intelligence</option>
-                            <option>Neuroscience & Vedic Epigenetics</option>
-                            <option>Astrophysical Constants (Ritam)</option>
-                        </optgroup>
-                        <optgroup label="Collaboration">
-                            <option>Scholarly Consortium Membership</option>
-                            <option>Publication / Author Inquiry</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="field-group">
-                    <label for="message">Detailed Inquiry / Proposal</label>
-                    <textarea id="message" rows="5" required placeholder="Please provide details of your research inquiry..."></textarea>
-                </div>
-
-                <div style="text-align: center;">
-                    <button type="submit" class="submit-btn">SEND INQUIRY</button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-
-    <script>
-        function handleInquiry(event) {
-            event.preventDefault();
-
-            // 1. Capture Data
-            const name = document.getElementById('name').value;
-            const topic = document.getElementById('topic').value;
-            const message = document.getElementById('message').value;
-
-            // 2. Validation
-            if (!name || !topic || !message) {
-                alert("Protocol Error: All fields must be completed to ensure academic alignment.");
-                return;
-            }
-
-            // 3. Zen Confirmation
-            alert("Equanimity (Samatva) achieved. Your data is being routed to smith123846@gmail.com.");
-
-            // 4. Construct Email
-            const subject = encodeURIComponent(`Research Inquiry: ${topic}`);
-            const body = encodeURIComponent(
-                `Researcher/User: ${name}\n` +
-                `Selected Topic: ${topic}\n\n` +
-                `Inquiry Details:\n${message}\n\n` +
-                `--- End of Scientific Inquiry ---`
-            );
-
-            // 5. Trigger Mail Client
-            window.location.href = `mailto:smith123846@gmail.com?subject=${subject}&body=${body}`;
-        }
-    </script>
-
 </body>
 </html>
