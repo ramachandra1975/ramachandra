@@ -1,143 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aesthetics of Society | Naredla Rama Chandra</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetics of Society | 27-Page Master Manuscript</title>
+    <style>
+        /* RESET & LAYER ISOLATION */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        :root {
+            --nav-height: 80px;
+            --page-width: 210mm;
+            --page-height: 297mm;
+            --border-heavy: #000000;
+        }
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&family=Great+Vibes&display=swap" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #f5f5f5;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
 
-  <style>
-    :root { --navy: #1a365d; --gold: #c5a059; }
-    body { font-family: 'Cormorant Garamond', serif; }
+        /* UNBLOCKED NAVIGATION WITH DROPDOWN LOGIC */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: #ffffff;
+            border-bottom: 2px solid var(--border-heavy);
+            z-index: 10000; /* High base layer */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+        }
 
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      color: white;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: opacity 3s ease-in-out;
-      z-index: 1;
-    }
-    .hero-bg.active { opacity: 1; }
+        .brand { font-weight: bold; font-size: 1.2rem; text-transform: uppercase; }
 
-    .watermark-logo {
-      position: absolute;
-      top: 35px;
-      left: 50px;
-      z-index: 3;
-      opacity: 0.78;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
-    }
-    .watermark-logo h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin: 0;
-      letter-spacing: 1.5px;
-      color: white;
-    }
-    .watermark-logo small {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
-      color: #f5f0e6;
-      letter-spacing: 1px;
-    }
+        .menu-wrapper { display: flex; gap: 30px; position: relative; }
 
-    .hero-content { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; padding: 0 20px; }
-    .tagline { font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 20px; color: #e8d9c0; }
-    .cursive { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: #f5f0e6; margin-bottom: 10px; }
-    .main-title { font-size: 5.2rem; line-height: 1.05; font-weight: 700; }
-    .main-title span { color: var(--gold); }
-    .subtitle { font-size: 1.25rem; max-width: 680px; margin: 0 auto 45px; letter-spacing: 0.5px; }
+        .menu-item { position: relative; }
 
-    .btn-explore { background: var(--navy); color: white; padding: 14px 38px; font-weight: 600; }
-    .btn-author { background: transparent; color: white; border: 2px solid white; padding: 14px 38px; font-weight: 600; }
-  </style>
+        /* The requested dropdown fix */
+        .dropdown-content {
+            position: absolute;
+            z-index: 10000; /* Higher number brings it to the front */
+            background: #ffffff;
+            border: 1px solid var(--border-heavy);
+            min-width: 220px;
+            display: none; /* Hidden by default */
+            top: 100%;
+            left: 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .menu-item:hover .dropdown-content {
+            display: block; /* Shows on hover */
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #000;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-content a:hover { background: #f9f9f9; }
+
+        /* EXPANDED 27-PAGE MANUSCRIPT */
+        .manuscript-body {
+            margin-top: calc(var(--nav-height) + 20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            background: #ffffff;
+            width: var(--page-width);
+            min-height: var(--page-height); /* Forces expansion */
+            margin-bottom: 50px;
+            padding: 25mm 20mm;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-content { flex: 1; }
+
+        .page-footer {
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        h1 { font-size: 2.6rem; border-bottom: 3px double #000; padding-bottom: 10px; margin-bottom: 20px; }
+        h2 { font-size: 1.8rem; margin: 1rem 0; font-weight: normal; border-left: 5px solid #000; padding-left: 15px; }
+
+        /* CONTACT FORM SECTION */
+        .inquiry-form-container {
+            background: #fafafa;
+            border: 1px solid #ccc;
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .inquiry-form-container input, .inquiry-form-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #999;
+            font-family: inherit;
+        }
+
+        .submit-trigger {
+            background: #000;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* PRINT CONFIGURATION */
+        @media print {
+            nav { display: none; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; width: 100%; }
+            .manuscript-body { margin-top: 0; }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Navbar - Exact as in screenshot -->
-  <nav class="navbar navbar-expand-lg fixed-top bg-white shadow-sm">
-    <div class="container">
-      <div class="d-flex align-items-center">
-        <span style="color: var(--navy); font-weight: 700; font-size: 1.1rem;">AESTHETICS OF SOCIETY</span>
-        <small class="ms-2 text-muted" style="font-size: 0.95rem;">culturalmusings.com</small>
-      </div>
-      <div class="ms-auto">
-        <button class="btn btn-outline-secondary me-2">EXPLORE PAGES ▼</button>
-        <button class="btn btn-outline-secondary">INTRODUCTION</button>
-      </div>
+    <nav>
+        <div class="brand">Aesthetics of Society</div>
+        <div class="menu-wrapper">
+            <div class="menu-item">
+                <a href="#" style="text-decoration:none; color:#000; font-weight:bold; font-size:0.85rem;">RESEARCH PORTALS ▼</a>
+                <div class="dropdown-content">
+                    <a href="https://nada-chikitsa.culturalmusings.com" target="_blank">Nada Chikitsa</a>
+                    <a href="https://natyashastra.culturalmusings.com" target="_blank">Natya Shastra</a>
+                    <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank">MCP Protocol</a>
+                    <a href="https://bioresonancemusings.culturalmusings.com" target="_blank">Bioresonance</a>
+                </div>
+            </div>
+            <a href="#p27" style="text-decoration:none; color:#000; font-weight:bold; font-size:0.85rem;">INQUIRY</a>
+        </div>
+    </nav>
+
+    <div class="manuscript-body">
+
+        <article class="page" id="p1">
+            <div class="page-content" style="text-align: center; padding-top: 80mm;">
+                <h1>AESTHETICS OF SOCIETY</h1>
+                <p>Bridging Ancient Wisdom with Modern Neuroscience & Bio-acoustics</p>
+                <div style="margin-top: 50px;">
+                    <p><strong>Naredla Rama Chandra</strong></p>
+                    <p>India | +91 9121379100</p>
+                </div>
+            </div>
+            <div class="page-footer"><span>Author Archive</span><span>Page 01 of 27</span></div>
+        </article>
+
+        <article class="page" id="p2">
+            <div class="page-content">
+                <h2>Vedic Bio-Acoustics</h2>
+                <p style="font-style: italic; background:#f9f9f9; padding:20px; border-left:5px solid #000;">
+                    Rig Veda · 10.71.1: बृहस्पते ! प्रथमं वाचो अग्रं यत्प्रैरत नामधेयं दधानाः...
+                </p>
+                <p>This research maps the "Primordial Sound" (Nada Brahman) to modern bio-acoustic theories. The complete therapeutic dataset is managed via the <strong>Nada-Chikitsa</strong> research domain.</p>
+            </div>
+            <div class="page-footer"><span>Scriptural Foundations</span><span>Page 02 of 27</span></div>
+        </article>
+
+        <div id="dynamic-expansion-zone"></div>
+
+        <article class="page" id="p27">
+            <div class="page-content">
+                <h2>Research Inquiry & Collaboration</h2>
+                <p>Seeking partners for clinical studies and scientific research into consciousness science and bio-acoustic healing protocols.</p>
+                
+                <div class="inquiry-form-container">
+                    <form action="mailto:smith123846@gmail.com" method="post" enctype="text/plain">
+                        <input type="text" name="name" placeholder="Researcher Full Name" required>
+                        <input type="text" name="domain" placeholder="Area of Interest (e.g. 108 Karanas)">
+                        <textarea name="message" rows="8" placeholder="Please describe the nature of your inquiry..."></textarea>
+                        <p style="margin-bottom:10px;">Direct Phone: +91 9121379100</p>
+                        <button type="submit" class="submit-trigger">Submit to smith123846@gmail.com</button>
+                    </form>
+                </div>
+            </div>
+            <div class="page-footer"><span>Contact Portal</span><span>Page 27 of 27</span></div>
+        </article>
+
     </div>
-  </nav>
 
-  <!-- Hero - Exact words and layout from your image -->
-  <section id="hero" class="hero">
-    <div class="hero-bg active" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4');"></div>
-    <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1519904981063-b0cf448d479e');"></div>
-    <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05');"></div>
+    <script>
+        // SCRIPT TO ENSURE FULL 27-PAGE EXPANSION
+        const expansionZone = document.getElementById('dynamic-expansion-zone');
+        
+        for (let i = 3; i <= 26; i++) {
+            let sectionName = "Master Consciousness Protocol Archive";
+            if (i > 10) sectionName = "Natya Shastra & Kinematic Studies";
+            if (i > 20) sectionName = "Bioresonance & Siddha Research";
 
-    <!-- Watermark Logo -->
-    <div class="watermark-logo">
-      <h1>AESTHETICS OF SOCIETY</h1>
-      <small>culturalmusings.com</small>
-    </div>
+            const p = document.createElement('article');
+            p.className = 'page';
+            p.id = p${i};
+            p.innerHTML = `
+                <div class="page-content">
+                    <h2>${sectionName}</h2>
+                    <p>Section ${i} research data expansion area. This page is part of the 27-page master manuscript structure.</p>
+                    <div style="height:140mm; border:1px dashed #ddd; margin-top:20px; display:flex; align-items:center; justify-content:center; color:#bbb;">
+                        [Data Expansion Slot ${i}]
+                    </div>
+                </div>
+                <div class="page-footer"><span>Research Compendium</span><span>Page ${i < 10 ? '0' + i : i} of 27</span></div>
+            `;
+            expansionZone.appendChild(p);
+        }
 
-    <div class="hero-content">
-      <p class="tagline">INDEPENDENT RESEARCHER & AUTHOR • EST. 2010</p>
-      
-      <p class="cursive">Let the light deep within illumine</p>
-      
-      <h1 class="main-title">
-        Aesthetics <span>of Society</span>
-      </h1>
-      
-      <p class="subtitle">
-        BRIDGING ANCIENT INDIAN SYSTEMS WITH MODERN<br>
-        NEUROSCIENCE & BIO-ACOUSTICS
-      </p>
-
-      <div class="d-flex justify-content-center gap-3 flex-wrap mt-4">
-        <a href="#publications" class="btn btn-explore btn-lg">EXPLORE PUBLICATIONS</a>
-        <a href="#about" class="btn btn-author btn-lg">ABOUT THE AUTHOR</a>
-      </div>
-
-      <div class="mt-5">
-        <button onclick="toggleAmbience()" class="btn btn-dark btn-lg px-5 d-flex align-items-center gap-3 mx-auto">
-          <span style="font-size:1.6rem;">▶</span>
-          <div><strong>SACRED AMBIENCE</strong><br><small>Click to play</small></div>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    // Background rotation (primary first)
-    let current = 0;
-    const bgs = document.querySelectorAll('.hero-bg');
-    function rotate() {
-      bgs.forEach(bg => bg.classList.remove('active'));
-      current = (current + 1) % bgs.length;
-      bgs[current].classList.add('active');
-    }
-    setTimeout(() => setInterval(rotate, 9000), 11000);
-
-    function toggleAmbience() {
-      alert("Sacred Ambience audio will play here.");
-    }
-  </script>
+        console.log("27-Page Structure Expanded and Dropdown Z-Index Active.");
+    </script>
 </body>
 </html>
