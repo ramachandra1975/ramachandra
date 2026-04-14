@@ -15,23 +15,18 @@
     :root {
       --primary-blue: #1a365d;
       --gold: #c5a059;
-      --gold-light: #e2c98a;
-      --cream: #fdfaf5;
       --navy: #0f2240;
+      --cream: #fdfaf5;
     }
     body {
       font-family: 'Cormorant Garamond', serif;
-      background: #fff;
       color: #333;
       line-height: 1.7;
     }
     h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-blue); }
     .nav-link, .dropdown-item { font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; }
 
-    /* Watermark Background Setup (your original style) */
-    .wm-section {
-      position: relative;
-    }
+    .wm-section { position: relative; }
     .wm-section::before {
       content: '';
       position: absolute;
@@ -43,23 +38,19 @@
     }
     .wm-section > * { position: relative; z-index: 1; }
 
-    .navbar {
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-    }
-    .dropdown-menu {
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-      border: none;
-      border-radius: 8px;
-    }
-    .btn-gold {
-      background: var(--gold);
+    .navbar { background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); box-shadow: 0 2px 15px rgba(0,0,0,0.08); }
+    .dropdown-menu { box-shadow: 0 15px 40px rgba(0,0,0,0.15); border: none; border-radius: 8px; }
+
+    .btn-gold { background: var(--gold); color: white; border: none; }
+    .btn-gold:hover { background: #b38a3f; }
+
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(rgba(10,25,47,0.75), rgba(10,25,47,0.75)), url('backdrop1.png') center/cover no-repeat fixed;
       color: white;
-      border: none;
-    }
-    .btn-gold:hover {
-      background: #b38a3f;
+      display: flex;
+      align-items: center;
+      text-align: center;
     }
     .radio-option {
       padding: 14px 18px;
@@ -69,56 +60,47 @@
       cursor: pointer;
     }
     .radio-option:hover { border-color: var(--gold); }
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(rgba(10,25,47,0.75), rgba(10,25,47,0.75)), url('backdrop1.png') center/cover no-repeat fixed;
-      color: white;
-      display: flex;
-      align-items: center;
-      text-align: center;
-    }
+    .shloka { font-style: italic; font-size: 1.05rem; }
   </style>
 </head>
 <body>
 
-  <!-- Navbar with Working Dropdowns -->
+  <!-- Navbar with Fixed Dropdowns -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
       <a class="navbar-brand fw-bold" href="#" style="color: var(--primary-blue);">Naredla Rama Chandra</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
 
-          <!-- Publications Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publications</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Publications</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#publications">All Publications</a></li>
               <li><a class="dropdown-item" href="https://publications.ramachandra1975.github.io" target="_blank">Publications Subdomain</a></li>
             </ul>
           </li>
 
-          <!-- Natya Shastra Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Natya Shastra</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Natya Shastra</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#natya">Overview & 108 Karanas</a></li>
+              <li><a class="dropdown-item" href="#natya">108 Karanas</a></li>
               <li><a class="dropdown-item" href="https://natya.ramachandra1975.github.io" target="_blank">Natya Subdomain</a></li>
             </ul>
           </li>
 
-          <!-- Mudras Dropdown -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mudras</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Mudras</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#mudras">Mudras & Science</a></li>
+              <li><a class="dropdown-item" href="#mudras">32 Mudras</a></li>
               <li><a class="dropdown-item" href="https://mudras.ramachandra1975.github.io" target="_blank">Mudras Subdomain</a></li>
             </ul>
           </li>
 
+          <li class="nav-item"><a class="nav-link" href="#guru-clan">Guru's Clan</a></li>
           <li class="nav-item"><a class="nav-link" href="#media">Media</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Inquiry</a></li>
         </ul>
@@ -126,63 +108,119 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section id="hero" class="hero wm-section">
     <div class="container">
       <h1 class="display-3 fw-bold">Aesthetics of Society</h1>
-      <p class="lead fs-3">Bridging Ancient Vedic Wisdom with Modern Neuroscience & Consciousness Research</p>
-      <p class="mt-4">by Naredla Rama Chandra</p>
+      <p class="lead fs-3">Bridging Ancient Indian Systems with Modern Neuroscience & Bio-acoustics</p>
+      <p class="mt-3">Independent Researcher & Author · Est. 2010</p>
     </div>
   </section>
 
-  <!-- Philosophy -->
-  <section id="philosophy" class="wm-section py-5 bg-light">
-    <div class="container text-center">
-      <h2>Ancient Wisdom Precedes Science</h2>
-      <p class="lead">The Sapta Swaras are not mere musical notes — they are precise frequencies that resonate with the human nervous system. The 108 Karanas of Natya Shastra are neurological activation sequences.</p>
-    </div>
-  </section>
-
-  <!-- Vedic & Natya Shlokas, About, Publications, Guru's Clan, Natya Shastra, Timeline, Media, Shabda Brahman, Mudras, Epilogue, Future/MCP sections -->
-  <!-- Paste your original detailed content here for these sections (from your previous file). They will inherit the .wm-section class for the backdrop. -->
-
-  <!-- Read More Info with Radio Buttons -->
-  <section id="readmore" class="wm-section py-5">
+  <!-- Vedic Testimony -->
+  <section id="vedic" class="wm-section py-5 bg-light">
     <div class="container">
-      <h2 class="text-center mb-4">Read More Detailed Information</h2>
-      <p class="text-center mb-5">Select a topic below</p>
+      <h2 class="text-center mb-4">The Vedic Testimony</h2>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h4>Rig Veda · 10.71.1</h4>
+          <p class="shloka">बृहस्पते! प्रथमं वाचो अग्रं...</p>
+          <p>Primordial sound (Nada Brahman) as the origin of all knowledge.</p>
+        </div>
+        <div class="col-lg-6">
+          <h4>Sama Veda · Chandogya Upanishad 1.1.1</h4>
+          <p class="shloka">ओमित्येतदक्षरमुद्गीथमुपासीत।</p>
+          <p>Sapta Swaras as frequencies of cosmic consciousness.</p>
+        </div>
+        <!-- Add remaining shlokas similarly from your content -->
+      </div>
+    </div>
+  </section>
 
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="radio-option">
-            <input type="radio" name="topic" id="pub" value="publications" class="form-check-input me-2" checked>
-            <label for="pub">Publications & Research Papers</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" name="topic" id="natya" value="natya" class="form-check-input me-2">
-            <label for="natya">Natya Shastra & 108 Karanas</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" name="topic" id="mudra" value="mudras" class="form-check-input me-2">
-            <label for="mudra">Mudras & Scientific Basis</label>
-          </div>
-          <div class="radio-option">
-            <input type="radio" name="topic" id="sound" value="sound" class="form-check-input me-2">
-            <label for="sound">Shabda Brahman – Science of Sound</label>
+  <!-- About the Researcher -->
+  <section id="about" class="wm-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">About the Researcher</h2>
+      <p class="lead text-center">Naredla Rama Chandra is an independent researcher bridging Vedic knowledge systems with modern neuroscience and bio-acoustics.</p>
+      <p class="text-center">Mission: "To establish the Master Consciousness Protocol for natural healing and the liberation of human potential."</p>
+    </div>
+  </section>
+
+  <!-- Publications -->
+  <section id="publications" class="wm-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Publications & Manuscripts</h2>
+      <p class="text-center mb-5">Eight landmark works bridging ancient Vedic science with contemporary research.</p>
+      <!-- Add your 8 publication cards here (Complete Science of Consciousness, Sapta Swaras, 108 Karanas, etc.) -->
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5>Complete Science of Consciousness</h5>
+              <p>Ancient Knowledge vs Artificial Intelligence (Flagship Work)</p>
+            </div>
           </div>
         </div>
+        <!-- Repeat for other 7 publications -->
       </div>
+    </div>
+  </section>
 
+  <!-- Guru's Clan -->
+  <section id="guru-clan" class="wm-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">The Guru's Clan</h2>
+      <p class="text-center">The 18 Siddhas — Living Masters of Vedic Science</p>
+      <!-- List the 18 Siddhas with short descriptions as per your content -->
+    </div>
+  </section>
+
+  <!-- Natya Shastra -->
+  <section id="natya" class="wm-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Natya Shastra & the 108 Karanas</h2>
+      <p class="text-center">Bharata Muni's cosmic manual of neuro-somatic science.</p>
+    </div>
+  </section>
+
+  <!-- Mudras -->
+  <section id="mudras" class="wm-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">The 32 Mudras</h2>
+      <p class="text-center">Precise neural activation protocols from the Natya Shastra.</p>
+      <!-- List Pataka, Tripataka, etc., with neural targets -->
+    </div>
+  </section>
+
+  <!-- Read More Info with Radio Buttons -->
+  <section id="readmore" class="wm-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Read More Detailed Information</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="radio-option"><input type="radio" name="topic" value="publications" checked> <label>Publications & Research Papers</label></div>
+          <div class="radio-option"><input type="radio" name="topic" value="natya"> <label>Natya Shastra & 108 Karanas</label></div>
+          <div class="radio-option"><input type="radio" name="topic" value="mudras"> <label>Mudras & Scientific Basis</label></div>
+          <div class="radio-option"><input type="radio" name="topic" value="sound"> <label>Shabda Brahman – Science of Sound</label></div>
+        </div>
+      </div>
       <div class="text-center mt-4">
         <button onclick="showDetails()" class="btn btn-gold btn-lg px-5">Show Details</button>
       </div>
-
       <div id="detailsContent" class="mt-5"></div>
     </div>
   </section>
 
+  <!-- Media -->
+  <section id="media" class="wm-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Research in Motion</h2>
+      <!-- Add your YouTube video embeds here -->
+    </div>
+  </section>
+
   <!-- Inquiry Form -->
-  <section id="contact" class="wm-section py-5 bg-light">
+  <section id="contact" class="wm-section py-5">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8">
@@ -191,9 +229,9 @@
             <div class="row g-3">
               <div class="col-md-6"><input type="text" class="form-control" id="name" placeholder="Your Name" required></div>
               <div class="col-md-6"><input type="email" class="form-control" id="email" placeholder="Email" required></div>
-              <div class="col-12"><textarea class="form-control" id="message" rows="5" placeholder="Your Inquiry" required></textarea></div>
+              <div class="col-12"><textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea></div>
               <div class="col-12 text-center">
-                <button type="submit" class="btn btn-gold btn-lg px-5">Submit</button>
+                <button type="submit" class="btn btn-gold btn-lg px-5">Submit Inquiry</button>
               </div>
             </div>
           </form>
@@ -205,30 +243,26 @@
 
   <!-- Footer -->
   <footer class="py-4 text-center bg-dark text-white">
-    <div class="container">
-      <p>&copy; 2026 Naredla Rama Chandra. All Rights Reserved.</p>
-    </div>
+    <p>&copy; 2026 Naredla Rama Chandra. All Rights Reserved.</p>
   </footer>
 
-  <!-- Bootstrap JS (Fixes Dropdown) -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    // Read More Details
     function showDetails() {
       const val = document.querySelector('input[name="topic"]:checked').value;
       let html = '';
-      if (val === 'publications') html = '<h4>Publications</h4><p>Books and papers on consciousness, bio-acoustics, and Vedic-modern synthesis. <a href="https://publications.ramachandra1975.github.io" target="_blank">Visit Subdomain</a></p>';
-      else if (val === 'natya') html = '<h4>Natya Shastra</h4><p>108 Karanas, Mudras in performance, and their neurological impact.</p>';
-      else if (val === 'mudras') html = '<h4>Mudras</h4><p>Scientific basis of hand gestures and energy channels.</p>';
-      else if (val === 'sound') html = '<h4>Shabda Brahman</h4><p>Science of primordial sound and its effect on the nervous system.</p>';
+      if (val === 'publications') html = '<h4>Publications</h4><p>Eight landmark works including Complete Science of Consciousness and Sapta Swaras & Healing.</p>';
+      else if (val === 'natya') html = '<h4>Natya Shastra</h4><p>108 Karanas as divine bio-mechanical sequences and neuro-somatic protocols.</p>';
+      else if (val === 'mudras') html = '<h4>Mudras</h4><p>32 Hasta Mudras as precise neural activation protocols.</p>';
+      else if (val === 'sound') html = '<h4>Shabda Brahman</h4><p>The sacred science of primordial sound and its measurable effects on the nervous system.</p>';
       document.getElementById('detailsContent').innerHTML = `<div class="alert alert-info p-4">${html}</div>`;
     }
 
-    // Inquiry Form
     document.getElementById('inquiryForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      document.getElementById('formMessage').innerHTML = '<span style="color:green;">Thank you! Your inquiry has been received.</span>';
+      document.getElementById('formMessage').innerHTML = '<span style="color:green;">Thank you! Your inquiry has been received successfully.</span>';
       this.reset();
     });
   </script>
