@@ -133,23 +133,6 @@
           .philosophy-text .bold-sans { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1.5rem,3.2vw,2.8rem); letter-spacing: -1px; }
           .philosophy-text .dash { color: var(--gold); margin: 0 8px; }
 
-          /* â”€â”€ VEDIC SHLOKAS (4 from 4 Vedas) â”€â”€ */
-          #vedic-shlokas { background: var(--navy); padding: 90px 40px; }
-          .shlokas-inner { max-width: 1200px; margin: 0 auto; }
-          .shlokas-header { text-align: center; margin-bottom: 64px; }
-          .shlokas-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color: #fff; font-weight: 400; font-style: italic; margin-top: 12px; }
-          .shloka-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
-          .shloka-card { border: 1px solid rgba(197,160,89,0.3); padding: 38px 32px; position: relative; transition: border-color 0.35s, transform 0.35s; }
-          .shloka-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-          .shloka-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--gold); transition: height 0.4s; }
-          .shloka-card:hover::before { height: 100%; }
-          .shloka-source { font-family: 'Montserrat', sans-serif; font-size: 0.56rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: block; }
-          .shloka-sanskrit { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-style: italic; color: rgba(255,255,255,0.9); line-height: 1.75; margin-bottom: 16px; border-bottom: 1px solid rgba(197,160,89,0.2); padding-bottom: 16px; }
-          .shloka-translation { font-family: 'Cormorant Garamond', serif; font-size: 0.97rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 14px; }
-          .shloka-relevance { font-family: 'Montserrat', sans-serif; font-size: 0.64rem; font-weight: 600; letter-spacing: 1px; color: var(--gold-light); border-top: 1px solid rgba(197,160,89,0.2); padding-top: 14px; }
-
-          /* â”€â”€ NATYA SHASTRA SHLOKAS (after Vedic) â”€â”€ */
-          #natya-shlokas { background: linear-gradient(rgba(15,34,64,0.92),rgba(15,34,64,0.92)), url('backdrop1.png') center/cover no-repeat; padding: 90px 40px; }
 
           /* â”€â”€ ABOUT AUTHOR â”€â”€ */
           #about { background: var(--cream); }
@@ -231,14 +214,7 @@
           .gc-hero h2 em { color: var(--gold); font-style: italic; }
           .hero-line { width: 44px; height: 2px; background: var(--gold); margin: 0 auto 22px; position: relative; z-index: 1; }
           .hero-label-gc { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; position: relative; z-index: 1; }
-
-          /* Upanishadic shlokas in GC hero */
-          .gc-shlokas { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
-          .gc-shloka { border: 1px solid rgba(197,160,89,0.35); padding: 32px 28px; text-align: left; transition: border-color 0.35s; background: rgba(15,34,64,0.3); backdrop-filter: blur(4px); }
-          .gc-shloka:hover { border-color: var(--gold); }
-          .gc-source { font-family: 'Montserrat', sans-serif; font-size: 0.56rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 14px; }
-          .gc-sanskrit { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(197,160,89,0.2); }
-          .gc-translation { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+     
 
           /* GC origin chain */
           #gc-origin { background: var(--navy); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
@@ -306,14 +282,7 @@
           .ns-hero h2 em { color: var(--gold); font-style: italic; }
           .ns-hero-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.1rem,2.2vw,1.5rem); color: rgba(255,255,255,0.65); max-width: 720px; line-height: 1.7; margin: 0 auto 0; }
 
-          /* NS Shlokas inside hero */
-          .ns-shlokas { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 22px; max-width: 1100px; margin: 48px auto 0; width: 100%; }
-          .ns-shloka { border: 1px solid rgba(197,160,89,0.35); padding: 30px 26px; text-align: left; background: rgba(15,34,64,0.3); backdrop-filter: blur(4px); transition: border-color 0.35s; }
-          .ns-shloka:hover { border-color: var(--gold); }
-          .ns-source { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 13px; }
-          .ns-sanskrit { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 11px; padding-bottom: 11px; border-bottom: 1px solid rgba(197,160,89,0.2); }
-          .ns-translation { font-family: 'Cormorant Garamond', serif; font-size: 0.93rem; color: rgba(255,255,255,0.6); line-height: 1.68; }
-
+          
           /* NS intro */
           #ns-intro { background: var(--cream); }
           .ns-intro-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: start; }
