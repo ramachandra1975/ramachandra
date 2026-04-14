@@ -1,239 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | 27-Page Master Manuscript</title>
-    <style>
-        /* RESET & LAYER ISOLATION */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        
-        :root {
-            --nav-height: 80px;
-            --page-width: 210mm;
-            --page-height: 297mm;
-            --border-heavy: #000000;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetics of Society | Naredla Rama Chandra</title>
 
-        body {
-            font-family: 'Times New Roman', serif;
-            background-color: #f5f5f5;
-            color: #1a1a1a;
-            line-height: 1.7;
-        }
+  <!-- Bootstrap 5.3.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+  <!-- Google Fonts (your original) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
 
-        /* UNBLOCKED NAVIGATION WITH DROPDOWN LOGIC */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: var(--nav-height);
-            background: #ffffff;
-            border-bottom: 2px solid var(--border-heavy);
-            z-index: 10000; /* High base layer */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-        }
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --navy: #0f2240;
+    }
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: #fff;
+      color: #333;
+      line-height: 1.7;
+    }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-blue); }
+    .nav-link, .dropdown-item, .btn { font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; }
 
-        .brand { font-weight: bold; font-size: 1.2rem; text-transform: uppercase; }
+    .wm-section { position: relative; }
+    .wm-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('backdrop1.png') center/cover no-repeat; /* Keep your local image */
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wm-section > * { position: relative; z-index: 1; }
 
-        .menu-wrapper { display: flex; gap: 30px; position: relative; }
+    .navbar { background: rgba(255,255,255,0.97); backdrop-filter: blur(10px); box-shadow: 0 2px 15px rgba(0,0,0,0.08); }
+    .dropdown-menu { box-shadow: 0 10px 30px rgba(0,0,0,0.15); border-radius: 8px; }
 
-        .menu-item { position: relative; }
+    .btn-gold {
+      background: var(--gold);
+      color: white;
+      border: none;
+    }
+    .btn-gold:hover { background: #b38a3f; }
 
-        /* The requested dropdown fix */
-        .dropdown-content {
-            position: absolute;
-            z-index: 10000; /* Higher number brings it to the front */
-            background: #ffffff;
-            border: 1px solid var(--border-heavy);
-            min-width: 220px;
-            display: none; /* Hidden by default */
-            top: 100%;
-            left: 0;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-
-        .menu-item:hover .dropdown-content {
-            display: block; /* Shows on hover */
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 12px 15px;
-            text-decoration: none;
-            color: #000;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            border-bottom: 1px solid #eee;
-        }
-
-        .dropdown-content a:hover { background: #f9f9f9; }
-
-        /* EXPANDED 27-PAGE MANUSCRIPT */
-        .manuscript-body {
-            margin-top: calc(var(--nav-height) + 20px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .page {
-            background: #ffffff;
-            width: var(--page-width);
-            min-height: var(--page-height); /* Forces expansion */
-            margin-bottom: 50px;
-            padding: 25mm 20mm;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .page-content { flex: 1; }
-
-        .page-footer {
-            border-top: 1px solid #ddd;
-            padding-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: #777;
-        }
-
-        h1 { font-size: 2.6rem; border-bottom: 3px double #000; padding-bottom: 10px; margin-bottom: 20px; }
-        h2 { font-size: 1.8rem; margin: 1rem 0; font-weight: normal; border-left: 5px solid #000; padding-left: 15px; }
-
-        /* CONTACT FORM SECTION */
-        .inquiry-form-container {
-            background: #fafafa;
-            border: 1px solid #ccc;
-            padding: 30px;
-            margin-top: 20px;
-        }
-
-        .inquiry-form-container input, .inquiry-form-container textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #999;
-            font-family: inherit;
-        }
-
-        .submit-trigger {
-            background: #000;
-            color: #fff;
-            padding: 15px 30px;
-            border: none;
-            width: 100%;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        /* PRINT CONFIGURATION */
-        @media print {
-            nav { display: none; }
-            .page { margin: 0; box-shadow: none; page-break-after: always; width: 100%; }
-            .manuscript-body { margin-top: 0; }
-        }
-    </style>
+    .radio-option {
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .radio-option:hover { border-color: var(--gold); }
+    .radio-option input:checked + label { color: var(--gold); font-weight: 700; }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <div class="brand">Aesthetics of Society</div>
-        <div class="menu-wrapper">
-            <div class="menu-item">
-                <a href="#" style="text-decoration:none; color:#000; font-weight:bold; font-size:0.85rem;">RESEARCH PORTALS ▼</a>
-                <div class="dropdown-content">
-                    <a href="https://nada-chikitsa.culturalmusings.com" target="_blank">Nada Chikitsa</a>
-                    <a href="https://natyashastra.culturalmusings.com" target="_blank">Natya Shastra</a>
-                    <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank">MCP Protocol</a>
-                    <a href="https://bioresonancemusings.culturalmusings.com" target="_blank">Bioresonance</a>
-                </div>
-            </div>
-            <a href="#p27" style="text-decoration:none; color:#000; font-weight:bold; font-size:0.85rem;">INQUIRY</a>
-        </div>
-    </nav>
+  <!-- Fixed Navbar with Bootstrap Dropdowns -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#" style="color: var(--primary-blue);">Naredla Rama Chandra</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
 
-    <div class="manuscript-body">
+          <!-- Publications Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publications</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#publications">All Publications</a></li>
+              <li><a class="dropdown-item" href="https://publications.ramachandra1975.github.io" target="_blank">Publications Subdomain</a></li>
+            </ul>
+          </li>
 
-        <article class="page" id="p1">
-            <div class="page-content" style="text-align: center; padding-top: 80mm;">
-                <h1>AESTHETICS OF SOCIETY</h1>
-                <p>Bridging Ancient Wisdom with Modern Neuroscience & Bio-acoustics</p>
-                <div style="margin-top: 50px;">
-                    <p><strong>Naredla Rama Chandra</strong></p>
-                    <p>India | +91 9121379100</p>
-                </div>
-            </div>
-            <div class="page-footer"><span>Author Archive</span><span>Page 01 of 27</span></div>
-        </article>
+          <!-- Natya Shastra Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Natya Shastra</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#natya">Overview</a></li>
+              <li><a class="dropdown-item" href="https://natya.ramachandra1975.github.io" target="_blank">Natya Subdomain</a></li>
+            </ul>
+          </li>
 
-        <article class="page" id="p2">
-            <div class="page-content">
-                <h2>Vedic Bio-Acoustics</h2>
-                <p style="font-style: italic; background:#f9f9f9; padding:20px; border-left:5px solid #000;">
-                    Rig Veda · 10.71.1: बृहस्पते ! प्रथमं वाचो अग्रं यत्प्रैरत नामधेयं दधानाः...
-                </p>
-                <p>This research maps the "Primordial Sound" (Nada Brahman) to modern bio-acoustic theories. The complete therapeutic dataset is managed via the <strong>Nada-Chikitsa</strong> research domain.</p>
-            </div>
-            <div class="page-footer"><span>Scriptural Foundations</span><span>Page 02 of 27</span></div>
-        </article>
+          <!-- Mudras Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mudras</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#mudras">Types of Mudras</a></li>
+              <li><a class="dropdown-item" href="https://mudras.ramachandra1975.github.io" target="_blank">Mudras Subdomain</a></li>
+            </ul>
+          </li>
 
-        <div id="dynamic-expansion-zone"></div>
-
-        <article class="page" id="p27">
-            <div class="page-content">
-                <h2>Research Inquiry & Collaboration</h2>
-                <p>Seeking partners for clinical studies and scientific research into consciousness science and bio-acoustic healing protocols.</p>
-                
-                <div class="inquiry-form-container">
-                    <form action="mailto:smith123846@gmail.com" method="post" enctype="text/plain">
-                        <input type="text" name="name" placeholder="Researcher Full Name" required>
-                        <input type="text" name="domain" placeholder="Area of Interest (e.g. 108 Karanas)">
-                        <textarea name="message" rows="8" placeholder="Please describe the nature of your inquiry..."></textarea>
-                        <p style="margin-bottom:10px;">Direct Phone: +91 9121379100</p>
-                        <button type="submit" class="submit-trigger">Submit to smith123846@gmail.com</button>
-                    </form>
-                </div>
-            </div>
-            <div class="page-footer"><span>Contact Portal</span><span>Page 27 of 27</span></div>
-        </article>
-
+          <li class="nav-item"><a class="nav-link" href="#media">Media</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Inquiry</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <script>
-        // SCRIPT TO ENSURE FULL 27-PAGE EXPANSION
-        const expansionZone = document.getElementById('dynamic-expansion-zone');
-        
-        for (let i = 3; i <= 26; i++) {
-            let sectionName = "Master Consciousness Protocol Archive";
-            if (i > 10) sectionName = "Natya Shastra & Kinematic Studies";
-            if (i > 20) sectionName = "Bioresonance & Siddha Research";
+  <!-- Hero Section (add your original hero content here) -->
+  <section id="hero" class="wm-section py-5 text-center" style="min-height: 100vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('your-hero-image.jpg'); background-size: cover; color: white;">
+    <div class="container pt-5">
+      <h1 class="display-3">Aesthetics of Society</h1>
+      <p class="lead">Cultural & Consciousness Research by Naredla Rama Chandra</p>
+    </div>
+  </section>
 
-            const p = document.createElement('article');
-            p.className = 'page';
-            p.id = `p${i}`;
-            p.innerHTML = `
-                <div class="page-content">
-                    <h2>${sectionName}</h2>
-                    <p>Section ${i} research data expansion area. This page is part of the 27-page master manuscript structure.</p>
-                    <div style="height:140mm; border:1px dashed #ddd; margin-top:20px; display:flex; align-items:center; justify-content:center; color:#bbb;">
-                        [Data Expansion Slot ${i}]
-                    </div>
-                </div>
-                <div class="page-footer"><span>Research Compendium</span><span>Page ${i < 10 ? '0' + i : i} of 27</span></div>
-            `;
-            expansionZone.appendChild(p);
-        }
+  <!-- Your existing sections go here (About, Timeline, Publications, Natya Shastra, Mudras, Media, Epilogue, etc.) -->
+  <!-- Paste the rest of your original section content between hero and contact -->
 
-        console.log("27-Page Structure Expanded and Dropdown Z-Index Active.");
-    </script>
+  <!-- Read More Info Section with Radio Buttons -->
+  <section id="readmore" class="wm-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Read More Detailed Information</h2>
+      <p class="text-center mb-5">Select a topic below and click "Show Details"</p>
+
+      <form id="readMoreForm">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <!-- Radio Options -->
+            <div class="radio-option">
+              <input type="radio" name="topic" id="pub" value="publications" class="form-check-input me-2" checked>
+              <label for="pub" class="form-check-label">Publications & Research Papers</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="topic" id="natya" value="natya" class="form-check-input me-2">
+              <label for="natya" class="form-check-label">Natya Shastra & 108 Karanas</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="topic" id="mudra" value="mudras" class="form-check-input me-2">
+              <label for="mudra" class="form-check-label">Mudras & Their Scientific Basis</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="topic" id="sound" value="sound" class="form-check-input me-2">
+              <label for="sound" class="form-check-label">Sound Science & Shabda Brahman</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="topic" id="mcp" value="mcp" class="form-check-input me-2">
+              <label for="mcp" class="form-check-label">Master Consciousness Protocol (MCP)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button type="button" onclick="showDetails()" class="btn btn-gold btn-lg px-5">Show Detailed Information</button>
+        </div>
+      </form>
+
+      <!-- Details will appear here -->
+      <div id="detailsContent" class="mt-5"></div>
+    </div>
+  </section>
+
+  <!-- Inquiry Form -->
+  <section id="contact" class="wm-section py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="text-center mb-4">Send Your Inquiry</h2>
+          <form id="inquiryForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6"><input type="text" class="form-control" id="name" placeholder="Your Name" required></div>
+              <div class="col-md-6"><input type="email" class="form-control" id="email" placeholder="Email Address" required></div>
+              <div class="col-12"><textarea class="form-control" id="message" rows="5" placeholder="Your Inquiry / Message" required></textarea></div>
+              <div class="col-12 text-center">
+                <button type="submit" class="btn btn-gold btn-lg px-5">Submit Inquiry</button>
+              </div>
+            </div>
+          </form>
+          <div id="formMessage" class="mt-3 text-center"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 text-center bg-dark text-white">
+    <p>&copy; 2026 Naredla Rama Chandra. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom Scripts -->
+  <script>
+    // Read More Details Function
+    function showDetails() {
+      const selected = document.querySelector('input[name="topic"]:checked').value;
+      let html = '';
+
+      if (selected === 'publications') {
+        html = `<h4>Publications</h4><p>Detailed list of books, papers on consciousness, bio-acoustics, and Vedic-modern synthesis. <a href="https://publications.ramachandra1975.github.io" target="_blank">Visit Publications Subdomain</a></p>`;
+      } else if (selected === 'natya') {
+        html = `<h4>Natya Shastra</h4><p>Exploration of 108 Karanas, Mudras in performance, and their neurological impact.</p>`;
+      } else if (selected === 'mudras') {
+        html = `<h4>Mudras</h4><p>Scientific explanation of hand gestures and their effect on energy channels and brain activity.</p>`;
+      } else if (selected === 'sound') {
+        html = `<h4>Sound Science (Shabda Brahman)</h4><p>Beeja Aksharas, Raga Chikitsa, Nada Yoga and their measurable effects on the nervous system.</p>`;
+      } else if (selected === 'mcp') {
+        html = `<h4>Master Consciousness Protocol</h4><p>Integrated framework combining ancient Vedic science with modern neuroscience and AI.</p>`;
+      }
+
+      document.getElementById('detailsContent').innerHTML = `<div class="alert alert-info p-4">${html}</div>`;
+    }
+
+    // Inquiry Form Handler
+    document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const msg = document.getElementById('formMessage');
+      msg.innerHTML = '<span style="color:green;">Thank you! Your inquiry has been received.</span>';
+      this.reset();
+    });
+  </script>
 </body>
 </html>
