@@ -6,7 +6,7 @@
   <title>Aesthetics of Society | Naredla Rama Chandra</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&family=Great+Vibes&display=swap" rel="stylesheet" />
 
   <!-- Bootstrap 5.3.3 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -16,255 +16,203 @@
       --primary-blue: #1a365d;
       --gold: #c5a059;
       --navy: #0f2240;
-      --cream: #fdfaf5;
     }
     body {
       font-family: 'Cormorant Garamond', serif;
       color: #333;
-      line-height: 1.7;
     }
-    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--primary-blue); }
-    .nav-link, .dropdown-item { font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; }
 
-    .wm-section { position: relative; }
-    .wm-section::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('backdrop1.png') center/cover no-repeat;
-      opacity: 0.13;
-      pointer-events: none;
-      z-index: 0;
+    .navbar {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
     }
-    .wm-section > * { position: relative; z-index: 1; }
 
-    .navbar { background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); box-shadow: 0 2px 15px rgba(0,0,0,0.08); }
-    .dropdown-menu { box-shadow: 0 15px 40px rgba(0,0,0,0.15); border: none; border-radius: 8px; }
-
-    .btn-gold { background: var(--gold); color: white; border: none; }
-    .btn-gold:hover { background: #b38a3f; }
-
+    /* Hero with Watermark Logo */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(rgba(10,25,47,0.75), rgba(10,25,47,0.75)), url('backdrop1.png') center/cover no-repeat fixed;
-      color: white;
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: center;
       text-align: center;
+      color: white;
     }
-    .radio-option {
-      padding: 14px 18px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      cursor: pointer;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: opacity 2.8s ease-in-out;
+      z-index: 1;
     }
-    .radio-option:hover { border-color: var(--gold); }
-    .shloka { font-style: italic; font-size: 1.05rem; }
+    .hero-bg.active { opacity: 1; }
+
+    /* Watermark Logo - Very light, visible, elegant */
+    .watermark-logo {
+      position: absolute;
+      top: 35px;
+      left: 50px;
+      z-index: 3;
+      opacity: 0.75;           /* Balanced visibility - not too light, not too dark */
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .watermark-logo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: white;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+    .watermark-logo small {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.05rem;
+      color: #f8f1e3;
+      display: block;
+      margin-top: 4px;
+      letter-spacing: 1.5px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .hero .tagline {
+      font-size: 1.35rem;
+      letter-spacing: 4px;
+      margin-bottom: 15px;
+      opacity: 0.95;
+    }
+    .hero .cursive {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.1rem;
+      color: #f5f0e6;
+      margin-bottom: 8px;
+    }
+    .hero .main-title {
+      font-size: 4.9rem;
+      line-height: 1.05;
+      font-weight: 700;
+    }
+    .hero .main-title span {
+      color: var(--gold);
+    }
+    .hero .subtitle {
+      font-size: 1.28rem;
+      max-width: 680px;
+      margin: 25px auto 40px;
+    }
+
+    .btn-navy { 
+      background: var(--navy); 
+      color: white; 
+      padding: 12px 34px; 
+      font-weight: 600; 
+    }
+    .btn-navy:hover { background: #1a2a4a; }
   </style>
 </head>
 <body>
 
-  <!-- Navbar with Fixed Dropdowns -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#" style="color: var(--primary-blue);">Naredla Rama Chandra</a>
+      <a class="navbar-brand fw-bold" href="#" style="color: var(--primary-blue);">AESTHETICS OF SOCIETY</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Publications</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Explore Pages</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#publications">All Publications</a></li>
-              <li><a class="dropdown-item" href="https://publications.ramachandra1975.github.io" target="_blank">Publications Subdomain</a></li>
+              <li><a class="dropdown-item" href="#publications">Publications</a></li>
+              <li><a class="dropdown-item" href="#natya">Natya Shastra</a></li>
+              <li><a class="dropdown-item" href="#mudras">Mudras</a></li>
+              <li><a class="dropdown-item" href="#guru-clan">Guru's Clan</a></li>
+              <li><a class="dropdown-item" href="#shabda">Shabda Brahman</a></li>
             </ul>
           </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Natya Shastra</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#natya">108 Karanas</a></li>
-              <li><a class="dropdown-item" href="https://natya.ramachandra1975.github.io" target="_blank">Natya Subdomain</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Mudras</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#mudras">32 Mudras</a></li>
-              <li><a class="dropdown-item" href="https://mudras.ramachandra1975.github.io" target="_blank">Mudras Subdomain</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item"><a class="nav-link" href="#guru-clan">Guru's Clan</a></li>
-          <li class="nav-item"><a class="nav-link" href="#media">Media</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About the Author</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Inquiry</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section id="hero" class="hero wm-section">
-    <div class="container">
-      <h1 class="display-3 fw-bold">Aesthetics of Society</h1>
-      <p class="lead fs-3">Bridging Ancient Indian Systems with Modern Neuroscience & Bio-acoustics</p>
-      <p class="mt-3">Independent Researcher & Author · Est. 2010</p>
-    </div>
-  </section>
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <!-- Primary Background (your preferred misty mountain) -->
+    <div class="hero-bg active" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4');"></div>
+    <!-- Rotating backups -->
+    <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1519904981063-b0cf448d479e');"></div>
+    <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05');"></div>
 
-  <!-- Vedic Testimony -->
-  <section id="vedic" class="wm-section py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">The Vedic Testimony</h2>
-      <div class="row g-4">
-        <div class="col-lg-6">
-          <h4>Rig Veda · 10.71.1</h4>
-          <p class="shloka">बृहस्पते! प्रथमं वाचो अग्रं...</p>
-          <p>Primordial sound (Nada Brahman) as the origin of all knowledge.</p>
-        </div>
-        <div class="col-lg-6">
-          <h4>Sama Veda · Chandogya Upanishad 1.1.1</h4>
-          <p class="shloka">ओमित्येतदक्षरमुद्गीथमुपासीत।</p>
-          <p>Sapta Swaras as frequencies of cosmic consciousness.</p>
-        </div>
-        <!-- Add remaining shlokas similarly from your content -->
+    <!-- Watermark Logo - Light & Visible -->
+    <div class="watermark-logo">
+      <h1>AESTHETICS OF SOCIETY</h1>
+      <small>culturalmusings.com</small>
+    </div>
+
+    <div class="hero-content">
+      <p class="tagline">INDEPENDENT RESEARCHER & AUTHOR • EST. 2010</p>
+      
+      <p class="cursive">Let the light deep within illumine</p>
+      
+      <h1 class="main-title">
+        Aesthetics <span>of Society</span>
+      </h1>
+      
+      <p class="subtitle lead">
+        Bridging Ancient Indian Systems with Modern<br>
+        Neuroscience & Bio-acoustics
+      </p>
+
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="#publications" class="btn btn-navy btn-lg">EXPLORE PUBLICATIONS</a>
+        <a href="#about" class="btn btn-outline-light btn-lg">ABOUT THE AUTHOR</a>
       </div>
-    </div>
-  </section>
 
-  <!-- About the Researcher -->
-  <section id="about" class="wm-section py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">About the Researcher</h2>
-      <p class="lead text-center">Naredla Rama Chandra is an independent researcher bridging Vedic knowledge systems with modern neuroscience and bio-acoustics.</p>
-      <p class="text-center">Mission: "To establish the Master Consciousness Protocol for natural healing and the liberation of human potential."</p>
-    </div>
-  </section>
-
-  <!-- Publications -->
-  <section id="publications" class="wm-section py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">Publications & Manuscripts</h2>
-      <p class="text-center mb-5">Eight landmark works bridging ancient Vedic science with contemporary research.</p>
-      <!-- Add your 8 publication cards here (Complete Science of Consciousness, Sapta Swaras, 108 Karanas, etc.) -->
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5>Complete Science of Consciousness</h5>
-              <p>Ancient Knowledge vs Artificial Intelligence (Flagship Work)</p>
-            </div>
+      <!-- Sacred Ambience -->
+      <div class="mt-5">
+        <button onclick="toggleAmbience()" 
+                class="btn btn-dark btn-lg px-5 d-flex align-items-center gap-3 mx-auto">
+          <span style="font-size: 1.6rem;">▶</span>
+          <div class="text-start">
+            <strong>SACRED AMBIENCE</strong><br>
+            <small>Click to play</small>
           </div>
-        </div>
-        <!-- Repeat for other 7 publications -->
+        </button>
       </div>
     </div>
   </section>
-
-  <!-- Guru's Clan -->
-  <section id="guru-clan" class="wm-section py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">The Guru's Clan</h2>
-      <p class="text-center">The 18 Siddhas — Living Masters of Vedic Science</p>
-      <!-- List the 18 Siddhas with short descriptions as per your content -->
-    </div>
-  </section>
-
-  <!-- Natya Shastra -->
-  <section id="natya" class="wm-section py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">Natya Shastra & the 108 Karanas</h2>
-      <p class="text-center">Bharata Muni's cosmic manual of neuro-somatic science.</p>
-    </div>
-  </section>
-
-  <!-- Mudras -->
-  <section id="mudras" class="wm-section py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">The 32 Mudras</h2>
-      <p class="text-center">Precise neural activation protocols from the Natya Shastra.</p>
-      <!-- List Pataka, Tripataka, etc., with neural targets -->
-    </div>
-  </section>
-
-  <!-- Read More Info with Radio Buttons -->
-  <section id="readmore" class="wm-section py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-4">Read More Detailed Information</h2>
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="radio-option"><input type="radio" name="topic" value="publications" checked> <label>Publications & Research Papers</label></div>
-          <div class="radio-option"><input type="radio" name="topic" value="natya"> <label>Natya Shastra & 108 Karanas</label></div>
-          <div class="radio-option"><input type="radio" name="topic" value="mudras"> <label>Mudras & Scientific Basis</label></div>
-          <div class="radio-option"><input type="radio" name="topic" value="sound"> <label>Shabda Brahman – Science of Sound</label></div>
-        </div>
-      </div>
-      <div class="text-center mt-4">
-        <button onclick="showDetails()" class="btn btn-gold btn-lg px-5">Show Details</button>
-      </div>
-      <div id="detailsContent" class="mt-5"></div>
-    </div>
-  </section>
-
-  <!-- Media -->
-  <section id="media" class="wm-section py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Research in Motion</h2>
-      <!-- Add your YouTube video embeds here -->
-    </div>
-  </section>
-
-  <!-- Inquiry Form -->
-  <section id="contact" class="wm-section py-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <h2 class="text-center mb-4">Send Your Inquiry</h2>
-          <form id="inquiryForm">
-            <div class="row g-3">
-              <div class="col-md-6"><input type="text" class="form-control" id="name" placeholder="Your Name" required></div>
-              <div class="col-md-6"><input type="email" class="form-control" id="email" placeholder="Email" required></div>
-              <div class="col-12"><textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea></div>
-              <div class="col-12 text-center">
-                <button type="submit" class="btn btn-gold btn-lg px-5">Submit Inquiry</button>
-              </div>
-            </div>
-          </form>
-          <div id="formMessage" class="mt-3 text-center"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-4 text-center bg-dark text-white">
-    <p>&copy; 2026 Naredla Rama Chandra. All Rights Reserved.</p>
-  </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    function showDetails() {
-      const val = document.querySelector('input[name="topic"]:checked').value;
-      let html = '';
-      if (val === 'publications') html = '<h4>Publications</h4><p>Eight landmark works including Complete Science of Consciousness and Sapta Swaras & Healing.</p>';
-      else if (val === 'natya') html = '<h4>Natya Shastra</h4><p>108 Karanas as divine bio-mechanical sequences and neuro-somatic protocols.</p>';
-      else if (val === 'mudras') html = '<h4>Mudras</h4><p>32 Hasta Mudras as precise neural activation protocols.</p>';
-      else if (val === 'sound') html = '<h4>Shabda Brahman</h4><p>The sacred science of primordial sound and its measurable effects on the nervous system.</p>';
-      document.getElementById('detailsContent').innerHTML = `<div class="alert alert-info p-4">${html}</div>`;
+    // Rotating backgrounds
+    let current = 0;
+    const bgs = document.querySelectorAll('.hero-bg');
+
+    function rotate() {
+      bgs.forEach(bg => bg.classList.remove('active'));
+      current = (current + 1) % bgs.length;
+      bgs[current].classList.add('active');
     }
 
-    document.getElementById('inquiryForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      document.getElementById('formMessage').innerHTML = '<span style="color:green;">Thank you! Your inquiry has been received successfully.</span>';
-      this.reset();
-    });
+    // Primary image shows longer first
+    setTimeout(() => {
+      setInterval(rotate, 8000);
+    }, 10000);
+
+    function toggleAmbience() {
+      alert("Sacred Ambience audio will play here.\nReplace with your actual audio file later.");
+    }
   </script>
 </body>
 </html>
