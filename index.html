@@ -5,30 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aesthetics of Society | Naredla Rama Chandra</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&family=Great+Vibes&display=swap" rel="stylesheet" />
-
-  <!-- Bootstrap 5.3.3 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
   <style>
-    :root {
-      --primary-blue: #1a365d;
-      --gold: #c5a059;
-      --navy: #0f2240;
-    }
-    body {
-      font-family: 'Cormorant Garamond', serif;
-      color: #333;
-    }
+    :root { --navy: #1a365d; --gold: #c5a059; }
+    body { font-family: 'Cormorant Garamond', serif; color: #333; line-height: 1.7; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--navy); }
 
-    .navbar {
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-    }
-
-    /* Hero with Watermark Logo */
     .hero {
       min-height: 100vh;
       position: relative;
@@ -43,116 +27,102 @@
       inset: 0;
       background-size: cover;
       background-position: center;
-      transition: opacity 2.8s ease-in-out;
+      transition: opacity 3s ease-in-out;
       z-index: 1;
     }
     .hero-bg.active { opacity: 1; }
 
-    /* Watermark Logo - Very light, visible, elegant */
     .watermark-logo {
       position: absolute;
       top: 35px;
       left: 50px;
       z-index: 3;
-      opacity: 0.75;           /* Balanced visibility - not too light, not too dark */
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      opacity: 0.78;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
     }
-    .watermark-logo h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.85rem;
-      font-weight: 700;
-      color: white;
-      margin: 0;
-      letter-spacing: 2px;
-    }
-    .watermark-logo small {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.05rem;
-      color: #f8f1e3;
-      display: block;
-      margin-top: 4px;
-      letter-spacing: 1.5px;
-    }
+    .watermark-logo h1 { font-size: 1.75rem; font-weight: 700; margin: 0; letter-spacing: 1.5px; }
+    .watermark-logo small { font-family: 'Montserrat', sans-serif; font-size: 1rem; color: #f5f0e6; letter-spacing: 1px; }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .hero .tagline {
-      font-size: 1.35rem;
-      letter-spacing: 4px;
-      margin-bottom: 15px;
-      opacity: 0.95;
-    }
-    .hero .cursive {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.1rem;
-      color: #f5f0e6;
-      margin-bottom: 8px;
-    }
-    .hero .main-title {
-      font-size: 4.9rem;
-      line-height: 1.05;
-      font-weight: 700;
-    }
-    .hero .main-title span {
-      color: var(--gold);
-    }
-    .hero .subtitle {
-      font-size: 1.28rem;
-      max-width: 680px;
-      margin: 25px auto 40px;
-    }
+    .hero-content { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; padding: 0 20px; }
+    .tagline { font-size: 1.1rem; letter-spacing: 3px; margin-bottom: 20px; color: #e8d9c0; }
+    .cursive { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: #f5f0e6; margin-bottom: 10px; }
+    .main-title { font-size: 5.2rem; line-height: 1.05; font-weight: 700; }
+    .main-title span { color: var(--gold); }
+    .subtitle { font-size: 1.25rem; max-width: 680px; margin: 0 auto 45px; }
 
-    .btn-navy { 
-      background: var(--navy); 
-      color: white; 
-      padding: 12px 34px; 
-      font-weight: 600; 
+    .btn-explore { background: var(--navy); color: white; padding: 14px 38px; font-weight: 600; }
+    .btn-author { background: transparent; color: white; border: 2px solid white; padding: 14px 38px; font-weight: 600; }
+
+    .wm-section { position: relative; }
+    .wm-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('backdrop1.png') center/cover no-repeat;
+      opacity: 0.12;
+      z-index: 0;
     }
-    .btn-navy:hover { background: #1a2a4a; }
+    .wm-section > * { position: relative; z-index: 1; }
+
+    .radio-option {
+      padding: 14px 18px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+    .radio-option:hover { border-color: var(--gold); }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
+  <!-- Navbar with 4 Dropdowns + Subdomain Links -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#" style="color: var(--primary-blue);">AESTHETICS OF SOCIETY</a>
+      <a class="navbar-brand fw-bold" href="#" style="color: var(--navy);">AESTHETICS OF SOCIETY</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Explore Pages</a>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Publications</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#publications">Publications</a></li>
-              <li><a class="dropdown-item" href="#natya">Natya Shastra</a></li>
-              <li><a class="dropdown-item" href="#mudras">Mudras</a></li>
-              <li><a class="dropdown-item" href="#guru-clan">Guru's Clan</a></li>
-              <li><a class="dropdown-item" href="#shabda">Shabda Brahman</a></li>
+              <li><a class="dropdown-item" href="#publications">All Publications</a></li>
+              <li><a class="dropdown-item" href="https://publications.ramachandra1975.github.io" target="_blank">Publications Subdomain →</a></li>
             </ul>
           </li>
-          <li class="nav-item"><a class="nav-link" href="#about">About the Author</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Inquiry</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Natya Shastra</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#natya">108 Karanas & Overview</a></li>
+              <li><a class="dropdown-item" href="https://natya.ramachandra1975.github.io" target="_blank">Natya Subdomain →</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Mudras</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#mudras">32 Mudras</a></li>
+              <li><a class="dropdown-item" href="https://mudras.ramachandra1975.github.io" target="_blank">Mudras Subdomain →</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Guru's Clan</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#guru-clan">18 Siddhas</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero - Exact Match -->
   <section id="hero" class="hero">
-    <!-- Primary Background (your preferred misty mountain) -->
     <div class="hero-bg active" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4');"></div>
-    <!-- Rotating backups -->
     <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1519904981063-b0cf448d479e');"></div>
     <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05');"></div>
 
-    <!-- Watermark Logo - Light & Visible -->
     <div class="watermark-logo">
       <h1>AESTHETICS OF SOCIETY</h1>
       <small>culturalmusings.com</small>
@@ -160,58 +130,167 @@
 
     <div class="hero-content">
       <p class="tagline">INDEPENDENT RESEARCHER & AUTHOR • EST. 2010</p>
-      
       <p class="cursive">Let the light deep within illumine</p>
-      
-      <h1 class="main-title">
-        Aesthetics <span>of Society</span>
-      </h1>
-      
-      <p class="subtitle lead">
-        Bridging Ancient Indian Systems with Modern<br>
-        Neuroscience & Bio-acoustics
-      </p>
+      <h1 class="main-title">Aesthetics <span>of Society</span></h1>
+      <p class="subtitle">BRIDGING ANCIENT INDIAN SYSTEMS WITH MODERN<br>NEUROSCIENCE & BIO-ACOUSTICS</p>
 
       <div class="d-flex justify-content-center gap-3 flex-wrap">
-        <a href="#publications" class="btn btn-navy btn-lg">EXPLORE PUBLICATIONS</a>
-        <a href="#about" class="btn btn-outline-light btn-lg">ABOUT THE AUTHOR</a>
+        <a href="#publications" class="btn btn-explore btn-lg">EXPLORE PUBLICATIONS</a>
+        <a href="#about" class="btn btn-author btn-lg">ABOUT THE AUTHOR</a>
       </div>
 
-      <!-- Sacred Ambience -->
       <div class="mt-5">
-        <button onclick="toggleAmbience()" 
-                class="btn btn-dark btn-lg px-5 d-flex align-items-center gap-3 mx-auto">
-          <span style="font-size: 1.6rem;">▶</span>
-          <div class="text-start">
-            <strong>SACRED AMBIENCE</strong><br>
-            <small>Click to play</small>
-          </div>
+        <button onclick="toggleAmbience()" class="btn btn-dark btn-lg px-5 d-flex align-items-center gap-3 mx-auto">
+          <span style="font-size:1.6rem;">▶</span>
+          <div><strong>SACRED AMBIENCE</strong><br><small>Click to play</small></div>
         </button>
       </div>
     </div>
   </section>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Publications -->
+  <section id="publications" class="wm-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">Publications & Manuscripts</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h5>Complete Science of Consciousness</h5><p>Ancient Knowledge vs Artificial Intelligence (Flagship Work)</p><a href="https://publications.ramachandra1975.github.io" target="_blank" class="text-gold">Visit Subdomain →</a></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h5>Master Reference Compendium</h5><p>Integrated Research Standards</p></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h5>Sapta Swaras & Healing</h5><p>Treatise on Carnatic Music Science</p></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h5>108 Karanas & Beeja Aksharas</h5><p>Astrophysics & Medical Science Foundations</p><a href="https://natya.ramachandra1975.github.io" target="_blank" class="text-gold">Visit Natya Subdomain →</a></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h5>Yoga: The Eternal Science</h5><p>Vedic Roots for Modern Neurology</p></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h5>Shabda Brahman</h5><p>Sacred Science of Sound</p></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h5>The Cosmic Choreography</h5><p>Study of Shankaracharya's Metaphysics</p></div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><h5>Sanskrit & AI</h5><p>Neurological Healing & Programming</p></div></div></div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Guru's Clan -->
+  <section id="guru-clan" class="wm-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">The Guru's Clan – 18 Siddhas</h2>
+      <p class="text-center lead mb-4">Living Masters transmitting direct knowledge of Vedic science</p>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><strong>Agastya Muni</strong><br>Bio-Medicine & Linguistics</div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><strong>Thirumoolar</strong><br>Consciousness & Yoga Science</div></div></div>
+        <div class="col-md-6 col-lg-4"><div class="card h-100"><div class="card-body"><strong>Bharata Muni</strong><br>Natya Shastra & Neuro-Somatics</div></div></div>
+        <!-- Add more as needed from your reference -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Natya Shastra -->
+  <section id="natya" class="wm-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Natya Shastra & 108 Karanas</h2>
+      <p class="lead text-center">Bharata Muni's cosmic manual encoding neuroscience, bio-acoustics, astrophysics, and consciousness science within 6,000 verses.</p>
+      <div class="text-center mt-4">
+        <a href="https://natya.ramachandra1975.github.io" target="_blank" class="btn btn-explore">Visit Natya Subdomain →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mudras -->
+  <section id="mudras" class="wm-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">The 32 Mudras</h2>
+      <p class="text-center lead">Precise neural activation protocols from the Natya Shastra. Each Mudra creates measurable changes in brainwave patterns and autonomic tone.</p>
+      <div class="text-center mt-4">
+        <a href="https://mudras.ramachandra1975.github.io" target="_blank" class="btn btn-explore">Visit Mudras Subdomain →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Read More Info with Radio Buttons -->
+  <section class="wm-section py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Read More Detailed Information</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="radio-option">
+            <input type="radio" name="topic" id="pub" value="publications" checked>
+            <label for="pub" class="ms-2">Publications & Research Papers</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="topic" id="natya" value="natya">
+            <label for="natya" class="ms-2">Natya Shastra & 108 Karanas</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="topic" id="mudra" value="mudras">
+            <label for="mudra" class="ms-2">Mudras & Scientific Basis</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="topic" id="sound" value="sound">
+            <label for="sound" class="ms-2">Shabda Brahman – Science of Sound</label>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button onclick="showDetails()" class="btn btn-explore btn-lg px-5">Show Details</button>
+      </div>
+      <div id="detailsContent" class="mt-5"></div>
+    </div>
+  </section>
+
+  <!-- Inquiry Form -->
+  <section id="contact" class="wm-section py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Send Your Inquiry</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <form id="inquiryForm">
+            <div class="row g-3">
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Your Name" required></div>
+              <div class="col-md-6"><input type="email" class="form-control" placeholder="Email" required></div>
+              <div class="col-12"><textarea class="form-control" rows="5" placeholder="Your Message / Inquiry" required></textarea></div>
+              <div class="col-12 text-center">
+                <button type="submit" class="btn btn-explore btn-lg px-5">Submit Inquiry</button>
+              </div>
+            </div>
+          </form>
+          <div id="formMessage" class="mt-3 text-center"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 text-center bg-dark text-white">
+    <p>&copy; 2026 Naredla Rama Chandra. All Rights Reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Rotating backgrounds
+    // Background rotation
     let current = 0;
     const bgs = document.querySelectorAll('.hero-bg');
-
     function rotate() {
       bgs.forEach(bg => bg.classList.remove('active'));
       current = (current + 1) % bgs.length;
       bgs[current].classList.add('active');
     }
+    setTimeout(() => setInterval(rotate, 9000), 11000);
 
-    // Primary image shows longer first
-    setTimeout(() => {
-      setInterval(rotate, 8000);
-    }, 10000);
+    // Read More Radio Function
+    function showDetails() {
+      const val = document.querySelector('input[name="topic"]:checked').value;
+      let html = '';
+      if (val === 'publications') html = '<h4>Publications</h4><p>Eight landmark works bridging ancient Vedic science with modern research. <a href="https://publications.ramachandra1975.github.io" target="_blank">Visit Publications Subdomain</a></p>';
+      else if (val === 'natya') html = '<h4>Natya Shastra</h4><p>108 Karanas as divine bio-mechanical sequences. <a href="https://natya.ramachandra1975.github.io" target="_blank">Visit Natya Subdomain</a></p>';
+      else if (val === 'mudras') html = '<h4>Mudras</h4><p>32 Hasta Mudras as precise neural activation protocols. <a href="https://mudras.ramachandra1975.github.io" target="_blank">Visit Mudras Subdomain</a></p>';
+      else if (val === 'sound') html = '<h4>Shabda Brahman</h4><p>The sacred science of primordial sound and its measurable effects on the nervous system.</p>';
+      document.getElementById('detailsContent').innerHTML = `<div class="alert alert-info p-4">${html}</div>`;
+    }
+
+    // Inquiry Form
+    document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('formMessage').innerHTML = '<span style="color:green;">Thank you! Your inquiry has been received successfully.</span>';
+      this.reset();
+    });
 
     function toggleAmbience() {
-      alert("Sacred Ambience audio will play here.\nReplace with your actual audio file later.");
+      alert("Sacred Ambience audio will play here.");
     }
   </script>
 </body>
