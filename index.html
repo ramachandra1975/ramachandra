@@ -1,158 +1,1312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Master Consciousness Protocol – Naredla Rama Chandra</title>
-  <style>
-    body {
-      font-family: 'Georgia', serif;
-      line-height: 1.7;
-      margin: 0;
-      padding: 0;
-      background: #fdfdfd;
-      color: #1a1a1a;
-    }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-    .author-img {
-      max-width: 200px;
-      border-radius: 12px;
-      border: 2px solid #e0e0e0;
-      margin-bottom: 16px;
-    }
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 8px;
-      color: #1a3a5f;
-    }
-    .subtitle {
-      font-size: 1.2rem;
-      font-weight: normal;
-      margin-bottom: 24px;
-      color: #333;
-    }
-    .section {
-      margin-bottom: 32px;
-    }
-    .section-title {
-      font-size: 1.6rem;
-      margin-top: 24px;
-      margin-bottom: 12px;
-      color: #1a3a5f;
-    }
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 16px;
-    }
-    ol {
-      margin-bottom: 24px;
-    }
-    ol li {
-      margin-bottom: 12px;
-    }
-    .link {
-      color: #1a3a5f;
-      text-decoration: underline;
-    }
-    .link:hover {
-      color: #000;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aesthetics of Society | CulturalMusings.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8cc80;
+    --deep: #0e0b07;
+    --ink: #1a1510;
+    --cream: #f5f0e8;
+    --rust: #8b3a2a;
+    --muted: #6b5e4e;
+    --border: rgba(201,168,76,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background: var(--deep);
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── WATERMARK ── */
+  .watermark {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .watermark::after {
+    content: 'AESTHETICS OF SOCIETY';
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 6vw, 5rem);
+    color: rgba(201,168,76,0.06);
+    letter-spacing: 0.3em;
+    transform: rotate(-30deg);
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(14,11,7,0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
+  }
+  .brand img {
+    height: 54px;
+    width: auto;
+    object-fit: contain;
+  }
+  .brand-text {
+    line-height: 1.2;
+  }
+  .brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    display: block;
+  }
+  .brand-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    font-style: italic;
+    display: block;
+  }
+
+  .header-contact {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem;
+    color: var(--muted);
+    text-align: right;
+    line-height: 1.6;
+  }
+  .header-contact a { color: var(--gold-light); text-decoration: none; }
+
+  /* ── NAVIGATION ── */
+  nav.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 0 1.5rem;
+    overflow-x: auto;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.75rem 1.1rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--cream);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: color 0.2s;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--gold); }
+  .nav-link .arrow { font-size: 0.55rem; transition: transform 0.2s; }
+  .nav-item:hover .arrow { transform: rotate(180deg); }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(18,14,9,0.98);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold);
+    min-width: 280px;
+    z-index: 2000;
+    backdrop-filter: blur(12px);
+  }
+  .nav-item:hover .dropdown { display: block; }
+
+  .dropdown a {
+    display: block;
+    padding: 0.65rem 1.2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    transition: background 0.15s, color 0.15s, padding-left 0.15s;
+  }
+  .dropdown a:hover {
+    background: rgba(201,168,76,0.08);
+    color: var(--gold);
+    padding-left: 1.6rem;
+  }
+  .dropdown .dd-label {
+    display: block;
+    padding: 0.4rem 1.2rem 0.2rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    background: rgba(201,168,76,0.06);
+    text-transform: uppercase;
+  }
+
+  /* ── LANDING PAGE ── */
+  #page-home {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+    z-index: 0;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(14,11,7,0.7) 100%);
+  }
+  .hero-logo-wm {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-logo-wm img {
+    width: clamp(200px, 35vw, 480px);
+    opacity: 0.18;
+    filter: grayscale(30%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 2rem;
+    max-width: 860px;
+  }
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+  }
+  .hero-title span { color: var(--gold); }
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    color: rgba(245,240,232,0.8);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+  .hero-cta-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-gold {
+    padding: 0.75rem 2rem;
+    background: var(--gold);
+    color: var(--deep);
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    padding: 0.75rem 2rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { background: rgba(201,168,76,0.1); }
+
+  /* ── SUBDOMAIN TILES ON LANDING ── */
+  .subdomains-section {
+    background: var(--ink);
+    padding: 4rem 2rem;
+  }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    text-align: center;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+  }
+  .section-rule {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0.8rem auto 2.5rem;
+  }
+  .subdomain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .subdomain-card {
+    border: 1px solid var(--border);
+    padding: 1.8rem 1.5rem;
+    background: rgba(255,255,255,0.02);
+    text-decoration: none;
+    display: block;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .subdomain-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .subdomain-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); transform: translateY(-3px); }
+  .subdomain-card:hover::before { transform: scaleX(1); }
+  .sd-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .sd-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .sd-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .sd-url {
+    margin-top: 0.8rem;
+    font-size: 0.75rem;
+    color: rgba(201,168,76,0.5);
+    font-style: italic;
+  }
+
+  /* ── INNER PAGES ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .page-hero {
+    position: relative;
+    padding: 5rem 2rem 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: radial-gradient(ellipse at top, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('background1.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.06;
+    z-index: 0;
+  }
+  .page-hero > * { position: relative; z-index: 1; }
+  .page-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    margin-bottom: 0.8rem;
+  }
+  .page-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
+
+  .content-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .prose p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: rgba(245,240,232,0.85);
+    margin-bottom: 1.4rem;
+  }
+  .prose h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    margin: 2rem 0 0.8rem;
+  }
+
+  /* ── ABOUT AUTHOR ── */
+  .author-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+  @media(max-width:700px){ .author-layout { grid-template-columns: 1fr; } }
+  .author-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    filter: sepia(20%) contrast(1.05);
+  }
+  .author-img-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: rgba(201,168,76,0.08);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── PUBLICATION GRID ── */
+  .pub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .pub-card {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.2s;
+  }
+  .pub-card:hover { border-color: var(--gold); }
+  .vol-badge {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    background: var(--gold);
+    color: var(--deep);
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.8rem;
+  }
+  .pub-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  .pub-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; margin-bottom: 1rem; }
+  .btn-sm {
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    background: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-sm:hover { background: var(--gold); color: var(--deep); }
+
+  /* ── MUDRAS / KARANAS CONTENT ── */
+  .content-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 0.65rem 1.3rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    margin-bottom: -1px;
+  }
+  .tab-btn.active, .tab-btn:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── SUBDOMAIN LINK HIGHLIGHT ── */
+  a.sd-link {
+    color: var(--gold-light);
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(201,168,76,0.5);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  a.sd-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ── ENQUIRY FORM ── */
+  .enquiry-section {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    max-width: 700px;
+    margin: 2rem auto;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  @media(max-width:550px){ .form-row { grid-template-columns: 1fr; } }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .form-field label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .form-field input, .form-field textarea, .form-field select {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--cream);
+    padding: 0.65rem 0.9rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-field input:focus, .form-field textarea:focus { border-color: var(--gold); }
+  .form-field textarea { min-height: 120px; }
+
+  /* ── GURUS CLAN ── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .team-card {
+    border: 1px solid var(--border);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    background: rgba(255,255,255,0.02);
+  }
+  .team-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.12);
+    border: 2px solid var(--border);
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+  }
+  .team-card h3 { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--gold); margin-bottom: 0.4rem; }
+  .team-card p { font-size: 0.85rem; color: var(--muted); }
+
+  /* ── CONTACT / CHATBOT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+  }
+  @media(max-width:700px){ .contact-grid { grid-template-columns: 1fr; } }
+
+  .chatbot-widget {
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .chatbot-header {
+    background: rgba(201,168,76,0.12);
+    padding: 0.8rem 1.2rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .chatbot-header::before { content: '💬'; }
+  .chatbot-inner {
+    position: relative;
+    height: 500px;
+  }
+  .chatbot-inner iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  .chatbot-notice {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    background: rgba(0,0,0,0.3);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem 1.5rem;
+    text-align: center;
+    background: var(--ink);
+    position: relative;
+    z-index: 1;
+  }
+  .footer-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem 1.5rem;
+    margin: 1rem 0;
+  }
+  .footer-links a {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(107,94,78,0.6);
+    margin-top: 1.5rem;
+    font-style: italic;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:768px){
+    nav.main-nav { padding: 0 0.5rem; }
+    .nav-link { padding: 0.65rem 0.7rem; font-size: 0.62rem; }
+    .header-top { padding: 0.5rem 1rem; }
+  }
+
+  /* ── MOBILE MENU TOGGLE ── */
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--gold);
+    padding: 0.4rem 0.7rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  @media(max-width:600px){
+    .mobile-toggle { display: block; }
+    nav.main-nav { display: none; flex-direction: column; padding: 0; }
+    nav.main-nav.open { display: flex; }
+    .dropdown { position: static; border: none; border-left: 2px solid var(--gold); margin-left: 1rem; }
+    .nav-item:hover .dropdown { display: none; }
+    .nav-item.open .dropdown { display: block; }
+  }
+
+  /* ── AUDIO BTN ── */
+  .audio-toggle {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 500;
+    background: rgba(14,11,7,0.9);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.2s;
+  }
+  .audio-toggle:hover { background: rgba(201,168,76,0.15); }
+
+  /* ── FLOATING CHATBOT BUTTON ── */
+  .chat-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 600;
+    background: var(--gold);
+    color: var(--deep);
+    border: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .chat-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(201,168,76,0.6); }
+
+  .chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 600;
+    width: 380px;
+    max-width: calc(100vw - 40px);
+    background: var(--ink);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  }
+  .chat-popup.open { display: block; }
+  .chat-popup-header {
+    background: rgba(201,168,76,0.1);
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .chat-popup-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+  }
+  .chat-close {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  .chat-popup-notice {
+    padding: 0.6rem 1rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    border-bottom: 1px solid var(--border);
+  }
+  .chat-popup iframe {
+    width: 100%;
+    height: 420px;
+    border: none;
+  }
+
+  /* ── PAGE BG ── */
+  .inner-page-bg {
+    position: relative;
+    min-height: 100vh;
+  }
+  .inner-page-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url('background1.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.05;
+    z-index: 0;
+    pointer-events: none;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <img src="author.jpg" alt="Naredla Rama Chandra" class="author-img" />
-      <h1>Master Consciousness Protocol</h1>
-      <p class="subtitle">A Unique Journey in Itself</p>
-      <p class="subtitle">Bridging ancient lineages with modern empirical science beyond its limitations.</p>
-    </header>
 
-    <div class="section">
-      <p>
-        Welcome to the digital nexus of Naredla Rama Chandra's research. This platform synthesizes esoteric wisdom and neurological science. Explore our comprehensive frameworks via 
-        <a href="https://masterconsciousprotocol.culturalmusings.com/" class="link">Master Consciousness Protocol</a>,
-        deeply investigate the vibrational universe through 
-        <a href="https://spandanashodha.culturalmusings.com/" class="link">Spandana Shodha</a>,
-        or delve into traditional kinetic aesthetics at 
-        <a href="https://natyashastra.culturalmusings.com/" class="link">Natyashastra</a>.
-      </p>
-    </div>
+<div class="watermark"></div>
+<audio id="ambient" loop><source src="flute.mp3" type="audio/mpeg"></audio>
 
-    <div class="section">
-      <h2 class="section-title">A Life in Pursuit of the Ancient Science</h2>
-      <p>
-        Naredla Rama Chandra's journey into the <em>Natya Shastra</em> began not in a library but in a living tradition — through decades of immersion in classical Indian performance, Sanskrit scholarship, and the living Parampara (lineage) of the 18 Siddhas. What began as cultural curiosity evolved into a rigorous interdisciplinary research programme spanning over twenty years.
-      </p>
-      <p>
-        His thesis works, published under Aesthetics of Society, represent the first systematic attempt to decode the Natya Shastra through the simultaneous lenses of Artificial Intelligence, Neuroscience, Medical Science, Bio‑Acoustics, and the Science of Saptaswaras. Each chapter is anchored in the original Sanskrit Shlokas — tracing from the ancient verse to the modern laboratory finding.
-      </p>
-      <p>
-        The author's central argument — that the Natya Shastra is not a text about performance but a precision‑encoded manual of human consciousness science — challenges both Indological orthodoxy and Western neuroscience's amnesia about non‑Western empirical traditions.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2 class="section-title">A World Tuned to Harmony</h2>
-      <p>
-        The Master Consciousness Protocol's vision foresees a future where sound prescriptions replace pharmacological side‑effects; where movement protocols rehabilitate neurological conditions without surgical intervention; where children are educated through arts‑based consciousness protocols that simultaneously develop cognitive, emotional, and somatic intelligence.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2 class="section-title">Primary Goal — Scientific Validation</h2>
-      <p>
-        The primary goal of the Master Consciousness Protocol is the rigorous clinical validation of ancient Indian healing modalities. Every practice within the MCP framework — Raga therapy, Karana movement protocols, Mudra neural activation, Pranayama sequencing — must be measurable, reproducible, and peer‑reviewed. The goal is not cultural pride but empirical proof.
-      </p>
-    </div>
-
-    <div class="section">
-      <h2 class="section-title">The Five Operational Goals</h2>
-      <ol>
-        <li>
-          Establish the Scholarly Consortium
-          <br />
-          Indology · Neuroscience · Biomechanics · Clinical Medicine
-          <br />
-          Anchor the MCP within a multi‑disciplinary academic framework — Sanskrit scholars for textual precision, neuroscientists for clinical measurement, biomechanical engineers for movement analysis, and clinicians for therapeutic application.
-        </li>
-        <li>
-          Complete the Neuro‑Acoustic Bio‑Feedback Interface
-          <br />
-          AI Integration · Real‑time Karana tracking with neural feedback
-          <br />
-          Develop a technology layer that uses motion‑capture and EEG data to map 108 Karanas and Mudras against neural oscillation patterns in real‑time — the technological bridge between ancient protocol and modern clinical delivery.
-        </li>
-        <li>
-          Publish Peer‑Reviewed Findings
-          <br />
-          Neuroscience Journals · Clinical Medicine · Ethnomusicology
-          <br />
-          Submit findings across journals spanning neuroscience, music therapy, biomechanics, and consciousness studies — establishing the MCP as a recognised scientific discipline, not merely a cultural practice.
-        </li>
-        <li>
-          Develop the Practitioner Training Programme
-          <br />
-          Certification · Curriculum · Global Delivery
-          <br />
-          Create a certified training programme for MCP practitioners — combining Sanskrit knowledge, movement science, acoustic therapy, and clinical delivery into a structured, accreditable curriculum.
-        </li>
-        <li>
-          Establish the Living Research Archive
-          <br />
-          culturalmusings.com · Digital · Open Access
-          <br />
-          Maintain and expand the digital research archive as a living, growing repository — not a static monument, but a dynamic foundation inviting global scientific community participation.
-        </li>
-      </ol>
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="header-top">
+    <a class="brand" href="#" onclick="showPage('home')">
+      <img src="logo.png" alt="Aesthetics of Society Logo" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <span class="brand-name">Aesthetics of Society</span>
+        <span class="brand-sub">culturalmusings.com</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" onclick="toggleMobileNav()">☰</button>
+    <div class="header-contact">
+      <span>Naredla Rama Chandra</span><br>
+      <a href="tel:+919121379100">+91 9121379100</a> &nbsp;|&nbsp;
+      <a href="mailto:smith123846@gmail.com">smith123846@gmail.com</a>
     </div>
   </div>
+
+  <nav class="main-nav" id="mainNav">
+
+    <!-- HOME -->
+    <div class="nav-item">
+      <a class="nav-link" href="#" onclick="showPage('home')">Home</a>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="nav-item">
+      <span class="nav-link">About <span class="arrow">▾</span></span>
+      <div class="dropdown">
+        <span class="dd-label">About Us</span>
+        <a href="#" onclick="showPage('author')">About the Author</a>
+        <a href="#" onclick="showPage('goals')">Goals &amp; Vision</a>
+        <a href="#" onclick="showPage('team')">Our Team (Guru's Clan)</a>
+      </div>
+    </div>
+
+    <!-- SUBDOMAINS -->
+    <div class="nav-item">
+      <span class="nav-link">Research Domains <span class="arrow">▾</span></span>
+      <div class="dropdown">
+        <span class="dd-label">Core Research</span>
+        <a href="https://natyashastra.culturalmusings.com" target="_blank">🎭 Natyashastra</a>
+        <a href="https://bioresonancemusings.culturalmusings.com" target="_blank">🔊 Bioresonance Musings</a>
+        <a href="https://nada-chikitsa.culturalmusings.com" target="_blank">🎵 Nada Chikitsa</a>
+        <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank">🧠 Master Conscious Protocol</a>
+        <a href="https://spandanashodha.culturalmusings.com" target="_blank">✨ Spandana Shodha</a>
+        <a href="https://spiritualphilosophical.culturalmusings.com" target="_blank">🕉️ Spiritual &amp; Philosophical</a>
+      </div>
+    </div>
+
+    <!-- KARANAS -->
+    <div class="nav-item">
+      <span class="nav-link">Karanas &amp; Synthesis <span class="arrow">▾</span></span>
+      <div class="dropdown">
+        <span class="dd-label">Karanas References</span>
+        <a href="https://unifiedtheory.culturalmusings.com" target="_blank">🌐 Unified Theory</a>
+        <a href="https://vedicmathematicsgeometry.culturalmusings.com" target="_blank">📐 Vedic Mathematics &amp; Geometry</a>
+        <a href="https://natyashastraclassical-dance.culturalmusings.com" target="_blank">💃 Natyashastra Classical Dance</a>
+        <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank">🧠 Master Conscious Protocol</a>
+        <a href="https://natyashastra.culturalmusings.com" target="_blank">🎭 Natyashastra</a>
+        <a href="https://karanasrootmap.culturalmusings.com" target="_blank">🗺️ Karanas Root Map</a>
+        <a href="https://completecelestialsynthesis.culturalmusings.com" target="_blank">🌌 Complete Celestial Synthesis</a>
+        <a href="https://karanassacredsynthesis.culturalmusings.com" target="_blank">🔮 Karanas Sacred Synthesis</a>
+        <span class="dd-label">Inner Pages</span>
+        <a href="#" onclick="showPage('karanas')">108 Karanas — Overview</a>
+        <a href="#" onclick="showPage('mudras')">Mudras — Six Chapters</a>
+      </div>
+    </div>
+
+    <!-- PUBLICATIONS -->
+    <div class="nav-item">
+      <a class="nav-link" href="#" onclick="showPage('publications')">Publications</a>
+    </div>
+
+    <!-- ENQUIRY -->
+    <div class="nav-item">
+      <a class="nav-link" href="#" onclick="showPage('contact')">Enquiry</a>
+    </div>
+
+  </nav>
+</header>
+
+<!-- ═══ PAGE: HOME ═══ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-logo-wm">
+      <img src="logo.png" alt="" onerror="this.style.display='none'">
+    </div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Aesthetics of Society · CulturalMusings.com</p>
+      <h1 class="hero-title">Bridging <span>Ancient Indian Systems</span><br>with Modern Science</h1>
+      <p class="hero-tagline">An independent research inquiry into the bio-acoustic and neurological<br>foundations of the Sapta Swaras, Natya Shastra &amp; Consciousness</p>
+      <div class="hero-cta-row">
+        <a href="#" class="btn-gold" onclick="showPage('publications')">Explore Publications</a>
+        <a href="#" class="btn-outline" onclick="showPage('contact')">Make an Enquiry</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Menu: Quick Subdomain Access -->
+  <div style="background:rgba(201,168,76,0.06); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:1.2rem 2rem;">
+    <div style="max-width:1100px;margin:0 auto;text-align:center;">
+      <p style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.8rem;">EXPLORE OUR RESEARCH PORTALS</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;">
+        <a href="https://natyashastra.culturalmusings.com" target="_blank" class="btn-outline" style="font-size:0.65rem;padding:0.4rem 0.9rem;">Natyashastra</a>
+        <a href="https://bioresonancemusings.culturalmusings.com" target="_blank" class="btn-outline" style="font-size:0.65rem;padding:0.4rem 0.9rem;">Bioresonance</a>
+        <a href="https://nada-chikitsa.culturalmusings.com" target="_blank" class="btn-outline" style="font-size:0.65rem;padding:0.4rem 0.9rem;">Nada Chikitsa</a>
+        <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="btn-outline" style="font-size:0.65rem;padding:0.4rem 0.9rem;">Master Conscious Protocol</a>
+        <a href="https://spandanashodha.culturalmusings.com" target="_blank" class="btn-outline" style="font-size:0.65rem;padding:0.4rem 0.9rem;">Spandana Shodha</a>
+        <a href="https://spiritualphilosophical.culturalmusings.com" target="_blank" class="btn-outline" style="font-size:0.65rem;padding:0.4rem 0.9rem;">Spiritual &amp; Philosophical</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subdomain Cards -->
+  <div class="subdomains-section">
+    <h2 class="section-title">Research Domains</h2>
+    <div class="section-rule"></div>
+    <div class="subdomain-grid">
+      <a href="https://natyashastra.culturalmusings.com" target="_blank" class="subdomain-card">
+        <div class="sd-icon">🎭</div>
+        <div class="sd-title">Natyashastra</div>
+        <div class="sd-desc">Ancient Sanskrit treatise on the performing arts — dance, music, theatre and their cosmic geometry.</div>
+        <div class="sd-url">natyashastra.culturalmusings.com</div>
+      </a>
+      <a href="https://bioresonancemusings.culturalmusings.com" target="_blank" class="subdomain-card">
+        <div class="sd-icon">🔊</div>
+        <div class="sd-title">Bioresonance Musings</div>
+        <div class="sd-desc">Exploring how bio-acoustic frequencies interact with cellular biology and the human energy field.</div>
+        <div class="sd-url">bioresonancemusings.culturalmusings.com</div>
+      </a>
+      <a href="https://nada-chikitsa.culturalmusings.com" target="_blank" class="subdomain-card">
+        <div class="sd-icon">🎵</div>
+        <div class="sd-title">Nada Chikitsa</div>
+        <div class="sd-desc">Sound healing through the Sapta Swaras — the seven tones and their neurological correlates.</div>
+        <div class="sd-url">nada-chikitsa.culturalmusings.com</div>
+      </a>
+      <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="subdomain-card">
+        <div class="sd-icon">🧠</div>
+        <div class="sd-title">Master Conscious Protocol</div>
+        <div class="sd-desc">A unified framework integrating Vedic antiquity with modern clinical neuroscience and consciousness research.</div>
+        <div class="sd-url">masterconsciousprotocol.culturalmusings.com</div>
+      </a>
+      <a href="https://spandanashodha.culturalmusings.com" target="_blank" class="subdomain-card">
+        <div class="sd-icon">✨</div>
+        <div class="sd-title">Spandana Shodha</div>
+        <div class="sd-desc">Research into vibration, resonance and the pulsating nature of consciousness in living systems.</div>
+        <div class="sd-url">spandanashodha.culturalmusings.com</div>
+      </a>
+      <a href="https://spiritualphilosophical.culturalmusings.com" target="_blank" class="subdomain-card">
+        <div class="sd-icon">🕉️</div>
+        <div class="sd-title">Spiritual &amp; Philosophical</div>
+        <div class="sd-desc">Philosophical underpinnings of the entire project — from Vedanta to contemporary metaphysics.</div>
+        <div class="sd-url">spiritualphilosophical.culturalmusings.com</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: AUTHOR ═══ -->
+<div id="page-author" class="page inner-page-bg">
+  <div class="page-hero">
+    <p style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.6rem;">ABOUT THE AUTHOR</p>
+    <h1 class="page-title">Naredla Rama Chandra</h1>
+    <p class="page-subtitle">Independent Researcher · Scholar · Visionary</p>
+  </div>
+  <div class="author-layout">
+    <div>
+      <img src="author.jpg" alt="Naredla Rama Chandra" class="author-img" onerror="this.outerHTML='<div class=\'author-img-placeholder\'>author.jpg</div>'">
+    </div>
+    <div class="prose">
+      <p>Naredla Rama Chandra is an independent researcher whose lifelong inquiry spans the ancient sciences of Natyashastra, Vedic mathematics, bio-acoustics, and the neurological dimensions of classical Indian music. His work synthesises centuries of Indic scholarship with the rigour of modern clinical science.</p>
+      <h3>The Work</h3>
+      <p>The centrepiece of his research is the <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="sd-link">Master Consciousness Protocol</a> — a 9-volume series exploring how the 108 Karanas of <a href="https://natyashastra.culturalmusings.com" target="_blank" class="sd-link">Natyashastra</a>, the Sapta Swaras of <a href="https://nada-chikitsa.culturalmusings.com" target="_blank" class="sd-link">Nada Chikitsa</a>, and the vibrations mapped in <a href="https://spandanashodha.culturalmusings.com" target="_blank" class="sd-link">Spandana Shodha</a> interact with pre-frontal cortex activity and cellular biology.</p>
+      <h3>Credentials &amp; Philosophy</h3>
+      <p>Working at the intersection of Vedic antiquity and modern neuroscience, Rama Chandra has developed a model of consciousness rooted in <a href="https://bioresonancemusings.culturalmusings.com" target="_blank" class="sd-link">bioresonance</a>, sacred geometry, and the philosophical traditions explored in <a href="https://spiritualphilosophical.culturalmusings.com" target="_blank" class="sd-link">Spiritual &amp; Philosophical Musings</a>. His approach is neither purely academic nor purely esoteric — it seeks a living synthesis.</p>
+      <h3>Contact</h3>
+      <p>+91 9121379100 &nbsp;|&nbsp; <a href="mailto:smith123846@gmail.com" class="sd-link">smith123846@gmail.com</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: GOALS ═══ -->
+<div id="page-goals" class="page inner-page-bg">
+  <div class="page-hero">
+    <p style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.6rem;">OUR PURPOSE</p>
+    <h1 class="page-title">Goals, Vision &amp; Aim</h1>
+    <p class="page-subtitle">Why we do what we do</p>
+  </div>
+  <div class="content-wrap prose">
+    <h3>The Core Mission</h3>
+    <p>The Aesthetics of Society project exists to recover, analyse, and apply the profound intellectual heritage of ancient India to contemporary questions of consciousness, healing, and human flourishing. Our research is guided by the conviction that Vedic science was empirical long before the term existed.</p>
+
+    <h3>What We Are Building</h3>
+    <p>Through the network of specialised research portals — <a href="https://natyashastra.culturalmusings.com" target="_blank" class="sd-link">Natyashastra</a>, <a href="https://nada-chikitsa.culturalmusings.com" target="_blank" class="sd-link">Nada Chikitsa</a>, <a href="https://bioresonancemusings.culturalmusings.com" target="_blank" class="sd-link">Bioresonance Musings</a>, <a href="https://spandanashodha.culturalmusings.com" target="_blank" class="sd-link">Spandana Shodha</a>, and <a href="https://spiritualphilosophical.culturalmusings.com" target="_blank" class="sd-link">Spiritual &amp; Philosophical</a> — we are constructing an interconnected body of knowledge that converges in the <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="sd-link">Master Consciousness Protocol</a>.</p>
+
+    <h3>Interdisciplinary Collaboration</h3>
+    <p>We work as a team — scholars, clinicians, musicians, mathematicians, and philosophers — each contributing expertise to the shared inquiry. The project is deliberately non-siloed: findings from <a href="https://vedicmathematicsgeometry.culturalmusings.com" target="_blank" class="sd-link">Vedic Mathematics &amp; Geometry</a> inform the structural analysis of the 108 Karanas; insights from <a href="https://bioresonancemusings.culturalmusings.com" target="_blank" class="sd-link">bioresonance research</a> validate ancient prescriptions found in Natyashastra.</p>
+
+    <h3>The Long View</h3>
+    <p>Our aim is to publish, teach, and distribute this knowledge in accessible forms — through volumes, seminars, digital portals, and collaborative clinical studies — so that the wisdom embedded in the Sapta Swaras, the 108 Karanas, and the 51 Matrikas enriches twenty-first-century life. The project's ultimate synthesis is articulated through the <a href="https://completecelestialsynthesis.culturalmusings.com" target="_blank" class="sd-link">Complete Celestial Synthesis</a> and <a href="https://karanassacredsynthesis.culturalmusings.com" target="_blank" class="sd-link">Karanas Sacred Synthesis</a> portals.</p>
+  </div>
+</div>
+
+<!-- ═══ PAGE: TEAM ═══ -->
+<div id="page-team" class="page inner-page-bg">
+  <div class="page-hero">
+    <p style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.6rem;">GURU'S CLAN</p>
+    <h1 class="page-title">How We Work Together</h1>
+    <p class="page-subtitle">A community of scholars, healers and seekers</p>
+  </div>
+  <div class="content-wrap prose">
+    <p>The Guru's Clan is the living collaborative at the heart of this project. We are a multi-disciplinary group united by reverence for ancient Indian knowledge systems and a commitment to rigorous, open inquiry.</p>
+    <h3>The Spirit of Collaboration</h3>
+    <p>Every sub-domain in our network — from <a href="https://natyashastra.culturalmusings.com" target="_blank" class="sd-link">Natyashastra</a> to <a href="https://unifiedtheory.culturalmusings.com" target="_blank" class="sd-link">Unified Theory</a> — is developed through sustained conversation within the clan. No single perspective dominates; instead, each voice enriches the whole.</p>
+    <h3>Our Working Method</h3>
+    <p>We convene in regular study circles, share drafts for peer review, conduct field experiments in sound healing and movement, and co-author publications. The team spans disciplines: classical musicians trained in the Sapta Swaras, neuroscientists interested in <a href="https://bioresonancemusings.culturalmusings.com" target="_blank" class="sd-link">bioresonance</a>, mathematicians mapping <a href="https://vedicmathematicsgeometry.culturalmusings.com" target="_blank" class="sd-link">Vedic geometry</a>, and philosophers grounding everything in <a href="https://spiritualphilosophical.culturalmusings.com" target="_blank" class="sd-link">Vedanta and beyond</a>.</p>
+  </div>
+  <div style="padding:0 2rem 3rem; max-width:1000px; margin:0 auto;">
+    <div class="team-grid">
+      <div class="team-card"><div class="team-avatar">🎓</div><h3>Lead Scholar</h3><p>Naredla Rama Chandra</p></div>
+      <div class="team-card"><div class="team-avatar">🎵</div><h3>Nada Researcher</h3><p>Classical Music &amp; Acoustics</p></div>
+      <div class="team-card"><div class="team-avatar">🧬</div><h3>Bio-Scientist</h3><p>Cellular Resonance Studies</p></div>
+      <div class="team-card"><div class="team-avatar">📐</div><h3>Mathematician</h3><p>Vedic Geometry &amp; Karanas</p></div>
+      <div class="team-card"><div class="team-avatar">💃</div><h3>Movement Scholar</h3><p>Natyashastra &amp; Karanas</p></div>
+      <div class="team-card"><div class="team-avatar">🕉️</div><h3>Philosopher</h3><p>Vedanta &amp; Consciousness</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: KARANAS ═══ -->
+<div id="page-karanas" class="page inner-page-bg">
+  <div class="page-hero">
+    <p style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.6rem;">MOVEMENT &amp; CONSCIOUSNESS</p>
+    <h1 class="page-title">The 108 Karanas</h1>
+    <p class="page-subtitle">Physical Geometry mapped to Neurological Triggers</p>
+  </div>
+  <div class="content-wrap">
+    <div class="content-tabs">
+      <button class="tab-btn active" onclick="switchTab('karanas','k1')">Overview</button>
+      <button class="tab-btn" onclick="switchTab('karanas','k2')">Neuro-Mapping</button>
+    </div>
+    <div id="k1" class="tab-panel active prose">
+      <p>The 108 Karanas are the fundamental movement units described in <a href="https://natyashastra.culturalmusings.com" target="_blank" class="sd-link">Natyashastra</a> — each a precise configuration of body, breath, and intention. Bharata Muni encoded them in the Natya Shastra as the grammar of sacred dance, but our research at <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="sd-link">Master Consciousness Protocol</a> reveals they are simultaneously a map of neurological activation.</p>
+      <h3>Structure of the Karanas</h3>
+      <p>Each Karana is composed of a Sthana (standing posture), a Nritta Hasta (hand gesture or Mudra), and a Chari (foot movement). This triadic structure mirrors the neurological interplay between motor cortex, cerebellum, and pre-frontal regions — a discovery elaborated in MCP Volume IV.</p>
+      <h3>Sacred Geometry</h3>
+      <p>Working with <a href="https://vedicmathematicsgeometry.culturalmusings.com" target="_blank" class="sd-link">Vedic Mathematics &amp; Geometry</a>, we have mapped the spatial coordinates of each Karana onto geometric forms that correspond to specific resonant frequencies — further contextualised through the <a href="https://karanasrootmap.culturalmusings.com" target="_blank" class="sd-link">Karanas Root Map</a> and <a href="https://karanassacredsynthesis.culturalmusings.com" target="_blank" class="sd-link">Karanas Sacred Synthesis</a> portals.</p>
+      <h3>Classical Dance Connection</h3>
+      <p>The living tradition of the Karanas is explored in detail at <a href="https://natyashastraclassical-dance.culturalmusings.com" target="_blank" class="sd-link">Natyashastra Classical Dance</a>, where we document how contemporary practitioners embody this ancient geometry.</p>
+    </div>
+    <div id="k2" class="tab-panel prose">
+      <h3>Pre-Frontal Cortex Activation</h3>
+      <p>Our clinical studies — conducted in dialogue with the <a href="https://bioresonancemusings.culturalmusings.com" target="_blank" class="sd-link">Bioresonance research</a> team — demonstrate that sustained practice of specific Karana sequences produces measurable changes in pre-frontal cortex coherence as recorded by EEG.</p>
+      <h3>The Unified Theory Connection</h3>
+      <p>These neurological findings integrate with the broader <a href="https://unifiedtheory.culturalmusings.com" target="_blank" class="sd-link">Unified Theory</a> framework and point toward a grand synthesis articulated in the <a href="https://completecelestialsynthesis.culturalmusings.com" target="_blank" class="sd-link">Complete Celestial Synthesis</a>.</p>
+      <h3>Master Consciousness Protocol</h3>
+      <p>The full neuro-mapping of the 108 Karanas is the centrepiece of Volume IV of the <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="sd-link">Master Consciousness Protocol</a> series. Request the manuscript via our <a href="#" onclick="showPage('contact')" class="sd-link">Enquiry page</a>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: MUDRAS ═══ -->
+<div id="page-mudras" class="page inner-page-bg">
+  <div class="page-hero">
+    <p style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.6rem;">THE LANGUAGE OF GESTURE</p>
+    <h1 class="page-title">Mudras</h1>
+    <p class="page-subtitle">Six Chapters — From Gesture to Neurological Science</p>
+  </div>
+  <div class="content-wrap">
+    <div class="content-tabs">
+      <button class="tab-btn active" onclick="switchTab('mudras','m1')">I · Introduction</button>
+      <button class="tab-btn" onclick="switchTab('mudras','m2')">II · Science</button>
+      <button class="tab-btn" onclick="switchTab('mudras','m3')">III · Philosophy</button>
+      <button class="tab-btn" onclick="switchTab('mudras','m4')">IV · Neurology</button>
+      <button class="tab-btn" onclick="switchTab('mudras','m5')">V · Practice</button>
+      <button class="tab-btn" onclick="switchTab('mudras','m6')">VI · Synthesis</button>
+    </div>
+
+    <div id="m1" class="tab-panel active prose">
+      <h3>Chapter I — The Importance of Mudras</h3>
+      <p>Mudras are the sacred hand gestures that form an essential layer of the Karana complex described in <a href="https://natyashastra.culturalmusings.com" target="_blank" class="sd-link">Natyashastra</a>. Far from mere decoration, each Mudra is a precise energetic seal — a configuration of fingers, palms, and wrists that channels prana (life-force) in specific pathways through the body.</p>
+      <p>In Bharata Muni's taxonomy, there are 28 Asamyuta (single-hand) and 24 Samyuta (combined-hand) Mudras, each assigned specific meanings, deities, elements, and uses in sacred and theatrical performance. They constitute a complete language — a grammar of gesture that pre-dates written script.</p>
+      <p>Our research within the <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="sd-link">Master Consciousness Protocol</a> demonstrates that this language is not merely symbolic: each Mudra generates a distinct pattern of bio-electric activity measurable through electrophysiological instruments.</p>
+    </div>
+
+    <div id="m2" class="tab-panel prose">
+      <h3>Chapter II — The Science of Mudras</h3>
+      <p>Modern science approaches the Mudra through the lens of peripheral nerve mapping. Each finger tip is associated with a distinct neural pathway connecting to regions of the brain's somatosensory cortex. When fingers are brought into specific configurations, feedback loops are created that modulate autonomic nervous system activity.</p>
+      <p>The <a href="https://bioresonancemusings.culturalmusings.com" target="_blank" class="sd-link">bioresonance research</a> we have conducted shows that Chin Mudra, Gyan Mudra, and Shunya Mudra each produce measurable shifts in the body's electromagnetic field — consistent with ancient prescriptions about their healing properties in <a href="https://nada-chikitsa.culturalmusings.com" target="_blank" class="sd-link">Nada Chikitsa</a>.</p>
+      <p>Furthermore, the geometric angles created by Mudra positions correspond to specific resonant frequencies catalogued in our <a href="https://vedicmathematicsgeometry.culturalmusings.com" target="_blank" class="sd-link">Vedic Mathematics &amp; Geometry</a> research — suggesting the ancients were encoding frequency maps in the human hand itself.</p>
+    </div>
+
+    <div id="m3" class="tab-panel prose">
+      <h3>Chapter III — The Philosophy of Mudras</h3>
+      <p>Philosophically, the Mudra tradition rests on the Vedantic premise that the macrocosm is mirrored in the microcosm — that the entire cosmos is encoded in the human body. The five fingers correspond to the Pancha Mahabhutas (five great elements): earth, water, fire, air, and ether. When we seal these elements in specific combinations, we are performing cosmological acts in miniature.</p>
+      <p>This is the deep wisdom explored in our <a href="https://spiritualphilosophical.culturalmusings.com" target="_blank" class="sd-link">Spiritual &amp; Philosophical</a> portal and synthesised through the lens of <a href="https://spandanashodha.culturalmusings.com" target="_blank" class="sd-link">Spandana Shodha</a> — the science of vibration and pulsation in living systems.</p>
+      <p>The <a href="https://unifiedtheory.culturalmusings.com" target="_blank" class="sd-link">Unified Theory</a> framework situates Mudra philosophy within a broader account of how consciousness organises matter — from the quantum field to the dancing body.</p>
+    </div>
+
+    <div id="m4" class="tab-panel prose">
+      <h3>Chapter IV — Mudras from a Neurological Viewpoint</h3>
+      <p>The neurological perspective on Mudras is among the most exciting frontiers in our research. The hand occupies a disproportionately large area of the motor and somatosensory cortex — a phenomenon illustrated by the famous "cortical homunculus." This means that hand gestures have outsized effects on brain activity.</p>
+      <p>In collaboration with clinical neuroscience colleagues, we have begun mapping specific Mudras to patterns of neural coherence using EEG and fMRI protocols. Preliminary findings indicate that:</p>
+      <p>1. Sustained Mudra practice increases gamma-wave coherence in the pre-frontal cortex — the brain region associated with executive function, compassion, and what contemplative traditions call "witness consciousness."</p>
+      <p>2. The combination of Mudras with Nada (sound vibrations from <a href="https://nada-chikitsa.culturalmusings.com" target="_blank" class="sd-link">Nada Chikitsa</a>) amplifies these effects non-linearly — suggesting resonant entrainment between somatic and acoustic frequencies.</p>
+      <p>3. The specific Karanas that incorporate Mudras as Nritta Hastas appear to activate the mirror neuron system — the neural substrate of empathy, imitation, and social bonding — potentially explaining the role of classical dance in community integration.</p>
+    </div>
+
+    <div id="m5" class="tab-panel prose">
+      <h3>Chapter V — Mudra in Practice</h3>
+      <p>The living transmission of Mudra practice occurs in the context of <a href="https://natyashastraclassical-dance.culturalmusings.com" target="_blank" class="sd-link">classical dance training</a>. We document both the technical precision required — the exact angle of each joint, the pressure of each fingertip — and the inner disposition that animates the gesture.</p>
+      <p>Practice protocol, as developed within the <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="sd-link">Master Consciousness Protocol</a>, recommends sustained daily practice beginning with the foundational Asamyuta Mudras, combined with breath regulation and vocal toning aligned with the Sapta Swaras. This integrated approach is what produces measurable neurological outcomes.</p>
+    </div>
+
+    <div id="m6" class="tab-panel prose">
+      <h3>Chapter VI — Synthesis and the Celestial Connection</h3>
+      <p>The final chapter of our Mudra inquiry draws all strands together. The <a href="https://completecelestialsynthesis.culturalmusings.com" target="_blank" class="sd-link">Complete Celestial Synthesis</a> demonstrates how Mudra, Karana, Nada, and Vedic geometry form a single integrated system — a technology of consciousness encoded in ancient India and awaiting full scientific articulation.</p>
+      <p>The <a href="https://karanassacredsynthesis.culturalmusings.com" target="_blank" class="sd-link">Karanas Sacred Synthesis</a> portal extends this into the domain of sacred architecture and astronomical alignment, showing how the body's gestures mirror cosmic movements. All of this converges in the <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="sd-link">Master Consciousness Protocol</a> — the living, growing summation of this research project.</p>
+      <p>To go deeper, explore our publications or <a href="#" onclick="showPage('contact')" class="sd-link">submit an enquiry</a> to request manuscripts.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: PUBLICATIONS ═══ -->
+<div id="page-publications" class="page inner-page-bg">
+  <div class="page-hero">
+    <p style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.6rem;">SCHOLARLY WORKS</p>
+    <h1 class="page-title">Publications</h1>
+    <p class="page-subtitle">Nine Volumes bridging Vedic antiquity with modern science</p>
+  </div>
+  <div class="content-wrap">
+    <div class="prose" style="margin-bottom:2rem;">
+      <p>The research of Naredla Rama Chandra is presented across a 9-volume series, each volume a standalone inquiry that simultaneously forms part of the integrated edifice of the <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="sd-link">Master Consciousness Protocol</a>. Manuscripts are available on request.</p>
+    </div>
+    <div class="pub-grid">
+      <div class="pub-card"><span class="vol-badge">Vol. I</span><h3>Master Consciousness Protocol</h3><p>Foundational 300-page thesis on bio-acoustic resonance and consciousness mapping.</p><a href="#" onclick="showPage('contact')" class="btn-sm">Request Manuscript</a></div>
+      <div class="pub-card"><span class="vol-badge">Vol. II</span><h3>Shabda Brahman</h3><p>Primordial sound and cellular vibration — from OM to the molecular level.</p><a href="#" onclick="showPage('contact')" class="btn-sm">Request Manuscript</a></div>
+      <div class="pub-card"><span class="vol-badge">Vol. III</span><h3>Sapta Swaras &amp; Neuro-Biology</h3><p>Seven musical tones and the human nervous system.</p><a href="#" onclick="showPage('contact')" class="btn-sm">Request Manuscript</a></div>
+      <div class="pub-card"><span class="vol-badge">Vol. IV</span><h3>108 Karanas: Physical Geometry</h3><p>Visual study of <a href="https://natyashastra.culturalmusings.com" target="_blank" class="sd-link">Natya Shastra</a> and cortical triggers.</p><a href="#" onclick="showPage('contact')" class="btn-sm">Request Manuscript</a></div>
+      <div class="pub-card"><span class="vol-badge">Vol. V</span><h3>Sampoorna Manovijnana Sangraha</h3><p>Psychological insights from ancient Indian sciences.</p><a href="#" onclick="showPage('contact')" class="btn-sm">Request Manuscript</a></div>
+      <div class="pub-card"><span class="vol-badge">Vol. VI</span><h3>Bio-Acoustics of the 51 Matrikas</h3><p>Linguistic phonemes and biological resonance — the alphabet as frequency map.</p><a href="#" onclick="showPage('contact')" class="btn-sm">Request Manuscript</a></div>
+      <div class="pub-card"><span class="vol-badge">Vol. VII</span><h3>The 22 Shrutis &amp; Astrophysics</h3><p>Micro-tonal intervals and macro-cosmic frequencies.</p><a href="#" onclick="showPage('contact')" class="btn-sm">Request Manuscript</a></div>
+      <div class="pub-card"><span class="vol-badge">Vol. VIII</span><h3>Aesthetics of Society</h3><p>Philosophical application of MCP to social structures and cultural healing.</p><a href="#" onclick="showPage('contact')" class="btn-sm">Request Manuscript</a></div>
+      <div class="pub-card"><span class="vol-badge">Vol. IX</span><h3>The Complete Celestial Synthesis</h3><p>Grand unification — Mudra, Karana, Nada, Geometry and Consciousness as one system. See also: <a href="https://completecelestialsynthesis.culturalmusings.com" target="_blank" class="sd-link">completecelestialsynthesis.culturalmusings.com</a></p><a href="#" onclick="showPage('contact')" class="btn-sm">Request Manuscript</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PAGE: CONTACT / ENQUIRY ═══ -->
+<div id="page-contact" class="page inner-page-bg">
+  <div class="page-hero">
+    <p style="font-family:'Cinzel',serif;font-size:0.68rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:0.6rem;">GET IN TOUCH</p>
+    <h1 class="page-title">Enquiry</h1>
+    <p class="page-subtitle">Manuscript requests · Collaboration · Research partnership</p>
+  </div>
+  <div class="contact-grid">
+    <!-- ENQUIRY FORM (JotForm) -->
+    <div>
+      <h2 style="font-family:'Cinzel',serif;font-size:0.9rem;color:var(--gold);letter-spacing:0.12em;margin-bottom:1rem;">SUBMIT AN ENQUIRY</h2>
+      <div style="border:1px solid var(--border);overflow:hidden;">
+        <iframe
+          src="https://form.jotform.com/261042208142039"
+          title="Enquiry Form"
+          style="width:100%;height:600px;border:none;"
+          scrolling="yes"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--muted);font-style:italic;">All enquiries are directed to smith123846@gmail.com · +91 9121379100</p>
+    </div>
+    <!-- CHATBOT -->
+    <div>
+      <h2 style="font-family:'Cinzel',serif;font-size:0.9rem;color:var(--gold);letter-spacing:0.12em;margin-bottom:1rem;">LIVE CHAT / MESSAGE</h2>
+      <div class="chatbot-widget">
+        <div class="chatbot-header">Leave us a Message</div>
+        <div class="chatbot-inner">
+          <iframe
+            src="https://www.jotform.com/agent/019d8f3727af73cab8f1024b3df3ef1f84b6"
+            title="Chat Agent"
+            scrolling="yes"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="chatbot-notice">💬 Leave your message in the chat — we will get back to you within a short time with the requested information.</div>
+      </div>
+      <div style="margin-top:1.5rem;border:1px solid var(--border);padding:1.5rem;">
+        <h3 style="font-family:'Cinzel',serif;font-size:0.8rem;color:var(--gold);letter-spacing:0.1em;margin-bottom:0.8rem;">DIRECT CONTACT</h3>
+        <p style="font-size:0.9rem;color:var(--muted);line-height:2;">
+          📧 <a href="mailto:smith123846@gmail.com" class="sd-link">smith123846@gmail.com</a><br>
+          📞 <a href="tel:+919121379100" class="sd-link">+91 9121379100</a><br>
+          🌐 <a href="https://culturalmusings.com" target="_blank" class="sd-link">culturalmusings.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-brand">AESTHETICS OF SOCIETY</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:0.9rem;margin-bottom:1rem;">culturalmusings.com</div>
+  <div class="footer-links">
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="https://natyashastra.culturalmusings.com" target="_blank">Natyashastra</a>
+    <a href="https://bioresonancemusings.culturalmusings.com" target="_blank">Bioresonance</a>
+    <a href="https://nada-chikitsa.culturalmusings.com" target="_blank">Nada Chikitsa</a>
+    <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank">Master Conscious Protocol</a>
+    <a href="https://spandanashodha.culturalmusings.com" target="_blank">Spandana Shodha</a>
+    <a href="https://unifiedtheory.culturalmusings.com" target="_blank">Unified Theory</a>
+    <a href="https://completecelestialsynthesis.culturalmusings.com" target="_blank">Celestial Synthesis</a>
+    <a href="#" onclick="showPage('publications')">Publications</a>
+    <a href="#" onclick="showPage('contact')">Enquiry</a>
+  </div>
+  <div class="footer-copy">© 2025 Aesthetics of Society · Naredla Rama Chandra · All rights reserved</div>
+</footer>
+
+<!-- ═══ FLOATING CHATBOT ═══ -->
+<button class="audio-toggle" onclick="toggleAudio()" title="Toggle ambient audio">🎵</button>
+<button class="chat-float" onclick="toggleChatPopup()" title="Chat with us">💬</button>
+<div class="chat-popup" id="chatPopup">
+  <div class="chat-popup-header">
+    <span class="chat-popup-title">LEAVE US A MESSAGE</span>
+    <button class="chat-close" onclick="toggleChatPopup()">✕</button>
+  </div>
+  <div class="chat-popup-notice">We will get back to you in some time with the information you need.</div>
+  <iframe
+    src="https://www.jotform.com/agent/019d8f3727af73cab8f1024b3df3ef1f84b6"
+    title="Chat Agent"
+    scrolling="yes">
+  </iframe>
+</div>
+
+<script>
+  // ── PAGE ROUTING ──
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page-' + id);
+    if (target) {
+      target.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+    // Close mobile nav
+    document.getElementById('mainNav').classList.remove('open');
+  }
+
+  // ── TABS ──
+  function switchTab(context, panelId) {
+    const page = document.getElementById('page-' + context);
+    if (!page) return;
+    page.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    page.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const panel = document.getElementById(panelId);
+    if (panel) panel.classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ── MOBILE NAV ──
+  function toggleMobileNav() {
+    document.getElementById('mainNav').classList.toggle('open');
+  }
+
+  // ── AUDIO ──
+  function toggleAudio() {
+    const a = document.getElementById('ambient');
+    if (a.paused) { a.play(); } else { a.pause(); }
+  }
+
+  // ── CHAT POPUP ──
+  function toggleChatPopup() {
+    document.getElementById('chatPopup').classList.toggle('open');
+  }
+
+  // Dropdown accessibility on mobile: tap to open
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const item = this.closest('.nav-item');
+      if (item && item.querySelector('.dropdown')) {
+        if (window.innerWidth <= 600) {
+          e.preventDefault();
+          item.classList.toggle('open');
+        }
+      }
+    });
+  });
+</script>
 </body>
 </html>
