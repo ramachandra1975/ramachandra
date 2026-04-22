@@ -1,155 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetics of Society | Master Consciousness Protocol</title>
-    <style>
-        :root { --navy: #002147; --gold: #D4AF37; }
-        html { scroll-behavior: smooth; }
-        body { margin: 0; font-family: 'Georgia', serif; color: var(--navy); line-height: 1.6; }
-
-        /* Navigation */
-        .header-main { position: fixed; top: 0; width: 100%; z-index: 1000; background: var(--navy); display: flex; justify-content: space-between; padding: 10px 40px; border-bottom: 2px solid var(--gold); align-items: center; box-sizing: border-box; }
-        .logo-box { display: flex; align-items: center; color: var(--gold); }
-        .nav-right { display: flex; gap: 20px; }
-        .dropbtn { background: none; border: none; color: var(--gold); font-weight: bold; cursor: pointer; font-size: 13px; text-transform: uppercase; }
-        .dropdown { position: relative; }
-        .dropdown-content { display: none; position: absolute; background: white; right: 0; min-width: 280px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); border-top: 2px solid var(--gold); }
-        .dropdown-content a { color: var(--navy); padding: 12px 16px; text-decoration: none; display: block; font-size: 12px; border-bottom: 1px solid #eee; }
-        .dropdown:hover .dropdown-content { display: block; }
-
-        /* Landing Page */
-        .landing-top { height: 85vh; background: url('background.png') no-repeat center center; background-size: cover; position: relative; display: flex; align-items: center; justify-content: center; }
-        .watermark { position: absolute; width: 30%; opacity: 0.4; pointer-events: none; z-index: 1; }
-        .mission-box { position: relative; z-index: 10; width: 85%; max-width: 1000px; text-align: center; background: rgba(0, 33, 71, 0.85); padding: 40px; border: 1px solid var(--gold); color: white; }
-
-        /* Radio Toggle Control */
-        .toggle-nav { display: flex; flex-direction: column; align-items: center; background: #f4f4f4; border-bottom: 2px solid var(--gold); }
-        .radio-buttons { display: flex; gap: 50px; padding: 30px; }
-        .radio-buttons label { font-weight: bold; color: var(--navy); cursor: pointer; font-size: 1.2rem; }
-        
-        #view-author, #view-pages { display: none; width: 100%; }
-        #radio-author:checked ~ #view-author { display: block; }
-        #radio-pages:checked ~ #view-pages { display: block; }
-
-        /* Research Content Sections */
-        .research-section { min-height: 100vh; background: url('background1.png') fixed center; background-size: cover; padding: 60px 20px; }
-        .content-card { max-width: 1000px; margin: 0 auto 40px auto; background: rgba(255, 255, 255, 0.98); padding: 60px; border-radius: 4px; border-left: 8px solid var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        
-        h2 { border-bottom: 2px solid var(--gold); padding-bottom: 15px; margin-top: 0; font-size: 2rem; color: var(--navy); }
-        h3 { color: var(--gold); font-size: 1.5rem; margin-top: 30px; }
-        .subdomain-ref { color: #b30000; font-weight: bold; text-decoration: underline; }
-        .goal-num { font-size: 2.5rem; color: var(--gold); font-weight: bold; line-height: 1; margin-bottom: 10px; }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Master Consciousness Protocol – Naredla Rama Chandra</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background: #fdfdfd;
+      color: #1a1a1a;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .author-img {
+      max-width: 200px;
+      border-radius: 12px;
+      border: 2px solid #e0e0e0;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      color: #1a3a5f;
+    }
+    .subtitle {
+      font-size: 1.2rem;
+      font-weight: normal;
+      margin-bottom: 24px;
+      color: #333;
+    }
+    .section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-size: 1.6rem;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      color: #1a3a5f;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+    ol {
+      margin-bottom: 24px;
+    }
+    ol li {
+      margin-bottom: 12px;
+    }
+    .link {
+      color: #1a3a5f;
+      text-decoration: underline;
+    }
+    .link:hover {
+      color: #000;
+    }
+  </style>
 </head>
 <body>
-
-    <header class="header-main">
-        <div class="logo-box">
-            <img src="logo.png" style="height: 45px; margin-right: 15px;">
-            <div><h1 style="margin:0; font-size: 1.1rem;">AESTHETICS OF SOCIETY</h1><p style="margin:0; font-size: 0.7rem;">culturalmusings.com</p></div>
-        </div>
-        <nav class="nav-right">
-            <div class="dropdown"><button class="dropbtn">SUBDOMAINS ▾</button>
-                <div class="dropdown-content">
-                    <a href="https://natyashastra.culturalmusings.com">natyashastra.culturalmusings.com</a>
-                    <a href="https://bioresonancemusings.culturalmusings.com">bioresonancemusings.culturalmusings.com</a>
-                    <a href="https://nada-chikitsa.culturalmusings.com">nada-chikitsa.culturalmusings.com</a>
-                    <a href="https://spiritualphilosophical.culturalmusings.com">spiritualphilosophical.culturalmusings.com</a>
-                    <a href="https://masterconsciousprotocol.culturalmusings.com">masterconsciousprotocol.culturalmusings.com</a>
-                    <a href="https://spandanashodha.culturalmusings.com">spandanashodha.culturalmusings.com</a>
-                </div>
-            </div>
-            <div class="dropdown"><button class="dropbtn">KARANAS ▾</button>
-                <div class="dropdown-content">
-                    <a href="https://unifiedtheory.culturalmusings.com">unifiedtheory.culturalmusings.com</a>
-                    <a href="https://vedicmathematicsgeometry.culturalmusings.com">vedicmathematicsgeometry.culturalmusings.com</a>
-                    <a href="https://natyashastraclassical-dance.culturalmusings.com">natyashastraclassical-dance.culturalmusings.com</a>
-                    <a href="https://karanasrootmap.culturalmusings.com">karanasrootmap.culturalmusings.com</a>
-                    <a href="https://completecelestialsynthesis.culturalmusings.com">completecelestialsynthesis.culturalmusings.com</a>
-                    <a href="https://karanassacredsynthesis.culturalmusings.com">karanassacredsynthesis.culturalmusings.com</a>
-                </div>
-            </div>
-        </nav>
+  <div class="container">
+    <header>
+      <img src="author.jpg" alt="Naredla Rama Chandra" class="author-img" />
+      <h1>Master Consciousness Protocol</h1>
+      <p class="subtitle">A Unique Journey in Itself</p>
+      <p class="subtitle">Bridging ancient lineages with modern empirical science beyond its limitations.</p>
     </header>
 
-    <section id="home" class="landing-top">
-        <img src="logo.jpg" class="watermark">
-        <div class="mission-box">
-            <p style="font-size: 1.4rem;">A deep exploration of Vedic and Upanishadic scriptures unleashing the truth of 21st century modern day sciences like <strong>Artificial Intelligence</strong>, <strong>Neuroscience</strong>, <strong>Medical Sciences</strong>, <strong>Bio-Acoustics</strong>, and the <strong>Science of Saptaswaras</strong> — each dimension revealing the <em>Natya Shastra</em> as the theory of human consciousness.</p>
-        </div>
-    </section>
-
-    <div class="toggle-nav">
-        <div class="radio-buttons">
-            <input type="radio" name="view" id="radio-author" checked> <label for="radio-author">ABOUT THE AUTHOR</label>
-            <input type="radio" name="view" id="radio-pages"> <label for="radio-pages">RESEARCH PAGES</label>
-        </div>
-
-        <div id="view-author">
-            <section class="research-section">
-                <div class="content-card">
-                    <h2>A Life in Pursuit of the Ancient Science</h2>
-                    <p>Naredla Rama Chandra's journey into the Natya Shastra began not in a library but in a living tradition — through decades of immersion in classical Indian performance, Sanskrit scholarship, and the living Parampara (lineage) of the 18 Siddhas. What began as cultural curiosity evolved into a rigorous interdisciplinary research programme spanning over twenty years.</p>
-                    <p>His thesis works, published under <strong>Aesthetics of Society</strong>, represent the first systematic attempt to decode the Natya Shastra through the simultaneous lenses of Artificial Intelligence, Neuroscience, Medical Science, Bio-Acoustics, and the Science of Saptaswaras. Each chapter is anchored in the original Sanskrit Shlokas — tracing from the ancient verse to the modern laboratory finding.</p>
-                    <p>The author's central argument — that the Natya Shastra is not a text about performance but a precision-encoded manual of human consciousness science — challenges both Indological orthodoxy and Western neuroscience's amnesia about non-Western empirical traditions.</p>
-                    <p>The vision is not utopian abstraction. It is grounded in a precise technical framework: the recognition that the human body is a tunable instrument, that consciousness is the primary substrate of existence, and that ancient Vedic systems — the Natya Shastra, the Yoga Sutras, Siddha medicine, Sanskrit phonology — constitute a complete and recoverable operating manual for this instrument.</p>
-                </div>
-            </section>
-        </div>
-
-        <div id="view-pages">
-            <section class="research-section">
-                <div class="content-card">
-                    <h2>A World Tuned to Harmony</h2>
-                    <p>The MCP's vision foresees a future where sound prescriptions replace pharmacological side-effects; where movement protocols rehabilitate neurological conditions without surgical intervention; where children are educated through arts-based consciousness protocols that simultaneously develop cognitive, emotional, and somatic intelligence.</p>
-                    <h3>Primary Goal — Scientific Validation</h3>
-                    <p>The primary goal of the Master Consciousness Protocol is the rigorous clinical validation of ancient Indian healing modalities. Every practice within the MCP framework — Raga therapy, Karana movement protocols, Mudra neural activation, Pranayama sequencing — must be measurable, reproducible, and peer-reviewed. The goal is not cultural pride but empirical proof. 🔬</p>
-                </div>
-
-                <div class="content-card">
-                    <h2>The Five Operational Goals</h2>
-                    <div class="goal-num">1</div>
-                    <p><strong>Establish the Scholarly Consortium</strong><br>Indology · Neuroscience · Biomechanics · Clinical Medicine. Anchor the MCP within a multi-disciplinary academic framework — Sanskrit scholars for textual precision, neuroscientists for clinical measurement, biomechanical engineers for movement analysis, and clinicians for therapeutic application.</p>
-                    <div class="goal-num">2</div>
-                    <p><strong>Complete the Neuro-Acoustic Bio-Feedback Interface</strong><br>AI Integration · Real-time Karana tracking with neural feedback. Develop a technology layer that uses motion-capture and EEG data to map 108 Karanas and Mudras against neural oscillation patterns in real-time — the technological bridge between ancient protocol and modern clinical delivery.</p>
-                    <div class="goal-num">3</div>
-                    <p><strong>Publish Peer-Reviewed Findings</strong><br>Neuroscience Journals · Clinical Medicine · Ethnomusicology. Submit findings across journals spanning neuroscience, music therapy, biomechanics, and consciousness studies — establishing the MCP as a recognised scientific discipline, not merely a cultural practice.</p>
-                    <div class="goal-num">4</div>
-                    <p><strong>Develop the Practitioner Training Programme</strong><br>Certification · Curriculum · Global Delivery. Create a certified training programme for MCP practitioners — combining Sanskrit knowledge, movement science, acoustic therapy, and clinical delivery into a structured, accreditable curriculum.</p>
-                    <div class="goal-num">5</div>
-                    <p><strong>Establish the Living Research Archive</strong><br><a href="https://culturalmusings.com" class="subdomain-ref">culturalmusings.com</a> · Digital · Open Access. Maintain and expand the digital research archive as a living, growing repository — not a static monument, but a dynamic foundation inviting global scientific community participation.</p>
-                </div>
-
-                <div class="content-card">
-                    <h2>The Awareness Imperative 🔔</h2>
-                    <p>Billions of people practice yoga, listen to classical music, or chant mantras without any awareness of the extraordinary neurological mechanisms at work. The MCP aims to transform this unconscious engagement into conscious application — giving practitioners the scientific understanding to amplify their practice's healing effects by orders of magnitude. Awareness is the catalyst that converts ancient form into living medicine.</p>
-                    <h3>Three Dimensions of Awareness</h3>
-                    <p><strong>🧬 Physiological Awareness:</strong> Understanding how every Karana, Mudra, Raga, and mantra produces specific, measurable effects in the body — HRV shifts, cortisol changes, BDNF release, vagal activation. Practice becomes prescription.</p>
-                    <p><strong>🌊 Cosmological Awareness:</strong> Understanding the body as a bio-cosmic interface — the 108 Karanas encoding the Earth-Sun-Moon ratio, the Sapta Swaras mirroring cosmic frequency bands. The individual as a hologram of the universe.</p>
-                    <p><strong>✨ Consciousness Awareness:</strong> Understanding that the ultimate aim of all MCP practices is the direct recognition of one's nature as pure, unbounded consciousness — what the Vedas call Turiya, and modern neuroscience approaches through Gamma coherence states.</p>
-                    <h3>Who the Awareness Serves</h3>
-                    <p>The MCP's awareness mission serves multiple audiences simultaneously. For clinicians, it offers validated modalities for integrative medicine. For performers — dancers, musicians, and yogis — it offers the scientific understanding of what their ancient forms are actually doing to the human system. For researchers, it opens a vast unexplored territory of cross-disciplinary enquiry. For the general public, it offers accessible practices for self-healing and consciousness expansion.</p>
-                </div>
-
-                <div class="content-card">
-                    <h2>Mundaka Upanishad · 1.1.3</h2>
-                    <p>द्वे विद्ये वेदितव्ये इति ह स्म यद् ब्रह्मविदो वदन्ति — परा चैवापरा च।<br>
-                    "Two kinds of knowledge must be known — the higher (Parā) and the lower (Aparā). The higher is that by which the Imperishable is directly known."</p>
-                    <p>↳ <strong>The MCP's awareness aim:</strong> to restore both streams — empirical (Aparā) and experiential (Parā) — as complementary, not contradictory.</p>
-                    <h3>The Awareness Roadmap</h3>
-                </div>
-            </section>
-        </div>
+    <div class="section">
+      <p>
+        Welcome to the digital nexus of Naredla Rama Chandra's research. This platform synthesizes esoteric wisdom and neurological science. Explore our comprehensive frameworks via 
+        <a href="https://masterconsciousprotocol.culturalmusings.com/" class="link">Master Consciousness Protocol</a>,
+        deeply investigate the vibrational universe through 
+        <a href="https://spandanashodha.culturalmusings.com/" class="link">Spandana Shodha</a>,
+        or delve into traditional kinetic aesthetics at 
+        <a href="https://natyashastra.culturalmusings.com/" class="link">Natyashastra</a>.
+      </p>
     </div>
 
-    <footer style="background: var(--navy); color: white; text-align: center; padding: 60px 20px;">
-        <p>Leave a message in the chatbot; we will get back to you in sometime with the requirements.</p>
-        <p><strong>smith123846@gmail.com | 9121379100</strong></p>
-        <a href="Https://form.jotform.com/261042208142039" style="border:1px solid var(--gold); padding:12px 25px; color:var(--gold); text-decoration:none; font-weight:bold;">ENQUIRY FORM</a>
-    </footer>
+    <div class="section">
+      <h2 class="section-title">A Life in Pursuit of the Ancient Science</h2>
+      <p>
+        Naredla Rama Chandra's journey into the <em>Natya Shastra</em> began not in a library but in a living tradition — through decades of immersion in classical Indian performance, Sanskrit scholarship, and the living Parampara (lineage) of the 18 Siddhas. What began as cultural curiosity evolved into a rigorous interdisciplinary research programme spanning over twenty years.
+      </p>
+      <p>
+        His thesis works, published under Aesthetics of Society, represent the first systematic attempt to decode the Natya Shastra through the simultaneous lenses of Artificial Intelligence, Neuroscience, Medical Science, Bio‑Acoustics, and the Science of Saptaswaras. Each chapter is anchored in the original Sanskrit Shlokas — tracing from the ancient verse to the modern laboratory finding.
+      </p>
+      <p>
+        The author's central argument — that the Natya Shastra is not a text about performance but a precision‑encoded manual of human consciousness science — challenges both Indological orthodoxy and Western neuroscience's amnesia about non‑Western empirical traditions.
+      </p>
+    </div>
 
-    <script src="https://www.jotform.com/agent/019d8f3727af73cab8f1024b3df3ef1f84b6/embed.js"></script>
+    <div class="section">
+      <h2 class="section-title">A World Tuned to Harmony</h2>
+      <p>
+        The Master Consciousness Protocol's vision foresees a future where sound prescriptions replace pharmacological side‑effects; where movement protocols rehabilitate neurological conditions without surgical intervention; where children are educated through arts‑based consciousness protocols that simultaneously develop cognitive, emotional, and somatic intelligence.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">Primary Goal — Scientific Validation</h2>
+      <p>
+        The primary goal of the Master Consciousness Protocol is the rigorous clinical validation of ancient Indian healing modalities. Every practice within the MCP framework — Raga therapy, Karana movement protocols, Mudra neural activation, Pranayama sequencing — must be measurable, reproducible, and peer‑reviewed. The goal is not cultural pride but empirical proof.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 class="section-title">The Five Operational Goals</h2>
+      <ol>
+        <li>
+          Establish the Scholarly Consortium
+          <br />
+          Indology · Neuroscience · Biomechanics · Clinical Medicine
+          <br />
+          Anchor the MCP within a multi‑disciplinary academic framework — Sanskrit scholars for textual precision, neuroscientists for clinical measurement, biomechanical engineers for movement analysis, and clinicians for therapeutic application.
+        </li>
+        <li>
+          Complete the Neuro‑Acoustic Bio‑Feedback Interface
+          <br />
+          AI Integration · Real‑time Karana tracking with neural feedback
+          <br />
+          Develop a technology layer that uses motion‑capture and EEG data to map 108 Karanas and Mudras against neural oscillation patterns in real‑time — the technological bridge between ancient protocol and modern clinical delivery.
+        </li>
+        <li>
+          Publish Peer‑Reviewed Findings
+          <br />
+          Neuroscience Journals · Clinical Medicine · Ethnomusicology
+          <br />
+          Submit findings across journals spanning neuroscience, music therapy, biomechanics, and consciousness studies — establishing the MCP as a recognised scientific discipline, not merely a cultural practice.
+        </li>
+        <li>
+          Develop the Practitioner Training Programme
+          <br />
+          Certification · Curriculum · Global Delivery
+          <br />
+          Create a certified training programme for MCP practitioners — combining Sanskrit knowledge, movement science, acoustic therapy, and clinical delivery into a structured, accreditable curriculum.
+        </li>
+        <li>
+          Establish the Living Research Archive
+          <br />
+          culturalmusings.com · Digital · Open Access
+          <br />
+          Maintain and expand the digital research archive as a living, growing repository — not a static monument, but a dynamic foundation inviting global scientific community participation.
+        </li>
+      </ol>
+    </div>
+  </div>
 </body>
 </html>
