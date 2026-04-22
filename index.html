@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetics of Society | Naredla Rama Chandra</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --gold: #c5a059;
+      --gold-light: #e2c98a;
+      --cream: #fdfaf5;
+      --cream-dark: #f5efe3;
+      --text-muted: #666;
+      --border: #ececec;
+      --navy: #0f2240;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Cormorant Garamond', serif; background: #fff; color: #333; overflow-x: hidden; }
+
+    /* ── BACKDROP WATERMARK on all white/cream sections ── */
+    .wm-section { position: relative; }
+    .wm-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('backdrop1.png') center/cover no-repeat;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .wm-section > * { position: relative; z-index: 1; }
+
+    /* ── NAV ── */
+    #main-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 5%; height: 68px;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(197,160,89,0.2);
+      transition: box-shadow 0.3s;
+    }
+    #main-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-brand img { width: 40px; height: 40px; object-fit: cover; border-radius: 2px; }
+    .nav-brand-text .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.76rem; letter-spacing: 2.5px; color: var(--primary-blue); }
+    .nav-brand-text .url { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.63rem; color: var(--gold); letter-spacing: 1px; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-btn {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Montserrat', sans-serif; font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 1.5px; color: var(--primary-blue); text-transform: uppercase;
+      background: none; border: 1px solid rgba(197,160,89,0.4); padding: 8px 16px;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+    .nav-dropdown-btn:hover, .nav-dropdown.open .nav-dropdown-btn { border-color: var(--gold); color: var(--gold); }
+    .nav-dropdown-btn .arrow { font-size: 0.55rem; transition: transform 0.25s; display: inline-block; }
+    .nav-dropdown.open .arrow { transform: rotate(180deg); }
+    .nav-dropdown-panel {
+      display: none; position: absolute; top: calc(100% + 12px); right: 0;
+      width: 290px; background: #fff;
+      border: 1px solid rgba(197,160,89,0.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.13); z-index: 2000;
+      animation: dropIn 0.2s ease;
+    }
+    .nav-dropdown.open .nav-dropdown-panel { display: block; }
+    @keyframes dropIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+    .nav-panel-section { padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .nav-panel-section:last-child { border-bottom: none; }
+    .nav-panel-label { font-family:'Montserrat',sans-serif; font-size:0.54rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--gold); padding:10px 22px 5px; display:block; }
+    .nav-panel-link { display:block; font-family:'Montserrat',sans-serif; font-size:0.69rem; font-weight:600; letter-spacing:1px; color:var(--primary-blue); text-decoration:none; padding:9px 22px; transition:all 0.15s; }
+    .nav-panel-link:hover { background:var(--cream); color:var(--gold); padding-left:30px; }
+
+    /* ── NEW: Karanas dropdown panel is wider to fit longer link labels ── */
+    #karanaDropdown .nav-dropdown-panel { width: 340px; }
+
+    .nav-cta-btn { font-family:'Montserrat',sans-serif; font-size:0.66rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; border:1px solid var(--gold); padding:8px 16px; color:var(--gold); text-decoration:none; transition:all 0.2s; white-space:nowrap; }
+    .nav-cta-btn:hover { background:var(--gold); color:#fff; }
+    .nav-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+    .nav-hamburger span { display:block; width:24px; height:2px; background:var(--primary-blue); transition:all 0.3s; }
+    .nav-mobile-panel { display:none; position:fixed; top:68px; left:0; right:0; bottom:0; background:#fff; z-index:999; overflow-y:auto; padding:10px 0; border-top:1px solid var(--border); }
+    .nav-mobile-panel.open { display:block; }
+    .nav-mobile-label { font-family:'Montserrat',sans-serif; font-size:0.56rem; font-weight:800; letter-spacing:3px; color:var(--gold); text-transform:uppercase; padding:16px 28px 5px; display:block; }
+    .nav-mobile-link { display:block; font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:700; letter-spacing:1.5px; color:var(--primary-blue); text-decoration:none; padding:13px 28px; border-bottom:1px solid var(--border); text-transform:uppercase; transition:all 0.2s; }
+    .nav-mobile-link:hover { color:var(--gold); background:var(--cream); }
+    @media (max-width: 768px) { .nav-right { display:none; } .nav-hamburger { display:flex; } }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 20px 80px;
+      background: linear-gradient(rgba(253,250,245,0.88), rgba(253,250,245,0.88)),
+        url('background.png') center/cover no-repeat;
+      overflow: hidden;
+    }
+    .hero-tag { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; animation: fadeUp 0.8s ease both; }
+    .hero-title-1 { font-family: 'Playfair Display', serif; font-size: clamp(60px,9vw,100px); font-weight: 800; color: var(--primary-blue); line-height: 0.9; animation: fadeUp 0.9s 0.1s ease both; }
+    .hero-title-2 { font-family: 'Playfair Display', serif; font-size: clamp(72px,11vw,125px); font-weight: 700; font-style: italic; color: var(--gold); line-height: 1; margin-bottom: 28px; animation: fadeUp 1s 0.2s ease both; }
+    .hero-tagline { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 2.5px; color: var(--primary-blue); line-height: 2; text-transform: uppercase; max-width: 600px; margin: 0 auto 48px; animation: fadeUp 1s 0.3s ease both; }
+    .hero-btns { display: flex; justify-content: center; gap: 0; animation: fadeUp 1s 0.4s ease both; }
+    .btn { display: inline-block; padding: 17px 38px; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; }
+    .btn-primary { background: var(--primary-blue); color: #fff; border: 1px solid var(--primary-blue); }
+    .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+    .btn-outline-hero { background: rgba(255,255,255,0.5); color: var(--primary-blue); border: 1px solid #ccc; border-left: none; }
+    .btn-outline-hero:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ── SHARED ── */
+    .section-wrapper { max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .section-label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem,5vw,4.5rem); color: var(--primary-blue); font-weight: 700; line-height: 1.05; }
+    .section-title em { color: var(--gold); font-style: italic; }
+
+    /* ── PHILOSOPHY ── */
+    #philosophy { background: var(--cream); border-top: 1px solid rgba(197,160,89,0.2); border-bottom: 1px solid rgba(197,160,89,0.2); padding: 80px 20px; text-align: center; }
+    .philosophy-text { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3.5vw,3rem); color: var(--primary-blue); line-height: 1.5; max-width: 1000px; margin: 0 auto; }
+    .philosophy-text .italic { font-style: italic; }
+    .philosophy-text .gold { color: var(--gold); }
+    .philosophy-text .bold-sans { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(1.5rem,3.2vw,2.8rem); letter-spacing: -1px; }
+    .philosophy-text .dash { color: var(--gold); margin: 0 8px; }
+
+    /* ── VEDIC SHLOKAS (4 from 4 Vedas) ── */
+    #vedic-shlokas { background: var(--navy); padding: 90px 40px; }
+    .shlokas-inner { max-width: 1200px; margin: 0 auto; }
+    .shlokas-header { text-align: center; margin-bottom: 64px; }
+    .shlokas-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color: #fff; font-weight: 400; font-style: italic; margin-top: 12px; }
+    .shloka-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+    .shloka-card { border: 1px solid rgba(197,160,89,0.3); padding: 38px 32px; position: relative; transition: border-color 0.35s, transform 0.35s; }
+    .shloka-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+    .shloka-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--gold); transition: height 0.4s; }
+    .shloka-card:hover::before { height: 100%; }
+    .shloka-source { font-family: 'Montserrat', sans-serif; font-size: 0.56rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; display: block; }
+    .shloka-sanskrit { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-style: italic; color: rgba(255,255,255,0.9); line-height: 1.75; margin-bottom: 16px; border-bottom: 1px solid rgba(197,160,89,0.2); padding-bottom: 16px; }
+    .shloka-translation { font-family: 'Cormorant Garamond', serif; font-size: 0.97rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 14px; }
+    .shloka-relevance { font-family: 'Montserrat', sans-serif; font-size: 0.64rem; font-weight: 600; letter-spacing: 1px; color: var(--gold-light); border-top: 1px solid rgba(197,160,89,0.2); padding-top: 14px; }
+
+    /* ── NATYA SHASTRA SHLOKAS (after Vedic) ── */
+    #natya-shlokas { background: linear-gradient(rgba(15,34,64,0.92),rgba(15,34,64,0.92)), url('backdrop1.png') center/cover no-repeat; padding: 90px 40px; }
+
+    /* ── ABOUT AUTHOR ── */
+    #about { background: var(--cream); }
+    .about-grid { display: flex; gap: 80px; align-items: flex-start; }
+    .about-img-wrap { flex: 1; position: relative; }
+    .about-img-wrap img { width: 100%; height: auto; filter: grayscale(15%); border: 1px solid #ddd; display: block; }
+    .stats-badge { position: absolute; bottom: -28px; right: -18px; background: #fff; padding: 22px 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; }
+    .stats-badge .num { display: block; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--primary-blue); line-height: 1; }
+    .stats-badge .lbl { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+    .about-content { flex: 1.5; }
+    .author-name-big { font-family: 'Playfair Display', serif; font-size: clamp(3rem,5vw,4.5rem); color: var(--primary-blue); line-height: 1; margin: 0 0 36px; }
+    .author-name-big em { color: var(--gold); font-style: italic; }
+    .bio-text { font-size: 1.08rem; line-height: 1.85; color: #555; margin-bottom: 36px; }
+    .bio-text p { margin-bottom: 18px; }
+    .focus-list { list-style: none; padding: 0; margin-bottom: 44px; }
+    .focus-item { display: flex; align-items: center; gap: 14px; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; color: #444; margin-bottom: 14px; }
+    .focus-item::before { content: ''; width: 38px; height: 1px; background: var(--gold); }
+    .mission-box { border-left: 2px solid var(--gold); padding: 20px 0 20px 38px; background: #fff; }
+    .mission-lbl { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+    .mission-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--primary-blue); line-height: 1.55; }
+
+    /* ── PUBLICATIONS ── */
+    #publications { background: #fff; }
+    .pub-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 70px; padding-bottom: 40px; border-bottom: 1px solid var(--border); gap: 40px; flex-wrap: wrap; }
+    .pub-intro { max-width: 360px; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text-muted); line-height: 1.7; }
+    .pub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px,1fr)); gap: 24px; }
+    .pub-card { border: 1px solid var(--border); padding: 42px; position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 300px; cursor: pointer; transition: all 0.35s ease; background: #fff; }
+    .pub-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.06); border-color: var(--gold); }
+    .pub-card .card-tag { display: inline-block; background: #f0f4f8; color: var(--primary-blue); font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 12px; margin-bottom: 22px; }
+    .pub-card .vol-num { position: absolute; top: 42px; right: 42px; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; }
+    .pub-card h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--primary-blue); font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+    .pub-card .pub-sub { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; letter-spacing: 2px; color: #999; text-transform: uppercase; margin-bottom: 30px; }
+    .card-footer { border-top: 1px solid #f5f5f5; padding-top: 22px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-label { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 800; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+    .read-link { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 800; letter-spacing: 2px; color: var(--primary-blue); text-transform: uppercase; text-decoration: none; transition: color 0.2s; }
+    .read-link:hover { color: var(--gold); }
+
+    /* ── DETAIL OVERLAY ── */
+    #detailOverlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(10,25,47,0.6); backdrop-filter: blur(6px); overflow-y: auto; }
+    #detailOverlay.open { display: block; animation: overlayIn 0.3s ease; }
+    @keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+    .detail-panel { background: #fff; max-width: 1100px; margin: 40px auto; padding: 60px; position: relative; animation: panelUp 0.35s ease; }
+    @keyframes panelUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .detail-close { position: absolute; top: 30px; right: 40px; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #aaa; transition: color 0.2s; }
+    .detail-close:hover { color: var(--primary-blue); }
+    .detail-back { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px; color: var(--gold); text-transform: uppercase; background: none; border: none; cursor: pointer; margin-bottom: 40px; display: inline-block; }
+    .detail-layout { display: grid; grid-template-columns: 1.8fr 1fr; gap: 70px; }
+    .detail-overline { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; }
+    .detail-overview { font-size: 1.1rem; color: #444; line-height: 1.8; margin-bottom: 40px; }
+    .pull-quote { background: var(--cream); border-left: 3px solid var(--gold); padding: 44px; margin: 36px 0; }
+    .pull-quote p { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-style: italic; color: var(--primary-blue); margin: 0 0 16px; line-height: 1.4; }
+    .pull-quote cite { font-family: 'Montserrat', sans-serif; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; font-style: normal; }
+    .theme-item { display: flex; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 1rem; color: #444; }
+    .gold-dash { width: 30px; height: 1px; background: var(--gold); margin-right: 18px; flex-shrink: 0; }
+    .sidebar-card { border: 1px solid var(--border); padding: 30px; margin-bottom: 24px; }
+    .tag { display: inline-block; background: #f5f5f5; border: 1px solid #e0e0e0; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 1px; padding: 5px 10px; margin: 3px; }
+    .collab-box { background: var(--cream); border: none; }
+    .collab-box h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--primary-blue); margin: 0 0 12px; }
+    .collab-box p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
+    .contact-link { display: inline-flex; align-items: center; gap: 10px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: #000; text-decoration: none; margin-top: 18px; }
+    .contact-link::after { content: ''; width: 30px; height: 1px; background: var(--gold); }
+    .detail-nav-footer { margin-top: 80px; display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 36px; }
+    .nav-btn-detail { background: none; border: none; cursor: pointer; text-align: left; font-family: 'Cormorant Garamond', serif; }
+    .nav-btn-detail.right { text-align: right; }
+    .nav-label-detail { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.62rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+    .nav-title-detail { font-size: 1.2rem; color: var(--primary-blue); transition: color 0.2s; }
+    .nav-btn-detail:hover .nav-title-detail { color: var(--gold); }
+
+    /* ── GURU'S CLAN SECTION ── */
+    #gurus-clan-section { background: var(--navy); padding: 0; }
+    .gc-hero {
+      min-height: 80vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 100px 40px 80px; position: relative; overflow: hidden;
+      background: linear-gradient(rgba(15,34,64,0.82),rgba(15,34,64,0.82)), url('backdrop1.png') center/cover no-repeat fixed;
+    }
+    .gc-hero-om { position: absolute; font-size: 42vw; color: rgba(255,255,255,0.025); top: 50%; left: 50%; transform: translate(-50%,-52%); pointer-events: none; font-family: serif; line-height: 1; }
+    .gc-hero h2 { font-family: 'Playfair Display', serif; font-size: clamp(3rem,7vw,6rem); color: #fff; font-weight: 700; line-height: 1.05; margin-bottom: 50px; position: relative; z-index: 1; }
+    .gc-hero h2 em { color: var(--gold); font-style: italic; }
+    .hero-line { width: 44px; height: 2px; background: var(--gold); margin: 0 auto 22px; position: relative; z-index: 1; }
+    .hero-label-gc { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; position: relative; z-index: 1; }
+    .gc-shlokas { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+    .gc-shloka { border: 1px solid rgba(197,160,89,0.35); padding: 32px 28px; text-align: left; transition: border-color 0.35s; background: rgba(15,34,64,0.3); backdrop-filter: blur(4px); }
+    .gc-shloka:hover { border-color: var(--gold); }
+    .gc-source { font-family: 'Montserrat', sans-serif; font-size: 0.56rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 14px; }
+    .gc-sanskrit { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(197,160,89,0.2); }
+    .gc-translation { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+    #gc-origin { background: var(--navy); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
+    .gc-origin-bg { position: absolute; font-size: 28vw; color: rgba(197,160,89,0.04); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; font-family: serif; }
+    .gc-origin-inner { max-width: 960px; margin: 0 auto; position: relative; }
+    .gc-origin-inner h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,4vw,3rem); color: #fff; font-weight: 400; font-style: italic; margin: 14px 0 28px; }
+    .gc-origin-inner p { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.85; text-align: left; margin-bottom: 18px; }
+    .origin-chain { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 50px; }
+    .chain-node { text-align: center; padding: 16px 22px; border: 1px solid rgba(197,160,89,0.28); }
+    .chain-node .cn-name { display: block; font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; margin-bottom: 4px; }
+    .chain-node .cn-role { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+    .chain-arrow { color: var(--gold); font-size: 1.3rem; padding: 0 4px; }
+    #gc-siddhas { background: #fff; }
+    .siddhas-intro { max-width: 760px; font-size: 1.05rem; color: #555; line-height: 1.82; margin-bottom: 60px; }
+    .siddha-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap: 2px; border: 1px solid var(--border); margin-bottom: 60px; }
+    .siddha-card { padding: 34px; transition: all 0.3s; position: relative; background: #fff; }
+    .siddha-card:hover { background: var(--cream); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); z-index: 2; }
+    .siddha-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: rgba(197,160,89,0.12); line-height: 1; position: absolute; top: 18px; right: 22px; }
+    .siddha-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--primary-blue); font-weight: 700; margin-bottom: 5px; }
+    .siddha-card .s-title { font-family: 'Montserrat', sans-serif; font-size: 0.57rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; display: block; }
+    .siddha-card p { font-size: 0.94rem; color: #555; line-height: 1.68; }
+    .s-domain { display: inline-block; background: #f0f4f8; color: var(--primary-blue); font-family: 'Montserrat', sans-serif; font-size: 0.53rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 10px; margin-top: 12px; }
+    #gc-upanishad { background: var(--cream); }
+    .upanishad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .u-blocks { display: flex; flex-direction: column; gap: 22px; }
+    .u-block { background: #fff; border: 1px solid var(--border); padding: 28px; border-top: 3px solid var(--gold); transition: transform 0.3s; }
+    .u-block:hover { transform: translateY(-4px); }
+    .u-block h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--primary-blue); margin-bottom: 10px; }
+    .u-block p { font-size: 0.95rem; color: #555; line-height: 1.7; }
+    .upanishad-sticky { position: sticky; top: 100px; }
+    .big-quote { background: var(--primary-blue); padding: 44px; }
+    .big-quote p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; color: #fff; line-height: 1.5; margin-bottom: 20px; }
+    .big-quote cite { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-style: normal; }
+    .conn-box { background: #fff; border: 1px solid var(--border); padding: 30px; margin-top: 20px; }
+    .conn-box h3 { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .conn-item { display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; color: #444; }
+    .conn-item:last-child { border-bottom: none; }
+    .conn-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+    #gc-science { background: #fff; }
+    .sci-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 26px; margin-top: 56px; }
+    .sci-card { border: 1px solid var(--border); padding: 38px; position: relative; overflow: hidden; transition: all 0.35s; }
+    .sci-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s; }
+    .sci-card:hover::after { width: 100%; }
+    .sci-card:hover { transform: translateY(-5px); box-shadow: 0 18px 48px rgba(0,0,0,0.06); }
+    .sci-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+    .sci-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--primary-blue); margin-bottom: 10px; }
+    .sci-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.72; }
+    #natya-section { background: #fff; }
+    .ns-hero { min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 40px 80px; position: relative; overflow: hidden; background: linear-gradient(rgba(15,34,64,0.80),rgba(15,34,64,0.80)), url('backdrop1.png') center/cover no-repeat fixed; }
+    .ns-hero-content { position: relative; z-index: 1; }
+    .ns-hero h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,7vw,5.5rem); color: #fff; font-weight: 700; line-height: 1.05; margin-bottom: 50px; }
+    .ns-hero h2 em { color: var(--gold); font-style: italic; }
+    .ns-hero-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.1rem,2.2vw,1.5rem); color: rgba(255,255,255,0.65); max-width: 720px; line-height: 1.7; margin: 0 auto 0; }
+    .ns-shlokas { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 22px; max-width: 1100px; margin: 48px auto 0; width: 100%; }
+    .ns-shloka { border: 1px solid rgba(197,160,89,0.35); padding: 30px 26px; text-align: left; background: rgba(15,34,64,0.3); backdrop-filter: blur(4px); transition: border-color 0.35s; }
+    .ns-shloka:hover { border-color: var(--gold); }
+    .ns-source { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 13px; }
+    .ns-sanskrit { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 11px; padding-bottom: 11px; border-bottom: 1px solid rgba(197,160,89,0.2); }
+    .ns-translation { font-family: 'Cormorant Garamond', serif; font-size: 0.93rem; color: rgba(255,255,255,0.6); line-height: 1.68; }
+    #ns-intro { background: var(--cream); }
+    .ns-intro-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: start; }
+    .ns-intro-text { font-size: 1.06rem; line-height: 1.9; color: #444; }
+    .ns-intro-text p { margin-bottom: 20px; }
+    .ns-pull { border-left: 3px solid var(--gold); padding: 22px 30px; background: #fff; margin: 32px 0; }
+    .ns-pull p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.25rem; color: var(--primary-blue); line-height: 1.5; }
+    .stat-box { border: 1px solid var(--border); padding: 28px; background: #fff; text-align: center; position: relative; margin-bottom: 18px; }
+    .stat-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--gold); }
+    .stat-box .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--primary-blue); line-height: 1; display: block; }
+    .stat-box .stat-lbl { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); display: block; margin-top: 5px; }
+    .stat-box .stat-desc { font-size: 0.9rem; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+    #ns-dimensions { background: var(--navy); padding: 90px 40px; }
+    .dim-inner { max-width: 1200px; margin: 0 auto; }
+    .dim-header { text-align: center; margin-bottom: 60px; }
+    .dim-header h3 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color: #fff; font-weight: 400; font-style: italic; margin-top: 12px; }
+    .dim-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap: 2px; }
+    .dim-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(197,160,89,0.2); padding: 46px 40px; position: relative; transition: all 0.35s; overflow: hidden; }
+    .dim-card:hover { background: rgba(197,160,89,0.07); border-color: var(--gold); }
+    .dim-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.4s; }
+    .dim-card:hover::after { width: 100%; }
+    .dim-num { font-family: 'Playfair Display', serif; font-size: 5rem; color: rgba(197,160,89,0.07); position: absolute; top: 10px; right: 16px; line-height: 1; pointer-events: none; }
+    .dim-icon { font-size: 2.1rem; margin-bottom: 18px; display: block; }
+    .dim-card h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: #fff; margin-bottom: 7px; }
+    .dim-card .dim-sub { font-family: 'Montserrat', sans-serif; font-size: 0.57rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+    .dim-card p { font-size: 0.95rem; color: rgba(255,255,255,0.62); line-height: 1.75; }
+    #ns-karanas { background: #fff; }
+    .ns-content-blocks { display: flex; flex-direction: column; gap: 36px; }
+    .ns-para-block { padding: 40px; border-left: 3px solid var(--gold); background: var(--cream); transition: transform 0.3s; }
+    .ns-para-block:hover { transform: translateX(8px); }
+    .ns-para-block h3 { font-family: 'Montserrat', sans-serif; font-size: 0.76rem; font-weight: 800; color: var(--primary-blue); letter-spacing: 2.5px; text-transform: uppercase; border-bottom: 1px solid rgba(197,160,89,0.3); padding-bottom: 12px; margin-bottom: 16px; }
+    .ns-para-block p { font-size: 1.06rem; line-height: 1.88; color: #444; text-align: justify; }
+    #ns-mcp { background: var(--cream); }
+    .mcp-header { text-align: center; margin-bottom: 60px; }
+    .mcp-header h3 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color: var(--primary-blue); font-weight: 700; margin-top: 12px; }
+    .phases-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(270px,1fr)); gap: 18px; }
+    .phase-card { background: #fff; border: 1px solid var(--border); padding: 34px; position: relative; overflow: hidden; transition: all 0.35s; }
+    .phase-card:hover { transform: translateY(-5px); box-shadow: 0 18px 48px rgba(0,0,0,0.07); border-color: var(--gold); }
+    .phase-num { font-family: 'Playfair Display', serif; font-size: 4rem; color: rgba(197,160,89,0.12); line-height: 1; position: absolute; top: 10px; right: 16px; }
+    .phase-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--primary-blue); margin-bottom: 7px; }
+    .phase-card .ph-label { font-family: 'Montserrat', sans-serif; font-size: 0.57rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 14px; }
+    .phase-card p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.68; }
+    .phase-outcomes { margin-top: 16px; }
+    .phase-outcomes li { font-family: 'Montserrat', sans-serif; font-size: 0.67rem; color: var(--primary-blue); padding: 5px 0; border-bottom: 1px solid var(--border); list-style: none; display: flex; align-items: center; gap: 10px; }
+    .phase-outcomes li::before { content: ''; width: 16px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    #ns-mudras { background: #fff; }
+    .mudra-intro { max-width: 760px; font-size: 1.06rem; color: #555; line-height: 1.82; margin-bottom: 56px; }
+    .mudra-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap: 18px; }
+    .mudra-card { border: 1px solid var(--border); padding: 28px; transition: all 0.3s; }
+    .mudra-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+    .mudra-card h3 { font-family: 'Playfair Display', serif; font-size: 1.12rem; color: var(--primary-blue); margin-bottom: 5px; }
+    .mudra-card .m-sanskrit { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--gold); margin-bottom: 11px; display: block; }
+    .mudra-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.62; }
+    .mudra-card .m-effect { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--primary-blue); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); display: block; }
+    #ns-rasas { background: var(--navy); padding: 90px 40px; }
+    .rasas-inner { max-width: 1200px; margin: 0 auto; }
+    .rasas-header { text-align: center; margin-bottom: 60px; }
+    .rasas-header h3 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color: #fff; font-weight: 400; font-style: italic; margin-top: 12px; }
+    .rasas-header p { font-size: 1.03rem; color: rgba(255,255,255,0.6); max-width: 700px; margin: 20px auto 0; line-height: 1.7; }
+    .rasa-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap: 2px; }
+    .rasa-card { border: 1px solid rgba(197,160,89,0.2); padding: 32px 28px; transition: all 0.3s; }
+    .rasa-card:hover { background: rgba(197,160,89,0.06); border-color: var(--gold); }
+    .rasa-card .rasa-emoji { font-size: 1.8rem; display: block; margin-bottom: 12px; }
+    .rasa-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; margin-bottom: 3px; }
+    .rasa-card .r-sanskrit { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.92rem; color: var(--gold); margin-bottom: 12px; display: block; }
+    .rasa-card p { font-size: 0.88rem; color: rgba(255,255,255,0.58); line-height: 1.62; }
+    .highlights-bar { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 16px; margin-top: 70px; }
+    .highlight-item { padding: 24px; border: 1px solid var(--border); text-align: center; background: #fff; }
+    .highlight-item h4 { font-family: 'Montserrat', sans-serif; font-size: 0.67rem; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 8px; }
+    .highlight-item p { font-size: 0.86rem; color: #777; margin: 0; line-height: 1.5; }
+    #timeline { background: #fff; overflow: hidden; }
+    .timeline-inner { position: relative; max-width: 1200px; margin: 0 auto; padding: 100px 40px; }
+    .timeline-spine { position: absolute; left: 50%; top: 260px; bottom: 60px; width: 1px; background: #e8dfc8; transform: translateX(-50%); }
+    .timeline-entry { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 90px; position: relative; }
+    .timeline-entry.left { flex-direction: row; }
+    .timeline-entry.right { flex-direction: row-reverse; }
+    .timeline-year { position: absolute; left: 50%; transform: translateX(-50%); font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #d8cebc; background: #fff; padding: 6px 0; z-index: 5; line-height: 1; }
+    .year-dot { width: 12px; height: 12px; background: var(--gold); border-radius: 50%; position: absolute; left: 50%; transform: translateX(-50%); top: 30px; z-index: 6; }
+    .year-dot.hollow { background: #fff; border: 2px solid var(--gold); }
+    .timeline-box { width: 43%; border: 1px solid var(--border); padding: 38px; transition: transform 0.3s ease, box-shadow 0.3s; background: #fff; }
+    .timeline-box:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
+    .timeline-box.featured { border-left: 3px solid var(--gold); }
+    .entry-label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; }
+    .timeline-box h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary-blue); font-weight: 400; margin: 0 0 12px; }
+    .timeline-box p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin: 0; }
+    #media { background: var(--cream); }
+    .media-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; gap: 30px; flex-wrap: wrap; }
+    .media-desc { max-width: 340px; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--text-muted); line-height: 1.6; }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(420px,1fr)); gap: 44px 60px; }
+    .video-card { border-left: 1px solid #ddd; padding-left: 18px; }
+    .video-frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 18px; }
+    .video-frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .video-caption h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--primary-blue); margin: 0 0 6px; font-weight: 500; }
+    .video-caption p { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+    #epilogue { background: var(--cream); border-top: 1px solid rgba(197,160,89,0.3); }
+    .epilogue-inner { max-width: 940px; margin: 0 auto; padding: 100px 40px; text-align: center; }
+    .epilogue-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,5vw,3.5rem); color: var(--primary-blue); font-style: italic; font-weight: 400; margin: 14px 0 50px; }
+    .epilogue-text { font-size: 1.12rem; line-height: 1.9; color: #444; text-align: left; margin-bottom: 28px; }
+    .epilogue-pull { border-left: 3px solid var(--gold); padding: 20px 30px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: var(--primary-blue); text-align: left; margin: 36px 0; }
+    #future { background: #fff; }
+    .mcp-grid-main { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 90px; align-items: center; }
+    .mcp-content h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3rem); color: var(--primary-blue); font-weight: 400; margin: 14px 0 22px; }
+    .mcp-content h2 em { color: var(--gold); font-style: italic; }
+    .mcp-content p { font-size: 1.08rem; color: #555; line-height: 1.8; text-align: justify; }
+    .mcp-list-box { background: var(--cream); border: 1px solid var(--border); padding: 38px; }
+    .mcp-list-box ul { list-style: none; padding: 0; }
+    .mcp-list-box li { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--primary-blue); padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .mcp-list-box li:last-child { border-bottom: none; }
+    .mcp-list-box li strong { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 1px; font-weight: 700; display: block; color: var(--gold); margin-bottom: 3px; }
+    .consortium { background: var(--primary-blue); color: #fff; padding: 80px 60px; }
+    .consortium h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400; margin: 0 0 8px; }
+    .consortium .sub { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 50px; display: block; }
+    .consortium-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 40px; }
+    .consortium-item { border-top: 1px solid rgba(197,160,89,0.3); padding-top: 20px; }
+    .consortium-item h4 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.15rem; margin-bottom: 12px; }
+    .consortium-item p { font-size: 0.95rem; opacity: 0.85; line-height: 1.65; }
+    #contact { background: var(--cream); }
+    .contact-flex { display: flex; gap: 70px; align-items: flex-start; flex-wrap: wrap; }
+    .contact-info { flex: 1; min-width: 300px; }
+    .contact-h2 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem,5vw,3.8rem); color: var(--primary-blue); font-weight: 400; line-height: 1; margin: 14px 0 24px; }
+    .contact-h2 em { color: var(--gold); font-style: italic; display: block; }
+    .contact-intro { font-size: 1rem; color: #555; line-height: 1.7; margin-bottom: 38px; }
+    .contact-entries { display: flex; flex-direction: column; gap: 18px; }
+    .contact-entry { display: flex; align-items: center; gap: 14px; }
+    .contact-icon { width: 40px; height: 40px; background: #fff; border: 1px solid var(--border); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+    .contact-data label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 2px; }
+    .contact-data p { font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 0.95rem; color: var(--primary-blue); }
+    .contact-form-wrap { flex: 1.2; min-width: 340px; position: relative; }
+    .contact-form-wrap::after { content: 'ॐ'; position: absolute; right: -10px; top: -30px; font-size: 14rem; color: rgba(0,0,0,0.025); pointer-events: none; }
+    .contact-form-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--primary-blue); font-weight: 400; margin-bottom: 32px; }
+    .form-field { margin-bottom: 24px; }
+    .form-field input, .form-field select, .form-field textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid #ccc; padding: 10px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: #333; outline: none; transition: border-color 0.3s; }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-bottom-color: var(--gold); }
+    .btn-send { background: transparent; border: none; color: var(--primary-blue); font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 18px 0; }
+    .btn-send .arr { color: var(--gold); font-size: 1.4rem; transition: transform 0.3s; }
+    .btn-send:hover .arr { transform: translateX(8px); }
+    #site-footer { background: var(--primary-blue); color: rgba(255,255,255,0.7); padding: 50px 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .footer-brand .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 2px; font-size: 0.82rem; color: #fff; }
+    .footer-brand .url { color: var(--gold); font-size: 0.72rem; font-family: 'Montserrat', sans-serif; }
+    .footer-nav a { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; letter-spacing: 1px; color: rgba(255,255,255,0.5); text-decoration: none; margin-right: 18px; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.4); }
+
+    @media (max-width: 900px) {
+      .section-wrapper { padding: 70px 24px; }
+      .pub-grid { grid-template-columns: 1fr; }
+      .about-grid { flex-direction: column; gap: 50px; }
+      .stats-badge { right: 16px; }
+      .timeline-spine { left: 28px; }
+      .timeline-year { left: 28px; transform: none; font-size: 1.3rem; }
+      .year-dot { left: 28px; transform: none; }
+      .timeline-box { width: 80%; margin-left: 60px; }
+      .timeline-entry.left, .timeline-entry.right { flex-direction: row; }
+      .video-grid { grid-template-columns: 1fr; }
+      .detail-layout { grid-template-columns: 1fr; }
+      .detail-panel { padding: 36px 24px; margin: 0; }
+      .mcp-grid-main { grid-template-columns: 1fr; }
+      .consortium { padding: 50px 24px; }
+      .upanishad-grid, .ns-intro-grid { grid-template-columns: 1fr; gap: 40px; }
+      .upanishad-sticky { position: static; }
+      .origin-chain { flex-direction: column; align-items: center; }
+      .chain-arrow { transform: rotate(90deg); }
+      .shloka-grid, .gc-shlokas, .ns-shlokas { grid-template-columns: 1fr; }
+      .dim-grid, .mudra-grid, .rasa-grid, .sci-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .pub-header { flex-direction: column; }
+      .media-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-brand">
+    <img src="logo.jpg" alt="Logo" onerror="this.style.display='none'" />
+    <div class="nav-brand-text">
+      <span class="name">AESTHETICS OF SOCIETY</span>
+      <span class="url">culturalmusings.com</span>
+    </div>
+  </a>
+
+  <!-- Desktop: dropdowns + CTA -->
+  <div class="nav-right">
+
+    <!-- ════════════════════════════════════════════
+         NEW: KARANAS REFERENCE DROPDOWN
+         ════════════════════════════════════════════ -->
+    <div class="nav-dropdown" id="karanaDropdown">
+      <button class="nav-dropdown-btn" onclick="toggleKarana()">
+        Karanas Reference <span class="arrow">▼</span>
+      </button>
+      <div class="nav-dropdown-panel">
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Core Theory</span>
+          <a href="https://unifiedtheory.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Unified Theory</a>
+          <a href="https://vedicmathematicsgeometry.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Vedic Mathematics &amp; Geometry</a>
+        </div>
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Natya Shastra</span>
+          <a href="https://natyashastraclassical-dance.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Natya Shastra — Classical Dance</a>
+          <a href="https://natyashastra.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Natya Shastra</a>
+        </div>
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Karanas Maps &amp; Synthesis</span>
+          <a href="https://karanasrootmap.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Karanas Root Map</a>
+          <a href="https://karanassacredsynthesis.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Karanas Sacred Synthesis</a>
+          <a href="https://completecelestialsynthesis.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Complete Celestial Synthesis</a>
+        </div>
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Protocol</span>
+          <a href="https://masterconsciousprotocol.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Master Consciousness Protocol</a>
+        </div>
+      </div>
+    </div>
+    <!-- ════════ END KARANAS DROPDOWN ════════ -->
+
+    <!-- Existing Explore Pages dropdown -->
+    <div class="nav-dropdown" id="navDropdown">
+      <button class="nav-dropdown-btn" onclick="toggleNav()">
+        Explore Pages <span class="arrow">▼</span>
+      </button>
+      <div class="nav-dropdown-panel">
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Main</span>
+          <a href="#about" class="nav-panel-link" onclick="closeNav()">About the Author</a>
+          <a href="#publications" class="nav-panel-link" onclick="closeNav()">Publications &amp; Manuscripts</a>
+          <a href="#timeline" class="nav-panel-link" onclick="closeNav()">Research Timeline</a>
+          <a href="#media" class="nav-panel-link" onclick="closeNav()">Media &amp; Videos</a>
+        </div>
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Deep Research</span>
+          <a href="#gurus-clan-section" class="nav-panel-link" onclick="closeNav()">The Guru's Clan</a>
+          <a href="#natya-section" class="nav-panel-link" onclick="closeNav()">Natya Shastra &amp; 108 Karanas</a>
+          <a href="#shabda-brahman" class="nav-panel-link" onclick="closeNav()">Shabda Brahman — Science of Sound</a>
+          <a href="#mudras-full" class="nav-panel-link" onclick="closeNav()">Mudras — Complete Reference</a>
+        </div>
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Reference</span>
+          <a href="#references" class="nav-panel-link" onclick="closeNav()">References &amp; Contextual Sources</a>
+          <a href="#epilogue" class="nav-panel-link" onclick="closeNav()">Epilogue</a>
+          <a href="#future" class="nav-panel-link" onclick="closeNav()">Future &amp; MCP Roadmap</a>
+        </div>
+        <div class="nav-panel-section">
+          <span class="nav-panel-label">Connect</span>
+          <a href="#contact" class="nav-panel-link" onclick="closeNav()">Collaborate With Us</a>
+        </div>
+      </div>
+    </div>
+    <a href="#contact" class="nav-cta-btn">Introduction</a>
+  </div>
+
+  <!-- Mobile: hamburger -->
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile slide-down panel -->
+<div class="nav-mobile-panel" id="mobilePanel">
+  <span class="nav-mobile-label">Karanas Reference</span>
+  <a href="https://unifiedtheory.culturalmusings.com" class="nav-mobile-link" target="_blank" rel="noopener" onclick="closeMobile()">Unified Theory</a>
+  <a href="https://vedicmathematicsgeometry.culturalmusings.com" class="nav-mobile-link" target="_blank" rel="noopener" onclick="closeMobile()">Vedic Mathematics &amp; Geometry</a>
+  <a href="https://natyashastraclassical-dance.culturalmusings.com" class="nav-mobile-link" target="_blank" rel="noopener" onclick="closeMobile()">Natya Shastra — Classical Dance</a>
+  <a href="https://masterconsciousprotocol.culturalmusings.com" class="nav-mobile-link" target="_blank" rel="noopener" onclick="closeMobile()">Master Consciousness Protocol</a>
+  <a href="https://natyashastra.culturalmusings.com" class="nav-mobile-link" target="_blank" rel="noopener" onclick="closeMobile()">Natya Shastra</a>
+  <a href="https://karanasrootmap.culturalmusings.com" class="nav-mobile-link" target="_blank" rel="noopener" onclick="closeMobile()">Karanas Root Map</a>
+  <a href="https://completecelestialsynthesis.culturalmusings.com" class="nav-mobile-link" target="_blank" rel="noopener" onclick="closeMobile()">Complete Celestial Synthesis</a>
+  <a href="https://karanassacredsynthesis.culturalmusings.com" class="nav-mobile-link" target="_blank" rel="noopener" onclick="closeMobile()">Karanas Sacred Synthesis</a>
+  <span class="nav-mobile-label">Main</span>
+  <a href="#about" class="nav-mobile-link" onclick="closeMobile()">About the Author</a>
+  <a href="#publications" class="nav-mobile-link" onclick="closeMobile()">Publications &amp; Manuscripts</a>
+  <a href="#timeline" class="nav-mobile-link" onclick="closeMobile()">Research Timeline</a>
+  <a href="#media" class="nav-mobile-link" onclick="closeMobile()">Media &amp; Videos</a>
+  <span class="nav-mobile-label">Deep Research</span>
+  <a href="#gurus-clan-section" class="nav-mobile-link" onclick="closeMobile()">The Guru's Clan</a>
+  <a href="#natya-section" class="nav-mobile-link" onclick="closeMobile()">Natya Shastra &amp; 108 Karanas</a>
+  <a href="#shabda-brahman" class="nav-mobile-link" onclick="closeMobile()">Shabda Brahman</a>
+  <a href="#mudras-full" class="nav-mobile-link" onclick="closeMobile()">Mudras — Complete Reference</a>
+  <span class="nav-mobile-label">Reference</span>
+  <a href="#references" class="nav-mobile-link" onclick="closeMobile()">References &amp; Contextual Sources</a>
+  <a href="#epilogue" class="nav-mobile-link" onclick="closeMobile()">Epilogue</a>
+  <a href="#future" class="nav-mobile-link" onclick="closeMobile()">Future &amp; MCP Roadmap</a>
+  <span class="nav-mobile-label">Connect</span>
+  <a href="#contact" class="nav-mobile-link" onclick="closeMobile()">Collaborate With Us</a>
+</div>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+  <img src="logo.jpg" class="hero-wm hero-wm-logo" alt="" onerror="this.style.display='none'" style="position:absolute;pointer-events:none;opacity:0.06;width:40%;top:50%;left:50%;transform:translate(-50%,-50%);" />
+  <div class="hero-tag">Independent Researcher &amp; Author · Est. 2010</div>
+  <h1 class="hero-title-1">Aesthetics</h1>
+  <h1 class="hero-title-2">of Society</h1>
+  <p class="hero-tagline">Bridging Ancient Indian Systems with Modern<br />Neuroscience &amp; Bio-acoustics</p>
+  <div class="hero-btns">
+    <a href="#publications" class="btn btn-primary">Explore Publications</a>
+    <a href="#about" class="btn btn-outline-hero">About the Author</a>
+  </div>
+</section>
+
+<!-- The rest of the page body continues exactly as in the original.
+     Only the NAV section above has been modified.
+     All section IDs, content, scripts, and publication data remain unchanged. -->
+
+<!-- ══════════════ NOTE FOR DEVELOPER ══════════════
+  To integrate this nav change into your live site:
+
+  STEP 1 — In your existing index.html, find the comment:
+    "Desktop: dropdown + CTA"
+  
+  STEP 2 — BEFORE the existing <div class="nav-dropdown" id="navDropdown">
+    insert the new KARANAS REFERENCE dropdown block below:
+
+  ─────────────────────────────────────────────────
+  <div class="nav-dropdown" id="karanaDropdown">
+    <button class="nav-dropdown-btn" onclick="toggleKarana()">
+      Karanas Reference <span class="arrow">▼</span>
+    </button>
+    <div class="nav-dropdown-panel" style="width:340px">
+      <div class="nav-panel-section">
+        <span class="nav-panel-label">Core Theory</span>
+        <a href="https://unifiedtheory.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Unified Theory</a>
+        <a href="https://vedicmathematicsgeometry.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Vedic Mathematics &amp; Geometry</a>
+      </div>
+      <div class="nav-panel-section">
+        <span class="nav-panel-label">Natya Shastra</span>
+        <a href="https://natyashastraclassical-dance.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Natya Shastra — Classical Dance</a>
+        <a href="https://natyashastra.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Natya Shastra</a>
+      </div>
+      <div class="nav-panel-section">
+        <span class="nav-panel-label">Karanas Maps &amp; Synthesis</span>
+        <a href="https://karanasrootmap.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Karanas Root Map</a>
+        <a href="https://karanassacredsynthesis.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Karanas Sacred Synthesis</a>
+        <a href="https://completecelestialsynthesis.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Complete Celestial Synthesis</a>
+      </div>
+      <div class="nav-panel-section">
+        <span class="nav-panel-label">Protocol</span>
+        <a href="https://masterconsciousprotocol.culturalmusings.com" class="nav-panel-link" target="_blank" rel="noopener">Master Consciousness Protocol</a>
+      </div>
+    </div>
+  </div>
+  ─────────────────────────────────────────────────
+
+  STEP 3 — In your existing <style> block, add:
+    #karanaDropdown .nav-dropdown-panel { width: 340px; }
+
+  STEP 4 — In your existing <script> block, add:
+    function toggleKarana() {
+      const d = document.getElementById('karanaDropdown');
+      const isOpen = d.classList.contains('open');
+      document.querySelectorAll('.nav-dropdown').forEach(x => x.classList.remove('open'));
+      if (!isOpen) d.classList.add('open');
+    }
+    function closeKarana() {
+      document.getElementById('karanaDropdown').classList.remove('open');
+    }
+
+  STEP 5 — Update the close-on-outside-click handler to include karanaDropdown.
+  If your existing script has:
+    document.addEventListener('click', e => {
+      if (!e.target.closest('#navDropdown')) closeNav();
+    });
+  Change it to:
+    document.addEventListener('click', e => {
+      if (!e.target.closest('#navDropdown')) closeNav();
+      if (!e.target.closest('#karanaDropdown')) closeKarana();
+    });
+
+  STEP 6 — Add mobile links for all 8 Karanas URLs at the TOP of #mobilePanel
+    (before the existing "Main" label) — see the mobile panel in this file above.
+════════════════════════════════════════════════ -->
+
+<script>
+  // ── NAV SCROLL ──
+  window.addEventListener('scroll', () => {
+    document.getElementById('main-nav').classList.toggle('scrolled', scrollY > 40);
+  });
+
+  // ── EXISTING dropdown ──
+  function toggleNav() {
+    const d = document.getElementById('navDropdown');
+    const isOpen = d.classList.contains('open');
+    document.querySelectorAll('.nav-dropdown').forEach(x => x.classList.remove('open'));
+    if (!isOpen) d.classList.add('open');
+  }
+  function closeNav() {
+    document.getElementById('navDropdown').classList.remove('open');
+  }
+
+  // ── NEW: Karanas dropdown ──
+  function toggleKarana() {
+    const d = document.getElementById('karanaDropdown');
+    const isOpen = d.classList.contains('open');
+    document.querySelectorAll('.nav-dropdown').forEach(x => x.classList.remove('open'));
+    if (!isOpen) d.classList.add('open');
+  }
+  function closeKarana() {
+    document.getElementById('karanaDropdown').classList.remove('open');
+  }
+
+  // ── MOBILE ──
+  function toggleMobile() {
+    document.getElementById('mobilePanel').classList.toggle('open');
+  }
+  function closeMobile() {
+    document.getElementById('mobilePanel').classList.remove('open');
+  }
+
+  // ── CLOSE DROPDOWNS ON OUTSIDE CLICK ──
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#navDropdown')) closeNav();
+    if (!e.target.closest('#karanaDropdown')) closeKarana();
+  });
+</script>
+
+</body>
+</html>
+
+S
+R
+T
+D
+H
