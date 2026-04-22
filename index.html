@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>life's total synthesis | Cultural Musings</title>
+    <title>Life's Total Synthesis | Cultural Musings</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
@@ -24,6 +24,7 @@
             color: var(--text-light);
             line-height: 1.6;
             height: 100%;
+            overflow-x: hidden; /* Extra protection against horizontal scroll */
         }
 
         /* --- BACKGROUND WATERMARKING --- */
@@ -121,7 +122,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
 
         nav ul li {
@@ -132,9 +133,9 @@
             color: var(--white);
             text-decoration: none;
             font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
-            padding: 10px 15px;
+            padding: 10px 10px;
             transition: color 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -147,13 +148,19 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: rgba(11, 29, 58, 0.95);
-            min-width: 280px;
+            background-color: rgba(11, 29, 58, 0.98);
+            min-width: 260px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-            z-index: 1;
+            z-index: 100;
             top: 100%;
             left: 0;
             border-top: 3px solid var(--rich-gold);
+        }
+
+        /* FIX: Align the last dropdown to the right so it doesn't cut off */
+        nav ul li:last-child .dropdown-content {
+            left: auto;
+            right: 0;
         }
 
         .dropdown-content a {
@@ -166,6 +173,7 @@
             text-transform: none;
             font-size: 0.9rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            white-space: normal; /* Allows text wrapping */
         }
 
         .dropdown-content a:hover {
@@ -179,7 +187,7 @@
 
         h2.hero-title {
             font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             color: var(--rich-gold);
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
@@ -197,11 +205,6 @@
             text-decoration: underline;
             text-underline-offset: 4px;
             font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .domain-highlight:hover {
-            color: var(--white);
         }
     </style>
 </head>
@@ -219,22 +222,20 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#">About</a>
+                <li><a href="about.html">About</a>
                     <div class="dropdown-content">
                         <a href="goals.html">Goals & Aims</a>
-                        <a href="team.html">The Team</a>                       
+                        <a href="team.html">The Team</a>                        
                     </div>
                 </li>
-                       <li><a href="#">Research Hubs ▼</a>
+                <li><a href="#">Research Hubs ▼</a>
                     <div class="dropdown-content">
                         <a href="https://masterconsciousprotocol.culturalmusings.com">Master Conscious Protocol</a>
                         <a href="https://natyashastra.culturalmusings.com">Natyashastra</a>
                         <a href="https://bioresonancemusings.culturalmusings.com">Bio-Resonance Musings</a>
                         <a href="https://nada-chikitsa.culturalmusings.com">Nada Chikitsa</a>
                         <a href="https://spandanashodha.culturalmusings.com">Spandana Shodha</a>
-                        <a href="https://spiritualphilosophical.culturalmusings.com">Spiritual Philosophical</a>
                         <a href="https://unifiedtheory.culturalmusings.com">Unified Theory</a>
-                        <a href="https://vedicmathematicsgeometry.culturalmusings.com">Vedic Mathematics Geometry</a>
                     </div>
                 </li>
                 <li><a href="#">Disciplines ▼</a>
@@ -243,19 +244,14 @@
                         <a href="karanas.html">Karanas (Overview)</a>
                         <a href="https://karanasrootmap.culturalmusings.com">Karanas Root Map</a>
                         <a href="https://karanassacredsynthesis.culturalmusings.com">Karanas Sacred Synthesis</a>
-                        <a href="https://completecelestialsynthesis.culturalmusings.com">Complete Celestial Synthesis</a>
                     </div>
                 </li>
                 <li><a href="#">Karanas ▼</a>
                     <div class="dropdown-content">
-                        <a href="https://unifiedtheory.culturalmusings.com">Unified Theory</a>
-                        <a href="https://vedicmathematicsgeometry.culturalmusings.com">Vedic Mathematics Geometry</a>
-                        <a href="https://natyashastraclassical-dance.culturalmusings.com">Natyashastra Classical Dance</a>
-                        <a href="https://masterconsciousprotocol.culturalmusings.com">Master Conscious Protocol</a>
-                        <a href="https://natyashastra.culturalmusings.com">Natyashastra</a>
+                        <a href="https://natyashastra.culturalmusings.com">Natyashastra Dance</a>
                         <a href="https://karanasrootmap.culturalmusings.com">Karanas Root Map</a>
-                        <a href="https://completecelestialsynthesis.culturalmusings.com">Complete Celestial Synthesis</a>
-                        <a href="https://karanassacredsynthesis.culturalmusings.com">Karanas Sacred Synthesis</a>
+                        <a href="https://completecelestialsynthesis.culturalmusings.com">Celestial Synthesis</a>
+                        <a href="https://karanassacredsynthesis.culturalmusings.com">Sacred Synthesis</a>
                     </div>
                 </li>
             </ul>
@@ -264,10 +260,10 @@
 
     <main class="hero-section">
         <div class="content-wrapper">
-            <h2 class="hero-title"> "Master Consciousness Protocol" unique journey in itself </h2>
-            <p class="hero-subtitle">Bridging Ancient Lineages with Modern Empirical Science beyond the limitations.</p>
+            <h2 class="hero-title">Master Consciousness Protocol</h2>
+            <p class="hero-subtitle">Bridging Ancient Lineages with Modern Empirical Science.</p>
             
-            <p>Welcome to the digital nexus of Naredla Rama Chandra's research. This platform synthesizes esoteric wisdom and neurological science. Explore our comprehensive frameworks via <a href="https://masterconsciousprotocol.culturalmusings.com" class="domain-highlight">Master Conscious Protocol</a>, deeply investigate the vibrational universe through <a href="https://spandanashodha.culturalmusings.com" class="domain-highlight">Spandana Shodha</a>, or delve into traditional kinetic aesthetics at <a href="https://natyashastra.culturalmusings.com" class="domain-highlight">Natyashastra</a>.</p>
+            <p>Explore Naredla Rama Chandra's research synthesizing esoteric wisdom and neurological science. Investigate our frameworks via <a href="goals.html" class="domain-highlight">The MCP Protocol</a> or delve into the author's tradition-led journey at <a href="about.html" class="domain-highlight">About the Author</a>.</p>
         </div>
     </main>
 
@@ -285,10 +281,9 @@
           background: "linear-gradient(180deg, #0B1D3A 0%, #D4AF37 100%)",
           buttonBackgroundColor: "#D4AF37",
           buttonIconColor: "#0B1D3A",
-          variant: false,
           customizations: {
             greeting: "Yes",
-            greetingMessage: "Please leave your message and requirements here. We will get back to you shortly.",
+            greetingMessage: "Please leave your message here. We will get back to you shortly.",
             pulse: "Yes",
             position: "right"
           }
