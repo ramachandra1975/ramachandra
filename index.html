@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,32 +36,29 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
-            /* Base Background */
             background-image: url('background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        /* Overlay for Logo Watermark */
         .hero-section::before {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background-image: url('logo.jpg');
-            background-size: 40%; /* Adjust size of watermark */
+            background-size: 40%;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.15; /* Not so light, not so dark */
+            opacity: 0.15;
             z-index: 1;
         }
 
-        /* Overlay for readability */
         .hero-section::after {
             content: "";
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(11, 29, 58, 0.7); /* Navy tint to make text pop */
+            background-color: rgba(11, 29, 58, 0.7);
             z-index: 2;
         }
 
@@ -95,7 +91,7 @@
         }
 
         .logo-img {
-            height: 60px; /* Fitting between header */
+            height: 60px;
             width: auto;
         }
 
@@ -148,7 +144,6 @@
             color: var(--rich-gold);
         }
 
-        /* Dropdown Setup */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -182,7 +177,6 @@
             display: block;
         }
 
-        /* --- TYPOGRAPHY --- */
         h2.hero-title {
             font-family: 'Cinzel', serif;
             font-size: 3.5rem;
@@ -198,7 +192,6 @@
             font-style: italic;
         }
 
-        /* --- HIGHLIGHTED DOMAIN LINKS --- */
         .domain-highlight {
             color: var(--rich-gold);
             text-decoration: underline;
@@ -210,7 +203,6 @@
         .domain-highlight:hover {
             color: var(--white);
         }
-
     </style>
 </head>
 <body>
@@ -256,14 +248,26 @@
                         <a href="https://completecelestialsynthesis.culturalmusings.com">Complete Celestial Synthesis</a>
                     </div>
                 </li>
+                <li><a href="#">Karanas ▼</a>
+                    <div class="dropdown-content">
+                        <a href="https://unifiedtheory.culturalmusings.com">Unified Theory</a>
+                        <a href="https://vedicmathematicsgeometry.culturalmusings.com">Vedic Mathematics Geometry</a>
+                        <a href="https://natyashastraclassical-dance.culturalmusings.com">Natyashastra Classical Dance</a>
+                        <a href="https://masterconsciousprotocol.culturalmusings.com">Master Conscious Protocol</a>
+                        <a href="https://natyashastra.culturalmusings.com">Natyashastra</a>
+                        <a href="https://karanasrootmap.culturalmusings.com">Karanas Root Map</a>
+                        <a href="https://completecelestialsynthesis.culturalmusings.com">Complete Celestial Synthesis</a>
+                        <a href="https://karanassacredsynthesis.culturalmusings.com">Karanas Sacred Synthesis</a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
 
     <main class="hero-section">
         <div class="content-wrapper">
-            <h2 class="hero-title"> "Master Consciousness Protocol"  unique journey in itself  </h2>
-            <p class="hero-subtitle">Bridging Ancient Lineages with Modern Empirical Science  beyond the limitations .</p>
+            <h2 class="hero-title"> "Master Consciousness Protocol" unique journey in itself </h2>
+            <p class="hero-subtitle">Bridging Ancient Lineages with Modern Empirical Science beyond the limitations.</p>
             
             <p>Welcome to the digital nexus of Naredla Rama Chandra's research. This platform synthesizes esoteric wisdom and neurological science. Explore our comprehensive frameworks via <a href="https://masterconsciousprotocol.culturalmusings.com" class="domain-highlight">Master Conscious Protocol</a>, deeply investigate the vibrational universe through <a href="https://spandanashodha.culturalmusings.com" class="domain-highlight">Spandana Shodha</a>, or delve into traditional kinetic aesthetics at <a href="https://natyashastra.culturalmusings.com" class="domain-highlight">Natyashastra</a>.</p>
         </div>
@@ -280,7 +284,7 @@
           domain: "https://www.jotform.com",
           isInitialOpen: false,
           isDraggable: false,
-          background: "linear-gradient(180deg, #0B1D3A 0%, #D4AF37 100%)", /* Customized to match academic theme */
+          background: "linear-gradient(180deg, #0B1D3A 0%, #D4AF37 100%)",
           buttonBackgroundColor: "#D4AF37",
           buttonIconColor: "#0B1D3A",
           variant: false,
@@ -293,5 +297,5 @@
         });
       });
     </script>
-
 </body>
+</html>
