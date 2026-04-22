@@ -1,709 +1,309 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cultural Musings — The Living Archive of Ancient Intelligence</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>life's total synthesis | Cultural Musings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- GLOBAL VARIABLES & THEME --- */
+        :root {
+            --navy-blue: #0B1D3A;
+            --rich-gold: #D4AF37;
+            --soft-gold: #F3E5AB;
+            --text-light: #E0E6ED;
+            --white: #FFFFFF;
+        }
 
-  :root {
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
-    --gold-pale: #F5E6C0;
-    --deep: #0D0A06;
-    --ink: #1A1409;
-    --parchment: #F9F2E3;
-    --rust: #7A3B1E;
-    --sage: #4A6741;
-    --cream: #FAF6ED;
-  }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+            background-color: var(--navy-blue);
+            color: var(--text-light);
+            line-height: 1.6;
+            height: 100%;
+        }
 
-  html { scroll-behavior: smooth; }
+        /* --- BACKGROUND WATERMARKING --- */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            /* Base Background */
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
-  body {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    background: var(--deep);
-    color: var(--parchment);
-    overflow-x: hidden;
-  }
+        /* Overlay for Logo Watermark */
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('logo.jpg');
+            background-size: 40%; /* Adjust size of watermark */
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15; /* Not so light, not so dark */
+            z-index: 1;
+        }
 
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: url('background.jpg') center center / cover no-repeat;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(13,10,6,0.55) 0%,
-      rgba(13,10,6,0.30) 40%,
-      rgba(13,10,6,0.75) 85%,
-      rgba(13,10,6,1) 100%
-    );
-    z-index: 1;
-  }
+        /* Overlay for readability */
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(11, 29, 58, 0.7); /* Navy tint to make text pop */
+            z-index: 2;
+        }
 
-  /* ── NAVBAR ── */
-  nav {
-    position: relative;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.6rem 4rem;
-    border-bottom: 1px solid rgba(201,168,76,0.18);
-  }
-  .nav-logo {
-    display: flex; align-items: center; gap: 1rem;
-    text-decoration: none;
-  }
-  .nav-logo img {
-    height: 58px; width: 58px;
-    border-radius: 50%;
-    border: 1.5px solid var(--gold);
-    object-fit: cover;
-  }
-  .nav-logo-text {
-    display: flex; flex-direction: column;
-  }
-  .nav-logo-text .site-name {
-    font-family: 'Cinzel', serif;
-    font-size: 1.15rem;
-    letter-spacing: 0.18em;
-    color: var(--gold);
-    line-height: 1.1;
-  }
-  .nav-logo-text .site-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
-    color: var(--gold-pale);
-    font-style: italic;
-  }
+        .content-wrapper {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+            padding: 2rem;
+        }
 
-  /* Dropdown Menu */
-  .nav-right { position: relative; }
-  .menu-btn {
-    background: none; border: 1.5px solid var(--gold);
-    color: var(--gold);
-    font-family: 'Cinzel', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    padding: 0.55rem 1.4rem;
-    cursor: pointer;
-    display: flex; align-items: center; gap: 0.6rem;
-    transition: all 0.3s;
-  }
-  .menu-btn:hover { background: rgba(201,168,76,0.12); }
-  .menu-btn .chevron {
-    transition: transform 0.3s;
-    font-size: 0.65rem;
-  }
-  .menu-btn.open .chevron { transform: rotate(180deg); }
+        /* --- HEADER & BRANDING --- */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            z-index: 10;
+            box-sizing: border-box;
+            background: linear-gradient(to bottom, rgba(11,29,58,0.9), transparent);
+        }
 
-  .dropdown {
-    position: absolute;
-    top: calc(100% + 0.8rem);
-    right: 0;
-    width: 340px;
-    background: rgba(13,10,6,0.97);
-    border: 1px solid rgba(201,168,76,0.3);
-    backdrop-filter: blur(12px);
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-8px);
-    transition: all 0.35s ease;
-    z-index: 200;
-  }
-  .dropdown.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-  .dropdown-section {
-    padding: 0.6rem 0;
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-  }
-  .dropdown-section:last-child { border-bottom: none; }
-  .dropdown-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.25em;
-    color: var(--gold);
-    padding: 0.5rem 1.4rem 0.2rem;
-    opacity: 0.7;
-  }
-  .dropdown a {
-    display: block;
-    padding: 0.6rem 1.4rem;
-    color: var(--parchment);
-    text-decoration: none;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
-    letter-spacing: 0.04em;
-    transition: all 0.2s;
-    border-left: 2px solid transparent;
-  }
-  .dropdown a:hover {
-    color: var(--gold-light);
-    border-left-color: var(--gold);
-    background: rgba(201,168,76,0.07);
-    padding-left: 1.8rem;
-  }
+        .logo-img {
+            height: 60px; /* Fitting between header */
+            width: auto;
+        }
 
-  /* ── HERO CONTENT ── */
-  .hero-content {
-    position: relative; z-index: 2;
-    flex: 1;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 3rem 2rem 6rem;
-  }
-  .hero-ornament {
-    font-family: 'Cinzel', serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.4em;
-    color: var(--gold);
-    opacity: 0.8;
-    margin-bottom: 1.4rem;
-    animation: fadeUp 1s ease both;
-  }
-  .hero-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(2.4rem, 6vw, 5rem);
-    font-weight: 700;
-    line-height: 1.08;
-    letter-spacing: 0.06em;
-    color: var(--parchment);
-    margin-bottom: 0.5rem;
-    animation: fadeUp 1s 0.2s ease both;
-  }
-  .hero-title span { color: var(--gold); }
-  .hero-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-    font-style: italic;
-    color: var(--gold-pale);
-    letter-spacing: 0.08em;
-    margin-bottom: 2.4rem;
-    animation: fadeUp 1s 0.35s ease both;
-  }
-  .hero-divider {
-    display: flex; align-items: center; gap: 1.2rem;
-    margin-bottom: 2.2rem;
-    animation: fadeUp 1s 0.45s ease both;
-  }
-  .hero-divider span { width: 60px; height: 1px; background: var(--gold); opacity: 0.5; }
-  .hero-divider i { color: var(--gold); font-size: 1.1rem; opacity: 0.7; }
+        .brand-text {
+            font-family: 'Cinzel', serif;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
 
-  .hero-desc {
-    max-width: 680px;
-    font-size: 1.12rem;
-    line-height: 1.85;
-    color: rgba(249,242,227,0.82);
-    margin-bottom: 3rem;
-    animation: fadeUp 1s 0.55s ease both;
-  }
+        .brand-text h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--rich-gold);
+            letter-spacing: 2px;
+        }
 
-  .portal-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    max-width: 680px;
-    width: 100%;
-    animation: fadeUp 1s 0.7s ease both;
-  }
-  .portal-card {
-    border: 1px solid rgba(201,168,76,0.25);
-    padding: 1.3rem 1.4rem;
-    text-decoration: none;
-    background: rgba(13,10,6,0.55);
-    backdrop-filter: blur(6px);
-    transition: all 0.35s;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-  }
-  .portal-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(201,168,76,0.08), transparent);
-    opacity: 0;
-    transition: opacity 0.35s;
-  }
-  .portal-card:hover { border-color: var(--gold); transform: translateY(-3px); }
-  .portal-card:hover::before { opacity: 1; }
-  .portal-num {
-    font-family: 'Cinzel', serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.3em;
-    color: var(--gold);
-    opacity: 0.6;
-    margin-bottom: 0.4rem;
-  }
-  .portal-name {
-    font-family: 'Cinzel', serif;
-    font-size: 0.88rem;
-    color: var(--gold-light);
-    letter-spacing: 0.08em;
-    margin-bottom: 0.35rem;
-  }
-  .portal-desc {
-    font-size: 0.82rem;
-    color: rgba(249,242,227,0.65);
-    line-height: 1.5;
-    font-style: italic;
-  }
+        .brand-text span {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
 
-  /* ── ABOUT / AUTHOR SECTION ── */
-  .section-author {
-    background: var(--ink);
-    padding: 6rem 4rem;
-    position: relative;
-  }
-  .section-author::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    opacity: 0.3;
-  }
-  .author-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 5rem;
-    align-items: start;
-  }
-  .author-photo-wrap {
-    position: relative;
-    display: flex; flex-direction: column; align-items: center;
-  }
-  .author-photo {
-    width: 220px; height: 280px;
-    object-fit: cover;
-    border: 2px solid rgba(201,168,76,0.4);
-    filter: sepia(15%) contrast(1.05);
-  }
-  .author-photo-frame {
-    position: absolute;
-    top: -10px; left: -10px; right: -10px; bottom: -10px;
-    border: 1px solid rgba(201,168,76,0.15);
-    pointer-events: none;
-  }
-  .author-name-plate {
-    margin-top: 1.4rem;
-    text-align: center;
-  }
-  .author-name-plate .name {
-    font-family: 'Cinzel', serif;
-    font-size: 1rem;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-  }
-  .author-name-plate .title {
-    font-size: 0.82rem;
-    font-style: italic;
-    color: var(--gold-pale);
-    opacity: 0.7;
-    margin-top: 0.2rem;
-    letter-spacing: 0.08em;
-  }
+        /* --- NAVIGATION & DROPDOWNS --- */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
 
-  .author-text { }
-  .section-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.45em;
-    color: var(--gold);
-    opacity: 0.7;
-    margin-bottom: 0.6rem;
-  }
-  .section-heading {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    color: var(--parchment);
-    letter-spacing: 0.05em;
-    margin-bottom: 2.2rem;
-    line-height: 1.25;
-  }
-  .section-heading span { color: var(--gold); }
+        nav ul li {
+            position: relative;
+        }
 
-  .author-paras p {
-    font-size: 1.05rem;
-    line-height: 1.95;
-    color: rgba(249,242,227,0.82);
-    margin-bottom: 1.4rem;
-  }
-  .author-paras p:first-child::first-letter {
-    font-size: 3.2rem;
-    font-family: 'Cinzel', serif;
-    color: var(--gold);
-    float: left;
-    line-height: 0.75;
-    margin-right: 0.12em;
-    margin-top: 0.15em;
-  }
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-  /* ── INQUIRY SECTION ── */
-  .section-inquiry {
-    background: url('background1.png') center center / cover no-repeat;
-    position: relative;
-    padding: 6rem 4rem;
-  }
-  .section-inquiry::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: rgba(13,10,6,0.82);
-  }
-  .inquiry-inner {
-    position: relative; z-index: 1;
-    max-width: 760px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .inquiry-inner .section-heading { margin-bottom: 0.8rem; }
-  .inquiry-intro {
-    font-style: italic;
-    color: rgba(249,242,227,0.7);
-    font-size: 1.05rem;
-    margin-bottom: 2.8rem;
-    line-height: 1.7;
-  }
+        nav ul li a:hover {
+            color: var(--rich-gold);
+        }
 
-  .inquiry-form {
-    text-align: left;
-    display: grid;
-    gap: 1.2rem;
-  }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-group label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.28em;
-    color: var(--gold);
-    opacity: 0.8;
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    background: rgba(249,242,227,0.05);
-    border: 1px solid rgba(201,168,76,0.25);
-    color: var(--parchment);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.98rem;
-    padding: 0.75rem 1rem;
-    outline: none;
-    transition: border-color 0.3s;
-    width: 100%;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--gold); }
-  .form-group select { appearance: none; cursor: pointer; }
-  .form-group select option { background: var(--ink); }
-  .form-group textarea { resize: vertical; min-height: 110px; }
+        /* Dropdown Setup */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(11, 29, 58, 0.95);
+            min-width: 280px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            border-top: 3px solid var(--rich-gold);
+        }
 
-  .submit-btn {
-    display: inline-flex;
-    align-items: center; gap: 0.7rem;
-    background: transparent;
-    border: 1.5px solid var(--gold);
-    color: var(--gold);
-    font-family: 'Cinzel', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.3em;
-    padding: 1rem 2.4rem;
-    cursor: pointer;
-    transition: all 0.35s;
-    margin-top: 0.5rem;
-  }
-  .submit-btn:hover {
-    background: var(--gold);
-    color: var(--deep);
-  }
+        .dropdown-content a {
+            color: var(--text-light);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-family: 'Lora', serif;
+            text-transform: none;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--deep);
-    border-top: 1px solid rgba(201,168,76,0.12);
-    padding: 2.5rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  footer .foot-logo {
-    font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    opacity: 0.7;
-  }
-  footer .foot-links {
-    display: flex; gap: 2rem;
-  }
-  footer .foot-links a {
-    font-size: 0.82rem;
-    color: rgba(249,242,227,0.45);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    transition: color 0.2s;
-  }
-  footer .foot-links a:hover { color: var(--gold); }
-  footer .foot-copy {
-    font-size: 0.78rem;
-    color: rgba(249,242,227,0.3);
-    font-style: italic;
-  }
+        .dropdown-content a:hover {
+            background-color: var(--rich-gold);
+            color: var(--navy-blue);
+        }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(22px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+        nav ul li:hover .dropdown-content {
+            display: block;
+        }
 
-  @media (max-width: 768px) {
-    nav { padding: 1.2rem 1.6rem; }
-    .portal-grid { grid-template-columns: 1fr; }
-    .author-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .author-photo-wrap { align-items: flex-start; }
-    .form-row { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 1.2rem; text-align: center; }
-  }
-</style>
+        /* --- TYPOGRAPHY --- */
+        h2.hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: var(--rich-gold);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        p.hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--soft-gold);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* --- HIGHLIGHTED DOMAIN LINKS --- */
+        .domain-highlight {
+            color: var(--rich-gold);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .domain-highlight:hover {
+            color: var(--white);
+        }
+
+    </style>
 </head>
 <body>
 
-<!-- ══ HERO ══ -->
-<section class="hero">
-
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="nav-logo">
-      <img src="logo.jpg" alt="Cultural Musings Logo">
-      <div class="nav-logo-text">
-        <span class="site-name">CULTURAL MUSINGS</span>
-        <span class="site-sub">Aesthetics of Society</span>
-      </div>
-    </a>
-    <div class="nav-right">
-      <button class="menu-btn" id="menuBtn">
-        EXPLORE <span class="chevron">▾</span>
-      </button>
-      <div class="dropdown" id="dropdown">
-        <div class="dropdown-section">
-          <div class="dropdown-label">SUBDOMAINS</div>
-          <a href="natyashastra/index.html">Natyashastra &amp; Classical Arts</a>
-          <a href="bioresonance/index.html">Bioresonance &amp; Resonant Universe</a>
-          <a href="masterconsciousprotocol/index.html">Master Conscious Protocol</a>
-          <a href="nada-chikitsa/index.html">Nada Chikitsa — Sound Healing</a>
+    <header>
+        <div class="brand-container">
+            <img src="logo.jpg" alt="Aesthetics of Society Logo" class="logo-img">
+            <div class="brand-text">
+                <h1>AESTHETICS OF SOCIETY</h1>
+                <span>culturalmusings.com</span>
+            </div>
         </div>
-        <div class="dropdown-section">
-          <div class="dropdown-label">TOPICS</div>
-          <a href="natyashastra/index.html#panini">Panini Ashtadhyayi</a>
-          <a href="bioresonance/index.html#biomechanics">Karana's Biomechanics &amp; Astrology</a>
-          <a href="nada-chikitsa/index.html#saptaswaras">Sapta Swaras as Healing Sciences</a>
-          <a href="natyashastra/index.html#mudras">Mudras &amp; Human Evolution</a>
-          <a href="nada-chikitsa/index.html#aiframeworks">Panini &amp; AI Frameworks</a>
-          <a href="masterconsciousprotocol/index.html#holistic">Holistic Human Consciousness</a>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">About</a>
+                    <div class="dropdown-content">
+                        <a href="goals.html">Goals & Aims</a>
+                        <a href="team.html">The Team</a>
+                        <a href="gurus-clan.html">The Guru's Clan</a>
+                    </div>
+                </li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="#">Research Hubs ▼</a>
+                    <div class="dropdown-content">
+                        <a href="https://masterconsciousprotocol.culturalmusings.com">Master Conscious Protocol</a>
+                        <a href="https://natyashastra.culturalmusings.com">Natyashastra</a>
+                        <a href="https://bioresonancemusings.culturalmusings.com">Bio-Resonance Musings</a>
+                        <a href="https://nada-chikitsa.culturalmusings.com">Nada Chikitsa</a>
+                        <a href="https://spandanashodha.culturalmusings.com">Spandana Shodha</a>
+                        <a href="https://spiritualphilosophical.culturalmusings.com">Spiritual Philosophical</a>
+                        <a href="https://unifiedtheory.culturalmusings.com">Unified Theory</a>
+                        <a href="https://vedicmathematicsgeometry.culturalmusings.com">Vedic Mathematics Geometry</a>
+                    </div>
+                </li>
+                <li><a href="#">Disciplines ▼</a>
+                    <div class="dropdown-content">
+                        <a href="mudras.html">The Science of Mudras</a>
+                        <a href="karanas.html">Karanas (Overview)</a>
+                        <a href="https://karanasrootmap.culturalmusings.com">Karanas Root Map</a>
+                        <a href="https://karanassacredsynthesis.culturalmusings.com">Karanas Sacred Synthesis</a>
+                        <a href="https://completecelestialsynthesis.culturalmusings.com">Complete Celestial Synthesis</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="hero-section">
+        <div class="content-wrapper">
+            <h2 class="hero-title">The Master Consciousness Protocol</h2>
+            <p class="hero-subtitle">Bridging Ancient Lineages with Modern Empirical Science.</p>
+            
+            <p>Welcome to the digital nexus of Naredla Rama Chandra's research. This platform synthesizes esoteric wisdom and neurological science. Explore our comprehensive frameworks via <a href="https://masterconsciousprotocol.culturalmusings.com" class="domain-highlight">Master Conscious Protocol</a>, deeply investigate the vibrational universe through <a href="https://spandanashodha.culturalmusings.com" class="domain-highlight">Spandana Shodha</a>, or delve into traditional kinetic aesthetics at <a href="https://natyashastra.culturalmusings.com" class="domain-highlight">Natyashastra</a>.</p>
         </div>
-        <div class="dropdown-section">
-          <div class="dropdown-label">CONNECT</div>
-          <a href="#inquiry">Submit an Inquiry</a>
-          <a href="#author">About the Author</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+    </main>
 
-  <!-- HERO CONTENT -->
-  <div class="hero-content">
-    <div class="hero-ornament">✦ &nbsp; THE LIVING ARCHIVE OF ANCIENT INTELLIGENCE &nbsp; ✦</div>
-    <h1 class="hero-title">Cultural<br><span>Musings</span></h1>
-    <p class="hero-subtitle">Where Ancient Wisdom Meets the Frontier of Consciousness</p>
-    <div class="hero-divider">
-      <span></span><i>◈</i><span></span>
-    </div>
-    <p class="hero-desc">
-      An interdisciplinary sanctuary exploring the profound convergence of Sanskrit grammar,
-      bioresonance science, classical dance philosophy, sound healing, and the architecture
-      of human consciousness — bridged to the intelligence of our time.
-    </p>
-    <div class="portal-grid">
-      <a href="natyashastra/index.html" class="portal-card">
-        <div class="portal-num">01 ·</div>
-        <div class="portal-name">NATYASHASTRA</div>
-        <div class="portal-desc">Panini's grammar, Mudras &amp; the science of classical movement</div>
-      </a>
-      <a href="bioresonance/index.html" class="portal-card">
-        <div class="portal-num">02 ·</div>
-        <div class="portal-name">BIORESONANCE</div>
-        <div class="portal-desc">Resonant universe, Karana's biomechanics &amp; astrological inference</div>
-      </a>
-      <a href="masterconsciousprotocol/index.html" class="portal-card">
-        <div class="portal-num">03 ·</div>
-        <div class="portal-name">MASTER CONSCIOUS PROTOCOL</div>
-        <div class="portal-desc">A holistic architecture of the awakened human consciousness</div>
-      </a>
-      <a href="nada-chikitsa/index.html" class="portal-card">
-        <div class="portal-num">04 ·</div>
-        <div class="portal-name">NADA CHIKITSA</div>
-        <div class="portal-desc">Sapta Swaras, Panini &amp; AI frameworks in sound healing</div>
-      </a>
-    </div>
-  </div>
-</section>
+    <script src="https://cdn.jotfor.ms/s/umd/latest/for-agent.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", function() {
+        window.AgentInitializer.init({
+          agentRenderURL: "https://agent.jotform.com/019d8f3727af73cab8f1024b3df3ef1f84b6",
+          rootId: "JotformAgent-019d8f3727af73cab8f1024b3df3ef1f84b6",
+          formID: "019d8f3727af73cab8f1024b3df3ef1f84b6",
+          queryParams: ["skipWelcome=1", "maximize=1"],
+          domain: "https://www.jotform.com",
+          isInitialOpen: false,
+          isDraggable: false,
+          background: "linear-gradient(180deg, #0B1D3A 0%, #D4AF37 100%)", /* Customized to match academic theme */
+          buttonBackgroundColor: "#D4AF37",
+          buttonIconColor: "#0B1D3A",
+          variant: false,
+          customizations: {
+            greeting: "Yes",
+            greetingMessage: "Please leave your message and requirements here. We will get back to you shortly.",
+            pulse: "Yes",
+            position: "right"
+          }
+        });
+      });
+    </script>
 
-<!-- ══ AUTHOR ══ -->
-<section class="section-author" id="author">
-  <div class="author-inner">
-    <div class="author-photo-wrap">
-      <div class="author-photo-frame"></div>
-      <img src="author.jpg" alt="Author" class="author-photo">
-      <div class="author-name-plate">
-        <div class="name">THE AUTHOR</div>
-        <div class="title">Scholar · Researcher · Practitioner</div>
-      </div>
-    </div>
-    <div class="author-text">
-      <div class="section-label">ABOUT THE VOICE BEHIND THE MUSINGS</div>
-      <h2 class="section-heading">A Journey Across<br><span>Ancient &amp; Modern Frontiers</span></h2>
-      <div class="author-paras">
-        <p>
-          My immersion into the science of Natyashastra began not in a library but in the lived
-          breath of practice — where the grammar of Panini revealed itself not merely as linguistic
-          architecture but as a cosmic operating system. In the syllabic precision of the
-          Ashtadhyayi, I discovered the structural DNA of consciousness itself, a framework that
-          predates yet anticipates every formal system we now call artificial intelligence.
-        </p>
-        <p>
-          The inquiry deepened as I traversed into the biomechanical intelligence embedded in the
-          Karanas — those 108 postures of the Natya Shastra that encode, with astonishing fidelity,
-          the laws of planetary resonance and human physiological rhythm. The intersection of
-          astrological inference with biomechanics is not metaphor; it is a precise, measurable
-          field that bioresonance science is only now beginning to formally articulate.
-        </p>
-        <p>
-          Sound, in the tradition of Nada Chikitsa, is not entertainment — it is medicine. The
-          Sapta Swaras are not merely seven notes on a scale; they are seven gateways into the
-          endocrine architecture of the human body. My research into their therapeutic applications
-          draws on decades of cross-referencing ancient Tamil and Sanskrit musicological texts
-          with contemporary psychoacoustics, neuroplasticity research, and frequency-based healing
-          modalities.
-        </p>
-        <p>
-          The Master Conscious Protocol emerged from years of synthesizing these threads — Vedic
-          cosmology, classical movement science, acoustic medicine, and the philosophy of awareness
-          itself — into a cohesive, practice-ready framework for human transformation. It is neither
-          purely ancient nor purely modern; it lives in the creative tension between remembering and
-          discovering.
-        </p>
-        <p>
-          Cultural Musings is my offering to the seeker, the scholar, the practitioner, and the
-          curious mind that refuses to accept false dichotomies between science and sacredness,
-          between tradition and innovation. Every article here is a doorway. Every subdomain is a
-          universe. Enter where your resonance calls you, and trust that the knowledge will meet
-          you exactly where you are ready to receive it.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ INQUIRY ══ -->
-<section class="section-inquiry" id="inquiry">
-  <div class="inquiry-inner">
-    <div class="section-label">CONNECT WITH US</div>
-    <h2 class="section-heading">Submit an <span>Inquiry</span></h2>
-    <p class="inquiry-intro">
-      Whether you seek guidance, collaboration, or wish to delve deeper into any of our areas
-      of study — we welcome your correspondence.
-    </p>
-
-    <form class="inquiry-form" action="mailto:smith123846@gmail.com" method="post" enctype="text/plain">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fname">FULL NAME</label>
-          <input type="text" id="fname" name="Full Name" placeholder="Your name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">EMAIL ADDRESS</label>
-          <input type="email" id="email" name="Email" placeholder="your@email.com" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="topic">AREA OF INQUIRY</label>
-        <select id="topic" name="Topic of Inquiry" required>
-          <option value="" disabled selected>— Select a domain —</option>
-          <optgroup label="Natyashastra & Classical Arts">
-            <option>Panini Ashtadhyayi — Grammar as Cosmic Architecture</option>
-            <option>Mudras &amp; Human Evolution</option>
-            <option>Natyashastra — Dance, Rasa &amp; Classical Aesthetics</option>
-          </optgroup>
-          <optgroup label="Bioresonance & Resonant Universe">
-            <option>Bioresonance Science &amp; the Resonant Universe</option>
-            <option>Karana's Biomechanics &amp; Astrological Inferences</option>
-          </optgroup>
-          <optgroup label="Nada Chikitsa — Sound Healing">
-            <option>Sapta Swaras as Healing Sciences</option>
-            <option>Panini, Ashtadhyayi &amp; AI Frameworks</option>
-            <option>Nada Chikitsa — Sound as Medicine</option>
-          </optgroup>
-          <optgroup label="Master Conscious Protocol">
-            <option>Holistic Approach to Human Consciousness</option>
-            <option>Master Conscious Protocol — Full Framework</option>
-          </optgroup>
-          <optgroup label="Other">
-            <option>Collaboration / Research Partnership</option>
-            <option>Speaking / Workshop Invitation</option>
-            <option>General Inquiry</option>
-            <option>Other — Please specify in message</option>
-          </optgroup>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="message">YOUR MESSAGE</label>
-        <textarea id="message" name="Message" placeholder="Share your question, research interest, or the nature of your inquiry…"></textarea>
-      </div>
-      <button type="submit" class="submit-btn">
-        SEND INQUIRY &nbsp; →
-      </button>
-    </form>
-  </div>
-</section>
-
-<!-- ══ FOOTER ══ -->
-<footer>
-  <div class="foot-logo">CULTURAL MUSINGS</div>
-  <div class="foot-links">
-    <a href="natyashastra/index.html">Natyashastra</a>
-    <a href="bioresonance/index.html">Bioresonance</a>
-    <a href="masterconsciousprotocol/index.html">MCP</a>
-    <a href="nada-chikitsa/index.html">Nada Chikitsa</a>
-  </div>
-  <div class="foot-copy">© 2025 Cultural Musings · Aesthetics of Society</div>
-</footer>
-
-<script>
-  const btn = document.getElementById('menuBtn');
-  const dd  = document.getElementById('dropdown');
-  btn.addEventListener('click', () => {
-    btn.classList.toggle('open');
-    dd.classList.toggle('open');
-  });
-  document.addEventListener('click', e => {
-    if (!btn.contains(e.target) && !dd.contains(e.target)) {
-      btn.classList.remove('open');
-      dd.classList.remove('open');
-    }
-  });
-</script>
 </body>
+</html><!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <h1 class="title">Hello World!</h1>
+      <p id="currentTime"></p>
+      <script src="script.js"></script>
+  </body>
 </html>
