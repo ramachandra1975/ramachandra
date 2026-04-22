@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Consciousness Protocol | Naredla Rama Chandra</title>
+    <title>Life's Total Synthesis | Cultural Musings</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
-        /* --- THEME COLORS --- */
+        /* --- YOUR ORIGINAL THEME --- */
         :root {
             --navy-blue: #0B1D3A;
             --rich-gold: #D4AF37;
@@ -16,63 +16,66 @@
             --white: #FFFFFF;
         }
 
-        body, html {
-            margin: 0; padding: 0;
+        body {
+            margin: 0;
+            padding: 0;
             font-family: 'Lora', serif;
             background-color: var(--navy-blue);
             color: var(--text-light);
-            line-height: 1.6;
-            height: 100%;
-            overflow-x: hidden;
         }
 
-        /* --- NAVIGATION HEADER --- */
         header {
-            background: rgba(11, 29, 58, 0.95);
-            padding: 1.2rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            position: relative;
+            padding: 1.5rem 3rem;
+            background: var(--navy-blue);
             border-bottom: 2px solid var(--rich-gold);
         }
 
-        .brand-text h1 { 
-            font-family: 'Cinzel', serif; 
-            color: var(--rich-gold); 
-            margin: 0; 
-            font-size: 1.4rem; 
-            letter-spacing: 2px;
+        .brand-text h1 {
+            font-family: 'Cinzel', serif;
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--rich-gold);
         }
 
-        nav ul { list-style: none; display: flex; gap: 15px; margin: 0; padding: 0; }
-        nav ul li { position: relative; }
-        nav a { 
-            color: var(--white); 
-            text-decoration: none; 
-            font-family: 'Cinzel', serif; 
-            font-size: 0.85rem; 
-            font-weight: bold; 
-            text-transform: uppercase;
+        /* --- NAVIGATION & DROPDOWNS --- */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            font-weight: bold;
             padding: 10px;
+            text-transform: uppercase;
         }
 
-        nav a:hover { color: var(--rich-gold); }
-
-        /* --- DROPDOWN LOGIC --- */
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: rgba(11, 29, 58, 0.98);
-            min-width: 280px;
+            background-color: var(--navy-blue);
+            min-width: 260px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+            z-index: 100;
             top: 100%;
             left: 0;
             border-top: 3px solid var(--rich-gold);
         }
 
-        /* THE FIX: Align the last two menus to open INWARD (to the left) */
+        /* FIX: These specific menus now open INWARD so they don't cut off the screen */
         nav ul li:nth-last-child(1) .dropdown-content,
         nav ul li:nth-last-child(2) .dropdown-content {
             left: auto;
@@ -82,51 +85,34 @@
         .dropdown-content a {
             color: var(--text-light);
             padding: 12px 16px;
+            text-decoration: none;
             display: block;
-            text-transform: none;
-            font-family: 'Lora', serif;
-            font-size: 0.9rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            white-space: normal; /* Wraps long subdomain links */
         }
 
-        .dropdown-content a:hover { background: var(--rich-gold); color: var(--navy-blue); }
-        nav ul li:hover .dropdown-content { display: block; }
+        .dropdown-content a:hover {
+            background-color: var(--rich-gold);
+            color: var(--navy-blue);
+        }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 85vh;
+        nav ul li:hover .dropdown-content {
+            display: block;
+        }
+
+        /* --- HERO --- */
+        .hero-section {
+            height: 80vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(11,29,58,0.7), rgba(11,29,58,0.7)), url('background.png');
-            background-size: cover;
-            background-position: center;
         }
 
-        .hero h2 { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--rich-gold); margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; color: var(--soft-gold); font-style: italic; max-width: 700px; }
-
-        .btn-gold {
-            margin-top: 25px;
-            padding: 15px 30px;
-            background: var(--rich-gold);
-            color: var(--navy-blue);
-            text-decoration: none;
-            font-weight: bold;
+        h2.hero-title {
             font-family: 'Cinzel', serif;
-            border: 2px solid transparent;
-        }
-
-        .btn-gold:hover { background: transparent; border: 2px solid var(--rich-gold); color: var(--rich-gold); }
-
-        footer {
-            padding: 25px;
-            text-align: center;
-            border-top: 1px solid var(--rich-gold);
-            font-size: 0.9rem;
+            font-size: 3rem;
+            color: var(--rich-gold);
         }
     </style>
 </head>
@@ -136,6 +122,7 @@
         <div class="brand-text">
             <h1>Naredla Rama Chandra</h1>
         </div>
+
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -158,10 +145,9 @@
                 </li>
                 <li><a href="#">Disciplines ▼</a>
                     <div class="dropdown-content">
-                        <a href="mudras.html">The Science of Mudras</a>
+                        <a href="mudras.html">Science of Mudras</a>
                         <a href="karanas.html">Karanas Overview</a>
                         <a href="https://karanasrootmap.culturalmusings.com">Karanas Root Map</a>
-                        <a href="https://karanassacredsynthesis.culturalmusings.com">Sacred Synthesis</a>
                     </div>
                 </li>
                 <li><a href="#">Karanas ▼</a>
@@ -174,15 +160,11 @@
         </nav>
     </header>
 
-    <main class="hero">
-        <h2>Master Consciousness Protocol</h2>
-        <p>A synthesis of ancient Indian systems and modern empirical sciences.</p>
-        <a href="https://form.jotform.com/261042208142039" class="btn-gold" target="_blank">Submit Research Enquiry</a>
+    <main class="hero-section">
+        <h2 class="hero-title">Master Consciousness Protocol</h2>
+        <p>Bridging Ancient Lineages with Modern Empirical Science.</p>
+        <p>Contact: 9121379100 | smith123846@gmail.com</p>
     </main>
-
-    <footer>
-        <p>Contact: 9121379100 | Email: smith123846@gmail.com</p>
-    </footer>
 
     <script src="https://cdn.jotfor.ms/s/umd/latest/for-agent.js"></script>
     <script>
