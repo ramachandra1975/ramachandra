@@ -24,7 +24,7 @@
             color: var(--text-light);
             line-height: 1.6;
             height: 100%;
-            overflow-x: hidden; /* Extra protection against horizontal scroll */
+            overflow-x: hidden; /* Prevents any horizontal scrolling */
         }
 
         /* --- BACKGROUND WATERMARKING --- */
@@ -105,13 +105,13 @@
 
         .brand-text h1 {
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--rich-gold);
             letter-spacing: 2px;
         }
 
         .brand-text span {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-light);
             letter-spacing: 1px;
         }
@@ -122,7 +122,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            gap: 15px;
+            gap: 10px;
         }
 
         nav ul li {
@@ -133,9 +133,9 @@
             color: var(--white);
             text-decoration: none;
             font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
-            padding: 10px 10px;
+            padding: 10px 12px;
             transition: color 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -149,7 +149,7 @@
             display: none;
             position: absolute;
             background-color: rgba(11, 29, 58, 0.98);
-            min-width: 260px;
+            min-width: 280px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
             z-index: 100;
             top: 100%;
@@ -157,8 +157,9 @@
             border-top: 3px solid var(--rich-gold);
         }
 
-        /* FIX: Align the last dropdown to the right so it doesn't cut off */
-        nav ul li:last-child .dropdown-content {
+        /* FIX: Align the last two dropdowns to the right to prevent cutting off the screen */
+        nav ul li:nth-last-child(1) .dropdown-content,
+        nav ul li:nth-last-child(2) .dropdown-content {
             left: auto;
             right: 0;
         }
@@ -173,7 +174,8 @@
             text-transform: none;
             font-size: 0.9rem;
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            white-space: normal; /* Allows text wrapping */
+            white-space: normal; /* Allows long links to wrap */
+            line-height: 1.4;
         }
 
         .dropdown-content a:hover {
@@ -185,6 +187,7 @@
             display: block;
         }
 
+        /* --- HERO TEXT --- */
         h2.hero-title {
             font-family: 'Cinzel', serif;
             font-size: 3rem;
@@ -205,6 +208,13 @@
             text-decoration: underline;
             text-underline-offset: 4px;
             font-weight: bold;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 1024px) {
+            header { padding: 1rem 1.5rem; }
+            nav ul { gap: 5px; }
+            nav ul li a { font-size: 0.7rem; padding: 8px; }
         }
     </style>
 </head>
@@ -228,14 +238,14 @@
                         <a href="team.html">The Team</a>                        
                     </div>
                 </li>
-                <li><a href="#">Research Hubs ▼</a>
+                <li><a href="#">Hubs ▼</a>
                     <div class="dropdown-content">
                         <a href="https://masterconsciousprotocol.culturalmusings.com">Master Conscious Protocol</a>
                         <a href="https://natyashastra.culturalmusings.com">Natyashastra</a>
                         <a href="https://bioresonancemusings.culturalmusings.com">Bio-Resonance Musings</a>
-                        <a href="https://nada-chikitsa.culturalmusings.com">Nada Chikitsa</a>
                         <a href="https://spandanashodha.culturalmusings.com">Spandana Shodha</a>
                         <a href="https://unifiedtheory.culturalmusings.com">Unified Theory</a>
+                        <a href="https://vedicmathematicsgeometry.culturalmusings.com">Vedic Math & Geometry</a>
                     </div>
                 </li>
                 <li><a href="#">Disciplines ▼</a>
@@ -248,7 +258,7 @@
                 </li>
                 <li><a href="#">Karanas ▼</a>
                     <div class="dropdown-content">
-                        <a href="https://natyashastra.culturalmusings.com">Natyashastra Dance</a>
+                        <a href="https://natyashastraclassical-dance.culturalmusings.com">Natyashastra Dance</a>
                         <a href="https://karanasrootmap.culturalmusings.com">Karanas Root Map</a>
                         <a href="https://completecelestialsynthesis.culturalmusings.com">Celestial Synthesis</a>
                         <a href="https://karanassacredsynthesis.culturalmusings.com">Sacred Synthesis</a>
@@ -261,9 +271,9 @@
     <main class="hero-section">
         <div class="content-wrapper">
             <h2 class="hero-title">Master Consciousness Protocol</h2>
-            <p class="hero-subtitle">Bridging Ancient Lineages with Modern Empirical Science.</p>
+            <p class="hero-subtitle">Bridging Ancient Lineages with Modern Empirical Science beyond the limitations.</p>
             
-            <p>Explore Naredla Rama Chandra's research synthesizing esoteric wisdom and neurological science. Investigate our frameworks via <a href="goals.html" class="domain-highlight">The MCP Protocol</a> or delve into the author's tradition-led journey at <a href="about.html" class="domain-highlight">About the Author</a>.</p>
+            <p>Welcome to the digital nexus of Naredla Rama Chandra's research. This platform synthesizes esoteric wisdom and neurological science. Explore our comprehensive frameworks via <a href="goals.html" class="domain-highlight">The MCP Protocol</a> or delve into the author's tradition-led journey at <a href="about.html" class="domain-highlight">About the Author</a>.</p>
         </div>
     </main>
 
@@ -283,7 +293,7 @@
           buttonIconColor: "#0B1D3A",
           customizations: {
             greeting: "Yes",
-            greetingMessage: "Please leave your message here. We will get back to you shortly.",
+            greetingMessage: "Please leave your message and requirements here. We will get back to you shortly.",
             pulse: "Yes",
             position: "right"
           }
