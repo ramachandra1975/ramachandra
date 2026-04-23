@@ -1239,5 +1239,96 @@ function navPage(dir){ switchPage(curPage+dir); }
 function updateNav(){ const d=SD[curSD]; document.getElementById('sdPrev').disabled=curPage===0; document.getElementById('sdNext').disabled=curPage===d.pages.length-1; }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape')closeSD(); });
 </script>
+ (function () {
+
+  /* ── 1. DESKTOP DROPDOWN ── */
+  var btn = document.querySelector('.nav-dropdown-btn');
+  var dd  = document.querySelector('.nav-dropdown');
+
+  if (btn && dd) {
+    // Toggle on button click
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      dd.classList.toggle('open');
+    });
+
+    // Close when any link inside the panel is clicked
+    var panelLinks = dd.querySelectorAll('.nav-panel-link');
+    panelLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        dd.classList.remove('open');
+      });
+    });
+
+    // Close when clicking anywhere outside the dropdown
+    document.addEventListener('click', function (e) {
+      if (!dd.contains(e.target)) {
+        dd.classList.remove('open');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') dd.classList.remove('open');
+    });
+  }
+
+  /* ── 2. MOBILE HAMBURGER ── */
+  var hamburger   = document.querySelector('.nav-hamburger');
+  var mobilePanel = document.querySelector('.nav-mobile-panel');
+
+  if (hamburger && mobilePanel) {
+    hamburger.addEventListener('click', function () {
+      var isOpen = mobilePanel.classList.contains('open');
+      mobilePanel.classList.toggle('open');
+      // Animate hamburger into X
+      hamburger.querySelectorAll('span').forEach(function (s, i) {
+        s.style.transform = '';
+        s.style.opacity   = '';
+      });
+      if (!isOpen) {
+        var spans = hamburger.querySelectorAll('span');
+        if (spans[0]) spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+        if (spans[1]) spans[1].style.opacity   = '0';
+        if (spans[2]) spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close mobile panel when a link is clicked
+    var mobileLinks = mobilePanel.querySelectorAll('.nav-mobile-link');
+    mobileLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobilePanel.classList.remove('open');
+        document.body.style.overflow = '';
+        hamburger.querySelectorAll('span').forEach(function (s) {
+          s.style.transform = '';
+          s.style.opacity   = '';
+        });
+      });
+    });
+
+    // Close mobile panel on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        mobilePanel.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  /* ── 3. NAV SCROLL SHADOW ── */
+  var nav = document.getElementById('main-nav');
+  if (nav) {
+    window.addEventListener('scroll', function () {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+  }
+
+})();
+</script>
+
 </body>
 </html>
