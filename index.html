@@ -3368,6 +3368,622 @@
 <!-- Bootstrap JS + Popper -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+
+// ═══════════════════════════════════════════════════════════════
+// 1. NAV — SCROLL SHADOW
+// ═══════════════════════════════════════════════════════════════
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('main-nav');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 10);
+});
+ 
+// ═══════════════════════════════════════════════════════════════
+// 2. NAV — ALL DROPDOWNS (Pages, Natya Shastra, Bio Resonance,
+//    Nada Chikitsa, Spiritual, MCP, Spandana, 108 Karanas)
+// ═══════════════════════════════════════════════════════════════
+ 
+// Generic toggle: pass the dropdown's ID
+function toggleDropdown(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  const isOpen = target.classList.contains('open');
+  // Close ALL dropdowns first
+  closeAllDropdowns();
+  // Then open the one clicked (unless it was already open)
+  if (!isOpen) target.classList.add('open');
+}
+ 
+function closeAllDropdowns() {
+  document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+}
+ 
+// Close all dropdowns when clicking anywhere outside the nav
+document.addEventListener('click', (e) => {
+  const nav = document.getElementById('main-nav');
+  if (nav && !nav.contains(e.target)) closeAllDropdowns();
+});
+ 
+// ═══════════════════════════════════════════════════════════════
+// 3. NAV — MOBILE HAMBURGER
+// ═══════════════════════════════════════════════════════════════
+function toggleMobile() {
+  const panel = document.getElementById('mobilePanel');
+  const ham   = document.getElementById('hamburger');
+  if (!panel || !ham) return;
+ 
+  panel.classList.toggle('open');
+  const spans = ham.querySelectorAll('span');
+  if (panel.classList.contains('open')) {
+    spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+    spans[1].style.opacity   = '0';
+    spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+    document.body.style.overflow = 'hidden';
+  } else {
+    spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    document.body.style.overflow = '';
+  }
+}
+ 
+function closeMobile() {
+  const panel = document.getElementById('mobilePanel');
+  const ham   = document.getElementById('hamburger');
+  if (panel) { panel.classList.remove('open'); }
+  if (ham)   { ham.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; }); }
+  document.body.style.overflow = '';
+}
+ 
+// ═══════════════════════════════════════════════════════════════
+// 4. WORKS & IDEOLOGIES — TABS
+//    (Major Works / Core Ideologies / Why These Works)
+// ═══════════════════════════════════════════════════════════════
+function switchTab(tabId, btn) {
+  // Hide all tab panels
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  // Deactivate all tab buttons
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  // Show the selected panel
+  const panel = document.getElementById(tabId);
+  if (panel) panel.classList.add('active');
+  // Activate the clicked button
+  if (btn) btn.classList.add('active');
+}
+ 
+// Auto-activate first tab on load
+function initTabs() {
+  const firstBtn   = document.querySelector('.tab-btn');
+  const firstPanel = document.querySelector('.tab-panel');
+  if (firstBtn)   firstBtn.classList.add('active');
+  if (firstPanel) firstPanel.classList.add('active');
+}
+ 
+// ═══════════════════════════════════════════════════════════════
+// 5. DOMAIN DATA
+//    All 7 Karanas domains + 6 Cultural Musings domains
+// ═══════════════════════════════════════════════════════════════
+const KARANAS_DOMAINS = [
+  {
+    id: 'karanas-0',
+    icon: '🗺️',
+    num: '01',
+    title: 'Karanas Root Map',
+    url: 'https://karanasrootmap.culturalmusings.com',
+    subtitle: 'Master architecture of all 108 domains',
+    desc: 'The master architectural overview: 4 × 27 domain structure, 22 Shrutis, 72 Melakarthas, Rudram, Namakam/Chamakam, Lalitha Sahasranama — all 108 convergence points mapped as one unified system.',
+    intro: 'This foundational document reveals the master architectural framework underlying the entire research archive. The 108 Karanas are not isolated movement units — they are 108 convergence points of an integrated 4-domain system encoding 22 Shrutis, 72 Melakarthas, Vedic hymns, and Tantric geometries into a single unified map of the cosmos and the human body.',
+    science: 'The 4 × 27 structure maps to the 4 Vedas × 27 Nakshatras. Each of the 22 Shrutis corresponds to a distinct neuro-acoustic frequency. The 72 Melakarthas encode the complete modal grammar of bio-resonant sound. Rudram and Namakam provide the vibratory activation sequences for each domain.',
+    applications: 'Researchers use this root map as the navigational framework for the entire archive. Practitioners apply it to identify which Karana sequences correspond to specific healing outcomes, Nakshatra alignments, and Raga therapies.',
+    tags: ['Architecture', '108 Karanas', '22 Shrutis', '72 Melakarthas', 'Root Map'],
+  },
+  {
+    id: 'karanas-1',
+    icon: '⚛️',
+    num: '02',
+    title: 'Unified Theory',
+    url: 'https://unifiedtheory.culturalmusings.com',
+    subtitle: '21 unsolved problems × 108 Karanas',
+    desc: 'The Grand Synthesis Codex: 21 unsolved problems of science — from quantum gravity to the hard problem of consciousness — each addressed through the structural wisdom of the 108 Karanas and Vedic cosmology.',
+    intro: 'A landmark interdisciplinary synthesis confronting the 21 greatest unsolved problems of modern science — from quantum gravity and the hard problem of consciousness to dark matter and the origin of biological complexity — showing how the 108 Karanas and Vedic cosmological frameworks provide structural solutions that materialist paradigms cannot.',
+    science: 'The "Hard Problem of Consciousness" dissolves within a consciousness-first ontology — the Vedantic solution encoded in each Karana as a body-cosmos interface. Quantum gravity finds its structural parallel in the Akasha quarter (Karanas 82–108). Dark matter maps to the Prana-field model validated by modern bio-field research.',
+    applications: 'This domain is the intellectual core of the entire archive — the framework that situates ancient Vedic science within the cutting edge of modern scientific inquiry, demonstrating not analogy but structural identity between the two knowledge systems.',
+    tags: ['Unified Theory', 'Quantum Gravity', 'Consciousness', 'Dark Matter', 'Science'],
+  },
+  {
+    id: 'karanas-2',
+    icon: '📐',
+    num: '03',
+    title: 'Vedic Mathematics & Geometry',
+    url: 'https://vedicmathematicsgeometry.culturalmusings.com',
+    subtitle: 'Karanas 82–108 · Sulba Sutras · Fractal Geometry',
+    desc: "Karanas 82–108: the Ether Quarter — decoded through Sulba Sutras, Pingala's binary mathematics, Meru Prastara, fractal geometry, Lie groups, torus topology, and string compactification.",
+    intro: "The Ether Quarter of the 108 Karanas (82–108) decoded through the complete lens of Vedic mathematical science. Reveals how Sulba Sutras, Pingala's binary system, and Meru Prastara directly anticipate modern fractal geometry, Lie group theory, torus topology, and string compactification — precision mathematics embedded in sacred movement 2,500 years ago.",
+    science: "Pingala's chandas-shastra (300 BCE) contains the complete binary number system — 2,000 years before Leibniz. The Meru Prastara is Pascal's Triangle — 1,400 years before Pascal. Sulba Sutra constructions encode irrational numbers and the Pythagorean theorem — 300 years before Pythagoras. Each of the final 27 Karanas instantiates a specific geometric transformation.",
+    applications: 'Applied in computational linguistics, AI architecture design, and geometric analysis of temple sculpture. The fractal self-similarity encoded in these Karanas has direct applications in generative design and complexity science.',
+    tags: ['Vedic Mathematics', 'Sulba Sutras', 'Fractal Geometry', 'Lie Groups', 'String Theory'],
+  },
+  {
+    id: 'karanas-3',
+    icon: '🎭',
+    num: '04',
+    title: 'Natya Shastra Classical Dance',
+    url: 'https://natyashastraclassical-dance.culturalmusings.com',
+    subtitle: 'Karanas 55–81 · Kinematic Geometry · Bhava Theory',
+    desc: 'Karanas 55–81: kinematic geometry, Abhinaya science, Anga systems, Bhava theory, and the Tandava–Lasya streams — with cross-domain matrices linking movement to Nakshatra, Raga, and cosmic geometry.',
+    intro: 'The Air Quarter of the 108 Karanas (55–81) analysed through kinematic geometry and the full science of Abhinaya (expressive communication). Introduces the complete Anga system (body-part science), Bhava theory (36 emotional-neurological states), and the two great cosmic streams: Tandava (Shiva — dynamic, structural) and Lasya (Shakti — lyrical, receptive).',
+    science: 'Each Karana in this quarter requires complex cross-lateral coordination activating the corpus callosum and forcing bilateral brain synchronisation. Bhava theory maps precisely onto the modern neuroscience of emotional regulation — each of the 36 Bhavas corresponds to a measurable autonomic and neuro-endocrine state.',
+    applications: 'This domain provides the theoretical foundation for Karana-based clinical interventions in PTSD, Parkinson\'s tremor reduction, vestibular rehabilitation, and post-stroke proprioceptive recovery. The Nakshatra–Raga–Karana matrices provide a complete prescription framework.',
+    tags: ['Classical Dance', 'Abhinaya', 'Bhava Theory', 'Anga Systems', 'Kinematic'],
+  },
+  {
+    id: 'karanas-4',
+    icon: '🔱',
+    num: '05',
+    title: 'Karanas Sacred Synthesis',
+    url: 'https://karanassacredsynthesis.culturalmusings.com',
+    subtitle: 'Vedas · Sri Chakra · Nada Brahman · Chidambaram',
+    desc: 'The complete Vedic synthesis: 108 Karanas mapped to Vedas, Sri Chakra, Nada Brahman, 72 Melakarta Ragas, Lalitha Sahasranama, Devi Khadgamala, Tantra, and the sacred geometry of Chidambaram temple sculptures.',
+    intro: 'The complete sacred synthesis mapping all 108 Karanas to their full Vedic and Tantric context: the four Vedas, the Sri Chakra geometry, 72 Melakarta Ragas, the 1,000 names of Lalitha Sahasranama, the Devi Khadgamala navigation sequence, and the sculptural programme of Chidambaram — the only temple in the world that preserves all 108 Karanas in stone.',
+    science: 'The Sri Chakra geometry encodes the same mathematical constants as the 108 Karana system — 9 interlocking triangles generating 43 sub-regions that map to specific body-consciousness zones. The 72 Melakarta Ragas are not merely musical modes but specific bio-resonant frequencies with documented physiological effects.',
+    applications: 'The Chidambaram mapping provides a physical verification system for the entire Karana archive. Temple pilgrimage structured through this document becomes a systematic traversal of the complete 108-domain bio-cosmic map.',
+    tags: ['Sacred Synthesis', 'Sri Chakra', 'Lalitha Sahasranama', 'Tantra', 'Chidambaram'],
+  },
+  {
+    id: 'karanas-5',
+    icon: '🌌',
+    num: '06',
+    title: 'Complete Celestial Synthesis',
+    url: 'https://completecelestialsynthesis.culturalmusings.com',
+    subtitle: 'All 108 · 4 Vedas · 27 Nakshatras · Celestial Framework',
+    desc: 'All 108 Karanas in their complete celestial context: 4 Vedic quarters (Earth, Water, Air, Ether), 4 × 27 Nakshatras, Shrutis, Melakarthas, Rishis, and the full astronomical framework of sacred movement.',
+    intro: 'The culminating celestial synthesis placing all 108 Karanas within their complete astronomical framework — mapping each Karana to one of the 4 × 27 Nakshatras (lunar mansions), the 22 Shrutis, the 72 Melakarthas, and their corresponding Vedic Rishis. Reveals the Natya Shastra as a complete celestial navigation system encoded in the human body.',
+    science: 'The average distance from Earth to the Sun is 108 times the Sun\'s diameter. The average distance from Earth to the Moon is 108 times the Moon\'s diameter. The human body has 108 Marma Sthanas. Sanskrit has 54 letters × 2 (Shiva/Shakti) = 108. These are not coincidences — they are the same cosmic constant expressed at different scales.',
+    applications: 'This document provides the complete astronomical context for timing Karana practice — which Karanas to practise during which Nakshatra, lunar phase, and planetary alignment. A living ephemeris of sacred movement.',
+    tags: ['Celestial', 'Nakshatras', '108 Constant', 'Astronomical', 'Complete Synthesis'],
+  },
+  {
+    id: 'karanas-6',
+    icon: '⚕️',
+    num: '07',
+    title: 'Master Consciousness Protocol',
+    url: 'https://masterconsciousprotocol.culturalmusings.com',
+    subtitle: '5-Phase Clinical Framework · Integrative Healing',
+    desc: 'The clinical synthesis — 5-phase healing protocol where Karanas form Phase IV: bio-somatic rewiring through precise movement sequences activating Marma points, stimulating BDNF, and synchronising bilateral hemispheric coherence.',
+    intro: 'The Master Consciousness Protocol (MCP) is the clinical culmination of the entire research archive — a 5-phase integrated system drawing from Pranayama, Nada Yoga, the 108 Karanas, Nine Rasa science, and Samadhi protocols to create a complete system for natural healing, cognitive enhancement, and consciousness expansion validated by modern neuroscience.',
+    science: 'Phase I (Shuddhi): HRV elevation and cortisol normalisation through Pranayama. Phase II (Nada): Raga-based acoustic medicine activating specific glandular responses. Phase III (Mudra): Neurovascular junction stimulation at 108 Marma Sthanas. Phase IV (Karana): Bio-somatic rewiring and BDNF release. Phase V (Samadhi): Gamma brainwave coherence and parasympathetic dominance.',
+    applications: 'Applied in integrative medicine, trauma therapy, cognitive rehabilitation, and consciousness research. The MCP is the bridge between the complete ancient system and modern clinical practice — the practical answer to the modern healing crisis.',
+    tags: ['MCP', '5 Phases', 'Clinical Protocol', 'BDNF', 'Healing'],
+  },
+];
+ 
+const CULTURAL_DOMAINS = [
+  {
+    id: 'cultural-0',
+    icon: '🎭',
+    title: 'Natya Shastra',
+    url: 'https://natyashastra.culturalmusings.com',
+    subtitle: 'AI · Neuroscience · Medicine · Bio-Acoustics · Saptaswaras',
+    desc: "Bharata Muni's 6,000-verse unified theory of consciousness — neuroscience, bio-acoustics, AI, medicine, and cosmic mathematics encoded in classical dance and drama.",
+    intro: "The Natya Shastra (नाट्यशास्त्र) is the world's most complete scientific manual of the ancient world. Composed by Bharata Muni — the 18th and culminating Siddha — its 36 chapters and 6,000 verses encode with extraordinary precision the 108 Karanas, 36 Angaharas, 32 Mudras, and 9 Rasas. Each is not symbolic but functional, encoding a specific physiological, neurological, or cosmic protocol.",
+    science: 'Modern neuroscience confirms: the Nine Rasas map precisely to documented neuro-endocrine states. The 108 Karanas produce measurable effects in EEG, fMRI, and HRV research. The Sapta Swaras correspond to specific brainwave entrainment frequencies. The Natya Shastra is applied neuroscience written 2,000 years before the brain could be scanned.',
+    applications: 'Active applications in neuro-rehabilitation, cognitive longevity programmes, PTSD treatment, autism spectrum support, and bio-acoustic medicine. The Natya Shastra domain serves as the primary scientific reference for all performing arts therapy.',
+    tags: ['Natya Shastra', 'Neuroscience', 'Bio-Acoustics', 'AI', 'Bharata Muni'],
+  },
+  {
+    id: 'cultural-1',
+    icon: '🌿',
+    title: 'Bio Resonance Musings',
+    url: 'https://bioresonancemusings.culturalmusings.com',
+    subtitle: 'Prana fields, cellular resonance & Vedic bio-physics',
+    desc: 'Cellular resonance and bio-electromagnetic fields — the Vedic Prana theory validated by modern quantum biology, HRV science, and bio-photon emission research.',
+    intro: "Bio Resonance Musings investigates the Vedic understanding of Prana — not as metaphysical energy but as a measurable bio-electromagnetic field — through the lens of modern quantum biology, bio-photon emission research, and heart rate variability science. The ancient Prana model maps precisely onto the body's electromagnetic field structure now documented by modern instruments.",
+    science: "Bio-photon emission from living cells was theorised in Vedic science as 'Tejas' — the luminous bio-field. Modern instruments confirm that living cells emit coherent light (bio-photons) that carries biological information. HRV research confirms that the Pranayama practices of the Vedic tradition produce measurable improvements in autonomic coherence — the body's master regulatory system.",
+    applications: 'Clinical applications in bio-field therapy, HRV-guided Pranayama protocols, electromagnetic sensitivity treatment, and quantum biology research. This domain bridges ancient Prana science and the emerging field of bioelectromagnetic medicine.',
+    tags: ['Bio Resonance', 'Prana', 'HRV', 'Bio-Photons', 'Quantum Biology'],
+  },
+  {
+    id: 'cultural-2',
+    icon: '🔊',
+    title: 'Nada Chikitsa',
+    url: 'https://nada-chikitsa.culturalmusings.com',
+    subtitle: 'Sound as Medicine — the Raga pharmacopoeia',
+    desc: 'Sound as medicine — the precise Raga pharmacopoeia of classical Indian music, with measurable neurological and physiological effects now confirmed by modern science.',
+    intro: 'Nada Chikitsa (Sound Healing) investigates the ancient Indian understanding that specific musical structures — Ragas, Swaras, and rhythmic patterns — constitute a precise pharmacopoeia of acoustic medicine. Each Raga prescribes a specific set of frequencies that activate specific neural pathways, glandular responses, and autonomic states. This is not metaphor — it is measurable pharmacology.',
+    science: 'Research confirms: Raga Bhairav in the early morning activates the parasympathetic nervous system and reduces cortisol. Raga Yaman in the evening enhances melatonin secretion. Raga Darbari Kanada reduces blood pressure measurably. The 72 Melakarta Ragas constitute a complete spectrum of bio-resonant frequencies mapped to specific therapeutic outcomes.',
+    applications: 'Active clinical applications in pain management, hypertension treatment, anxiety and depression protocols, sleep medicine, and neurodegenerative disease support. Nada Chikitsa offers a complete, evidence-based framework for acoustic medicine.',
+    tags: ['Nada Chikitsa', 'Sound Healing', 'Ragas', 'Pharmacopoeia', 'Acoustic Medicine'],
+  },
+  {
+    id: 'cultural-3',
+    icon: '🕉️',
+    title: 'Spiritual Philosophical',
+    url: 'https://spiritualphilosophical.culturalmusings.com',
+    subtitle: 'Vedanta, consciousness & philosophy of mind',
+    desc: 'Vedantic metaphysics meets contemporary philosophy — Tat Tvam Asi, quantum non-locality, and the hard problem of consciousness, addressed with one ancient answer.',
+    intro: "Spiritual Philosophical investigates the intersection of Vedantic metaphysics and contemporary philosophy of mind — particularly the hard problem of consciousness, quantum non-locality, and the nature of subjective experience. The Vedantic solution — Tat Tvam Asi ('That Thou Art') — is not poetry but the most logically rigorous resolution to the hard problem that philosophy has yet produced.",
+    science: 'The hard problem of consciousness — why subjective experience exists at all — cannot be solved within a materialist paradigm. Integrated Information Theory (IIT), quantum mind models (Penrose-Hameroff), and non-local consciousness research all point toward the consciousness-first ontology that Vedanta established 3,000 years ago. The Mandukya Upanishad\'s four states of consciousness map precisely onto modern neuroscience\'s classification of brain states.',
+    applications: 'Applications in philosophy of mind, AI consciousness research, contemplative neuroscience, and integrative psychiatry. This domain provides the philosophical foundation for the entire research archive — the ontological context within which all other domains are intelligible.',
+    tags: ['Vedanta', 'Consciousness', 'Philosophy', 'Non-Duality', 'Advaita'],
+  },
+  {
+    id: 'cultural-4',
+    icon: '⚕️',
+    title: 'Master Consciousness Protocol',
+    url: 'https://masterconsciousprotocol.culturalmusings.com',
+    subtitle: '5-phase integrative healing framework',
+    desc: 'The five-phase clinical synthesis — integrating Pranayama, Nada, Mudra, Karana, and Rasa therapy into a unified evidence-based framework for natural healing.',
+    intro: 'The Master Consciousness Protocol is the practical bridge between the entire ancient science archive and modern clinical medicine. Five phases — Shuddhi, Nada, Mudra, Karana, and Samadhi — form a complete, sequenced therapeutic system that addresses the human being simultaneously at the physiological, neurological, acoustic, emotional, and consciousness levels.',
+    science: 'Each phase produces measurable biological outcomes: Phase I elevates HRV and reduces inflammatory markers. Phase II normalises cortisol and activates endocrine glands through acoustic resonance. Phase III stimulates the 108 Marma Sthanas (neurovascular junctions). Phase IV triggers BDNF release through cross-lateral movement. Phase V induces Gamma coherence — the signature of advanced meditators.',
+    applications: 'Being implemented in integrative medicine centres, trauma clinics, cognitive rehabilitation programmes, and contemplative science research institutions. The MCP is the flagship clinical application of the entire research archive.',
+    tags: ['MCP', 'Clinical', 'Integrative Medicine', '5 Phases', 'Healing'],
+  },
+  {
+    id: 'cultural-5',
+    icon: '✨',
+    title: 'Spandana Shodha',
+    url: 'https://spandanashodha.culturalmusings.com',
+    subtitle: 'Vibrational inquiry — the pulse of cosmic intelligence',
+    desc: 'Vibrational inquiry into Spanda — the primordial pulse of cosmic intelligence from Kashmir Shaivism, investigated through complexity science and bio-field research.',
+    intro: "Spandana Shodha ('Vibrational Inquiry') investigates the Kashmir Shaivism concept of Spanda — the primordial throb or pulse that is the most fundamental attribute of consciousness. Spanda is not a metaphor. It is the original observation of what modern physics calls quantum fluctuation — the irreducible vibration at the base of reality that makes the universe alive rather than inert.",
+    science: 'Kashmir Shaivism\'s Spanda Karikas (9th century CE) describe consciousness as inherently vibratory — a self-pulsing awareness that generates all manifest reality through rhythmic oscillation. This maps precisely onto quantum field theory\'s description of the vacuum as a seething field of virtual fluctuations — not empty space but a vibrant plenum of potential.',
+    applications: 'Applications in consciousness research, quantum biology, vibrational medicine, and contemplative science. Spandana Shodha provides the theoretical framework for understanding why all ancient healing systems — from Pranayama to Raga to Karana — work through the medium of vibration.',
+    tags: ['Spanda', 'Kashmir Shaivism', 'Vibration', 'Consciousness', 'Quantum'],
+  },
+];
+ 
+// ═══════════════════════════════════════════════════════════════
+// 6. DOMAIN DETAIL OVERLAY
+// ═══════════════════════════════════════════════════════════════
+let currentDomainList = [];
+let currentDomainIdx  = 0;
+ 
+function openDomainDetail(domainId, listType) {
+  // listType: 'karanas' or 'cultural'
+  const list = listType === 'karanas' ? KARANAS_DOMAINS : CULTURAL_DOMAINS;
+  const idx  = list.findIndex(d => d.id === domainId);
+  if (idx === -1) return;
+ 
+  currentDomainList = list;
+  currentDomainIdx  = idx;
+  renderDomainOverlay(idx);
+ 
+  const overlay = document.getElementById('domainOverlay');
+  if (overlay) {
+    overlay.classList.add('open');
+    overlay.scrollTop = 0;
+  }
+  document.body.style.overflow = 'hidden';
+}
+ 
+function renderDomainOverlay(idx) {
+  const d    = currentDomainList[idx];
+  const prev = currentDomainList[idx - 1];
+  const next = currentDomainList[idx + 1];
+ 
+  // Update the overlay panel fields
+  const overlay = document.getElementById('domainOverlay');
+  if (!overlay) return;
+ 
+  // Title & meta
+  const titleEl = overlay.querySelector('.overlay-domain-title');
+  const subEl   = overlay.querySelector('.overlay-domain-sub');
+  const linkEl  = overlay.querySelector('.overlay-domain-link');
+  const iconEl  = overlay.querySelector('.overlay-domain-icon');
+  const numEl   = overlay.querySelector('.overlay-domain-num');
+ 
+  if (titleEl) titleEl.textContent = d.title;
+  if (subEl)   subEl.textContent   = d.subtitle;
+  if (linkEl)  { linkEl.textContent = 'Visit Full Domain →'; linkEl.href = d.url; }
+  if (iconEl)  iconEl.textContent   = d.icon;
+  if (numEl)   numEl.textContent    = d.num || '';
+ 
+  // Tab content
+  const introEl  = overlay.querySelector('[data-tab-content="intro"]');
+  const sciEl    = overlay.querySelector('[data-tab-content="science"]');
+  const appEl    = overlay.querySelector('[data-tab-content="applications"]');
+  const tagsEl   = overlay.querySelector('.overlay-tags');
+ 
+  if (introEl)  introEl.textContent  = d.intro;
+  if (sciEl)    sciEl.textContent    = d.science;
+  if (appEl)    appEl.textContent    = d.applications;
+  if (tagsEl)   tagsEl.innerHTML     = d.tags.map(t => `<span class="overlay-tag">${t}</span>`).join('');
+ 
+  // Switch to intro tab by default
+  switchOverlayTab('intro');
+ 
+  // Prev / Next
+  const prevBtn = overlay.querySelector('.overlay-prev');
+  const nextBtn = overlay.querySelector('.overlay-next');
+  if (prevBtn) {
+    if (prev) {
+      prevBtn.style.visibility = 'visible';
+      prevBtn.querySelector('.overlay-nav-title').textContent = prev.title;
+      prevBtn.onclick = () => { currentDomainIdx = idx - 1; renderDomainOverlay(idx - 1); overlay.scrollTop = 0; };
+    } else {
+      prevBtn.style.visibility = 'hidden';
+    }
+  }
+  if (nextBtn) {
+    if (next) {
+      nextBtn.style.visibility = 'visible';
+      nextBtn.querySelector('.overlay-nav-title').textContent = next.title;
+      nextBtn.onclick = () => { currentDomainIdx = idx + 1; renderDomainOverlay(idx + 1); overlay.scrollTop = 0; };
+    } else {
+      nextBtn.style.visibility = 'hidden';
+    }
+  }
+}
+ 
+function switchOverlayTab(tab) {
+  // Deactivate all overlay tab buttons
+  document.querySelectorAll('.overlay-tab-btn').forEach(b => b.classList.remove('active'));
+  // Hide all overlay tab content
+  document.querySelectorAll('[data-tab-content]').forEach(p => p.classList.remove('active'));
+  // Activate selected
+  const btn  = document.querySelector(`.overlay-tab-btn[data-tab="${tab}"]`);
+  const cont = document.querySelector(`[data-tab-content="${tab}"]`);
+  if (btn)  btn.classList.add('active');
+  if (cont) cont.classList.add('active');
+}
+ 
+function closeDomainOverlay() {
+  const overlay = document.getElementById('domainOverlay');
+  if (overlay) overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+ 
+// ═══════════════════════════════════════════════════════════════
+// 7. WIRE UP "Explore Introduction" BUTTONS
+//    Finds all buttons by text content and adds click handlers
+// ═══════════════════════════════════════════════════════════════
+function wireExploreButtons() {
+  // Karanas section cards
+  const karanasSection = document.getElementById('karanas-section');
+  if (karanasSection) {
+    const cards = karanasSection.querySelectorAll('.domain-card, .karanas-card, [data-domain]');
+    cards.forEach((card, i) => {
+      const btn = card.querySelector('button, .explore-btn, [class*="explore"]') ||
+                  [...card.querySelectorAll('*')].find(el => el.textContent.trim().includes('Explore Introduction'));
+      if (btn) {
+        btn.style.cursor = 'pointer';
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (KARANAS_DOMAINS[i]) openDomainDetail(KARANAS_DOMAINS[i].id, 'karanas');
+        });
+      }
+      // Also make the whole card clickable
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        if (KARANAS_DOMAINS[i]) openDomainDetail(KARANAS_DOMAINS[i].id, 'karanas');
+      });
+    });
+  }
+ 
+  // Cultural domains section cards
+  const culturalSection = document.getElementById('subdomains-section');
+  if (culturalSection) {
+    const cards = culturalSection.querySelectorAll('.domain-card, .subdomain-card, [data-domain]');
+    cards.forEach((card, i) => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        if (CULTURAL_DOMAINS[i]) openDomainDetail(CULTURAL_DOMAINS[i].id, 'cultural');
+      });
+    });
+  }
+ 
+  // Fallback: find ALL "Explore Introduction" text elements site-wide
+  // and wire them by their position in the page
+  const allExploreEls = [...document.querySelectorAll('*')].filter(el =>
+    el.childNodes.length === 1 &&
+    el.textContent.trim() === 'Explore Introduction' &&
+    !el.querySelector('*')
+  );
+ 
+  allExploreEls.forEach((el) => {
+    el.style.cursor = 'pointer';
+    // Find the closest card ancestor
+    const card = el.closest('[class*="card"], [class*="domain"], li, article, .item') || el.parentElement;
+    // Determine which section it's in
+    const inKaranas  = card && !!card.closest('#karanas-section');
+    const inCultural = card && !!card.closest('#subdomains-section');
+ 
+    if (inKaranas || inCultural) {
+      // Find index by counting siblings
+      const section  = card.closest('#karanas-section, #subdomains-section');
+      const allCards = [...section.querySelectorAll('[class*="card"], [class*="domain"], li, article, .item')];
+      // Filter to only the direct card-level ones (same depth)
+      const cardDepth = card.parentElement;
+      const sameLevel = [...(cardDepth ? cardDepth.children : [])];
+      const idx = sameLevel.indexOf(card);
+      const list = inKaranas ? KARANAS_DOMAINS : CULTURAL_DOMAINS;
+ 
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const domain = list[idx >= 0 ? idx : 0];
+        if (domain) openDomainDetail(domain.id, inKaranas ? 'karanas' : 'cultural');
+      });
+    }
+  });
+}
+ 
+// ═══════════════════════════════════════════════════════════════
+// 8. BUILD THE OVERLAY HTML (injected into DOM if not present)
+// ═══════════════════════════════════════════════════════════════
+function buildOverlayIfMissing() {
+  if (document.getElementById('domainOverlay')) return; // Already exists
+ 
+  const overlay = document.createElement('div');
+  overlay.id = 'domainOverlay';
+  overlay.innerHTML = `
+    <div class="overlay-panel">
+      <button class="overlay-close" onclick="closeDomainOverlay()">×</button>
+ 
+      <div class="overlay-header">
+        <div class="overlay-icon-wrap">
+          <span class="overlay-domain-icon">🎭</span>
+          <span class="overlay-domain-num"></span>
+        </div>
+        <div>
+          <h2 class="overlay-domain-title">Research Domain</h2>
+          <p class="overlay-domain-sub">—</p>
+          <a class="overlay-domain-link" href="#" target="_blank">Visit Full Domain →</a>
+        </div>
+      </div>
+ 
+      <div class="overlay-tabs">
+        <button class="overlay-tab-btn active" data-tab="intro"    onclick="switchOverlayTab('intro')">I&nbsp;&nbsp;Introduction</button>
+        <button class="overlay-tab-btn"        data-tab="science"  onclick="switchOverlayTab('science')">II&nbsp;&nbsp;The Science</button>
+        <button class="overlay-tab-btn"        data-tab="applications" onclick="switchOverlayTab('applications')">III&nbsp;&nbsp;Applications</button>
+      </div>
+ 
+      <div class="overlay-body">
+        <p class="overlay-tab-content active" data-tab-content="intro">—</p>
+        <p class="overlay-tab-content"        data-tab-content="science">—</p>
+        <p class="overlay-tab-content"        data-tab-content="applications">—</p>
+        <div class="overlay-tags"></div>
+      </div>
+ 
+      <div class="overlay-nav">
+        <button class="overlay-prev" style="visibility:hidden;">
+          <span class="overlay-nav-label">← Previous</span>
+          <span class="overlay-nav-title"></span>
+        </button>
+        <button class="overlay-next" style="visibility:hidden;">
+          <span class="overlay-nav-label">Next →</span>
+          <span class="overlay-nav-title"></span>
+        </button>
+      </div>
+    </div>
+  `;
+ 
+  // Close on backdrop click
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeDomainOverlay();
+  });
+ 
+  document.body.appendChild(overlay);
+ 
+  // Inject overlay styles
+  const style = document.createElement('style');
+  style.textContent = `
+    #domainOverlay {
+      display: none; position: fixed; inset: 0; z-index: 3000;
+      background: rgba(10,20,40,0.72); backdrop-filter: blur(8px);
+      overflow-y: auto; padding: 40px 20px;
+    }
+    #domainOverlay.open { display: block; animation: overlayFadeIn 0.3s ease; }
+    @keyframes overlayFadeIn { from { opacity:0; } to { opacity:1; } }
+ 
+    .overlay-panel {
+      background: #fff; max-width: 860px; margin: 0 auto;
+      padding: 56px 60px; position: relative;
+      animation: overlaySlideUp 0.35s ease;
+      border-top: 3px solid #c5a059;
+    }
+    @keyframes overlaySlideUp { from { transform:translateY(28px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+ 
+    .overlay-close {
+      position: absolute; top: 22px; right: 28px;
+      background: none; border: none; font-size: 2rem;
+      cursor: pointer; color: #aaa; line-height: 1;
+      transition: color 0.2s;
+    }
+    .overlay-close:hover { color: #1a365d; }
+ 
+    .overlay-header {
+      display: flex; gap: 22px; align-items: flex-start; margin-bottom: 36px;
+      padding-bottom: 32px; border-bottom: 1px solid #ececec;
+    }
+    .overlay-icon-wrap { text-align: center; flex-shrink: 0; }
+    .overlay-domain-icon { font-size: 2.6rem; display: block; line-height: 1; }
+    .overlay-domain-num  { font-family: 'Montserrat',sans-serif; font-size: 0.6rem; font-weight: 800;
+                           letter-spacing: 2px; color: #c5a059; display: block; margin-top: 4px; }
+    .overlay-domain-title { font-family: 'Playfair Display',serif; font-size: clamp(1.6rem,3vw,2.4rem);
+                             color: #1a365d; font-weight: 700; line-height: 1.1; margin: 0 0 8px; }
+    .overlay-domain-sub   { font-family: 'Montserrat',sans-serif; font-size: 0.7rem; letter-spacing: 2px;
+                             color: #999; text-transform: uppercase; margin: 0 0 12px; }
+    .overlay-domain-link  { font-family: 'Montserrat',sans-serif; font-size: 0.72rem; font-weight: 700;
+                             letter-spacing: 1.5px; color: #c5a059; text-decoration: none;
+                             text-transform: uppercase; transition: color 0.2s; }
+    .overlay-domain-link:hover { color: #1a365d; }
+ 
+    .overlay-tabs {
+      display: flex; gap: 0; margin-bottom: 32px; border-bottom: 1px solid #ececec;
+    }
+    .overlay-tab-btn {
+      font-family: 'Montserrat',sans-serif; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; color: #999;
+      background: none; border: none; border-bottom: 2px solid transparent;
+      padding: 12px 22px 14px; cursor: pointer; margin-bottom: -1px;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .overlay-tab-btn:hover { color: #1a365d; }
+    .overlay-tab-btn.active { color: #c5a059; border-bottom-color: #c5a059; }
+ 
+    .overlay-body { margin-bottom: 40px; }
+    .overlay-tab-content {
+      display: none; font-family: 'Cormorant Garamond',serif;
+      font-size: 1.08rem; line-height: 1.85; color: #444; margin: 0 0 24px;
+    }
+    .overlay-tab-content.active { display: block; }
+ 
+    .overlay-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+    .overlay-tag {
+      font-family: 'Montserrat',sans-serif; font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; padding: 5px 12px;
+      background: #f0f4f8; color: #1a365d; border: 1px solid #e0e8f0;
+    }
+ 
+    .overlay-nav {
+      display: flex; justify-content: space-between;
+      border-top: 1px solid #ececec; padding-top: 28px; margin-top: 12px;
+    }
+    .overlay-prev, .overlay-next {
+      background: none; border: none; cursor: pointer; text-align: left;
+      font-family: 'Cormorant Garamond',serif;
+    }
+    .overlay-next { text-align: right; }
+    .overlay-nav-label {
+      display: block; font-family: 'Montserrat',sans-serif; font-size: 0.6rem;
+      letter-spacing: 2px; color: #c5a059; text-transform: uppercase; margin-bottom: 5px;
+    }
+    .overlay-nav-title {
+      display: block; font-size: 1.1rem; color: #1a365d; transition: color 0.2s;
+    }
+    .overlay-prev:hover .overlay-nav-title,
+    .overlay-next:hover .overlay-nav-title { color: #c5a059; }
+ 
+    @media (max-width: 600px) {
+      .overlay-panel { padding: 36px 22px; }
+      .overlay-tabs  { overflow-x: auto; }
+      .overlay-tab-btn { padding: 10px 14px 12px; font-size: 0.58rem; }
+    }
+  `;
+  document.head.appendChild(style);
+}
+ 
+// ═══════════════════════════════════════════════════════════════
+// 9. ESCAPE KEY — closes everything
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeDomainOverlay();
+    closeAllDropdowns();
+    closeMobile();
+  }
+});
+ 
+// ═══════════════════════════════════════════════════════════════
+// 10. INIT — runs on page load
+// ═══════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  buildOverlayIfMissing();
+  wireExploreButtons();
+  initTabs();
+});
+ 
+// Also run immediately in case DOMContentLoaded already fired
+buildOverlayIfMissing();
+wireExploreButtons();
+initTabs();
 </body>
  
 </html>
