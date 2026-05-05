@@ -53,7 +53,6 @@
         .nav-brand-text .name { display: block; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 2px; color: var(--primary-blue); }
         .nav-brand-text .url  { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; color: var(--gold); letter-spacing: 1px; }
 
-        /* ── The single "Explore" trigger button ── */
         .nav-right { display: flex; align-items: center; gap: 10px; }
 
         .mega-trigger {
@@ -78,6 +77,24 @@
         .mega-trigger.karanas-style.active { border-color: var(--karanas-gold); color: #fff; }
         .mega-trigger.karanas-style .m-arrow { color: var(--karanas-gold); }
 
+        /* ══ NEW: Sanskrit trigger style ══ */
+        .mega-trigger.sanskrit-style {
+            background: linear-gradient(135deg, #3d1a00, #5c2a00);
+            color: #e8b85c; border-color: rgba(232,184,92,0.4);
+            font-size: 0.58rem; letter-spacing: 1px;
+        }
+        .mega-trigger.sanskrit-style:hover,
+        .mega-trigger.sanskrit-style.active { border-color: #e8b85c; color: #fff; }
+
+        /* ══ NEW: Enhancements trigger style ══ */
+        .mega-trigger.enh-style {
+            background: linear-gradient(135deg, #0f2240, #1a365d);
+            color: #e2c98a; border-color: rgba(197,160,89,0.5);
+            font-size: 0.58rem; letter-spacing: 1px;
+        }
+        .mega-trigger.enh-style:hover,
+        .mega-trigger.enh-style.active { border-color: var(--gold-light); color: #fff; }
+
         .nav-sep { width: 1px; height: 26px; background: rgba(197,160,89,0.28); margin: 0 2px; flex-shrink: 0; }
 
         .nav-cta-btn {
@@ -88,21 +105,21 @@
         }
         .nav-cta-btn:hover { background: var(--gold); color: #fff; }
 
-        /* Hamburger */
         .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
         .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--primary-blue); transition: all 0.3s; }
 
-        /* Mobile panel */
         .nav-mobile-panel { display: none; position: fixed; top: 66px; left: 0; right: 0; bottom: 0; background: #fff; z-index: 999; overflow-y: auto; padding: 10px 0; border-top: 1px solid var(--border); }
         .nav-mobile-panel.open { display: block; }
         .nav-mobile-label { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; font-weight: 800; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; padding: 14px 24px 5px; display: block; }
         .nav-mobile-link { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.76rem; font-weight: 700; letter-spacing: 1.5px; color: var(--primary-blue); text-decoration: none; padding: 12px 24px; border-bottom: 1px solid var(--border); text-transform: uppercase; }
         .nav-mobile-link.k-mobile { color: #7c3aed; }
+        .nav-mobile-link.skt-mobile { color: #c9963a; }  /* NEW */
+        .nav-mobile-link.enh-mobile { color: #1a365d; font-style: italic; } /* NEW */
 
         @media (max-width: 1080px) { .nav-right { display: none; } .nav-hamburger { display: flex; } }
 
         /* ══════════════════════════════════════════
-           MEGA DRAWER — full-width, slides from nav
+           MEGA DRAWER
         ══════════════════════════════════════════ */
         #megaDrawer {
             display: none;
@@ -123,7 +140,6 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Backdrop */
         #megaBackdrop {
             display: none;
             position: fixed;
@@ -135,14 +151,12 @@
         }
         #megaBackdrop.open { display: block; }
 
-        /* ── Drawer inner layout ── */
         .drawer-inner {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 2.5%;
         }
 
-        /* ── Section header tabs ── */
         .drawer-section-tabs {
             display: flex;
             border-bottom: 1px solid rgba(197,160,89,0.18);
@@ -164,16 +178,16 @@
         .drawer-tab:hover { color: var(--primary-blue); }
         .drawer-tab.active { color: var(--primary-blue); border-bottom-color: var(--gold); }
         .drawer-tab.k-tab.active { color: #7c3aed; border-bottom-color: var(--karanas-accent); }
+        .drawer-tab.skt-tab.active { color: #8b4500; border-bottom-color: #c9963a; } /* NEW */
+        .drawer-tab.enh-tab.active { color: var(--primary-blue); border-bottom-color: var(--gold); } /* NEW */
         .drawer-tab .t-dot {
             width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
         }
 
-        /* ── Drawer panels ── */
         .drawer-panel { display: none; padding: 36px 0 40px; }
         .drawer-panel.active { display: block; animation: panelFade 0.22s ease; }
         @keyframes panelFade { from { opacity: 0; } to { opacity: 1; } }
 
-        /* ── Link grid inside each panel ── */
         .drawer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -215,7 +229,20 @@
         .drawer-panel.k-panel .drawer-link:hover .dl-title { color: #7c3aed; }
         .drawer-panel.k-panel .dl-bar { background: var(--karanas-accent); }
 
-        /* ── Panel header ── */
+        /* ══ NEW: Sanskrit panel warm-amber theme ══ */
+        .drawer-panel.skt-panel { background: linear-gradient(135deg, rgba(61,26,0,0.04) 0%, rgba(255,255,255,1) 40%); }
+        .drawer-panel.skt-panel .drawer-link:hover { background: rgba(201,150,58,0.06); border-color: rgba(201,150,58,0.35); }
+        .drawer-panel.skt-panel .dl-title { color: #6b3a00; }
+        .drawer-panel.skt-panel .drawer-link:hover .dl-title { color: #c9963a; }
+        .drawer-panel.skt-panel .dl-bar { background: #c9963a; }
+
+        /* ══ NEW: Enhancements panel navy theme ══ */
+        .drawer-panel.enh-panel { background: linear-gradient(135deg, rgba(15,34,64,0.04) 0%, rgba(255,255,255,1) 40%); }
+        .drawer-panel.enh-panel .drawer-link:hover { background: rgba(197,160,89,0.07); border-color: rgba(197,160,89,0.3); }
+        .drawer-panel.enh-panel .dl-title { color: var(--primary-blue); }
+        .drawer-panel.enh-panel .drawer-link:hover .dl-title { color: var(--gold); }
+        .drawer-panel.enh-panel .dl-bar { background: var(--gold); }
+
         .drawer-panel-header {
             display: flex; justify-content: space-between; align-items: flex-end;
             margin-bottom: 28px; padding-bottom: 18px;
@@ -240,8 +267,9 @@
         .k-panel .dph-title { color: #4c1d95; }
         .k-panel .dph-visit { border-color: rgba(212,168,255,0.4); color: #7c3aed; }
         .k-panel .dph-visit:hover { border-color: var(--karanas-accent); color: #5b21b6; }
+        .skt-panel .dph-title { color: #6b3a00; } /* NEW */
+        .enh-panel .dph-title { color: var(--primary-blue); } /* NEW */
 
-        /* ── Drawer footer ── */
         .drawer-footer {
             border-top: 1px solid rgba(197,160,89,0.15);
             background: rgba(253,250,245,0.7);
@@ -262,7 +290,6 @@
         .drawer-footer-close:hover { color: var(--gold); }
         .drawer-footer-close::after { content: '✕'; font-size: 0.8rem; color: var(--gold); }
 
-        /* Colour dots */
         .sd-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
         .sd-dot.pages  { background: var(--primary-blue); }
         .sd-dot.natya  { background: #8b5cf6; }
@@ -272,9 +299,11 @@
         .sd-dot.mcp    { background: #ef4444; }
         .sd-dot.span   { background: #ec4899; }
         .sd-dot.k-all  { background: var(--karanas-gold); }
+        .sd-dot.skt    { background: #c9963a; }   /* NEW */
+        .sd-dot.enh    { background: var(--primary-blue); } /* NEW */
 
         /* ══════════════════════════════════════════
-           MODAL SYSTEM (shared — unchanged)
+           MODAL SYSTEM (unchanged)
         ══════════════════════════════════════════ */
         #sdModal { display: none; position: fixed; inset: 0; z-index: 3000; background: rgba(10,25,47,0.7); backdrop-filter: blur(8px); overflow-y: auto; }
         #sdModal.open { display: flex; align-items: flex-start; justify-content: center; padding: 36px 16px; }
@@ -285,48 +314,75 @@
         .sd-modal-banner { padding: 48px 52px 38px; position: relative; overflow: hidden; }
         .sd-modal-banner.light-banner { background: var(--navy); }
         .sd-modal-banner.dark-banner  { background: var(--karanas-deep); }
+        .sd-modal-banner.skt-banner   { background: linear-gradient(135deg, #3d1a00, #5c2a00); } /* NEW */
+        .sd-modal-banner.enh-banner   { background: linear-gradient(135deg, #0f2240, #1a365d); } /* NEW */
         .sd-modal-banner::before { content: attr(data-symbol); position: absolute; right: -10px; top: -20px; font-size: 13rem; color: rgba(255,255,255,0.04); font-family: serif; pointer-events: none; line-height: 1; }
         .dark-banner::before { color: rgba(212,168,255,0.04); }
+        .skt-banner::before { color: rgba(232,184,92,0.06); font-family: 'Noto Sans Devanagari', serif; } /* NEW */
         .sd-modal-tag { font-family: 'Montserrat', sans-serif; font-size: 0.58rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: block; }
         .dark-banner .sd-modal-tag { color: var(--karanas-accent); }
+        .skt-banner .sd-modal-tag { color: #e8b85c; }  /* NEW */
+        .enh-banner .sd-modal-tag { color: var(--gold-light); } /* NEW */
         .sd-modal-banner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem,4vw,2.7rem); color: #fff; font-weight: 700; line-height: 1.1; margin-bottom: 12px; }
         .sd-modal-banner h2 em { color: var(--gold); font-style: italic; }
         .dark-banner h2 em { color: var(--karanas-gold); }
+        .skt-banner h2 em { color: #e8b85c; } /* NEW */
+        .enh-banner h2 em { color: var(--gold-light); } /* NEW */
         .sd-modal-banner .sd-banner-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.03rem; color: rgba(255,255,255,0.62); line-height: 1.68; max-width: 580px; }
         .sd-visit-top { display: inline-block; margin-top: 20px; font-family: 'Montserrat', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border: 1px solid var(--gold); color: var(--gold); padding: 8px 18px; text-decoration: none; transition: all 0.2s; }
         .sd-visit-top:hover { background: var(--gold); color: #fff; }
         .dark-banner .sd-visit-top { border-color: var(--karanas-gold); color: var(--karanas-gold); }
         .dark-banner .sd-visit-top:hover { background: var(--karanas-gold); color: var(--karanas-deep); }
+        .skt-banner .sd-visit-top { border-color: #e8b85c; color: #e8b85c; } /* NEW */
+        .skt-banner .sd-visit-top:hover { background: #e8b85c; color: #3d1a00; } /* NEW */
+        .enh-banner .sd-visit-top { border-color: var(--gold-light); color: var(--gold-light); } /* NEW */
+        .enh-banner .sd-visit-top:hover { background: var(--gold-light); color: #0f2240; } /* NEW */
         .sd-modal-tabs { display: flex; border-bottom: 1px solid var(--border); }
         .k-tabs { background: rgba(28,10,46,0.04); border-color: rgba(212,168,255,0.2); }
+        .skt-tabs { background: rgba(61,26,0,0.03); } /* NEW */
+        .enh-tabs { background: rgba(15,34,64,0.03); } /* NEW */
         .sd-tab { flex: 1; padding: 13px 8px; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: #999; cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; transition: all 0.2s; }
         .sd-tab:hover { color: var(--primary-blue); }
         .sd-tab.active { color: var(--primary-blue); border-bottom-color: var(--gold); }
         .k-tabs .sd-tab.active { color: #7c3aed; border-bottom-color: var(--karanas-accent); }
+        .skt-tabs .sd-tab.active { color: #6b3a00; border-bottom-color: #c9963a; } /* NEW */
+        .enh-tabs .sd-tab.active { color: var(--primary-blue); border-bottom-color: var(--gold); } /* NEW */
         .sd-tab-num { display: block; font-family: 'Playfair Display', serif; font-size: 1.4rem; color: rgba(197,160,89,0.25); line-height: 1; margin-bottom: 3px; }
         .sd-tab.active .sd-tab-num { color: var(--gold); }
         .k-tabs .sd-tab.active .sd-tab-num { color: var(--karanas-accent); }
+        .skt-tabs .sd-tab.active .sd-tab-num { color: #c9963a; } /* NEW */
         .sd-page { display: none; padding: 42px 52px 50px; }
         .sd-page.active { display: block; animation: fadeIn 0.28s ease; }
         .k-page { background: #fdfbff; }
+        .skt-page { background: #fdfaf5; } /* NEW */
+        .enh-page { background: #fafcff; } /* NEW */
         @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
         .sd-page h3 { font-family: 'Playfair Display', serif; font-size: 1.55rem; color: var(--primary-blue); margin-bottom: 18px; }
         .sd-page h3 em { color: var(--gold); font-style: italic; }
         .k-page h3 em { color: #7c3aed; }
+        .skt-page h3 em { color: #c9963a; } /* NEW */
+        .enh-page h3 em { color: var(--gold); } /* NEW */
         .sd-page p { font-size: 1.03rem; color: #444; line-height: 1.85; margin-bottom: 16px; }
         .sd-page .pull { border-left: 3px solid var(--gold); padding: 15px 22px; background: var(--cream); margin: 24px 0; }
         .k-page .pull { border-left-color: var(--karanas-accent); background: #f8f4ff; }
+        .skt-page .pull { border-left-color: #c9963a; background: #fdf8ed; } /* NEW */
+        .enh-page .pull { border-left-color: var(--primary-blue); background: #f0f4fa; } /* NEW */
         .sd-page .pull p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.12rem; color: var(--primary-blue); margin: 0; line-height: 1.55; }
         .sd-key-list { list-style: none; padding: 0; margin-top: 18px; }
         .sd-key-list li { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: #444; letter-spacing: 0.3px; line-height: 1.5; }
         .sd-key-list li:last-child { border-bottom: none; }
         .sd-key-list li::before { content: ''; width: 24px; min-width: 24px; height: 1px; background: var(--gold); margin-top: 8px; }
         .k-page .sd-key-list li::before { background: var(--karanas-accent); }
+        .skt-page .sd-key-list li::before { background: #c9963a; } /* NEW */
         .sd-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
         .sd-card { border: 1px solid var(--border); padding: 20px; border-top: 3px solid var(--gold); }
         .k-page .sd-card { border-top-color: var(--karanas-accent); }
+        .skt-page .sd-card { border-top-color: #c9963a; } /* NEW */
+        .enh-page .sd-card { border-top-color: var(--primary-blue); } /* NEW */
         .sd-card h4 { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; color: var(--primary-blue); margin-bottom: 7px; }
         .k-page .sd-card h4 { color: #7c3aed; }
+        .skt-page .sd-card h4 { color: #6b3a00; } /* NEW */
+        .enh-page .sd-card h4 { color: var(--primary-blue); } /* NEW */
         .sd-card p { font-size: 0.9rem; color: #666; line-height: 1.62; margin: 0; }
         .sd-page-nav { display: flex; justify-content: space-between; padding: 18px 52px; border-top: 1px solid var(--border); }
         .sd-page-btn { font-family: 'Montserrat', sans-serif; font-size: 0.63rem; font-weight: 700; letter-spacing: 1.3px; text-transform: uppercase; background: none; border: 1px solid rgba(197,160,89,0.4); color: var(--primary-blue); padding: 8px 18px; cursor: pointer; transition: all 0.2s; }
@@ -335,7 +391,7 @@
         @media(max-width:640px) { .sd-page { padding: 26px 20px 34px; } .sd-page-nav { padding: 14px 20px; } .sd-modal-banner { padding: 32px 20px 26px; } .sd-grid-2 { grid-template-columns: 1fr; } }
 
         /* ══════════════════════════════════════════
-           AUTHOR INTRO
+           AUTHOR INTRO (unchanged)
         ══════════════════════════════════════════ */
         #author-intro { background: linear-gradient(135deg, var(--navy) 0%, #1a2f55 100%); }
         .ai-hero { display: grid; grid-template-columns: 1fr 1.4fr; min-height: 88vh; align-items: stretch; }
@@ -362,7 +418,7 @@
         @media(max-width:900px) { .ai-hero { grid-template-columns: 1fr; } .ai-content { padding: 44px 24px; } }
 
         /* ══════════════════════════════════════════
-           WORKS & IDEOLOGIES
+           WORKS & IDEOLOGIES (unchanged)
         ══════════════════════════════════════════ */
         #works-ideologies { background: var(--cream); }
         .wi-inner { max-width: 1200px; margin: 0 auto; padding: 88px 40px; }
@@ -395,7 +451,7 @@
         @media(max-width:768px) { .wi-header { grid-template-columns: 1fr; gap: 20px; } }
 
         /* ══════════════════════════════════════════
-           KARANAS SHOWCASE
+           KARANAS SHOWCASE (unchanged)
         ══════════════════════════════════════════ */
         #karanas-section { background: linear-gradient(135deg, var(--karanas-deep) 0%, #2d0f4e 50%, #0f1a3a 100%); padding: 90px 40px; position: relative; overflow: hidden; }
         #karanas-section::before { content: '॥ करण ॥'; position: absolute; font-family: serif; font-size: 22vw; color: rgba(212,168,255,0.03); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; white-space: nowrap; }
@@ -420,7 +476,7 @@
         .ks-card .kc-cta::after { content: '→'; }
 
         /* ══════════════════════════════════════════
-           SUBDOMAINS SHOWCASE
+           SUBDOMAINS SHOWCASE (unchanged)
         ══════════════════════════════════════════ */
         #subdomains-section { background: var(--navy); padding: 88px 40px; }
         .ss-inner { max-width: 1200px; margin: 0 auto; }
@@ -442,7 +498,7 @@
         .ss-card .sc-cta::after { content: '→'; }
 
         /* ══════════════════════════════════════════
-           SHARED SECTION ELEMENTS
+           SHARED SECTION ELEMENTS (unchanged)
         ══════════════════════════════════════════ */
         #hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 80px; background: linear-gradient(rgba(253,250,245,0.88),rgba(253,250,245,0.88)), url('background.png') center/cover no-repeat; overflow: hidden; }
         .hero-tag { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; animation: fadeUp 0.8s ease both; }
@@ -514,7 +570,7 @@
 <body>
 
 <!-- ══════════════════════════════════════════════════
-     NAVIGATION — single bar, mega drawer trigger buttons
+     NAVIGATION
 ══════════════════════════════════════════════════ -->
 <nav id="main-nav">
     <a href="#hero" class="nav-brand">
@@ -555,6 +611,18 @@
 
         <div class="nav-sep"></div>
 
+        <!-- ══ NEW TAB 1: Sanskrit ══ -->
+        <button class="mega-trigger sanskrit-style" onclick="openDrawer('sanskrit')">
+            ॐ Sanskrit <span class="m-arrow">▼</span>
+        </button>
+
+        <!-- ══ NEW TAB 2: Enhancements ══ -->
+        <button class="mega-trigger enh-style" onclick="openDrawer('enhancements')">
+            ✦ Enhancements <span class="m-arrow">▼</span>
+        </button>
+
+        <div class="nav-sep"></div>
+
         <!-- 108 Karanas special trigger -->
         <button class="mega-trigger karanas-style" onclick="openDrawer('karanas')">
             🌀 108 KARANAS <span class="m-arrow">▼</span>
@@ -570,7 +638,6 @@
 <div id="megaDrawer">
     <div class="drawer-inner">
 
-        <!-- Tab bar: one tab per menu section -->
         <div class="drawer-section-tabs" id="drawerTabs">
             <button class="drawer-tab" data-panel="pages"   onclick="switchDrawerTab('pages')">  <span class="sd-dot pages"></span>  Pages</button>
             <button class="drawer-tab" data-panel="natya"   onclick="switchDrawerTab('natya')">  <span class="sd-dot natya"></span>  Natya Shastra</button>
@@ -579,10 +646,14 @@
             <button class="drawer-tab" data-panel="spirit"  onclick="switchDrawerTab('spirit')"> <span class="sd-dot spirit"></span> Spiritual</button>
             <button class="drawer-tab" data-panel="mcp"     onclick="switchDrawerTab('mcp')">    <span class="sd-dot mcp"></span>    MCP</button>
             <button class="drawer-tab" data-panel="span"    onclick="switchDrawerTab('span')">   <span class="sd-dot span"></span>   Spandana</button>
+            <!-- ══ NEW DRAWER TABS ══ -->
+            <button class="drawer-tab skt-tab" data-panel="sanskrit"     onclick="switchDrawerTab('sanskrit')">   <span class="sd-dot skt"></span>   ॐ Sanskrit</button>
+            <button class="drawer-tab enh-tab" data-panel="enhancements" onclick="switchDrawerTab('enhancements')"><span class="sd-dot enh"></span>   ✦ Enhancements</button>
+            <!-- ══ END NEW DRAWER TABS ══ -->
             <button class="drawer-tab k-tab" data-panel="karanas" onclick="switchDrawerTab('karanas')"><span class="sd-dot k-all"></span> 108 Karanas</button>
         </div>
 
-        <!-- PANEL: Pages -->
+        <!-- PANEL: Pages (unchanged) -->
         <div class="drawer-panel" id="panel-pages">
             <div class="drawer-panel-header">
                 <div>
@@ -600,7 +671,7 @@
             </div>
         </div>
 
-        <!-- PANEL: Natya Shastra -->
+        <!-- PANEL: Natya Shastra (unchanged) -->
         <div class="drawer-panel" id="panel-natya">
             <div class="drawer-panel-header">
                 <div>
@@ -616,7 +687,7 @@
             </div>
         </div>
 
-        <!-- PANEL: Bio Resonance -->
+        <!-- PANEL: Bio Resonance (unchanged) -->
         <div class="drawer-panel" id="panel-bio">
             <div class="drawer-panel-header">
                 <div>
@@ -632,7 +703,7 @@
             </div>
         </div>
 
-        <!-- PANEL: Nada Chikitsa -->
+        <!-- PANEL: Nada Chikitsa (unchanged) -->
         <div class="drawer-panel" id="panel-nada">
             <div class="drawer-panel-header">
                 <div>
@@ -648,7 +719,7 @@
             </div>
         </div>
 
-        <!-- PANEL: Spiritual -->
+        <!-- PANEL: Spiritual (unchanged) -->
         <div class="drawer-panel" id="panel-spirit">
             <div class="drawer-panel-header">
                 <div>
@@ -664,7 +735,7 @@
             </div>
         </div>
 
-        <!-- PANEL: MCP -->
+        <!-- PANEL: MCP (unchanged) -->
         <div class="drawer-panel" id="panel-mcp">
             <div class="drawer-panel-header">
                 <div>
@@ -680,7 +751,7 @@
             </div>
         </div>
 
-        <!-- PANEL: Spandana -->
+        <!-- PANEL: Spandana (unchanged) -->
         <div class="drawer-panel" id="panel-span">
             <div class="drawer-panel-header">
                 <div>
@@ -696,7 +767,49 @@
             </div>
         </div>
 
-        <!-- PANEL: 108 Karanas -->
+        <!-- ══════════════════════════════════════════
+             NEW PANEL: Sanskrit — The Eternal Language
+        ══════════════════════════════════════════ -->
+        <div class="drawer-panel skt-panel" id="panel-sanskrit">
+            <div class="drawer-panel-header">
+                <div>
+                    <div class="dph-title" style="color:#6b3a00;">Sanskrit — The Eternal Language</div>
+                    <div class="dph-desc">From Proto-Indo-European origins to AI — 5,000 years of living knowledge. The backbone of Nāda Brahman, Natya Shastra, and every research domain in this archive.</div>
+                </div>
+            </div>
+            <div class="drawer-grid" style="grid-template-columns: repeat(auto-fill, minmax(240px,1fr));">
+                <button class="drawer-link" onclick="openSD('skt_origin',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">🌱 Origins &amp; Proto-Language</span><span class="dl-sub">PIE roots, Vedic Sanskrit &amp; 5,000 years of history</span></span></button>
+                <button class="drawer-link" onclick="openSD('skt_panini',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">📐 Pāṇini &amp; Aṣṭādhyāyī</span><span class="dl-sub">The world's first formal grammar — 3,959 rules</span></span></button>
+                <button class="drawer-link" onclick="openSD('skt_phonology',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">🔊 Phonology &amp; Varṇamālā</span><span class="dl-sub">The world's most systematic alphabet &amp; Sandhi</span></span></button>
+                <button class="drawer-link" onclick="openSD('skt_music',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">🎵 Sanskrit Music Theory</span><span class="dl-sub">Rāga science, Sargam &amp; the Nāṭya Śāstra</span></span></button>
+                <button class="drawer-link" onclick="openSD('skt_yoga',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">🧘 Sanskrit &amp; Yoga</span><span class="dl-sub">Yoga Sūtras, mantra &amp; consciousness technology</span></span></button>
+                <button class="drawer-link" onclick="openSD('skt_consciousness',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">🔮 Sanskrit &amp; Consciousness</span><span class="dl-sub">Advaita, Kashmir Śaivism &amp; modern neuroscience</span></span></button>
+            </div>
+        </div>
+        <!-- ══ END NEW PANEL: Sanskrit ══ -->
+
+        <!-- ══════════════════════════════════════════
+             NEW PANEL: Enhancements — Connecting Portal
+        ══════════════════════════════════════════ -->
+        <div class="drawer-panel enh-panel" id="panel-enhancements">
+            <div class="drawer-panel-header">
+                <div>
+                    <div class="dph-title">✦ Enhancements — The Connecting Portal</div>
+                    <div class="dph-desc">The master navigational hub unifying all 13 research domains — five dedicated pages introducing the archive, its systematic roadmap, and the author's research journey.</div>
+                </div>
+                <a href="https://culturalmusingsenhancements.culturalmusings.com" target="_blank" class="dph-visit">Visit Enhancement Portal →</a>
+            </div>
+            <div class="drawer-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px,1fr));">
+                <button class="drawer-link" onclick="openSD('enh_about',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">① About the Archive</span><span class="dl-sub">What the connecting site is &amp; why it exists</span></span></button>
+                <button class="drawer-link" onclick="openSD('enh_domains',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">② All 13 Research Domains</span><span class="dl-sub">Five clusters — complete overview</span></span></button>
+                <button class="drawer-link" onclick="openSD('enh_roadmap',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">③ Systematic Roadmap</span><span class="dl-sub">5-phase research architecture explained</span></span></button>
+                <button class="drawer-link" onclick="openSD('enh_author',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">④ Author's Introduction</span><span class="dl-sub">How the roadmap was built — systematically</span></span></button>
+                <button class="drawer-link" onclick="openSD('enh_collab',0);closeDrawer()"><span class="dl-bar"></span><span class="dl-text"><span class="dl-title">⑤ Collaborate &amp; Connect</span><span class="dl-sub">Research dialogue &amp; enquiry channels</span></span></button>
+            </div>
+        </div>
+        <!-- ══ END NEW PANEL: Enhancements ══ -->
+
+        <!-- PANEL: 108 Karanas (unchanged) -->
         <div class="drawer-panel k-panel" id="panel-karanas">
             <div class="drawer-panel-header">
                 <div>
@@ -728,7 +841,7 @@
 <!-- Backdrop -->
 <div id="megaBackdrop" onclick="closeDrawer()"></div>
 
-<!-- Mobile panel (unchanged) -->
+<!-- Mobile panel — two new entries added at bottom of existing lists -->
 <div class="nav-mobile-panel" id="mobilePanel">
     <span class="nav-mobile-label">Main</span>
     <a href="#author-intro" class="nav-mobile-link" onclick="closeMobile()">Author Introduction</a>
@@ -750,12 +863,24 @@
     <a href="https://completecelestialsynthesis.culturalmusings.com" target="_blank" class="nav-mobile-link k-mobile">Complete Celestial Synthesis ↗</a>
     <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="nav-mobile-link k-mobile">Master Consciousness Protocol ↗</a>
     <a href="https://natyashastra.culturalmusings.com" target="_blank" class="nav-mobile-link k-mobile">Natya Shastra ↗</a>
+    <!-- ══ NEW MOBILE ENTRIES ══ -->
+    <span class="nav-mobile-label" style="color:#c9963a;">ॐ Sanskrit</span>
+    <a href="#" onclick="openSD('skt_origin',0);closeMobile();" class="nav-mobile-link skt-mobile">Origins &amp; The Eternal Language</a>
+    <a href="#" onclick="openSD('skt_panini',0);closeMobile();" class="nav-mobile-link skt-mobile">Pāṇini &amp; Aṣṭādhyāyī</a>
+    <a href="#" onclick="openSD('skt_music',0);closeMobile();" class="nav-mobile-link skt-mobile">Sanskrit Music Theory</a>
+    <a href="#" onclick="openSD('skt_consciousness',0);closeMobile();" class="nav-mobile-link skt-mobile">Sanskrit &amp; Consciousness</a>
+    <span class="nav-mobile-label" style="color:var(--gold);">✦ Enhancement Portal</span>
+    <a href="https://culturalmusingsenhancements.culturalmusings.com" target="_blank" class="nav-mobile-link enh-mobile">Open Enhancement Portal ↗</a>
+    <a href="#" onclick="openSD('enh_about',0);closeMobile();" class="nav-mobile-link enh-mobile">About the Archive</a>
+    <a href="#" onclick="openSD('enh_roadmap',0);closeMobile();" class="nav-mobile-link enh-mobile">Systematic Roadmap</a>
+    <a href="#" onclick="openSD('enh_author',0);closeMobile();" class="nav-mobile-link enh-mobile">Author's Introduction</a>
+    <!-- ══ END NEW MOBILE ENTRIES ══ -->
     <span class="nav-mobile-label">Connect</span>
     <a href="#contact" class="nav-mobile-link" onclick="closeMobile()">Collaborate With Us</a>
 </div>
 
 <!-- ══════════════════════════════════════════════════
-     MODAL (unchanged from original)
+     MODAL (unchanged structure, new SD data added in script)
 ══════════════════════════════════════════════════ -->
 <div id="sdModal" onclick="handleModalBgClick(event)">
     <div class="sd-modal-inner" id="sdModalInner">
@@ -780,7 +905,7 @@
 </div>
 
 <!-- ══════════════════════════════════════════════════
-     HERO
+     HERO (unchanged)
 ══════════════════════════════════════════════════ -->
 <section id="hero">
     <img src="logo.jpg" alt="" onerror="this.style.display='none'" style="position:absolute;pointer-events:none;opacity:0.05;width:38%;top:50%;left:50%;transform:translate(-50%,-50%);">
@@ -794,7 +919,7 @@
     </div>
 </section>
 
-<!-- PHILOSOPHY -->
+<!-- PHILOSOPHY (unchanged) -->
 <div id="philosophy" class="wm-section">
     <p class="philosophy-text">
         Ancient <span class="italic">wisdom</span> does not contradict modern <span class="gold">science</span><span class="dash">&mdash;</span>it precedes it. The
@@ -803,7 +928,7 @@
     </p>
 </div>
 
-<!-- AUTHOR INTRODUCTION -->
+<!-- AUTHOR INTRODUCTION (unchanged) -->
 <section id="author-intro">
     <div class="ai-hero">
         <div class="ai-portrait">
@@ -834,7 +959,7 @@
     </div>
 </section>
 
-<!-- WORKS, IDEOLOGIES & REASONS -->
+<!-- WORKS, IDEOLOGIES & REASONS (unchanged) -->
 <section id="works-ideologies" class="wm-section">
     <div class="wi-inner">
         <div class="wi-header">
@@ -879,7 +1004,7 @@
     </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT (unchanged) -->
 <section id="about" class="wm-section">
     <div class="section-wrapper">
         <div class="about-grid">
@@ -909,7 +1034,7 @@
     </div>
 </section>
 
-<!-- 108 KARANAS SHOWCASE -->
+<!-- 108 KARANAS SHOWCASE (unchanged) -->
 <section id="karanas-section">
     <div class="ks-inner">
         <div class="ks-header">
@@ -929,7 +1054,7 @@
     </div>
 </section>
 
-<!-- CULTURAL MUSINGS SHOWCASE -->
+<!-- CULTURAL MUSINGS SHOWCASE (unchanged) -->
 <section id="subdomains-section">
     <div class="ss-inner">
         <div class="ss-header">
@@ -947,7 +1072,8 @@
         </div>
     </div>
 </section>
-<!-- FOOTER -->
+
+<!-- FOOTER (unchanged) -->
 <footer id="site-footer">
     <div class="footer-brand">
         <span class="name">AESTHETICS OF SOCIETY</span>
@@ -962,12 +1088,13 @@
         <a href="https://unifiedtheory.culturalmusings.com" target="_blank">Unified Theory</a>
         <a href="https://natyashastra.culturalmusings.com" target="_blank">Natya Shastra</a>
         <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank">MCP</a>
+        <a href="https://culturalmusingsenhancements.culturalmusings.com" target="_blank">✦ Enhancements</a>
         <a href="#contact">Contact</a>
     </div>
     <span class="footer-copy">&copy; 2025 Naredla Rama Chandra &middot; Aesthetics of Society</span>
 </footer>
 
-<!-- Contact & Enquiry Section -->
+<!-- Contact & Enquiry Section (unchanged) -->
 <div class="container my-5">
     <h2 class="text-center mb-4">Get in Touch</h2>
     <p class="text-center">
@@ -980,7 +1107,7 @@
     </div>
 </div>
 
-<!-- Chatbot Toggle Button -->
+<!-- Chatbot (unchanged) -->
 <button id="chatbot-toggle" style="position:fixed;bottom:20px;right:20px;z-index:9999;background-color:#007bff;color:white;border:none;border-radius:50px;padding:12px 20px;font-size:16px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);">💬 Chat with us</button>
 <div id="chatbot-container" style="display:none;">
     <script type="text/javascript" src="https://www.jotform.com/agent/019d8f3727af73cab8f1024b3df3ef1f84b6"></script>
@@ -997,7 +1124,7 @@
 
 <script>
 /* ══════════════════════════════════════════════════
-   MEGA DRAWER LOGIC
+   MEGA DRAWER LOGIC (unchanged)
 ══════════════════════════════════════════════════ */
 let drawerOpen = false;
 let activePanel = null;
@@ -1005,24 +1132,13 @@ let activePanel = null;
 function openDrawer(panel) {
     const drawer   = document.getElementById('megaDrawer');
     const backdrop = document.getElementById('megaBackdrop');
-
-    // If same panel clicked again — toggle close
-    if (drawerOpen && activePanel === panel) {
-        closeDrawer();
-        return;
-    }
-
-    // Show drawer
+    if (drawerOpen && activePanel === panel) { closeDrawer(); return; }
     drawer.classList.add('open');
     backdrop.classList.add('open');
     drawerOpen = true;
     activePanel = panel;
-
     switchDrawerTab(panel);
-
-    // Mark the trigger button active
     document.querySelectorAll('.mega-trigger').forEach(btn => btn.classList.remove('active'));
-    // Find and highlight the clicked trigger
     document.querySelectorAll('.mega-trigger').forEach(btn => {
         if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes("'" + panel + "'")) {
             btn.classList.add('active');
@@ -1031,11 +1147,9 @@ function openDrawer(panel) {
 }
 
 function switchDrawerTab(panel) {
-    // Update tabs
     document.querySelectorAll('.drawer-tab').forEach(tab => {
         tab.classList.toggle('active', tab.dataset.panel === panel);
     });
-    // Update panels
     document.querySelectorAll('.drawer-panel').forEach(p => {
         p.classList.toggle('active', p.id === 'panel-' + panel);
     });
@@ -1052,16 +1166,10 @@ function closeDrawer() {
     document.querySelectorAll('.mega-trigger').forEach(btn => btn.classList.remove('active'));
 }
 
-/* ══════════════════════════════════════════════════
-   NAV SCROLL
-══════════════════════════════════════════════════ */
 window.addEventListener('scroll', () => {
     document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 10);
 });
 
-/* ══════════════════════════════════════════════════
-   MOBILE HAMBURGER
-══════════════════════════════════════════════════ */
 function toggleMobile() {
     const panel = document.getElementById('mobilePanel');
     const ham   = document.getElementById('hamburger');
@@ -1085,9 +1193,6 @@ function closeMobile() {
     document.body.style.overflow = '';
 }
 
-/* ══════════════════════════════════════════════════
-   WORKS TABS
-══════════════════════════════════════════════════ */
 function switchWi(tab) {
     document.querySelectorAll('.wi-tab').forEach((t, i) => {
         const keys = ['works','ideology','reasons'];
@@ -1098,17 +1203,16 @@ function switchWi(tab) {
     document.getElementById(map[tab]).classList.add('active');
 }
 
-/* ══════════════════════════════════════════════════
-   ESCAPE KEY
-══════════════════════════════════════════════════ */
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') { closeDrawer(); closeSD(); closeMobile(); }
 });
 
 /* ══════════════════════════════════════════════════
-   SUBDOMAIN MODAL DATA & LOGIC (unchanged from original)
+   SD DATA — original entries UNCHANGED +
+   NEW entries for Sanskrit & Enhancements added below
 ══════════════════════════════════════════════════ */
 const SD = {
+    /* ── All original SD entries unchanged ── */
     natya: {
         tag:'Research Domain · Bharata Muni · 18th Siddha',
         title:'Natya Shastra — <em>The Cosmic Science</em>',
@@ -1121,172 +1225,201 @@ const SD = {
             {t:'Five Research <em>Dimensions</em>',b:`<p>The Natya Shastra subdomain is organised around five research dimensions, each revealing a different scientific layer of Bharata Muni's masterwork.</p><ul class="sd-key-list"><li>Artificial Intelligence — Sanskrit's algorithmic grammar as a natural language for AI</li><li>Neuroscience — The 108 Karanas as neural choreography; the Nine Rasas as neurological states</li><li>Medical Sciences — Marma Sthanas, Mudra therapy, and clinical applications</li><li>Science of Sound — Nada Brahman and the Raga pharmacopoeia as bio-acoustic medicine</li><li>Saptaswaras & Cosmos — Seven frequencies mapping onto physiology and celestial mechanics</li></ul><div class="pull"><p>"This is not a domain about the past. It is a domain about the future — the future of medicine, neuroscience, and human potential."</p></div>`}
         ]
     },
-    bio: {
-        tag:'Research Domain · Prana Science · Bio-Field Theory',title:'Bio Resonance <em>Musings</em>',
-        sub:'The science of cellular resonance and bio-electromagnetic fields — where ancient Prana theory meets modern quantum biology.',
-        url:'https://bioresonancemusings.culturalmusings.com',sym:'🌿',dark:false,
-        tabs:['Introduction','The Science','Applications'],
+    bio:{tag:'Research Domain · Prana Science · Bio-Field Theory',title:'Bio Resonance <em>Musings</em>',sub:'The science of cellular resonance and bio-electromagnetic fields — where ancient Prana theory meets modern quantum biology.',url:'https://bioresonancemusings.culturalmusings.com',sym:'🌿',dark:false,tabs:['Introduction','The Science','Applications'],pages:[{t:'What is <em>Bio Resonance?</em>',b:`<p>Bio Resonance is the study of the electromagnetic and quantum properties of living systems — the measurable fields of energy and information constituting the "invisible body" known in Vedic science as the Pranamaya Kosha.</p><div class="pull"><p>"Prana is not breath. It is the intelligence that drives breath — the bio-electromagnetic field that animates matter into life."</p></div><ul class="sd-key-list"><li>Pranamaya Kosha — the bio-electromagnetic body</li><li>72,000 Nadis — the peripheral nervous system's energetic correlate</li><li>Seven Chakras — the endocrine-neural interface</li><li>Bio-photon emission — cellular light communication</li></ul>`},{t:'Ancient Theory Meets <em>Modern Physics</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Bio-Photon Research</h4><p>Cells emit coherent light — validating the ancient concept of Tejas (inner radiance) as a measurable biological phenomenon.</p></div><div class="sd-card"><h4>Heart Rate Variability</h4><p>HRV research confirms the heart's electromagnetic field entrains the brain's neural rhythms, as described in Vedic models.</p></div><div class="sd-card"><h4>Quantum Coherence</h4><p>Photosynthesis and enzyme catalysis exploit quantum coherence — validating the Vedic claim that the cosmos operates simultaneously at gross and subtle levels.</p></div><div class="sd-card"><h4>Torsion Fields</h4><p>Russian physicist Shipov's torsion field research aligns with the Vedic concept of Akasha — subtle ether carrying information beyond electromagnetic limits.</p></div></div>`},{t:'Healing <em>Applications</em>',b:`<p>If the body communicates through fields and frequencies, then healing includes restoration of coherent frequency signatures across all levels of the bio-field.</p><ul class="sd-key-list"><li>Pranayama — conscious regulation of the bio-electromagnetic field</li><li>Mantra therapy — entraining cellular resonance through precise acoustic frequencies</li><li>Colour therapy — Chakra resonance through specific wavelengths</li><li>Marma therapy — direct intervention at neurovascular bio-field nodes</li><li>Sound bowl therapy — external frequency entrainment of the body's bio-field</li></ul><div class="pull"><p>"Every healing tradition in history has understood, in its own language, that health is coherence — and disease is dissonance."</p></div>`}]},
+    nada:{tag:'Research Domain · Sound as Medicine · Acoustic Healing',title:'Nada <em>Chikitsa</em>',sub:'The ancient pharmacopoeia of sound — specific Ragas, Mantras, and Swaras prescribe precise neurological and physiological effects.',url:'https://nada-chikitsa.culturalmusings.com',sym:'🔊',dark:false,tabs:['Introduction','Raga Pharmacopoeia','Clinical Framework'],pages:[{t:'What is <em>Nada Chikitsa?</em>',b:`<p>Nada Chikitsa — "sound healing" — is the most ancient and universal of all medical traditions. The Vedic understanding: reality is fundamentally acoustic. Health is harmonic coherence; disease is dissonance. Healing is the restoration of the body's natural frequency signature through sound.</p><div class="pull"><p>"The Sapta Swaras are not notes. They are keys — each unlocking a specific physiological state, glandular activation, and neurological frequency band."</p></div><ul class="sd-key-list"><li>Nada Brahman — the acoustic substrate of reality</li><li>Sapta Swaras — seven healing frequencies</li><li>Raga Chikitsa — specific Ragas as therapeutic prescriptions</li><li>Beeja Aksharas — seed syllables activating neural pathways</li></ul>`},{t:'The Raga <em>Pharmacopoeia</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Raga Bhairavi</h4><p>Morning Raga · anxiety, insomnia. Produces measurable cortisol reduction and delta-theta brainwave entrainment.</p></div><div class="sd-card"><h4>Raga Yaman</h4><p>Evening Raga · elevated mood, creativity. Stimulates serotonin and activates the prefrontal cortex.</p></div><div class="sd-card"><h4>Raga Bageshri</h4><p>Midnight Raga · deepens meditation, reduces blood pressure, induces parasympathetic dominance.</p></div><div class="sd-card"><h4>Raga Darbari Kanada</h4><p>Late-night Raga · prescribed for grief and emotional release. Activates the limbic system in a controlled therapeutic arc.</p></div></div>`},{t:'Clinical <em>Framework</em>',b:`<ul class="sd-key-list"><li>Assessment — identifying the patient's Dosha and neurological profile</li><li>Prescription — selecting appropriate Ragas, Mantras, or instrument frequencies</li><li>Administration — live performance, recorded frequencies, or self-practice protocols</li><li>Monitoring — HRV, EEG, and subjective wellbeing tracking</li><li>Integration — combining sound therapy with Pranayama, Mudra, and dietary protocols</li></ul><div class="pull"><p>"The ancient physician listened with their ears to diagnose. They prescribed with sound to heal. Modern medicine is only now rediscovering what this means clinically."</p></div>`}]},
+    spirit:{tag:'Research Domain · Vedanta · Philosophy of Consciousness',title:'Spiritual <em>Philosophical</em>',sub:'The convergence of Vedantic non-dualism and contemporary philosophy — where ancient metaphysics meets quantum physics.',url:'https://spiritualphilosophical.culturalmusings.com',sym:'🕉️',dark:false,tabs:['Introduction','Core Philosophy','Modern Intersections'],pages:[{t:'The <em>Philosophical</em> Foundation',b:`<p>The Spiritual Philosophical domain rests on a single premise drawn from the Upanishads: that consciousness is not a product of matter, but its source. This is precisely what quantum physics, neuroscience, and philosophy of mind are now being forced to confront.</p><div class="pull"><p>"Tat Tvam Asi — That Thou Art. The observer and the observed are not two. This is not mysticism. It is the only model of reality that quantum mechanics does not contradict."</p></div><ul class="sd-key-list"><li>Brahman — the undivided ground of all existence</li><li>Atman — individual consciousness as Brahman through form</li><li>Maya — the appearance of multiplicity within unity</li><li>Turiya — the fourth state beyond waking, dreaming, and deep sleep</li></ul>`},{t:'<em>Core</em> Philosophical Positions',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Consciousness as Primary</h4><p>Against physicalist reductionism: consciousness cannot be derived from matter because matter itself is a construct within consciousness. This is Advaita Vedanta — now seriously considered by leading philosophers of mind.</p></div><div class="sd-card"><h4>Non-Duality in Practice</h4><p>Non-duality is not a belief to hold — it is a recognition to achieve through practice. The entire edifice of Yoga, Tantra, and classical arts exists to produce this recognition directly.</p></div><div class="sd-card"><h4>Time, Space & Causality</h4><p>Vedantic understanding of time as cyclical challenges the Newtonian framework — finding support in the block universe of relativity and retrocausality experiments in quantum physics.</p></div><div class="sd-card"><h4>The Self as Process</h4><p>Following Abhinavagupta's Kashmir Shaivism: the self is a dynamic process of self-recognition — Aham Vimarsha — the universe coming to know itself through the individual.</p></div></div>`},{t:'Meeting <em>Modern</em> Thought',b:`<ul class="sd-key-list"><li>Advaita Vedanta and Quantum Non-Locality — the Bell Theorem vindication</li><li>Turiya State and the Default Mode Network — neuroscience of non-dual awareness</li><li>Karma and Complex Systems — causal emergence in self-organising systems</li><li>Maya and the Simulation Hypothesis — Vedantic precedent for Bostrom's argument</li><li>Moksha and Integrated Information Theory — Tononi's φ and liberation</li></ul><div class="pull"><p>"The most honest philosophers of mind today are, often without knowing it, rediscovering Advaita Vedanta. The names change. The recognition is the same."</p></div>`}]},
+    mcp:{tag:'Research Domain · Integrative Protocol · Clinical Application',title:'Master Consciousness <em>Protocol</em>',sub:'The 5-phase integrative framework for natural healing and liberation of human potential — the clinical synthesis of the entire research archive.',url:'https://masterconsciousprotocol.culturalmusings.com',sym:'⚕️',dark:false,tabs:['Introduction','The 5 Phases','Research Base'],pages:[{t:'What is the <em>Master Consciousness Protocol?</em>',b:`<p>The Master Consciousness Protocol (MCP) is Naredla Rama Chandra's culminating synthesis — a clinically structured, five-phase integrative framework drawing from the full depth of the research archive to create a unified system for natural healing and consciousness expansion.</p><div class="pull"><p>"The goal of the MCP is not wellness. The goal is the complete liberation of human potential — physical, neurological, and conscious — through ancient science applied with modern precision."</p></div><ul class="sd-key-list"><li>Phase I — Shuddhi: Purification of the physical and bio-energetic body</li><li>Phase II — Nada: Acoustic calibration of the nervous system</li><li>Phase III — Mudra: Neural pathway activation through precise gesture</li><li>Phase IV — Karana: Bio-somatic rewiring through the 108 Karanas</li><li>Phase V — Rasa: Emotional-neurological integration through the Nine Rasas</li></ul>`},{t:'The <em>Five Phases</em> in Detail',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Phase I — Shuddhi</h4><p>Pranayama sequences from Gorakshanath's Nath Yoga tradition. Establishes autonomic coherence through HRV elevation and cortisol normalisation. Duration: 21 days.</p></div><div class="sd-card"><h4>Phase II — Nada</h4><p>Raga-based acoustic therapy from the Nada Chikitsa tradition. Entrains brainwave patterns and begins limbic regulation. Duration: 21 days concurrent.</p></div><div class="sd-card"><h4>Phase III — Mudra</h4><p>Sequential Mudra activation from the Natya Shastra and Tantric traditions. Stimulates motor cortex and modulates endocrine function. Duration: 14 days.</p></div><div class="sd-card"><h4>Phases IV & V</h4><p>Progressive introduction of selected 108 Karanas (40 days) followed by Rasa-based psycho-therapeutic emotional integration — the complete bio-somatic and consciousness rewriting.</p></div></div>`},{t:'The Research <em>Foundation</em>',b:`<ul class="sd-key-list"><li>Porges (2011) — Polyvagal Theory validates Phase I Pranayama protocols</li><li>Thaut (2014) — Neurologic Music Therapy confirms Phase II Nada outcomes</li><li>Bhattacharya (2001) — EEG studies confirm bilateral sync in classical dance</li><li>Grossman (2004) — Mindfulness neuroimaging confirms Phase V Rasa outcomes</li><li>BDNF research — confirms neuroplasticity outcomes of Karana movement</li></ul><div class="pull"><p>"Every element of the MCP has ancient roots thousands of years deep — and modern scientific validation to match."</p></div>`}]},
+    span:{tag:'Research Domain · Vibrational Inquiry · Kashmir Shaivism',title:'Spandana <em>Shodha</em>',sub:'The vibrational inquiry — Spanda as the primordial pulse of cosmic intelligence, investigated through complexity science and Kashmir Shaivism.',url:'https://spandanashodha.culturalmusings.com',sym:'✨',dark:false,tabs:['Introduction','Spanda Theory','Inquiry Methods'],pages:[{t:'What is <em>Spandana Shodha?</em>',b:`<p>Spandana Shodha — "the investigation of vibration" — is dedicated to the most fundamental question in both ancient and modern science: what is the nature of the primordial oscillation from which all reality emerges?</p><div class="pull"><p>"At the most fundamental level, there is only vibration. Every atom, every thought, every cell, every star — is Spanda recognising itself."</p></div><ul class="sd-key-list"><li>Spanda — the primordial pulse of consciousness</li><li>Shakti — the dynamic power of cosmic intelligence</li><li>Nada — gross acoustic vibration as Spanda's expression</li><li>Bindu — the point of maximum condensed Spanda</li></ul>`},{t:'The <em>Spanda</em> Theory',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Spanda & Quantum Vacuum</h4><p>Pure consciousness as dynamic emptiness maps precisely onto the quantum vacuum — the "empty" space seething with virtual particle pairs.</p></div><div class="sd-card"><h4>Spanda & String Theory</h4><p>At the Planck scale, string theory describes reality as vibrating one-dimensional strings — as described in Spanda doctrine 1,000 years earlier.</p></div><div class="sd-card"><h4>Spanda & Complexity Science</h4><p>Self-organising complex systems exhibit a characteristic "spandana" property: a dynamic balance between stability and chaos generating emergent intelligence.</p></div><div class="sd-card"><h4>Spanda & Bio-Field</h4><p>The bio-electromagnetic field of the body is a macroscopic expression of Spanda — the coherent oscillatory behaviour of billions of cells producing a unified bio-resonant system.</p></div></div>`},{t:'Methods of <em>Inquiry</em>',b:`<ul class="sd-key-list"><li>Contemplative inquiry — direct investigation of Spanda through deep meditation practice</li><li>Acoustic analysis — cymatics and Chladni pattern studies of sound-form relationships</li><li>Bio-field measurement — HRV, EEG, and bio-photon emission as proxies of Spanda coherence</li><li>Cross-textual scholarship — comparative analysis of Spanda Karikas with modern physics</li><li>Living system observation — studying self-organisation in biological and ecological systems</li></ul><div class="pull"><p>"Shodha means both purification and investigation — this domain is both: a purification of our understanding of vibration, and a rigorous investigation of its nature."</p></div>`}]},
+    k_root:{tag:'108 Karanas · Master Architecture · Root Map',title:'Karanas <em>Root Map</em>',sub:'The master architectural overview of the entire 108 Karanas research — 4 × 27 domains, 22 Shrutis, 72 Melakarthas and all systems converging as one.',url:'https://karanasrootmap.culturalmusings.com',sym:'॥',dark:true,tabs:['Introduction','Architecture','The Synthesis Principle'],pages:[{t:'The <em>Root Map</em> — What It Is',b:`<p>The Karanas Root Map is the master architectural document of the entire 108 Karanas research archive. The governing synthesis principle: "What is the Karana, that is the Swara. What is the Swara, that is Brahman. What is Brahman, that alone is the Body."</p><div class="pull"><p>"The Root Map is not a table of contents. It is a proof — that the 108 Karanas and the 108 dimensions of Vedic science are the same reality described in different languages."</p></div><ul class="sd-key-list"><li>4 Vedic quarters × 27 Nakshatras = 108 convergence points</li><li>22 Shrutis mapped to 22 classes of sacred movement</li><li>72 Melakarthas corresponding to 72 Nadi-activation sequences</li><li>Rudram Namakam/Chamakam as the acoustic framework</li></ul>`},{t:'The <em>Architecture</em> of 108',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Domain I — Pṛthvī (Earth)</h4><p>Karanas 1–27 · Ṛgveda · Cerebellar activation · Nakshatras Aśvinī to Bharaṇī · Shrutis 1–7 · Melakarthas 1–18.</p></div><div class="sd-card"><h4>Domain II — Jala (Water)</h4><p>Karanas 28–54 · Sāmaveda · Limbic entrainment · Nakshatras Kṛttikā to Āśleṣā · Shrutis 8–13 · Melakarthas 19–36.</p></div><div class="sd-card"><h4>Domain III — Vāyu (Air)</h4><p>Karanas 55–81 · Yajurveda · Prefrontal synchronisation · Nakshatras Maghā to Viśākhā · Shrutis 14–19 · Melakarthas 37–54.</p></div><div class="sd-card"><h4>Domain IV — Ākāśa (Ether)</h4><p>Karanas 82–108 · Atharvaveda · Transcendent integration · Nakshatras Anurādhā to Revatī · Shrutis 20–22 · Melakarthas 55–72.</p></div></div>`},{t:'The <em>Synthesis Principle</em> Explained',b:`<ul class="sd-key-list"><li>Carnatic & Hindustani systems both contained within the 72-Melakartha framework</li><li>12 notes × 3 Saptakas = 36 — the same as the chapters of the Natya Shastra</li><li>Lalitha Sahasranama's 1,000 names encoding the complete neuro-somatic map</li><li>Devi Khadgamala as the tantra-to-Karana correspondence matrix</li><li>Rudram's 11 Anuvākas corresponding to 11 movement clusters</li></ul><div class="pull"><p>"The Root Map is the Rosetta Stone of the archive — the key that shows every domain is writing the same thing in a different script."</p></div>`}]},
+    k_unified:{tag:'108 Karanas · Grand Synthesis Codex · 21 Unsolved Problems',title:'Unified Theory — <em>The Grand Synthesis Codex</em>',sub:'21 of the greatest unsolved problems in science × the 108 Karanas — showing that the Vedic frameworks hold structural solutions where modern paradigms remain trapped.',url:'https://unifiedtheory.culturalmusings.com',sym:'⚛',dark:true,tabs:['Introduction','The 21 Problems','The Karana Solutions'],pages:[{t:'The <em>Boldest Claim</em> in the Archive',b:`<p>The Unified Theory domain makes the most ambitious claim of the entire research archive: that the 21 greatest unsolved problems in modern science are not independent puzzles but different expressions of a single paradigmatic limitation, and that the Vedic frameworks and the 108 Karanas hold structural solutions.</p><div class="pull"><p>"The 108 Karanas already contain the answers — we simply forgot how to read them."</p></div><ul class="sd-key-list"><li>The Hard Problem of Consciousness — Vedantic resolution</li><li>Quantum Gravity Unification — Nada Brahman as the unified field</li><li>The Measurement Problem — Observer as Brahman</li><li>Dark Matter & Dark Energy — Akasha and Tamas Guna</li></ul>`},{t:'The <em>21 Problems</em> Addressed',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Hard Problem of Consciousness</h4><p>Vedanta's answer — consciousness is primary, not emergent — is the only logically consistent resolution, now supported by IIT, panpsychism, and quantum mind theories.</p></div><div class="sd-card"><h4>Quantum Gravity Unification</h4><p>The Vedic framework of Nada Brahman — acoustic vibration as the single substrate — provides a unification principle both theories approach independently.</p></div><div class="sd-card"><h4>Cosmological Constant</h4><p>The Vedic concept of Maya — selective manifestation of the quantum vacuum's infinite energy — offers a philosophical resolution quantum field theory lacks.</p></div><div class="sd-card"><h4>Arrow of Time</h4><p>Vedic cyclic time (Kalachakra) and Karma as asymmetric causality provide a framework that modern thermodynamics approaches but cannot complete.</p></div></div>`},{t:'How the <em>Karanas</em> Provide Solutions',b:`<ul class="sd-key-list"><li>Karanas 1–27 (Earth Quarter) — solutions to problems of matter, mass, and gravity</li><li>Karanas 28–54 (Water Quarter) — solutions to problems of wave-particle duality and quantum measurement</li><li>Karanas 55–81 (Air Quarter) — solutions to problems of spacetime, information, and entropy</li><li>Karanas 82–108 (Ether Quarter) — solutions to problems of consciousness, unification, and transcendence</li></ul><div class="pull"><p>"Each Karana is a cosmological theorem expressed in the grammar of the body. The Unified Theory domain is its translation into the grammar of mathematics."</p></div>`}]},
+    k_vedic:{tag:'108 Karanas · Part IV · Vedic Mathematics & Geometry',title:'Vedic Mathematics &amp;<br><em>Sacred Geometry</em>',sub:"Karanas 82–108: the Ether Quarter decoded through Sulba Sutras, Pingala's binary mathematics, Meru Prastara, fractal geometry, Lie groups, and string compactification.",url:'https://vedicmathematicsgeometry.culturalmusings.com',sym:'📐',dark:true,tabs:['Introduction','Mathematical Framework','Karanas 82–108'],pages:[{t:'The <em>Mathematics</em> Inside Sacred Movement',b:`<p>The fourth and final quarter of the 108 Karanas corresponds to the Akasha (Ether) element, the Atharvaveda, and the most abstract dimensions of Vedic science: mathematics, geometry, and the transcendent structures of consciousness itself.</p><div class="pull"><p>"Vedic mathematics did not stop at arithmetic. It extended to the geometry of consciousness — and the 108 Karanas are its most complete physical expression."</p></div><ul class="sd-key-list"><li>Sulba Sutras — sacred geometry of altar construction as cosmic mapping</li><li>Pingala's Chandaśāstra — binary mathematics and the origin of computing</li><li>Meru Prastara — Pascal's Triangle 2,000 years before Pascal</li><li>Mātrāmeru — Fibonacci sequence in Sanskrit prosody</li></ul>`},{t:'The <em>Mathematical</em> Framework',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Fractal Geometry</h4><p>The recursive self-similarity of Vedic temple architecture and Sri Chakra geometry encodes fractal dimension — validated by modern fractal analysis of Vedic art.</p></div><div class="sd-card"><h4>Topology & Knot Theory</h4><p>The Addita Karana's braided structure encodes a specific topological invariant. The 108 Karanas as a complete set constitute a topological atlas of human movement space.</p></div><div class="sd-card"><h4>Lie Groups & Symmetry</h4><p>The Janita Karana encodes the mathematical structure of Lie group symmetry — the same structure underlying the Standard Model of particle physics.</p></div><div class="sd-card"><h4>String Compactification</h4><p>The Vrischika Karana's coiling structure mirrors the Calabi-Yau manifold compactification of string theory — a geometric relationship under active investigation.</p></div></div>`},{t:'Karanas 82–108 — <em>The Transcendent Quarter</em>',b:`<ul class="sd-key-list"><li>Karanas 82–90 (Meru cluster) — fractal, recursive, and self-similar structures</li><li>Karanas 91–99 (Brahman cluster) — Lie symmetry, differential geometry, complex numbers</li><li>Karanas 100–108 (Transcendence cluster) — chaos theory, torus topology, quantum groups, final integration</li></ul><div class="pull"><p>"The last 9 Karanas — 100 through 108 — are the most extraordinary: each is simultaneously a movement, a mathematical theorem, a cosmic equation, and a state of consciousness."</p></div>`}]},
+    k_natya:{tag:'108 Karanas · Part III · Classical Dance Science',title:'Natya Shastra &amp;<br><em>Classical Dance Science</em>',sub:'Karanas 55–81: kinematic geometry, Bhava theory, Abhinaya science, and the cosmic grammar of sacred movement.',url:'https://natyashastraclassical-dance.culturalmusings.com',sym:'🎭',dark:true,tabs:['Introduction','Kinematic Framework','Cross-Domain Matrix'],pages:[{t:'The <em>Third Octave</em> — Karanas 55–81',b:`<p>The third quarter of the 108 Karanas corresponds to the Vāyu (Air) element, the Yajurveda, the prefrontal synchronisation protocols, and the Nakshatras from Maghā to Viśākhā.</p><div class="pull"><p>"Each Karana contains a complete cosmological statement — a posture that encodes planetary geometry, acoustic vibration, and kinematics simultaneously."</p></div><ul class="sd-key-list"><li>Karanas 55–81 — the Air Quarter · Prefrontal activation</li><li>Nakshatras Maghā through Viśākhā — 27 cosmic correlates</li><li>Tandava & Lasya — the masculine and feminine movement principles</li><li>Abhinaya science — the four modes of expression decoded scientifically</li></ul>`},{t:'The <em>Kinematic</em> Science',b:`<div class="sd-grid-2"><div class="sd-card"><h4>The Four Abhinaya Modes</h4><p>Āṅgika (bodily), Vācika (vocal), Āhārya (costume), and Sāttvika (psycho-physiological) — each mode activates a distinct neural processing stream.</p></div><div class="sd-card"><h4>Anga System</h4><p>Six Angas (major limbs), six Upāngas (minor limbs), and six Pratyangas (extremities) constitute a complete biomechanical taxonomy covering every possible combination of human movement.</p></div><div class="sd-card"><h4>Karana as Kinematic Equation</h4><p>Each Karana specifies the simultaneous state of all six Angas — a kinematic equation in flesh producing unique inertial loading patterns on the vestibular-cerebellar circuit.</p></div><div class="sd-card"><h4>Tandava & Lasya Streams</h4><p>The masculine Tandava and feminine Lasya encode the two fundamental principles of neural organisation: sympathetic activation and parasympathetic restoration.</p></div></div>`},{t:'Cross-Domain <em>Matrix</em>',b:`<ul class="sd-key-list"><li>Each Karana → corresponding Nakshatra, Rashi, and planetary ruler</li><li>Each Karana → corresponding Raga and its therapeutic prescription</li><li>Each Karana → corresponding 18th Siddha and their scientific domain</li><li>Each Karana → corresponding Upanishad and its philosophical teaching</li><li>Each Karana → corresponding modern scientific domain and research frontier</li></ul><div class="pull"><p>"The cross-domain matrix is proof that the ancient scientific tradition was not a collection of separate disciplines but a single unified science expressed in multiple vocabularies simultaneously."</p></div>`}]},
+    k_sacred:{tag:'108 Karanas · Sacred Synthesis · Vedas, Sri Chakra, Nada Brahman',title:'Karanas <em>Sacred Synthesis</em>',sub:'The complete Vedic synthesis: 108 Karanas mapped to the Vedas, Sri Chakra, Nada Brahman, Lalitha Sahasranama, Tantra, and Chidambaram temple sculpture.',url:'https://karanassacredsynthesis.culturalmusings.com',sym:'🔱',dark:true,tabs:['Introduction','Cosmological Layers','The Tantric Dimension'],pages:[{t:'What is the <em>Sacred Synthesis?</em>',b:`<p>The Sacred Synthesis presents the most complete single document mapping the 108 Karanas against the entirety of Vedic cosmological and spiritual science.</p><div class="pull"><p>"॥ नटराय नमस्तुभ्यम् ॥ — The Nataraja is not a religious icon. It is a diagram of the cosmos, encoded in the body of a dancer."</p></div><ul class="sd-key-list"><li>108 Karanas × Vedas — the scriptural root of each movement</li><li>Sri Chakra — the geometric matrix of the Karana architecture</li><li>Nada Brahman — the acoustic substrate of each Karana</li><li>72 Melakarthas — musical correspondences of all 108 Karanas</li></ul>`},{t:'The <em>Cosmological</em> Layers',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Vedic Register</h4><p>Each Karana is rooted in a specific Vedic hymn, Rishi lineage, and Vedic metre (Chandas). The four Vedas correspond to the four Karana quarters.</p></div><div class="sd-card"><h4>Tantric Register</h4><p>Each Karana activates a specific point in the Sri Chakra's 9 enclosures — the complete map of consciousness from gross matter to pure awareness (Bindu).</p></div><div class="sd-card"><h4>Musical Register</h4><p>Each Karana corresponds to a specific Melakartha Raga and its subset of Janya Ragas — the movement is the physical embodiment of the Raga's frequency signature.</p></div><div class="sd-card"><h4>Temple Register</h4><p>Each of the 108 Karanas is carved in stone at the gopurams of Chidambaram Nataraja temple — the only physical archive where all 108 can be directly studied and verified.</p></div></div>`},{t:'The <em>Tantric</em> Dimension',b:`<ul class="sd-key-list"><li>Lalitha Sahasranama — 1,000 names encoding the complete neuro-somatic map</li><li>Devi Khadgamala — the spatial-consciousness mapping of the Sri Chakra</li><li>Shaiva Siddhanta — the cosmological philosophy underlying Nataraja iconography</li><li>36 Tattvas — the 36 levels of reality mapped to 36 Angahara clusters</li><li>Kundalini anatomy — the Karana sequence as a complete Kundalini activation protocol</li></ul><div class="pull"><p>"The Karanas are not representations of cosmic forces — they are invocations. Each correctly performed Karana is a direct interface with the cosmic function it encodes."</p></div>`}]},
+    k_cel:{tag:'108 Karanas · Complete Celestial Synthesis · All Four Vedic Quarters',title:'Complete <em>Celestial Synthesis</em>',sub:'All 108 Karanas in their complete celestial context — 4 Vedic quarters, 4 × 27 Nakshatras, Shrutis, Melakarthas, Rishis, and the full astronomical framework.',url:'https://completecelestialsynthesis.culturalmusings.com',sym:'🌌',dark:true,tabs:['Introduction','The Four Quarters','Celestial Correspondences'],pages:[{t:'The <em>Complete Celestial Synthesis</em>',b:`<p>The Complete Celestial Synthesis is the most detailed document in the Karanas archive: a full analysis of all 108 Karanas with complete celestial, astronomical, acoustic, and neuroscientific correspondences for each.</p><div class="pull"><p>"Pādau vikṣipya saṃsthitya tathaiva ca karau nyaset — every Karana begins in the earth and reaches for the stars."</p></div><ul class="sd-key-list"><li>All 108 Karanas in complete sequential analysis</li><li>4 Vedic quarters × 27 Nakshatras = 108 celestial correspondences</li><li>22 Shrutis mapped to 22 acoustic activation classes</li><li>72 Melakarthas × 4 quarters = complete musical framework</li></ul>`},{t:'The <em>Four Vedic Quarters</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Pṛthvī Khaṇḍa (Earth)</h4><p>Karanas 1–27 · Ṛgveda · Cerebellar and proprioceptive activation · Nakshatras Aśvinī through Punarvasū.</p></div><div class="sd-card"><h4>Jala Khaṇḍa (Water)</h4><p>Karanas 28–54 · Sāmaveda · Limbic entrainment and emotional regulation · Nakshatras Puṣya through Citrā.</p></div><div class="sd-card"><h4>Vāyu Khaṇḍa (Air)</h4><p>Karanas 55–81 · Yajurveda · Prefrontal and inter-hemispheric synchronisation · Nakshatras Svātī through Śataabhiṣā.</p></div><div class="sd-card"><h4>Ākāśa Khaṇḍa (Ether)</h4><p>Karanas 82–108 · Atharvaveda · Transcendent integration and whole-brain coherence · Nakshatras Pūrvābhādra through Revatī.</p></div></div>`},{t:'Celestial <em>Correspondences</em>',b:`<ul class="sd-key-list"><li>Nakshatra: Aśvinī (α Arietis) · Deity: Aśvins · Rishi: Vasishtha</li><li>Shruti: 1 — Chandovatī (the metre-bearing ground-tone)</li><li>Melakartha: 1 (Kanakangi) · Swara: Sa (tonic)</li><li>Vedic quarter: Pṛthvī (Earth) · Element: Prithvi</li><li>Neurological: Cerebellar baseline activation · proprioceptive grounding</li></ul><div class="pull"><p>"The first Karana grounds the entire system — it is the Sa of movement, the Aśvinī of the body, the Vasishtha of the living tradition. Everything begins here."</p></div>`}]},
+    k_mcp:{tag:'108 Karanas · Clinical Application · Phase IV Protocol',title:'Master Consciousness Protocol<br><em>— Karanas Application</em>',sub:'The clinical dimension of the Karanas — Phase IV of the MCP protocol, where the 108 Karanas become a bio-somatic rewiring system.',url:'https://masterconsciousprotocol.culturalmusings.com',sym:'⚕',dark:true,tabs:['Introduction','Phase IV Protocol','Clinical Evidence'],pages:[{t:'The <em>Karanas</em> as Clinical Protocol',b:`<p>Within the Master Consciousness Protocol, the 108 Karanas constitute Phase IV — the most physically demanding and neurologically transformative phase of the five-phase healing system.</p><div class="pull"><p>"Phase IV is not dance therapy. It is a precision protocol for rewiring the human nervous system from the ground of the body upward."</p></div><ul class="sd-key-list"><li>Phase IV duration: 40 days structured progression</li><li>Daily practice: 45–90 minutes depending on phase week</li><li>Karanas introduced: 4–9 per week, in Vedic quarter sequence</li><li>Acoustic accompaniment: corresponding Raga from Phase II</li></ul>`},{t:'Phase IV <em>Protocol Structure</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Days 1–10 · Earth Quarter</h4><p>Karanas 1–9 introduced. Target: cerebellar baseline, proprioceptive calibration. Expected: improved balance, reduced chronic pain, enhanced body-awareness.</p></div><div class="sd-card"><h4>Days 11–20 · Water Quarter</h4><p>Karanas 28–36 introduced. Target: limbic system entrainment. Expected: reduced anxiety, improved emotional resilience, parasympathetic dominance.</p></div><div class="sd-card"><h4>Days 21–30 · Air Quarter</h4><p>Karanas 55–63 introduced. Target: bilateral hemispheric synchronisation. Expected: enhanced cognitive function, increased BDNF, improved working memory.</p></div><div class="sd-card"><h4>Days 31–40 · Ether Quarter</h4><p>Karanas 82–90 introduced. Target: whole-brain coherence. Expected: measurable gamma brainwave activity, HRV optimisation.</p></div></div>`},{t:'The <em>Clinical Evidence</em> Base',b:`<ul class="sd-key-list"><li>Bhattacharya et al. (2001) — EEG hemispheric synchronisation in classical Indian dance</li><li>BDNF research — complex cross-lateral movement triggers brain-derived neurotrophic factor release</li><li>Vestibular rehabilitation studies — Karana-type movements improve vestibular function</li><li>Parkinson's research — rhythm-based movement therapy significantly reduces tremor</li><li>Trauma neuroscience (van der Kolk, 2014) — somatic movement practice is essential for trauma resolution</li></ul><div class="pull"><p>"The body keeps the score — and the Karanas rewrite it. Phase IV is the most powerful single therapeutic tool in the entire MCP."</p></div>`}]},
+    k_ns:{tag:'108 Karanas · Natya Shastra Main Domain · Cultural Musings',title:'Natya Shastra — <em>Karanas Within the Text</em>',sub:"The Karanas as Bharata Muni encoded them — within the 6,000-verse Natya Shastra: source verses, chapter analysis, and the complete Angahara system.",url:'https://natyashastra.culturalmusings.com',sym:'📜',dark:true,tabs:['Introduction','Source Texts','Angahara System'],pages:[{t:'The <em>Natya Shastra</em> as Karanas Source',b:`<p>The primary source for the entire 108 Karanas research archive is Chapter IV (Tāṇḍava Lakṣaṇa) of the Natya Shastra, which contains the original definition, classification, and prescriptions for all 108 Karanas.</p><div class="pull"><p>"Aṅgahārā bhavant'yete karaṇaiḥ parikalpit āḥ — The Angaharas are formed by the combination of Karanas."</p></div><ul class="sd-key-list"><li>Chapter IV — the complete Karana source texts</li><li>108 Karanas in original Sanskrit with word-by-word analysis</li><li>36 Angaharas — composite configurations built from Karanas</li><li>Tāṇḍava Lakṣaṇa — the complete specification of sacred movement</li></ul>`},{t:'The <em>Source Texts</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>NS 4.32 — Karana Definition</h4><p>"Pādau vikṣipya saṃsthitya tathaiva ca karau nyaset" — "Having thrown the feet and standing, one places the hands similarly."</p></div><div class="sd-card"><h4>NS 4.261 — Angahara Origin</h4><p>"Aṅgahārā bhavant'yete karaṇaiḥ parikalpit āḥ" — "The Angaharas are formed by the combination of Karanas."</p></div><div class="sd-card"><h4>NS 1.14 — The Purpose</h4><p>"Nāṭyaṃ bhinnarucerjanasya bahudh āpyekaṃ samārādhanam" — "Natya is the single greatest means of uplifting people of diverse temperaments simultaneously."</p></div><div class="sd-card"><h4>NS 6.15 — Rasa Origin</h4><p>"Rasānāṃ ca sthāyibhāvānāṃ vyabhicāriṇ ām eva ca, saṃyogād rasa utpattiḥ" — "From the union of permanent and transient emotional states arises Rasa."</p></div></div>`},{t:'The <em>Angahara</em> System',b:`<ul class="sd-key-list"><li>36 Angaharas — each containing 4–9 Karanas in specific sequence</li><li>Angahara 1 (Śamopavāhanam) — the opening consecration sequence</li><li>Tandava Angaharas — the 18 masculine vigorous sequences</li><li>Lasya Angaharas — the 18 feminine graceful sequences</li><li>Maṭa-Bhrānta — the concluding cosmic rotation</li></ul><div class="pull"><p>"The 36 Angaharas are to the 108 Karanas as the 36 chapters of the Natya Shastra are to its 6,000 verses — the same knowledge at two levels of resolution."</p></div>`}]},
+
+    /* ══════════════════════════════════════════
+       NEW SD ENTRIES — Sanskrit (6 topics)
+    ══════════════════════════════════════════ */
+    skt_origin:{
+        tag:'Sanskrit · Origins · 5,000 Years of Living Knowledge',
+        title:'Sanskrit — <em>The Eternal Language</em>',
+        sub:'From Proto-Indo-European roots to the oldest recorded literature — the birth, evolution, and living continuity of the world\'s most precisely documented language.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'ॐ',bannerClass:'skt-banner',tabsClass:'skt-tabs',pageClass:'skt-page',
+        tabs:['Origins & PIE','The Vedic Period','Sanskrit Today'],
         pages:[
-            {t:'What is <em>Bio Resonance?</em>',b:`<p>Bio Resonance is the study of the electromagnetic and quantum properties of living systems — the measurable fields of energy and information constituting the "invisible body" known in Vedic science as the Pranamaya Kosha.</p><div class="pull"><p>"Prana is not breath. It is the intelligence that drives breath — the bio-electromagnetic field that animates matter into life."</p></div><ul class="sd-key-list"><li>Pranamaya Kosha — the bio-electromagnetic body</li><li>72,000 Nadis — the peripheral nervous system's energetic correlate</li><li>Seven Chakras — the endocrine-neural interface</li><li>Bio-photon emission — cellular light communication</li></ul>`},
-            {t:'Ancient Theory Meets <em>Modern Physics</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Bio-Photon Research</h4><p>Cells emit coherent light — validating the ancient concept of Tejas (inner radiance) as a measurable biological phenomenon.</p></div><div class="sd-card"><h4>Heart Rate Variability</h4><p>HRV research confirms the heart's electromagnetic field entrains the brain's neural rhythms, as described in Vedic models.</p></div><div class="sd-card"><h4>Quantum Coherence</h4><p>Photosynthesis and enzyme catalysis exploit quantum coherence — validating the Vedic claim that the cosmos operates simultaneously at gross and subtle levels.</p></div><div class="sd-card"><h4>Torsion Fields</h4><p>Russian physicist Shipov's torsion field research aligns with the Vedic concept of Akasha — subtle ether carrying information beyond electromagnetic limits.</p></div></div>`},
-            {t:'Healing <em>Applications</em>',b:`<p>If the body communicates through fields and frequencies, then healing includes restoration of coherent frequency signatures across all levels of the bio-field.</p><ul class="sd-key-list"><li>Pranayama — conscious regulation of the bio-electromagnetic field</li><li>Mantra therapy — entraining cellular resonance through precise acoustic frequencies</li><li>Colour therapy — Chakra resonance through specific wavelengths</li><li>Marma therapy — direct intervention at neurovascular bio-field nodes</li><li>Sound bowl therapy — external frequency entrainment of the body's bio-field</li></ul><div class="pull"><p>"Every healing tradition in history has understood, in its own language, that health is coherence — and disease is dissonance."</p></div>`}
+            {t:'The <em>Proto-Indo-European</em> Root',b:`<p>Sanskrit belongs to the Indo-European language family — one of the largest on earth. The common ancestor, Proto-Indo-European (PIE), was spoken approximately 4,500–6,000 years ago. Sanskrit preserves features that other Indo-European languages lost: eight grammatical cases, dual number, a pitch-accent system, and a complete three-mora vowel system.</p><div class="pull"><p>"The Sanskrit word for 'father' — pitṛ — directly cognates with Latin pater, Greek patēr, Old English fæder, Persian pedar. One root; one ancient family."</p></div><ul class="sd-key-list"><li>Eight grammatical cases — expressing relationships without prepositions</li><li>Dual number — surviving as a unique archaic feature</li><li>Pitch accent — three tones making Vedic Sanskrit fully tonal</li><li>2,000 verbal roots (dhātus) — the irreducible semantic atoms of the language</li></ul>`},
+            {t:'The <em>Vedic Period</em> — Humanity\'s Oldest Literature',b:`<p>The Ṛgveda — composed in Rigvedic Sanskrit — is humanity's oldest continuously transmitted literature. Its 10,552 mantras were preserved through an oral tradition of extraordinary rigour: the text was memorised in eight different recitation patterns creating a biological error-correcting code across 3,500+ years.</p><div class="sd-grid-2"><div class="sd-card"><h4>Ṛgveda</h4><p>10,552 mantras in 1,028 hymns — the oldest stratum of Sanskrit, closest to reconstructed Proto-Indo-Iranian.</p></div><div class="sd-card"><h4>Sāmaveda</h4><p>The Veda of melody — the direct progenitor of Indian classical music and the Sapta Swaras.</p></div><div class="sd-card"><h4>Upaniṣads</h4><p>108 texts creating the complete Sanskrit vocabulary for describing the structure of consciousness — untranslatable in any other language.</p></div><div class="sd-card"><h4>Oral Preservation</h4><p>UNESCO recognised Vedic chanting on the Representative List of Intangible Cultural Heritage — 3,500 years unbroken.</p></div></div>`},
+            {t:'Sanskrit as a <em>Living Language</em> Today',b:`<p>Sanskrit is not a dead language. The town of Mattur in Karnataka conducts daily life entirely in Sanskrit. Sudharma, the world's only daily Sanskrit newspaper, has published since 1970. All-India Radio broadcasts Sanskrit news. Researchers in AI and quantum computing study Sanskrit's formal precision as a foundation for next-generation natural language processing.</p><ul class="sd-key-list"><li>AI research — Pāṇini's grammar structurally identical to formal language theory</li><li>Neuroscience — Sanskrit mantra chanting produces measurable neurological effects</li><li>India's NEP 2020 — Sanskrit education mandated at all levels</li><li>Digital archives — 5.2 million manuscripts being systematically digitised</li></ul><div class="pull"><p>"Sanskrit's formal properties make it uniquely suited to the age of AI. Ancient precision meets contemporary computation — 2,400 years apart, they speak the same grammar."</p></div>`}
         ]
     },
-    nada: {
-        tag:'Research Domain · Sound as Medicine · Acoustic Healing',title:'Nada <em>Chikitsa</em>',
-        sub:'The ancient pharmacopoeia of sound — specific Ragas, Mantras, and Swaras prescribe precise neurological and physiological effects.',
-        url:'https://nada-chikitsa.culturalmusings.com',sym:'🔊',dark:false,
-        tabs:['Introduction','Raga Pharmacopoeia','Clinical Framework'],
+    skt_panini:{
+        tag:'Sanskrit · Pāṇini · Aṣṭādhyāyī · Formal Grammar',
+        title:'Pāṇini &amp; <em>Aṣṭādhyāyī</em>',
+        sub:'The world\'s first and most complete formal grammar — 3,959 rules that fully describe Classical Sanskrit and anticipate modern computer science by 2,400 years.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'📐',bannerClass:'skt-banner',tabsClass:'skt-tabs',pageClass:'skt-page',
+        tabs:['The Grammar','Śivasūtras','Computer Science'],
         pages:[
-            {t:'What is <em>Nada Chikitsa?</em>',b:`<p>Nada Chikitsa — "sound healing" — is the most ancient and universal of all medical traditions. The Vedic understanding: reality is fundamentally acoustic. Health is harmonic coherence; disease is dissonance. Healing is the restoration of the body's natural frequency signature through sound.</p><div class="pull"><p>"The Sapta Swaras are not notes. They are keys — each unlocking a specific physiological state, glandular activation, and neurological frequency band."</p></div><ul class="sd-key-list"><li>Nada Brahman — the acoustic substrate of reality</li><li>Sapta Swaras — seven healing frequencies</li><li>Raga Chikitsa — specific Ragas as therapeutic prescriptions</li><li>Beeja Aksharas — seed syllables activating neural pathways</li></ul>`},
-            {t:'The Raga <em>Pharmacopoeia</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Raga Bhairavi</h4><p>Morning Raga · anxiety, insomnia. Produces measurable cortisol reduction and delta-theta brainwave entrainment.</p></div><div class="sd-card"><h4>Raga Yaman</h4><p>Evening Raga · elevated mood, creativity. Stimulates serotonin and activates the prefrontal cortex.</p></div><div class="sd-card"><h4>Raga Bageshri</h4><p>Midnight Raga · deepens meditation, reduces blood pressure, induces parasympathetic dominance.</p></div><div class="sd-card"><h4>Raga Darbari Kanada</h4><p>Late-night Raga · prescribed for grief and emotional release. Activates the limbic system in a controlled therapeutic arc.</p></div></div>`},
-            {t:'Clinical <em>Framework</em>',b:`<ul class="sd-key-list"><li>Assessment — identifying the patient's Dosha and neurological profile</li><li>Prescription — selecting appropriate Ragas, Mantras, or instrument frequencies</li><li>Administration — live performance, recorded frequencies, or self-practice protocols</li><li>Monitoring — HRV, EEG, and subjective wellbeing tracking</li><li>Integration — combining sound therapy with Pranayama, Mudra, and dietary protocols</li></ul><div class="pull"><p>"The ancient physician listened with their ears to diagnose. They prescribed with sound to heal. Modern medicine is only now rediscovering what this means clinically."</p></div>`}
+            {t:'Pāṇini — <em>The Grammarian of Grammarians</em>',b:`<p>Pāṇini (c. 4th century BCE) composed the Aṣṭādhyāyī — "Eight Chapters" — a system of 3,959 sūtras that completely and formally describes Classical Sanskrit. It is not a description of usage but a generative system: a finite set of rules that produces every grammatical Sanskrit utterance and excludes every ungrammatical one.</p><div class="pull"><p>"Not merely the earliest known grammar but the most advanced grammar of any language." — Donald Knuth, Stanford</p></div><ul class="sd-key-list"><li>3,959 sūtras — the most information-dense intellectual document ever written</li><li>Generative system — structurally identical to Chomsky's generative grammar</li><li>Memorizable in its entirety — the density of a formal mathematical system in oral form</li><li>Dhātupāṭha appendix — all Sanskrit verbal roots catalogued with meaning and class</li></ul>`},
+            {t:'The Śivasūtras — <em>Phonemic Foundation</em>',b:`<p>Before the 3,959 rules, Pāṇini prefixes 14 special sūtras called the Māheśvara Sūtras or Śivasūtras — a compressed arrangement of all Sanskrit phonemes received, according to legend, from the 14 beats of Shiva's ḍamaru drum during the cosmic Tāṇḍava dance.</p><div class="pull"><p>"The connection to Shiva's dance encodes a profound insight: all of language emerges from primordial sound — Nāda is the source of the varṇamālā."</p></div><ul class="sd-key-list"><li>14 Śivasūtras — all Sanskrit phonemes in a precision-compressed sequence</li><li>Any subset of phonemes referenceable with just two markers</li><li>The system connects directly to Nāda Brahman — sound as cosmic substrate</li><li>Commentaries by Kātyāyana and Patañjali's Mahābhāṣya — the complete tradition</li></ul>`},
+            {t:'Pāṇini &amp; <em>Computer Science</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Backus-Naur Form</h4><p>BNF — the standard notation for programming language syntax introduced in 1959 — is structurally identical to Pāṇini's sūtra format. The independent discovery confirms shared underlying logic.</p></div><div class="sd-card"><h4>Context-Sensitive Grammar</h4><p>Knuth attributed the concept of context-sensitive grammar to Pāṇini. The Aṣṭādhyāyī generates exactly the set of well-formed Sanskrit sentences — a complete formal language.</p></div><div class="sd-card"><h4>Sanskrit NLP</h4><p>Sanskrit's high morphological regularity allows each token to carry more grammatical information — making LLMs trained on Sanskrit corpus data remarkably efficient.</p></div><div class="sd-card"><h4>AI Knowledge Representation</h4><p>Rick Briggs' 1985 NASA report demonstrated Sanskrit is the only natural language suitable for direct AI knowledge representation without loss of logical structure.</p></div></div>`}
         ]
     },
-    spirit: {
-        tag:'Research Domain · Vedanta · Philosophy of Consciousness',title:'Spiritual <em>Philosophical</em>',
-        sub:'The convergence of Vedantic non-dualism and contemporary philosophy — where ancient metaphysics meets quantum physics.',
-        url:'https://spiritualphilosophical.culturalmusings.com',sym:'🕉️',dark:false,
-        tabs:['Introduction','Core Philosophy','Modern Intersections'],
+    skt_phonology:{
+        tag:'Sanskrit · Phonology · Varṇamālā · Sandhi',
+        title:'Phonology &amp; <em>Varṇamālā</em>',
+        sub:'The world\'s most systematically organised alphabet — Sanskrit\'s science of sound, from the 49 phonemes of the Varṇamālā to Sandhi, Bīja mantras, and acoustic cosmology.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'🔊',bannerClass:'skt-banner',tabsClass:'skt-tabs',pageClass:'skt-page',
+        tabs:['The Alphabet','Sandhi','Bīja Mantras'],
         pages:[
-            {t:'The <em>Philosophical</em> Foundation',b:`<p>The Spiritual Philosophical domain rests on a single premise drawn from the Upanishads: that consciousness is not a product of matter, but its source. This is precisely what quantum physics, neuroscience, and philosophy of mind are now being forced to confront.</p><div class="pull"><p>"Tat Tvam Asi — That Thou Art. The observer and the observed are not two. This is not mysticism. It is the only model of reality that quantum mechanics does not contradict."</p></div><ul class="sd-key-list"><li>Brahman — the undivided ground of all existence</li><li>Atman — individual consciousness as Brahman through form</li><li>Maya — the appearance of multiplicity within unity</li><li>Turiya — the fourth state beyond waking, dreaming, and deep sleep</li></ul>`},
-            {t:'<em>Core</em> Philosophical Positions',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Consciousness as Primary</h4><p>Against physicalist reductionism: consciousness cannot be derived from matter because matter itself is a construct within consciousness. This is Advaita Vedanta — now seriously considered by leading philosophers of mind.</p></div><div class="sd-card"><h4>Non-Duality in Practice</h4><p>Non-duality is not a belief to hold — it is a recognition to achieve through practice. The entire edifice of Yoga, Tantra, and classical arts exists to produce this recognition directly.</p></div><div class="sd-card"><h4>Time, Space & Causality</h4><p>Vedantic understanding of time as cyclical challenges the Newtonian framework — finding support in the block universe of relativity and retrocausality experiments in quantum physics.</p></div><div class="sd-card"><h4>The Self as Process</h4><p>Following Abhinavagupta's Kashmir Shaivism: the self is a dynamic process of self-recognition — Aham Vimarsha — the universe coming to know itself through the individual.</p></div></div>`},
-            {t:'Meeting <em>Modern</em> Thought',b:`<ul class="sd-key-list"><li>Advaita Vedanta and Quantum Non-Locality — the Bell Theorem vindication</li><li>Turiya State and the Default Mode Network — neuroscience of non-dual awareness</li><li>Karma and Complex Systems — causal emergence in self-organising systems</li><li>Maya and the Simulation Hypothesis — Vedantic precedent for Bostrom's argument</li><li>Moksha and Integrated Information Theory — Tononi's φ and liberation</li></ul><div class="pull"><p>"The most honest philosophers of mind today are, often without knowing it, rediscovering Advaita Vedanta. The names change. The recognition is the same."</p></div>`}
+            {t:'The <em>Varṇamālā</em> — Garland of Phonemes',b:`<p>The Sanskrit alphabet is not merely a writing system but a precise scientific classification of the entire phonemic range of human vocal production. Organised by point of articulation (kaṇṭhya/velar through oṣṭhya/labial) and manner of articulation, it presents five phonemes at each point — unvoiced unaspirated, unvoiced aspirated, voiced unaspirated, voiced aspirated, and nasal — a systematic precision unmatched in any other writing tradition.</p><div class="pull"><p>"The Varṇamālā is not a cultural artifact — it is an empirical classification of the human vocal apparatus, developed by ancient phoneticians with the rigour of modern science."</p></div><ul class="sd-key-list"><li>49+ phonemes systematically organised by articulation point and manner</li><li>Vocalic ṛ and ḷ — unique to Sanskrit among surviving languages</li><li>Three-mora pluta vowel — found in no other documented language</li><li>Complete tonal system in Vedic Sanskrit — three pitch accents</li></ul>`},
+            {t:'Sandhi — <em>The Science of Junction</em>',b:`<p>Sandhi (literally 'junction') is the system of phonological changes at word and morpheme boundaries. These are not exceptions — they are exceptionless phonological rules. When two words meet, their boundary sounds merge, elide, assimilate, or transform according to predictable rules described in Pāṇini's approximately 200 sandhi rules.</p><div class="sd-grid-2"><div class="sd-card"><h4>External Sandhi</h4><p>Between words: word-final -a meets word-initial a- to produce ā. Creates the connected, flowing quality of Sanskrit speech — the grammar of continuity.</p></div><div class="sd-card"><h4>Internal Sandhi</h4><p>Within a word at morpheme boundaries — equally systematic, deriving from a small set of phonological principles applicable to all cases.</p></div><div class="sd-card"><h4>Visarga Sandhi</h4><p>The transformation of final ḥ (visarga) before various initial consonants — one of the most characteristic features of Sanskrit phonology.</p></div><div class="sd-card"><h4>Modern NLP Challenge</h4><p>Sandhi is the primary challenge in Sanskrit NLP: word boundaries are often hidden in connected text, requiring specialised sandhi-splitting algorithms.</p></div></div>`},
+            {t:'Bīja Mantras — <em>Phonemes as Cosmic Seeds</em>',b:`<p>At the deepest level of Sanskrit phonological understanding lies the doctrine of Bīja ('seed') — the teaching that individual phonemes are not merely sounds but concentrations of specific cosmic energies. In tantric tradition, every phoneme of the varṇamālā is identified with a specific goddess of the Mātṛkā pantheon, with a specific geometric form (yantra), and with a specific cosmic principle.</p><ul class="sd-key-list"><li>OM — universal sound combining a+u+m = three states of consciousness</li><li>HRĪM — bīja of the Divine Mother — point of articulation activates hypothalamic response</li><li>KLĪM — bīja of attraction — palatal activation producing specific neural entrainment</li><li>ŚRĪM — bīja of Lakṣmī/abundance — activates prefrontal positive-valence circuits</li></ul><div class="pull"><p>"The bīja mantras are phonological formulas whose power derives from specific combinations of points of articulation — producing measurable patterns of vibration in the body, brain, and subtle energy field."</p></div>`}
         ]
     },
-    mcp: {
-        tag:'Research Domain · Integrative Protocol · Clinical Application',title:'Master Consciousness <em>Protocol</em>',
-        sub:'The 5-phase integrative framework for natural healing and liberation of human potential — the clinical synthesis of the entire research archive.',
-        url:'https://masterconsciousprotocol.culturalmusings.com',sym:'⚕️',dark:false,
-        tabs:['Introduction','The 5 Phases','Research Base'],
+    skt_music:{
+        tag:'Sanskrit · Music Theory · Rāga Science · Sargam',
+        title:'Sanskrit &amp; <em>Music Theory</em>',
+        sub:'The complete Sanskrit vocabulary of Indian classical music — Rāga nomenclature, Sargam solfège, Tāla theory, and the direct connection between Sanskrit prosody and musical rhythm.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'🎵',bannerClass:'skt-banner',tabsClass:'skt-tabs',pageClass:'skt-page',
+        tabs:['Foundation Texts','Rāga Names','Tāla & Chandas'],
         pages:[
-            {t:'What is the <em>Master Consciousness Protocol?</em>',b:`<p>The Master Consciousness Protocol (MCP) is Naredla Rama Chandra's culminating synthesis — a clinically structured, five-phase integrative framework drawing from the full depth of the research archive to create a unified system for natural healing and consciousness expansion.</p><div class="pull"><p>"The goal of the MCP is not wellness. The goal is the complete liberation of human potential — physical, neurological, and conscious — through ancient science applied with modern precision."</p></div><ul class="sd-key-list"><li>Phase I — Shuddhi: Purification of the physical and bio-energetic body</li><li>Phase II — Nada: Acoustic calibration of the nervous system</li><li>Phase III — Mudra: Neural pathway activation through precise gesture</li><li>Phase IV — Karana: Bio-somatic rewiring through the 108 Karanas</li><li>Phase V — Rasa: Emotional-neurological integration through the Nine Rasas</li></ul>`},
-            {t:'The <em>Five Phases</em> in Detail',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Phase I — Shuddhi</h4><p>Pranayama sequences from Gorakshanath's Nath Yoga tradition. Establishes autonomic coherence through HRV elevation and cortisol normalisation. Duration: 21 days.</p></div><div class="sd-card"><h4>Phase II — Nada</h4><p>Raga-based acoustic therapy from the Nada Chikitsa tradition. Entrains brainwave patterns and begins limbic regulation. Duration: 21 days concurrent.</p></div><div class="sd-card"><h4>Phase III — Mudra</h4><p>Sequential Mudra activation from the Natya Shastra and Tantric traditions. Stimulates motor cortex and modulates endocrine function. Duration: 14 days.</p></div><div class="sd-card"><h4>Phases IV & V</h4><p>Progressive introduction of selected 108 Karanas (40 days) followed by Rasa-based psycho-therapeutic emotional integration — the complete bio-somatic and consciousness rewriting.</p></div></div>`},
-            {t:'The Research <em>Foundation</em>',b:`<ul class="sd-key-list"><li>Porges (2011) — Polyvagal Theory validates Phase I Pranayama protocols</li><li>Thaut (2014) — Neurologic Music Therapy confirms Phase II Nada outcomes</li><li>Bhattacharya (2001) — EEG studies confirm bilateral sync in classical dance</li><li>Grossman (2004) — Mindfulness neuroimaging confirms Phase V Rasa outcomes</li><li>BDNF research — confirms neuroplasticity outcomes of Karana movement</li></ul><div class="pull"><p>"Every element of the MCP has ancient roots thousands of years deep — and modern scientific validation to match."</p></div>`}
+            {t:'The <em>Sanskrit Foundation</em> of Indian Music',b:`<p>The entire theoretical edifice of Indian classical music — both Carnatic and Hindustani — is built on Sanskrit foundations. The technical vocabulary of rāga theory, the names of the rāgas themselves, the treatises that define them, and the rules of performance are all encoded in Sanskrit and accessible only through Sanskrit.</p><div class="pull"><p>"The Sāmaveda's seven primary svaras — Ṣaḍja, Ṛṣabha, Gāndhāra, Madhyama, Pañcama, Dhaivata, Niṣāda — are the seven notes of Indian music. Their names are Sanskrit; their ratios are Vedic."</p></div><ul class="sd-key-list"><li>Nāṭya Śāstra — the oldest surviving music theory text (200 BCE–200 CE)</li><li>Bṛhaddeśī of Mataṅga — first text to use 'rāga' in its technical sense (9th century)</li><li>Saṃgīta Ratnākara of Śārṅgadeva — the most comprehensive Sanskrit music treatise</li><li>Caturdaṇḍiprakāśikā — the foundational text of the 72-Melakarta system (1620 CE)</li></ul>`},
+            {t:'Sanskrit <em>Rāga Nomenclature</em>',b:`<p>Sanskrit rāga names are not arbitrary labels — they are descriptive poetic names encoding the rāga's character, presiding deity, or cosmological association. Understanding the Sanskrit etymology transforms the listening experience.</p><div class="sd-grid-2"><div class="sd-card"><h4>Bhairavī</h4><p>Feminine form of Bhairava — the fierce Śiva. Dawn rāga of pathos, farewell, and emotional release. The rāga of Kali's energy in feminine form.</p></div><div class="sd-card"><h4>Kalyāṇī / Yaman</h4><p>From kalyāṇa = auspicious, beautiful. The evening rāga of grandeur, repose, and Sarasvatī's grace. Associated with serotonin activation.</p></div><div class="sd-card"><h4>Hindolam / Mālkauns</h4><p>From hindola = swing — the gentle rocking rāga of Viṣṇu's cradle. Evokes deep meditative states and activates parasympathetic dominance.</p></div><div class="sd-card"><h4>Hamsadhvani</h4><p>The sound (dhvani) of the swan (haṃsa) — a pentatonic rāga of wonder, associated with Śānta rasa and elevated spiritual awareness.</p></div></div>`},
+            {t:'Tāla, Chandas &amp; the <em>Shared Grammar</em>',b:`<p>The Sanskrit prosody–music tāla connection demonstrates that verbal and musical rhythms are, in the Indian tradition, literally the same science. The mātrā — the unit of syllable duration in Sanskrit prosody — is the same word as the tāla time unit in music.</p><ul class="sd-key-list"><li>Mātrā (syllable duration) = Mātrā (tāla time unit) — one word, one science</li><li>Laghu (short syllable) = Laghu (one-mātrā beat) — identical across both systems</li><li>Guru (long syllable) = Guru (two-mātrā beat) — the same binary quantitative framework</li><li>Piṅgala's Chandaḥśāstra — founding both Sanskrit prosody AND binary mathematics</li></ul><div class="pull"><p>"A Carnatic violinist performing in Āditāla operates in the same binary duration framework as a Vedic priest reciting a Triṣṭubh verse. Sanskrit metre and Indian classical music share not just historical origin but ongoing structural identity."</p></div>`}
         ]
     },
-    span: {
-        tag:'Research Domain · Vibrational Inquiry · Kashmir Shaivism',title:'Spandana <em>Shodha</em>',
-        sub:'The vibrational inquiry — Spanda as the primordial pulse of cosmic intelligence, investigated through complexity science and Kashmir Shaivism.',
-        url:'https://spandanashodha.culturalmusings.com',sym:'✨',dark:false,
-        tabs:['Introduction','Spanda Theory','Inquiry Methods'],
+    skt_yoga:{
+        tag:'Sanskrit · Yoga · Mantra · Consciousness Technology',
+        title:'Sanskrit &amp; <em>Yoga</em>',
+        sub:'Sanskrit as the technology of consciousness — from the Yoga Sūtras of Patañjali to Prāṇāyāma nomenclature, āsana names, and the science of mantra transformation.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'🧘',bannerClass:'skt-banner',tabsClass:'skt-tabs',pageClass:'skt-page',
+        tabs:['Yoga Sūtras','Āsana Names','Mantra Science'],
         pages:[
-            {t:'What is <em>Spandana Shodha?</em>',b:`<p>Spandana Shodha — "the investigation of vibration" — is dedicated to the most fundamental question in both ancient and modern science: what is the nature of the primordial oscillation from which all reality emerges?</p><div class="pull"><p>"At the most fundamental level, there is only vibration. Every atom, every thought, every cell, every star — is Spanda recognising itself."</p></div><ul class="sd-key-list"><li>Spanda — the primordial pulse of consciousness</li><li>Shakti — the dynamic power of cosmic intelligence</li><li>Nada — gross acoustic vibration as Spanda's expression</li><li>Bindu — the point of maximum condensed Spanda</li></ul>`},
-            {t:'The <em>Spanda</em> Theory',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Spanda & Quantum Vacuum</h4><p>Pure consciousness as dynamic emptiness maps precisely onto the quantum vacuum — the "empty" space seething with virtual particle pairs.</p></div><div class="sd-card"><h4>Spanda & String Theory</h4><p>At the Planck scale, string theory describes reality as vibrating one-dimensional strings — as described in Spanda doctrine 1,000 years earlier.</p></div><div class="sd-card"><h4>Spanda & Complexity Science</h4><p>Self-organising complex systems exhibit a characteristic "spandana" property: a dynamic balance between stability and chaos generating emergent intelligence.</p></div><div class="sd-card"><h4>Spanda & Bio-Field</h4><p>The bio-electromagnetic field of the body is a macroscopic expression of Spanda — the coherent oscillatory behaviour of billions of cells producing a unified bio-resonant system.</p></div></div>`},
-            {t:'Methods of <em>Inquiry</em>',b:`<ul class="sd-key-list"><li>Contemplative inquiry — direct investigation of Spanda through deep meditation practice</li><li>Acoustic analysis — cymatics and Chladni pattern studies of sound-form relationships</li><li>Bio-field measurement — HRV, EEG, and bio-photon emission as proxies of Spanda coherence</li><li>Cross-textual scholarship — comparative analysis of Spanda Karikas with modern physics</li><li>Living system observation — studying self-organisation in biological and ecological systems</li></ul><div class="pull"><p>"Shodha means both purification and investigation — this domain is both: a purification of our understanding of vibration, and a rigorous investigation of its nature."</p></div>`}
+            {t:'The Yoga Sūtras — <em>Sanskrit as a Technology of Mind</em>',b:`<p>Patañjali's Yoga Sūtras — 196 aphorisms in Classical Sanskrit — represent the most concise and complete systematic psychology of meditation in any tradition. Written in the same sūtra format as Pāṇini's grammar, they define yoga as citta-vṛtti-nirodhaḥ — 'the cessation of the modifications of the mind-stuff' — and systematically describe the entire architecture of meditative practice.</p><div class="pull"><p>"The Sanskrit technical vocabulary of the Yoga Sūtras is untranslatable in any single word — each term carries a precise phenomenological meaning that requires multiple English words to approximate."</p></div><ul class="sd-key-list"><li>Citta — mind-stuff, the substrate of all mental activity including the unconscious</li><li>Vṛtti — modification (5 types: valid cognition, error, conceptual construction, sleep, memory)</li><li>Kleśas — the five afflictions obstructing yoga</li><li>Samādhi — the final state of complete absorption and liberation</li></ul>`},
+            {t:'Āsana Names — <em>Sanskrit as Practice Instruction</em>',b:`<p>The classical āsanas are named in Sanskrit, and their Sanskrit names encode the purpose and quality of each posture. Understanding the Sanskrit etymology transforms āsana practice from physical exercise into contemplative inquiry.</p><div class="sd-grid-2"><div class="sd-card"><h4>Tāḍāsana</h4><p>Tāḍa = mountain. The posture of ground, stability, immovability. The mountain does not react — it simply is.</p></div><div class="sd-card"><h4>Śavāsana</h4><p>Śava = corpse. The most difficult āsana — complete dissolution of the doer into pure being. A rehearsal of what persists through death.</p></div><div class="sd-card"><h4>Sukhāsana</h4><p>Sukha = happiness (literally 'good space' — su=good, kha=space). Sanskrit encodes the insight that happiness is ultimately the quality of one's inner space.</p></div><div class="sd-card"><h4>Prāṇāyāma</h4><p>Prāṇa + āyāma = expansion (NOT control) of the life force. A precise Sanskrit correction: the breath is expanded, not restrained.</p></div></div>`},
+            {t:'Mantra Science — <em>Neurological Transformation Through Sound</em>',b:`<p>A Sanskrit mantra is a precisely structured composition with formal components: Ṛṣi (seer), Chandas (metre), Devatā (divine principle), Bīja (seed syllable), Śakti (power), Kīlaka (pin), and Viniyoga (application). Modern neuroscience is beginning to validate the claims of the mantra tradition.</p><ul class="sd-key-list"><li>EEG studies — sustained Sanskrit mantra chanting increases alpha and theta activity</li><li>Cortisol research — measurable reduction in primary stress hormone during and after practice</li><li>Memory studies — Vedic recitation practitioners show enlarged hippocampal volume</li><li>BDNF — Sanskrit pronunciation activates motor cortex areas triggering neurotrophic growth</li></ul><div class="pull"><p>"The specific acoustic properties of Sanskrit — the precise articulation required by Pāṇini's phonological rules, the resonance created in specific chambers of the skull — are key mechanisms of transformation confirmed by contemporary neuroscience."</p></div>`}
         ]
     },
-    k_root: {
-        tag:'108 Karanas · Master Architecture · Root Map',title:'Karanas <em>Root Map</em>',
-        sub:'The master architectural overview of the entire 108 Karanas research — 4 × 27 domains, 22 Shrutis, 72 Melakarthas and all systems converging as one.',
-        url:'https://karanasrootmap.culturalmusings.com',sym:'॥',dark:true,
-        tabs:['Introduction','Architecture','The Synthesis Principle'],
+    skt_consciousness:{
+        tag:'Sanskrit · Consciousness · Advaita · Kashmir Śaivism',
+        title:'Sanskrit &amp; <em>Consciousness</em>',
+        sub:'Sanskrit as the map of consciousness — from Advaita Vedānta\'s four states to Kashmir Śaivism\'s Pratyabhijñā philosophy, and their dialogue with modern neuroscience.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'🔮',bannerClass:'skt-banner',tabsClass:'skt-tabs',pageClass:'skt-page',
+        tabs:['Vocabulary of Consciousness','Four States','Modern Neuroscience'],
         pages:[
-            {t:'The <em>Root Map</em> — What It Is',b:`<p>The Karanas Root Map is the master architectural document of the entire 108 Karanas research archive. The governing synthesis principle: "What is the Karana, that is the Swara. What is the Swara, that is Brahman. What is Brahman, that alone is the Body."</p><div class="pull"><p>"The Root Map is not a table of contents. It is a proof — that the 108 Karanas and the 108 dimensions of Vedic science are the same reality described in different languages."</p></div><ul class="sd-key-list"><li>4 Vedic quarters × 27 Nakshatras = 108 convergence points</li><li>22 Shrutis mapped to 22 classes of sacred movement</li><li>72 Melakarthas corresponding to 72 Nadi-activation sequences</li><li>Rudram Namakam/Chamakam as the acoustic framework</li></ul>`},
-            {t:'The <em>Architecture</em> of 108',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Domain I — Pṛthvī (Earth)</h4><p>Karanas 1–27 · Ṛgveda · Cerebellar activation · Nakshatras Aśvinī to Bharaṇī · Shrutis 1–7 · Melakarthas 1–18.</p></div><div class="sd-card"><h4>Domain II — Jala (Water)</h4><p>Karanas 28–54 · Sāmaveda · Limbic entrainment · Nakshatras Kṛttikā to Āśleṣā · Shrutis 8–13 · Melakarthas 19–36.</p></div><div class="sd-card"><h4>Domain III — Vāyu (Air)</h4><p>Karanas 55–81 · Yajurveda · Prefrontal synchronisation · Nakshatras Maghā to Viśākhā · Shrutis 14–19 · Melakarthas 37–54.</p></div><div class="sd-card"><h4>Domain IV — Ākāśa (Ether)</h4><p>Karanas 82–108 · Atharvaveda · Transcendent integration · Nakshatras Anurādhā to Revatī · Shrutis 20–22 · Melakarthas 55–72.</p></div></div>`},
-            {t:'The <em>Synthesis Principle</em> Explained',b:`<ul class="sd-key-list"><li>Carnatic & Hindustani systems both contained within the 72-Melakartha framework</li><li>12 notes × 3 Saptakas = 36 — the same as the chapters of the Natya Shastra</li><li>Lalitha Sahasranama's 1,000 names encoding the complete neuro-somatic map</li><li>Devi Khadgamala as the tantra-to-Karana correspondence matrix</li><li>Rudram's 11 Anuvākas corresponding to 11 movement clusters</li></ul><div class="pull"><p>"The Root Map is the Rosetta Stone of the archive — the key that shows every domain is writing the same thing in a different script."</p></div>`}
+            {t:'The Sanskrit <em>Vocabulary of Consciousness</em>',b:`<p>No other language in human history has developed as extensive and precise a technical vocabulary for describing the structure and states of consciousness as Sanskrit. This vocabulary — developed over 3,500 years through the Upaniṣads, Yoga Śāstras, Buddhist Abhidharma, and the non-dual traditions of Advaita and Kashmir Śaivism — constitutes the most sophisticated phenomenological literature in existence.</p><div class="pull"><p>"The Sanskrit precision in describing states of consciousness — developed over 3,500 years of systematic introspection — is proving invaluable as a phenomenological map for neuroscientific investigation."</p></div><ul class="sd-key-list"><li>Citta — mind-stuff (substrate of all mental activity including unconscious conditioning)</li><li>Cetanā — intentional consciousness (the directedness of awareness toward an object)</li><li>Prajñā — wisdom-consciousness (the knowing faculty at its highest, non-dual expression)</li><li>Spanda — vibration (the primordial pulse of consciousness in Kashmir Śaivism)</li></ul>`},
+            {t:'The Four States — <em>Māṇḍūkya Upaniṣad</em>',b:`<p>The Māṇḍūkya Upaniṣad (12 verses) identifies four states of consciousness: Jāgrat (waking), Svapna (dreaming), Suṣupti (deep sleep), and Turīya ('the fourth'). Each Sanskrit name is a precise phenomenological description.</p><div class="sd-grid-2"><div class="sd-card"><h4>Jāgrat — Waking</h4><p>From √jāg, to be awake. The ordinary state mediated by the physical senses. Associated with the phoneme A in the syllable OM.</p></div><div class="sd-card"><h4>Svapna — Dreaming</h4><p>From √svap, to sleep. The state where the mind creates its own objects without sensory input. Associated with the phoneme U.</p></div><div class="sd-card"><h4>Suṣupti — Deep Sleep</h4><p>Su + ṣupti = good sleep. Temporary dissolution of the individual mind into undifferentiated awareness. Associated with M.</p></div><div class="sd-card"><h4>Turīya — The Fourth</h4><p>Simply 'the fourth' — beyond naming. The background awareness present in all three ordinary states, that never sleeps, dreams, or wakes. The silence of OM.</p></div></div>`},
+            {t:'Sanskrit &amp; <em>Modern Neuroscience</em>',b:`<p>Contemporary neuroscience and consciousness studies are increasingly engaging with Sanskrit philosophical texts as sources of phenomenological precision that Western cognitive science lacks.</p><ul class="sd-key-list"><li>Patañjali's vṛtti typology maps onto modern cognitive science's 'modes of mental representation'</li><li>Spanda (primordial pulse of consciousness) is being explored as a framework for the Hard Problem</li><li>Turīya (the fourth state) corresponds to what recent research calls 'non-dual awareness' or 'pure consciousness'</li><li>Kashmir Śaivism's Pratyabhijñā ('recognition') philosophy addresses the binding problem in consciousness studies</li></ul><div class="pull"><p>"The most honest philosophers of mind today are, often without knowing it, rediscovering Advaita Vedanta and Kashmir Śaivism. The Sanskrit names change. The recognition is the same."</p></div>`}
         ]
     },
-    k_unified: {
-        tag:'108 Karanas · Grand Synthesis Codex · 21 Unsolved Problems',title:'Unified Theory — <em>The Grand Synthesis Codex</em>',
-        sub:'21 of the greatest unsolved problems in science × the 108 Karanas — showing that the Vedic frameworks hold structural solutions where modern paradigms remain trapped.',
-        url:'https://unifiedtheory.culturalmusings.com',sym:'⚛',dark:true,
-        tabs:['Introduction','The 21 Problems','The Karana Solutions'],
+
+    /* ══════════════════════════════════════════
+       NEW SD ENTRIES — Enhancement Portal (5 pages)
+    ══════════════════════════════════════════ */
+    enh_about:{
+        tag:'Enhancement Portal · About · Connecting All 13 Domains',
+        title:'About the <em>Enhancement Portal</em>',
+        sub:'What culturalmusingsenhancements.culturalmusings.com is, why it exists, and how it unifies all 13 research domains of the Cultural Musings archive into one coherent ecosystem.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'✦',bannerClass:'enh-banner',tabsClass:'enh-tabs',pageClass:'enh-page',
+        tabs:['What It Is','What It Contains','Why It Exists'],
         pages:[
-            {t:'The <em>Boldest Claim</em> in the Archive',b:`<p>The Unified Theory domain makes the most ambitious claim of the entire research archive: that the 21 greatest unsolved problems in modern science are not independent puzzles but different expressions of a single paradigmatic limitation, and that the Vedic frameworks and the 108 Karanas hold structural solutions.</p><div class="pull"><p>"The 108 Karanas already contain the answers — we simply forgot how to read them."</p></div><ul class="sd-key-list"><li>The Hard Problem of Consciousness — Vedantic resolution</li><li>Quantum Gravity Unification — Nada Brahman as the unified field</li><li>The Measurement Problem — Observer as Brahman</li><li>Dark Matter & Dark Energy — Akasha and Tamas Guna</li></ul>`},
-            {t:'The <em>21 Problems</em> Addressed',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Hard Problem of Consciousness</h4><p>Vedanta's answer — consciousness is primary, not emergent — is the only logically consistent resolution, now supported by IIT, panpsychism, and quantum mind theories.</p></div><div class="sd-card"><h4>Quantum Gravity Unification</h4><p>The Vedic framework of Nada Brahman — acoustic vibration as the single substrate — provides a unification principle both theories approach independently.</p></div><div class="sd-card"><h4>Cosmological Constant</h4><p>The Vedic concept of Maya — selective manifestation of the quantum vacuum's infinite energy — offers a philosophical resolution quantum field theory lacks.</p></div><div class="sd-card"><h4>Arrow of Time</h4><p>Vedic cyclic time (Kalachakra) and Karma as asymmetric causality provide a framework that modern thermodynamics approaches but cannot complete.</p></div></div>`},
-            {t:'How the <em>Karanas</em> Provide Solutions',b:`<ul class="sd-key-list"><li>Karanas 1–27 (Earth Quarter) — solutions to problems of matter, mass, and gravity</li><li>Karanas 28–54 (Water Quarter) — solutions to problems of wave-particle duality and quantum measurement</li><li>Karanas 55–81 (Air Quarter) — solutions to problems of spacetime, information, and entropy</li><li>Karanas 82–108 (Ether Quarter) — solutions to problems of consciousness, unification, and transcendence</li></ul><div class="pull"><p>"Each Karana is a cosmological theorem expressed in the grammar of the body. The Unified Theory domain is its translation into the grammar of mathematics."</p></div>`}
+            {t:'The <em>Connecting Portal</em> — What It Is',b:`<p>The Enhancement Portal at culturalmusingsenhancements.culturalmusings.com was created to solve a fundamental challenge in large-scale independent research: as the Cultural Musings archive grew across 13+ subdomains, each a deep autonomous investigation, the connections between them needed a dedicated home.</p><div class="pull"><p>"The Enhancement Portal is not a duplicate of any single subdomain. It is the meta-architecture — the site that shows how all 13 domains relate to one another as a single unified system."</p></div><ul class="sd-key-list"><li>Unified navigation across all 13+ research subdomains in one interface</li><li>Cross-referential matrices showing how Karanas, Ragas, and Nakshatras inter-relate</li><li>Audience-specific entry pathways for students, practitioners, researchers, and therapists</li><li>Complete bibliography of 40+ primary Sanskrit and peer-reviewed scientific sources</li></ul>`},
+            {t:'What the Portal <em>Contains</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>5-Cluster Domain Map</h4><p>All 13 domains organised into five thematic clusters: Nada Brahman, Natya Shastra, 108 Karanas, Healing & Consciousness, and Vedic Philosophy.</p></div><div class="sd-card"><h4>Systematic Roadmap</h4><p>Five sequential phases of the research architecture — from the acoustic foundation through the clinical MCP synthesis.</p></div><div class="sd-card"><h4>Author's Introduction</h4><p>Six systematic steps detailing how the entire 15-year research roadmap was built — from Parampara transmission to clinical protocol.</p></div><div class="sd-card"><h4>Tri-Axis Matrix</h4><p>The complete Karana × Raga × Nakshatra cross-reference matrix — the mathematical spine connecting all 13 domains.</p></div></div>`},
+            {t:'Why <em>This Portal</em> Exists',b:`<p>Research of this scale — 15 years, 13 domains, 108 Karanas — requires not just depth but navigability. The Enhancement Portal ensures no visitor is lost in the breadth of the archive. It is the difference between a vast library and a library with an excellent librarian.</p><ul class="sd-key-list"><li>Students — guided entry pathways matched to background and interest</li><li>Practitioners — direct clinical application pathways through the MCP</li><li>Researchers — cross-domain matrices and bibliography for academic engagement</li><li>Therapists — structured healing protocol navigation through all five phases</li></ul><div class="pull"><p>"The portal exists because every great archive requires a great navigator. Without this connecting site, 15 years of research risks being experienced as 13 separate islands rather than one unified continent."</p></div>`}
         ]
     },
-    k_vedic: {
-        tag:'108 Karanas · Part IV · Vedic Mathematics & Geometry',title:'Vedic Mathematics &amp;<br><em>Sacred Geometry</em>',
-        sub:"Karanas 82–108: the Ether Quarter decoded through Sulba Sutras, Pingala's binary mathematics, Meru Prastara, fractal geometry, Lie groups, and string compactification.",
-        url:'https://vedicmathematicsgeometry.culturalmusings.com',sym:'📐',dark:true,
-        tabs:['Introduction','Mathematical Framework','Karanas 82–108'],
+    enh_domains:{
+        tag:'Enhancement Portal · 13 Research Domains · Five Clusters',
+        title:'All 13 <em>Research Domains</em>',
+        sub:'Five thematic clusters — Nada Brahman, Natya Shastra, 108 Karanas, Healing & Consciousness, and Vedic Philosophy — each a self-contained pillar of the greater synthesis.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'🌐',bannerClass:'enh-banner',tabsClass:'enh-tabs',pageClass:'enh-page',
+        tabs:['Sound & Dance','Karanas Archive','Healing & Vedic'],
         pages:[
-            {t:'The <em>Mathematics</em> Inside Sacred Movement',b:`<p>The fourth and final quarter of the 108 Karanas corresponds to the Akasha (Ether) element, the Atharvaveda, and the most abstract dimensions of Vedic science: mathematics, geometry, and the transcendent structures of consciousness itself.</p><div class="pull"><p>"Vedic mathematics did not stop at arithmetic. It extended to the geometry of consciousness — and the 108 Karanas are its most complete physical expression."</p></div><ul class="sd-key-list"><li>Sulba Sutras — sacred geometry of altar construction as cosmic mapping</li><li>Pingala's Chandaśāstra — binary mathematics and the origin of computing</li><li>Meru Prastara — Pascal's Triangle 2,000 years before Pascal</li><li>Mātrāmeru — Fibonacci sequence in Sanskrit prosody</li></ul>`},
-            {t:'The <em>Mathematical</em> Framework',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Fractal Geometry</h4><p>The recursive self-similarity of Vedic temple architecture and Sri Chakra geometry encodes fractal dimension — validated by modern fractal analysis of Vedic art.</p></div><div class="sd-card"><h4>Topology & Knot Theory</h4><p>The Addita Karana's braided structure encodes a specific topological invariant. The 108 Karanas as a complete set constitute a topological atlas of human movement space.</p></div><div class="sd-card"><h4>Lie Groups & Symmetry</h4><p>The Janita Karana encodes the mathematical structure of Lie group symmetry — the same structure underlying the Standard Model of particle physics.</p></div><div class="sd-card"><h4>String Compactification</h4><p>The Vrischika Karana's coiling structure mirrors the Calabi-Yau manifold compactification of string theory — a geometric relationship under active investigation.</p></div></div>`},
-            {t:'Karanas 82–108 — <em>The Transcendent Quarter</em>',b:`<ul class="sd-key-list"><li>Karanas 82–90 (Meru cluster) — fractal, recursive, and self-similar structures</li><li>Karanas 91–99 (Brahman cluster) — Lie symmetry, differential geometry, complex numbers</li><li>Karanas 100–108 (Transcendence cluster) — chaos theory, torus topology, quantum groups, final integration</li></ul><div class="pull"><p>"The last 9 Karanas — 100 through 108 — are the most extraordinary: each is simultaneously a movement, a mathematical theorem, a cosmic equation, and a state of consciousness."</p></div>`}
+            {t:'Cluster I &amp; II — <em>Sound &amp; Dance</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Nada Brahman — Core</h4><p>The foundational treatise on Vedic acoustic cosmology — sound as primordial substrate, Shruti mathematics, and the Raga system as acoustic pharmacopoeia.</p></div><div class="sd-card"><h4>Nada Chikitsa</h4><p>The complete Raga pharmacopoeia with measurable neurological correlates — the clinical application of acoustic science to healing.</p></div><div class="sd-card"><h4>Music · Raga Science Hub</h4><p>Central repository for Melakarta system, 72 parent Ragas, Hindustani & Carnatic analysis, and the Raga–Nakshatra–Karana tri-axis mapping.</p></div><div class="sd-card"><h4>Natya Shastra — Main</h4><p>Bharata Muni's 6,000-verse unified theory — neuroscience, bio-acoustics, AI, medicine, and cosmic mathematics encoded in classical dance.</p></div></div>`},
+            {t:'Cluster III — <em>108 Karanas Archive</em>',b:`<ul class="sd-key-list"><li>Karanas Root Map — the 4 × 27 domain architecture; the navigational skeleton of the complete research system</li><li>Unified Theory — 21 unsolved scientific problems confronted with Karanic structural frameworks</li><li>Vedic Mathematics & Geometry — Karanas 82–108 decoded through Pingala, Sulba Sutras, and Lie groups</li><li>Natya Shastra Classical Dance — Karanas 55–81 through kinematic geometry and Bhava science</li><li>Karanas Sacred Synthesis — all 108 mapped against Sri Chakra, Khadgamala, and Chidambaram</li><li>Complete Celestial Synthesis — 4 Vedas, 27 Nakshatras, 72 Melakarthas in one complete system</li><li>Constellations / Nakshatra Science — the 27 Nakshatras decoded through acoustic and Jyotisha frameworks</li></ul>`},
+            {t:'Clusters IV &amp; V — <em>Healing &amp; Vedic</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Master Consciousness Protocol</h4><p>The 5-phase clinical framework: Pranayama + Nada + Mudra + Karana + Rasa — the applied synthesis of the entire archive.</p></div><div class="sd-card"><h4>Bio Resonance Musings</h4><p>Vedic Prana field theory validated by quantum biology, HRV science, and bio-photon emission research.</p></div><div class="sd-card"><h4>Spandana Shodha</h4><p>Kashmir Shaivism's Spanda theory investigated through complexity science and modern physics.</p></div><div class="sd-card"><h4>Spiritual Philosophical &amp; Jyotisha</h4><p>Advaita Vedanta, quantum non-locality, Vedic astrology, and Dvitiya Pada — the philosophical foundation of the archive.</p></div></div>`}
         ]
     },
-    k_natya: {
-        tag:'108 Karanas · Part III · Classical Dance Science',title:'Natya Shastra &amp;<br><em>Classical Dance Science</em>',
-        sub:'Karanas 55–81: kinematic geometry, Bhava theory, Abhinaya science, and the cosmic grammar of sacred movement.',
-        url:'https://natyashastraclassical-dance.culturalmusings.com',sym:'🎭',dark:true,
-        tabs:['Introduction','Kinematic Framework','Cross-Domain Matrix'],
+    enh_roadmap:{
+        tag:'Enhancement Portal · Systematic Roadmap · 5-Phase Architecture',
+        title:'The Systematic <em>Roadmap</em>',
+        sub:'Five sequential phases from Nada Brahman to the Master Consciousness Protocol — the research architecture that transformed 15 years of inquiry into a coherent, navigable system.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'🗺️',bannerClass:'enh-banner',tabsClass:'enh-tabs',pageClass:'enh-page',
+        tabs:['Phases I–II','Phases III–IV','Phase V & Matrix'],
         pages:[
-            {t:'The <em>Third Octave</em> — Karanas 55–81',b:`<p>The third quarter of the 108 Karanas corresponds to the Vāyu (Air) element, the Yajurveda, the prefrontal synchronisation protocols, and the Nakshatras from Maghā to Viśākhā. These are the Karanas of kinetic intelligence — the movement vocabulary of the Tandava and Lasya, the two primordial streams of sacred dance.</p><div class="pull"><p>"Each Karana contains a complete cosmological statement — a posture that encodes planetary geometry, acoustic vibration, and kinematics simultaneously."</p></div><ul class="sd-key-list"><li>Karanas 55–81 — the Air Quarter · Prefrontal activation</li><li>Nakshatras Maghā through Viśākhā — 27 cosmic correlates</li><li>Tandava & Lasya — the masculine and feminine movement principles</li><li>Abhinaya science — the four modes of expression decoded scientifically</li></ul>`},
-            {t:'The <em>Kinematic</em> Science',b:`<div class="sd-grid-2"><div class="sd-card"><h4>The Four Abhinaya Modes</h4><p>Āṅgika (bodily), Vācika (vocal), Āhārya (costume), and Sāttvika (psycho-physiological) — each mode activates a distinct neural processing stream.</p></div><div class="sd-card"><h4>Anga System</h4><p>Six Angas (major limbs), six Upāngas (minor limbs), and six Pratyangas (extremities) constitute a complete biomechanical taxonomy covering every possible combination of human movement.</p></div><div class="sd-card"><h4>Karana as Kinematic Equation</h4><p>Each Karana specifies the simultaneous state of all six Angas — a kinematic equation in flesh. Motion-capture analysis confirms each produces unique inertial loading patterns on the vestibular-cerebellar circuit.</p></div><div class="sd-card"><h4>Tandava & Lasya Streams</h4><p>The masculine Tandava (dynamic, expansive) and feminine Lasya (fluid, contractive) encode the two fundamental principles of neural organisation: sympathetic activation and parasympathetic restoration.</p></div></div>`},
-            {t:'Cross-Domain <em>Matrix</em>',b:`<ul class="sd-key-list"><li>Each Karana → corresponding Nakshatra, Rashi, and planetary ruler</li><li>Each Karana → corresponding Raga and its therapeutic prescription</li><li>Each Karana → corresponding 18th Siddha and their scientific domain</li><li>Each Karana → corresponding Upanishad and its philosophical teaching</li><li>Each Karana → corresponding modern scientific domain and research frontier</li></ul><div class="pull"><p>"The cross-domain matrix is proof that the ancient scientific tradition was not a collection of separate disciplines but a single unified science expressed in multiple vocabularies simultaneously."</p></div>`}
+            {t:'Phase I &amp; II — <em>Foundation &amp; Architecture</em>',b:`<p>The roadmap follows the structure of reality as the ancient tradition understood it — moving from the most fundamental outward to the most applied. Phase I establishes the acoustic foundation; Phase II reveals the 108 Karanas as the mathematical spine of the entire system.</p><div class="sd-grid-2"><div class="sd-card"><h4>Phase I — Nada Brahman</h4><p>The research begins with sound as primordial substrate. Shruti mathematics, the Raga system, and the Sama Veda as the acoustic foundation of reality — introducing the Nada Brahman, Nada Chikitsa, and Music Hub domains.</p></div><div class="sd-card"><h4>Phase II — 108 Karanas Architecture</h4><p>The 108 Karanas form the mathematical spine. Each encodes planetary geometry, Raga assignment, and Nakshatra correspondence. The 4 × 27 matrix becomes the structural blueprint of the complete archive.</p></div></div>`},
+            {t:'Phase III &amp; IV — <em>Mathematics &amp; Healing</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Phase III — Vedic Sciences</h4><p>Vedic Mathematics decodes Karanas 82–108 through Pingala's binary system and Sulba Sutra geometry. The Unified Theory domain confronts 21 unsolved problems in modern science.</p></div><div class="sd-card"><h4>Phase IV — Healing Protocols</h4><p>Nada Chikitsa documents the Raga pharmacopoeia with measurable neurological correlates. Bio Resonance and Spandana Shodha validate ancient healing frameworks with modern science.</p></div></div><div class="pull"><p>"The roadmap was built in five phases not arbitrarily but because this is the order in which reality reveals itself — from sound to structure to mathematics to healing to synthesis."</p></div>`},
+            {t:'Phase V &amp; the <em>Tri-Axis Matrix</em>',b:`<p>Phase V synthesises all previous research into the Master Consciousness Protocol — five clinical phases (Pranayama, Nada, Mudra, Karana, Rasa) forming a deployable healing system. The underlying mathematical structure that connects all phases is the tri-axis matrix.</p><ul class="sd-key-list"><li>Karana × Raga × Nakshatra — the three-axis spine connecting all 13 domains</li><li>108 Karanas mapped to 72 Melakarthas and 27 Nakshatras simultaneously</li><li>Natya Shastra, Sama Veda, and Jyotisha Vedanga as the three textual axes</li><li>Neuroscience, Bio-Acoustics, and Quantum Physics as the three modern-science axes</li></ul>`}
         ]
     },
-    k_sacred: {
-        tag:'108 Karanas · Sacred Synthesis · Vedas, Sri Chakra, Nada Brahman',title:'Karanas <em>Sacred Synthesis</em>',
-        sub:'The complete Vedic synthesis: 108 Karanas mapped to the Vedas, Sri Chakra, Nada Brahman, Lalitha Sahasranama, Tantra, and Chidambaram temple sculpture.',
-        url:'https://karanassacredsynthesis.culturalmusings.com',sym:'🔱',dark:true,
-        tabs:['Introduction','Cosmological Layers','The Tantric Dimension'],
+    enh_author:{
+        tag:'Enhancement Portal · Author\'s Introduction · Systematic Journey',
+        title:'Author\'s <em>Introduction</em>',
+        sub:'Naredla Rama Chandra on creating the roadmap — six systematic steps from Parampara transmission at the feet of living masters to the deployable Master Consciousness Protocol.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'✍',bannerClass:'enh-banner',tabsClass:'enh-tabs',pageClass:'enh-page',
+        tabs:['Steps 1–2','Steps 3–4','Steps 5–6'],
         pages:[
-            {t:'What is the <em>Sacred Synthesis?</em>',b:`<p>The Sacred Synthesis presents the most complete single document mapping the 108 Karanas against the entirety of Vedic cosmological and spiritual science — drawing from the four Vedas, Natya Shastra, Sri Chakra geometry, Nada Brahman doctrine, 72 Melakarta Ragas, and the 108 stone sculptures at Chidambaram.</p><div class="pull"><p>"॥ नटराय नमस्तुभ्यम् ॥ — The Nataraja is not a religious icon. It is a diagram of the cosmos, encoded in the body of a dancer."</p></div><ul class="sd-key-list"><li>108 Karanas × Vedas — the scriptural root of each movement</li><li>Sri Chakra — the geometric matrix of the Karana architecture</li><li>Nada Brahman — the acoustic substrate of each Karana</li><li>72 Melakarthas — musical correspondences of all 108 Karanas</li></ul>`},
-            {t:'The <em>Cosmological</em> Layers',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Vedic Register</h4><p>Each Karana is rooted in a specific Vedic hymn, Rishi lineage, and Vedic metre (Chandas). The four Vedas correspond to the four Karana quarters.</p></div><div class="sd-card"><h4>Tantric Register</h4><p>Each Karana activates a specific point in the Sri Chakra's 9 enclosures — the complete map of consciousness from gross matter to pure awareness (Bindu).</p></div><div class="sd-card"><h4>Musical Register</h4><p>Each Karana corresponds to a specific Melakartha Raga and its subset of Janya Ragas — the movement is the physical embodiment of the Raga's frequency signature.</p></div><div class="sd-card"><h4>Temple Register</h4><p>Each of the 108 Karanas is carved in stone at the gopurams of Chidambaram Nataraja temple — the only physical archive where all 108 can be directly studied and verified.</p></div></div>`},
-            {t:'The <em>Tantric</em> Dimension',b:`<ul class="sd-key-list"><li>Lalitha Sahasranama — 1,000 names encoding the complete neuro-somatic map</li><li>Devi Khadgamala — the spatial-consciousness mapping of the Sri Chakra</li><li>Shaiva Siddhanta — the cosmological philosophy underlying Nataraja iconography</li><li>36 Tattvas — the 36 levels of reality mapped to 36 Angahara clusters</li><li>Kundalini anatomy — the Karana sequence as a complete Kundalini activation protocol</li></ul><div class="pull"><p>"The Karanas are not representations of cosmic forces — they are invocations. Each correctly performed Karana is a direct interface with the cosmic function it encodes."</p></div>`}
+            {t:'Steps 1 &amp; 2 — <em>Transmission &amp; Architecture</em>',b:`<p>The Cultural Musings roadmap did not emerge from a pre-planned research programme. It emerged from the inner logic of the subject itself — and from the recognition that ancient Indian knowledge systems are a single, unified science expressed through multiple modalities.</p><div class="sd-grid-2"><div class="sd-card"><h4>Step 1 — Parampara</h4><p>The research began at the feet of living masters: dancers, musicians, Ayurvedic physicians, and Vedic scholars whose oral transmissions carry unbroken lineages. Without direct transmission from practitioners whose mastery was proven through experience, no synthesis was possible.</p></div><div class="sd-card"><h4>Step 2 — The 108 Karanas as Spine</h4><p>The critical insight: each Karana simultaneously holds a planetary geometry, acoustic signature, celestial correspondence, and physiological effect. The 4 × 27 matrix became the structural blueprint for everything that followed.</p></div></div>`},
+            {t:'Steps 3 &amp; 4 — <em>Sources &amp; Matrices</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Step 3 — Primary Sources</h4><p>Every claim required anchoring in primary sources — the Narada Purana, Shankaracharya's complete works in 20 Sanskrit volumes, Lalitha Sahasranama, Rudram-Chamakam, and the original Natya Shastra. If a claim could not be traced to a primary source, it did not enter the archive.</p></div><div class="sd-card"><h4>Step 4 — Cross-Domain Matrices</h4><p>The tri-axis mapping of each of the 108 Karanas against its corresponding Raga, Nakshatra, Devata, planetary ruler, and modern scientific domain required simultaneous mastery of Carnatic theory, Vedic astronomy, classical dance science, and modern neuroscience. Built iteratively over years.</p></div></div><div class="pull"><p>"The 40+ source bibliography is the result of one discipline: if a claim cannot be traced to a primary source, it does not enter the archive."</p></div>`},
+            {t:'Steps 5 &amp; 6 — <em>Science &amp; Synthesis</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Step 5 — Confronting Modern Science</h4><p>The Unified Theory domain was created to prevent comfortable isolation of ancient knowledge. By mapping the 108 Karanas against 21 unsolved problems — Quantum Gravity, Hard Problem of Consciousness, Dark Matter — the research forced itself to meet the highest evidentiary standards of both traditions.</p></div><div class="sd-card"><h4>Step 6 — The Clinical Synthesis</h4><p>Research without application is incomplete. The final phase translated the entire archive into the Master Consciousness Protocol — a five-phase clinical framework deployable by any trained practitioner in a therapeutic context. The MCP is the proof that this research is not merely academic — it is operative.</p></div></div><div class="pull"><p>"To establish the Master Consciousness Protocol — a unified framework for natural healing and the liberation of human potential through the integration of ancient Vedic science and contemporary research."</p></div>`}
         ]
     },
-    k_cel: {
-        tag:'108 Karanas · Complete Celestial Synthesis · All Four Vedic Quarters',title:'Complete <em>Celestial Synthesis</em>',
-        sub:'All 108 Karanas in their complete celestial context — 4 Vedic quarters, 4 × 27 Nakshatras, Shrutis, Melakarthas, Rishis, and the full astronomical framework.',
-        url:'https://completecelestialsynthesis.culturalmusings.com',sym:'🌌',dark:true,
-        tabs:['Introduction','The Four Quarters','Celestial Correspondences'],
+    enh_collab:{
+        tag:'Enhancement Portal · Collaborate · Research Dialogue',
+        title:'Collaborate &amp; <em>Connect</em>',
+        sub:'How to engage with the Cultural Musings research archive — for students, practitioners, researchers, and institutions seeking to participate in this ongoing cross-disciplinary inquiry.',
+        url:'https://culturalmusingsenhancements.culturalmusings.com',sym:'🤝',bannerClass:'enh-banner',tabsClass:'enh-tabs',pageClass:'enh-page',
+        tabs:['Who Can Engage','How to Connect','Research Dialogue'],
         pages:[
-            {t:'The <em>Complete Celestial Synthesis</em>',b:`<p>The Complete Celestial Synthesis is the most detailed document in the Karanas archive: a full analysis of all 108 Karanas, presented in sequence, with complete celestial, astronomical, acoustic, and neuroscientific correspondences for each.</p><div class="pull"><p>"Pādau vikṣipya saṃsthitya tathaiva ca karau nyaset — every Karana begins in the earth and reaches for the stars."</p></div><ul class="sd-key-list"><li>All 108 Karanas in complete sequential analysis</li><li>4 Vedic quarters × 27 Nakshatras = 108 celestial correspondences</li><li>22 Shrutis mapped to 22 acoustic activation classes</li><li>72 Melakarthas × 4 quarters = complete musical framework</li></ul>`},
-            {t:'The <em>Four Vedic Quarters</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Pṛthvī Khaṇḍa (Earth)</h4><p>Karanas 1–27 · Ṛgveda · Cerebellar and proprioceptive activation · Nakshatras Aśvinī through Punarvasū.</p></div><div class="sd-card"><h4>Jala Khaṇḍa (Water)</h4><p>Karanas 28–54 · Sāmaveda · Limbic entrainment and emotional regulation · Nakshatras Puṣya through Citrā.</p></div><div class="sd-card"><h4>Vāyu Khaṇḍa (Air)</h4><p>Karanas 55–81 · Yajurveda · Prefrontal and inter-hemispheric synchronisation · Nakshatras Svātī through Śatabhi ṣā.</p></div><div class="sd-card"><h4>Ākāśa Khaṇḍa (Ether)</h4><p>Karanas 82–108 · Atharvaveda · Transcendent integration and whole-brain coherence · Nakshatras Pūrvābhādra through Revatī.</p></div></div>`},
-            {t:'Celestial <em>Correspondences</em> — Reading a Karana',b:`<p>Consider Karana 1, Talapuṣpapuṭa — "Hollow of Flowers in the Palm." This opening Karana encodes the complete astronomical, acoustic, and neurological context of the entire practice:</p><ul class="sd-key-list"><li>Nakshatra: Aśvinī (α Arietis) · Deity: Aśvins · Rishi: Vasishtha</li><li>Shruti: 1 — Chandovatī (the metre-bearing ground-tone)</li><li>Melakartha: 1 (Kanakangi) · Swara: Sa (tonic)</li><li>Vedic quarter: Pṛthvī (Earth) · Element: Prithvi</li><li>Neurological: Cerebellar baseline activation · proprioceptive grounding</li></ul><div class="pull"><p>"The first Karana grounds the entire system — it is the Sa of movement, the Aśvinī of the body, the Vasishtha of the living tradition. Everything begins here."</p></div>`}
-        ]
-    },
-    k_mcp: {
-        tag:'108 Karanas · Clinical Application · Phase IV Protocol',title:'Master Consciousness Protocol<br><em>— Karanas Application</em>',
-        sub:'The clinical dimension of the Karanas — Phase IV of the MCP protocol, where the 108 Karanas become a bio-somatic rewiring system for healing and neuroplasticity.',
-        url:'https://masterconsciousprotocol.culturalmusings.com',sym:'⚕',dark:true,
-        tabs:['Introduction','Phase IV Protocol','Clinical Evidence'],
-        pages:[
-            {t:'The <em>Karanas</em> as Clinical Protocol',b:`<p>Within the Master Consciousness Protocol, the 108 Karanas constitute Phase IV — the most physically demanding and neurologically transformative phase of the five-phase healing system.</p><div class="pull"><p>"Phase IV is not dance therapy. It is a precision protocol for rewiring the human nervous system from the ground of the body upward — using the same technology Bharata Muni encoded for exactly this purpose."</p></div><ul class="sd-key-list"><li>Phase IV duration: 40 days structured progression</li><li>Daily practice: 45–90 minutes depending on phase week</li><li>Karanas introduced: 4–9 per week, in Vedic quarter sequence</li><li>Acoustic accompaniment: corresponding Raga from Phase II</li></ul>`},
-            {t:'Phase IV <em>Protocol Structure</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>Days 1–10 · Earth Quarter</h4><p>Karanas 1–9 introduced. Target: cerebellar baseline, proprioceptive calibration. Expected: improved balance, reduced chronic pain, enhanced body-awareness.</p></div><div class="sd-card"><h4>Days 11–20 · Water Quarter</h4><p>Karanas 28–36 introduced. Target: limbic system entrainment. Expected: reduced anxiety, improved emotional resilience, parasympathetic dominance.</p></div><div class="sd-card"><h4>Days 21–30 · Air Quarter</h4><p>Karanas 55–63 introduced. Target: bilateral hemispheric synchronisation. Expected: enhanced cognitive function, increased BDNF, improved working memory.</p></div><div class="sd-card"><h4>Days 31–40 · Ether Quarter</h4><p>Karanas 82–90 introduced. Target: whole-brain coherence. Expected: measurable gamma brainwave activity, HRV optimisation.</p></div></div>`},
-            {t:'The <em>Clinical Evidence</em> Base',b:`<ul class="sd-key-list"><li>Bhattacharya et al. (2001) — EEG hemispheric synchronisation in classical Indian dance</li><li>BDNF research — complex cross-lateral movement consistently triggers brain-derived neurotrophic factor release</li><li>Vestibular rehabilitation studies — Karana-type movements improve vestibular function in clinical populations</li><li>Parkinson's research — rhythm-based movement therapy significantly reduces tremor and improves gait</li><li>Trauma neuroscience (van der Kolk, 2014) — somatic movement practice is essential for trauma resolution</li></ul><div class="pull"><p>"The body keeps the score — and the Karanas rewrite it. Phase IV is the most powerful single therapeutic tool in the entire MCP."</p></div>`}
-        ]
-    },
-    k_ns: {
-        tag:'108 Karanas · Natya Shastra Main Domain · Cultural Musings',title:'Natya Shastra — <em>Karanas Within the Text</em>',
-        sub:'The Karanas as Bharata Muni encoded them — within the 6,000-verse Natya Shastra: source verses, chapter analysis, and the complete Angahara system.',
-        url:'https://natyashastra.culturalmusings.com',sym:'📜',dark:true,
-        tabs:['Introduction','Source Texts','Angahara System'],
-        pages:[
-            {t:'The <em>Natya Shastra</em> as Karanas Source',b:`<p>The primary source for the entire 108 Karanas research archive is Chapter IV (Tāṇḍava Lakṣaṇa) of the Natya Shastra, which contains the original definition, classification, and prescriptions for all 108 Karanas.</p><div class="pull"><p>"Aṅgahārā bhavant'yete karaṇaiḥ parikalpit āḥ — The Angaharas are formed by the combination of Karanas. This single verse is the key to the entire architecture."</p></div><ul class="sd-key-list"><li>Chapter IV — the complete Karana source texts</li><li>108 Karanas in original Sanskrit with word-by-word analysis</li><li>36 Angaharas — composite configurations built from Karanas</li><li>Tāṇḍava Lakṣaṇa — the complete specification of sacred movement</li></ul>`},
-            {t:'The <em>Source Texts</em>',b:`<div class="sd-grid-2"><div class="sd-card"><h4>NS 4.32 — Karana Definition</h4><p>"Pādau vikṣipya saṃsthitya tathaiva ca karau nyaset" — "Having thrown the feet and standing, one places the hands similarly." The triple specification: foot position, body stance, hand placement = one Karana.</p></div><div class="sd-card"><h4>NS 4.261 — Angahara Origin</h4><p>"Aṅgahārā bhavant'yete karaṇaiḥ parikalpit āḥ" — "The Angaharas are formed by the combination of Karanas."</p></div><div class="sd-card"><h4>NS 1.14 — The Purpose</h4><p>"Nāṭyaṃ bhinnarucerjanasya bahudh āpyekaṃ samārādhanam" — "Natya is the single greatest means of uplifting people of diverse temperaments simultaneously."</p></div><div class="sd-card"><h4>NS 6.15 — Rasa Origin</h4><p>"Rasānāṃ ca sthāyibhāvānāṃ vyabhicāriṇ ām eva ca, saṃyogād rasa utpattiḥ" — "From the union of permanent and transient emotional states arises Rasa."</p></div></div>`},
-            {t:'The <em>Angahara</em> System',b:`<p>Above the level of the individual Karana, the Natya Shastra defines 36 Angaharas — composite movement sequences each formed by the combination of specific Karanas. Individual Karanas are words; Angaharas are sentences; the complete Tāṇḍava is the full discourse.</p><ul class="sd-key-list"><li>36 Angaharas — each containing 4–9 Karanas in specific sequence</li><li>Angahara 1 (Śamopavāhanam) — the opening consecration sequence</li><li>Tandava Angaharas — the 18 masculine vigorous sequences</li><li>Lasya Angaharas — the 18 feminine graceful sequences</li><li>Maṭa-Bhrānta — the concluding cosmic rotation</li></ul><div class="pull"><p>"The 36 Angaharas are to the 108 Karanas as the 36 chapters of the Natya Shastra are to its 6,000 verses — the same knowledge at two levels of resolution."</p></div>`}
+            {t:'<em>Who</em> Can Engage With This Archive',b:`<p>The Cultural Musings research archive is designed for engagement across multiple audiences and disciplines. The Enhancement Portal provides tailored entry pathways for each.</p><div class="sd-grid-2"><div class="sd-card"><h4>Students & Scholars</h4><p>Entry through the domain overviews, bibliography, and cross-domain matrices. The archive is designed as a living reference — with 40+ primary sources cited and cross-referenced throughout.</p></div><div class="sd-card"><h4>Practitioners & Artists</h4><p>Bharatanatyam and classical music practitioners can engage directly with the Natya Shastra, Karanas, and Music domains for enriched understanding of the science behind their practice.</p></div><div class="sd-card"><h4>Researchers</h4><p>Neuroscientists, bio-acoustics researchers, and consciousness scientists can find cross-disciplinary frameworks grounded in both primary Sanskrit sources and peer-reviewed modern literature.</p></div><div class="sd-card"><h4>Integrative Therapists</h4><p>Clinical practitioners can engage with the Master Consciousness Protocol — a fully structured five-phase clinical framework with evidence base and implementation guidelines.</p></div></div>`},
+            {t:'<em>How</em> to Connect',b:`<p>The Enhancement Portal is the primary gateway for all research dialogue with the Cultural Musings archive. The author, Naredla Rama Chandra, is available for research collaboration, academic dialogue, and clinical consultation through the channels below.</p><ul class="sd-key-list"><li>Enhancement Portal — primary contact form at culturalmusingsenhancements.culturalmusings.com</li><li>Email — smith123846@gmail.com — for research proposals and academic enquiries</li><li>Phone — +91 91213 79100 — for direct consultation requests</li><li>JotForm enquiry — embedded in the main site — for structured domain-specific enquiries</li></ul><div class="pull"><p>"This is not Indian heritage to be protected — it is humanity's inheritance to be shared. The Karanas respond to the human nervous system regardless of culture. This universality was always the point."</p></div>`},
+            {t:'The Research <em>Dialogue</em>',b:`<p>The Cultural Musings archive is explicitly positioned as an ongoing research dialogue — not a completed edifice. Several areas actively invite collaborative engagement.</p><ul class="sd-key-list"><li>108 Karanas reconstruction — integrating motion-capture science with Sanskrit textual analysis</li><li>Clinical MCP trials — seeking integrative medicine practitioners for protocol validation studies</li><li>Sanskrit NLP — computational collaboration on Sandhi-splitting and morphological analysis tools</li><li>Bio-acoustics — acoustic analysis of Raga performances with physiological correlation studies</li><li>Consciousness studies — phenomenological cross-referencing between Sanskrit and neuroscientific frameworks</li></ul><div class="pull"><p>"The archive is designed to be engaged with, built upon, and extended. Every researcher who enters this work becomes part of the lineage of transmission — Parampara continues."</p></div>`}
         ]
     }
 };
 
+/* ══════════════════════════════════════════════════
+   SD MODAL LOGIC (unchanged — extended to handle new banner classes)
+══════════════════════════════════════════════════ */
 let curSD = null, curPage = 0;
 
 function openSD(key, page) {
     const d = SD[key];
     if (!d) return;
     curSD = key; curPage = page;
+
     const ban = document.getElementById('sdBanner');
-    ban.className = 'sd-modal-banner ' + (d.dark ? 'dark-banner' : 'light-banner');
+    /* Support bannerClass for new entries, fallback to dark flag for original entries */
+    if (d.bannerClass) {
+        ban.className = 'sd-modal-banner ' + d.bannerClass;
+    } else {
+        ban.className = 'sd-modal-banner ' + (d.dark ? 'dark-banner' : 'light-banner');
+    }
     ban.setAttribute('data-symbol', d.sym);
     document.getElementById('sdTag').innerHTML = d.tag;
     document.getElementById('sdTitle').innerHTML = d.title;
     document.getElementById('sdSubtitle').textContent = d.sub;
     document.getElementById('sdVisitLink').href = d.url;
+
     const tabsEl = document.getElementById('sdTabs');
-    tabsEl.className = 'sd-modal-tabs' + (d.dark ? ' k-tabs' : '');
+    /* Support tabsClass for new entries */
+    if (d.tabsClass) {
+        tabsEl.className = 'sd-modal-tabs ' + d.tabsClass;
+    } else {
+        tabsEl.className = 'sd-modal-tabs' + (d.dark ? ' k-tabs' : '');
+    }
     tabsEl.innerHTML = d.tabs.map((lbl, i) =>
         `<button class="sd-tab${i===page?' active':''}" onclick="switchPage(${i})"><span class="sd-tab-num">${['I','II','III'][i]}</span>${lbl}</button>`
     ).join('');
+
+    /* Support pageClass for new entries */
+    const pClass = d.pageClass ? d.pageClass : (d.dark ? 'k-page' : '');
     document.getElementById('sdPages').innerHTML = d.pages.map((p, i) =>
-        `<div class="sd-page${d.dark?' k-page':''}${i===page?' active':''}" data-i="${i}"><h3>${p.t}</h3>${p.b}</div>`
+        `<div class="sd-page${pClass?' '+pClass:''}${i===page?' active':''}" data-i="${i}"><h3>${p.t}</h3>${p.b}</div>`
     ).join('');
+
     updateNav();
     const m = document.getElementById('sdModal');
     m.classList.add('open');
