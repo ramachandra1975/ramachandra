@@ -2643,5 +2643,870 @@ if (typeof SEARCH_INDEX !== 'undefined') {
 <!-- ═══════════════════════════════════════════════════════════
      END REFERENCE LIBRARY INTEGRATION
 ════════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════════
+     RAGA CREATION TAB — Complete Injectable Block
+     Paste just before </body> in your main HTML file.
+     Adds: nav button · drawer panel · 6-tab modal ·
+           process visualiser · subdomain highlights ·
+           full reference section · mobile nav entry
+════════════════════════════════════════════════════════════ -->
+
+<!-- ── 1. CSS ──────────────────────────────────────────────── -->
+<style>
+/* ── NAV BUTTON ─────────────────────────────────────────── */
+.mega-trigger.rc-style{
+  background:linear-gradient(135deg,#1a0a2a,#2e0d1a,#1a1a0a);
+  color:#f5c842;
+  border-color:rgba(245,200,66,.4);
+}
+.mega-trigger.rc-style:hover,
+.mega-trigger.rc-style.active{
+  border-color:#f5c842;color:#fff;
+}
+
+/* ── DRAWER TAB ─────────────────────────────────────────── */
+.drawer-tab.rc-tab.active{
+  color:#8b4500;
+  border-bottom-color:#f5c842;
+}
+
+/* ── DRAWER PANEL ───────────────────────────────────────── */
+.drawer-panel.rc-panel{
+  background:linear-gradient(135deg,rgba(26,10,18,.05) 0%,#fff 40%);
+}
+.drawer-panel.rc-panel .dl-title{ color:#5a2800; }
+.drawer-panel.rc-panel .drawer-link:hover .dl-title{ color:#c8960c; }
+.drawer-panel.rc-panel .dl-bar{ background:#f5c842; }
+
+/* ── MODAL BANNER ───────────────────────────────────────── */
+.sd-modal-banner.rc-banner{
+  background:linear-gradient(135deg,#1a0a2a 0%,#2e1208 45%,#1a1a0a 100%);
+}
+.rc-banner .sd-modal-tag{ color:#f5c842; }
+.rc-banner h2 em{ color:#f5c842; }
+.rc-banner .sd-banner-desc{ color:rgba(245,200,66,.55); }
+.rc-banner .sd-visit-top{
+  border-color:#f5c842;color:#f5c842;
+}
+.rc-banner .sd-visit-top:hover{
+  background:#f5c842;color:#1a0a2a;
+}
+
+/* ── PROCESS STEPS ──────────────────────────────────────── */
+.rc-process{ margin:24px 0; }
+.rc-step{
+  display:grid;
+  grid-template-columns:52px 1fr;
+  gap:16px;
+  padding:16px 0;
+  border-bottom:1px solid #f0f0f0;
+  align-items:flex-start;
+}
+.rc-step:last-child{ border-bottom:none; }
+.rc-step-num{
+  width:42px;height:42px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#1a0a2a,#2e1208);
+  color:#f5c842;
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;
+  font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.rc-step-body h4{
+  font-family:'Montserrat',sans-serif;
+  font-size:.65rem;font-weight:800;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:#5a2800;margin-bottom:6px;
+}
+.rc-step-body p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;color:#555;line-height:1.72;margin:0 0 8px;
+}
+.rc-step-tag{
+  display:inline-block;
+  font-family:'Montserrat',sans-serif;
+  font-size:.48rem;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  background:#fffaf0;border:1px solid rgba(197,160,89,.35);
+  color:#a07020;padding:2px 8px;border-radius:2px;
+  margin-right:4px;margin-top:4px;
+}
+.rc-step-tag.domain-tag{
+  background:#f0faf5;border-color:rgba(45,138,79,.3);
+  color:#1a5c30;
+}
+.rc-step-tag.raga-tag{
+  background:#fdf0f5;border-color:rgba(139,48,88,.3);
+  color:#7a1040;
+}
+
+/* ── RESULT CARDS ───────────────────────────────────────── */
+.rc-result-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:14px;margin:20px 0;
+}
+.rc-result-card{
+  border:1px solid #e8e0cc;
+  border-top:3px solid #f5c842;
+  padding:20px 18px;
+  background:#fffdf8;
+  transition:all .25s;
+}
+.rc-result-card:hover{
+  box-shadow:0 6px 20px rgba(197,160,89,.12);
+  transform:translateY(-3px);
+}
+.rc-result-icon{ font-size:1.8rem;margin-bottom:10px;display:block; }
+.rc-result-card h4{
+  font-family:'Montserrat',sans-serif;
+  font-size:.63rem;font-weight:800;
+  letter-spacing:1.2px;text-transform:uppercase;
+  color:#5a2800;margin-bottom:7px;
+}
+.rc-result-card p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.95rem;color:#666;line-height:1.62;margin:0;
+}
+
+/* ── SUBDOMAIN HIGHLIGHT CARDS ──────────────────────────── */
+.rc-domain-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:10px;margin:18px 0;
+}
+.rc-domain-card{
+  display:flex;gap:14px;
+  padding:16px;
+  border:1px solid #e0e8f0;
+  border-left:4px solid #f5c842;
+  background:#fff;
+  text-decoration:none;
+  transition:all .2s;
+  align-items:flex-start;
+}
+.rc-domain-card:hover{
+  border-left-color:#5a2800;
+  background:#fffaf0;
+  box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+.rc-domain-card.primary-domain{
+  border-left-color:#c8960c;
+  background:linear-gradient(135deg,#fffaf0,#fff8e8);
+}
+.rc-domain-card .rcd-icon{ font-size:1.6rem;flex-shrink:0;margin-top:2px; }
+.rc-domain-card .rcd-body{}
+.rc-domain-card .rcd-label{
+  font-family:'Montserrat',sans-serif;
+  font-size:.48rem;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:#f5c842;
+  margin-bottom:3px;display:block;
+}
+.rc-domain-card.primary-domain .rcd-label{ color:#c8960c; }
+.rc-domain-card .rcd-title{
+  font-family:'Montserrat',sans-serif;
+  font-size:.68rem;font-weight:700;
+  color:#1a365d;display:block;margin-bottom:4px;
+}
+.rc-domain-card .rcd-desc{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.9rem;color:#666;line-height:1.5;
+}
+.rc-primary-badge{
+  display:inline-block;
+  font-family:'Montserrat',sans-serif;
+  font-size:.44rem;font-weight:800;
+  letter-spacing:1px;text-transform:uppercase;
+  background:#f5c842;color:#1a0a2a;
+  padding:2px 7px;border-radius:2px;
+  margin-bottom:5px;
+}
+
+/* ── RAGA REFERENCE TABLE ───────────────────────────────── */
+.rc-raga-table{
+  width:100%;border-collapse:collapse;
+  font-family:'Montserrat',sans-serif;
+  font-size:.6rem;margin:18px 0;
+}
+.rc-raga-table th{
+  font-size:.52rem;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--gold);
+  background:#fffaf0;padding:8px 10px;
+  border-bottom:2px solid rgba(197,160,89,.25);
+  text-align:left;
+}
+.rc-raga-table td{
+  padding:7px 10px;border-bottom:1px solid #f5f5f5;
+  color:#444;line-height:1.5;vertical-align:top;
+}
+.rc-raga-table tr:hover td{ background:#fffdf7; }
+.rc-raga-table .raga-name{
+  font-weight:700;color:#5a2800;
+  font-family:'Playfair Display',serif;
+  font-size:.82rem;
+}
+.rc-raga-table .rasa-pill{
+  display:inline-block;
+  background:#fdf0f5;border:1px solid rgba(139,48,88,.2);
+  color:#7a1040;padding:1px 6px;border-radius:10px;
+  font-size:.48rem;
+}
+
+/* ── EXTERNAL REFS IN MODAL ─────────────────────────────── */
+.rc-ref-section{
+  margin-bottom:22px;
+}
+.rc-ref-head{
+  font-family:'Montserrat',sans-serif;
+  font-size:.56rem;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;color:#5a2800;
+  padding-bottom:8px;
+  border-bottom:1px solid rgba(197,160,89,.2);
+  margin-bottom:10px;
+}
+.rc-ref-list{ list-style:none;padding:0;margin:0; }
+.rc-ref-item{
+  display:flex;align-items:flex-start;gap:9px;
+  padding:6px 0;border-bottom:1px solid #f8f8f8;
+}
+.rc-ref-item:last-child{ border-bottom:none; }
+.rc-ref-badge{
+  font-family:'Montserrat',sans-serif;
+  font-size:.43rem;font-weight:700;letter-spacing:.8px;
+  text-transform:uppercase;background:#fffaf0;
+  border:1px solid rgba(197,160,89,.3);color:#a07020;
+  padding:2px 5px;border-radius:2px;
+  white-space:nowrap;flex-shrink:0;
+}
+.rc-ref-badge.pdf{ background:#fff8f0;border-color:rgba(192,128,48,.35);color:#a05820; }
+.rc-ref-badge.sub{ background:#f0faf5;border-color:rgba(45,138,79,.3);color:#1a5c30; }
+.rc-ref-item a{
+  font-family:'Montserrat',sans-serif;font-size:.62rem;
+  color:#1a365d;text-decoration:none;line-height:1.5;
+  word-break:break-word;transition:color .18s;
+}
+.rc-ref-item a:hover{ color:#c8960c; }
+
+/* ── PILL FLOW ──────────────────────────────────────────── */
+.rc-pill-flow{
+  display:flex;flex-wrap:wrap;gap:7px;margin:14px 0;
+}
+.rc-pill{
+  font-family:'Montserrat',sans-serif;font-size:.58rem;
+  font-weight:700;letter-spacing:.8px;
+  background:#fffaf0;border:1px solid rgba(197,160,89,.35);
+  color:#5a2800;padding:5px 12px;border-radius:20px;
+}
+.rc-pill.active-pill{
+  background:linear-gradient(135deg,#1a0a2a,#2e1208);
+  color:#f5c842;border-color:transparent;
+}
+
+/* ── PULL QUOTE VARIANT ─────────────────────────────────── */
+.rc-pull{
+  border-left:3px solid #f5c842;
+  padding:14px 20px;background:#fffdf8;margin:20px 0;
+}
+.rc-pull p{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:1.1rem;color:#5a2800;line-height:1.55;margin:0;
+}
+</style>
+
+<!-- ── 2. INJECT ALL ELEMENTS VIA SCRIPT ──────────────────── -->
+<script>
+(function () {
+
+/* ── A. NAV BUTTON ────────────────────────────────────────── */
+const navRight = document.querySelector('.nav-right');
+if (navRight) {
+  const sep = document.createElement('div');
+  sep.className = 'nav-sep';
+  const btn = document.createElement('button');
+  btn.className = 'mega-trigger rc-style';
+  btn.innerHTML = '🎼 Raga Creation <span class="m-arrow">▼</span>';
+  btn.onclick = () => openDrawer('ragacreation');
+  navRight.appendChild(sep);
+  navRight.appendChild(btn);
+}
+
+/* ── B. DRAWER TAB ────────────────────────────────────────── */
+const drawerTabs = document.getElementById('drawerTabs');
+if (drawerTabs) {
+  const tab = document.createElement('button');
+  tab.className = 'drawer-tab rc-tab';
+  tab.setAttribute('data-panel', 'ragacreation');
+  tab.onclick = () => switchDrawerTab('ragacreation');
+  tab.innerHTML = '<span class="sd-dot" style="background:#f5c842"></span> 🎼 Raga Creation';
+  drawerTabs.appendChild(tab);
+}
+
+/* ── C. DRAWER PANEL ──────────────────────────────────────── */
+const drawerInner = document.querySelector('.drawer-inner');
+if (drawerInner) {
+  const panel = document.createElement('div');
+  panel.className = 'drawer-panel rc-panel';
+  panel.id = 'panel-ragacreation';
+  panel.innerHTML = `
+    <div class="drawer-panel-header">
+      <div>
+        <div class="dph-title" style="color:#5a2800;">🎼 Raga Creation — Process, Tools &amp; Results</div>
+        <div class="dph-desc">
+          Learn what Raga Creation means in the Cultural Musings framework — the 5-stage process
+          from Sankalpa to Kavya — and discover the tools, subdomains and references that power it.
+        </div>
+      </div>
+      <a href="https://ragakavyacreator.culturalmusings.com/" target="_blank" class="dph-visit">Open Creator →</a>
+    </div>
+
+    <div class="drawer-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));">
+
+      <button class="drawer-link" onclick="openSD('rc_intro',0);closeDrawer()">
+        <span class="dl-bar" style="background:#f5c842"></span>
+        <span class="dl-text">
+          <span class="dl-title">① What is Raga Creation?</span>
+          <span class="dl-sub">Definition, philosophy &amp; unique Cultural Musings approach</span>
+        </span>
+      </button>
+
+      <button class="drawer-link" onclick="openSD('rc_intro',1);closeDrawer()">
+        <span class="dl-bar" style="background:#f5c842"></span>
+        <span class="dl-text">
+          <span class="dl-title">② The 5-Stage Process</span>
+          <span class="dl-sub">Sankalpa → Raga Selection → Kavya → Therapy → Integration</span>
+        </span>
+      </button>
+
+      <button class="drawer-link" onclick="openSD('rc_intro',2);closeDrawer()">
+        <span class="dl-bar" style="background:#f5c842"></span>
+        <span class="dl-text">
+          <span class="dl-title">③ What Can the User Do?</span>
+          <span class="dl-sub">Tools, interactive features &amp; the Raga Kavya Creator explained</span>
+        </span>
+      </button>
+
+      <button class="drawer-link" onclick="openSD('rc_intro',3);closeDrawer()">
+        <span class="dl-bar" style="background:#f5c842"></span>
+        <span class="dl-text">
+          <span class="dl-title">④ End Results &amp; Deliverables</span>
+          <span class="dl-sub">Kavya poem · Therapeutic Rx · Composition guide · Protocol</span>
+        </span>
+      </button>
+
+      <button class="drawer-link" onclick="openSD('rc_intro',4);closeDrawer()">
+        <span class="dl-bar" style="background:#f5c842"></span>
+        <span class="dl-text">
+          <span class="dl-title">⑤ Connected Subdomains</span>
+          <span class="dl-sub">All 8 domains that power Raga Creation — highlighted &amp; explained</span>
+        </span>
+      </button>
+
+      <button class="drawer-link" onclick="openSD('rc_intro',5);closeDrawer()">
+        <span class="dl-bar" style="background:#f5c842"></span>
+        <span class="dl-text">
+          <span class="dl-title">⑥ Raga Quick Reference</span>
+          <span class="dl-sub">Key Ragas · Rasa · Time · Therapeutic indication · Scale structure</span>
+        </span>
+      </button>
+
+      <button class="drawer-link" onclick="openSD('rc_intro',6);closeDrawer()">
+        <span class="dl-bar" style="background:#f5c842"></span>
+        <span class="dl-text">
+          <span class="dl-title">⑦ References &amp; Source Archive</span>
+          <span class="dl-sub">All 24 cited sources — internal subdomains + external scholarship</span>
+        </span>
+      </button>
+
+      <a href="https://ragakavyacreator.culturalmusings.com/" target="_blank" class="drawer-link">
+        <span class="dl-bar" style="background:#c8960c"></span>
+        <span class="dl-text">
+          <span class="dl-title" style="color:#c8960c;">🚀 Open Raga Kavya Creator ↗</span>
+          <span class="dl-sub">ragakavyacreator.culturalmusings.com</span>
+        </span>
+      </a>
+
+      <a href="https://ragakavya.culturalmusings.com/" target="_blank" class="drawer-link">
+        <span class="dl-bar" style="background:#c8960c"></span>
+        <span class="dl-text">
+          <span class="dl-title" style="color:#c8960c;">📚 Raga Kavya Library ↗</span>
+          <span class="dl-sub">Browse all created Raga Kavyas</span>
+        </span>
+      </a>
+
+      <a href="https://nada-chikitsa.culturalmusings.com" target="_blank" class="drawer-link">
+        <span class="dl-bar" style="background:#b45309"></span>
+        <span class="dl-text">
+          <span class="dl-title" style="color:#b45309;">🔊 Nada Chikitsa ↗</span>
+          <span class="dl-sub">Therapeutic Raga science behind the process</span>
+        </span>
+      </a>
+
+    </div>`;
+  drawerInner.appendChild(panel);
+}
+
+/* ── D. MOBILE NAV ────────────────────────────────────────── */
+const mobilePanel = document.getElementById('mobilePanel');
+if (mobilePanel) {
+  const lbl = document.createElement('span');
+  lbl.className = 'nav-mobile-label';
+  lbl.style.color = '#f5c842';
+  lbl.textContent = '🎼 Raga Creation';
+  const links = [
+    ['📖 What is Raga Creation?',     () => { openSD('rc_intro',0); closeMobile(); }],
+    ['🔢 The 5-Stage Process',         () => { openSD('rc_intro',1); closeMobile(); }],
+    ['🛠️ What Can You Do?',            () => { openSD('rc_intro',2); closeMobile(); }],
+    ['🎁 End Results & Deliverables',  () => { openSD('rc_intro',3); closeMobile(); }],
+    ['🌐 Connected Subdomains',        () => { openSD('rc_intro',4); closeMobile(); }],
+    ['📋 Raga Quick Reference',        () => { openSD('rc_intro',5); closeMobile(); }],
+    ['📚 References',                  () => { openSD('rc_intro',6); closeMobile(); }],
+  ];
+  mobilePanel.appendChild(lbl);
+  links.forEach(([text, fn]) => {
+    const a = document.createElement('a');
+    a.href = '#'; a.className = 'nav-mobile-link raga-mobile';
+    a.textContent = text;
+    a.onclick = (e) => { e.preventDefault(); fn(); };
+    mobilePanel.appendChild(a);
+  });
+}
+
+/* ── E. SD_DATA MODAL — 7 TABS ────────────────────────────── */
+if (typeof SD_DATA !== 'undefined') {
+  SD_DATA['rc_intro'] = {
+    banner: 'rc-banner',
+    symbol: '🎼',
+    tag: 'Raga Creation Framework',
+    title: 'Raga Creation — <em>Process, Tools &amp; Results</em>',
+    subtitle: 'From Sankalpa (intention) to Kavya (poetry) to Therapy — the complete Cultural Musings approach to creating, understanding and applying Ragas.',
+    visitUrl: 'https://ragakavyacreator.culturalmusings.com/',
+    pages: [
+
+/* ─────────────────────────────────────────────────────────
+   TAB 1 — WHAT IS RAGA CREATION?
+───────────────────────────────────────────────────────── */
+      { tab: 'What is It?', content: `
+<h3>What is <em>Raga Creation</em>?</h3>
+
+<div class="rc-pull"><p>"A Raga is not composed — it is discovered. Creation here means the conscious alignment of the human nervous system with a pre-existing frequency architecture that the ancient seers mapped across millennia."</p></div>
+
+<p>In the Cultural Musings framework, Raga Creation is a structured, multi-layered practice that goes far beyond composing a melody. It is the deliberate construction of a complete <strong>psychoacoustic-aesthetic-therapeutic experience</strong> using the precise tools of classical Indian music science.</p>
+
+<p>Raga Creation here means three interconnected acts:</p>
+
+<ul class="sd-key-list">
+  <li><strong>Raga Selection &amp; Understanding</strong> — Choosing the right Raga for a specific emotional state, time of day, season and therapeutic intention, using the science of Rasa, Melakartha, Nakshatra alignment and Vadi-Samvadi theory.</li>
+  <li><strong>Kavya Creation</strong> — Generating a poetic composition (Kavya) that embodies the Rasa of the chosen Raga — using the Raga Kavya Creator tool powered by AI + Vedic poetic science.</li>
+  <li><strong>Therapeutic Protocol Design</strong> — Crafting a personalised Nada Chikitsa prescription: the Raga, its practice time, the complementary Pranayama, and the Karana movement sequences that amplify the Raga's healing effect.</li>
+</ul>
+
+<div class="rc-pill-flow">
+  <span class="rc-pill active-pill">Raga Science</span>
+  <span class="rc-pill">Rasa Theory</span>
+  <span class="rc-pill">Nada Chikitsa</span>
+  <span class="rc-pill">Vedic Poetics</span>
+  <span class="rc-pill">Melakartha System</span>
+  <span class="rc-pill">AI Generation</span>
+  <span class="rc-pill">Therapeutic Design</span>
+</div>
+
+<p>What makes this unique to Cultural Musings is that Raga Creation is not treated as an artistic exercise alone. It is treated as a <strong>scientific act</strong> — grounded in the 22-Shruti system, the 72-Melakartha architecture, the Natya Shastra's Rasa theory, and the bio-acoustic research of the Bio Acoustic Codex and Bio Resonance subdomains.</p>
+      `},
+
+/* ─────────────────────────────────────────────────────────
+   TAB 2 — THE 5-STAGE PROCESS
+───────────────────────────────────────────────────────── */
+      { tab: 'The Process', content: `
+<h3>The <em>5-Stage</em> Raga Creation Process</h3>
+<p>Every Raga Creation session — whether for poetry, therapy or performance — follows this five-stage framework drawn from Natya Shastra, Nada Chikitsa and the Master Consciousness Protocol.</p>
+
+<div class="rc-process">
+
+  <div class="rc-step">
+    <div class="rc-step-num">1</div>
+    <div class="rc-step-body">
+      <h4>Sankalpa — Intention Setting</h4>
+      <p>Before selecting a Raga, the practitioner or user clarifies their intention: What emotional state needs transformation? What healing outcome is sought? What time of day and season is it? This Sankalpa directly determines the Rasa (emotional essence) to target, which then constrains the Raga choices.</p>
+      <p><strong>Questions answered here:</strong> Which of the 9 Rasas is primary? What is the day/night cycle? What is the Dosha imbalance (if therapeutic)? What is the poetic mood?</p>
+      <span class="rc-step-tag">Nava Rasa</span>
+      <span class="rc-step-tag">Circadian alignment</span>
+      <span class="rc-step-tag raga-tag">Spiritual intent</span>
+    </div>
+  </div>
+
+  <div class="rc-step">
+    <div class="rc-step-num">2</div>
+    <div class="rc-step-body">
+      <h4>Raga Vichara — Raga Selection &amp; Analysis</h4>
+      <p>Using the Nada Chikitsa pharmacopoeia and the 72-Melakartha framework, the appropriate Raga is identified. This involves understanding the Raga's Aroha (ascending), Avaroha (descending), Vadi (dominant note), Samvadi (consonant), Pakad (characteristic phrase) and Gamaka (ornament) palette.</p>
+      <p><strong>Key resources:</strong> Melakartha chart · Rāga Junglism masterlist (1000+ Ragas) · RagaMath structural analysis · Hindustani Music Theory (NIOS)</p>
+      <span class="rc-step-tag domain-tag">Nada Chikitsa subdomain</span>
+      <span class="rc-step-tag">72 Melakarthas</span>
+      <span class="rc-step-tag">22 Shrutis</span>
+    </div>
+  </div>
+
+  <div class="rc-step">
+    <div class="rc-step-num">3</div>
+    <div class="rc-step-body">
+      <h4>Kavya Rachana — Poetic Composition</h4>
+      <p>With the Raga and Rasa established, a Kavya (poem) is created that embodies the precise emotional signature of the Raga. Using the <strong>Raga Kavya Creator</strong>, the user inputs the Raga name, primary Rasa, preferred language and style — and receives an AI-generated poem that mirrors the Raga's psychoacoustic architecture in literary form.</p>
+      <p>This is not generic poetry generation. The system is designed to produce verse that a performer could recite during Raga practice — the words reinforcing the frequencies, the frequencies reinforcing the words.</p>
+      <span class="rc-step-tag domain-tag">Raga Kavya Creator</span>
+      <span class="rc-step-tag domain-tag">Raga Kavya Library</span>
+      <span class="rc-step-tag raga-tag">Alankara (poetic ornamentation)</span>
+    </div>
+  </div>
+
+  <div class="rc-step">
+    <div class="rc-step-num">4</div>
+    <div class="rc-step-body">
+      <h4>Chikitsa Vinyasa — Therapeutic Protocol Design</h4>
+      <p>The Raga is now embedded into a full Nada Chikitsa session design: correct time window (Raga-time theory), duration (typically 20–45 minutes), accompanying Pranayama (Phase I of MCP), Mudra sequence (Phase III), and optional Karana movement set (Phase IV). This constitutes a complete <strong>acoustic healing session</strong> personalised to the user's Sankalpa.</p>
+      <span class="rc-step-tag domain-tag">Master Consciousness Protocol</span>
+      <span class="rc-step-tag domain-tag">Bio Acoustic Codex</span>
+      <span class="rc-step-tag">HRV coherence targets</span>
+    </div>
+  </div>
+
+  <div class="rc-step">
+    <div class="rc-step-num">5</div>
+    <div class="rc-step-body">
+      <h4>Samahara — Integration &amp; Archiving</h4>
+      <p>The complete session — Raga choice, Kavya poem, therapeutic protocol and experiential notes — is archived in the Raga Kavya Library or the user's personal practice log. Over time, patterns emerge: which Ragas produce which effects for this individual, building a personalised Raga pharmacopoeia. This data also feeds into the Testemony subdomain's living research archive.</p>
+      <span class="rc-step-tag domain-tag">Raga Kavya Library</span>
+      <span class="rc-step-tag domain-tag">Testemony subdomain</span>
+      <span class="rc-step-tag raga-tag">Longitudinal practice tracking</span>
+    </div>
+  </div>
+
+</div>
+      `},
+
+/* ─────────────────────────────────────────────────────────
+   TAB 3 — WHAT CAN THE USER DO?
+───────────────────────────────────────────────────────── */
+      { tab: 'What You Can Do', content: `
+<h3>What Can the <em>User Do</em>?</h3>
+<p>The Raga Creation framework offers five distinct interactive capabilities depending on the user's goal — from a first-time visitor to an advanced practitioner or researcher.</p>
+
+<div class="rc-process">
+
+  <div class="rc-step">
+    <div class="rc-step-num">A</div>
+    <div class="rc-step-body">
+      <h4>Generate a Raga Kavya Poem</h4>
+      <p>Visit the <strong>Raga Kavya Creator</strong> at <em>ragakavyacreator.culturalmusings.com</em>. Choose a Raga from the dropdown (or enter any Raga name), select the primary Rasa and preferred language. The AI generates a verse in the precise emotional register of that Raga — suitable for recitation, performance or contemplation.</p>
+      <p><strong>Who this is for:</strong> Poets, musicians, practitioners, students, anyone seeking creative expression aligned with classical music science.</p>
+    </div>
+  </div>
+
+  <div class="rc-step">
+    <div class="rc-step-num">B</div>
+    <div class="rc-step-body">
+      <h4>Research a Raga's Full Profile</h4>
+      <p>Use the <strong>Research Archive Search</strong> (🌌 Astro &amp; Search in the nav) to look up any Raga name and retrieve results across all 17+ subdomains simultaneously. For deep research, visit <em>nada-chikitsa.culturalmusings.com</em> directly for the full Raga pharmacopoeia with therapeutic indications, scale charts and time-of-day theory.</p>
+      <p><strong>External tools also available:</strong> ragajunglism.org (1000+ Ragas), melakarta.com (72 parent scales), ragamath.com (mathematical analysis).</p>
+    </div>
+  </div>
+
+  <div class="rc-step">
+    <div class="rc-step-num">C</div>
+    <div class="rc-step-body">
+      <h4>Design a Personal Nada Therapy Session</h4>
+      <p>Using the Nada Chikitsa framework, design a complete acoustic healing session for a specific condition or intention. Select the Raga → confirm time-of-day alignment → set duration → add Pranayama and Mudra from the MCP Phase guidelines → optionally add a Karana sequence. This gives a complete 30–60 minute therapeutic protocol.</p>
+      <p><strong>Who this is for:</strong> Integrative health practitioners, yoga teachers, researchers, self-healing practitioners.</p>
+    </div>
+  </div>
+
+  <div class="rc-step">
+    <div class="rc-step-num">D</div>
+    <div class="rc-step-body">
+      <h4>Browse &amp; Study the Raga Kavya Library</h4>
+      <p>Visit <em>ragakavya.culturalmusings.com</em> to explore the growing archive of Raga-aligned poems. Each entry is tagged by Raga, Rasa, language and creation date — making it a searchable poetic database organised by musical and emotional science rather than conventional literary categories.</p>
+    </div>
+  </div>
+
+  <div class="rc-step">
+    <div class="rc-step-num">E</div>
+    <div class="rc-step-body">
+      <h4>Contribute a Testimony or Collaborate</h4>
+      <p>Practitioners who have experienced the Raga Creation process can contribute accounts to the <strong>Testemony</strong> subdomain, building the qualitative research archive. Researchers and institutions can contact the author directly to collaborate on clinical protocols, academic papers or trial design.</p>
+    </div>
+  </div>
+
+</div>
+      `},
+
+/* ─────────────────────────────────────────────────────────
+   TAB 4 — END RESULTS & DELIVERABLES
+───────────────────────────────────────────────────────── */
+      { tab: 'End Results', content: `
+<h3>What Does the User <em>Receive</em>?</h3>
+<p>Depending on the depth of engagement with the Raga Creation framework, the user receives one or more of the following concrete deliverables:</p>
+
+<div class="rc-result-grid">
+
+  <div class="rc-result-card">
+    <span class="rc-result-icon">📜</span>
+    <h4>A Raga Kavya Poem</h4>
+    <p>A complete poetic composition — typically 4–8 verses — precisely calibrated to the chosen Raga's Rasa signature. Suitable for performance, meditation, publication or personal practice.</p>
+  </div>
+
+  <div class="rc-result-card">
+    <span class="rc-result-icon">💊</span>
+    <h4>A Therapeutic Raga Prescription</h4>
+    <p>A personalised Nada Chikitsa protocol: Raga name, correct time window, session duration, Pranayama pairing, and Mudra/Karana recommendations — a complete acoustic medicine plan.</p>
+  </div>
+
+  <div class="rc-result-card">
+    <span class="rc-result-icon">🎼</span>
+    <h4>A Raga Composition Guide</h4>
+    <p>The full structural profile of the chosen Raga: Aroha, Avaroha, Vadi, Samvadi, Gamaka palette, characteristic phrases (Pakad) and Melakartha parent — usable by performers and composers.</p>
+  </div>
+
+  <div class="rc-result-card">
+    <span class="rc-result-icon">🧠</span>
+    <h4>A Neurological Rationale</h4>
+    <p>From the Bio Acoustic and Bio Resonance subdomains: a scientific explanation of why the chosen Raga produces its documented effects — linking frequency intervals to specific neurochemical and cellular responses.</p>
+  </div>
+
+  <div class="rc-result-card">
+    <span class="rc-result-icon">🌌</span>
+    <h4>A Celestial &amp; Cosmic Context</h4>
+    <p>From the Complete Celestial Synthesis: the Nakshatra and Melakartha alignment of the Raga — connecting the acoustic creation to the astronomical framework of the 108 Karanas.</p>
+  </div>
+
+  <div class="rc-result-card">
+    <span class="rc-result-icon">📚</span>
+    <h4>An Archivable Research Entry</h4>
+    <p>The complete session — Raga + Kavya + protocol + experiential notes — can be archived in the Raga Kavya Library, contributing to the cumulative living research database of the Cultural Musings network.</p>
+  </div>
+
+</div>
+
+<div class="rc-pull"><p>"The end result of Raga Creation is not a product. It is a transformation — of the nervous system, the emotional field, the linguistic consciousness. The poem, the prescription, the performance guide are its footprints."</p></div>
+      `},
+
+/* ─────────────────────────────────────────────────────────
+   TAB 5 — CONNECTED SUBDOMAINS (HIGHLIGHTED)
+───────────────────────────────────────────────────────── */
+      { tab: 'Subdomains', content: `
+<h3>Connected Subdomains — <em>Highlighted</em></h3>
+<p>Raga Creation is not a standalone feature. It is the output of an entire ecosystem of Cultural Musings subdomains. Each one contributes a specific scientific or artistic layer to the process.</p>
+
+<div class="rc-domain-grid">
+
+  <a href="https://ragakavyacreator.culturalmusings.com/" target="_blank" class="rc-domain-card primary-domain">
+    <span class="rcd-icon">🎼</span>
+    <div class="rcd-body">
+      <span class="rc-primary-badge">PRIMARY TOOL</span>
+      <span class="rcd-label">Stage 3 — Kavya Creation</span>
+      <span class="rcd-title">Raga Kavya Creator</span>
+      <span class="rcd-desc">The AI-powered creation interface. Input a Raga + Rasa → receive a fully formed Kavya poem calibrated to that Raga's psychoacoustic signature.</span>
+    </div>
+  </a>
+
+  <a href="https://ragakavya.culturalmusings.com/" target="_blank" class="rc-domain-card primary-domain">
+    <span class="rcd-icon">📚</span>
+    <div class="rcd-body">
+      <span class="rc-primary-badge">PRIMARY ARCHIVE</span>
+      <span class="rcd-label">Stage 5 — Integration</span>
+      <span class="rcd-title">Raga Kavya Library</span>
+      <span class="rcd-desc">The living archive of all created Raga Kavyas — searchable by Raga, Rasa and language. The long-term repository for all Raga Creation outputs.</span>
+    </div>
+  </a>
+
+  <a href="https://nada-chikitsa.culturalmusings.com" target="_blank" class="rc-domain-card">
+    <span class="rcd-icon">🔊</span>
+    <div class="rcd-body">
+      <span class="rcd-label">Stage 2 — Raga Selection</span>
+      <span class="rcd-title">Nada Chikitsa</span>
+      <span class="rcd-desc">The Raga pharmacopoeia. Provides the therapeutic rationale for each Raga — time of day, healing indication, physiological effect and Rasa mapping.</span>
+    </div>
+  </a>
+
+  <a href="https://natyashastra.culturalmusings.com" target="_blank" class="rc-domain-card">
+    <span class="rcd-icon">🎭</span>
+    <div class="rcd-body">
+      <span class="rcd-label">Stage 1 — Rasa Foundation</span>
+      <span class="rcd-title">Natya Shastra</span>
+      <span class="rcd-desc">The scientific basis of the 9 Rasas. Provides the emotional architecture that governs Raga selection — without Rasa theory there is no Raga Creation.</span>
+    </div>
+  </a>
+
+  <a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank" class="rc-domain-card">
+    <span class="rcd-icon">⚕️</span>
+    <div class="rcd-body">
+      <span class="rcd-label">Stage 4 — Therapeutic Design</span>
+      <span class="rcd-title">Master Consciousness Protocol</span>
+      <span class="rcd-desc">Provides Phases I–V of the therapeutic protocol: Pranayama + Nada + Mudra + Karana + Rasa integration — the clinical container for Raga therapy.</span>
+    </div>
+  </a>
+
+  <a href="https://bioacousticcodex.culturalmusings.com/" target="_blank" class="rc-domain-card">
+    <span class="rcd-icon">🧬</span>
+    <div class="rcd-body">
+      <span class="rcd-label">Stage 4 — Scientific Validation</span>
+      <span class="rcd-title">Bio Acoustic Codex</span>
+      <span class="rcd-desc">Provides the cellular and molecular science explaining why specific Raga frequencies produce specific healing effects — the research backing for every therapeutic prescription.</span>
+    </div>
+  </a>
+
+  <a href="https://bioresonancemusings.culturalmusings.com/" target="_blank" class="rc-domain-card">
+    <span class="rcd-icon">🌿</span>
+    <div class="rcd-body">
+      <span class="rcd-label">Stage 4 — Energy Science</span>
+      <span class="rcd-title">Bio Resonance Musings</span>
+      <span class="rcd-desc">Prana field theory and biophoton science — explaining the subtle energetic dimension of Raga's effect on the human bio-field during acoustic healing sessions.</span>
+    </div>
+  </a>
+
+  <a href="https://completecelestialsynthesis.culturalmusings.com/" target="_blank" class="rc-domain-card">
+    <span class="rcd-icon">🌌</span>
+    <div class="rcd-body">
+      <span class="rcd-label">Stage 2 — Cosmic Alignment</span>
+      <span class="rcd-title">Complete Celestial Synthesis</span>
+      <span class="rcd-desc">Maps each Raga to its Nakshatra and Melakartha — connecting Raga selection to the astronomical and cosmological framework of the 108 Karanas.</span>
+    </div>
+  </a>
+
+  <a href="https://testemony.culturalmusings.com/" target="_blank" class="rc-domain-card">
+    <span class="rcd-icon">📜</span>
+    <div class="rcd-body">
+      <span class="rcd-label">Stage 5 — Living Evidence</span>
+      <span class="rcd-title">Testemony</span>
+      <span class="rcd-desc">The qualitative research archive — practitioners' accounts of Raga therapy outcomes feed back into the Raga Creation process as longitudinal evidence.</span>
+    </div>
+  </a>
+
+</div>
+      `},
+
+/* ─────────────────────────────────────────────────────────
+   TAB 6 — RAGA QUICK REFERENCE TABLE
+───────────────────────────────────────────────────────── */
+      { tab: 'Raga Reference', content: `
+<h3>Raga Quick <em>Reference Table</em></h3>
+<p>The most important Ragas in the Nada Chikitsa pharmacopoeia — with Rasa, time, therapeutic indication and structural key. Use this as a starting point for Sankalpa (Stage 1) and Raga Vichara (Stage 2).</p>
+
+<table class="rc-raga-table">
+  <thead>
+    <tr>
+      <th>Raga</th>
+      <th>Time</th>
+      <th>Rasa</th>
+      <th>Primary Therapeutic Indication</th>
+      <th>Vadi Note</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="raga-name">Bhairavi</td><td>Dawn 5–8am</td><td><span class="rasa-pill">Shanta · Karuna</span></td><td>Parasympathetic activation, cortisol reduction, emotional healing</td><td>Ma (F)</td></tr>
+    <tr><td class="raga-name">Bhairav</td><td>Dawn 6–9am</td><td><span class="rasa-pill">Shanta · Adbhuta</span></td><td>Spiritual clarity, nervous system grounding, thyroid activation</td><td>Re (D♭)</td></tr>
+    <tr><td class="raga-name">Hindol</td><td>Early morning 6–8am</td><td><span class="rasa-pill">Shringara</span></td><td>Liver and endocrine stimulation, metabolic activation</td><td>Ga (E)</td></tr>
+    <tr><td class="raga-name">Todi</td><td>Mid-morning 8–11am</td><td><span class="rasa-pill">Karuna · Shanta</span></td><td>Respiratory support, bronchial modulation, grief processing</td><td>Dha (A♭)</td></tr>
+    <tr><td class="raga-name">Yaman</td><td>Evening 7–10pm</td><td><span class="rasa-pill">Shringara</span></td><td>Creative cognition, positive affect, cardiac coherence</td><td>Ga (E)</td></tr>
+    <tr><td class="raga-name">Kedar</td><td>Night 9–11pm</td><td><span class="rasa-pill">Shringara · Shanta</span></td><td>Stress dissolution, devotional states, immune modulation</td><td>Ma (F#)</td></tr>
+    <tr><td class="raga-name">Darbari Kanada</td><td>Midnight 11pm–1am</td><td><span class="rasa-pill">Shanta · Vira</span></td><td>Deep alpha-theta induction, pre-sleep Samadhi states</td><td>Re (D)</td></tr>
+    <tr><td class="raga-name">Bageshri</td><td>Late night 12–3am</td><td><span class="rasa-pill">Shringara · Karuna</span></td><td>Emotional integration, trauma processing, deep rest induction</td><td>Ga (E♭)</td></tr>
+    <tr><td class="raga-name">Bilawal</td><td>Morning 6–9am</td><td><span class="rasa-pill">Shanta</span></td><td>Mental clarity, anxiety reduction, morning activation</td><td>Dha (A)</td></tr>
+    <tr><td class="raga-name">Marwa</td><td>Sunset 5–7pm</td><td><span class="rasa-pill">Vira · Adbhuta</span></td><td>Transition support, consciousness expansion, creativity</td><td>Re (D♭)</td></tr>
+    <tr><td class="raga-name">Puriya Dhanashri</td><td>Sunset 6–9pm</td><td><span class="rasa-pill">Shringara · Karuna</span></td><td>Emotional balance, heart opening, relationship healing</td><td>Ga (E)</td></tr>
+    <tr><td class="raga-name">Shree</td><td>Sunset 6–7pm</td><td><span class="rasa-pill">Karuna · Vira</span></td><td>Detoxification support, liver/gallbladder, letting go</td><td>Re (D♭)</td></tr>
+  </tbody>
+</table>
+
+<p style="font-family:'Montserrat',sans-serif;font-size:.6rem;color:#888;margin-top:10px;">For the complete 1000+ Raga masterlist, see: <a href="https://ragajunglism.org/ragas/masterlist" target="_blank" style="color:var(--gold);">ragajunglism.org/ragas/masterlist</a> · <a href="https://melakarta.com" target="_blank" style="color:var(--gold);">melakarta.com</a> · <a href="https://nada-chikitsa.culturalmusings.com" target="_blank" style="color:var(--gold);">nada-chikitsa.culturalmusings.com</a></p>
+      `},
+
+/* ─────────────────────────────────────────────────────────
+   TAB 7 — REFERENCES
+───────────────────────────────────────────────────────── */
+      { tab: 'References', content: `
+<h3>References &amp; <em>Source Archive</em></h3>
+<p>All sources that inform, validate and extend the Raga Creation framework — from internal Cultural Musings subdomains to external Raga scholarship, Vedic music theory texts and open research databases.</p>
+
+<div class="rc-ref-section">
+  <div class="rc-ref-head">🌐 Primary Cultural Musings Subdomains — Directly Powering Raga Creation</div>
+  <ul class="rc-ref-list">
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">PRIMARY</span><a href="https://ragakavyacreator.culturalmusings.com/" target="_blank">Raga Kavya Creator — ragakavyacreator.culturalmusings.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">PRIMARY</span><a href="https://ragakavya.culturalmusings.com/" target="_blank">Raga Kavya Library — ragakavya.culturalmusings.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">Core</span><a href="https://nada-chikitsa.culturalmusings.com" target="_blank">Nada Chikitsa — nada-chikitsa.culturalmusings.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">Core</span><a href="https://natyashastra.culturalmusings.com" target="_blank">Natya Shastra — natyashastra.culturalmusings.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">Core</span><a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank">Master Consciousness Protocol — masterconsciousprotocol.culturalmusings.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">Science</span><a href="https://bioacousticcodex.culturalmusings.com/" target="_blank">Bio Acoustic Codex — bioacousticcodex.culturalmusings.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">Science</span><a href="https://bioresonancemusings.culturalmusings.com/" target="_blank">Bio Resonance Musings — bioresonancemusings.culturalmusings.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">Cosmic</span><a href="https://completecelestialsynthesis.culturalmusings.com/" target="_blank">Complete Celestial Synthesis — completecelestialsynthesis.culturalmusings.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">Evidence</span><a href="https://testemony.culturalmusings.com/" target="_blank">Testemony — testemony.culturalmusings.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">Karanas</span><a href="https://karanasrootmap.culturalmusings.com/" target="_blank">Karanas Root Map — karanasrootmap.culturalmusings.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge sub">AI</span><a href="https://vedicai.culturalmusings.com/" target="_blank">Vedic AI — vedicai.culturalmusings.com</a></li>
+  </ul>
+</div>
+
+<div class="rc-ref-section">
+  <div class="rc-ref-head">🎵 External Raga Science &amp; Music Theory References</div>
+  <ul class="rc-ref-list">
+    <li class="rc-ref-item"><span class="rc-ref-badge">Masterlist</span><a href="https://ragajunglism.org/ragas/masterlist" target="_blank">Masterlist of 1000+ Ragas — Rāga Junglism (George Howlett)</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">Index</span><a href="https://ragajunglism.org/ragas" target="_blank">Hindustani Raga Index — Rāga Junglism</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">Melakarta</span><a href="https://melakarta.com" target="_blank">Melakarta Ragas — Complete Chart (melakarta.com)</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">Math</span><a href="https://ragamath.com" target="_blank">RagaMath — Mathematical Raga Structure Analysis</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">Guide</span><a href="https://amitray.com/the-84-ragas-of-indian-classical-music-a-complete-guide" target="_blank">84 Ragas of Indian Classical Music — Complete Guide (amitray.com)</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">Theory</span><a href="https://chromatone.center/theory/scales/raga" target="_blank">Indian Raga — Chromatone Center</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">System</span><a href="https://computationalmusic.com/raga-classification-system.html" target="_blank">Raga Classification System — Computational Music</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">Harmonium</span><a href="https://web-harmonium.com/harmonium-notes" target="_blank">Harmonium Notes &amp; Sargam Guide — Web Harmonium</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge pdf">PDF</span><a href="https://www.nios.ac.in/media/documents/Hindustani_Music_242/hindustanimusictheorybook1/HMB1Ch6.pdf" target="_blank">Hindustani Music Theory — NIOS Textbook Chapter 6 (PDF)</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge pdf">PDF</span><a href="https://agniveer.com/wp-content/uploads/2013/11/samaveda.pdf" target="_blank">Samaveda — Complete Text (PDF) — the Veda of Song</a></li>
+  </ul>
+</div>
+
+<div class="rc-ref-section">
+  <div class="rc-ref-head">📖 Vedic &amp; Natya Shastra Foundations</div>
+  <ul class="rc-ref-list">
+    <li class="rc-ref-item"><span class="rc-ref-badge">Natya</span><a href="https://www.exoticindiaart.com/article/the-108-poses-of-shiva-tandava-in-natya-shastra" target="_blank">108 Poses of Shiva Tandava in Natya Shastra — Exotic India Art</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge pdf">PDF</span><a href="https://ignca.gov.in/Asi_data/8737.pdf" target="_blank">IGNCA — Natya Shastra Research PDF (Government of India)</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">Theatre</span><a href="https://www.puranavedas.com/theatre-music/" target="_blank">Theatre &amp; Music — PuranaVedas.com</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">Vedic</span><a href="https://vedicheritage.gov.in/introduction/" target="_blank">Vedic Heritage Portal — Government of India</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">WisdomLib</span><a href="https://www.wisdomlib.org/" target="_blank">WisdomLib — Largest Vedic Text Library Online</a></li>
+    <li class="rc-ref-item"><span class="rc-ref-badge">Sanskrit</span><a href="https://sanskritdocuments.org/" target="_blank">Sanskrit Documents Archive — sanskritdocuments.org</a></li>
+  </ul>
+</div>
+      `}
+    ] // end pages
+  }; // end SD_DATA['rc_intro']
+} // end if SD_DATA
+
+/* ── F. ADD TO SEARCH INDEX ───────────────────────────────── */
+if (typeof SEARCH_INDEX !== 'undefined') {
+  [
+    { title:'Raga Creation — 5-Stage Process Guide',
+      badge:'Raga Creation',
+      url:'https://ragakavyacreator.culturalmusings.com/',
+      snippet:'Complete 5-stage Raga Creation process: Sankalpa → Raga Vichara → Kavya Rachana → Chikitsa Vinyasa → Samahara integration.' },
+    { title:'Raga Creation — End Results & Deliverables',
+      badge:'Raga Creation',
+      url:'https://ragakavyacreator.culturalmusings.com/',
+      snippet:'What you receive from Raga Creation: Kavya poem, therapeutic Raga prescription, composition guide, neurological rationale, celestial context.' },
+    { title:'Raga Kavya — Poetic Creation from Raga Science',
+      badge:'Raga Kavya',
+      url:'https://ragakavyacreator.culturalmusings.com/',
+      snippet:'AI-powered Raga-aligned poetry creation. Input a Raga + Rasa → receive a complete Kavya poem calibrated to the Raga\'s psychoacoustic signature.' },
+    { title:'Nada Chikitsa — Therapeutic Raga Prescription',
+      badge:'Nada Chikitsa',
+      url:'https://nada-chikitsa.culturalmusings.com',
+      snippet:'Design personalised acoustic healing sessions: Raga selection by time, Pranayama pairing, MCP Phase integration, HRV coherence targets.' },
+    { title:'Raga Quick Reference — 12 Key Ragas',
+      badge:'Raga Creation',
+      url:'https://nada-chikitsa.culturalmusings.com',
+      snippet:'Bhairavi, Bhairav, Yaman, Darbari, Todi, Kedar, Hindol, Bageshri, Bilawal, Marwa, Shree — Rasa, time, therapeutic indication and Vadi note.' },
+  ].forEach(e => SEARCH_INDEX.push(e));
+}
+
+})();
+</script>
+<!-- ═══════════════════════════════════════════════════════════
+     END RAGA CREATION TAB
+════════════════════════════════════════════════════════════ -->
 </body>
 </html>
