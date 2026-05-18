@@ -2155,5 +2155,493 @@ updateVaultCount();
 <!-- ═══════════════════════════════════════════════════════════
      END USER MANUAL ADDITIONS
 ════════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════════
+     REFERENCE LIBRARY INTEGRATION — paste just before </body>
+     Adds contextual References tabs to every modal + populates
+     the Ref Library drawer panel with all 121 curated sources.
+════════════════════════════════════════════════════════════ -->
+
+<style>
+/* ── REFERENCE STYLES ───────────────────────────────────── */
+.ref-section-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .56rem; font-weight: 800; letter-spacing: 2.5px;
+  text-transform: uppercase; padding: 14px 0 8px;
+  border-bottom: 1px solid rgba(197,160,89,.18);
+  margin-bottom: 8px; margin-top: 20px; color: var(--primary-blue);
+}
+.ref-section-heading:first-child { margin-top: 0; }
+.ref-section-heading.raga-col  { color: #7a3050; border-color: rgba(192,96,120,.2); }
+.ref-section-heading.vedic-col { color: #1a365d; }
+.ref-section-heading.adv-col   { color: #6b3a00; border-color: rgba(201,150,58,.3); }
+.ref-section-heading.mnt-col   { color: #4c1d95; border-color: rgba(139,48,88,.2); }
+.ref-section-heading.natya-col { color: #3a1d6e; }
+.ref-section-heading.sub-col   { color: #1a5c30; border-color: rgba(45,138,79,.2); }
+
+.ref-link-list { list-style: none; padding: 0; margin: 0 0 6px; }
+.ref-link-item {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 7px 0; border-bottom: 1px solid #f5f5f5;
+}
+.ref-link-item:last-child { border-bottom: none; }
+.ref-badge {
+  font-family: 'Montserrat', sans-serif; font-size: .43rem;
+  font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+  background: var(--cream); border: 1px solid rgba(197,160,89,.3);
+  color: var(--gold); padding: 2px 5px; border-radius: 2px;
+  white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+}
+.ref-badge.pdf-badge {
+  background: #fff8f0; border-color: rgba(192,128,48,.35); color: #a05820;
+}
+.ref-badge.sub-badge {
+  background: #f0faf5; border-color: rgba(45,138,79,.3); color: #1a5c30;
+}
+.ref-link-item a {
+  font-family: 'Montserrat', sans-serif; font-size: .63rem;
+  color: var(--primary-blue); text-decoration: none;
+  line-height: 1.55; word-break: break-word; transition: color .18s;
+}
+.ref-link-item a:hover { color: var(--gold); }
+
+/* Drawer ref grid */
+.ref-drawer-section { margin-bottom: 32px; }
+.ref-drawer-section:last-child { margin-bottom: 0; }
+.ref-drawer-head {
+  font-family: 'Montserrat', sans-serif; font-size: .58rem;
+  font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  padding-bottom: 10px; margin-bottom: 10px;
+  border-bottom: 1px solid rgba(197,160,89,.18);
+}
+.ref-count-chip {
+  display: inline-block; background: var(--cream);
+  border: 1px solid rgba(197,160,89,.25); color: var(--gold);
+  font-family: 'Montserrat', sans-serif; font-size: .42rem;
+  font-weight: 700; padding: 1px 6px; border-radius: 10px;
+  margin-left: 6px; vertical-align: middle;
+}
+</style>
+
+<script>
+(function () {
+
+/* ═══════════════════════════════════════════════════════════
+   1. MASTER REFERENCE CATALOGUE
+   Deduplicated, labelled, domain-tagged
+══════════════════════════════════════════════════════════ */
+const R = {
+
+  natya: [
+    { b:'Exotic India', t:'108 Poses of Shiva Tandava in Natya Shastra',
+      u:'https://www.exoticindiaart.com/article/the-108-poses-of-shiva-tandava-in-natya-shastra' },
+    { b:'PDF', t:'Dance Imagery in South Indian Temples — 108 Karanas Study',
+      u:'https://cdn.angkordatabase.asia/libs/docs/publications/dance-imagery-in-south-indian-temples-study-of-the-108-karana-sculptures/108-karanas.pdf', pdf:1 },
+    { b:'Wikipedia', t:'List of Mudras (Dance) — IPFS Mirror',
+      u:'https://en-wikipedia--on--ipfs-org.ipns.dweb.link/wiki/List_of_mudras_%28dance%29' },
+    { b:'PuranaVedas', t:'Theatre & Music — PuranaVedas.com',
+      u:'https://www.puranavedas.com/theatre-music/' },
+    { b:'PDF', t:'IGNCA — Natya Shastra Research PDF',
+      u:'https://ignca.gov.in/Asi_data/8737.pdf', pdf:1 },
+  ],
+
+  ragas: [
+    { b:'Guide', t:'84 Ragas of Indian Classical Music — Complete Guide',
+      u:'https://amitray.com/the-84-ragas-of-indian-classical-music-a-complete-guide' },
+    { b:'Theory', t:'Indian Raga — Chromatone Center',
+      u:'https://chromatone.center/theory/scales/raga' },
+    { b:'Comp. Music', t:'Raga Classification System',
+      u:'https://computationalmusic.com/raga-classification-system.html' },
+    { b:'Index', t:'Hindustani Raga Index — Rāga Junglism',
+      u:'https://ragajunglism.org/ragas' },
+    { b:'Melakarta', t:'Melakarta Ragas — Complete Chart',
+      u:'https://melakarta.com' },
+    { b:'Harmonium', t:'Harmonium Notes & Sargam Guide',
+      u:'https://web-harmonium.com/harmonium-notes' },
+    { b:'Masterlist', t:'Masterlist of 1000+ Ragas — Rāga Junglism',
+      u:'https://ragajunglism.org/ragas/masterlist' },
+    { b:'RagaMath', t:'RagaMath — Mathematical Raga Analysis',
+      u:'https://ragamath.com' },
+    { b:'PDF', t:'Hindustani Music Theory — NIOS Textbook',
+      u:'https://www.nios.ac.in/media/documents/Hindustani_Music_242/hindustanimusictheorybook1/HMB1Ch6.pdf', pdf:1 },
+  ],
+
+  vedic: [
+    { b:'Gov. Portal', t:'Vedic Heritage — Government of India',
+      u:'https://vedicheritage.gov.in/introduction/' },
+    { b:'Encyclopedia', t:'Vedic Encyclopedia — Scriptures (harekrsna.cz)',
+      u:'https://veda.harekrsna.cz/encyclopedia/scriptures.htm' },
+    { b:'Library', t:'Veducation World Library',
+      u:'https://www.veducation.world/library' },
+    { b:'Hindupedia', t:'Hindupedia — Veda',
+      u:'https://hindupedia.com/en/Veda' },
+    { b:'Sanskrit Docs', t:'Sanskrit Documents — Online Archive',
+      u:'https://sanskritdocuments.org/' },
+    { b:'Veda Purana', t:'VedaPurana.org',
+      u:'https://vedapurana.org/' },
+    { b:'Vedadhara', t:'Vedadhara — Vedic Resources',
+      u:'https://www.vedadhara.com/' },
+    { b:'WisdomLib', t:'WisdomLib — Largest Vedic Text Library',
+      u:'https://www.wisdomlib.org/' },
+    { b:'Vedyog', t:'Vedyog.net',
+      u:'https://vedyog.net/' },
+    { b:'Analysis', t:'Comparative Analysis of Four Vedas',
+      u:'https://sanjay-koul.blogspot.com/2024/10/a-comparative-analysis-of-four-vedas.html' },
+    { b:'VedPuran', t:'VedPuran.net',
+      u:'https://vedpuran.net/2011/10/21/ved_puran/' },
+    { b:'PDF', t:'The 4 Vedas — Full PDF',
+      u:'https://zelalemkibret.wordpress.com/wp-content/uploads/2012/03/the-4-vedas.pdf', pdf:1 },
+    { b:'PDF', t:'Vedic Literature Overview — BNMV',
+      u:'https://www.bnmv.ac.in/images/uploads/BP_Vedic_Literature.pdf', pdf:1 },
+    { b:'PDF', t:'Four Vedas — English Translation (Archive.org)',
+      u:'https://ia801205.us.archive.org/11/items/FourVedasEnglishTranslation/Four-Vedas-English-Translation.pdf', pdf:1 },
+    { b:'PDF', t:'Samaveda — Full Text PDF',
+      u:'https://agniveer.com/wp-content/uploads/2013/11/samaveda.pdf', pdf:1 },
+    { b:'PDF', t:'Atharvaveda Vol. 1 — eBharati',
+      u:'https://www.ebharatisampat.in/pdfs/ebharati-pdf-1634550345Adharvavedha-Vol1_compressed.pdf', pdf:1 },
+  ],
+
+  advaita: [
+    { b:'eBooks', t:'Works of Sri Shankaracharya — Sanskrit (20 vols)',
+      u:'https://hinduebooks.blogspot.com/2010/08/works-of-sri-sankaracharya-sanskrit-20.html' },
+    { b:'Books', t:'Shankaracharya Books — Krishna2.com',
+      u:'https://krishna2.com/2019-books-shankaracharya.html' },
+    { b:'Mutts', t:'Shankar Mutts — The Four Vedas (Ramanis Blog)',
+      u:'https://ramanisblog.in/2015/08/02/shankar-mutts-by-shankaracharya-four-vedas/' },
+    { b:'Archive.org', t:'Complete Works of Shankaracharya — 20 Vols, 1910 Edition',
+      u:'https://archive.org/details/CompleteWorksOfSriSankaracharyaIn20Volumes1910Edition/WorksOfSriSankaracharya01-Brahmasutra1/page/n209/mode/2up' },
+    { b:'Wiki', t:'Hindu Media Wiki — Shankaracharya',
+      u:'https://hindumediawiki.com/story.php?id=821' },
+    { b:'Open Lib', t:'Open Library — Advaita Vedanta Collection',
+      u:'https://openlibrary.org/subjects/advaita' },
+  ],
+
+  mantra: [
+    { b:'PDF', t:'Lalita Sahasranama — Sanskrit.nic.in',
+      u:'https://www.sanskrit.nic.in/books_archive/024_Shri_Lalita_Sahasra_Name_of_Shri_Ramamurti.pdf', pdf:1 },
+    { b:'Rudram', t:'Rudram Namakam — Shlokam.org',
+      u:'https://shlokam.org/shloka/rudram-namakam.htm' },
+    { b:'Rudram', t:'Rudram Chamakam — Original Explanation (Medha Journal)',
+      u:'https://www.medhajournal.com/rudram-chamakam-an-original-explanation/' },
+    { b:'Purana', t:'Narada Purana — Kamakoti.org',
+      u:'https://www.kamakoti.org/kamakoti/details/naradapurana12.html' },
+    { b:'Tantra', t:'Nyasas of Tantric Rituals',
+      u:'https://www.sujatanandy.com/the-nyasas-of-tantric-rituals/' },
+    { b:'Nyasa', t:'Matrika Nyasa — Nathas.org Dictionary',
+      u:'https://www.nathas.org/en/dictionary/matrika-nyasa/' },
+    { b:'Lalita', t:'Lalitha Sahasranamam — Shlokam.org',
+      u:'https://shlokam.org/shloka/lalitha-sahasranamam.htm' },
+    { b:'Lalita', t:'Sri Lalitha Sahasranamam with Meaning',
+      u:'http://isatsang.blogspot.com/2013/05/sri-lalitha-sahasranamam-with-meaning.html' },
+    { b:'Purana', t:'Skanda Purana — Kamakoti.org',
+      u:'https://www.kamakoti.org/kamakoti/details/skandapurana49.html' },
+    { b:'Mantra', t:'Mantra Shastra — Vedadhara (English)',
+      u:'https://www.vedadhara.com/english-topics-mantra-shastra' },
+    { b:'GitHub', t:'Soundarya Lahari Mantra Finder (Open Source)',
+      u:'https://github.com/Ishanoshada/Soundarya-Lahari-Mantra-Finder' },
+    { b:'Manblunder', t:'Manblunder.com — Mantra & Tantra',
+      u:'https://manblunder.com/' },
+    { b:'Parashakti', t:'Parasakti Family — Tantric Resources',
+      u:'https://parasakthifamily.org/' },
+    { b:'Open Sadhaka', t:'Open Sadhaka — Practice Resources',
+      u:'https://www.opensadhaka.com/' },
+    { b:'Khadgamala', t:'Khadgamala — Wikipedia',
+      u:'https://en.wikipedia.org/wiki/Khadgamala' },
+    { b:'Mahakatha', t:'Mahakatha — Mantra & Sacred Stories',
+      u:'https://mahakatha.com/' },
+  ],
+
+  subdomains: [
+    { b:'Natya Shastra', t:'natyashastra.culturalmusings.com',
+      u:'https://natyashastra.culturalmusings.com/', sub:1 },
+    { b:'Karanas Root', t:'karanasrootmap.culturalmusings.com',
+      u:'https://karanasrootmap.culturalmusings.com/', sub:1 },
+    { b:'Bio Resonance', t:'bioresonancemusings.culturalmusings.com',
+      u:'https://bioresonancemusings.culturalmusings.com/', sub:1 },
+    { b:'Spiritual', t:'spiritualphilosophical.culturalmusings.com',
+      u:'https://spiritualphilosophical.culturalmusings.com/', sub:1 },
+    { b:'MCP', t:'masterconsciousprotocol.culturalmusings.com',
+      u:'https://masterconsciousprotocol.culturalmusings.com/', sub:1 },
+    { b:'Spandana', t:'spandanashodha.culturalmusings.com',
+      u:'https://spandanashodha.culturalmusings.com/', sub:1 },
+    { b:'Vedic Math', t:'vedicmathematicsgeometry.culturalmusings.com',
+      u:'https://vedicmathematicsgeometry.culturalmusings.com/', sub:1 },
+    { b:'Classical Dance', t:'natyashastraclassical-dance.culturalmusings.com',
+      u:'https://natyashastraclassical-dance.culturalmusings.com/', sub:1 },
+    { b:'Sacred Synth.', t:'karanassacredsynthesis.culturalmusings.com',
+      u:'https://karanassacredsynthesis.culturalmusings.com/', sub:1 },
+    { b:'Celestial', t:'completecelestialsynthesis.culturalmusings.com',
+      u:'https://completecelestialsynthesis.culturalmusings.com/', sub:1 },
+    { b:'Unified Theory', t:'unifiedtheory.culturalmusings.com',
+      u:'https://unifiedtheory.culturalmusings.com/', sub:1 },
+    { b:'GitHub', t:'github.com/ramachandra1975',
+      u:'https://github.com/ramachandra1975', sub:1 },
+  ],
+};
+
+/* ═══════════════════════════════════════════════════════════
+   2. HTML BUILDERS
+══════════════════════════════════════════════════════════ */
+function refList(items) {
+  return '<ul class="ref-link-list">' +
+    items.map(r => {
+      const bc = r.pdf ? 'ref-badge pdf-badge' : r.sub ? 'ref-badge sub-badge' : 'ref-badge';
+      const label = r.pdf ? '📄 PDF' : r.sub ? '🌐 ' + r.b : r.b;
+      return `<li class="ref-link-item">
+        <span class="${bc}">${label}</span>
+        <a href="${r.u}" target="_blank" rel="noopener">${r.t}</a>
+      </li>`;
+    }).join('') + '</ul>';
+}
+
+function refSection(heading, colorClass, items) {
+  return `<div class="ref-section-heading ${colorClass}">${heading}
+    <span style="font-size:.48rem;color:#aaa;font-weight:400;letter-spacing:0;text-transform:none;margin-left:6px;">(${items.length} sources)</span>
+  </div>${refList(items)}`;
+}
+
+function buildModalRefPage(sections) {
+  return '<h3>References &amp; <em>Source Archive</em></h3>' +
+    sections.map(s => refSection(s.h, s.c, s.r)).join('');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   3. INJECT REFERENCES TAB INTO EACH MODAL
+   Each modal gets a contextually relevant References page
+══════════════════════════════════════════════════════════ */
+if (typeof SD_DATA !== 'undefined') {
+
+  /* NATYA SHASTRA */
+  SD_DATA.natya.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🎭 Natya Shastra & Dance',        c: 'natya-col', r: R.natya },
+    { h: '📖 Vedic Scriptures',              c: 'vedic-col', r: R.vedic.slice(0,8) },
+    { h: '🌐 Cultural Musings Subdomains',   c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* NADA CHIKITSA */
+  SD_DATA.nada.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🎵 Raga Science & Music Theory',   c: 'raga-col',  r: R.ragas },
+    { h: '📖 Vedic Music Foundations',       c: 'vedic-col', r: [R.vedic[0],R.vedic[3],R.vedic[7],R.vedic[14]] },
+    { h: '🌐 Cultural Musings Subdomains',   c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* BIO RESONANCE */
+  SD_DATA.bio.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '📖 Vedic & Scientific Sources',    c: 'vedic-col', r: R.vedic.slice(0,7) },
+    { h: '🔱 Mantra & Energy Science',       c: 'mnt-col',   r: R.mantra.slice(0,6) },
+    { h: '🌐 Cultural Musings Subdomains',   c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* SPIRITUAL PHILOSOPHICAL */
+  SD_DATA.spirit.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🕉️ Advaita Vedanta & Shankaracharya', c: 'adv-col',  r: R.advaita },
+    { h: '📖 Vedic Scriptures',                  c: 'vedic-col',r: R.vedic.slice(0,10) },
+    { h: '🔱 Mantra & Tantric Sources',          c: 'mnt-col',  r: R.mantra.slice(0,8) },
+    { h: '🌐 Cultural Musings Subdomains',       c: 'sub-col',  r: R.subdomains },
+  ])});
+
+  /* MASTER CONSCIOUSNESS PROTOCOL */
+  SD_DATA.mcp.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🔱 Mantra Shastra & Tantric Science', c: 'mnt-col',  r: R.mantra },
+    { h: '📖 Vedic Foundations',               c: 'vedic-col', r: R.vedic.slice(0,8) },
+    { h: '🌐 Cultural Musings Subdomains',     c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* SPANDANA SHODHA */
+  SD_DATA.span.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🔱 Mantra & Vibration Sources',    c: 'mnt-col',  r: R.mantra.slice(0,10) },
+    { h: '📖 Vedic Scriptures',              c: 'vedic-col', r: R.vedic.slice(0,7) },
+    { h: '🌐 Cultural Musings Subdomains',   c: 'sub-col',  r: R.subdomains },
+  ])});
+
+  /* BIO ACOUSTIC CODEX */
+  SD_DATA.bioacoustic_intro.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🎵 Raga & Sound Science',         c: 'raga-col',  r: R.ragas },
+    { h: '📖 Vedic Foundations',            c: 'vedic-col', r: R.vedic.slice(0,6) },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* 108 KARANAS — ROOT MAP */
+  SD_DATA.k_root.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🎭 Natya Shastra & Dance',        c: 'natya-col', r: R.natya },
+    { h: '📖 Vedic Mathematical Texts',     c: 'vedic-col', r: R.vedic.slice(0,6) },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* UNIFIED THEORY */
+  SD_DATA.k_unified.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '📖 Vedic Scriptures & Heritage',  c: 'vedic-col', r: R.vedic },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* NATYA SHASTRA CLASSICAL DANCE */
+  SD_DATA.k_natya.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🎭 Dance, Mudras & Karanas',      c: 'natya-col', r: R.natya },
+    { h: '📖 Vedic Sources',               c: 'vedic-col', r: R.vedic.slice(0,5) },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* CELESTIAL SYNTHESIS */
+  SD_DATA.k_cel.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '📖 Vedic & Astronomical Sources', c: 'vedic-col', r: R.vedic.slice(0,8) },
+    { h: '🎭 Natya Shastra & Karanas',      c: 'natya-col', r: R.natya },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* VEDIC AI */
+  SD_DATA.vedicai_intro.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '📖 Sanskrit & Linguistic Sources',c: 'vedic-col', r: [...R.vedic.slice(0,5),...R.advaita.slice(0,3)] },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* AESTHETICS OF SOCIETY */
+  SD_DATA.aessociety_intro.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🎭 Natya Shastra & Arts',         c: 'natya-col', r: R.natya },
+    { h: '📖 Vedic & Cultural Sources',     c: 'vedic-col', r: R.vedic.slice(0,7) },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* TESTEMONY */
+  SD_DATA.testemony_intro.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '📖 Vedic & Research Sources',     c: 'vedic-col', r: R.vedic.slice(0,6) },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* VEDIC MATHEMATICS & GEOMETRY */
+  SD_DATA.k_vedic.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '📖 Vedic Mathematical Texts',     c: 'vedic-col', r: R.vedic },
+    { h: '🎭 Natya & Geometric Arts',       c: 'natya-col', r: R.natya },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* SACRED SYNTHESIS */
+  SD_DATA.k_sacred.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🔱 Mantra & Sacred Texts',        c: 'mnt-col',   r: R.mantra },
+    { h: '🎭 Natya Shastra Sources',         c: 'natya-col', r: R.natya },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+
+  /* RAGA KAVYA */
+  SD_DATA.ragakavya_intro.pages.push({ tab: 'References', content: buildModalRefPage([
+    { h: '🎵 Raga Science Sources',         c: 'raga-col',  r: R.ragas },
+    { h: '🌐 Cultural Musings Subdomains',  c: 'sub-col',   r: R.subdomains },
+  ])});
+}
+
+/* ═══════════════════════════════════════════════════════════
+   4. POPULATE REFERENCE LIBRARY DRAWER PANEL
+   Replaces the placeholder text with full categorised grid
+══════════════════════════════════════════════════════════ */
+const refPanel = document.getElementById('panel-references');
+if (refPanel) {
+
+  function drawerRefSection(emoji, title, color, items) {
+    const total = items.length;
+    let links = items.map(r => {
+      const badgeStyle = r.pdf
+        ? 'background:#fff8f0;border-color:rgba(192,128,48,.35);color:#a05820;'
+        : r.sub
+          ? 'background:#f0faf5;border-color:rgba(45,138,79,.3);color:#1a5c30;'
+          : '';
+      const prefix = r.pdf ? '📄 ' : r.sub ? '🌐 ' : '';
+      return `<a href="${r.u}" target="_blank" rel="noopener" class="drawer-link">
+        <span class="dl-bar" style="background:${color}"></span>
+        <span class="dl-text">
+          <span class="dl-title" style="color:${color};">${prefix}${r.t}</span>
+          <span class="dl-sub">${r.b}${r.pdf ? ' · PDF Resource' : ''}</span>
+        </span>
+      </a>`;
+    }).join('');
+
+    return `<div class="ref-drawer-section">
+      <div class="ref-drawer-head" style="color:${color};">
+        ${emoji} ${title}
+        <span class="ref-count-chip">${total} sources</span>
+      </div>
+      <div class="drawer-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:3px;">
+        ${links}
+      </div>
+    </div>`;
+  }
+
+  const totalAll = R.natya.length + R.ragas.length + R.vedic.length +
+                   R.advaita.length + R.mantra.length + R.subdomains.length;
+
+  refPanel.innerHTML =
+    `<div class="drawer-panel-header">
+      <div>
+        <div class="dph-title" style="color:#5c3a8a;">📚 Complete Reference Library</div>
+        <div class="dph-desc">
+          ${totalAll} curated, deduplicated sources across 6 categories — all contextually linked to
+          relevant research modals throughout the site. Sources also appear in the
+          <strong>References tab</strong> of every domain modal.
+        </div>
+      </div>
+    </div>` +
+    drawerRefSection('🎭', 'Natya Shastra, Karanas & Dance', '#6d28d9', R.natya) +
+    drawerRefSection('🎵', 'Raga Science & Music Theory',    '#b45309', R.ragas) +
+    drawerRefSection('📖', 'Vedic Scriptures & Heritage',    '#1a365d', R.vedic) +
+    drawerRefSection('🕉️', 'Advaita Vedanta & Shankaracharya','#92400e', R.advaita) +
+    drawerRefSection('🔱', 'Mantra Shastra & Tantric Sources','#831843', R.mantra) +
+    drawerRefSection('🌐', 'All Cultural Musings Subdomains', '#065f46', R.subdomains);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   5. EXTEND SEARCH INDEX with key new entries
+══════════════════════════════════════════════════════════ */
+if (typeof SEARCH_INDEX !== 'undefined') {
+  [
+    { title:'108 Karanas — Dance Imagery in South Indian Temples', badge:'Natya · PDF',
+      url:'https://cdn.angkordatabase.asia/libs/docs/publications/dance-imagery-in-south-indian-temples-study-of-the-108-karana-sculptures/108-karanas.pdf',
+      snippet:'Scholarly PDF study of all 108 Karana sculptures in South Indian temple complexes.' },
+    { title:'108 Poses of Shiva Tandava — Natya Shastra', badge:'Natya',
+      url:'https://www.exoticindiaart.com/article/the-108-poses-of-shiva-tandava-in-natya-shastra',
+      snippet:'Illustrated article on the 108 Shiva Tandava poses as described in Natya Shastra.' },
+    { title:'Masterlist of 1000+ Ragas — Rāga Junglism', badge:'Nada',
+      url:'https://ragajunglism.org/ragas/masterlist',
+      snippet:'The most comprehensive masterlist of Hindustani Ragas with 1000+ entries, classifications and cross-references.' },
+    { title:'Melakarta Ragas — Complete Chart', badge:'Nada',
+      url:'https://melakarta.com',
+      snippet:'Complete reference site for all 72 Melakarta parent Ragas of Carnatic music with scale charts.' },
+    { title:'Complete Works of Sri Shankaracharya — 20 Volumes', badge:'Spiritual',
+      url:'https://archive.org/details/CompleteWorksOfSriSankaracharyaIn20Volumes1910Edition/WorksOfSriSankaracharya01-Brahmasutra1/page/n209/mode/2up',
+      snippet:'Full 1910 edition of Shankaracharya\'s 20-volume collected works on Brahmasutra, Advaita and Vedanta.' },
+    { title:'Lalitha Sahasranamam — Text with Meanings', badge:'Mantra',
+      url:'https://shlokam.org/shloka/lalitha-sahasranamam.htm',
+      snippet:'Complete Lalitha Sahasranamam with transliteration and English meanings.' },
+    { title:'Rudram Namakam — Vedic Hymn to Rudra', badge:'Mantra',
+      url:'https://shlokam.org/shloka/rudram-namakam.htm',
+      snippet:'Sacred Yajurveda hymn to Rudra — complete text with meaning, for mantra practice.' },
+    { title:'WisdomLib — Vedic & Sanskrit Encyclopedia', badge:'Vedic',
+      url:'https://www.wisdomlib.org/',
+      snippet:'The largest online library of ancient Indian texts with scholarly commentary across all traditions.' },
+    { title:'Sanskrit Documents — Online Archive', badge:'Sanskrit',
+      url:'https://sanskritdocuments.org/',
+      snippet:'Largest freely accessible archive of Sanskrit documents, Vedic texts and commentaries.' },
+    { title:'RagaMath — Mathematical Raga Analysis', badge:'Nada · Math',
+      url:'https://ragamath.com',
+      snippet:'Mathematical approach to Raga structures, combinatorics and melodic analysis.' },
+    { title:'Nyasas of Tantric Rituals — Explained', badge:'Tantra · MCP',
+      url:'https://www.sujatanandy.com/the-nyasas-of-tantric-rituals/',
+      snippet:'In-depth explanation of Nyasa practices — placing mantras on body parts — a core technique in Tantric sadhana.' },
+    { title:'Four Vedas English Translation — Archive.org PDF', badge:'Vedic · PDF',
+      url:'https://ia801205.us.archive.org/11/items/FourVedasEnglishTranslation/Four-Vedas-English-Translation.pdf',
+      snippet:'Complete English translation of all four Vedas — Rigveda, Yajurveda, Samaveda, Atharvaveda — free PDF.' },
+    { title:'Vedic Heritage Portal — Government of India', badge:'Vedic',
+      url:'https://vedicheritage.gov.in/introduction/',
+      snippet:'Official government portal for Vedic heritage — texts, traditions and research.' },
+    { title:'Mantra Shastra — Vedadhara (English)', badge:'Mantra',
+      url:'https://www.vedadhara.com/english-topics-mantra-shastra',
+      snippet:'Comprehensive Mantra Shastra reference — theory, classifications and practice guidelines in English.' },
+    { title:'Raga Classification System — Computational Music', badge:'Nada',
+      url:'https://computationalmusic.com/raga-classification-system.html',
+      snippet:'Systematic computational approach to understanding and categorising Indian Raga structures.' },
+  ].forEach(item => SEARCH_INDEX.push(item));
+}
+
+})();
+</script>
+<!-- ═══════════════════════════════════════════════════════════
+     END REFERENCE LIBRARY INTEGRATION
+════════════════════════════════════════════════════════════ -->
 </body>
 </html>
