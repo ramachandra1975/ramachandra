@@ -1891,5 +1891,269 @@ function updateVaultCount() {
 // Initialise vault count on page load
 updateVaultCount();
 </script>
+  <!-- ═══════════════════════════════════════════════════════════
+     USER MANUAL ADDITIONS — paste this entire block just before </body>
+════════════════════════════════════════════════════════════ -->
+
+<!-- 1. MANUAL CSS -->
+<style>
+.mega-trigger.man-style{background:linear-gradient(135deg,#1a120a,#2e1e06);color:#f0d080;border-color:rgba(240,208,128,.4)}
+.mega-trigger.man-style:hover,.mega-trigger.man-style.active{border-color:#f0d080;color:#fff}
+.drawer-tab.man-tab.active{color:#7a4e00;border-bottom-color:#f0d080}
+.drawer-panel.man-panel{background:linear-gradient(135deg,rgba(26,18,8,.04) 0%,#fff 45%)}
+.drawer-panel.man-panel .dl-title{color:#4a2e00}
+.drawer-panel.man-panel .drawer-link:hover .dl-title{color:#c8960c}
+.drawer-panel.man-panel .dl-bar{background:#f0d080}
+.sd-dot.manual{background:#f0d080}
+/* Manual modal banner */
+.sd-modal-banner.man-banner{background:linear-gradient(135deg,#1a120a,#2e1e06)}
+.man-banner .sd-modal-tag{color:#f0d080}
+.man-banner h2 em{color:#f0d080}
+/* Manual content helpers */
+.man-toc{list-style:none;padding:0;margin:14px 0}
+.man-toc li{border-bottom:1px solid #ececec;padding:9px 0;display:flex;align-items:flex-start;gap:12px;font-family:'Cormorant Garamond',serif;font-size:.97rem;color:#444;line-height:1.5}
+.man-toc li::before{content:'';width:20px;min-width:20px;height:1px;background:#f0d080;margin-top:10px;flex-shrink:0}
+.man-toc li strong{font-family:'Montserrat',sans-serif;font-size:.58rem;letter-spacing:.5px;color:#4a2e00;min-width:55px;flex-shrink:0;font-weight:700}
+.man-url-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:14px}
+.man-url-row{display:flex;flex-direction:column;padding:7px 11px;border:1px solid #ececec;border-left:3px solid #f0d080;background:#fffdf7}
+.man-url-row .mur-label{font-family:'Montserrat',sans-serif;font-size:.48rem;letter-spacing:1.5px;text-transform:uppercase;color:#c8960c;margin-bottom:2px;font-weight:700}
+.man-url-row .mur-url{font-family:'JetBrains Mono',monospace;font-size:.54rem;color:#333;word-break:break-all}
+.man-url-row a{color:#333;text-decoration:none}.man-url-row a:hover{color:#c8960c}
+.man-tip-box{border:1px solid rgba(240,208,128,.35);border-left:3px solid #f0d080;background:#fffef5;padding:11px 15px;margin:10px 0;font-family:'Montserrat',sans-serif;font-size:.6rem;color:#555;line-height:1.65}
+.man-tip-box strong{color:#4a2e00;display:block;margin-bottom:3px;letter-spacing:.5px;text-transform:uppercase;font-size:.52rem}
+.man-pathway{margin-top:6px}
+.man-pathway-step{display:grid;grid-template-columns:38px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid #ececec;align-items:flex-start}
+.man-pathway-num{font-family:'Playfair Display',serif;font-size:2rem;color:rgba(240,208,128,.3);line-height:1;font-weight:700;text-align:center;padding-top:4px}
+.man-pathway-step h4{font-family:'Montserrat',sans-serif;font-size:.63rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#4a2e00;margin-bottom:5px}
+.man-pathway-step p{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:#555;line-height:1.62;margin:0}
+</style>
+
+<!-- 2. NAV BUTTON — inject via JS into .nav-right -->
+<!-- 3. DRAWER TAB — inject via JS -->
+<!-- 4. DRAWER PANEL — inject via JS -->
+<!-- All done via the script below to avoid touching existing HTML -->
+
+<script>
+// ── INJECT NAV BUTTON ──────────────────────────────────────
+(function(){
+  var navRight = document.querySelector('.nav-right');
+  if(navRight){
+    var sep = document.createElement('div');
+    sep.className='nav-sep';
+    var btn = document.createElement('button');
+    btn.className='mega-trigger man-style';
+    btn.innerHTML='📖 Manual <span class="m-arrow">▼</span>';
+    btn.onclick=function(){openDrawer('manual');};
+    navRight.appendChild(sep);
+    navRight.appendChild(btn);
+  }
+
+  // ── INJECT MOBILE LINK ───────────────────────────────────
+  var mobilePanel = document.getElementById('mobilePanel');
+  if(mobilePanel){
+    var lbl = document.createElement('span');
+    lbl.className='nav-mobile-label';
+    lbl.style.color='#f0d080';
+    lbl.textContent='📖 User Manual';
+    var a1 = document.createElement('a');
+    a1.href='#'; a1.className='nav-mobile-link man-mobile';
+    a1.textContent='📖 Complete User Manual';
+    a1.onclick=function(){openDrawer('manual');closeMobile();return false;};
+    var a2 = document.createElement('a');
+    a2.href='#'; a2.className='nav-mobile-link man-mobile';
+    a2.textContent='🔗 Quick Reference — All URLs';
+    a2.onclick=function(){openSD('man_urls',0);closeMobile();return false;};
+    var a3 = document.createElement('a');
+    a3.href='#'; a3.className='nav-mobile-link man-mobile';
+    a3.textContent='🗺️ 7-Stage Research Pathway';
+    a3.onclick=function(){openSD('man_pathway',0);closeMobile();return false;};
+    mobilePanel.appendChild(lbl);
+    mobilePanel.appendChild(a1);
+    mobilePanel.appendChild(a2);
+    mobilePanel.appendChild(a3);
+  }
+
+  // ── INJECT DRAWER TAB ────────────────────────────────────
+  var drawerTabs = document.getElementById('drawerTabs');
+  if(drawerTabs){
+    var tab = document.createElement('button');
+    tab.className='drawer-tab man-tab';
+    tab.setAttribute('data-panel','manual');
+    tab.onclick=function(){switchDrawerTab('manual');};
+    tab.innerHTML='<span class="sd-dot manual"></span> 📖 Manual';
+    drawerTabs.appendChild(tab);
+  }
+
+  // ── INJECT DRAWER PANEL ───────────────────────────────────
+  var drawerInner = document.querySelector('.drawer-inner');
+  if(drawerInner){
+    var footer = document.querySelector('.drawer-footer');
+    var panel = document.createElement('div');
+    panel.className='drawer-panel man-panel';
+    panel.id='panel-manual';
+    panel.innerHTML=`
+      <div class="drawer-panel-header">
+        <div>
+          <div class="dph-title" style="color:#4a2e00;">📖 User Manual &amp; Research Guide</div>
+          <div class="dph-desc">Complete navigation guide for the Cultural Musings network — every feature, tool, subdomain, Terabox PDF library, and research pathway. Version 1.0 · 2025</div>
+        </div>
+        <a href="https://dm.1024terabox.com/main?category=all" target="_blank" class="dph-visit">Terabox PDFs →</a>
+      </div>
+      <div class="drawer-grid" style="grid-template-columns:repeat(auto-fill,minmax(250px,1fr));">
+        <button class="drawer-link" onclick="openSD('man_intro',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">① Introduction &amp; Overview</span><span class="dl-sub">Core thesis, about the author, key statistics</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_arch',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">② Website Architecture &amp; Navigation</span><span class="dl-sub">Nav bar, Mega Drawer, desktop &amp; mobile guide</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_modal',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">③ Research Modal Panels</span><span class="dl-sub">How to open, read and navigate deep-read overlays</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_domains',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">④ Complete Subdomain Directory</span><span class="dl-sub">All 17+ research domains listed &amp; described</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_search',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑤ Research Archive Search</span><span class="dl-sub">How to search all 17+ domains simultaneously</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_ragas',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑥ Exploring Ragas &amp; Essays</span><span class="dl-sub">4 methods + complete Raga quick-reference table</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_astro',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑦ Vedic Jyotisha Tool</span><span class="dl-sub">Birth chart reading — how to generate &amp; interpret</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_terabox',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑧ Terabox PDF Library</span><span class="dl-sub">Accessing &amp; using the PDF research archive</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_vault',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑨ API Key Vault</span><span class="dl-sub">20-slot vault — Groq, Gemini, OpenRouter &amp; more</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_contact',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑩ Contact &amp; Collaboration</span><span class="dl-sub">Chat, enquiry form, collaboration types</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_pathway',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑪ Recommended Research Pathway</span><span class="dl-sub">7-stage systematic journey through all domains</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_urls',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑫ Quick Reference — All URLs</span><span class="dl-sub">Every subdomain URL in one clickable list</span></span></button>
+        <button class="drawer-link" onclick="openSD('man_tips',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑬ Tips &amp; Troubleshooting</span><span class="dl-sub">Best practices and common issue solutions</span></span></button>
+      </div>`;
+    drawerInner.insertBefore(panel, footer);
+  }
+
+  // ── ADD MANUAL ENTRIES TO SD_DATA ────────────────────────
+  if(typeof SD_DATA !== 'undefined'){
+    SD_DATA['man_intro'] = {
+      banner:'man-banner', symbol:'📖', tag:'User Manual · Chapter 1',
+      title:'Introduction &amp; Overview', subtitle:'What is Aesthetics of Society, the core thesis, and key research statistics about Naredla Rama Chandra.',
+      visitUrl:'https://www.culturalmusings.com',
+      pages:[
+        { tab:'Core Thesis', content:`<h3>Aesthetics of Society — <em>Core Mission</em></h3><p>Aesthetics of Society is the flagship publication of researcher and author Naredla Rama Chandra. Its central mission: to demonstrate — through rigorous cross-disciplinary evidence — that India's ancient knowledge systems are precise scientific frameworks relevant to modern neuroscience, bio-acoustics, quantum physics, and civilisational design.</p><div class="pull"><p>"Ancient wisdom does not contradict modern science — it precedes it. The Sapta Swaras are frequencies. The 108 Karanas are neuroscience. The Natya Shastra is the world's first unified theory of consciousness."</p></div><ul class="sd-key-list"><li>The main hub is <strong>www.culturalmusings.com</strong></li><li>17+ dedicated research subdomains, each a complete standalone site</li><li>50+ cited reference sources across 26 research domains</li><li>PDF research library hosted on Terabox for offline and academic use</li></ul>` },
+        { tab:'About the Author', content:`<h3>Naredla Rama Chandra — <em>15+ Years of Inquiry</em></h3><div class="sd-grid-2"><div class="sd-card"><h4>8+ Major Works</h4><p>Manuscripts spanning neuroscience, bio-acoustics, astrophysics and sacred geometry.</p></div><div class="sd-card"><h4>15+ Years Research</h4><p>Continuous independent inquiry across classical arts, medicine and modern science.</p></div><div class="sd-card"><h4>17+ Subdomains</h4><p>Each a dedicated standalone website exploring one research pillar.</p></div><div class="sd-card"><h4>108 Karanas Decoded</h4><p>Complete mapping across 4 Vedic quarters, 27 Nakshatras and 72 Melakarthas.</p></div></div><p style="margin-top:16px;font-family:'Montserrat',sans-serif;font-size:.72rem;color:#555;">Contact: <a href="mailto:smith123846@gmail.com" style="color:var(--gold);">smith123846@gmail.com</a> &nbsp;|&nbsp; +91 91213 79100 &nbsp;|&nbsp; <a href="https://github.com/ramachandra1975" target="_blank" style="color:var(--gold);">github.com/ramachandra1975</a></p>` }
+      ]
+    };
+
+    SD_DATA['man_arch'] = {
+      banner:'man-banner', symbol:'🗂️', tag:'User Manual · Chapter 2',
+      title:'Website Architecture &amp; Navigation', subtitle:'Hub-and-spoke architecture, the Nav Bar, Mega Drawer system, and mobile navigation explained.',
+      visitUrl:'https://www.culturalmusings.com',
+      pages:[
+        { tab:'Architecture', content:`<h3>Hub-and-Spoke <em>Architecture</em></h3><p>The Cultural Musings website is a hub-and-spoke system. The main site acts as the central hub; 17+ dedicated subdomains are the research spokes. Understanding this structure is the key to navigating the full body of work efficiently.</p><ul class="sd-key-list"><li><strong>The Hub</strong> — culturalmusings.com hosts navigation, modals, search and astrological tools</li><li><strong>The Spokes</strong> — 17+ subdomains, each a complete standalone research site</li><li><strong>The Nav Bar</strong> — fixed at the top; colour-coded buttons open the Mega Drawer</li><li><strong>The Mega Drawer</strong> — expandable panel below the nav containing all sub-links</li><li><strong>Research Modals</strong> — full-screen overlays with long-form curated content</li></ul>` },
+        { tab:'Using the Drawer', content:`<h3>Mega Drawer — <em>Step by Step</em></h3><ul class="sd-key-list"><li><strong>Step 1</strong> — Click any coloured button in the nav bar to open the drawer at that domain</li><li><strong>Step 2</strong> — Click any tab in the top tab row to switch between all 19+ research areas</li><li><strong>Step 3</strong> — Click sub-links to open Research Modals, or external links to visit subdomains in new tabs</li><li><strong>Step 4</strong> — Click the darkened backdrop or the Close button to dismiss the drawer</li></ul><div class="man-tip-box"><strong>💡 Power Tip</strong>The tab row inside the drawer lets you browse all research areas without reopening the menu — ideal for systematic exploration across domains.</div>` },
+        { tab:'Mobile Navigation', content:`<h3>Mobile &amp; <em>Desktop Differences</em></h3><p>On screens narrower than 1200px the desktop button row is hidden and replaced by a hamburger icon (☰) in the top-right corner.</p><ul class="sd-key-list"><li>Tap ☰ to open the Mobile Navigation Panel — a full-screen scrollable list colour-coded by domain</li><li>Direct links to all major subdomains and research areas are included</li><li>The mobile panel also now includes the 📖 Manual section with direct links</li><li>For the full Mega Drawer experience use a desktop or tablet in landscape orientation</li></ul>` }
+      ]
+    };
+
+    SD_DATA['man_modal'] = {
+      banner:'man-banner', symbol:'🔍', tag:'User Manual · Chapter 3',
+      title:'Research Modal Panels', subtitle:'How to open, read and navigate the deep-read overlay panels for each research domain.',
+      visitUrl:'https://www.culturalmusings.com',
+      pages:[
+        { tab:'Anatomy of a Modal', content:`<h3>Research Modal — <em>Anatomy</em></h3><p>Clicking most sub-links in the Mega Drawer opens a Research Modal — a full-screen overlay presenting curated long-form research content without leaving the page.</p><ul class="sd-key-list"><li><strong>Coloured Banner</strong> — domain gradient with title, subtitle and Visit Full Domain button</li><li><strong>Tab Row</strong> — 2 to 4 tabs dividing content into sub-topics</li><li><strong>Content Page</strong> — rich text with headings, pull-quotes, bullet lists and two-column cards</li><li><strong>Previous / Next Buttons</strong> — bottom navigation for sequential reading</li><li><strong>Close Button</strong> — top-right ✕ or click outside the modal area</li></ul>` },
+        { tab:'Available Modals', content:`<h3>All Available <em>Research Modals</em></h3><ul class="sd-key-list"><li>Natya Shastra — Introduction · The Science · Research Dimensions</li><li>Bio Resonance Musings — Introduction · The Science · Applications</li><li>Nada Chikitsa — Introduction · Raga Pharmacopoeia · Clinical Framework</li><li>Spiritual Philosophical — Introduction · Core Philosophy · Modern Intersections</li><li>Master Consciousness Protocol — Introduction · The 5 Phases · Research Base</li><li>Spandana Shodha — Introduction · Spanda Theory · Inquiry Methods</li><li>Insights (7 panels) — Students · Ragas · Philosophy · Yoga · Astrophysics · All Subdomains · Vision</li><li>Bio Acoustic Codex — Introduction · Cymatics &amp; Cell Biology · Clinical Applications</li><li>Testemony — What is Testemony · Practitioner Voices · Evidence Framework</li><li>Vedic AI — Pāṇini &amp; Machine Intelligence · Piṅgala's Binary · Consciousness &amp; AGI</li><li>Aesthetics of Society — Rasa Theory · Temple Arts · Modern Aesthetics</li><li>Sanskrit (6 panels) — Origins · Pāṇini · Phonology · Music · Yoga · Consciousness</li><li>Enhancements Portal (5 panels) — About · All Domains · Roadmap · Author · Collaborate</li><li>108 Karanas (8 panels) — Root Map · Unified Theory · Vedic Math · Dance · Sacred Synthesis · Celestial · MCP · Source Text</li><li><strong>User Manual (13 panels)</strong> — all chapters of this guide</li></ul>` }
+      ]
+    };
+
+    SD_DATA['man_domains'] = {
+      banner:'man-banner', symbol:'🌐', tag:'User Manual · Chapter 4',
+      title:'Complete Subdomain Directory', subtitle:'Every Cultural Musings subdomain listed with its subject coverage — 17+ dedicated research websites.',
+      visitUrl:'https://culturalmusingsenhancements.culturalmusings.com',
+      pages:[
+        { tab:'Core Domains', content:`<h3>Core Research <em>Domains</em></h3><ul class="sd-key-list"><li><strong>🎭 Natya Shastra</strong> — natyashastra.culturalmusings.com — Bharata Muni's 6,000-verse unified theory: Rasa, 108 Karanas, Abhinaya, Nava Rasa, Tala science</li><li><strong>🔊 Nada Chikitsa</strong> — nada-chikitsa.culturalmusings.com — Sound as medicine; complete Raga pharmacopoeia with time-of-day and seasonal alignment</li><li><strong>🌿 Bio Resonance</strong> — bioresonancemusings.culturalmusings.com — Prana fields, biophoton emissions, cellular resonance, Vedic bio-physics</li><li><strong>🕉️ Spiritual Philosophical</strong> — spiritualphilosophical.culturalmusings.com — Advaita Vedanta, quantum non-locality, Hard Problem of Consciousness, near-death research</li><li><strong>⚕️ Master Consciousness Protocol</strong> — masterconsciousprotocol.culturalmusings.com — Five-phase clinical synthesis: Pranayama, Nada, Mudra, Karana, Rasa psychotherapy</li><li><strong>🌊 Spandana Shodha</strong> — spandanashodha.culturalmusings.com — Primordial vibration; Spanda Karikas meets quantum vacuum fluctuations</li></ul>` },
+        { tab:'108 Karanas Archive', content:`<h3>108 Karanas — <em>Seven Subdomains</em></h3><ul class="sd-key-list"><li><strong>🗺️ Karanas Root Map</strong> — karanasrootmap.culturalmusings.com — Master 4×27 structure; Vedas, Nakshatras, 22 Shrutis, 72 Melakarthas</li><li><strong>⚛️ Unified Theory</strong> — unifiedtheory.culturalmusings.com — 21 unsolved problems addressed through the Karanas framework</li><li><strong>📐 Vedic Mathematics &amp; Geometry</strong> — vedicmathematicsgeometry.culturalmusings.com — Karanas 82–108; Sulba Sutras, Fibonacci, fractal geometry, Sri Chakra</li><li><strong>🎭 Natya Shastra Classical Dance</strong> — natyashastraclassical-dance.culturalmusings.com — Karanas 55–81; kinematic analysis, Raga-Karana correspondences</li><li><strong>🔱 Karanas Sacred Synthesis</strong> — karanassacredsynthesis.culturalmusings.com — All 108 mapped to Vedas, Sri Chakra, Chidambaram temple</li><li><strong>🌌 Complete Celestial Synthesis</strong> — completecelestialsynthesis.culturalmusings.com — All 108 in celestial context: Nakshatra, Rashi, Graha, Shruti, Melakartha</li><li><strong>📜 Natya Shastra Standalone</strong> — natyashastrastandalone.culturalmusings.com — Source text Chapter 4, verses 28–261</li></ul>` },
+        { tab:'New &amp; Grand Synthesis', content:`<h3>New Domains &amp; <em>Grand Synthesis</em></h3><ul class="sd-key-list"><li><strong>🧬 Bio Acoustic Codex</strong> — bioacousticcodex.culturalmusings.com — Cymatics, cellular sound effects, clinical oncology/wound/neurological applications</li><li><strong>🤖 Vedic AI</strong> — vedicai.culturalmusings.com — Pāṇini grammar, Piṅgala binary mathematics, AGI and consciousness</li><li><strong>📜 Testemony</strong> — testemony.culturalmusings.com — Practitioner accounts, qualitative research archive</li><li><strong>🌸 Aesthetics of Society</strong> — aestheticsofsociety.culturalmusings.com — Rasa, Kavya, temple arts, civilisational design</li><li><strong>🎶 Raga Kavya Creator</strong> — ragakavyacreator.culturalmusings.com — AI-powered Raga-aligned poetry creation</li><li><strong>🌹 Raga Kavya Library</strong> — ragakavya.culturalmusings.com — Growing archive of Raga Kavya poems</li><li><strong>⚙️ Technical Spine</strong> — thetechnicalspine.culturalmusings.com — Infrastructure hub connecting all domains</li><li><strong>📐 Sacred Geometry</strong> — domainsacredgeometry.culturalmusings.com — Sri Chakra, Vedic architecture, cosmological geometry</li></ul>` }
+      ]
+    };
+
+    SD_DATA['man_search'] = {
+      banner:'man-banner', symbol:'🔎', tag:'User Manual · Chapter 5',
+      title:'Research Archive Search System', subtitle:'How to search all 17+ domains simultaneously — always works, no API key required.',
+      visitUrl:'https://www.culturalmusings.com',
+      pages:[
+        { tab:'How to Search', content:`<h3>The Research Archive <em>Search System</em></h3><p>The built-in search spans all 17+ research domains simultaneously. No API key needed — it always works.</p><ul class="sd-key-list"><li>Click <strong>'🌌 Astro &amp; Search'</strong> in the navigation bar</li><li>The Mega Drawer opens at the Astro &amp; Search panel</li><li>The <strong>right column</strong> is the Research Archive Search</li><li>Type your query and press Enter or click 'Search →'</li><li>Up to 8 results shown per search, each with a clickable link to the relevant subdomain</li></ul><div class="man-tip-box"><strong>💡 Tip</strong>Each result links directly to the relevant subdomain. Bookmark subdomains for direct future access — they contain far more content than the in-page modals.</div>` },
+        { tab:'What to Search', content:`<h3>Useful <em>Search Terms</em></h3><div class="sd-grid-2"><div class="sd-card"><h4>Raga Names</h4><p>Bhairavi · Darbari Kanada · Yaman · Todi · Hindol · Bhairav · Kedar</p></div><div class="sd-card"><h4>Research Domains</h4><p>Bio Acoustic · Vedic AI · Natya · Karanas · MCP · Spandana · Testemony</p></div><div class="sd-card"><h4>Scientific Concepts</h4><p>biophoton · cymatics · HRV · neuroplasticity · quantum · consciousness</p></div><div class="sd-card"><h4>Sanskrit Terms</h4><p>Spanda · Prana · Rasa · Shruti · Melakartha · Nakshatra · Karana</p></div><div class="sd-card"><h4>Specific Topics</h4><p>108 Karanas · Celestial Synthesis · Root Map · Unified Theory · MCP</p></div><div class="sd-card"><h4>Therapeutic Topics</h4><p>healing · clinical · oncology · immune · pranayama · bioacoustic</p></div></div>` }
+      ]
+    };
+
+    SD_DATA['man_ragas'] = {
+      banner:'man-banner', symbol:'🎵', tag:'User Manual · Chapter 6',
+      title:'Exploring Ragas, Essays &amp; Research', subtitle:'Four methods to find Raga research, plus the complete Raga quick-reference table.',
+      visitUrl:'https://nada-chikitsa.culturalmusings.com',
+      pages:[
+        { tab:'Four Methods', content:`<h3>Four Ways to Find <em>Raga Research</em></h3><ul class="sd-key-list"><li><strong>Method A — Via Nada Chikitsa</strong> — Click 'Nada' in nav → 'Raga Pharmacopoeia' in drawer → modal displays Ragas with therapeutic indications, time-of-day alignment and physiological effects → click 'Visit Full Domain' for the complete site</li><li><strong>Method B — Via Raga Kavya</strong> — Click '🎶 Raga Kavya' in nav → choose Creator for AI-generated Raga-aligned poems, or Library to browse existing works tagged by Raga and Rasa</li><li><strong>Method C — Via Research Archive Search</strong> — Open 'Astro &amp; Search' → type the Raga name (e.g. 'Bhairavi', 'Darbari', 'Yaman') → results across all 17+ domains appear</li><li><strong>Method D — Via Insights Panel</strong> — Click 'Insights' in nav → '🎵 Understanding Ragas' for a complete primer covering Aroha/Avaroha, Vadi/Samvadi, Raga-time theory and Gamaka ornaments</li></ul>` },
+        { tab:'Raga Quick Reference', content:`<h3>Key Ragas — <em>Quick Reference</em></h3><ul class="sd-key-list"><li><strong>Bhairavi</strong> · Dawn 6–8am · Shanta/Karuna · Parasympathetic activation, cortisol reduction, emotional healing</li><li><strong>Darbari Kanada</strong> · Midnight 11pm–1am · Shanta/Vira · Deep alpha-theta brainwave induction, pre-sleep Samadhi states</li><li><strong>Yaman</strong> · Evening 7–9pm · Shringara · Creative cognition, positive affect, heart coherence</li><li><strong>Todi</strong> · Mid-morning 10am–12pm · Karuna · Respiratory support, bronchial smooth muscle modulation</li><li><strong>Hindol</strong> · Early morning 6–8am · Shringara · Liver and endocrine stimulation, metabolic activation</li><li><strong>Bhairav</strong> · Dawn 6–9am · Shanta/Adbhuta · Spiritual clarity, nervous system grounding, thyroid activation</li><li><strong>Kedar</strong> · Night 9–11pm · Shringara/Shanta · Cardiac coherence, stress dissolution, devotional states</li></ul>` }
+      ]
+    };
+
+    SD_DATA['man_astro'] = {
+      banner:'man-banner', symbol:'🌌', tag:'User Manual · Chapter 7',
+      title:'Vedic Jyotisha — Astrological Tool', subtitle:'How to generate and interpret your personalised birth chart reading using the built-in Jyotisha tool.',
+      visitUrl:'https://completecelestialsynthesis.culturalmusings.com',
+      pages:[
+        { tab:'How to Generate', content:`<h3>Generating Your <em>Vedic Reading</em></h3><ul class="sd-key-list"><li>Click <strong>'🌌 Astro &amp; Search'</strong> in the navigation bar</li><li>In the left panel titled 'Vedic Jyotisha · Birth Chart Reading', enter your <strong>Full Name</strong></li><li>Enter your <strong>Date of Birth</strong> using the date picker</li><li>Enter your <strong>Time of Birth</strong> (optional — improves accuracy)</li><li>Enter your <strong>Place of Birth</strong> — city and state (optional)</li><li>Click <strong>'Generate Reading →'</strong> and wait 1–2 seconds</li><li>The reading appears below the form with four personalised sections plus four Sanskrit mantras</li></ul><div class="man-tip-box"><strong>⚠️ Disclaimer</strong>For research and educational purposes only. Not a substitute for a professional Jyotishi consultation. Uses Vedic (sidereal) calculation framework.</div>` },
+        { tab:'Reading Contents', content:`<h3>What the Reading <em>Contains</em></h3><ul class="sd-key-list"><li><strong>Lagna &amp; Rashi Analysis</strong> — your birth sign and its influence on temperament and creative nature</li><li><strong>Nakshatra Influence</strong> — your birth star, archetypal energies and life path themes</li><li><strong>Dasha Cycle &amp; Current Timing</strong> — the planetary period governing your current life phase and its emphasis</li><li><strong>Recommended Practice</strong> — personalised Raga prescription (Nada Chikitsa), Karana sequences and Pranayama protocol</li><li><strong>Four Sanskrit Mantras</strong> — Rashi mantra, Nakshatra mantra, Mahamrityunjaya, Consciousness mantra</li></ul><p style="margin-top:14px;font-family:'Montserrat',sans-serif;font-size:.68rem;color:#666;">After the reading, external links appear to: 🌌 Celestial Synthesis · 🧬 Bio Acoustic · 🤖 Vedic AI · 🌹 Raga Kavya · 🐙 GitHub</p>` }
+      ]
+    };
+
+    SD_DATA['man_terabox'] = {
+      banner:'man-banner', symbol:'📁', tag:'User Manual · Chapter 8',
+      title:'Terabox PDF Research Library', subtitle:'How to access and use the cloud PDF archive that extends all subdomain research with printable, citable manuscripts.',
+      visitUrl:'https://dm.1024terabox.com/main?category=all',
+      pages:[
+        { tab:'Accessing the Library', content:`<h3>The Terabox <em>PDF Library</em></h3><p>The Cultural Musings research network maintains a PDF document library on Terabox — a cloud storage platform for large research files, manuscripts and reference documents. These PDFs extend the web-based content across all subdomains.</p><ul class="sd-key-list"><li>Navigate to: <strong>dm.1024terabox.com/main?category=all</strong></li><li>Log in or continue as a guest — public shared folders are accessible without login</li><li>Browse by category or use Terabox's search function</li><li>Click any PDF to preview in-browser, or Download to save locally</li></ul><div class="man-tip-box"><strong>💡 Direct Access</strong>The URL dm.1024terabox.com/main?category=all opens the full file listing where all research PDFs are stored.</div>` },
+        { tab:'Contents &amp; Workflow', content:`<h3>PDF Contents &amp; <em>Best Workflow</em></h3><ul class="sd-key-list"><li>Full-length research manuscripts on the 108 Karanas</li><li>Master Consciousness Protocol — clinical framework documentation</li><li>Natya Shastra chapter translations and scientific commentary</li><li>Nada Chikitsa — complete Raga pharmacopoeia reference</li><li>Bio Acoustic Codex — extended research with full citations</li><li>Reference bibliography — 50+ sources across all 26 research domains</li><li>Sanskrit phonology and consciousness science papers</li><li>Vedic AI — Pāṇini grammar and computational linguistics papers</li></ul><div class="sd-grid-2" style="margin-top:14px;"><div class="sd-card"><h4>Use the Website For</h4><p>Quick orientation, browsing multiple domains, Raga Kavya creation, astrological readings, search</p></div><div class="sd-card"><h4>Use Terabox PDFs For</h4><p>Full manuscripts, offline annotation, academic citation with footnotes, printing, sharing with colleagues</p></div></div>` }
+      ]
+    };
+
+    SD_DATA['man_vault'] = {
+      banner:'man-banner', symbol:'🔑', tag:'User Manual · Chapter 9',
+      title:'API Key Vault', subtitle:'The 20-slot key vault for developers and researchers — Groq, Gemini, OpenRouter, Together, Cohere and more.',
+      visitUrl:'https://www.culturalmusings.com',
+      pages:[
+        { tab:'Using the Vault', content:`<h3>The 20-Slot <em>API Key Vault</em></h3><p>The <strong>🔑 Key Vault</strong> button is fixed at the bottom-right of the page. It stores API keys that enhance the search and astrological functions with external AI services.</p><ul class="sd-key-list"><li>Click <strong>'🔑 Key Vault'</strong> at the bottom-right to open the vault panel</li><li>Paste your API key into the appropriate labelled slot</li><li>The key auto-saves after 10+ characters and the slot locks (key is hidden for security)</li><li>A green ✓ button confirms the slot is active; the badge counter updates</li><li>Click ✓ on an active slot to clear it; 'Clear All' removes everything</li></ul><div class="man-tip-box"><strong>🔒 Privacy Note</strong>API keys are stored only in your browser's localStorage — never sent to any external server by this site. They are used only when you initiate AI-enhanced features.</div>` },
+        { tab:'Supported Providers', content:`<h3>Supported <em>API Providers</em></h3><div class="sd-grid-2"><div class="sd-card"><h4>Slots 1–5</h4><p>Groq · Gemini (Google) · OpenRouter · Together AI · Cohere</p></div><div class="sd-card"><h4>Slots 6–10</h4><p>HuggingFace · Mistral · Cerebras · OpenAI · Replicate</p></div><div class="sd-card"><h4>Slots 11–20</h4><p>Custom / future provider keys — label and use as needed for your research workflow</p></div><div class="sd-card"><h4>No Key Required</h4><p>The Research Archive Search always works without any API key. Keys unlock AI-enhanced features only.</p></div></div>` }
+      ]
+    };
+
+    SD_DATA['man_contact'] = {
+      banner:'man-banner', symbol:'✉️', tag:'User Manual · Chapter 10',
+      title:'Contact, Chat &amp; Collaboration', subtitle:'How to reach the author, use the live chat widget, and what types of collaboration are actively sought.',
+      visitUrl:'https://www.culturalmusings.com/#contact',
+      pages:[
+        { tab:'Contact Information', content:`<h3>Reach the <em>Author</em></h3><div class="sd-grid-2"><div class="sd-card"><h4>Email</h4><p><a href="mailto:smith123846@gmail.com" style="color:var(--gold);">smith123846@gmail.com</a></p></div><div class="sd-card"><h4>Phone</h4><p>+91 91213 79100</p></div><div class="sd-card"><h4>Website</h4><p><a href="https://www.culturalmusings.com" target="_blank" style="color:var(--gold);">www.culturalmusings.com</a></p></div><div class="sd-card"><h4>GitHub</h4><p><a href="https://github.com/ramachandra1975" target="_blank" style="color:var(--gold);">github.com/ramachandra1975</a></p></div></div><p style="margin-top:14px;font-size:.9rem;color:#555;">The <strong>💬 Chat</strong> button (bottom-right) opens a JotForm AI chat for questions, PDF requests and collaboration enquiries. The full enquiry form is at <a href="https://form.jotform.com/261042208142039" target="_blank" style="color:var(--gold);">form.jotform.com/261042208142039</a></p>` },
+        { tab:'Collaboration Types', content:`<h3>Types of Collaboration <em>Actively Sought</em></h3><ul class="sd-key-list"><li><strong>Academic Researchers</strong> — neuroscience, musicology, linguistics, consciousness studies</li><li><strong>Clinical Practitioners</strong> — integrative medicine, music therapy, somatic healing</li><li><strong>Classical Artists</strong> — dancers, musicians, Sanskrit scholars</li><li><strong>Technology Collaborators</strong> — AI applications of Vedic frameworks, web development</li><li><strong>Institutional Partners</strong> — clinical trial design, grant writing, funding</li><li><strong>Students</strong> — research mentorship at all academic levels</li></ul><div class="man-tip-box"><strong>📋 Enquiry Form</strong>Use the full JotForm at form.jotform.com/261042208142039 for research collaboration, institutional partnerships, media enquiries and clinical trial proposals.</div>` }
+      ]
+    };
+
+    SD_DATA['man_pathway'] = {
+      banner:'man-banner', symbol:'🗺️', tag:'User Manual · Chapter 11',
+      title:'Recommended Research Pathway', subtitle:'The 7-stage systematic journey through the complete Cultural Musings research programme.',
+      visitUrl:'https://culturalmusingsenhancements.culturalmusings.com',
+      pages:[
+        { tab:'7-Stage Pathway', content:`<h3>The Systematic <em>7-Stage Pathway</em></h3><div class="man-pathway"><div class="man-pathway-step"><div class="man-pathway-num">1</div><div><h4>Foundation</h4><p>Natya Shastra modal (all 3 pages) → Spiritual Philosophical → Bio Resonance. Download corresponding PDFs from Terabox.</p></div></div><div class="man-pathway-step"><div class="man-pathway-num">2</div><div><h4>Sound Science</h4><p>Nada Chikitsa (all pages) → Bio Acoustic Codex subdomain → Raga Kavya Library. Search for your favourite Raga in the archive.</p></div></div><div class="man-pathway-step"><div class="man-pathway-num">3</div><div><h4>Movement Science</h4><p>108 Karanas Root Map modal → Natya Shastra Classical Dance → Vedic Mathematics. Visit karanasrootmap.culturalmusings.com for full detail.</p></div></div><div class="man-pathway-step"><div class="man-pathway-num">4</div><div><h4>Synthesis</h4><p>Complete Celestial Synthesis → Unified Theory → Sacred Synthesis. Generate your personalised Vedic astrological reading.</p></div></div><div class="man-pathway-step"><div class="man-pathway-num">5</div><div><h4>Protocol</h4><p>Full Master Consciousness Protocol (all pages) → Download MCP PDF from Terabox → Contact the author for clinical collaboration.</p></div></div><div class="man-pathway-step"><div class="man-pathway-num">6</div><div><h4>Technology</h4><p>Vedic AI subdomain → Sanskrit panels (all 6) → Technical Spine. Add API keys to the Vault for enhanced AI search.</p></div></div><div class="man-pathway-step"><div class="man-pathway-num">7</div><div><h4>Community</h4><p>Testemony accounts → Aesthetics of Society → Devotional Revolution. Submit your own testimony. Make contact for collaboration.</p></div></div></div>` }
+      ]
+    };
+
+    SD_DATA['man_urls'] = {
+      banner:'man-banner', symbol:'🔗', tag:'User Manual · Chapter 12',
+      title:'Quick Reference — All URLs', subtitle:'Every Cultural Musings subdomain and tool URL in one clickable list. Pattern: [name].culturalmusings.com',
+      visitUrl:'https://culturalmusingsenhancements.culturalmusings.com',
+      pages:[
+        { tab:'Core &amp; Karanas', content:`<h3>Core Domains &amp; <em>Karanas Archive</em></h3><div class="man-url-grid"><div class="man-url-row"><span class="mur-label">Main Hub</span><span class="mur-url"><a href="https://www.culturalmusings.com" target="_blank">www.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Enhancements Portal</span><span class="mur-url"><a href="https://culturalmusingsenhancements.culturalmusings.com" target="_blank">culturalmusingsenhancements.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Natya Shastra</span><span class="mur-url"><a href="https://natyashastra.culturalmusings.com" target="_blank">natyashastra.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Nada Chikitsa</span><span class="mur-url"><a href="https://nada-chikitsa.culturalmusings.com" target="_blank">nada-chikitsa.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Bio Resonance</span><span class="mur-url"><a href="https://bioresonancemusings.culturalmusings.com" target="_blank">bioresonancemusings.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Spiritual Philosophical</span><span class="mur-url"><a href="https://spiritualphilosophical.culturalmusings.com" target="_blank">spiritualphilosophical.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">MCP</span><span class="mur-url"><a href="https://masterconsciousprotocol.culturalmusings.com" target="_blank">masterconsciousprotocol.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Spandana Shodha</span><span class="mur-url"><a href="https://spandanashodha.culturalmusings.com" target="_blank">spandanashodha.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Karanas Root Map</span><span class="mur-url"><a href="https://karanasrootmap.culturalmusings.com" target="_blank">karanasrootmap.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Unified Theory</span><span class="mur-url"><a href="https://unifiedtheory.culturalmusings.com" target="_blank">unifiedtheory.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Vedic Maths &amp; Geometry</span><span class="mur-url"><a href="https://vedicmathematicsgeometry.culturalmusings.com" target="_blank">vedicmathematicsgeometry.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Classical Dance</span><span class="mur-url"><a href="https://natyashastraclassical-dance.culturalmusings.com" target="_blank">natyashastraclassical-dance.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Sacred Synthesis</span><span class="mur-url"><a href="https://karanassacredsynthesis.culturalmusings.com" target="_blank">karanassacredsynthesis.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Celestial Synthesis</span><span class="mur-url"><a href="https://completecelestialsynthesis.culturalmusings.com" target="_blank">completecelestialsynthesis.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Natya Shastra Standalone</span><span class="mur-url"><a href="https://natyashastrastandalone.culturalmusings.com" target="_blank">natyashastrastandalone.culturalmusings.com</a></span></div></div>` },
+        { tab:'New Domains &amp; Tools', content:`<h3>New Domains, Grand Synthesis &amp; <em>Tools</em></h3><div class="man-url-grid"><div class="man-url-row"><span class="mur-label">Bio Acoustic Codex</span><span class="mur-url"><a href="https://bioacousticcodex.culturalmusings.com" target="_blank">bioacousticcodex.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Vedic AI</span><span class="mur-url"><a href="https://vedicai.culturalmusings.com" target="_blank">vedicai.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Testemony</span><span class="mur-url"><a href="https://testemony.culturalmusings.com" target="_blank">testemony.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Aesthetics of Society</span><span class="mur-url"><a href="https://aestheticsofsociety.culturalmusings.com" target="_blank">aestheticsofsociety.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Raga Kavya Creator</span><span class="mur-url"><a href="https://ragakavyacreator.culturalmusings.com" target="_blank">ragakavyacreator.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Raga Kavya Library</span><span class="mur-url"><a href="https://ragakavya.culturalmusings.com" target="_blank">ragakavya.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Technical Spine</span><span class="mur-url"><a href="https://thetechnicalspine.culturalmusings.com" target="_blank">thetechnicalspine.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Devotional Revolution</span><span class="mur-url"><a href="https://devotionalrevolution.culturalmusings.com" target="_blank">devotionalrevolution.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Bhakti &amp; Agamic</span><span class="mur-url"><a href="https://bhakthiagamic.culturalmusings.com" target="_blank">bhakthiagamic.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Vedic Foundation &amp; Sound</span><span class="mur-url"><a href="https://vedicfoundationandsoundscience.culturalmusings.com" target="_blank">vedicfoundationandsoundscience.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Sacred Geometry</span><span class="mur-url"><a href="https://domainsacredgeometry.culturalmusings.com" target="_blank">domainsacredgeometry.culturalmusings.com</a></span></div><div class="man-url-row"><span class="mur-label">Terabox PDF Library</span><span class="mur-url"><a href="https://dm.1024terabox.com/main?category=all" target="_blank">dm.1024terabox.com/main?category=all</a></span></div><div class="man-url-row"><span class="mur-label">Enquiry Form</span><span class="mur-url"><a href="https://form.jotform.com/261042208142039" target="_blank">form.jotform.com/261042208142039</a></span></div><div class="man-url-row"><span class="mur-label">Chat Agent</span><span class="mur-url"><a href="https://www.jotform.com/agent/019d8f3727af73cab8f1024b3df3ef1f84b6" target="_blank">jotform.com/agent/…</a></span></div><div class="man-url-row"><span class="mur-label">GitHub</span><span class="mur-url"><a href="https://github.com/ramachandra1975" target="_blank">github.com/ramachandra1975</a></span></div></div>` }
+      ]
+    };
+
+    SD_DATA['man_tips'] = {
+      banner:'man-banner', symbol:'⚙️', tag:'User Manual · Chapter 13',
+      title:'Tips, Best Practices &amp; Troubleshooting', subtitle:'General usage tips and solutions to common navigation and technical issues.',
+      visitUrl:'https://www.culturalmusings.com',
+      pages:[
+        { tab:'Best Practices', content:`<h3>General <em>Best Practices</em></h3><ul class="sd-key-list"><li>Use a <strong>desktop browser</strong> for the full navigation experience — the Mega Drawer is optimised for wide screens</li><li><strong>Bookmark individual subdomains</strong> for direct access — each is a complete standalone site with significantly more content than the in-page modals</li><li>Use <strong>Ctrl+F / Cmd+F</strong> within Research Modals to search for specific terms on that page</li><li>The <strong>Terabox PDF library</strong> is the best source for printable, citable, annotatable research documents</li><li>For <strong>academic citation</strong>, use the full subdomain URL as the source reference</li><li>Follow the <strong>7-stage Research Pathway</strong> (Chapter 11) to encounter all domains in the most logical sequence</li><li>Add <strong>API keys to the Vault</strong> to unlock enhanced AI-powered search and generation features</li></ul>` },
+        { tab:'Troubleshooting', content:`<h3>Common Issues — <em>Solutions</em></h3><ul class="sd-key-list"><li><strong>Mega Drawer not opening</strong> — Ensure JavaScript is enabled in your browser. Temporarily disable ad-blockers and try again.</li><li><strong>Research Modal appears blank</strong> — Refresh the page. Check browser console (F12 → Console) for JavaScript errors.</li><li><strong>Search returns no results</strong> — Try a shorter, broader term. Sanskrit terms may need exact transliteration spelling.</li><li><strong>Astrological reading not generating</strong> — Ensure Name and Date of Birth are filled. Time and Place are optional.</li><li><strong>Terabox files not loading</strong> — Try a different browser. Some files may require Terabox login.</li><li><strong>Nav bar overlapping content</strong> — The nav bar is 66px tall by design; anchor-linked sections appear 66px below the bar.</li><li><strong>Mobile menu not responding</strong> — Tap the ☰ hamburger icon (three lines), not the logo area.</li><li><strong>Manual tab not appearing</strong> — Ensure this paste block is placed just before the closing &lt;/body&gt; tag.</li></ul>` }
+      ]
+    };
+  } // end if SD_DATA
+})();
+</script>
+<!-- ═══════════════════════════════════════════════════════════
+     END USER MANUAL ADDITIONS
+════════════════════════════════════════════════════════════ -->
 </body>
 </html>
