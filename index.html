@@ -2014,7 +2014,7 @@ updateVaultCount();
         <button class="drawer-link" onclick="openSD('man_urls',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑫ Quick Reference — All URLs</span><span class="dl-sub">Every subdomain URL in one clickable list</span></span></button>
         <button class="drawer-link" onclick="openSD('man_tips',0);closeDrawer()"><span class="dl-bar" style="background:#f0d080"></span><span class="dl-text"><span class="dl-title" style="color:#4a2e00;">⑬ Tips &amp; Troubleshooting</span><span class="dl-sub">Best practices and common issue solutions</span></span></button>
       </div>`;
-    drawerInner.insertBefore(panel, footer);
+  drawerInner.appendChild(panel);
   }
 
   // ── ADD MANUAL ENTRIES TO SD_DATA ────────────────────────
