@@ -3508,5 +3508,1148 @@ if (typeof SEARCH_INDEX !== 'undefined') {
 <!-- ═══════════════════════════════════════════════════════════
      END RAGA CREATION TAB
 ════════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════════════════════
+     INJECTABLE BLOCK — Mantras · 108 Karanas · Mudras · Research Documents
+     Paste the ENTIRE block just before </body> in your main HTML file.
+
+     Adds:
+       • 4 new nav buttons  (Mantras · Karanas · Mudras · Research Docs)
+       • 4 new drawer panels (with sub-links → modals)
+       • 4 new drawer tabs
+       • 12 new SD_DATA modal entries (3 per category)
+       • "At a Glance" summary cards injected below #philosophy strip
+       • SEARCH_INDEX extended with 20 new entries
+       • Mobile nav entries
+       • All styles self-contained below
+════════════════════════════════════════════════════════════════════════ -->
+
+<!-- ══════════════════════════════════════════════════════ 1. CSS ═════ -->
+<style>
+
+/* ── Shared palette tokens for the 4 new sections ─────────────────── */
+:root {
+  --m-gold:    #d4a017;   /* Mantras   — deep turmeric gold  */
+  --m-violet:  #7c3aed;   /* 108 Karanas — chakra violet     */
+  --m-green:   #0d7c4a;   /* Mudras    — forest prasad green */
+  --m-indigo:  #1e40af;   /* Research  — manuscript indigo   */
+}
+
+/* ── Nav buttons ───────────────────────────────────────────────────── */
+.mega-trigger.mantra-style {
+  background: linear-gradient(135deg,#1a1000,#2e1e00);
+  color: #f0c040; border-color: rgba(212,160,23,.42);
+}
+.mega-trigger.mantra-style:hover,
+.mega-trigger.mantra-style.active { border-color:#f0c040; color:#fff; }
+
+.mega-trigger.karana-style-new {
+  background: linear-gradient(135deg,#100028,#220048);
+  color: #c4a4ff; border-color: rgba(124,58,237,.42);
+}
+.mega-trigger.karana-style-new:hover,
+.mega-trigger.karana-style-new.active { border-color:#c4a4ff; color:#fff; }
+
+.mega-trigger.mudra-style {
+  background: linear-gradient(135deg,#001a0d,#002e18);
+  color: #4ade80; border-color: rgba(13,124,74,.42);
+}
+.mega-trigger.mudra-style:hover,
+.mega-trigger.mudra-style.active { border-color:#4ade80; color:#fff; }
+
+.mega-trigger.researchdoc-style {
+  background: linear-gradient(135deg,#00071a,#001040);
+  color: #93c5fd; border-color: rgba(30,64,175,.42);
+}
+.mega-trigger.researchdoc-style:hover,
+.mega-trigger.researchdoc-style.active { border-color:#93c5fd; color:#fff; }
+
+/* ── Modal banners ─────────────────────────────────────────────────── */
+.sd-modal-banner.mantra-banner   { background: linear-gradient(135deg,#1a1000,#2e1800,#1a0808); }
+.sd-modal-banner.karana-banner   { background: linear-gradient(135deg,#0d0020,#1c0040,#060018); }
+.sd-modal-banner.mudra-banner    { background: linear-gradient(135deg,#001a0d,#002e18,#001008); }
+.sd-modal-banner.resdoc-banner   { background: linear-gradient(135deg,#00071a,#001240,#000c28); }
+
+.mantra-banner .sd-modal-tag, .mantra-banner h2 em { color:#f0c040; }
+.karana-banner .sd-modal-tag, .karana-banner h2 em { color:#c4a4ff; }
+.mudra-banner  .sd-modal-tag, .mudra-banner  h2 em { color:#4ade80; }
+.resdoc-banner .sd-modal-tag, .resdoc-banner h2 em { color:#93c5fd; }
+
+.mantra-banner .sd-visit-top { border-color:#f0c040; color:#f0c040; }
+.karana-banner .sd-visit-top { border-color:#c4a4ff; color:#c4a4ff; }
+.mudra-banner  .sd-visit-top { border-color:#4ade80; color:#4ade80; }
+.resdoc-banner .sd-visit-top { border-color:#93c5fd; color:#93c5fd; }
+
+/* ── Drawer tab colours ────────────────────────────────────────────── */
+.drawer-tab.mantra-tab.active  { color:var(--m-gold);   border-bottom-color:var(--m-gold);   }
+.drawer-tab.karana-tab-n.active{ color:var(--m-violet); border-bottom-color:var(--m-violet); }
+.drawer-tab.mudra-tab.active   { color:var(--m-green);  border-bottom-color:var(--m-green);  }
+.drawer-tab.resdoc-tab.active  { color:var(--m-indigo); border-bottom-color:var(--m-indigo); }
+
+/* ── Drawer panels ─────────────────────────────────────────────────── */
+.drawer-panel.mantra-panel  { background: linear-gradient(135deg,rgba(26,16,0,.04) 0%,#fff 42%); }
+.drawer-panel.karana-panel-n{ background: linear-gradient(135deg,rgba(16,0,40,.05) 0%,#fff 42%); }
+.drawer-panel.mudra-panel   { background: linear-gradient(135deg,rgba(0,26,13,.04) 0%,#fff 42%); }
+.drawer-panel.resdoc-panel  { background: linear-gradient(135deg,rgba(0,7,26,.04) 0%,#fff 42%); }
+
+.mantra-panel  .dl-title { color:#6b3a00; }
+.karana-panel-n .dl-title{ color:#4c1d95; }
+.mudra-panel   .dl-title { color:#064e2b; }
+.resdoc-panel  .dl-title { color:#1e3a8a; }
+
+.mantra-panel  .drawer-link:hover .dl-title { color:var(--m-gold);   }
+.karana-panel-n .drawer-link:hover .dl-title{ color:var(--m-violet); }
+.mudra-panel   .drawer-link:hover .dl-title { color:var(--m-green);  }
+.resdoc-panel  .drawer-link:hover .dl-title { color:var(--m-indigo); }
+
+.mantra-panel  .dl-bar { background:var(--m-gold);   }
+.karana-panel-n .dl-bar{ background:var(--m-violet); }
+.mudra-panel   .dl-bar { background:var(--m-green);  }
+.resdoc-panel  .dl-bar { background:var(--m-indigo); }
+
+/* ══════════════════════════════════════════════════════════════════
+   AT-A-GLANCE SECTION
+══════════════════════════════════════════════════════════════════ */
+#at-a-glance {
+  background: #fdfcf8;
+  border-top: 1px solid rgba(197,160,89,.18);
+  border-bottom: 1px solid rgba(197,160,89,.18);
+  padding: 72px 40px;
+}
+.aag-inner { max-width: 1240px; margin: 0 auto; }
+.aag-header { text-align: center; margin-bottom: 52px; }
+.aag-eyebrow {
+  display: block;
+  font-family: 'Montserrat',sans-serif;
+  font-size: .66rem; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+}
+.aag-title {
+  font-family: 'Playfair Display',serif;
+  font-size: clamp(1.9rem,4vw,3.2rem);
+  color: var(--primary-blue); font-weight: 700; line-height: 1.1;
+}
+.aag-title em { color: var(--gold); font-style: italic; }
+.aag-lead {
+  font-family: 'Cormorant Garamond',serif;
+  font-size: 1.06rem; color: #666; line-height: 1.75;
+  max-width: 640px; margin: 14px auto 0;
+}
+
+/* 2×2 master grid */
+.aag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px,1fr));
+  gap: 2px;
+}
+
+/* Each category card */
+.aag-card {
+  border: 1px solid #ececec;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  transition: transform .3s, box-shadow .3s;
+  cursor: pointer;
+}
+.aag-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 48px rgba(0,0,0,.09);
+  z-index: 2;
+}
+
+/* Coloured top bar */
+.aag-card-bar {
+  height: 4px; width: 100%;
+}
+.aag-card-bar.mantra  { background: linear-gradient(90deg,#d4a017,#f5d060); }
+.aag-card-bar.karanas { background: linear-gradient(90deg,#7c3aed,#c4a4ff); }
+.aag-card-bar.mudras  { background: linear-gradient(90deg,#0d7c4a,#4ade80); }
+.aag-card-bar.resdocs { background: linear-gradient(90deg,#1e40af,#93c5fd); }
+
+.aag-card-body { padding: 28px 30px 30px; }
+
+.aag-card-icon {
+  font-size: 2.2rem; margin-bottom: 12px; display: block;
+}
+.aag-card-title {
+  font-family: 'Playfair Display',serif;
+  font-size: 1.3rem; font-weight: 700;
+  margin-bottom: 5px;
+}
+.aag-card-title.mantra  { color: #6b3a00; }
+.aag-card-title.karanas { color: #4c1d95; }
+.aag-card-title.mudras  { color: #064e2b; }
+.aag-card-title.resdocs { color: #1e3a8a; }
+
+.aag-card-url {
+  font-family: 'Montserrat',sans-serif;
+  font-size: .52rem; letter-spacing: 1.2px; text-transform: lowercase;
+  margin-bottom: 14px; display: block;
+}
+.aag-card-url.mantra  { color: var(--m-gold);   }
+.aag-card-url.karanas { color: var(--m-violet); }
+.aag-card-url.mudras  { color: var(--m-green);  }
+.aag-card-url.resdocs { color: var(--m-indigo); }
+
+.aag-card-desc {
+  font-family: 'Cormorant Garamond',serif;
+  font-size: 1rem; color: #555; line-height: 1.72;
+  margin-bottom: 18px;
+}
+
+/* PTR = Process / Tools / Results rows */
+.ptr-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.ptr-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 12px;
+  border-radius: 3px;
+}
+.ptr-row.process  { background: #fffdf5; border-left: 3px solid #d4a017; }
+.ptr-row.tools    { background: #f7f5ff; border-left: 3px solid #7c3aed; }
+.ptr-row.results  { background: #f3fbf6; border-left: 3px solid #0d7c4a; }
+.ptr-row.process.alt  { background: #fffdf5; border-left-color: #d4a017; }
+.ptr-row.tools.alt    { background: #f7f5ff; border-left-color: #7c3aed; }
+.ptr-row.results.alt  { background: #f3fbf6; border-left-color: #0d7c4a; }
+
+/* override colours per card theme */
+.aag-card[data-theme="karanas"] .ptr-row.process  { border-left-color: #7c3aed; background: #f5f2ff; }
+.aag-card[data-theme="karanas"] .ptr-row.tools    { border-left-color: #c4a4ff; background: #f9f7ff; }
+.aag-card[data-theme="karanas"] .ptr-row.results  { border-left-color: #4c1d95; background: #f0edff; }
+.aag-card[data-theme="mudras"]  .ptr-row.process  { border-left-color: #0d7c4a; background: #f0faf5; }
+.aag-card[data-theme="mudras"]  .ptr-row.tools    { border-left-color: #4ade80; background: #f7fdf9; }
+.aag-card[data-theme="mudras"]  .ptr-row.results  { border-left-color: #064e2b; background: #ebf7f2; }
+.aag-card[data-theme="resdocs"] .ptr-row.process  { border-left-color: #1e40af; background: #eff5ff; }
+.aag-card[data-theme="resdocs"] .ptr-row.tools    { border-left-color: #93c5fd; background: #f5faff; }
+.aag-card[data-theme="resdocs"] .ptr-row.results  { border-left-color: #0f2d7a; background: #eaf2ff; }
+
+.ptr-label {
+  font-family: 'Montserrat',sans-serif;
+  font-size: .5rem; font-weight: 800;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  min-width: 56px; flex-shrink: 0; margin-top: 2px;
+}
+.ptr-label.process  { color: #6b3a00; }
+.ptr-label.tools    { color: #4c1d95; }
+.ptr-label.results  { color: #064e2b; }
+.aag-card[data-theme="karanas"] .ptr-label.process { color: #4c1d95; }
+.aag-card[data-theme="karanas"] .ptr-label.tools   { color: #6d28d9; }
+.aag-card[data-theme="karanas"] .ptr-label.results { color: #3b0764; }
+.aag-card[data-theme="mudras"]  .ptr-label.process { color: #064e2b; }
+.aag-card[data-theme="mudras"]  .ptr-label.tools   { color: #166534; }
+.aag-card[data-theme="mudras"]  .ptr-label.results { color: #052e16; }
+.aag-card[data-theme="resdocs"] .ptr-label.process { color: #1e3a8a; }
+.aag-card[data-theme="resdocs"] .ptr-label.tools   { color: #1d4ed8; }
+.aag-card[data-theme="resdocs"] .ptr-label.results { color: #0f2d7a; }
+
+.ptr-text {
+  font-family: 'Montserrat',sans-serif;
+  font-size: .6rem; color: #444; line-height: 1.6;
+}
+
+/* Quick-access chips */
+.aag-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
+.aag-chip {
+  font-family: 'Montserrat',sans-serif;
+  font-size: .5rem; font-weight: 700; letter-spacing: .6px;
+  padding: 3px 9px; border-radius: 20px; border: 1px solid #e0d8c8;
+  color: #666; background: #fff;
+  cursor: pointer; transition: all .18s;
+}
+.aag-chip:hover { background: #fffaf0; border-color: #d4a017; color: #6b3a00; }
+
+/* CTA button inside card */
+.aag-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Montserrat',sans-serif;
+  font-size: .6rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: none; cursor: pointer; transition: all .22s;
+  text-decoration: none;
+}
+.aag-cta.mantra  { background: var(--m-gold);   color: #1a0e00; }
+.aag-cta.karanas { background: var(--m-violet); color: #fff; }
+.aag-cta.mudras  { background: var(--m-green);  color: #fff; }
+.aag-cta.resdocs { background: var(--m-indigo); color: #fff; }
+.aag-cta:hover   { filter: brightness(1.1); gap: 14px; }
+.aag-cta::after  { content: '→'; font-size: .9rem; }
+
+/* horizontal rule inside cards */
+.aag-divider { height:1px; background:#f0ece0; margin:18px 0; }
+
+/* Key-stat row */
+.aag-stats {
+  display: flex; gap: 18px; margin-bottom: 18px;
+}
+.aag-stat { text-align: center; }
+.aag-stat .asn {
+  font-family: 'Playfair Display',serif;
+  font-size: 1.7rem; font-weight: 700; line-height: 1; display: block;
+}
+.aag-stat .asl {
+  font-family: 'Montserrat',sans-serif;
+  font-size: .5rem; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: #888; display: block; margin-top: 2px;
+}
+
+/* sd-key-list reuse inside new modals */
+.new-key-list { list-style:none; padding:0; margin:14px 0; }
+.new-key-list li {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:8px 0; border-bottom:1px solid #f0f0f0;
+  font-family:'Montserrat',sans-serif;
+  font-size:.68rem; color:#444; line-height:1.55; letter-spacing:.3px;
+}
+.new-key-list li:last-child { border-bottom:none; }
+.new-key-list li::before {
+  content:''; width:22px; min-width:22px;
+  height:1px; background:var(--gold); margin-top:8px; flex-shrink:0;
+}
+
+/* mini 2-col grid for modal cards */
+.new-sd-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:14px; margin-top:18px;
+}
+.new-sd-card {
+  border:1px solid #ececec;
+  border-top:3px solid var(--gold);
+  padding:18px;
+}
+.new-sd-card h4 {
+  font-family:'Montserrat',sans-serif;
+  font-size:.62rem; font-weight:700;
+  letter-spacing:1.3px; text-transform:uppercase;
+  color:var(--primary-blue); margin-bottom:7px;
+}
+.new-sd-card p {
+  font-size:.88rem; color:#666; line-height:1.62; margin:0;
+}
+
+@media(max-width:640px){
+  .new-sd-grid { grid-template-columns:1fr; }
+  .aag-grid    { grid-template-columns:1fr; }
+  .aag-stats   { gap:10px; }
+}
+</style>
+
+<!-- ═════════════════════════════════════════════ 2. MAIN SCRIPT ════ -->
+<script>
+(function () {
+
+/* ══════════════════════════════════════════════════════════════════════
+   A.  NAV BUTTONS  (appended to .nav-right)
+══════════════════════════════════════════════════════════════════════ */
+const navRight = document.querySelector('.nav-right');
+if (navRight) {
+  const sep = () => { const d=document.createElement('div'); d.className='nav-sep'; return d; };
+  const btn = (cls,html,tab) => {
+    const b=document.createElement('button');
+    b.className='mega-trigger '+cls;
+    b.innerHTML=html+' <span class="m-arrow">▼</span>';
+    b.onclick=()=>openDrawer(tab);
+    return b;
+  };
+  navRight.appendChild(sep());
+  navRight.appendChild(btn('mantra-style',    '🕉 Mantras',         'mantras'));
+  navRight.appendChild(btn('karana-style-new','🌀 108 Karanas',     'karanas_new'));
+  navRight.appendChild(btn('mudra-style',     '🤲 Mudras',          'mudras'));
+  navRight.appendChild(btn('researchdoc-style','📄 Research Docs',  'resdocs'));
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   B.  DRAWER TABS  (appended to #drawerTabs)
+══════════════════════════════════════════════════════════════════════ */
+const drawerTabs = document.getElementById('drawerTabs');
+if (drawerTabs) {
+  [
+    ['mantra-tab',   'mantras',     '🕉 Mantras',      '#d4a017'],
+    ['karana-tab-n', 'karanas_new', '🌀 Karanas',      '#c4a4ff'],
+    ['mudra-tab',    'mudras',      '🤲 Mudras',       '#4ade80'],
+    ['resdoc-tab',   'resdocs',     '📄 Research Docs','#93c5fd'],
+  ].forEach(([cls, panel, label, color]) => {
+    const tab=document.createElement('button');
+    tab.className=`drawer-tab ${cls}`;
+    tab.setAttribute('data-panel', panel);
+    tab.onclick=()=>switchDrawerTab(panel);
+    tab.innerHTML=`<span class="sd-dot" style="background:${color}"></span> ${label}`;
+    drawerTabs.appendChild(tab);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   C.  DRAWER PANELS  (appended inside .drawer-inner)
+══════════════════════════════════════════════════════════════════════ */
+const drawerInner = document.querySelector('.drawer-inner');
+if (drawerInner) {
+
+  /* Helper: build one sub-link button */
+  function dl(label, sub, sdKey, sdPage, href) {
+    if (href) {
+      return `<a href="${href}" target="_blank" class="drawer-link">
+        <span class="dl-bar"></span>
+        <span class="dl-text">
+          <span class="dl-title">${label}</span>
+          <span class="dl-sub">${sub}</span>
+        </span></a>`;
+    }
+    return `<button class="drawer-link" onclick="openSD('${sdKey}',${sdPage});closeDrawer()">
+      <span class="dl-bar"></span>
+      <span class="dl-text">
+        <span class="dl-title">${label}</span>
+        <span class="dl-sub">${sub}</span>
+      </span></button>`;
+  }
+
+  const panels = [
+
+    /* ─── MANTRAS ─────────────────────────────────────────────────── */
+    { id:'mantras', cls:'mantra-panel', color:'#d4a017',
+      title:'🕉 Mantras — Sacred Sound Science',
+      desc:'Bīja Mantras, Vedic Sūktas, Stotras and Dhāraṇī — from phonemic acoustics to neurological effect.',
+      visit:'https://vedicfoundationandsoundscience.culturalmusings.com/',
+      links:[
+        dl('① What is a Mantra?',        'Definition · Bīja · Sūkta · Stotra',            'mantra_intro',0),
+        dl('② Mantra as Bioacoustic Tool','Phonemics → HRV → Chromosome science',           'mantra_intro',1),
+        dl('③ Process, Tools & Results', '5 steps from Sankalpa to measurable outcome',     'mantra_intro',2),
+        dl('🌐 Vedic Foundation & Sound','vedicfoundationandsoundscience.culturalmusings.com',
+           '','', 'https://vedicfoundationandsoundscience.culturalmusings.com/'),
+        dl('🌐 Spandana Shodha',          'Vibration-measurement methodology for mantras',
+           '','', 'https://spandanashodha.culturalmusings.com/'),
+        dl('🌐 Mantra Shastra — Vedadhara','External reference: complete mantra theory',
+           '','', 'https://www.vedadhara.com/english-topics-mantra-shastra'),
+        dl('📄 Lalitha Sahasranamam','1,000-name stotra with meaning — shlokam.org',
+           '','', 'https://shlokam.org/shloka/lalitha-sahasranamam.htm'),
+        dl('📄 Rudram Namakam','Yajurveda hymn to Rudra — complete text',
+           '','', 'https://shlokam.org/shloka/rudram-namakam.htm'),
+        dl('📄 Mahamrityunjaya','Healing mantra — text, meaning & practice protocol',
+           'mantra_intro',2),
+      ]
+    },
+
+    /* ─── 108 KARANAS ─────────────────────────────────────────────── */
+    { id:'karanas_new', cls:'karana-panel-n', color:'#7c3aed',
+      title:'🌀 108 Karanas — Full Research Network',
+      desc:'All seven Karana subdomains — Root Map to Celestial Synthesis — in one panel, with Process, Tools & Results for each.',
+      visit:'https://karanasrootmap.culturalmusings.com/',
+      links:[
+        dl('① What is a Karana?',        'Definition · Sthāna · Cārī · Hasta · 108 structure','karanas_info',0),
+        dl('② Karanas as Neuroscience',  'FOXP2 · Arc gene · Proprioceptive genomics',         'karanas_info',1),
+        dl('③ Process, Tools & Results', 'How to use the 7-subdomain research archive',         'karanas_info',2),
+        dl('🗺 Karanas Root Map',         'karanasrootmap.culturalmusings.com',
+           '','', 'https://karanasrootmap.culturalmusings.com/'),
+        dl('⚛ Unified Theory',            '21 unsolved science problems × 108 Karanas',
+           '','', 'https://unifiedtheory.culturalmusings.com/'),
+        dl('📐 Vedic Maths & Geometry',   'vedicmathematicsgeometry.culturalmusings.com',
+           '','', 'https://vedicmathematicsgeometry.culturalmusings.com/'),
+        dl('🎭 Classical Dance Karanas',  'natyashastraclassical-dance.culturalmusings.com',
+           '','', 'https://natyashastraclassical-dance.culturalmusings.com/'),
+        dl('🔱 Sacred Synthesis',         'karanassacredsynthesis.culturalmusings.com',
+           '','', 'https://karanassacredsynthesis.culturalmusings.com/'),
+        dl('🌌 Celestial Synthesis',      'completecelestialsynthesis.culturalmusings.com',
+           '','', 'https://completecelestialsynthesis.culturalmusings.com/'),
+        dl('⚕ MCP × Karanas (Phase IV)',  'masterconsciousprotocol.culturalmusings.com',
+           '','', 'https://masterconsciousprotocol.culturalmusings.com/'),
+      ]
+    },
+
+    /* ─── MUDRAS ──────────────────────────────────────────────────── */
+    { id:'mudras', cls:'mudra-panel', color:'#0d7c4a',
+      title:'🤲 Mudras — Sacred Hand Geometry',
+      desc:'The 108 Mudras of Natya Shastra · Hasta Mudra therapy · Neurological circuit activation through hand geometry.',
+      visit:'https://natyashastra.culturalmusings.com/',
+      links:[
+        dl('① What is a Mudra?',         'Hasta · Samyuta · Asamyuta · Mudra vs Bāhya',    'mudra_intro',0),
+        dl('② Mudras as Neuroscience',   'Nerve-bundle map · Endocrine activation · EEG',    'mudra_intro',1),
+        dl('③ Process, Tools & Results', '5 steps from selection to measurable outcome',      'mudra_intro',2),
+        dl('🌐 Natya Shastra',            'The source text of the 108 Mudras',
+           '','', 'https://natyashastra.culturalmusings.com/'),
+        dl('🌐 Master Conscious Protocol','MCP Phase III — Mudra sequences',
+           '','', 'https://masterconsciousprotocol.culturalmusings.com/'),
+        dl('🌐 Bio Acoustic Codex',       'Mudra + Mantra cymatics research',
+           '','', 'https://bioacousticcodex.culturalmusings.com/'),
+        dl('📖 Mudra Wikipedia (IPFS)',   'List of all dance mudras — scholarly reference',
+           '','', 'https://en-wikipedia--on--ipfs-org.ipns.dweb.link/wiki/List_of_mudras_%28dance%29'),
+        dl('📄 Nyasas of Tantric Rituals','Body-placement mudra practice guide',
+           '','', 'https://www.sujatanandy.com/the-nyasas-of-tantric-rituals/'),
+      ]
+    },
+
+    /* ─── RESEARCH DOCUMENTS ──────────────────────────────────────── */
+    { id:'resdocs', cls:'resdoc-panel', color:'#1e40af',
+      title:'📄 Research Documents — Full Archive',
+      desc:'PDFs · GitHub repositories · Terabox manuscripts · 50+ external scholarly references across all 17+ research domains.',
+      visit:'https://dm.1024terabox.com/main?category=all',
+      links:[
+        dl('① Document Archive Overview', 'What exists · How to access · What to use each for','resdoc_intro',0),
+        dl('② By Research Domain',        'PDFs grouped by Natya · Nada · Karanas · MCP etc.', 'resdoc_intro',1),
+        dl('③ Process, Tools & Results',  'Search · Download · Cite · Annotate · Collaborate',  'resdoc_intro',2),
+        dl('📁 Terabox PDF Library',       'dm.1024terabox.com — all manuscripts',
+           '','', 'https://dm.1024terabox.com/main?category=all'),
+        dl('🐙 GitHub — 41 Repositories', 'github.com/ramachandra1975',
+           '','', 'https://github.com/ramachandra1975'),
+        dl('📄 108 Karanas — Dance Imagery PDF','Scholarly Karana sculpture study',
+           '','', 'https://cdn.angkordatabase.asia/libs/docs/publications/dance-imagery-in-south-indian-temples-study-of-the-108-karana-sculptures/108-karanas.pdf'),
+        dl('📄 IGNCA Natya Shastra PDF',  'Government of India official research PDF',
+           '','', 'https://ignca.gov.in/Asi_data/8737.pdf'),
+        dl('📄 Four Vedas English PDF',   'Complete translation — archive.org',
+           '','', 'https://ia801205.us.archive.org/11/items/FourVedasEnglishTranslation/Four-Vedas-English-Translation.pdf'),
+        dl('📄 NIOS Hindustani Music PDF','Music theory textbook Ch.6',
+           '','', 'https://www.nios.ac.in/media/documents/Hindustani_Music_242/hindustanimusictheorybook1/HMB1Ch6.pdf'),
+        dl('📄 Lalita Sahasranama PDF',   'Sanskrit.nic.in — government Sanskrit archive',
+           '','', 'https://www.sanskrit.nic.in/books_archive/024_Shri_Lalita_Sahasra_Name_of_Shri_Ramamurti.pdf'),
+        dl('🌐 WisdomLib',                'Largest Vedic text online library',
+           '','', 'https://www.wisdomlib.org/'),
+        dl('🌐 Sanskrit Documents Archive','sanskritdocuments.org',
+           '','', 'https://sanskritdocuments.org/'),
+      ]
+    },
+  ];
+
+  panels.forEach(p => {
+    const div = document.createElement('div');
+    div.className = `drawer-panel ${p.cls}`;
+    div.id = `panel-${p.id}`;
+    div.innerHTML = `
+      <div class="drawer-panel-header">
+        <div>
+          <div class="dph-title" style="color:${p.color};">${p.title}</div>
+          <div class="dph-desc">${p.desc}</div>
+        </div>
+        <a href="${p.visit}" target="_blank" class="dph-visit">Visit →</a>
+      </div>
+      <div class="drawer-grid" style="grid-template-columns:repeat(auto-fill,minmax(250px,1fr));">
+        ${p.links.join('')}
+      </div>`;
+    drawerInner.appendChild(div);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   D.  MOBILE NAV ENTRIES
+══════════════════════════════════════════════════════════════════════ */
+const mobilePanel = document.getElementById('mobilePanel');
+if (mobilePanel) {
+  const entries = [
+    ['#d4a017','🕉 Mantras',       'mantras',      'mantra-mobile'],
+    ['#7c3aed','🌀 108 Karanas',   'karanas_new',  'k-mobile'],
+    ['#0d7c4a','🤲 Mudras',        'mudras',       'bio-mobile'],
+    ['#1e40af','📄 Research Docs', 'resdocs',      'vai-mobile'],
+  ];
+  const lbl = document.createElement('span');
+  lbl.className = 'nav-mobile-label';
+  lbl.style.color = '#f0c040';
+  lbl.textContent = '🕉 New Research Categories';
+  mobilePanel.appendChild(lbl);
+  entries.forEach(([color,text,tab,cls]) => {
+    const a = document.createElement('a');
+    a.href='#'; a.className=`nav-mobile-link ${cls}`;
+    a.style.color=color; a.textContent=text;
+    a.onclick=(e)=>{ e.preventDefault(); openDrawer(tab); closeMobile(); };
+    mobilePanel.appendChild(a);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   E.  SD_DATA — 12 NEW MODAL ENTRIES  (3 per category)
+══════════════════════════════════════════════════════════════════════ */
+if (typeof SD_DATA !== 'undefined') {
+
+/* ─── MANTRA MODAL ─────────────────────────────────────────────────── */
+SD_DATA['mantra_intro'] = {
+  banner:'mantra-banner', symbol:'🕉', tag:'Sacred Sound Science',
+  title:'Mantras — <em>Sacred Sound Science</em>',
+  subtitle:'From Bīja syllables to Vedic Sūktas — the complete science of how Sanskrit phonemics produce measurable neurological and genomic outcomes.',
+  visitUrl:'https://vedicfoundationandsoundscience.culturalmusings.com/',
+  pages:[
+    { tab:'What is a Mantra?', content:`
+<h3>What is a <em>Mantra</em>?</h3>
+<p>The word Mantra derives from the Sanskrit roots <em>manas</em> (mind) and <em>trāṇa</em> (liberation or protection) — literally "that which liberates the mind." In the Cultural Musings framework, a Mantra is a <strong>precision acoustic instrument</strong>: a sequence of phonemes whose vibrational properties produce deterministic effects on the human nervous system, endocrine system, and — as emerging research suggests — gene expression.</p>
+
+<div class="pull"><p>"A Mantra is not a prayer to an external deity. It is a frequency key — designed to unlock specific states of neurology, biochemistry and consciousness in the practitioner."</p></div>
+
+<ul class="new-key-list">
+  <li><strong>Bīja Mantra</strong> — Single-syllable seed sounds (OM, HRĪM, KLĪM, AIM) carrying maximum phonemic density. Each Bīja is associated with a specific Chakra, deity, frequency band and physiological target.</li>
+  <li><strong>Vedic Sūkta</strong> — Multi-verse hymns from the four Vedas (Rudram, Puruṣa Sūkta, Pavamāna, Nāsadīya). Their Chandas (metre) produces precise respiratory cycles that entrain the autonomic nervous system.</li>
+  <li><strong>Stotra</strong> — Devotional hymns (Lalitha Sahasranāma, Soundarya Laharī, Āditya Hṛdayam) designed for sustained tonal immersion — extended bioacoustic therapy sessions.</li>
+  <li><strong>Dhāraṇī</strong> — Longer protective formula-strings from Buddhist and Tantric traditions, encoding complete healing programmes in sequential phonemic structure.</li>
+  <li><strong>Nāma Japa</strong> — Repetitive recitation of divine names — using neural repetition to establish persistent neurochemical states through cortical entrainment.</li>
+</ul>
+
+<p>Reference: <a href="https://vedicfoundationandsoundscience.culturalmusings.com/" target="_blank" style="color:var(--gold);">vedicfoundationandsoundscience.culturalmusings.com</a> · <a href="https://spandanashodha.culturalmusings.com/" target="_blank" style="color:var(--gold);">spandanashodha.culturalmusings.com</a></p>
+    `},
+
+    { tab:'Mantra & Bioacoustics', content:`
+<h3>Mantra as <em>Bioacoustic Tool</em></h3>
+<p>Modern bioacoustic science provides the mechanistic basis for every claim made by the ancient Mantra tradition. The pathway from phonemic production to genomic outcome runs through five measurable stages:</p>
+
+<ul class="new-key-list">
+  <li><strong>Stage 1 — Phonemic production:</strong> Sanskrit phonemes engage unique combinations of tongue-position, lip shape, palate contact and breath pressure that activate cranial nerves V (trigeminal), VII (facial) and X (vagal) simultaneously.</li>
+  <li><strong>Stage 2 — Cranial resonance:</strong> Voiced mantras produce standing wave patterns in the cranial vault (measured by contact microphone and MRI). The paranasal sinuses act as Helmholtz resonators, amplifying specific frequency bands (80–400 Hz).</li>
+  <li><strong>Stage 3 — Vagal activation:</strong> The rhythmic breath cycles induced by Chandas-metered recitation (typically 5–6 seconds per verse-unit) create 0.1 Hz HRV oscillations — the Mayer wave frequency — maximising cardiac coherence.</li>
+  <li><strong>Stage 4 — Neurochemical cascade:</strong> Vagal activation → acetylcholine release → GABA upregulation → cortisol suppression → oxytocin and serotonin production. This chain is now fully mapped neurochemically.</li>
+  <li><strong>Stage 5 — Epigenetic effect:</strong> Sustained cortisol reduction de-represses TERT (telomerase, Chr 5p15) and BDNF (Chr 11p13). OXTR (Chr 3q25) methylation decreases, increasing oxytocin receptor density. These are measurable genomic changes from sustained Mantra practice.</li>
+</ul>
+
+<div class="new-sd-grid">
+  <div class="new-sd-card"><h4>AUM at 136 Hz</h4><p>Matches Earth's Schumann resonance harmonic. Produces DMN coherence, theta 4–8 Hz synchrony, OXTR de-methylation (Chr 3q25).</p></div>
+  <div class="new-sd-card"><h4>HRĪM at 288 Hz</h4><p>Cardiac coherence bīja. HRV increase, amygdala damping, alpha 8–12 Hz, Chr 17 BRCA1 protective methylation shift.</p></div>
+  <div class="new-sd-card"><h4>Pavamāna Sūkta</h4><p>5.5-sec breath cycle → 0.1 Hz HRV → baroreceptor sensitisation → TERT de-repression → telomere preservation.</p></div>
+  <div class="new-sd-card"><h4>Rudram (11 Anuvākas)</h4><p>Full 45-min session matches MCP Phase II Nada protocol. Measurable NK cell activity increase, cortisol -34%.</p></div>
+</div>
+    `},
+
+    { tab:'Process · Tools · Results', content:`
+<h3>Mantra Practice — <em>Process, Tools &amp; Results</em></h3>
+
+<p><strong>PROCESS — 5 steps from Sankalpa to measurable outcome:</strong></p>
+<ul class="new-key-list">
+  <li><strong>Step 1 — Sankalpa (Intention):</strong> Identify the therapeutic goal or spiritual intention. This determines whether to use Bīja (quick-activation), Sūkta (sustained Vedic therapy) or Stotra (devotional immersion). Use the MCP Phase I (Pranayama) to establish baseline breath coherence before recitation.</li>
+  <li><strong>Step 2 — Selection:</strong> Match the Mantra to the goal using the Bīja-Chakra map, Nada Chikitsa guidelines and the Mantra Shastra (Vedadhara reference). For genomic-therapeutic targets use the Bīja-gene correspondence table (AUM→OXTR, HRĪM→BRCA1, YAM→BDNF etc.).</li>
+  <li><strong>Step 3 — Practice session:</strong> Begin with 3 AUM for breath alignment. Recite chosen Mantra in multiples of 108 (one mālā). Maintain correct Chandas rhythm. Use correct Svara (pitch) — ideally confirmed against the 22-Shruti table.</li>
+  <li><strong>Step 4 — Measurement:</strong> Track HRV before and after session. Log subjective Rasa-state (which of the 9 Rasas arose). Over 8–12 weeks, track cortisol, BDNF, and HRV trend data.</li>
+  <li><strong>Step 5 — Integration:</strong> Integrate results into the MCP Protocol. Submit anonymised outcomes to the Testemony subdomain for the collective research archive.</li>
+</ul>
+
+<p><strong>TOOLS AVAILABLE:</strong></p>
+<ul class="new-key-list">
+  <li>🌐 <a href="https://vedicfoundationandsoundscience.culturalmusings.com/" target="_blank" style="color:var(--gold);">Vedic Foundation & Sound Science</a> — complete Mantra science reference</li>
+  <li>🌐 <a href="https://spandanashodha.culturalmusings.com/" target="_blank" style="color:var(--gold);">Spandana Shodha</a> — bioacoustic measurement methodology</li>
+  <li>📄 <a href="https://shlokam.org/shloka/lalitha-sahasranamam.htm" target="_blank" style="color:var(--gold);">Lalitha Sahasranāmam</a> — 1,000-name Stotra with full transliteration + meaning</li>
+  <li>📄 <a href="https://shlokam.org/shloka/rudram-namakam.htm" target="_blank" style="color:var(--gold);">Rudram Namakam</a> — Yajurveda hymn complete text</li>
+  <li>📄 <a href="https://www.vedadhara.com/english-topics-mantra-shastra" target="_blank" style="color:var(--gold);">Mantra Shastra — Vedadhara</a> — classifications, practice guidelines</li>
+  <li>🌐 <a href="https://masterconsciousprotocol.culturalmusings.com/" target="_blank" style="color:var(--gold);">Master Consciousness Protocol</a> — clinical integration of Mantra into 5-phase protocol</li>
+  <li>🌐 <a href="https://bioacousticcodex.culturalmusings.com/" target="_blank" style="color:var(--gold);">Bio Acoustic Codex</a> — cellular-level scientific basis for Mantra effects</li>
+</ul>
+
+<p><strong>WHAT THE USER RECEIVES:</strong></p>
+<ul class="new-key-list">
+  <li>✅ A personalised Mantra prescription (Bīja or Sūkta) aligned to their Sankalpa and genomic target</li>
+  <li>✅ The correct recitation rhythm (Chandas), pitch range (Svara) and mālā count</li>
+  <li>✅ A complete bioacoustic rationale: which neurochemical cascade is activated and why</li>
+  <li>✅ A 12-week outcome tracking protocol (HRV, cortisol, BDNF, self-report)</li>
+  <li>✅ Integration pathway into the Master Consciousness Protocol Phase II (Nada)</li>
+</ul>
+    `}
+  ]
+};
+
+/* ─── 108 KARANAS MODAL ────────────────────────────────────────────── */
+SD_DATA['karanas_info'] = {
+  banner:'karana-banner', symbol:'🌀', tag:'Sacred Movement Science',
+  title:'108 Karanas — <em>Sacred Movement Science</em>',
+  subtitle:'A complete research guide to all 7 Karana subdomains — what they contain, how to use them, and the scientific outcomes they produce.',
+  visitUrl:'https://karanasrootmap.culturalmusings.com/',
+  pages:[
+    { tab:'What is a Karana?', content:`
+<h3>What is a <em>Karana</em>?</h3>
+<p>A Karana (Sanskrit: <em>karaṇa</em> — "that which causes or produces") is a complete unit of sacred movement described in Bharata Muni's Natya Shastra (Chapter 4, verses 28–261). Each of the 108 Karanas is a precise biomechanical configuration of four simultaneous elements:</p>
+
+<ul class="new-key-list">
+  <li><strong>Sthāna</strong> — The standing position: the specific weight distribution, spinal alignment and hip orientation that defines the structural foundation of the Karana.</li>
+  <li><strong>Cārī</strong> — The footwork: the precise foot-placement, ankle rotation and stepping pattern that encodes the Karana's kinematic trajectory through space.</li>
+  <li><strong>Nritta Hasta</strong> — The dance hand gesture: one of the 108 Mudras (28 combined, 24 single-hand, 13 dance-specific) that accompanies the movement, activating specific nerve bundles and endocrine pathways.</li>
+  <li><strong>Dṛṣṭi</strong> — The gaze direction: one of 9 prescribed eye-positions, each stabilising a specific vestibulo-ocular reflex and engaging distinct neural circuits in the superior colliculus and prefrontal eye fields.</li>
+</ul>
+
+<div class="pull"><p>"Each Karana is not a pose. It is a four-dimensional equation — simultaneously encoding a proprioceptive state, an acoustic frequency, a cosmological position and a neurological activation pattern."</p></div>
+
+<p>The 108 Karanas are organised in 4 groups of 27, corresponding to the 4 Vedas and 27 Nakshatras. All 108 are carved in stone at the Chidambaram Natarāja temple — the world's only complete physical archive of this sacred science.</p>
+
+<p>Reference: <a href="https://karanasrootmap.culturalmusings.com/" target="_blank" style="color:var(--gold);">karanasrootmap.culturalmusings.com</a></p>
+    `},
+
+    { tab:'Karanas as Neuroscience', content:`
+<h3>The 108 Karanas as <em>Neuroscience</em></h3>
+<p>Modern neuroscience validates the Karana system across multiple research dimensions simultaneously — confirming that Bharata Muni's biomechanical prescriptions are not aesthetic conventions but precise neural activation protocols.</p>
+
+<ul class="new-key-list">
+  <li><strong>FOXP2 (Chr 7) — Sequential Motor Learning:</strong> The FOXP2 gene — governing sequential motor learning and speech — is upregulated through the precise, ordered movement sequences of Karana practice. CNTNAP2 (Chr 7q35), a FOXP2 downstream gene governing neural circuit formation, also increases expression.</li>
+  <li><strong>Arc/Arg3.1 (Chr 8q24) — Synaptic Plasticity:</strong> The activity-regulated cytoskeleton protein Arc is the master regulator of synaptic plasticity. Karana practice activates Arc in proprioceptive and motor association areas, physically strengthening the neural circuits encoding each Karana's precise movement pattern.</li>
+  <li><strong>Mirror Neuron System:</strong> The inferior frontal gyrus and inferior parietal lobule — the mirror neuron network — show heightened BOLD response during Karana observation and performance. This is the neural basis of Abhinaya (expressive communication).</li>
+  <li><strong>Cerebellar-Striatal-Cortical Loop:</strong> Each Karana engages a distinct cerebellar-striatal-cortical pathway. Repeated practice physically thickens the cortical representation of that movement — measurable in MRI studies of trained Bharatanatyam dancers (40% greater grey matter in right hemisphere spatial processing areas).</li>
+  <li><strong>Piezo1/2 Mechanosensation (Chr 16q24, Chr 18p11):</strong> The physical impact of footwork (Cārī) activates Piezo mechanosensory ion channels in the feet and lower limbs → calcium influx → CaMKII → CREB → immediate early gene expression (c-Fos, Arc). The body's vibrational science is literally encoded in the stepping patterns.</li>
+  <li><strong>Dṛṣṭi & Arc Gene (Visual Cortex):</strong> The 9 prescribed gaze directions stabilise saccadic movements, inducing 40 Hz gamma oscillations in V1 and V4 that propagate to temporal and frontal lobes. This is the neurological substrate of "yoga dṛṣṭya" — clear seeing beyond visual processing.</li>
+</ul>
+
+<p>Reference: <a href="https://natyashastraclassical-dance.culturalmusings.com/" target="_blank" style="color:var(--gold);">natyashastraclassical-dance.culturalmusings.com</a> · <a href="https://completecelestialsynthesis.culturalmusings.com/" target="_blank" style="color:var(--gold);">completecelestialsynthesis.culturalmusings.com</a></p>
+    `},
+
+    { tab:'Process · Tools · Results', content:`
+<h3>108 Karanas — <em>Process, Tools &amp; Results</em></h3>
+
+<p><strong>PROCESS — How to use the 7-subdomain Karana research archive:</strong></p>
+<ul class="new-key-list">
+  <li><strong>Step 1 — Orient via the Root Map:</strong> Begin at <a href="https://karanasrootmap.culturalmusings.com/" target="_blank" style="color:var(--gold);">karanasrootmap.culturalmusings.com</a>. Understand the 4×27 structural framework. Identify which Vedic quarter (1–27 / 28–54 / 55–81 / 82–108) is relevant to your research or practice goal.</li>
+  <li><strong>Step 2 — Locate your Nakshatra group:</strong> Each of the 27 Nakshatras governs a group of 4 Karanas. Find your birth Nakshatra (from the Vedic Jyotisha tool) to identify your personal practice sequence.</li>
+  <li><strong>Step 3 — Select the appropriate subdomain:</strong> Dance training → Classical Dance · Mathematical research → Vedic Maths · Therapeutic use → MCP Phase IV · Cosmological study → Celestial Synthesis · Philosophical inquiry → Unified Theory.</li>
+  <li><strong>Step 4 — Practice the MCP Phase IV sequence:</strong> Weeks 1–2 (Karanas 1–27), Weeks 3–4 (28–54), Weeks 5–6 (55–81), Weeks 7–8 (82–108). Each week's sequence targets a specific neurological-endocrine circuit as documented at <a href="https://masterconsciousprotocol.culturalmusings.com/" target="_blank" style="color:var(--gold);">masterconsciousprotocol.culturalmusings.com</a>.</li>
+  <li><strong>Step 5 — Track and archive:</strong> Log each session's Karana sequence, experiential observations and any measurable biometric data. Contribute to the Testemony archive.</li>
+</ul>
+
+<p><strong>ALL 7 KARANA SUBDOMAINS — Direct Links:</strong></p>
+<ul class="new-key-list">
+  <li>🗺 <a href="https://karanasrootmap.culturalmusings.com/" target="_blank" style="color:var(--gold);">karanasrootmap.culturalmusings.com</a> — Master 4×27 structure</li>
+  <li>⚛ <a href="https://unifiedtheory.culturalmusings.com/" target="_blank" style="color:var(--gold);">unifiedtheory.culturalmusings.com</a> — 21 unsolved science problems</li>
+  <li>📐 <a href="https://vedicmathematicsgeometry.culturalmusings.com/" target="_blank" style="color:var(--gold);">vedicmathematicsgeometry.culturalmusings.com</a> — Karanas 82–108</li>
+  <li>🎭 <a href="https://natyashastraclassical-dance.culturalmusings.com/" target="_blank" style="color:var(--gold);">natyashastraclassical-dance.culturalmusings.com</a> — Karanas 55–81</li>
+  <li>🔱 <a href="https://karanassacredsynthesis.culturalmusings.com/" target="_blank" style="color:var(--gold);">karanassacredsynthesis.culturalmusings.com</a> — Vedas × Sri Chakra</li>
+  <li>🌌 <a href="https://completecelestialsynthesis.culturalmusings.com/" target="_blank" style="color:var(--gold);">completecelestialsynthesis.culturalmusings.com</a> — Full celestial map</li>
+  <li>⚕ <a href="https://masterconsciousprotocol.culturalmusings.com/" target="_blank" style="color:var(--gold);">masterconsciousprotocol.culturalmusings.com</a> — Phase IV clinical protocol</li>
+</ul>
+
+<p><strong>WHAT THE USER RECEIVES:</strong></p>
+<ul class="new-key-list">
+  <li>✅ A personalised Karana practice sequence (based on Nakshatra group)</li>
+  <li>✅ The complete neurological rationale for each Karana's gene activation pattern</li>
+  <li>✅ An 8-week MCP Phase IV movement protocol with weekly progression targets</li>
+  <li>✅ The mathematical and cosmological framework connecting their Karanas to the celestial system</li>
+  <li>✅ Access to the only complete academic study of all 108 Karana sculptures (Chidambaram PDF)</li>
+</ul>
+    `}
+  ]
+};
+
+/* ─── MUDRA MODAL ──────────────────────────────────────────────────── */
+SD_DATA['mudra_intro'] = {
+  banner:'mudra-banner', symbol:'🤲', tag:'Sacred Hand Geometry',
+  title:'Mudras — <em>Sacred Hand Geometry</em>',
+  subtitle:'108 Mudras of Natya Shastra — how precise hand-nerve geometry activates specific neurological, endocrine and energetic circuits.',
+  visitUrl:'https://natyashastra.culturalmusings.com/',
+  pages:[
+    { tab:'What is a Mudra?', content:`
+<h3>What is a <em>Mudra</em>?</h3>
+<p>Mudra (Sanskrit: seal, mark, or gesture) is a precise configuration of the fingers, hands and wrists that acts as a neurological and energetic switch — activating specific nerve bundles, endocrine glands and bio-field circuits in the practitioner. The Natya Shastra catalogues <strong>108 Mudras</strong> organised into four major classes:</p>
+
+<ul class="new-key-list">
+  <li><strong>Asamyuta Hasta</strong> — 28 single-hand gestures, each associated with a specific meaning, deity, element and physiological target. These are the primary Mudras used in dance, ritual and healing.</li>
+  <li><strong>Samyuta Hasta</strong> — 24 combined two-hand gestures, encoding more complex symbolic and therapeutic programmes through bilateral hand geometry.</li>
+  <li><strong>Nṛtta Hasta</strong> — 13 pure dance Mudras used specifically in Nṛtta (abstract movement) — these have no semantic meaning but produce direct neurological effect through their geometric forms.</li>
+  <li><strong>Deva Hasta</strong> — 30 deity-hand configurations used in ritual worship (Pūjā) and Tantra — the Nyāsa system assigns these to specific body locations for energetic activation.</li>
+</ul>
+
+<div class="pull"><p>"Each Mudra is a complete bioelectric circuit. The fingertips contain the highest density of mechanoreceptors in the human body — precisely because the ancient designers placed their 'switches' where they could be most precisely activated."</p></div>
+
+<p>The hands contain 48 peripheral nerve endings per square centimetre — the highest density anywhere in the body. Each finger tip connects through specific nerve pathways to brain regions, organ systems and endocrine glands — a biological fact that the Mudra system mapped and systematically exploited millennia before neuroscience identified it.</p>
+
+<p>Reference: <a href="https://natyashastra.culturalmusings.com/" target="_blank" style="color:var(--gold);">natyashastra.culturalmusings.com</a> · <a href="https://en-wikipedia--on--ipfs-org.ipns.dweb.link/wiki/List_of_mudras_%28dance%29" target="_blank" style="color:var(--gold);">List of Mudras — Wikipedia</a></p>
+    `},
+
+    { tab:'Mudras as Neuroscience', content:`
+<h3>Mudras as <em>Neurological Science</em></h3>
+<p>The neuroscience of Mudra practice operates through four converging pathways — each independently measurable and peer-review validated:</p>
+
+<ul class="new-key-list">
+  <li><strong>Pathway 1 — Somatosensory Cortex Activation:</strong> The hand occupies approximately 25% of the somatosensory cortex homunculus. Each distinct Mudra configuration produces a unique somatosensory cortical activation pattern — functionally equivalent to a different "frequency" of neural signal being sent from hands to brain. EEG during Mudra practice shows distinct topographic maps for each gesture category.</li>
+  <li><strong>Pathway 2 — Peripheral Nerve Stimulation:</strong> The median nerve (thumb, index, middle), ulnar nerve (ring, little), and radial nerve (back of hand) are differentially engaged by each Mudra's finger configuration. Sustained Mudra practice produces measurable changes in nerve conduction velocity — a form of peripheral neuroplasticity.</li>
+  <li><strong>Pathway 3 — Endocrine Activation via Reflexology:</strong> Classical Indian reflexology (Marma Shastra) maps specific hand zones to organ systems: the thumb tip to the brain/pituitary, the index finger to the large intestine, the middle finger to the pericardium, the ring finger to the triple warmer and the little finger to the heart/small intestine. These correspondences have been partially validated by referred pain research and vagotomy studies.</li>
+  <li><strong>Pathway 4 — Bio-Electrical Circuit Completion:</strong> The human body maintains a measurable bio-electrical field (Bioelectromagnetism). Specific Mudras complete or interrupt bio-electrical circuits through the body's meridian network — equivalent to closing or opening specific switches in a complex electrical system. This is measurable via Gas Discharge Visualisation (GDV) and Kirlian photography.</li>
+</ul>
+
+<div class="new-sd-grid">
+  <div class="new-sd-card"><h4>Jñāna Mudra</h4><p>Index tip to thumb tip — closes the Venus-Jupiter circuit. Associated with enhanced alpha EEG coherence, reduced anxiety, improved cognitive clarity.</p></div>
+  <div class="new-sd-card"><h4>Chin Mudra</h4><p>Identical configuration palm-up — opens receptive awareness. Used in Dhyāna (meditation) to sustain theta brainwave states without drowsiness.</p></div>
+  <div class="new-sd-card"><h4>Apāna Mudra</h4><p>Middle + ring tip to thumb tip — stimulates the apāna vāyu (downward prāṇa). Associated with improved elimination, liver detoxification, lower cortisol.</p></div>
+  <div class="new-sd-card"><h4>Prāṇa Mudra</h4><p>Ring + little tip to thumb tip — activates the Mūlādhāra prāṇa circuit. Measurable HRV increase, immune upregulation, reduced fatigue.</p></div>
+</div>
+    `},
+
+    { tab:'Process · Tools · Results', content:`
+<h3>Mudra Practice — <em>Process, Tools &amp; Results</em></h3>
+
+<p><strong>PROCESS — 5 steps from selection to measurable outcome:</strong></p>
+<ul class="new-key-list">
+  <li><strong>Step 1 — Identify the therapeutic target:</strong> Match the Mudra to the physiological, neurological or energetic goal. Use the Mudra-organ correspondence table (thumb→brain, index→lungs, middle→circulation, ring→vitality, little→heart) to identify which finger combination addresses your need.</li>
+  <li><strong>Step 2 — Select the Mudra category:</strong> For daily practice → Asamyuta Hasta (single-hand, simple). For MCP Phase III → Nṛtta Hasta sequences. For ritual/mantra amplification → Deva Hasta. For paired therapeutic sessions → Samyuta Hasta.</li>
+  <li><strong>Step 3 — Integrate into a practice session:</strong> Mudras are most effective when combined with Mantra (Phase II) and Prāṇāyāma (Phase I) in the MCP framework. Hold each Mudra for 15–45 minutes to produce measurable bioelectric and neurochemical change.</li>
+  <li><strong>Step 4 — Observe and record:</strong> Note which Rasa arises during practice. Track any somatic changes (warmth, tingling, energy movement). Over 4 weeks, track relevant biometric markers (sleep quality, cortisol, HRV, mood).</li>
+  <li><strong>Step 5 — Integrate into the complete Karana:</strong> Each of the 108 Karanas includes a specific Mudra assignment (Nṛtta Hasta). Practicing the complete Karana — with its Sthāna, Cārī, Hasta and Dṛṣṭi — multiplies the neurological effect of the Mudra alone.</li>
+</ul>
+
+<p><strong>TOOLS AVAILABLE:</strong></p>
+<ul class="new-key-list">
+  <li>🌐 <a href="https://natyashastra.culturalmusings.com/" target="_blank" style="color:var(--gold);">Natya Shastra subdomain</a> — source text for all 108 Mudras with transliteration</li>
+  <li>🌐 <a href="https://masterconsciousprotocol.culturalmusings.com/" target="_blank" style="color:var(--gold);">Master Consciousness Protocol Phase III</a> — clinical Mudra sequence protocols</li>
+  <li>🌐 <a href="https://bioacousticcodex.culturalmusings.com/" target="_blank" style="color:var(--gold);">Bio Acoustic Codex</a> — Mudra + Mantra cymatics and cellular research</li>
+  <li>📖 <a href="https://en-wikipedia--on--ipfs-org.ipns.dweb.link/wiki/List_of_mudras_%28dance%29" target="_blank" style="color:var(--gold);">Complete Mudra List — Wikipedia (IPFS)</a> — all 108 with illustrations</li>
+  <li>📄 <a href="https://www.sujatanandy.com/the-nyasas-of-tantric-rituals/" target="_blank" style="color:var(--gold);">Nyāsas of Tantric Rituals</a> — body-placement Mudra practice guide</li>
+  <li>📄 <a href="https://www.nathas.org/en/dictionary/matrika-nyasa/" target="_blank" style="color:var(--gold);">Mātṛkā Nyāsa</a> — the 51 Sanskrit phoneme–body-placement Mudra system</li>
+</ul>
+
+<p><strong>WHAT THE USER RECEIVES:</strong></p>
+<ul class="new-key-list">
+  <li>✅ A personalised Mudra prescription matching their therapeutic intention and Nakshatra group</li>
+  <li>✅ Complete anatomical rationale — which nerves, endocrine glands and brain regions are activated</li>
+  <li>✅ A 4-week daily Mudra practice schedule integrated with MCP Phases I–II</li>
+  <li>✅ The Mudra assignments for each of their Nakshatra-group Karanas (108 Karana practice)</li>
+  <li>✅ A biometric tracking protocol and Testemony submission pathway</li>
+</ul>
+    `}
+  ]
+};
+
+/* ─── RESEARCH DOCUMENTS MODAL ─────────────────────────────────────── */
+SD_DATA['resdoc_intro'] = {
+  banner:'resdoc-banner', symbol:'📄', tag:'Research Document Archive',
+  title:'Research Documents — <em>Full Archive Guide</em>',
+  subtitle:'How to find, access, download, cite and collaborate using the complete Cultural Musings document ecosystem — PDFs, GitHub repositories and 50+ scholarly references.',
+  visitUrl:'https://dm.1024terabox.com/main?category=all',
+  pages:[
+    { tab:'Archive Overview', content:`
+<h3>The Research Document <em>Ecosystem</em></h3>
+<p>The Cultural Musings research network produces and curates three distinct types of documents, each with a specific purpose, access method and use-case:</p>
+
+<div class="new-sd-grid">
+  <div class="new-sd-card"><h4>📁 Terabox PDF Library</h4><p>Full-length research manuscripts, translations and reference compendia. Access at dm.1024terabox.com/main?category=all. Best for: offline reading, academic citation, printing, annotation, sharing with colleagues.</p></div>
+  <div class="new-sd-card"><h4>🐙 GitHub Repositories (41)</h4><p>Source code, data files, structured research notes and web-application files for all 17+ subdomains. Access at github.com/ramachandra1975. Best for: developers, technical researchers, version-controlled collaboration.</p></div>
+  <div class="new-sd-card"><h4>🌐 Subdomain Research Pages</h4><p>The 17+ culturalmusings.com subdomains contain the living, updated web-based research — hyperlinked, searchable, referenced. Best for: initial orientation, cross-domain navigation, sharing links.</p></div>
+  <div class="new-sd-card"><h4>📚 External Reference Library</h4><p>50+ curated external sources — government archives, university PDFs, scholarly websites — indexed in the Ref Library drawer panel. Best for: independent verification, academic cross-referencing.</p></div>
+</div>
+
+<p>The three systems are complementary: use the subdomains to orientate, the Terabox PDFs for deep study, the GitHub for technical access, and the External References for scholarly verification.</p>
+
+<ul class="new-key-list">
+  <li><strong>Total documents in ecosystem:</strong> 40+ original manuscripts + 50+ curated external sources + 41 GitHub repositories</li>
+  <li><strong>Languages:</strong> English (primary), Sanskrit (original texts), Telugu (regional research notes)</li>
+  <li><strong>Formats:</strong> PDF, HTML, Markdown, JSON, MP3 (audio research files), MP4 (video documentation)</li>
+  <li><strong>Update frequency:</strong> Terabox and GitHub updated continuously as research progresses</li>
+</ul>
+    `},
+
+    { tab:'By Research Domain', content:`
+<h3>Key Documents <em>By Domain</em></h3>
+
+<ul class="new-key-list">
+  <li><strong>🎭 Natya Shastra &amp; 108 Karanas:</strong>
+    Dance Imagery in South Indian Temples — 108 Karana Sculptures (PDF, Angkor Database) ·
+    IGNCA Natya Shastra Research (PDF, Government of India) ·
+    Natya Shastra Chapter 4, verses 28–261 (natyashastrastandalone.culturalmusings.com)</li>
+  <li><strong>🔊 Nada Chikitsa:</strong>
+    Hindustani Music Theory — NIOS Textbook Ch.6 (PDF) ·
+    Rāga Junglism Masterlist 1000+ Ragas ·
+    Melakarta Complete Chart (melakarta.com) ·
+    Samaveda Full Text (agniveer.com PDF)</li>
+  <li><strong>📖 Vedic Scripture Corpus:</strong>
+    Four Vedas English Translation — complete PDF (archive.org) ·
+    Atharvaveda Vol.1 (eBharati PDF) ·
+    Vedic Heritage Portal (Government of India) ·
+    WisdomLib — 50,000+ Sanskrit texts online</li>
+  <li><strong>🕉 Advaita Vedanta:</strong>
+    Complete Works of Shankaracharya — 20 Volumes, 1910 Edition (archive.org) ·
+    Brahmasūtra Bhāṣya · Vivekacūḍāmaṇi · Bhagavad Gītā Bhāṣya</li>
+  <li><strong>🔱 Mantra &amp; Tantra:</strong>
+    Lalitha Sahasranāma (Sanskrit.nic.in PDF) ·
+    Rudram Namakam &amp; Chamakam ·
+    Soundarya Laharī (GitHub Mantra Finder) ·
+    Khaḍgamālā Stotra</li>
+  <li><strong>⚕ MCP &amp; Clinical Research:</strong>
+    Master Consciousness Protocol full clinical framework (masterconsciousprotocol.culturalmusings.com) ·
+    Bio Acoustic Codex extended research with citations (bioacousticcodex.culturalmusings.com) ·
+    Testemony practitioner accounts archive (testemony.culturalmusings.com)</li>
+  <li><strong>🤖 Vedic AI &amp; Technical:</strong>
+    Pāṇini Aṣṭādhyāyī — NASA linguist analysis · Piṅgala Chandaśāstra binary notation ·
+    Technical Spine documentation (thetechnicalspine.culturalmusings.com)</li>
+</ul>
+    `},
+
+    { tab:'Process · Tools · Results', content:`
+<h3>Research Documents — <em>Process, Tools &amp; Results</em></h3>
+
+<p><strong>PROCESS — 5 steps from question to citable research output:</strong></p>
+<ul class="new-key-list">
+  <li><strong>Step 1 — Identify research question:</strong> Use the Research Archive Search (🌌 Astro &amp; Search → right column) to locate relevant documents across all 17+ domains simultaneously. Enter key terms: "BDNF", "108 Karanas", "Raga Bhairavi", "Mantra HRV" etc.</li>
+  <li><strong>Step 2 — Access the primary document:</strong> For in-depth study → go to Terabox (dm.1024terabox.com) and download the relevant PDF. For web-based reading → open the relevant subdomain. For source code or structured data → browse github.com/ramachandra1975.</li>
+  <li><strong>Step 3 — Cross-reference with external sources:</strong> Use the Ref Library drawer panel (📚 Ref Library in nav) to locate the external scholarly sources that independently validate the research claims. Open the Ref Library tab then browse by category: Natya · Ragas · Vedic · Advaita · Mantra · Subdomains.</li>
+  <li><strong>Step 4 — Cite correctly:</strong> For web citations use the full subdomain URL as source. For PDFs use the Terabox file path or the original source URL (IGNCA, archive.org etc.). For GitHub cite the repository at github.com/ramachandra1975/[repo-name].</li>
+  <li><strong>Step 5 — Collaborate:</strong> Contact the author at smith123846@gmail.com or via the JotForm enquiry (form.jotform.com/261042208142039) to discuss joint research, clinical trial design, institutional collaboration or co-authorship.</li>
+</ul>
+
+<p><strong>KEY DOCUMENT ACCESS POINTS:</strong></p>
+<ul class="new-key-list">
+  <li>📁 <a href="https://dm.1024terabox.com/main?category=all" target="_blank" style="color:var(--gold);">Terabox PDF Library</a> — all original manuscripts</li>
+  <li>🐙 <a href="https://github.com/ramachandra1975" target="_blank" style="color:var(--gold);">GitHub — 41 repositories</a> — source data and code</li>
+  <li>📄 <a href="https://cdn.angkordatabase.asia/libs/docs/publications/dance-imagery-in-south-indian-temples-study-of-the-108-karana-sculptures/108-karanas.pdf" target="_blank" style="color:var(--gold);">108 Karanas Sculpture Study PDF</a></li>
+  <li>📄 <a href="https://ignca.gov.in/Asi_data/8737.pdf" target="_blank" style="color:var(--gold);">IGNCA Natya Shastra PDF</a> — Government of India</li>
+  <li>📄 <a href="https://ia801205.us.archive.org/11/items/FourVedasEnglishTranslation/Four-Vedas-English-Translation.pdf" target="_blank" style="color:var(--gold);">Four Vedas English PDF</a> — archive.org</li>
+  <li>📄 <a href="https://www.sanskrit.nic.in/books_archive/024_Shri_Lalita_Sahasra_Name_of_Shri_Ramamurti.pdf" target="_blank" style="color:var(--gold);">Lalita Sahasranāma PDF</a> — Sanskrit.nic.in</li>
+  <li>🌐 <a href="https://www.wisdomlib.org/" target="_blank" style="color:var(--gold);">WisdomLib</a> — 50,000+ Vedic texts online</li>
+  <li>🌐 <a href="https://sanskritdocuments.org/" target="_blank" style="color:var(--gold);">Sanskrit Documents Archive</a></li>
+</ul>
+
+<p><strong>WHAT THE USER RECEIVES:</strong></p>
+<ul class="new-key-list">
+  <li>✅ A guided pathway from research question to relevant PDF or web source in under 2 minutes</li>
+  <li>✅ Complete citation information for every document in the ecosystem</li>
+  <li>✅ Access to 50+ peer-reviewed and government-archived external references</li>
+  <li>✅ GitHub repository access for technical researchers and developers</li>
+  <li>✅ A direct collaboration pathway to the author for joint research or clinical trial design</li>
+</ul>
+    `}
+  ]
+};
+
+} // end if SD_DATA
+
+/* ══════════════════════════════════════════════════════════════════════
+   F.  EXTEND SEARCH INDEX
+══════════════════════════════════════════════════════════════════════ */
+if (typeof SEARCH_INDEX !== 'undefined') {
+  [
+    { title:'Mantra Science — Bīja, Sūkta, Stotra, Dhāraṇī', badge:'Mantras',
+      url:'https://vedicfoundationandsoundscience.culturalmusings.com/',
+      snippet:'Complete Mantra science framework — types, bioacoustic mechanism, genomic outcomes, 5-step practice protocol.' },
+    { title:'Mantra & Bioacoustics — OXTR, BDNF, TERT genomic effects', badge:'Mantras',
+      url:'https://vedicfoundationandsoundscience.culturalmusings.com/',
+      snippet:'How AUM at 136 Hz de-methylates OXTR (Chr 3q25), Pavamana Sukta preserves telomeres via TERT, HRV and cortisol measurement.' },
+    { title:'108 Mudras of Natya Shastra — Complete Guide', badge:'Mudras',
+      url:'https://natyashastra.culturalmusings.com/',
+      snippet:'All 108 Mudras: Asamyuta, Samyuta, Nritta Hasta, Deva Hasta — with nerve activation pathways and MCP Phase III protocol.' },
+    { title:'Mudra as Neuroscience — Somatosensory Cortex & Endocrine Activation', badge:'Mudras',
+      url:'https://natyashastra.culturalmusings.com/',
+      snippet:'How finger-nerve geometry activates specific brain regions, endocrine glands and bioelectric circuits through Mudra practice.' },
+    { title:'Jnana Mudra · Chin Mudra · Apana Mudra · Prana Mudra', badge:'Mudras',
+      url:'https://masterconsciousprotocol.culturalmusings.com/',
+      snippet:'Four key healing Mudras: Venus-Jupiter circuit, alpha EEG, liver detoxification, immune activation — scientific rationale.' },
+    { title:'108 Karanas — Complete 7-Subdomain Research Network', badge:'108 Karanas',
+      url:'https://karanasrootmap.culturalmusings.com/',
+      snippet:'All 7 Karana subdomains: Root Map, Unified Theory, Vedic Maths, Classical Dance, Sacred Synthesis, Celestial Synthesis, MCP Phase IV.' },
+    { title:'Karanas as Neuroscience — FOXP2, Arc Gene, Mirror Neurons', badge:'108 Karanas',
+      url:'https://natyashastraclassical-dance.culturalmusings.com/',
+      snippet:'FOXP2 (Chr 7), Arc/Arg3.1 (Chr 8q24), Piezo1/2 mechanosensation, cerebellar-striatal-cortical loop — Karana neuroscience.' },
+    { title:'8-Week MCP Phase IV Karana Movement Protocol', badge:'108 Karanas',
+      url:'https://masterconsciousprotocol.culturalmusings.com/',
+      snippet:'Weeks 1-2 Karanas 1-27 (Rigveda grounding), 3-4 Karanas 28-54 (activation), 5-6 Karanas 55-81 (integration), 7-8 Karanas 82-108 (transcendence).' },
+    { title:'Research Documents — Terabox PDF Library', badge:'Research Docs',
+      url:'https://dm.1024terabox.com/main?category=all',
+      snippet:'All Cultural Musings original manuscripts, research PDFs and reference compendia available for download on Terabox.' },
+    { title:'Research Documents — 41 GitHub Repositories', badge:'Research Docs',
+      url:'https://github.com/ramachandra1975',
+      snippet:'Source code, structured data files and technical documentation for all 17+ Cultural Musings research subdomains.' },
+    { title:'IGNCA Natya Shastra Research PDF', badge:'Research Docs · PDF',
+      url:'https://ignca.gov.in/Asi_data/8737.pdf',
+      snippet:'Official Government of India IGNCA Natya Shastra research document — scholarly PDF for academic citation.' },
+    { title:'Lalita Sahasranama PDF — Sanskrit.nic.in', badge:'Research Docs · PDF',
+      url:'https://www.sanskrit.nic.in/books_archive/024_Shri_Lalita_Sahasra_Name_of_Shri_Ramamurti.pdf',
+      snippet:'Complete Lalitha Sahasranamam in Sanskrit — Government Sanskrit archive, scholarly PDF for research and practice.' },
+    { title:'Mantra Prescription — 5-Step Practice Protocol', badge:'Mantras · MCP',
+      url:'https://masterconsciousprotocol.culturalmusings.com/',
+      snippet:'From Sankalpa to genomic measurement: 5-step Mantra practice protocol integrated with MCP Phases I-II, HRV tracking.' },
+    { title:'Mudra Prescription — 4-Week Practice Schedule', badge:'Mudras · MCP',
+      url:'https://masterconsciousprotocol.culturalmusings.com/',
+      snippet:'4-week personalised Mudra practice schedule integrated with Pranayama and Mantra, with biometric tracking protocol.' },
+    { title:'Karana Nakshatra Groups — Personal Practice Sequence', badge:'108 Karanas',
+      url:'https://completecelestialsynthesis.culturalmusings.com/',
+      snippet:'How to find your personal Karana practice sequence based on birth Nakshatra — Vedic Jyotisha x 108 Karanas mapping.' },
+  ].forEach(e => SEARCH_INDEX.push(e));
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   G.  AT-A-GLANCE SECTION  (injected after #philosophy)
+══════════════════════════════════════════════════════════════════════ */
+const philosophy = document.getElementById('philosophy');
+if (philosophy) {
+  const section = document.createElement('section');
+  section.id = 'at-a-glance';
+  section.innerHTML = `
+<div class="aag-inner">
+
+  <!-- Header -->
+  <div class="aag-header">
+    <span class="aag-eyebrow">What You Can Do Here</span>
+    <h2 class="aag-title">Four Research Pathways — <em>At a Glance</em></h2>
+    <p class="aag-lead">
+      Each category below shows the Process, Tools and Results available to you —
+      from your first visit to advanced clinical research. Click any card to explore.
+    </p>
+  </div>
+
+  <!-- 2×2 card grid -->
+  <div class="aag-grid">
+
+    <!-- ── MANTRAS ───────────────────────────────────────────────── -->
+    <div class="aag-card" data-theme="mantras" onclick="openSD('mantra_intro',0)">
+      <div class="aag-card-bar mantra"></div>
+      <div class="aag-card-body">
+        <span class="aag-card-icon">🕉</span>
+        <div class="aag-card-title mantra">Mantras</div>
+        <span class="aag-card-url mantra">vedicfoundationandsoundscience.culturalmusings.com</span>
+        <p class="aag-card-desc">Bīja Mantras, Vedic Sūktas, Stotras — the complete science of Sanskrit phonemics as a precision acoustic tool for neurological and genomic healing.</p>
+
+        <div class="aag-stats">
+          <div class="aag-stat"><span class="asn" style="color:var(--m-gold);">5</span><span class="asl">Mantra Types</span></div>
+          <div class="aag-stat"><span class="asn" style="color:var(--m-gold);">12</span><span class="asl">Bīja Aksharas</span></div>
+          <div class="aag-stat"><span class="asn" style="color:var(--m-gold);">108</span><span class="asl">Mālā count</span></div>
+        </div>
+
+        <div class="ptr-rows">
+          <div class="ptr-row process">
+            <span class="ptr-label process">Process</span>
+            <span class="ptr-text">Sankalpa → Mantra selection (Bīja/Sūkta) → Correct Chandas rhythm → 108 repetitions → HRV + cortisol measurement over 8 weeks</span>
+          </div>
+          <div class="ptr-row tools">
+            <span class="ptr-label tools">Tools</span>
+            <span class="ptr-text">Vedic Foundation & Sound Science · Spandana Shodha bioacoustic methodology · Lalitha Sahasranāmam PDF · Mantra Shastra (Vedadhara) · MCP Phase II integration</span>
+          </div>
+          <div class="ptr-row results">
+            <span class="ptr-label results">Results</span>
+            <span class="ptr-text">Personalised Mantra prescription + bioacoustic rationale + 12-week tracking protocol + OXTR/BDNF/TERT genomic target map</span>
+          </div>
+        </div>
+
+        <div class="aag-chips">
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('mantra_intro',0)">AUM · 136 Hz</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('mantra_intro',0)">HRĪM · KLĪM</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('mantra_intro',1)">Rudram</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('mantra_intro',1)">Pavamāna</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('mantra_intro',2)">MCP Phase II</span>
+        </div>
+
+        <div class="aag-divider"></div>
+        <button class="aag-cta mantra">Explore Mantras</button>
+      </div>
+    </div>
+
+    <!-- ── 108 KARANAS ──────────────────────────────────────────── -->
+    <div class="aag-card" data-theme="karanas" onclick="openSD('karanas_info',0)">
+      <div class="aag-card-bar karanas"></div>
+      <div class="aag-card-body">
+        <span class="aag-card-icon">🌀</span>
+        <div class="aag-card-title karanas">108 Karanas</div>
+        <span class="aag-card-url karanas">karanasrootmap.culturalmusings.com</span>
+        <p class="aag-card-desc">The world's most complete sacred movement science — 108 Karanas across 7 dedicated research subdomains, mapped to Nakshatras, Ragas, Chromosomes and the Celestial framework.</p>
+
+        <div class="aag-stats">
+          <div class="aag-stat"><span class="asn" style="color:var(--m-violet);">108</span><span class="asl">Karanas</span></div>
+          <div class="aag-stat"><span class="asn" style="color:var(--m-violet);">7</span><span class="asl">Subdomains</span></div>
+          <div class="aag-stat"><span class="asn" style="color:var(--m-violet);">27</span><span class="asl">Nakshatras</span></div>
+        </div>
+
+        <div class="ptr-rows">
+          <div class="ptr-row process">
+            <span class="ptr-label process" style="color:#4c1d95;">Process</span>
+            <span class="ptr-text">Root Map orientation → Nakshatra group identification → Subdomain selection → MCP Phase IV 8-week practice sequence → Biometric tracking</span>
+          </div>
+          <div class="ptr-row tools">
+            <span class="ptr-label tools" style="color:#6d28d9;">Tools</span>
+            <span class="ptr-text">All 7 Karana subdomains · Vedic Jyotisha tool (birth Nakshatra) · MCP Phase IV sequences · Celestial Synthesis × Karana map · Chidambaram sculpture PDF</span>
+          </div>
+          <div class="ptr-row results">
+            <span class="ptr-label results" style="color:#3b0764;">Results</span>
+            <span class="ptr-text">Personal Karana practice sequence + neuroscience rationale (FOXP2, Arc gene) + 8-week MCP protocol + Cosmological mapping to Nakshatra/Melakartha</span>
+          </div>
+        </div>
+
+        <div class="aag-chips">
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('karanas_info',0)">4 Vedic Quarters</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('karanas_info',1)">FOXP2 Gene</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('karanas_info',1)">Arc/Arg3.1</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('karanas_info',2)">Celestial Synthesis</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('karanas_info',2)">MCP Phase IV</span>
+        </div>
+
+        <div class="aag-divider"></div>
+        <button class="aag-cta karanas">Explore 108 Karanas</button>
+      </div>
+    </div>
+
+    <!-- ── MUDRAS ────────────────────────────────────────────────── -->
+    <div class="aag-card" data-theme="mudras" onclick="openSD('mudra_intro',0)">
+      <div class="aag-card-bar mudras"></div>
+      <div class="aag-card-body">
+        <span class="aag-card-icon">🤲</span>
+        <div class="aag-card-title mudras">Mudras</div>
+        <span class="aag-card-url mudras">natyashastra.culturalmusings.com · MCP Phase III</span>
+        <p class="aag-card-desc">Sacred hand geometry as precision neurological circuitry — 108 Mudras activating specific nerves, endocrine glands and bioelectric circuits through finger-position science.</p>
+
+        <div class="aag-stats">
+          <div class="aag-stat"><span class="asn" style="color:var(--m-green);">108</span><span class="asl">Total Mudras</span></div>
+          <div class="aag-stat"><span class="asn" style="color:var(--m-green);">28</span><span class="asl">Single-hand</span></div>
+          <div class="aag-stat"><span class="asn" style="color:var(--m-green);">4</span><span class="asl">Categories</span></div>
+        </div>
+
+        <div class="ptr-rows">
+          <div class="ptr-row process">
+            <span class="ptr-label process" style="color:#064e2b;">Process</span>
+            <span class="ptr-text">Identify therapeutic target → Select Mudra category (Asamyuta/Samyuta/Nritta/Deva Hasta) → 15–45 min daily practice → Integrate with MCP Phases I–II → 4-week biometric tracking</span>
+          </div>
+          <div class="ptr-row tools">
+            <span class="ptr-label tools" style="color:#166534;">Tools</span>
+            <span class="ptr-text">Natya Shastra source text · MCP Phase III sequences · Bio Acoustic Codex cymatics · Complete Mudra List (Wikipedia IPFS) · Nyāsas of Tantric Rituals</span>
+          </div>
+          <div class="ptr-row results">
+            <span class="ptr-label results" style="color:#052e16;">Results</span>
+            <span class="ptr-text">Personalised Mudra prescription + nerve activation rationale + 4-week schedule + Karana Mudra assignments + biometric tracking protocol</span>
+          </div>
+        </div>
+
+        <div class="aag-chips">
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('mudra_intro',0)">Jñāna Mudra</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('mudra_intro',0)">Apāna Mudra</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('mudra_intro',1)">Nerve pathways</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('mudra_intro',1)">Somatosensory</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('mudra_intro',2)">MCP Phase III</span>
+        </div>
+
+        <div class="aag-divider"></div>
+        <button class="aag-cta mudras">Explore Mudras</button>
+      </div>
+    </div>
+
+    <!-- ── RESEARCH DOCUMENTS ───────────────────────────────────── -->
+    <div class="aag-card" data-theme="resdocs" onclick="openSD('resdoc_intro',0)">
+      <div class="aag-card-bar resdocs"></div>
+      <div class="aag-card-body">
+        <span class="aag-card-icon">📄</span>
+        <div class="aag-card-title resdocs">Research Documents</div>
+        <span class="aag-card-url resdocs">dm.1024terabox.com · github.com/ramachandra1975</span>
+        <p class="aag-card-desc">40+ original manuscripts, 41 GitHub repositories, 50+ curated external scholarly references — the complete document ecosystem of the Cultural Musings research network.</p>
+
+        <div class="aag-stats">
+          <div class="aag-stat"><span class="asn" style="color:var(--m-indigo);">40+</span><span class="asl">Manuscripts</span></div>
+          <div class="aag-stat"><span class="asn" style="color:var(--m-indigo);">41</span><span class="asl">GitHub Repos</span></div>
+          <div class="aag-stat"><span class="asn" style="color:var(--m-indigo);">50+</span><span class="asl">Ext. References</span></div>
+        </div>
+
+        <div class="ptr-rows">
+          <div class="ptr-row process">
+            <span class="ptr-label process" style="color:#1e3a8a;">Process</span>
+            <span class="ptr-text">Research question → Archive Search (all 17+ domains) → Locate PDF or subdomain → Cross-reference external sources → Cite correctly → Contact author for collaboration</span>
+          </div>
+          <div class="ptr-row tools">
+            <span class="ptr-label tools" style="color:#1d4ed8;">Tools</span>
+            <span class="ptr-text">Terabox PDF library · GitHub 41 repos · Ref Library drawer (50+ sources) · Research Archive Search · WisdomLib · Sanskrit Documents Archive</span>
+          </div>
+          <div class="ptr-row results">
+            <span class="ptr-label results" style="color:#0f2d7a;">Results</span>
+            <span class="ptr-text">Guided pathway to any document in &lt;2 min + complete citation data + 50+ peer-reviewed external references + collaboration pathway to the author</span>
+          </div>
+        </div>
+
+        <div class="aag-chips">
+          <span class="aag-chip" onclick="event.stopPropagation();window.open('https://dm.1024terabox.com/main?category=all','_blank')">Terabox PDFs</span>
+          <span class="aag-chip" onclick="event.stopPropagation();window.open('https://github.com/ramachandra1975','_blank')">GitHub</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('resdoc_intro',1)">By Domain</span>
+          <span class="aag-chip" onclick="event.stopPropagation();openSD('resdoc_intro',2)">Citation Guide</span>
+          <span class="aag-chip" onclick="event.stopPropagation();document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Collaborate</span>
+        </div>
+
+        <div class="aag-divider"></div>
+        <button class="aag-cta resdocs">Explore Documents</button>
+      </div>
+    </div>
+
+  </div><!-- /aag-grid -->
+</div><!-- /aag-inner -->`;
+
+  philosophy.insertAdjacentElement('afterend', section);
+}
+
+})(); // end IIFE
+</script>
+<!-- ═══════════════════════════════════════════════════════════════════
+     END INJECTABLE BLOCK — Mantras · 108 Karanas · Mudras · Research Documents
+     Paste just before </body>
+════════════════════════════════════════════════════════════════════ -->
 </body>
 </html>
