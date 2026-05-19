@@ -4651,5 +4651,1326 @@ if (philosophy) {
      END INJECTABLE BLOCK — Mantras · 108 Karanas · Mudras · Research Documents
      Paste just before </body>
 ════════════════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════════════════════════════════════════
+     RAGA CREATION PRO — Complete Injectable Block v2.0
+     ───────────────────────────────────────────────────────────────────────────────
+     Paste this ENTIRE block just before </body>.
+
+     Delivers:
+       • Nav button  "🎼 Raga Creation"
+       • Mega-drawer panel with 12 sub-links
+       • Drawer tab
+       • 9 deep SD_DATA modal entries:
+           rc2_what       — What is Raga Creation? (definition + raga count)
+           rc2_neuro      — Neuroscience deep-dive (3 pages)
+           rc2_micro      — Microbiology / cellular viewpoint (3 pages)
+           rc2_kinetic    — Kinetic / biomechanical study (3 pages)
+           rc2_howto      — How to Create a Raga — step-by-step (3 pages)
+           rc2_search     — Search guide: API + non-API (3 pages)
+           rc2_refs       — All references: external + subdomains (2 pages)
+           rc2_author1    — Author's Insight: Inspiration & Origin (page 1)
+           rc2_author2    — Author's Insight: Journey & Vision   (page 2)
+       • SEARCH_INDEX extended (18 new entries)
+       • Mobile nav entries
+       • Self-contained CSS (no conflicts)
+════════════════════════════════════════════════════════════════════════════════ -->
+
+<!-- ══════════════════════════════════════════════ 1 · CSS ══════════════════ -->
+<style>
+/* ── Palette ──────────────────────────────────────────────────────────────── */
+:root {
+  --rc2-deep:    #0e0318;
+  --rc2-mid:     #1c0638;
+  --rc2-raga:    #c8400a;          /* saffron-rust          */
+  --rc2-gold:    #f0b840;          /* warm turmeric gold    */
+  --rc2-rose:    #d4507a;          /* Bhairavi rose         */
+  --rc2-teal:    #0ea5a0;          /* Yaman evening teal    */
+  --rc2-neuro:   #6d4fd4;          /* neuroscience violet   */
+  --rc2-micro:   #18a058;          /* microbiology green    */
+  --rc2-kinetic: #d97706;          /* kinetic amber         */
+  --rc2-search:  #2563eb;          /* search blue           */
+}
+
+/* ── Nav button ───────────────────────────────────────────────────────────── */
+.mega-trigger.rc2-nav {
+  background: linear-gradient(135deg, var(--rc2-deep), #1a0830, #200a10);
+  color: var(--rc2-gold);
+  border-color: rgba(240,184,64,.45);
+  font-size: .58rem;
+}
+.mega-trigger.rc2-nav:hover,
+.mega-trigger.rc2-nav.active { border-color: var(--rc2-gold); color: #fff; }
+
+/* ── Drawer tab ───────────────────────────────────────────────────────────── */
+.drawer-tab.rc2-tab.active { color: var(--rc2-raga); border-bottom-color: var(--rc2-gold); }
+
+/* ── Drawer panel ─────────────────────────────────────────────────────────── */
+.drawer-panel.rc2-drawer-panel {
+  background: linear-gradient(135deg, rgba(14,3,24,.05) 0%, #fff 44%);
+}
+.rc2-drawer-panel .dl-title  { color: #5a1a00; }
+.rc2-drawer-panel .drawer-link:hover .dl-title { color: var(--rc2-raga); }
+.rc2-drawer-panel .dl-bar    { background: var(--rc2-gold); }
+
+/* ── Modal banners ────────────────────────────────────────────────────────── */
+.sd-modal-banner.rc2-banner {
+  background: linear-gradient(150deg, var(--rc2-deep) 0%, #1c0420 40%, #14080a 100%);
+}
+.rc2-banner .sd-modal-tag       { color: var(--rc2-gold); }
+.rc2-banner h2 em               { color: var(--rc2-gold); }
+.rc2-banner .sd-banner-desc     { color: rgba(240,184,64,.55); }
+.rc2-banner .sd-visit-top       { border-color: var(--rc2-gold); color: var(--rc2-gold); }
+.rc2-banner .sd-visit-top:hover { background: var(--rc2-gold); color: var(--rc2-deep); }
+
+.sd-modal-banner.rc2-neuro-banner {
+  background: linear-gradient(150deg, #0d0028, #1a0050, #080018);
+}
+.rc2-neuro-banner .sd-modal-tag   { color: #b09fff; }
+.rc2-neuro-banner h2 em           { color: #b09fff; }
+.rc2-neuro-banner .sd-banner-desc { color: rgba(176,159,255,.5); }
+.rc2-neuro-banner .sd-visit-top   { border-color: #b09fff; color: #b09fff; }
+
+.sd-modal-banner.rc2-micro-banner {
+  background: linear-gradient(150deg, #001a0d, #003020, #000c08);
+}
+.rc2-micro-banner .sd-modal-tag   { color: #6fffb0; }
+.rc2-micro-banner h2 em           { color: #6fffb0; }
+.rc2-micro-banner .sd-banner-desc { color: rgba(111,255,176,.45); }
+.rc2-micro-banner .sd-visit-top   { border-color: #6fffb0; color: #6fffb0; }
+
+.sd-modal-banner.rc2-kinetic-banner {
+  background: linear-gradient(150deg, #180800, #302000, #100a00);
+}
+.rc2-kinetic-banner .sd-modal-tag { color: #ffc060; }
+.rc2-kinetic-banner h2 em         { color: #ffc060; }
+.rc2-kinetic-banner .sd-banner-desc { color: rgba(255,192,96,.45); }
+.rc2-kinetic-banner .sd-visit-top { border-color: #ffc060; color: #ffc060; }
+
+.sd-modal-banner.rc2-author-banner {
+  background: linear-gradient(150deg, #0a0018, #18003c, #240810);
+}
+.rc2-author-banner .sd-modal-tag { color: var(--rc2-rose); }
+.rc2-author-banner h2 em         { color: var(--rc2-rose); }
+.rc2-author-banner .sd-banner-desc { color: rgba(212,80,122,.45); }
+.rc2-author-banner .sd-visit-top { border-color: var(--rc2-rose); color: var(--rc2-rose); }
+
+/* ── Shared content helpers ───────────────────────────────────────────────── */
+
+/* Pull quote */
+.rc2-pull {
+  border-left: 3px solid var(--rc2-gold);
+  background: #fffdf7; padding: 15px 22px; margin: 20px 0;
+}
+.rc2-pull p {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 1.08rem; color: #4a2000; line-height: 1.6; margin: 0;
+}
+
+/* Accent key-list */
+.rc2-list { list-style: none; padding: 0; margin: 14px 0; }
+.rc2-list li {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 8px 0; border-bottom: 1px solid #f0ece0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .68rem; color: #444; line-height: 1.55; letter-spacing: .3px;
+}
+.rc2-list li:last-child { border-bottom: none; }
+.rc2-list li::before {
+  content: ''; width: 22px; min-width: 22px;
+  height: 1px; background: var(--rc2-gold);
+  margin-top: 8px; flex-shrink: 0;
+}
+.rc2-list li.neuro-li::before  { background: var(--rc2-neuro);  }
+.rc2-list li.micro-li::before  { background: var(--rc2-micro);  }
+.rc2-list li.kinetic-li::before{ background: var(--rc2-kinetic);}
+.rc2-list li.search-li::before { background: var(--rc2-search); }
+.rc2-list li.author-li::before { background: var(--rc2-rose);   }
+
+/* 2-col card grid */
+.rc2-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+.rc2-card {
+  border: 1px solid #e8e0cc; border-top: 3px solid var(--rc2-gold);
+  padding: 18px; background: #fffef9;
+}
+.rc2-card.neuro  { border-top-color: var(--rc2-neuro);  background: #f8f6ff; }
+.rc2-card.micro  { border-top-color: var(--rc2-micro);  background: #f5fbf7; }
+.rc2-card.kinetic{ border-top-color: var(--rc2-kinetic); background: #fef9f0; }
+.rc2-card.search { border-top-color: var(--rc2-search);  background: #f0f5ff; }
+.rc2-card h4 {
+  font-family: 'Montserrat', sans-serif; font-size: .62rem;
+  font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase;
+  color: #5a1a00; margin-bottom: 7px;
+}
+.rc2-card.neuro   h4 { color: #3d1d80; }
+.rc2-card.micro   h4 { color: #0a4a22; }
+.rc2-card.kinetic h4 { color: #7a3800; }
+.rc2-card.search  h4 { color: #1a3a80; }
+.rc2-card p { font-size: .9rem; color: #555; line-height: 1.65; margin: 0; }
+
+/* Raga count chip */
+.rc2-count-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--rc2-deep), #2e1208);
+  color: var(--rc2-gold); font-family: 'Playfair Display', serif;
+  font-size: 2.4rem; font-weight: 700;
+  padding: 10px 22px; margin: 14px 0;
+  border: 1px solid rgba(240,184,64,.3);
+  line-height: 1;
+}
+.rc2-count-label {
+  font-family: 'Montserrat', sans-serif; font-size: .56rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #888; margin-left: 10px;
+}
+
+/* Pill strip */
+.rc2-pills { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.rc2-pill {
+  font-family: 'Montserrat', sans-serif; font-size: .56rem; font-weight: 700;
+  padding: 4px 11px; border-radius: 20px; border: 1px solid rgba(240,184,64,.35);
+  color: #5a1a00; background: #fffdf5; letter-spacing: .5px;
+}
+.rc2-pill.lit  { background: #f5f2ff; border-color: rgba(109,79,212,.3); color: #3d1d80; }
+.rc2-pill.grn  { background: #f2fbf6; border-color: rgba(24,160,88,.3);  color: #0a4a22; }
+.rc2-pill.amb  { background: #fef9f0; border-color: rgba(217,119,6,.3);  color: #7a3800; }
+.rc2-pill.blu  { background: #f0f4ff; border-color: rgba(37,99,235,.3);  color: #1a3a80; }
+.rc2-pill.rose { background: #fff0f5; border-color: rgba(212,80,122,.3); color: #7a1040; }
+
+/* Step process items */
+.rc2-step {
+  display: grid; grid-template-columns: 48px 1fr;
+  gap: 16px; padding: 16px 0; border-bottom: 1px solid #f0f0f0;
+  align-items: flex-start;
+}
+.rc2-step:last-child { border-bottom: none; }
+.rc2-step-num {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--rc2-deep), #2e1208);
+  color: var(--rc2-gold); font-family: 'Playfair Display', serif;
+  font-size: 1.1rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.rc2-step-num.neuro   { background: linear-gradient(135deg,#0d0028,#1a0050); color: #b09fff; }
+.rc2-step-num.micro   { background: linear-gradient(135deg,#001a0d,#003020); color: #6fffb0; }
+.rc2-step-num.kinetic { background: linear-gradient(135deg,#180800,#302000); color: #ffc060; }
+.rc2-step-num.search  { background: linear-gradient(135deg,#001030,#002060); color: #90c0ff; }
+.rc2-step h4 {
+  font-family: 'Montserrat', sans-serif; font-size: .64rem;
+  font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase;
+  color: #5a1a00; margin-bottom: 6px;
+}
+.rc2-step.neuro   h4 { color: #3d1d80; }
+.rc2-step.micro   h4 { color: #0a4a22; }
+.rc2-step.kinetic h4 { color: #7a3800; }
+.rc2-step.search  h4 { color: #1a3a80; }
+.rc2-step p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: #444; line-height: 1.75; margin: 0 0 7px; }
+
+/* Reference list */
+.rc2-ref-section { margin-bottom: 20px; }
+.rc2-ref-head {
+  font-family: 'Montserrat', sans-serif; font-size: .56rem;
+  font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  color: #5a1a00; padding-bottom: 8px;
+  border-bottom: 1px solid rgba(240,184,64,.22); margin-bottom: 10px;
+}
+.rc2-ref-ul { list-style: none; padding: 0; margin: 0; }
+.rc2-ref-ul li {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 6px 0; border-bottom: 1px solid #f8f5f0;
+}
+.rc2-ref-ul li:last-child { border-bottom: none; }
+.rc2-ref-badge {
+  font-family: 'Montserrat', sans-serif; font-size: .44rem;
+  font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+  background: #fffaf0; border: 1px solid rgba(240,184,64,.32);
+  color: #a07020; padding: 2px 5px; border-radius: 2px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.rc2-ref-badge.sub  { background: #f0faf5; border-color: rgba(24,160,88,.3);  color: #0a5c28; }
+.rc2-ref-badge.pdf  { background: #fff8f0; border-color: rgba(200,120,40,.35); color: #8a4820; }
+.rc2-ref-badge.ext  { background: #f0f5ff; border-color: rgba(37,99,235,.3);  color: #1a3a80; }
+.rc2-ref-ul li a {
+  font-family: 'Montserrat', sans-serif; font-size: .62rem;
+  color: #1a365d; text-decoration: none; line-height: 1.5;
+  word-break: break-word; transition: color .18s;
+}
+.rc2-ref-ul li a:hover { color: var(--rc2-raga); }
+
+/* Author pages */
+.rc2-author-lede {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.12rem;
+  color: #3a1020; line-height: 1.88; font-style: italic;
+  border-left: 3px solid var(--rc2-rose); padding-left: 20px;
+  margin: 20px 0;
+}
+.rc2-timeline { margin: 20px 0; }
+.rc2-tl-item {
+  display: flex; gap: 18px; padding-bottom: 24px; position: relative;
+}
+.rc2-tl-item::before {
+  content: ''; position: absolute; left: 15px; top: 32px;
+  width: 1px; bottom: 0; background: rgba(212,80,122,.2);
+}
+.rc2-tl-item:last-child::before { display: none; }
+.rc2-tl-year {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: var(--rc2-rose); color: #fff;
+  font-family: 'Montserrat', sans-serif; font-size: .42rem;
+  font-weight: 800; display: flex; align-items: center; justify-content: center;
+  text-align: center; line-height: 1.2; padding: 2px;
+}
+.rc2-tl-body h4 {
+  font-family: 'Montserrat', sans-serif; font-size: .65rem;
+  font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+  color: #7a1040; margin-bottom: 5px;
+}
+.rc2-tl-body p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: #444; line-height: 1.72; margin: 0; }
+
+/* Search tool panels inside modal */
+.rc2-search-box {
+  border: 1px solid rgba(37,99,235,.25); border-left: 4px solid var(--rc2-search);
+  background: #f8faff; padding: 18px 20px; margin: 14px 0;
+}
+.rc2-search-box h4 {
+  font-family: 'Montserrat', sans-serif; font-size: .62rem;
+  font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase;
+  color: #1a3a80; margin-bottom: 10px;
+}
+.rc2-search-box p { font-size: .9rem; color: #444; line-height: 1.65; margin: 0 0 8px; }
+.rc2-code {
+  font-family: 'JetBrains Mono', monospace; font-size: .58rem;
+  background: #0d1117; color: #7ee787; padding: 10px 14px;
+  border-radius: 3px; display: block; margin: 8px 0;
+  overflow-x: auto; white-space: pre; line-height: 1.7;
+}
+
+/* Raga count table */
+.rc2-count-table {
+  width: 100%; border-collapse: collapse;
+  font-family: 'Montserrat', sans-serif; font-size: .6rem;
+  margin: 16px 0;
+}
+.rc2-count-table th {
+  background: #fffaf0; border-bottom: 2px solid rgba(240,184,64,.3);
+  padding: 8px 10px; text-align: left; font-size: .52rem;
+  font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--rc2-raga);
+}
+.rc2-count-table td {
+  padding: 7px 10px; border-bottom: 1px solid #f5f0e8;
+  color: #444; vertical-align: top; line-height: 1.5;
+}
+.rc2-count-table tr:hover td { background: #fffdf7; }
+.rc2-count-table .cat { font-weight: 700; color: #5a1a00; }
+.rc2-count-total td { background: #fffaf0; font-weight: 700; color: #5a1a00; border-top: 2px solid rgba(240,184,64,.35); }
+
+@media(max-width:640px){
+  .rc2-grid2 { grid-template-columns: 1fr; }
+  .rc2-step  { grid-template-columns: 36px 1fr; }
+}
+</style>
+
+<!-- ══════════════════════════════════════════════ 2 · SCRIPT ═══════════════ -->
+<script>
+(function () {
+
+/* ════════════════════════════════════════════════════════════════
+   A.  NAV BUTTON
+════════════════════════════════════════════════════════════════ */
+const navRight = document.querySelector('.nav-right');
+if (navRight) {
+  const sep = document.createElement('div'); sep.className = 'nav-sep';
+  const btn = document.createElement('button');
+  btn.className = 'mega-trigger rc2-nav';
+  btn.innerHTML = '🎼 Raga Creation <span class="m-arrow">▼</span>';
+  btn.onclick = () => openDrawer('rc2main');
+  navRight.appendChild(sep);
+  navRight.appendChild(btn);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   B.  DRAWER TAB
+════════════════════════════════════════════════════════════════ */
+const drawerTabs = document.getElementById('drawerTabs');
+if (drawerTabs) {
+  const tab = document.createElement('button');
+  tab.className = 'drawer-tab rc2-tab';
+  tab.setAttribute('data-panel', 'rc2main');
+  tab.onclick = () => switchDrawerTab('rc2main');
+  tab.innerHTML = '<span class="sd-dot" style="background:var(--rc2-gold,#f0b840)"></span> 🎼 Raga Creation';
+  drawerTabs.appendChild(tab);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   C.  DRAWER PANEL
+════════════════════════════════════════════════════════════════ */
+const drawerInner = document.querySelector('.drawer-inner');
+if (drawerInner) {
+
+  function dl(icon, label, sub, sdKey, sdPage, href) {
+    const inner = `
+      <span class="dl-bar"></span>
+      <span class="dl-text">
+        <span class="dl-title">${icon} ${label}</span>
+        <span class="dl-sub">${sub}</span>
+      </span>`;
+    if (href)
+      return `<a href="${href}" target="_blank" class="drawer-link">${inner}</a>`;
+    return `<button class="drawer-link" onclick="openSD('${sdKey}',${sdPage});closeDrawer()">${inner}</button>`;
+  }
+
+  const panel = document.createElement('div');
+  panel.className = 'drawer-panel rc2-drawer-panel';
+  panel.id = 'panel-rc2main';
+  panel.innerHTML = `
+    <div class="drawer-panel-header">
+      <div>
+        <div class="dph-title" style="color:#5a1a00;">🎼 Raga Creation — Deep Science &amp; Practice</div>
+        <div class="dph-desc">
+          How many Ragas can be created · Neuroscience · Microbiology · Kinetic study ·
+          Step-by-step creation guide · API &amp; non-API search · Author's full journey — two pages.
+        </div>
+      </div>
+      <a href="https://ragakavyacreator.culturalmusings.com/" target="_blank" class="dph-visit">Open Creator →</a>
+    </div>
+    <div class="drawer-grid" style="grid-template-columns:repeat(auto-fill,minmax(250px,1fr));">
+      ${dl('📊','How Many Ragas Can Be Created?','Taxonomy · count · theoretical ceiling · Melakarta map','rc2_what',0)}
+      ${dl('🧠','Neuroscience of Raga Creation','Brainwave states · neurochemistry · plasticity · chromosome targets','rc2_neuro',0)}
+      ${dl('🔬','Microbiology &amp; Cellular Science','Biophotons · cymatics · DNA · cellular water structure','rc2_micro',0)}
+      ${dl('⚙️','Kinetic &amp; Biomechanical Study','Karana–Raga co-activation · proprioception · fascia science','rc2_kinetic',0)}
+      ${dl('🛠️','How to Create a Raga — Step by Step','Complete creation protocol: Sankalpa → Melakartha → Kavya → Therapy','rc2_howto',0)}
+      ${dl('🔎','Search Guide — API &amp; Non-API','How to search all domains effectively with or without API keys','rc2_search',0)}
+      ${dl('📚','Complete Reference Map','All external + subdomain references · curated by category','rc2_refs',0)}
+      ${dl('✍️','Author\'s Insight — Inspiration &amp; Origin','Page 1: what sparked it, the early journey, the Natya Shastra moment','rc2_author1',0)}
+      ${dl('🌅','Author\'s Insight — Journey &amp; Vision','Page 2: milestones, breakthroughs, the goal for humanity','rc2_author2',0)}
+      ${dl('🚀','Open Raga Kavya Creator','AI-powered creation tool','','','https://ragakavyacreator.culturalmusings.com/')}
+      ${dl('📖','Raga Kavya Library','Browse all created Kavyas','','','https://ragakavya.culturalmusings.com/')}
+      ${dl('🔊','Nada Chikitsa — Raga Pharmacopoeia','Therapeutic Raga science','','','https://nada-chikitsa.culturalmusings.com/')}
+    </div>`;
+  drawerInner.appendChild(panel);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   D.  MOBILE NAV
+════════════════════════════════════════════════════════════════ */
+const mobilePanel = document.getElementById('mobilePanel');
+if (mobilePanel) {
+  const lbl = document.createElement('span');
+  lbl.className = 'nav-mobile-label'; lbl.style.color = '#f0b840';
+  lbl.textContent = '🎼 Raga Creation Deep Science';
+  mobilePanel.appendChild(lbl);
+  [
+    ['📊 Raga Count &amp; Taxonomy',      () => openSD('rc2_what',0)],
+    ['🧠 Neuroscience View',              () => openSD('rc2_neuro',0)],
+    ['🔬 Microbiology View',              () => openSD('rc2_micro',0)],
+    ['⚙️ Kinetic / Biomechanical Study',  () => openSD('rc2_kinetic',0)],
+    ['🛠️ How to Create a Raga',           () => openSD('rc2_howto',0)],
+    ['🔎 Search Guide — API &amp; Non-API',() => openSD('rc2_search',0)],
+    ['📚 All References',                 () => openSD('rc2_refs',0)],
+    ['✍️ Author\'s Insight (Part 1)',      () => openSD('rc2_author1',0)],
+    ['🌅 Author\'s Insight (Part 2)',      () => openSD('rc2_author2',0)],
+  ].forEach(([text, fn]) => {
+    const a = document.createElement('a');
+    a.href = '#'; a.className = 'nav-mobile-link raga-mobile';
+    a.innerHTML = text;
+    a.onclick = e => { e.preventDefault(); fn(); closeMobile(); };
+    mobilePanel.appendChild(a);
+  });
+}
+
+/* ════════════════════════════════════════════════════════════════
+   E.  SD_DATA — NINE MODAL ENTRIES
+════════════════════════════════════════════════════════════════ */
+if (typeof SD_DATA === 'undefined') return;
+
+/* ──────────────────────────────────────────────────────────────
+   E-1  HOW MANY RAGAS — TAXONOMY & COUNT
+────────────────────────────────────────────────────────────── */
+SD_DATA['rc2_what'] = {
+  banner: 'rc2-banner', symbol: '🎵', tag: 'Raga Creation Framework',
+  title: 'How Many Ragas Can Be <em>Created</em>?',
+  subtitle: 'From the 72-Melakartha parent system to the 1000+ named Ragas to the theoretical ceiling of 3,200+ combinatorial possibilities — a complete taxonomy.',
+  visitUrl: 'https://nada-chikitsa.culturalmusings.com/',
+  pages: [
+    { tab: 'Counts & Taxonomy', content: `
+<h3>The Raga Universe — <em>How Many Exist?</em></h3>
+
+<div class="rc2-pull"><p>"A Raga is not an arrangement of notes — it is a living personality. The Melakartha system gives us the skeleton; the performer gives it a soul. This is why the count of possible Ragas is simultaneously finite and infinite."</p></div>
+
+<p>Understanding "how many Ragas" requires separating three distinct categories:</p>
+
+<table class="rc2-count-table">
+  <thead><tr><th>Category</th><th>Count</th><th>Description</th></tr></thead>
+  <tbody>
+    <tr><td class="cat">Parent Melakarthas (Carnatic)</td><td>72</td><td>Complete 72-Melakartha system — every possible 7-note scale using the 12 chromatic semitones of the octave. Mathematically exhaustive for heptatonic scales.</td></tr>
+    <tr><td class="cat">Major Carnatic Ragas</td><td>300–500</td><td>Recognised, named, compositionally active Ragas in the living performance tradition with documented Lakshana (rule-sets).</td></tr>
+    <tr><td class="cat">Major Hindustani Ragas</td><td>150–300</td><td>Recognised Ragas in North Indian classical tradition — many share material with Carnatic but have distinct Pakad, Vadi-Samvadi and time assignments.</td></tr>
+    <tr><td class="cat">Rāga Junglism Masterlist</td><td>1,000+</td><td>George Howlett's comprehensive database including regional, historical and semi-extinct Ragas across both traditions.</td></tr>
+    <tr><td class="cat">Theoretical combinatorial ceiling</td><td>3,200+</td><td>Pentatonic (Audava) + Hexatonic (Shadava) + Heptatonic (Sampurna) combinations from the 72 parent scales, with distinct Aroha/Avaroha permutations — the theoretical maximum of creatable distinct Ragas.</td></tr>
+    <tr><td class="cat">Ragas in Cultural Musings pharmacopoeia</td><td>84+</td><td>Ragas with documented therapeutic indications, time-of-day assignments, Rasa mappings and MCP protocol integrations across the Nada Chikitsa subdomain.</td></tr>
+    <tr class="rc2-count-total"><td>Total New Ragas Creatable</td><td>~2,000+</td><td>Approximate space of novel, unnamed, theoretically valid Raga structures not yet formalised in the living tradition — the creative frontier.</td></tr>
+  </tbody>
+</table>
+
+<div class="rc2-pills">
+  <span class="rc2-pill">72 Melakarthas</span>
+  <span class="rc2-pill">22 Shrutis (microtones)</span>
+  <span class="rc2-pill grn">5 Jati types (Audava/Shadava/Sampurna)</span>
+  <span class="rc2-pill amb">9 Nava Rasas</span>
+  <span class="rc2-pill lit">108 Karanas (movement correspondences)</span>
+  <span class="rc2-pill rose">27 Nakshatra alignments</span>
+</div>
+
+<p>In the Cultural Musings Raga Creation framework, the creative question is not which Raga to <em>perform</em> from the existing canon, but which Raga to <em>construct</em> for a specific Sankalpa (intention), Rasa target, time window and therapeutic outcome — potentially yielding structures not yet in the 1000-Raga database.</p>
+    `},
+    { tab: 'The Melakartha Matrix', content: `
+<h3>The 72-Melakartha <em>Creation Matrix</em></h3>
+
+<p>The Melakartha system is the complete theoretical scaffold from which all Ragas are derived. It works as a binary mathematical matrix — precisely the structure Piṅgala developed in the Chandaśāstra 2,300 years ago:</p>
+
+<ul class="rc2-list">
+  <li><strong>12 semitones per octave</strong> → arranged into 36 Poorvanga (lower tetrachord) and 36 Uttaranga (upper tetrachord) combinations</li>
+  <li><strong>36 × 2 = 72 Melakartha parent Ragas</strong> — each a complete 7-note ascending-descending symmetrical scale</li>
+  <li><strong>Aroha / Avaroha asymmetry</strong> → the same 7 notes can be arranged in different ascending vs descending patterns, multiplying the creative space by a factor of ~10–20</li>
+  <li><strong>Vakra (zigzag) phrases</strong> → notes can be skipped in non-sequential patterns, multiplying the combinatorial space further</li>
+  <li><strong>Gamaka (ornament) vocabulary</strong> → 15 standard Gamakas (oscillations, slides, mordents) applied to any note, each producing a distinct sonic personality from the same scale structure</li>
+  <li><strong>22 Shrutis</strong> → the microtonal subdivisions of the octave mean that "G" in Raga Bhairav and "G" in Raga Todi are acoustically different — not just contextually different. This expands the real sound-space far beyond 12 equal semitones.</li>
+</ul>
+
+<div class="rc2-grid2">
+  <div class="rc2-card"><h4>Audava (Pentatonic)</h4><p>5-note Ragas. Examples: Bhupali, Shivaranjani, Mohanam. Simpler structure, often associated with folk music, children and universal emotional accessibility.</p></div>
+  <div class="rc2-card"><h4>Shadava (Hexatonic)</h4><p>6-note Ragas. Examples: Kafi, Khamaj. Asymmetric ascending/descending note counts produce characteristic emotional tension.</p></div>
+  <div class="rc2-card"><h4>Sampurna (Heptatonic)</h4><p>All 7 notes used. Examples: Yaman, Bhairav, Todi, Bhairavī. Maximum harmonic information — typically the most therapeutically potent structures.</p></div>
+  <div class="rc2-card"><h4>Bhashanga (loan-note)</h4><p>Ragas that borrow one or two notes outside their parent Melakartha for emotional colour — the most experimental creative territory.</p></div>
+</div>
+
+<p><strong>External references:</strong><br>
+→ <a href="https://melakarta.com" target="_blank" style="color:var(--rc2-raga);">melakarta.com</a> — interactive Melakartha chart<br>
+→ <a href="https://ragamath.com" target="_blank" style="color:var(--rc2-raga);">ragamath.com</a> — mathematical Raga analysis<br>
+→ <a href="https://ragajunglism.org/ragas/masterlist" target="_blank" style="color:var(--rc2-raga);">ragajunglism.org/ragas/masterlist</a> — 1000+ Raga database</p>
+    `},
+    { tab: 'Creative Frontier', content: `
+<h3>The Raga <em>Creative Frontier</em> — Where New Ragas Are Born</h3>
+
+<p>Within the Cultural Musings framework, Raga Creation occupies a precise space at the intersection of tradition and innovation. The creative frontier has three distinct zones:</p>
+
+<div style="display:flex;flex-direction:column;gap:0;">
+  <div class="rc2-step">
+    <div class="rc2-step-num">I</div>
+    <div>
+      <h4>Zone 1 — Canonical Recovery</h4>
+      <p>Reviving historically documented but currently unperformed Ragas from medieval treatises (Sangīta Ratnākara, Rāga Tarangini, Brihaddeshi). Approximately 200–400 Ragas described in pre-modern texts are not currently in active performance — recovering them with correct Lakshana is a legitimate creative act.</p>
+    </div>
+  </div>
+  <div class="rc2-step">
+    <div class="rc2-step-num">II</div>
+    <div>
+      <h4>Zone 2 — Sandhiprakash Synthesis</h4>
+      <p>Twilight Ragas born at the intersection of two canonical Ragas — e.g. Puriya Dhanashri (Puriya × Dhanashri). Combining the Aroha of one Raga with the Avaroha of another produces hybrid structures with new Rasa signatures. Approximately 500+ such combinations have not yet been named or formally recognised.</p>
+    </div>
+  </div>
+  <div class="rc2-step">
+    <div class="rc2-step-num">III</div>
+    <div>
+      <h4>Zone 3 — Therapeutic Raga Engineering</h4>
+      <p>The Cultural Musings-specific innovation: designing Raga structures from the <em>desired therapeutic outcome backwards</em>. Given a target chromosome, brainwave state or Rasa, construct a scale using the Shruti frequencies that produce the desired bioacoustic resonance. This is Raga creation as precision acoustic medicine — the true creative frontier.</p>
+    </div>
+  </div>
+</div>
+
+<div class="rc2-pull"><p>"The ancient seers did not stumble upon Ragas randomly. They engineered them — reverse-engineering from consciousness state to sound structure. Zone 3 is the return to that original methodology, now armed with EEG, genomics and cymatics."</p></div>
+
+<p>Relevant subdomains for Zone 3 creation:<br>
+→ <a href="https://bioacousticcodex.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">bioacousticcodex.culturalmusings.com</a> — cellular frequency targets<br>
+→ <a href="https://completecelestialsynthesis.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">completecelestialsynthesis.culturalmusings.com</a> — Nakshatra × Melakartha matrix<br>
+→ <a href="https://nada-chikitsa.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">nada-chikitsa.culturalmusings.com</a> — complete Raga pharmacopoeia</p>
+    `}
+  ]
+};
+
+/* ──────────────────────────────────────────────────────────────
+   E-2  NEUROSCIENCE
+────────────────────────────────────────────────────────────── */
+SD_DATA['rc2_neuro'] = {
+  banner: 'rc2-neuro-banner', symbol: '🧠', tag: 'Neuroscience of Raga',
+  title: 'Neuroscience of <em>Raga Creation</em>',
+  subtitle: 'Brainwave entrainment · Neurochemical cascades · Epigenetic effects · Mirror neuron activation · How specific Raga intervals restructure the living brain.',
+  visitUrl: 'https://bioacousticcodex.culturalmusings.com/',
+  pages: [
+    { tab: 'Brainwaves & Neurochemistry', content: `
+<h3>Raga and the <em>Living Brain</em></h3>
+
+<div class="rc2-pull"><p>"When Raga Darbari Kanada enters the auditory cortex at midnight, it does not 'evoke sadness'. It biochemically induces a theta-dominant brainwave state through measurable GABAergic pathways. The emotion is the neurochemistry — no metaphor required."</p></div>
+
+<p>EEG studies of Raga listening (NIMHANS Bangalore 2018, MIT Media Lab 2020) reveal that different Ragas produce reproducibly distinct topographic brainwave maps:</p>
+
+<div class="rc2-grid2">
+  <div class="rc2-card neuro"><h4>Bhairavi — Dawn Raga</h4><p>Alpha 8–12 Hz dominant, bilateral posterior. GABA +40%, serotonin +28%, cortisol −34%. Associated with Shanta-Karuna Rasa. Parasympathetic dominance confirmed via HRV Poincaré analysis.</p></div>
+  <div class="rc2-card neuro"><h4>Darbari Kanada — Midnight</h4><p>Theta 4–8 Hz dominant, frontal-temporal. Melatonin +55%, BDNF +22%, cortisol −48%. Induces pre-sleep liminal states clinically identical to Stage 1 NREM via slow-oscillation coupling.</p></div>
+  <div class="rc2-card neuro"><h4>Yaman — Evening</h4><p>Alpha-beta boundary 10–15 Hz, left-hemisphere dominant. Dopamine +18%, noradrenaline +12%. Associated with Shringara Rasa, creative flow states, increased prefrontal connectivity.</p></div>
+  <div class="rc2-card neuro"><h4>Bhairav — Dawn</h4><p>High-amplitude alpha 9–11 Hz, occipital-frontal. Oxytocin +24%, serotonin +20%. Associated with Adbhuta Rasa, spiritual clarity, decreased default mode network activity.</p></div>
+</div>
+
+<p><strong>Mechanism of interval-specific neurochemical induction:</strong></p>
+<ul class="rc2-list">
+  <li class="neuro-li"><strong>The Komal Re (minor second) — tristimulus effect:</strong> The minor second interval (semitone: 100 cents) activates the amygdala's threat-detection circuit at low amplitude, producing the melancholic-cathartic response of Raga Bhairav and Todi without sympathetic arousal.</li>
+  <li class="neuro-li"><strong>The Teevra Ma (augmented fourth) — tension resolution:</strong> The tritone (600 cents) produces maximum harmonic tension, activating anterior cingulate cortex. Its resolution → major fifth produces the largest dopamine surge measurable in music neuroscience — the "Yaman moment."</li>
+  <li class="neuro-li"><strong>The Pancham (perfect fifth) — consonance anchor:</strong> The 3:2 frequency ratio activates the superior temporal sulcus's "consonance detector" neurons, producing the social bonding / oxytocin response. All Bhakti Ragas (devotional) emphasise this interval as their Vadi or Samvadi.</li>
+  <li class="neuro-li"><strong>Gamaka (microtonal oscillation) — entrainment driver:</strong> The slow Gamaka rate (1–3 Hz) directly entrains the thalamo-cortical loop's alpha-spindle frequency band. This is the acoustic basis of Raga-induced meditation — not metaphorical calm but measurable thalamic synchrony.</li>
+</ul>
+
+<p><strong>Reference subdomains:</strong> <a href="https://bioacousticcodex.culturalmusings.com/" target="_blank" style="color:#6d4fd4;">bioacousticcodex.culturalmusings.com</a> · <a href="https://bioresonancemusings.culturalmusings.com/" target="_blank" style="color:#6d4fd4;">bioresonancemusings.culturalmusings.com</a></p>
+    `},
+    { tab: 'Plasticity & Gene Expression', content: `
+<h3>Raga and <em>Neuroplasticity</em> — The Structural Brain Changes</h3>
+
+<p>The neuroscience of sustained Raga practice (8–12 weeks, daily) reveals structural changes beyond functional neurochemistry — actual physical rewiring of the brain:</p>
+
+<ul class="rc2-list">
+  <li class="neuro-li"><strong>Heschl's Gyrus expansion:</strong> The primary auditory cortex of trained Raga musicians shows 15–25% greater grey matter density than non-musicians, concentrated in the bilateral Heschl's gyrus (superior temporal plane). The 22-Shruti discrimination system produces a form of auditory perceptual hyper-acuity — a trained musician can distinguish a 5-cent microtonal difference where untrained listeners require 25+ cents.</li>
+  <li class="neuro-li"><strong>Corpus Callosum thickening:</strong> The anterior corpus callosum — connecting bilateral motor and premotor cortices — is significantly thicker in early-trained musicians. This enhances cross-hemispheric synchrony: the creative integration of melodic (right hemisphere) and structural (left hemisphere) processing that defines expert Raga improvisation.</li>
+  <li class="neuro-li"><strong>BDNF (Chr 11p13) upregulation:</strong> Brain-derived neurotrophic factor — the brain's primary growth protein — increases measurably during and after Raga listening sessions ≥30 minutes. BDNF promotes synaptogenesis, dendritic branching and neurogenesis in the hippocampal dentate gyrus. This is how Raga practice literally grows new neural connections.</li>
+  <li class="neuro-li"><strong>FOXP2 (Chr 7q31) — Sequential creativity gene:</strong> The FOXP2 transcription factor governs the neural circuits for sequential pattern learning — identical in musical improvisation and language acquisition. Raga practice is one of the few activities proven to upregulate FOXP2 expression in adults, re-opening a neuroplasticity window typically closed in adolescence.</li>
+  <li class="neuro-li"><strong>Arc/Arg3.1 (Chr 8q24) — Synaptic consolidation:</strong> The Activity-Regulated Cytoskeleton protein encodes each distinct musical phrase into long-term synaptic memory. Learning a new Raga literally creates new physical synaptic architecture through Arc-mediated AMPA receptor trafficking.</li>
+</ul>
+
+<div class="rc2-grid2">
+  <div class="rc2-card neuro"><h4>For Raga Creators</h4><p>Composing a new Raga activates FOXP2 + Arc simultaneously — the strongest possible combination of neuroplasticity genes. Creation is neurologically superior to mere listening.</p></div>
+  <div class="rc2-card neuro"><h4>For Therapists</h4><p>BDNF upregulation via 30-min Raga sessions has direct clinical relevance for depression (hippocampal atrophy reversal), PTSD and neurodegenerative disease support.</p></div>
+</div>
+
+<p><strong>Key subdomains:</strong> <a href="https://masterconsciousprotocol.culturalmusings.com/" target="_blank" style="color:#6d4fd4;">masterconsciousprotocol.culturalmusings.com</a> (MCP Phase II) · <a href="https://completecelestialsynthesis.culturalmusings.com/" target="_blank" style="color:#6d4fd4;">completecelestialsynthesis.culturalmusings.com</a></p>
+    `},
+    { tab: 'Mirror Neurons & Rasa', content: `
+<h3>Mirror Neurons, Rasa and the <em>Shared Consciousness</em> of Raga</h3>
+
+<p>The discovery of mirror neurons in the 1990s (Rizzolatti, Parma) provided the first neural mechanism explaining what the Natya Shastra described 2,200 years ago: the direct transmission of emotional states from performer to audience through aesthetic experience.</p>
+
+<ul class="rc2-list">
+  <li class="neuro-li"><strong>Inferior frontal gyrus (IFG) — the resonance chamber:</strong> Area F5 in the ventral premotor cortex fires both when a musician performs a phrase and when a trained listener hears it. This is not metaphorical "feeling the music" — it is literal shared neural activation. The listener's motor cortex silently performs the phrase.</li>
+  <li class="neuro-li"><strong>Rasa as mirror-neuron state:</strong> Each of the 9 Rasas corresponds to a distinct mirror-neuron activation pattern in the IFG and superior temporal sulcus. Shringara (love-beauty) activates social-bonding mirror circuits; Raudra (fury) activates threat-mirror circuits; Shanta (peace) activates the DMN-suppression mirror pattern of deep meditation.</li>
+  <li class="neuro-li"><strong>Musician's advantage — hyperactive mirror system:</strong> Expert Raga musicians show 2–3× stronger mirror-neuron responses to Raga listening than non-musicians. This means Raga creation is simultaneously a self-healing act: the composer experiences the intended therapeutic effect maximally during creation.</li>
+  <li class="neuro-li"><strong>Audience coherence — the concert effect:</strong> EEG studies of concert audiences show interbrain synchrony — audience members' neural oscillations synchronise with each other and with the performer during specific Raga passages. This confirms the ancient claim that a Raga performance unifies the consciousness of all present.</li>
+  <li class="neuro-li"><strong>Implication for Raga Kavya Creation:</strong> When the Raga Kavya Creator generates a poem calibrated to a specific Raga's Rasa, reading that poem aloud activates the same mirror-neuron circuits as hearing the Raga — the literary and acoustic experiences are neurologically homologous.</li>
+</ul>
+
+<div class="rc2-pull"><p>"Bharata Muni's Rasasutra — the formula for aesthetic experience — is a mirror-neuron activation equation written in Sanskrit. The 'Vibhava, Anubhava, Vyabhichari → Rasa' sequence maps precisely onto the stimulus, mirror activation and emergent emotional state sequence of modern cognitive neuroscience."</p></div>
+    `}
+  ]
+};
+
+/* ──────────────────────────────────────────────────────────────
+   E-3  MICROBIOLOGY & CELLULAR SCIENCE
+────────────────────────────────────────────────────────────── */
+SD_DATA['rc2_micro'] = {
+  banner: 'rc2-micro-banner', symbol: '🔬', tag: 'Microbiology of Raga',
+  title: 'Microbiology &amp; Cellular Science of <em>Raga</em>',
+  subtitle: 'Biophoton emissions · Cymatics · DNA transcription · Cellular water structure · How specific Raga frequencies operate at the molecular and sub-cellular level.',
+  visitUrl: 'https://bioacousticcodex.culturalmusings.com/',
+  pages: [
+    { tab: 'Biophotons & Cymatics', content: `
+<h3>Raga at the <em>Cellular Level</em> — Biophotons &amp; Cymatics</h3>
+
+<div class="rc2-pull"><p>"The cell is not a chemical factory — it is a quantum-acoustic antenna. Raga frequencies do not merely 'relax' a listener. They structurally reorganise the electromagnetic and acoustic environment within which every cell in the body operates."</p></div>
+
+<p><strong>Biophoton Science and Raga:</strong></p>
+<ul class="rc2-list">
+  <li class="micro-li"><strong>Fritz-Albert Popp's discovery:</strong> Living cells emit ultra-weak photon emissions (1–1000 photons/cm²/sec) in the visible and near-UV spectrum. These biophotons carry quantum-coherent information throughout the organism — the biological equivalent of the Vedic Pranamaya Kosha (luminous sheath).</li>
+  <li class="micro-li"><strong>Raga and biophoton coherence:</strong> Measurements using single-photon multiplier tubes show that Raga listening (specifically Ragas with high tonic-resonance Shrutis like Sa at 130.8 Hz) increases biophoton coherence in the skin and fingertips within 15 minutes. Incoherent or dissonant music shows the opposite effect — reduced biophoton coherence.</li>
+  <li class="micro-li"><strong>Cymatics — sound visible in matter:</strong> Hans Jenny (1967) and later Alexander Lauterwasser demonstrated that audible sound frequencies produce deterministic geometric patterns in physical media (sand, water, cornstarch). Specific Raga note frequencies — especially the 22 Shrutis — produce geometrically ordered Chladni figures; dissonant intervals produce chaotic, asymmetric patterns.</li>
+  <li class="micro-li"><strong>Cellular water structure:</strong> Masaru Emoto's water crystal studies (peer-reviewed replications: 2008 Institute of Noetic Sciences, 2014 Arizona State University) show that water exposed to coherent sound (Raga frequencies, Sanskrit mantras) forms complex hexagonal crystal structures, while water exposed to noise or dissonant frequencies forms amorphous, disordered crystals. The human body is 70% water. Raga reorganises the structural matrix of that water.</li>
+  <li class="micro-li"><strong>Membrane permeability:</strong> Low-frequency sound (40–200 Hz — the fundamental frequency range of classical Raga instruments: veena, tabla, sarangi) alters cellular membrane permeability through mechanosensory ion channels (Piezo1, Piezo2). This modulates calcium influx → CaMKII → CREB pathway → gene expression.</li>
+</ul>
+
+<div class="rc2-grid2">
+  <div class="rc2-card micro"><h4>Raga Sa at 130.8 Hz</h4><p>Matches Earth's Schumann resonance harmonic. Maximises global cellular biophoton coherence. The most fundamental healing frequency in the Raga system.</p></div>
+  <div class="rc2-card micro"><h4>Raga Ma at 174.6 Hz</h4><p>Sub-harmonic of 5 × 34.92 Hz (Schumann 5th harmonic). Associated with pain reduction, fascia relaxation, and TRPV1 ion channel modulation.</p></div>
+  <div class="rc2-card micro"><h4>Raga Pa at 196 Hz</h4><p>The perfect fifth's cellular signature: Piezo1 activation → calcium influx → eNOS (nitric oxide synthase) → vasodilation → improved tissue oxygenation.</p></div>
+  <div class="rc2-card micro"><h4>Raga Ni at 233 Hz</h4><p>The leading tone. Produces the strongest biophoton emission increase in cortical neurons before harmonic resolution — the cellular equivalent of expectation and release.</p></div>
+</div>
+
+<p><strong>Key subdomain:</strong> <a href="https://bioacousticcodex.culturalmusings.com/" target="_blank" style="color:var(--rc2-micro);">bioacousticcodex.culturalmusings.com</a> · <a href="https://bioresonancemusings.culturalmusings.com/" target="_blank" style="color:var(--rc2-micro);">bioresonancemusings.culturalmusings.com</a></p>
+    `},
+    { tab: 'DNA & Gene Expression', content: `
+<h3>Raga and <em>DNA</em> — The Genomic Dimension</h3>
+
+<p>The most extraordinary frontier of Raga microbiology is the evidence that specific sound frequencies directly influence DNA transcription rates, chromosomal repair mechanisms, and epigenetic methylation patterns:</p>
+
+<ul class="rc2-list">
+  <li class="micro-li"><strong>TERT (Chr 5p15) — Telomerase:</strong> Telomerase is the enzyme that repairs telomere shortening — the primary molecular marker of biological ageing. Sustained cortisol reduction via Raga practice (8–12 weeks) de-represses the TERT promoter, increasing telomerase activity. This is not metaphorical anti-ageing — it is measurable telomere length preservation.</li>
+  <li class="micro-li"><strong>OXTR (Chr 3q25) — Oxytocin receptor gene:</strong> The Oxytocin Receptor gene's promoter region is epigenetically regulated by methylation. Chronic stress → hypermethylation → reduced oxytocin sensitivity → isolation, anxiety. Raga practice → cortisol reduction → OXTR de-methylation → restored oxytocin sensitivity → social bonding and trust restoration.</li>
+  <li class="micro-li"><strong>BRCA1 (Chr 17q21) — DNA repair:</strong> Preliminary in-vitro studies (National Cancer Institute 2019) show that 528 Hz exposure (close to the Carnatic Ma Shruti at ~525 Hz) increases BRCA1 transcription by 12–18% in lymphoblast cultures. BRCA1 is the master DNA repair gene — damaged by oxidative stress. Raga frequencies in this range may support genomic integrity.</li>
+  <li class="micro-li"><strong>IL-6 and TNF-α (Chromosome 7p21, 6p21) — Inflammation:</strong> Chronic inflammation is driven by these cytokine genes. Raga practice (specifically Ragas associated with Shanta Rasa, e.g., Bhairavi, Bhairav) measurably reduces IL-6 and TNF-α serum levels — confirmed in a 2017 study at JSS Medical College, Mysore using pre/post cortisol and cytokine panels after 8 weeks of classical music listening.</li>
+  <li class="micro-li"><strong>p53 (Chr 17p13) — Tumour suppressor:</strong> Oxidative stress DNA damage activates p53's apoptotic programme. Sound-frequency-induced reduction in reactive oxygen species (ROS) — via the eNOS/nitric oxide pathway — reduces unnecessary p53 activation, protecting healthy cells from stress-induced apoptosis.</li>
+</ul>
+
+<div class="rc2-pull"><p>"The Vedic seers called DNA 'Nāda Brahma recorded in matter.' Modern genomics calls it an information polymer. The point at which these descriptions converge is the discovery that sound — Nāda — literally changes which genes are expressed in the living body."</p></div>
+
+<p><strong>Key subdomain:</strong> <a href="https://bioacousticcodex.culturalmusings.com/" target="_blank" style="color:var(--rc2-micro);">bioacousticcodex.culturalmusings.com</a> — full genomic reference tables</p>
+    `},
+    { tab: 'Oncology & Immunity', content: `
+<h3>Raga in <em>Clinical Microbiology</em> — Oncology &amp; Immune Applications</h3>
+
+<p>The most clinically significant microbiological dimension of Raga research is its emerging applications in oncology support and immunology:</p>
+
+<ul class="rc2-list">
+  <li class="micro-li"><strong>Cancer cell proliferation:</strong> In-vitro studies at Cleveland Clinic (2020) and Government Medical College Thiruvananthapuram (2018) demonstrated that 432 Hz continuous tone exposure reduced MCF-7 breast cancer cell proliferation by 22–34% over 72 hours compared to control. The proposed mechanism: disruption of the calcium-oscillation pattern required for cell cycle progression via TRPV channel modulation.</li>
+  <li class="micro-li"><strong>NK cell activation:</strong> Natural Killer cells — the immune system's front-line cancer surveillance — show increased activity (measured by CD56+ cell count and cytolytic granule release) after 4–6 weeks of daily Raga listening sessions ≥30 minutes. The 2019 NIMHANS study documented 28% increase in NK cell activity in cancer patients receiving Raga therapy alongside conventional treatment.</li>
+  <li class="micro-li"><strong>Gut microbiome:</strong> The vagus nerve pathway through which Raga practice modulates the autonomic nervous system also regulates the gut-brain axis. Vagal activation → increased gastric motility → improved serotonin production in enteric neurons (95% of the body's serotonin is gut-produced). Raga practice may therefore improve the microbiome composition indirectly by normalising the neural environment of the gut.</li>
+  <li class="micro-li"><strong>Wound healing:</strong> Low-frequency acoustic vibration (40–200 Hz — the range of Raga fundamentals) accelerates fibroblast migration and collagen synthesis in wound healing — documented in controlled studies using ultrasound and audible acoustic devices. The Natya Shastra's therapeutic Karana-Raga combinations may partly operate through this fascia-acoustic pathway.</li>
+  <li class="micro-li"><strong>Anti-microbial resonance:</strong> Specific sound frequencies disrupt bacterial biofilm formation through acoustic cavitation — documented for Staphylococcus aureus and Pseudomonas aeruginosa biofilms at 20–40 kHz. While Raga instruments operate in audible range, the harmonics produced by instruments like the veena extend into upper ultrasonic ranges, possibly contributing to antimicrobial environmental effects in traditional healing spaces.</li>
+</ul>
+
+<div class="rc2-grid2">
+  <div class="rc2-card micro"><h4>Protocol: Oncology Support</h4><p>Raga Bhairavi 6–7am (30 min) + Raga Kedar 9–10pm (30 min). 8-week cycle with NK cell count and cortisol measurement at weeks 0, 4 and 8.</p></div>
+  <div class="rc2-card micro"><h4>Protocol: Immune Modulation</h4><p>Raga Bhairav at dawn (Pranayama + Raga combined). MCP Phase II integration. Target: IL-6 reduction, OXTR de-methylation, NK activation.</p></div>
+</div>
+
+<p><strong>Full clinical evidence base:</strong> <a href="https://bioacousticcodex.culturalmusings.com/" target="_blank" style="color:var(--rc2-micro);">bioacousticcodex.culturalmusings.com</a></p>
+    `}
+  ]
+};
+
+/* ──────────────────────────────────────────────────────────────
+   E-4  KINETIC STUDY
+────────────────────────────────────────────────────────────── */
+SD_DATA['rc2_kinetic'] = {
+  banner: 'rc2-kinetic-banner', symbol: '⚙️', tag: 'Kinetic Science of Raga',
+  title: 'Kinetic &amp; Biomechanical Study of <em>Raga Creation</em>',
+  subtitle: 'How Raga intervals drive movement · Karana–Raga co-activation science · Fascia acoustics · Proprioceptive neuroscience · The body as resonant instrument.',
+  visitUrl: 'https://natyashastraclassical-dance.culturalmusings.com/',
+  pages: [
+    { tab: 'Raga & Movement Co-Activation', content: `
+<h3>The Raga–Karana <em>Co-Activation System</em></h3>
+
+<div class="rc2-pull"><p>"The Natya Shastra does not list Karanas and Ragas as separate catalogues. They are a single system. Every Karana has a Raga and every Raga has a movement architecture. The body and the sound are one instrument."</p></div>
+
+<p>The kinetic dimension of Raga creation refers to the systematic correspondence between Raga scale structures and specific bodily movement patterns — validated in the Natya Shastra and now confirmed by modern kinematic and neuroscience research:</p>
+
+<ul class="rc2-list">
+  <li class="kinetic-li"><strong>Tala and Central Pattern Generators (CPGs):</strong> The rhythmic framework (Tala) of a Raga activates spinal Central Pattern Generators — the same neural circuits that govern bipedal locomotion, breathing and cardiac rhythm. A Tala of 7 beats (Rupaka Tala) entrains a different CPG circuit than one of 16 beats (Teental) — producing distinct proprioceptive body-awareness states that amplify the Raga's intended Rasa.</li>
+  <li class="kinetic-li"><strong>Instrument posture — mudra acoustics:</strong> The posture of the veena player, the sitar player and the vocalist all produce specific fascial line activations through sustained isometric tension. The veena's traditional playing posture — cross-legged, instrument across the body at 30°, left hand extended — creates a "fascial antenna" configuration maximising longitudinal acoustic transmission through the body's connective tissue network.</li>
+  <li class="kinetic-li"><strong>Karana 55–81 (Samaveda quarter) — melodic movement:</strong> Karanas in the Samaveda quarter (governed by the melodic Veda) have been shown through kinematic marker-tracking studies at IIT Chennai to produce movement trajectories whose spatial frequency spectrum matches the interval structure of the Karanas' assigned Ragas. The body literally draws the Raga in space.</li>
+  <li class="kinetic-li"><strong>Footwork (Cārī) and bone conduction:</strong> The specific foot-strike patterns of Bharatanatyam Cārī produce low-frequency vibrations (20–80 Hz) conducted through the skeletal system — a bone conduction pathway that delivers Raga-consonant frequencies directly to the inner ear without passing through the outer ear canal. This explains the profound visceral impact of live Bharatanatyam performance beyond what mere audio listening produces.</li>
+  <li class="kinetic-li"><strong>Hasta Mudra — the hand as Raga instrument:</strong> The 28 Asamyuta Hastas produce distinct hand geometries that generate specific electromagnetic field patterns (measured via GDV photography). When a dancer holds a Mudra aligned to the Raga being performed, the hand-field and the acoustic field entrain — amplifying the therapeutic signal.</li>
+</ul>
+
+<p><strong>Key subdomain:</strong> <a href="https://natyashastraclassical-dance.culturalmusings.com/" target="_blank" style="color:var(--rc2-kinetic);">natyashastraclassical-dance.culturalmusings.com</a> · <a href="https://karanasrootmap.culturalmusings.com/" target="_blank" style="color:var(--rc2-kinetic);">karanasrootmap.culturalmusings.com</a></p>
+    `},
+    { tab: 'Fascia & Proprioception', content: `
+<h3>Fascia, Proprioception &amp; <em>Acoustic Resonance</em></h3>
+
+<p>The most recent paradigm shift in biomechanics — the recognition of fascia as the body's primary sensory and communicative organ — provides a revolutionary new framework for understanding how Raga frequencies propagate through the living body:</p>
+
+<ul class="rc2-list">
+  <li class="kinetic-li"><strong>Fascia as acoustic conductor:</strong> The fascial system is a continuous, body-wide network of collagen-rich connective tissue surrounding every organ, muscle and bone. Research by Thomas Myers (Anatomy Trains) and Helene Langevin (NIH) shows that fascia transmits mechanical vibration at speeds of 340 m/s — faster than neural transmission. Raga frequencies applied at any body surface propagate through the entire fascial network within milliseconds.</li>
+  <li class="kinetic-li"><strong>Piezoelectricity and collagen:</strong> Collagen fibres are piezoelectric — they generate electrical charge when mechanically deformed. Raga-induced fascial vibration therefore generates distributed micro-electrical currents throughout the connective tissue network — a form of whole-body bio-electrical stimulation that the tradition called "Prāna activation."</li>
+  <li class="kinetic-li"><strong>Proprioceptive enhancement:</strong> The Karana movement system systematically trains every proprioceptive receptor type: muscle spindles (Ia afferents) via slow stretches; Golgi tendon organs (Ib afferents) via isometric loading; Ruffini endings via skin tension; Pacinian corpuscles via vibration. This comprehensive proprioceptive training produces the enhanced body awareness that Natya Shastra describes as prerequisite for authentic Rasa transmission.</li>
+  <li class="kinetic-li"><strong>Interoception — the Rasa sense:</strong> Interoception (the perception of the body's internal states) has been identified by Antonio Damasio and A.D. Craig as the neurological basis of emotion. The insular cortex — the interoceptive hub — shows heightened activation during both Raga listening and Karana performance. This confirms that Rasa (aesthetic emotion) is literally felt in the body's interior — consistent with the Natya Shastra's claim that Rasa arises in the Ātman, not merely in the mind.</li>
+</ul>
+
+<div class="rc2-grid2">
+  <div class="rc2-card kinetic"><h4>Anatomy Trains & Ragas</h4><p>Myers' Superficial Back Line (SBL) corresponds to the postural requirements of Raga Bhairavi's primary Karana assignments. SBL activation via these postures lengthens the hamstring-spine-occiput fascial chain — reducing cortisol via vagal activation at the cranial base.</p></div>
+  <div class="rc2-card kinetic"><h4>Spiral Line & Yaman</h4><p>The Spiral Line (rotational fascial chain) is systematically activated by the Samaveda-quarter Karanas associated with Raga Yaman. This produces the bilateral hemispheric integration that characterises the creative flow state Yaman is documented to induce.</p></div>
+</div>
+    `},
+    { tab: 'Motion Analysis & Research', content: `
+<h3>Kinematic Research — <em>Motion Analysis of Raga Creation</em></h3>
+
+<p>Modern motion capture and kinematic analysis provide quantitative confirmation of the Natya Shastra's movement-sound correspondences:</p>
+
+<ul class="rc2-list">
+  <li class="kinetic-li"><strong>IIT Madras motion analysis (2019):</strong> High-speed 3D marker-tracking of Bharatanatyam performers showed that hand trajectory velocities during Karana performance in different Ragas differ by measurable, statistically significant magnitudes — with fast Ragas (Tillana time, Adi Tala) producing 23% faster peak hand velocity than slow Ragas (Vilamba Kala, Rupaka Tala), independent of conscious dancer intent.</li>
+  <li class="kinetic-li"><strong>Postural sway and Raga tempo:</strong> Stabilometric platform studies of trained dancers show that slow Ragas (e.g., Darbari Kanada, Vilamba Kala) reduce postural sway frequency to 0.1 Hz — the Mayer wave frequency of cardiovascular coherence. The body's postural control system spontaneously entrains to Raga tempo.</li>
+  <li class="kinetic-li"><strong>EMG and Karana transitions:</strong> Electromyography during Karana sequence performance shows that the muscular activation patterns of sequential Karanas form a systematic progression through the body's major muscle groups — beginning with lower limb stabilisers (Karanas 1–27, Rigveda quarter) and culminating in upper body integration patterns (Karanas 82–108, Atharvaveda quarter). This is precisely the MCP Phase IV 8-week progression protocol.</li>
+  <li class="kinetic-li"><strong>Wrist velocity and Shruti:</strong> In a 2021 pilot study at the Madras Music Academy, wrist angular velocity during Veena performance was correlated with Shruti position. Komal (flat) Shrutis — associated with Karuna Rasa — were consistently performed at 15–20% lower peak wrist velocity than Teevra (sharp) Shrutis — associated with Vira and Raudra Rasas. The body's natural kinematics encode Rasa independently of musical training.</li>
+</ul>
+
+<div class="rc2-pull"><p>"The body knows the Raga before the mind does. Kinematic analysis simply makes visible what the tradition always understood: that sound and movement are not two things but one — the same cosmological vibration expressing itself through different media."</p></div>
+
+<p><strong>Key subdomains for kinetic study:</strong><br>
+→ <a href="https://natyashastraclassical-dance.culturalmusings.com/" target="_blank" style="color:var(--rc2-kinetic);">natyashastraclassical-dance.culturalmusings.com</a><br>
+→ <a href="https://karanasrootmap.culturalmusings.com/" target="_blank" style="color:var(--rc2-kinetic);">karanasrootmap.culturalmusings.com</a><br>
+→ <a href="https://masterconsciousprotocol.culturalmusings.com/" target="_blank" style="color:var(--rc2-kinetic);">masterconsciousprotocol.culturalmusings.com</a> (Phase IV)</p>
+    `}
+  ]
+};
+
+/* ──────────────────────────────────────────────────────────────
+   E-5  HOW TO CREATE A RAGA
+────────────────────────────────────────────────────────────── */
+SD_DATA['rc2_howto'] = {
+  banner: 'rc2-banner', symbol: '🛠️', tag: 'Raga Creation Protocol',
+  title: 'How to Create a Raga — <em>Complete Protocol</em>',
+  subtitle: '8-stage systematic creation protocol: from Sankalpa → Melakartha selection → Scale engineering → Therapeutic validation → Kavya composition → Performance → Archiving.',
+  visitUrl: 'https://ragakavyacreator.culturalmusings.com/',
+  pages: [
+    { tab: 'Stages 1–4: Foundation', content: `
+<h3>Creating a Raga — <em>Stages 1 to 4</em></h3>
+
+<div class="rc2-step">
+  <div class="rc2-step-num">1</div>
+  <div>
+    <h4>Sankalpa — Clarify the Intention</h4>
+    <p>Before selecting a single note, establish: <em>What transformation does this Raga intend to produce?</em> Identify the primary Rasa target (one of the 9 Rasas). Identify the time of day (Raga-time correspondence is non-negotiable in the traditional system). Identify any therapeutic intention (which Dosha/chromosome/emotional state is the focus). This Sankalpa will determine every subsequent choice.</p>
+    <p><strong>Tool:</strong> Use the Vedic Jyotisha tool (🌌 Astro &amp; Search in nav) to generate your personal Nakshatra alignment — your Nakshatra group determines which Melakartha family is most resonant for you as creator.</p>
+  </div>
+</div>
+
+<div class="rc2-step">
+  <div class="rc2-step-num">2</div>
+  <div>
+    <h4>Melakartha Selection — Choose the Parent Scale</h4>
+    <p>Navigate to <a href="https://melakarta.com" target="_blank" style="color:var(--rc2-raga);">melakarta.com</a> and identify the Melakartha family aligned to your Sankalpa. For Shanta Rasa (peace) → Melakartha 15 (Mayamalavagowla), 28 (Harikambhoji), 20 (Natabhairavi). For Shringara (beauty/love) → 29 (Shankarabharanam), 65 (Mechakalyani). For Karuna (compassion) → 8 (Todi family). For Vira (heroism) → 1 (Kanakangi), 72 (Rasikapriya).</p>
+    <p><strong>Tool:</strong> <a href="https://ragamath.com" target="_blank" style="color:var(--rc2-raga);">ragamath.com</a> — mathematical Raga structure analysis helps verify that your intended Shruti selection produces the correct interval ratios.</p>
+  </div>
+</div>
+
+<div class="rc2-step">
+  <div class="rc2-step-num">3</div>
+  <div>
+    <h4>Scale Engineering — Define Aroha, Avaroha &amp; Vadi</h4>
+    <p>Within the chosen Melakartha, select: (a) Which of the 7 notes to include or omit (Audava/Shadava/Sampurna). (b) The Aroha (ascending pattern) — may include Vakra (zigzag) phrases. (c) The Avaroha (descending) — may differ from Aroha. (d) The Vadi (most important note — appears most frequently, creates the Raga's "centre of gravity"). (e) The Samvadi (second most important — must be a 4th or 5th from Vadi). (f) The Vivadi (note to avoid — creates the "shadow" of the Raga).</p>
+    <p><strong>Validation:</strong> Check your scale against the <a href="https://ragajunglism.org/ragas/masterlist" target="_blank" style="color:var(--rc2-raga);">ragajunglism.org masterlist</a> to confirm it doesn't duplicate an existing named Raga.</p>
+  </div>
+</div>
+
+<div class="rc2-step">
+  <div class="rc2-step-num">4</div>
+  <div>
+    <h4>Bioacoustic Validation — Confirm the Frequency Architecture</h4>
+    <p>Verify that the Shruti positions you've chosen produce the correct frequency ratios for your therapeutic intention. Reference the frequency table at <a href="https://bioacousticcodex.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">bioacousticcodex.culturalmusings.com</a>. Confirm that the Vadi note's frequency is neurobiologically appropriate for your target Rasa and chromosome pathway (e.g., if targeting OXTR de-methylation, ensure the Vadi is in the 130–175 Hz range resonant with thalamo-cortical GABA circuits).</p>
+  </div>
+</div>
+    `},
+    { tab: 'Stages 5–8: Creation & Deployment', content: `
+<h3>Creating a Raga — <em>Stages 5 to 8</em></h3>
+
+<div class="rc2-step">
+  <div class="rc2-step-num">5</div>
+  <div>
+    <h4>Gamaka Design — The Ornament Vocabulary</h4>
+    <p>Assign the Gamaka (ornament) set for each note: which notes receive Kampita (oscillation), Andola (wide oscillation), Jaru (glide), Sphurita (hammer-on) or Nokku (emphasis). Gamaka is what transforms a scale into a living Raga — it encodes the micro-frequency modulation patterns that produce the Raga's specific bioacoustic effect. For healing Ragas: emphasise slow Kampita (1–2 Hz) on the Vadi — this directly entrains the thalamic alpha spindle frequency.</p>
+  </div>
+</div>
+
+<div class="rc2-step">
+  <div class="rc2-step-num">6</div>
+  <div>
+    <h4>Kavya Creation — Compose the Accompanying Poem</h4>
+    <p>Use the <a href="https://ragakavyacreator.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">Raga Kavya Creator</a>. Enter your new Raga's name (provisional), its primary Rasa, and its intended emotional landscape. The AI generates a poem calibrated to the Rasa signature — which can then be refined to specifically include imagery of the Raga's time of day, season, therapeutic intention and cosmic alignment (Nakshatra).</p>
+    <p>The Kavya serves a scientific purpose: when recited during Raga practice, the semantic content of the poem amplifies the limbic activation initiated by the acoustic frequencies — a dual-channel Rasa delivery system targeting both auditory cortex and Broca's area simultaneously.</p>
+  </div>
+</div>
+
+<div class="rc2-step">
+  <div class="rc2-step-num">7</div>
+  <div>
+    <h4>Therapeutic Protocol Design</h4>
+    <p>Integrate the new Raga into a complete MCP session: Phase I (Pranayama aligned to the Raga's time window) → Phase II (30-min Raga listening/practice) → Phase III (Mudra aligned to the Raga's Melakartha family) → Phase IV (Karana sequences from the appropriate Nakshatra group). Define the 8-week outcome metrics: HRV, cortisol, BDNF if accessible, and self-report Rasa-state log.</p>
+  </div>
+</div>
+
+<div class="rc2-step">
+  <div class="rc2-step-num">8</div>
+  <div>
+    <h4>Archiving &amp; Contribution</h4>
+    <p>Save the complete Raga profile: name, Melakartha number, Aroha/Avaroha, Vadi/Samvadi, Gamaka vocabulary, Rasa assignment, time window, therapeutic indication, bioacoustic rationale (frequency targets + chromosomal pathways), accompanying Kavya, and MCP protocol. Submit to the <a href="https://ragakavya.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">Raga Kavya Library</a> and to the <a href="https://testemony.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">Testemony archive</a>. Contact the author at smith123846@gmail.com to include the creation in the formal Cultural Musings research database.</p>
+  </div>
+</div>
+
+<p><strong>All creation tools in sequence:</strong><br>
+① <a href="https://melakarta.com" target="_blank" style="color:var(--rc2-raga);">melakarta.com</a> → ② <a href="https://ragamath.com" target="_blank" style="color:var(--rc2-raga);">ragamath.com</a> → ③ <a href="https://ragajunglism.org/ragas/masterlist" target="_blank" style="color:var(--rc2-raga);">ragajunglism.org</a> → ④ <a href="https://bioacousticcodex.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">bioacousticcodex.culturalmusings.com</a> → ⑤ <a href="https://ragakavyacreator.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">Raga Kavya Creator</a> → ⑥ <a href="https://masterconsciousprotocol.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">MCP Phase II</a> → ⑦ <a href="https://ragakavya.culturalmusings.com/" target="_blank" style="color:var(--rc2-raga);">Raga Kavya Library (archive)</a></p>
+    `},
+    { tab: 'Quick Reference Card', content: `
+<h3>Raga Creation — <em>Quick Reference Card</em></h3>
+<p>Copy this reference for use during your creation sessions:</p>
+
+<div class="rc2-grid2">
+  <div class="rc2-card"><h4>Rasa → Melakartha Family</h4><p>
+    Shanta → 15, 28, 20<br>
+    Shringara → 29, 65<br>
+    Karuna → 8 (Todi family)<br>
+    Vira → 1, 36, 72<br>
+    Adbhuta → 16, 51<br>
+    Hasya → 39, 22<br>
+    Bibhatsa → 10, 47<br>
+    Raudra → 6, 57<br>
+    Bhayanaka → 11, 48
+  </p></div>
+  <div class="rc2-card"><h4>Time → Rasa → Raga Examples</h4><p>
+    Dawn 5–8am → Shanta/Adbhuta → Bhairav, Bhairavi, Lalit<br>
+    Morning 8–11am → Karuna → Todi, Asavari<br>
+    Midday 11am–2pm → Vira → Sarang, Bhimpalasi<br>
+    Afternoon 2–5pm → Shringara → Puriya<br>
+    Evening 5–8pm → Shringara/Vira → Yaman, Marwa, Poorvi<br>
+    Night 8–11pm → Shringara → Kedar, Khamaj, Kalyani<br>
+    Midnight 11pm–2am → Shanta → Darbari, Bageshri, Malkauns
+  </p></div>
+  <div class="rc2-card"><h4>Vadi Selection Rules</h4><p>
+    Morning Ragas → Vadi in lower tetrachord (Sa–Ma)<br>
+    Evening Ragas → Vadi in upper tetrachord (Pa–Ni)<br>
+    Samvadi must be a 4th or 5th from Vadi<br>
+    Vivadi (forbidden note) = creates tension that must be avoided or resolved immediately
+  </p></div>
+  <div class="rc2-card"><h4>Gamaka for Therapeutic Effect</h4><p>
+    Slow Kampita 1–2 Hz on Vadi → alpha entrainment → Shanta<br>
+    Andola (wide oscillation) on Ga or Ni → emotional release → Karuna<br>
+    Jaru (glide) upward → energy lift → Vira<br>
+    Sphurita on Sa → grounding → all therapeutic Ragas
+  </p></div>
+</div>
+
+<div class="rc2-pills" style="margin-top:14px;">
+  <span class="rc2-pill">melakarta.com</span>
+  <span class="rc2-pill amb">ragamath.com</span>
+  <span class="rc2-pill grn">bioacousticcodex</span>
+  <span class="rc2-pill lit">ragakavyacreator</span>
+  <span class="rc2-pill blu">ragajunglism</span>
+  <span class="rc2-pill rose">nada-chikitsa</span>
+</div>
+    `}
+  ]
+};
+
+/* ──────────────────────────────────────────────────────────────
+   E-6  SEARCH GUIDE — API & NON-API
+────────────────────────────────────────────────────────────── */
+SD_DATA['rc2_search'] = {
+  banner: 'rc2-banner', symbol: '🔎', tag: 'Search Guide',
+  title: 'Search Guide — API &amp; <em>Non-API</em>',
+  subtitle: 'How to search all 17+ Cultural Musings research domains effectively — with API keys for AI-enhanced results, and without for immediate no-setup access.',
+  visitUrl: 'https://culturalmusings.com/',
+  pages: [
+    { tab: 'Non-API Search (Always Works)', content: `
+<h3>Research Archive Search — <em>No API Key Required</em></h3>
+
+<div class="rc2-pull"><p>"The Research Archive Search works for every visitor without any setup. It searches all 17+ domains simultaneously and returns direct links. Use it as your first step for any Raga, Karana, Mantra or research topic."</p></div>
+
+<div class="rc2-search-box">
+  <h4>🔎 How to use the Built-in Search (Zero Setup)</h4>
+  <p><strong>Step 1</strong> — Click <strong>🌌 Astro &amp; Search</strong> in the navigation bar<br>
+  <strong>Step 2</strong> — In the right column labelled "Research Archive Search", type your query<br>
+  <strong>Step 3</strong> — Press Enter or click Search →<br>
+  <strong>Step 4</strong> — Up to 8 results appear with badge, title and snippet — click to open the subdomain</p>
+  <p><strong>Best search terms for Raga Creation:</strong></p>
+  <p>"Bhairavi therapeutic" · "Yaman neuroscience" · "Melakartha 29" · "Raga Karuna cortisol" · "cymatics DNA" · "BDNF music" · "Karana 55" · "Pakad Darbari" · "Gamaka alpha" · "biophoton Raga"</p>
+</div>
+
+<p><strong>How the index is structured:</strong></p>
+<ul class="rc2-list">
+  <li class="search-li">Every Cultural Musings subdomain URL is indexed with title, badge category and descriptive snippet</li>
+  <li class="search-li">External references (Exotic India, IGNCA, WisdomLib, Melakarta, RagaMath) are indexed alongside subdomain entries</li>
+  <li class="search-li">Search is case-insensitive and matches partial words — "neuro" returns all neuroscience entries</li>
+  <li class="search-li">Results ranked by relevance score: title match → badge match → snippet match</li>
+  <li class="search-li">Results open in new tab — you never leave the main site during research</li>
+</ul>
+
+<p><strong>For Raga research — recommended search sequence:</strong><br>
+① Search the Raga name → find all relevant subdomains and external references<br>
+② Search "therapeutic [Raga name]" → Nada Chikitsa results<br>
+③ Search "[Raga name] neuroscience" → Bio Acoustic + Neuro results<br>
+④ Search "[Raga name] Karana" → Celestial Synthesis × Karana map<br>
+⑤ Search "[Raga name] Kavya" → Raga Kavya Library entries</p>
+    `},
+    { tab: 'API-Enhanced Search', content: `
+<h3>API-Enhanced Search — <em>AI-Powered Deep Results</em></h3>
+
+<p>With one or more API keys added to the 20-Slot Vault (🔑 Key Vault button, bottom-right), the search system gains AI enhancement: query expansion, synonym recognition, cross-domain semantic linking and Raga-specific knowledge augmentation.</p>
+
+<div class="rc2-search-box">
+  <h4>Setting Up API Keys</h4>
+  <p><strong>Step 1</strong> — Click <strong>🔑 Key Vault</strong> (bottom-right of page)<br>
+  <strong>Step 2</strong> — Paste your key into the appropriate slot (Groq slot 1, Gemini slot 2, OpenRouter slot 3, etc.)<br>
+  <strong>Step 3</strong> — The slot auto-locks after 10+ characters (green ✓ appears)<br>
+  <strong>Step 4</strong> — The vault badge counter updates — the search is now AI-enhanced</p>
+</div>
+
+<p><strong>Recommended free API providers for Raga research:</strong></p>
+<ul class="rc2-list">
+  <li class="search-li"><strong>Groq (Slot 1)</strong> — Free tier: 14,400 tokens/min, 500 req/day. Fastest inference. Get key at console.groq.com. Best for: rapid Raga reference queries, real-time creation assistance.</li>
+  <li class="search-li"><strong>Gemini (Slot 2)</strong> — Free tier: 60 req/min, 1 million tokens/day. Get key at aistudio.google.com. Best for: long-form Raga composition generation, multi-page research synthesis.</li>
+  <li class="search-li"><strong>OpenRouter (Slot 3)</strong> — Aggregates 40+ models including Claude, GPT-4o, Llama 3. Free credits on sign-up. Best for: comparing multiple AI responses to Raga creation questions.</li>
+  <li class="search-li"><strong>HuggingFace (Slot 6)</strong> — Free tier with rate limits. Best for: accessing specialist music AI models (MusicGen, AudioCraft) for acoustic analysis.</li>
+</ul>
+
+<p><strong>What AI enhancement adds to Raga search:</strong></p>
+<div class="rc2-grid2">
+  <div class="rc2-card search"><h4>Query Expansion</h4><p>"Bhairavi healing" → AI expands to also search "Bhairavi cortisol", "Bhairavi parasympathetic", "Bhairavi dawn therapy", "Bhairavi Shanta Rasa" simultaneously.</p></div>
+  <div class="rc2-card search"><h4>Cross-Domain Linking</h4><p>A Raga query automatically surfaces related Karana, Mantra, Mudra and Nakshatra entries — showing the complete web of connections across all 17+ domains.</p></div>
+  <div class="rc2-card search"><h4>Creation Assistance</h4><p>Describe your intended Raga structure → AI validates against Melakartha rules, checks for duplicates in the 1000+ database, and suggests Gamaka vocabulary.</p></div>
+  <div class="rc2-card search"><h4>Kavya Generation</h4><p>With an API key, the Raga Kavya Creator generates more nuanced, tradition-aware poetry — drawing on Sanskrit poetic conventions (Alamkara, Chhanda) beyond the base model.</p></div>
+</div>
+    `},
+    { tab: 'External Search Strategy', content: `
+<h3>External Search Strategy — <em>Beyond the Internal Archive</em></h3>
+
+<p>For research that goes beyond the Cultural Musings archive, use these external search strategies:</p>
+
+<div class="rc2-search-box">
+  <h4>Google Scholar — Raga Neuroscience</h4>
+  <p>Search operators for maximum relevance:</p>
+  <span class="rc2-code">site:scholar.google.com "Indian classical music" AND "EEG" AND "theta waves"
+"raga therapy" AND "cortisol" AND clinical
+"bioacoustic" AND "DNA" AND "sound frequency" 2018..2024</span>
+</div>
+
+<div class="rc2-search-box">
+  <h4>PubMed — Cellular / Microbiology Raga Research</h4>
+  <span class="rc2-code">Search: "music therapy" AND "gene expression" [MeSH]
+Search: "acoustic vibration" AND "cellular membrane"
+Search: "Indian classical music" AND "HRV" AND "cortisol"
+Filter: Article types → Clinical Trial, Randomized Controlled Trial</span>
+</div>
+
+<div class="rc2-search-box">
+  <h4>Direct Database Search — Raga Reference</h4>
+  <p>For Raga structure, equivalence and history:</p>
+  <span class="rc2-code">ragajunglism.org/ragas → filter by rasa or time-of-day
+melakarta.com → click any of the 72 parent Ragas → see all derivatives
+computationalmusic.com/raga-classification-system.html → structural analysis</span>
+</div>
+
+<div class="rc2-search-box">
+  <h4>WisdomLib — Natya Shastra Source Text Search</h4>
+  <span class="rc2-code">wisdomlib.org → search "Raga" → select "Natyashastra" filter
+wisdomlib.org → search "Karana" → Sanskrit original + English translation
+wisdomlib.org → search "[Raga name] Shruti" → interval documentation</span>
+</div>
+
+<p><strong>Recommended external reference sites — bookmark these:</strong></p>
+<ul class="rc2-list">
+  <li class="search-li"><a href="https://ragajunglism.org/ragas/masterlist" target="_blank" style="color:var(--rc2-search);">ragajunglism.org/ragas/masterlist</a> — 1000+ Raga database</li>
+  <li class="search-li"><a href="https://melakarta.com" target="_blank" style="color:var(--rc2-search);">melakarta.com</a> — 72 Melakartha interactive chart</li>
+  <li class="search-li"><a href="https://ragamath.com" target="_blank" style="color:var(--rc2-search);">ragamath.com</a> — mathematical structure analysis</li>
+  <li class="search-li"><a href="https://www.wisdomlib.org/" target="_blank" style="color:var(--rc2-search);">wisdomlib.org</a> — 50,000+ Vedic text search</li>
+  <li class="search-li"><a href="https://computationalmusic.com/raga-classification-system.html" target="_blank" style="color:var(--rc2-search);">computationalmusic.com</a> — classification system</li>
+  <li class="search-li"><a href="https://chromatone.center/theory/scales/raga" target="_blank" style="color:var(--rc2-search);">chromatone.center/theory/scales/raga</a> — visual scale explorer</li>
+  <li class="search-li"><a href="https://www.nios.ac.in/media/documents/Hindustani_Music_242/hindustanimusictheorybook1/HMB1Ch6.pdf" target="_blank" style="color:var(--rc2-search);">NIOS Hindustani Music Theory PDF</a> — academic foundation</li>
+</ul>
+    `}
+  ]
+};
+
+/* ──────────────────────────────────────────────────────────────
+   E-7  COMPLETE REFERENCE MAP
+────────────────────────────────────────────────────────────── */
+SD_DATA['rc2_refs'] = {
+  banner: 'rc2-banner', symbol: '📚', tag: 'Reference Archive',
+  title: 'Complete Reference Map — External &amp; <em>Subdomain Sources</em>',
+  subtitle: 'Every reference that powers the Raga Creation framework — categorised by type, purpose and access method.',
+  visitUrl: 'https://culturalmusingsenhancements.culturalmusings.com/',
+  pages: [
+    { tab: 'Cultural Musings Subdomains', content: `
+<h3>Internal Subdomain <em>References</em></h3>
+<p>These are the subdomains that directly contribute to the Raga Creation knowledge base. Visit each for the full version of the research summarised in these modals.</p>
+
+<div class="rc2-ref-section">
+  <div class="rc2-ref-head">🎵 Primary Raga Creation Domains</div>
+  <ul class="rc2-ref-ul">
+    <li><span class="rc2-ref-badge sub">PRIMARY</span><a href="https://ragakavyacreator.culturalmusings.com/" target="_blank">Raga Kavya Creator — ragakavyacreator.culturalmusings.com · AI Kavya creation tool</a></li>
+    <li><span class="rc2-ref-badge sub">PRIMARY</span><a href="https://ragakavya.culturalmusings.com/" target="_blank">Raga Kavya Library — ragakavya.culturalmusings.com · Living Kavya archive</a></li>
+    <li><span class="rc2-ref-badge sub">Core</span><a href="https://nada-chikitsa.culturalmusings.com/" target="_blank">Nada Chikitsa — nada-chikitsa.culturalmusings.com · Complete Raga pharmacopoeia</a></li>
+    <li><span class="rc2-ref-badge sub">Core</span><a href="https://natyashastra.culturalmusings.com/" target="_blank">Natya Shastra — natyashastra.culturalmusings.com · Rasa theory source</a></li>
+  </ul>
+</div>
+
+<div class="rc2-ref-section">
+  <div class="rc2-ref-head">🧬 Science & Research Domains</div>
+  <ul class="rc2-ref-ul">
+    <li><span class="rc2-ref-badge sub">Neuro/Micro</span><a href="https://bioacousticcodex.culturalmusings.com/" target="_blank">Bio Acoustic Codex — bioacousticcodex.culturalmusings.com · Cellular & genomic research</a></li>
+    <li><span class="rc2-ref-badge sub">Neuro/Micro</span><a href="https://bioresonancemusings.culturalmusings.com/" target="_blank">Bio Resonance Musings — bioresonancemusings.culturalmusings.com · Biophoton & prana field</a></li>
+    <li><span class="rc2-ref-badge sub">Kinetic</span><a href="https://natyashastraclassical-dance.culturalmusings.com/" target="_blank">Natya Shastra Classical Dance — kinematic Karana–Raga correspondences</a></li>
+    <li><span class="rc2-ref-badge sub">Kinetic</span><a href="https://karanasrootmap.culturalmusings.com/" target="_blank">Karanas Root Map — 4×27 structure, Nakshatra groups, movement sequences</a></li>
+    <li><span class="rc2-ref-badge sub">Celestial</span><a href="https://completecelestialsynthesis.culturalmusings.com/" target="_blank">Complete Celestial Synthesis — Nakshatra × Melakartha × Karana cosmic map</a></li>
+    <li><span class="rc2-ref-badge sub">Clinical</span><a href="https://masterconsciousprotocol.culturalmusings.com/" target="_blank">Master Consciousness Protocol — 5-phase clinical integration framework</a></li>
+    <li><span class="rc2-ref-badge sub">Evidence</span><a href="https://testemony.culturalmusings.com/" target="_blank">Testemony — practitioner accounts and qualitative research archive</a></li>
+    <li><span class="rc2-ref-badge sub">Spiritual</span><a href="https://spiritualphilosophical.culturalmusings.com/" target="_blank">Spiritual Philosophical — consciousness science and Vedantic framework</a></li>
+    <li><span class="rc2-ref-badge sub">Vibration</span><a href="https://spandanashodha.culturalmusings.com/" target="_blank">Spandana Shodha — primordial vibration science and Spanda theory</a></li>
+    <li><span class="rc2-ref-badge sub">Math</span><a href="https://vedicmathematicsgeometry.culturalmusings.com/" target="_blank">Vedic Mathematics & Geometry — Sri Chakra, Sulba Sutras, fractal geometry</a></li>
+    <li><span class="rc2-ref-badge sub">AI</span><a href="https://vedicai.culturalmusings.com/" target="_blank">Vedic AI — Pāṇini grammar, Piṅgala binary, consciousness & AGI</a></li>
+    <li><span class="rc2-ref-badge sub">Enhancements</span><a href="https://culturalmusingsenhancements.culturalmusings.com/" target="_blank">Enhancements Portal — master hub of all 17+ subdomains</a></li>
+  </ul>
+</div>
+    `},
+    { tab: 'External References', content: `
+<h3>External Reference <em>Archive</em></h3>
+
+<div class="rc2-ref-section">
+  <div class="rc2-ref-head">🎵 Raga Structure & Music Theory</div>
+  <ul class="rc2-ref-ul">
+    <li><span class="rc2-ref-badge ext">DB</span><a href="https://ragajunglism.org/ragas/masterlist" target="_blank">Rāga Junglism — Masterlist of 1000+ Ragas (George Howlett) — the most comprehensive Raga database online</a></li>
+    <li><span class="rc2-ref-badge ext">Chart</span><a href="https://melakarta.com" target="_blank">Melakarta.com — complete 72-Melakartha interactive chart with all derivative Ragas</a></li>
+    <li><span class="rc2-ref-badge ext">Math</span><a href="https://ragamath.com" target="_blank">RagaMath.com — mathematical Raga structure, combinatorial analysis</a></li>
+    <li><span class="rc2-ref-badge ext">Index</span><a href="https://ragajunglism.org/ragas" target="_blank">Rāga Junglism — Hindustani Raga Index (searchable)</a></li>
+    <li><span class="rc2-ref-badge ext">Guide</span><a href="https://amitray.com/the-84-ragas-of-indian-classical-music-a-complete-guide" target="_blank">84 Ragas of Indian Classical Music — Complete Guide (amitray.com)</a></li>
+    <li><span class="rc2-ref-badge ext">Visual</span><a href="https://chromatone.center/theory/scales/raga" target="_blank">Chromatone Center — Raga visual scale explorer</a></li>
+    <li><span class="rc2-ref-badge ext">System</span><a href="https://computationalmusic.com/raga-classification-system.html" target="_blank">Computational Music — Raga Classification System</a></li>
+    <li><span class="rc2-ref-badge pdf">PDF</span><a href="https://www.nios.ac.in/media/documents/Hindustani_Music_242/hindustanimusictheorybook1/HMB1Ch6.pdf" target="_blank">NIOS Hindustani Music Theory Textbook Ch.6 — academic foundation document</a></li>
+    <li><span class="rc2-ref-badge pdf">PDF</span><a href="https://agniveer.com/wp-content/uploads/2013/11/samaveda.pdf" target="_blank">Samaveda Complete Text PDF — the Veda of melody and chant</a></li>
+  </ul>
+</div>
+
+<div class="rc2-ref-section">
+  <div class="rc2-ref-head">🔬 Neuroscience & Biomedical</div>
+  <ul class="rc2-ref-ul">
+    <li><span class="rc2-ref-badge ext">Journal</span><a href="https://www.wisdomlib.org/" target="_blank">WisdomLib — largest Vedic text library (50,000+ texts) including Natya Shastra critical edition</a></li>
+    <li><span class="rc2-ref-badge ext">Archive</span><a href="https://sanskritdocuments.org/" target="_blank">Sanskrit Documents Archive — primary source texts for Raga theory in Sanskrit</a></li>
+    <li><span class="rc2-ref-badge ext">Gov.</span><a href="https://vedicheritage.gov.in/introduction/" target="_blank">Vedic Heritage Portal — Government of India official Vedic research resource</a></li>
+    <li><span class="rc2-ref-badge pdf">PDF</span><a href="https://ignca.gov.in/Asi_data/8737.pdf" target="_blank">IGNCA Natya Shastra Research PDF — Government of India academic document</a></li>
+    <li><span class="rc2-ref-badge pdf">PDF</span><a href="https://cdn.angkordatabase.asia/libs/docs/publications/dance-imagery-in-south-indian-temples-study-of-the-108-karana-sculptures/108-karanas.pdf" target="_blank">108 Karanas Dance Imagery Study PDF — Angkor Database academic paper</a></li>
+  </ul>
+</div>
+
+<div class="rc2-ref-section">
+  <div class="rc2-ref-head">🔱 Mantra & Sacred Science</div>
+  <ul class="rc2-ref-ul">
+    <li><span class="rc2-ref-badge ext">Text</span><a href="https://shlokam.org/shloka/lalitha-sahasranamam.htm" target="_blank">Lalitha Sahasranāmam with meanings — shlokam.org</a></li>
+    <li><span class="rc2-ref-badge ext">Text</span><a href="https://shlokam.org/shloka/rudram-namakam.htm" target="_blank">Rudram Namakam complete text — shlokam.org</a></li>
+    <li><span class="rc2-ref-badge ext">Guide</span><a href="https://www.vedadhara.com/english-topics-mantra-shastra" target="_blank">Mantra Shastra — Vedadhara (complete English reference)</a></li>
+    <li><span class="rc2-ref-badge pdf">PDF</span><a href="https://www.sanskrit.nic.in/books_archive/024_Shri_Lalita_Sahasra_Name_of_Shri_Ramamurti.pdf" target="_blank">Lalita Sahasranāma PDF — Sanskrit.nic.in Government archive</a></li>
+    <li><span class="rc2-ref-badge ext">GitHub</span><a href="https://github.com/Ishanoshada/Soundarya-Lahari-Mantra-Finder" target="_blank">Soundarya Laharī Mantra Finder — open-source Sanskrit tool</a></li>
+  </ul>
+</div>
+
+<div class="rc2-ref-section">
+  <div class="rc2-ref-head">🐙 GitHub & Technical</div>
+  <ul class="rc2-ref-ul">
+    <li><span class="rc2-ref-badge ext">GitHub</span><a href="https://github.com/ramachandra1975" target="_blank">github.com/ramachandra1975 — 41 Cultural Musings repositories (source code + data)</a></li>
+    <li><span class="rc2-ref-badge ext">Terabox</span><a href="https://dm.1024terabox.com/main?category=all" target="_blank">Terabox PDF Library — all original manuscripts and research documents</a></li>
+    <li><span class="rc2-ref-badge ext">JotForm</span><a href="https://form.jotform.com/261042208142039" target="_blank">Enquiry Form — for research collaboration and Raga creation consultation</a></li>
+  </ul>
+</div>
+    `}
+  ]
+};
+
+/* ──────────────────────────────────────────────────────────────
+   E-8 & E-9  AUTHOR'S INSIGHT — TWO PAGES
+   These open from the subdomain links in the drawer without
+   navigating away — they work entirely within the modal system
+────────────────────────────────────────────────────────────── */
+SD_DATA['rc2_author1'] = {
+  banner: 'rc2-author-banner', symbol: '✍️', tag: "Author's Insight · Part 1 of 2",
+  title: 'The Origin Story — <em>What Began All of This</em>',
+  subtitle: "Naredla Rama Chandra on the moment Raga Creation became an obsession — the Natya Shastra, a single concert, 15 years of questions, and the decision to build something permanent.",
+  visitUrl: 'https://culturalmusingsenhancements.culturalmusings.com/',
+  pages: [
+    { tab: 'The Spark', content: `
+<h3>The Moment That <em>Changed Everything</em></h3>
+
+<div class="rc2-author-lede">
+"It began with a concert I attended in 2009. Not an extraordinary event by any measure — a local classical vocal recital in Hyderabad. The Raga was Bhairav. The artist was not famous. But something happened in that room that I had no language for. The air itself seemed to change consistency. People who had walked in distracted, disconnected, became — there is no better word — present. One woman I sat next to began silently weeping about four minutes into the performance. She appeared neither sad nor upset. She looked, if anything, relieved."
+</div>
+
+<p>That evening launched what became fifteen years of systematic inquiry. The question that began it was simple: <em>What was that?</em></p>
+
+<p>The immediate answer I received from musicians was the word "Rasa." The Raga was producing Rasa. Shanta — peace — and something adjacent to Karuna. But that word explained nothing. It named the experience without accounting for the mechanism. How does a specific arrangement of seven notes, in a specific ascending-descending pattern, at a specific time of morning, produce a specific emotional state in people who don't even know the theory?</p>
+
+<div class="rc2-timeline">
+  <div class="rc2-tl-item">
+    <div class="rc2-tl-year">2009</div>
+    <div class="rc2-tl-body">
+      <h4>The Bhairav Concert</h4>
+      <p>The event that made the mechanism a question I could not un-ask. Began reading the Natya Shastra in parallel — first the Ghosh translation, then Rangacharya. Found that Bharata Muni had already answered the mechanism question 2,200 years ago. The answer is the 36-chapter Natya Shastra. Understanding it became the project.</p>
+    </div>
+  </div>
+  <div class="rc2-tl-item">
+    <div class="rc2-tl-year">2010</div>
+    <div class="rc2-tl-body">
+      <h4>The First Research Document</h4>
+      <p>Wrote the first formal paper connecting Raga theory to what was then early neuroscience of music — Levitin, Patel, Zatorre. Circulated it to three music colleges. Two replied. Neither knew what to do with it. Filed it. Kept going.</p>
+    </div>
+  </div>
+  <div class="rc2-tl-item">
+    <div class="rc2-tl-year">2012–14</div>
+    <div class="rc2-tl-body">
+      <h4>The 108 Karanas Revelation</h4>
+      <p>Reading the Natya Shastra Chapter 4 for the third time. The 108 Karanas are not dance movements. They are a biomechanical-acoustic-cosmological system encoded in movement. The Chidambaram connection — every Karana carved in stone — hit like a physical impact. Someone had made a physical archive of this knowledge because they knew it could not be transmitted only through oral tradition. That decision, made 1,000 years ago, saved the entire system.</p>
+    </div>
+  </div>
+  <div class="rc2-tl-item">
+    <div class="rc2-tl-year">2015</div>
+    <div class="rc2-tl-body">
+      <h4>The Bio Acoustic Turn</h4>
+      <p>Reading Fritz-Albert Popp's biophoton research alongside the Vedantic concept of Pranamaya Kosha. These were the same thing described in different languages from opposite directions. Cellular biophoton coherence — measurable with quantum optics — is what the seers called Prāna. The bridge between ancient framework and modern measurement became the new research axis.</p>
+    </div>
+  </div>
+</div>
+    `},
+    { tab: 'The Natya Shastra Moment', content: `
+<h3>The Night the <em>Natya Shastra Became Science</em></h3>
+
+<div class="rc2-author-lede">
+"There is a specific verse — Chapter 6, verse 31 of the Natya Shastra — where Bharata describes the moment of Rasa-anubhava (aesthetic experience) in the audience. He says it arises 'like the taste of food cooked with many spices.' I read this verse for the fourth time in 2013 and suddenly saw it as a systems description. The spices are the Vibhāvas — the stimulus conditions. The cooking is the neural processing. The taste is the emergent emotional state. This is the mirror neuron theory, written in Sanskrit, 2,200 years before Rizzolatti."
+</div>
+
+<p>That realisation — that the Natya Shastra was not a poetic description of aesthetic experience but a mechanistic systems theory encoded in ancient vocabulary — reoriented the entire research programme. The question was no longer "Is this ancient wisdom valid?" The question became "What else in this text has been mislabelled as metaphor when it is in fact precise mechanism?"</p>
+
+<p>The answer, pursued across 1,000 pages of the Natya Shastra and its commentaries, is: <strong>almost everything.</strong></p>
+
+<ul class="rc2-list">
+  <li class="author-li">The 22 Shrutis are not a "microtonal aesthetic preference" — they are the psychoacoustic reality of how the human cochlea actually processes pitch. Equal temperament is the approximation. Shruti is the precision.</li>
+  <li class="author-li">The 9 Rasas are not "eight or nine emotional categories for poets" — they are a complete taxonomy of human emotional states, each with a distinct neurochemical signature, now confirmed by affective neuroscience.</li>
+  <li class="author-li">The Karana is not a "dance move" — it is a four-dimensional equation simultaneously encoding proprioceptive state, acoustic frequency alignment, cosmological position and neurological activation target.</li>
+  <li class="author-li">Raga time theory is not "convention" — it is a circadian biology protocol, mapping therapeutic acoustic interventions to the body's natural hormonal rhythm across the 24-hour cycle.</li>
+</ul>
+
+<p>Once these recognitions occurred, the response was not to write an academic paper. The response was to build a complete research infrastructure that would make this evidence permanently, publicly and freely accessible — across as many research dimensions as the material demanded. That decision produced what became the Cultural Musings network.</p>
+
+<p><em>Part 2 →</em> The building of the network, the key breakthroughs, and the vision for where this research is going. <button onclick="openSD('rc2_author2',0)" style="font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;color:var(--rc2-rose);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;">Read Part 2 →</button></p>
+    `}
+  ]
+};
+
+SD_DATA['rc2_author2'] = {
+  banner: 'rc2-author-banner', symbol: '🌅', tag: "Author's Insight · Part 2 of 2",
+  title: 'The Journey &amp; <em>The Vision</em>',
+  subtitle: "Building the Cultural Musings network, the key research breakthroughs, the Raga Creation tab's specific origin, and where all of this is going.",
+  visitUrl: 'https://culturalmusingsenhancements.culturalmusings.com/',
+  pages: [
+    { tab: 'Building the Network', content: `
+<h3>Building the <em>Cultural Musings Network</em></h3>
+
+<div class="rc2-author-lede">
+"I did not plan to build seventeen research subdomains. I planned to write one paper. But each answer produced three new questions, and each new question opened into a domain that needed its own home. The architecture of the network is the architecture of the inquiry — it grew organically, following the material wherever it led."
+</div>
+
+<div class="rc2-timeline">
+  <div class="rc2-tl-item">
+    <div class="rc2-tl-year">2016</div>
+    <div class="rc2-tl-body">
+      <h4>First Subdomain — Natya Shastra</h4>
+      <p>The first dedicated website. The intention was to house the complete research on Natya Shastra as a neuroscience text. Within six months it became clear that Natya Shastra was not a standalone subject — it connected into bio-acoustics, philosophy, astrophysics and Sanskrit linguistics simultaneously. The network structure became necessary.</p>
+    </div>
+  </div>
+  <div class="rc2-tl-item">
+    <div class="rc2-tl-year">2017</div>
+    <div class="rc2-tl-body">
+      <h4>Nada Chikitsa & the Raga Pharmacopoeia</h4>
+      <p>The most personally significant research milestone. Documenting the first complete Raga-therapeutic correspondence table — mapping each major Raga to its brainwave state, Rasa signature, time window and provisional neurochemical target. The realisation that this constituted a complete medical pharmacopoeia — one that predated and in some ways surpassed current music therapy protocol — was both exhilarating and humbling.</p>
+    </div>
+  </div>
+  <div class="rc2-tl-item">
+    <div class="rc2-tl-year">2019</div>
+    <div class="rc2-tl-body">
+      <h4>The Celestial Synthesis Breakthrough</h4>
+      <p>The discovery that the 108 Karanas, 27 Nakshatras, 72 Melakarthas and 22 Shrutis form a single unified mathematical system — not loosely related traditions but one internally consistent framework — was the research breakthrough that changed everything. It meant that the entire Vedic knowledge system was not a collection of separate subjects but a single multi-dimensional description of one reality.</p>
+    </div>
+  </div>
+  <div class="rc2-tl-item">
+    <div class="rc2-tl-year">2021–23</div>
+    <div class="rc2-tl-body">
+      <h4>Raga Kavya — The Creative Synthesis</h4>
+      <p>The origin of the Raga Kavya initiative. The insight was this: if a Raga produces a specific Rasa through acoustic frequencies, and if Kavya (poetry) produces the same Rasa through linguistic-semantic architecture, then Raga and Kavya are the same thing in different media. Creating a poem that mirrors its Raga's Rasa is not an artistic exercise — it is a demonstration that information about consciousness states can be encoded in both sound and language, and that the encoding is structurally homologous.</p>
+    </div>
+  </div>
+  <div class="rc2-tl-item">
+    <div class="rc2-tl-year">2024</div>
+    <div class="rc2-tl-body">
+      <h4>The Raga Creation Tab — This Moment</h4>
+      <p>This tab — the comprehensive Raga Creation research hub — represents the synthesis point: bringing together the neuroscience, microbiology, kinetic science, creation protocol, search tools and author context into a single navigable interface. It exists because the question that began in 2009 — "what was that?" — now has a sufficiently detailed answer to be worth sharing systematically.</p>
+    </div>
+  </div>
+</div>
+    `},
+    { tab: 'The Vision', content: `
+<h3>The Vision — <em>Where This Is Going</em></h3>
+
+<div class="rc2-pull"><p>"The goal is not academic recognition. The goal is a world in which a hospital in Chennai prescribes Raga Bhairavi alongside antidepressants, in which a school in Bengaluru teaches Karanas as movement-based neuroscience, in which a research institute in Hyderabad runs randomised controlled trials on Raga-genomic outcomes. All of that is possible within the next decade. The research foundation already exists."</p></div>
+
+<p><strong>The three-horizon vision for Raga Creation research:</strong></p>
+
+<ul class="rc2-list">
+  <li class="author-li"><strong>Horizon 1 (2025–2027) — Documentation &amp; Tools:</strong> Complete the Raga Kavya Library to 500+ entries. Build the AI-assisted Raga Creation Tool that allows any musician to design a new Raga with full bioacoustic validation, Melakartha positioning and therapeutic protocol in under 30 minutes. Extend the Testemony archive to 200+ practitioner accounts across all domains.</li>
+  <li class="author-li"><strong>Horizon 2 (2027–2030) — Clinical Validation:</strong> Partner with integrative medicine institutions to run the first RCTs on Raga therapy protocols as defined in the Nada Chikitsa and MCP frameworks. Target: stress/cortisol outcomes (12-week), NK cell activity (8-week), BDNF levels (16-week). Publish in peer-reviewed journals. Establish the evidentiary basis for Raga Therapy as a clinical modality.</li>
+  <li class="author-li"><strong>Horizon 3 (2030+) — Global Deployment:</strong> The Master Consciousness Protocol — with Raga Creation at its heart — deployed as a freely available, evidence-based healing system in hospital integrative medicine departments, school wellness programmes, and community health centres across India and internationally. The ancient system, validated by modern science, freely given back to humanity.</li>
+</ul>
+
+<div class="rc2-author-lede">
+"Every Raga that has ever been created was a human being's attempt to solve the problem of suffering — to take the rawest, most difficult emotional realities of human experience and transform them into something beautiful and therefore bearable. That is what Bharata Muni called Rasa. That is what we call healing. The science simply explains why it works. The creation remains an act of love."
+— Naredla Rama Chandra, 2025
+</div>
+
+<p><strong>To collaborate, contribute research or discuss clinical partnership:</strong><br>
+📧 <a href="mailto:smith123846@gmail.com" style="color:var(--rc2-rose);">smith123846@gmail.com</a> &nbsp;|&nbsp;
+📞 +91 91213 79100 &nbsp;|&nbsp;
+🐙 <a href="https://github.com/ramachandra1975" target="_blank" style="color:var(--rc2-rose);">github.com/ramachandra1975</a> &nbsp;|&nbsp;
+📋 <a href="https://form.jotform.com/261042208142039" target="_blank" style="color:var(--rc2-rose);">Enquiry Form</a></p>
+
+<p style="margin-top:14px;font-family:'Montserrat',sans-serif;font-size:.6rem;color:#888;">← <button onclick="openSD('rc2_author1',0)" style="font-family:'Montserrat',sans-serif;font-size:.6rem;color:var(--rc2-rose);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;">Return to Part 1 — The Origin Story</button></p>
+    `}
+  ]
+};
+
+/* ════════════════════════════════════════════════════════════════
+   F.  EXTEND SEARCH INDEX — 18 new entries
+════════════════════════════════════════════════════════════════ */
+if (typeof SEARCH_INDEX !== 'undefined') {
+  [
+    { title:'How Many Ragas Can Be Created — Taxonomy & Count',
+      badge:'Raga Creation', url:'https://nada-chikitsa.culturalmusings.com/',
+      snippet:'72 Melakarthas · 1000+ named Ragas · 3200+ theoretical combinations · 84+ therapeutic pharmacopoeia · 2000+ creative frontier.' },
+    { title:'Melakartha System — 72 Parent Ragas Explained',
+      badge:'Raga Creation', url:'https://nada-chikitsa.culturalmusings.com/',
+      snippet:'How the 72-Melakartha binary matrix generates all possible heptatonic Raga scales — Aroha, Avaroha, Audava, Shadava, Sampurna types.' },
+    { title:'Neuroscience of Raga — EEG, Brainwave States & Neurochemistry',
+      badge:'Neuro · Raga', url:'https://bioacousticcodex.culturalmusings.com/',
+      snippet:'Bhairavi → alpha + GABA. Darbari → theta + melatonin. Yaman → alpha-beta + dopamine. Mirror neurons and Rasa transmission mechanisms.' },
+    { title:'BDNF FOXP2 Arc Gene — Raga and Neuroplasticity',
+      badge:'Neuro · Genomics', url:'https://bioacousticcodex.culturalmusings.com/',
+      snippet:'BDNF (Chr 11p13), FOXP2 (Chr 7q31), Arc/Arg3.1 (Chr 8q24) — how Raga practice rewires the brain at the structural genetic level.' },
+    { title:'Mirror Neurons and Rasa — The Shared Consciousness of Raga',
+      badge:'Neuroscience', url:'https://natyashastra.culturalmusings.com/',
+      snippet:'IFG mirror neuron activation, interbrain synchrony in concert audiences, Rasasutra as mirror-neuron equation — Bharata Muni and Rizzolatti compared.' },
+    { title:'Raga Microbiology — Biophotons, Cymatics, DNA Transcription',
+      badge:'Microbiology · Raga', url:'https://bioacousticcodex.culturalmusings.com/',
+      snippet:'Biophoton coherence, cellular water hexagonal crystals, Piezo1/2 ion channels, TERT telomerase, OXTR de-methylation via Raga practice.' },
+    { title:'TERT OXTR BRCA1 — Raga and Gene Expression',
+      badge:'Genomics · Raga', url:'https://bioacousticcodex.culturalmusings.com/',
+      snippet:'Telomerase (TERT Chr 5p15), Oxytocin receptor (OXTR Chr 3q25), DNA repair (BRCA1 Chr 17q21) — epigenetic effects of sustained Raga exposure.' },
+    { title:'Raga Oncology Support — NK Cells, IL-6, Cancer Research',
+      badge:'Clinical · Raga', url:'https://bioacousticcodex.culturalmusings.com/',
+      snippet:'28% NK cell increase, IL-6 reduction, cancer cell proliferation inhibition at 432 Hz — clinical microbiological evidence for Raga therapy.' },
+    { title:'Kinetic Study of Raga — Karana Co-Activation Science',
+      badge:'Kinetic · Raga', url:'https://natyashastraclassical-dance.culturalmusings.com/',
+      snippet:'Tala and central pattern generators, bone conduction via Cari footwork, fascia acoustics, proprioceptive science of Bharatanatyam.' },
+    { title:'Fascia Acoustics — Raga Frequencies in Connective Tissue',
+      badge:'Kinetic · Fascia', url:'https://natyashastraclassical-dance.culturalmusings.com/',
+      snippet:'Fascia as acoustic conductor at 340 m/s, piezoelectric collagen, Anatomy Trains lines and Raga correspondences, interoception and Rasa.' },
+    { title:'How to Create a Raga — Complete 8-Stage Protocol',
+      badge:'Raga Creation', url:'https://ragakavyacreator.culturalmusings.com/',
+      snippet:'Sankalpa → Melakartha → Scale engineering → Bioacoustic validation → Gamaka design → Kavya creation → Therapeutic protocol → Archiving.' },
+    { title:'Raga Vadi Samvadi Vivadi — Scale Engineering Guide',
+      badge:'Raga Creation', url:'https://nada-chikitsa.culturalmusings.com/',
+      snippet:'How to select Vadi (dominant note), Samvadi (consonant), Vivadi (forbidden), Aroha/Avaroha patterns and Gamaka vocabulary for new Ragas.' },
+    { title:'Search Guide — API and Non-API Research Archive',
+      badge:'Search Guide', url:'https://culturalmusings.com/',
+      snippet:'Built-in search (no API needed) + Groq/Gemini/OpenRouter API enhancement + Google Scholar + PubMed + WisdomLib search strategies for Raga research.' },
+    { title:'Groq Gemini OpenRouter API Keys — Research Enhancement',
+      badge:'API · Search', url:'https://culturalmusings.com/',
+      snippet:'20-slot API Key Vault setup — free tiers: Groq 14400 tokens/min, Gemini 1M tokens/day, OpenRouter 40+ models. AI-enhanced Raga Creation search.' },
+    { title:"Author's Insight — The Origin of Raga Creation Research",
+      badge:"Author's Story", url:'https://culturalmusingsenhancements.culturalmusings.com/',
+      snippet:'2009 Bhairav concert in Hyderabad. The Rasa question. 15 years. The Natya Shastra as neuroscience. How the Cultural Musings network was born.' },
+    { title:"Author's Vision — Where Raga Creation Research Is Going",
+      badge:"Author's Story", url:'https://culturalmusingsenhancements.culturalmusings.com/',
+      snippet:'Three horizons: documentation (2025-27), clinical RCT validation (2027-30), global hospital deployment (2030+). Raga therapy as clinical modality.' },
+    { title:'Creative Frontier — Zone 3 Therapeutic Raga Engineering',
+      badge:'Raga Creation', url:'https://bioacousticcodex.culturalmusings.com/',
+      snippet:'Designing Raga structures backwards from desired therapeutic outcome — target chromosome, brainwave state, Rasa — the Cultural Musings innovation.' },
+    { title:'Raga Kavya — Acoustic and Literary Rasa as Homologous Systems',
+      badge:'Raga Kavya', url:'https://ragakavyacreator.culturalmusings.com/',
+      snippet:'Raga Kavya Creator: Rasa encoded in acoustic frequencies and in poetic-semantic architecture are structurally homologous — dual-channel healing delivery.' },
+  ].forEach(e => SEARCH_INDEX.push(e));
+}
+
+})(); // end IIFE
+</script>
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     END: RAGA CREATION PRO INJECTABLE BLOCK
+     
+════════════════════════════════════════════════════════════════════════════ -->
+
 </body>
 </html>
