@@ -5966,11 +5966,9 @@ if (typeof SEARCH_INDEX !== 'undefined') {
 }
 
 })(); // end IIFE
-</script>
-<!-- ═══════════════════════════════════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════════════════════════════════════
      END: RAGA CREATION PRO INJECTABLE BLOCK
-     
-════════════════════════════════════════════════════════════════════════════ -->
+</script>
   <!-- ============================================================
   SMART SEARCH + AUTO-TRANSLATE + PDF/CASE STUDY + BUG FIXER
   Paste this block just before </body> in any existing HTML file.
@@ -6047,9 +6045,35 @@ if (typeof SEARCH_INDEX !== 'undefined') {
   .ss-bug-issue .ss-bug-fix{font-size:12px;color:var(--ss-muted);font-family:monospace;margin-top:5px;background:var(--ss-surface);padding:6px 10px;border-radius:7px;white-space:pre-wrap;word-break:break-all;}
   .ss-bug-ok{padding:14px;text-align:center;color:var(--ss-success);font-size:14px;background:rgba(52,211,153,.07);border-radius:var(--ss-radius);border:1px solid rgba(52,211,153,.2);}
   #ss-fixed-output{display:none;width:100%;min-height:100px;padding:12px 14px;font-size:13px;font-family:'Consolas','Fira Mono',monospace;background:var(--ss-surface);border:1px solid rgba(52,211,153,.3);border-radius:var(--ss-radius);color:var(--ss-text);line-height:1.55;resize:vertical;box-sizing:border-box;margin-top:10px;}
-  /* Translate */
-  .ss-select{padding:9px 11px;font-size:13px;background:var(--ss-card);border:1px solid var(--ss-border);border-radius:var(--ss-radius);color:var(--ss-text);outline:none;cursor:pointer;min-width:130px;}
-  #ss-translate-output{min-height:70px;padding:12px 14px;font-size:14px;background:var(--ss-surface);border:1px solid var(--ss-border);border-radius:var(--ss-radius);color:var(--ss-text);line-height:1.6;white-space:pre-wrap;margin-bottom:12px;display:none;}
+  /* Translate — all selects hardcoded so host-page CSS cannot override */
+  #ss-panel select,
+  #ss-panel select.ss-select {
+    padding:9px 11px !important;
+    font-size:13px !important;
+    background:#1e2230 !important;
+    border:1px solid #2a2f42 !important;
+    border-radius:12px !important;
+    color:#e8eaf0 !important;
+    outline:none !important;
+    cursor:pointer !important;
+    min-width:130px !important;
+    appearance:auto !important;
+    -webkit-appearance:auto !important;
+    font-family:'Segoe UI',system-ui,sans-serif !important;
+    display:inline-block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+  }
+  #ss-panel select:focus {
+    border-color:#4f8ef7 !important;
+    box-shadow:0 0 0 2px rgba(79,142,247,.25) !important;
+  }
+  #ss-panel select option {
+    background:#1e2230 !important;
+    color:#e8eaf0 !important;
+    font-size:13px !important;
+  }
+  #ss-translate-output{min-height:70px;padding:12px 14px;font-size:14px;background:#161922;border:1px solid #2a2f42;border-radius:12px;color:#e8eaf0;line-height:1.6;white-space:pre-wrap;margin-bottom:12px;display:none;}
   @media(max-width:540px){
     #ss-overlay{padding:0;align-items:flex-end;}
     #ss-panel{border-radius:20px 20px 0 0;max-width:100%;}
@@ -6847,6 +6871,7 @@ hint.textContent='Ctrl+K';document.body.appendChild(hint);
 setTimeout(function(){hint.style.opacity='0';hint.style.transition='opacity 1.2s';setTimeout(function(){hint.remove();},1200);},4500);
 })();
 </script>
-<!-- ══════════ END SMART SEARCH WIDGET ══════════ -->
+<!-- ══════════ END SMART SEARCH WIDGET ══════════ -->   
+
 </body>
 </html>
