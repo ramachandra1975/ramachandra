@@ -5971,6 +5971,882 @@ if (typeof SEARCH_INDEX !== 'undefined') {
      END: RAGA CREATION PRO INJECTABLE BLOCK
      
 ════════════════════════════════════════════════════════════════════════════ -->
+  <!-- ============================================================
+  SMART SEARCH + AUTO-TRANSLATE + PDF/CASE STUDY + BUG FIXER
+  Paste this block just before </body> in any existing HTML file.
+  No API keys. No server. Fully client-side.
+  ============================================================ -->
 
+<style>
+  :root {
+    --ss-bg:#0d0f14;--ss-surface:#161922;--ss-card:#1e2230;--ss-border:#2a2f42;
+    --ss-accent:#4f8ef7;--ss-accent2:#a78bfa;--ss-success:#34d399;--ss-warn:#fbbf24;
+    --ss-danger:#f87171;--ss-text:#e8eaf0;--ss-muted:#7880a0;--ss-radius:12px;
+    --ss-font:'Segoe UI',system-ui,sans-serif;
+  }
+  #ss-launcher{position:fixed;bottom:28px;right:28px;z-index:99999;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#4f8ef7,#a78bfa);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(79,142,247,.45);display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;}
+  #ss-launcher:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(79,142,247,.65);}
+  #ss-launcher svg{width:26px;height:26px;fill:#fff;}
+  #ss-overlay{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:4vh 16px;overflow-y:auto;}
+  #ss-overlay.open{display:flex;}
+  #ss-panel{background:var(--ss-bg);border:1px solid var(--ss-border);border-radius:20px;width:100%;max-width:900px;font-family:var(--ss-font);color:var(--ss-text);overflow:hidden;animation:ssSlide .22s ease;}
+  @keyframes ssSlide{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+  #ss-header{display:flex;align-items:center;justify-content:space-between;padding:16px 22px 13px;border-bottom:1px solid var(--ss-border);background:var(--ss-surface);}
+  #ss-header h2{margin:0;font-size:15px;font-weight:600;background:linear-gradient(90deg,#4f8ef7,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  #ss-close{background:none;border:none;cursor:pointer;color:var(--ss-muted);font-size:22px;line-height:1;padding:0 2px;}
+  #ss-close:hover{color:var(--ss-text);}
+  #ss-tabs{display:flex;gap:3px;padding:12px 22px 0;border-bottom:1px solid var(--ss-border);overflow-x:auto;flex-wrap:nowrap;}
+  .ss-tab{padding:7px 13px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid transparent;border-bottom:none;border-radius:7px 7px 0 0;background:none;color:var(--ss-muted);transition:all .15s;white-space:nowrap;}
+  .ss-tab.active{background:var(--ss-card);border-color:var(--ss-border);color:var(--ss-text);}
+  .ss-tab:hover:not(.active){color:var(--ss-text);}
+  .ss-pane{display:none;padding:18px 22px;}
+  .ss-pane.active{display:block;}
+  /* Shared inputs */
+  .ss-input{width:100%;padding:10px 13px;font-size:14px;background:var(--ss-card);border:1px solid var(--ss-border);border-radius:var(--ss-radius);color:var(--ss-text);outline:none;transition:border-color .15s;box-sizing:border-box;font-family:var(--ss-font);}
+  .ss-input:focus{border-color:var(--ss-accent);}
+  .ss-input::placeholder{color:var(--ss-muted);}
+  .ss-row{display:flex;gap:8px;margin-bottom:11px;flex-wrap:wrap;align-items:center;}
+  .ss-btn{padding:10px 17px;font-size:13px;font-weight:600;border:none;border-radius:var(--ss-radius);cursor:pointer;background:var(--ss-accent);color:#fff;transition:opacity .15s;white-space:nowrap;}
+  .ss-btn:hover{opacity:.88;}
+  .ss-btn.sec{background:var(--ss-card);border:1px solid var(--ss-border);color:var(--ss-text);font-weight:500;}
+  .ss-btn.sec:hover{border-color:var(--ss-accent);color:var(--ss-accent);}
+  .ss-btn.warn{background:#b45309;color:#fff;}
+  .ss-btn.success{background:#065f46;color:#fff;}
+  .ss-pill{padding:5px 11px;font-size:12px;border:1px solid var(--ss-border);border-radius:20px;cursor:pointer;background:none;color:var(--ss-muted);transition:all .15s;}
+  .ss-pill.active{background:var(--ss-accent);border-color:var(--ss-accent);color:#fff;}
+  .ss-pill:hover:not(.active){border-color:var(--ss-accent);color:var(--ss-accent);}
+  /* Results */
+  .ss-result-card{padding:13px 15px;margin-bottom:9px;background:var(--ss-card);border:1px solid var(--ss-border);border-radius:var(--ss-radius);transition:border-color .15s;}
+  .ss-result-card:hover{border-color:var(--ss-accent);}
+  .ss-result-card a{color:var(--ss-accent);font-size:14px;font-weight:600;text-decoration:none;}
+  .ss-result-card a:hover{text-decoration:underline;}
+  .ss-result-url{font-size:11px;color:var(--ss-success);margin:3px 0 5px;word-break:break-all;}
+  .ss-result-desc{font-size:13px;color:var(--ss-muted);line-height:1.5;}
+  .ss-result-desc mark,.ss-result-card mark{background:rgba(79,142,247,.25);color:var(--ss-text);border-radius:3px;padding:0 2px;}
+  .ss-badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;margin-left:6px;vertical-align:middle;}
+  .ss-badge.pdf{background:rgba(248,113,113,.18);color:#f87171;border:1px solid rgba(248,113,113,.3);}
+  .ss-badge.case{background:rgba(52,211,153,.18);color:#34d399;border:1px solid rgba(52,211,153,.3);}
+  .ss-badge.free{background:rgba(251,191,36,.18);color:#fbbf24;border:1px solid rgba(251,191,36,.3);}
+  .ss-empty{text-align:center;color:var(--ss-muted);padding:28px 0;font-size:14px;}
+  .ss-spinner{text-align:center;padding:26px 0;}
+  .ss-spinner::after{content:'';display:inline-block;width:26px;height:26px;border:3px solid var(--ss-border);border-top-color:var(--ss-accent);border-radius:50%;animation:ssSpin .7s linear infinite;}
+  @keyframes ssSpin{to{transform:rotate(360deg)}}
+  #ss-status,#ss-pdf-status,#ss-bug-status{font-size:12px;color:var(--ss-muted);margin-bottom:9px;min-height:17px;}
+  /* Page search */
+  .ss-hit{padding:10px 13px;margin-bottom:7px;background:var(--ss-card);border:1px solid var(--ss-border);border-radius:var(--ss-radius);font-size:13px;line-height:1.6;}
+  .ss-hit mark{background:rgba(167,139,250,.3);color:var(--ss-text);border-radius:3px;padding:0 2px;}
+  .ss-hit .ss-ctx{color:var(--ss-muted);font-size:11px;margin-top:3px;}
+  /* Bug detector */
+  #ss-bug-input{width:100%;min-height:160px;padding:12px 14px;font-size:13px;font-family:'Consolas','Fira Mono',monospace;background:var(--ss-card);border:1px solid var(--ss-border);border-radius:var(--ss-radius);color:var(--ss-text);outline:none;resize:vertical;box-sizing:border-box;line-height:1.55;transition:border-color .15s;}
+  #ss-bug-input:focus{border-color:var(--ss-accent);}
+  #ss-bug-output{font-size:13px;line-height:1.6;}
+  .ss-bug-issue{padding:11px 14px;margin-bottom:8px;border-radius:var(--ss-radius);border-left:3px solid var(--ss-danger);background:rgba(248,113,113,.07);}
+  .ss-bug-issue.warn{border-color:var(--ss-warn);background:rgba(251,191,36,.07);}
+  .ss-bug-issue.info{border-color:var(--ss-accent);background:rgba(79,142,247,.07);}
+  .ss-bug-issue .ss-bug-title{font-size:13px;font-weight:600;color:var(--ss-text);margin-bottom:4px;}
+  .ss-bug-issue .ss-bug-fix{font-size:12px;color:var(--ss-muted);font-family:monospace;margin-top:5px;background:var(--ss-surface);padding:6px 10px;border-radius:7px;white-space:pre-wrap;word-break:break-all;}
+  .ss-bug-ok{padding:14px;text-align:center;color:var(--ss-success);font-size:14px;background:rgba(52,211,153,.07);border-radius:var(--ss-radius);border:1px solid rgba(52,211,153,.2);}
+  #ss-fixed-output{display:none;width:100%;min-height:100px;padding:12px 14px;font-size:13px;font-family:'Consolas','Fira Mono',monospace;background:var(--ss-surface);border:1px solid rgba(52,211,153,.3);border-radius:var(--ss-radius);color:var(--ss-text);line-height:1.55;resize:vertical;box-sizing:border-box;margin-top:10px;}
+  /* Translate */
+  .ss-select{padding:9px 11px;font-size:13px;background:var(--ss-card);border:1px solid var(--ss-border);border-radius:var(--ss-radius);color:var(--ss-text);outline:none;cursor:pointer;min-width:130px;}
+  #ss-translate-output{min-height:70px;padding:12px 14px;font-size:14px;background:var(--ss-surface);border:1px solid var(--ss-border);border-radius:var(--ss-radius);color:var(--ss-text);line-height:1.6;white-space:pre-wrap;margin-bottom:12px;display:none;}
+  @media(max-width:540px){
+    #ss-overlay{padding:0;align-items:flex-end;}
+    #ss-panel{border-radius:20px 20px 0 0;max-width:100%;}
+    #ss-launcher{bottom:20px;right:18px;}
+  }
+</style>
+
+<button id="ss-launcher" title="Smart Search · PDF · Bug Fixer (Ctrl+K)" onclick="ssOpen()">
+  <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+</button>
+
+<div id="ss-overlay">
+ <div id="ss-panel">
+  <div id="ss-header">
+   <h2>⚡ Smart Search · PDF · Case Studies · Bug Fixer</h2>
+   <button id="ss-close" onclick="ssClose()">×</button>
+  </div>
+  <div id="ss-tabs">
+   <button class="ss-tab active" onclick="ssTab('web')">🌐 Web Search</button>
+   <button class="ss-tab" onclick="ssTab('pdf')">📄 PDF &amp; Papers</button>
+   <button class="ss-tab" onclick="ssTab('case')">🔬 Case Studies</button>
+   <button class="ss-tab" onclick="ssTab('page')">🔎 Page Search</button>
+   <button class="ss-tab" onclick="ssTab('bug')">🐛 Bug Fixer</button>
+   <button class="ss-tab" onclick="ssTab('translate')">🌍 Translate</button>
+  </div>
+
+  <!-- ═══ WEB SEARCH ═══ -->
+  <div class="ss-pane active" id="ss-pane-web">
+   <div class="ss-row" id="ss-mode-row">
+    <span style="font-size:12px;color:var(--ss-muted)">Mode:</span>
+    <button class="ss-pill active" data-mode="smart" onclick="ssMode(this)">🧠 Smart</button>
+    <button class="ss-pill" data-mode="exact" onclick="ssMode(this)">🔍 Exact Phrase</button>
+    <button class="ss-pill" data-mode="word" onclick="ssMode(this)">📌 Exact Word</button>
+    <button class="ss-pill" data-mode="line" onclick="ssMode(this)">📋 Exact Line</button>
+   </div>
+   <div class="ss-row">
+    <input id="ss-query" class="ss-input" style="flex:1;min-width:180px" type="text" placeholder="Natural language or keyword search…" onkeydown="if(event.key==='Enter')ssSearch()" autocomplete="off" spellcheck="false"/>
+    <button class="ss-btn" onclick="ssSearch()">Search</button>
+   </div>
+   <div class="ss-row" id="ss-engine-row">
+    <span style="font-size:12px;color:var(--ss-muted)">Engine:</span>
+    <button class="ss-pill active" data-eng="google" onclick="ssEng(this)">Google</button>
+    <button class="ss-pill" data-eng="bing" onclick="ssEng(this)">Bing</button>
+    <button class="ss-pill" data-eng="ddg" onclick="ssEng(this)">DuckDuckGo</button>
+    <button class="ss-pill" data-eng="scholar" onclick="ssEng(this)">Scholar</button>
+    <button class="ss-pill" data-eng="wiki" onclick="ssEng(this)">Wikipedia</button>
+    <button class="ss-pill" data-eng="news" onclick="ssEng(this)">News</button>
+   </div>
+   <div id="ss-status"></div>
+   <div id="ss-results"><div class="ss-empty">Enter a query above and press Search ↑</div></div>
+  </div>
+
+  <!-- ═══ PDF & PAPERS ═══ -->
+  <div class="ss-pane" id="ss-pane-pdf">
+   <p style="font-size:13px;color:var(--ss-muted);margin:0 0 11px">Find real, live PDF documents — research papers, reports, theses, whitepapers — by exact topic, keyword, or phrase.</p>
+   <div class="ss-row">
+    <input id="ss-pdf-query" class="ss-input" style="flex:1;min-width:180px" type="text" placeholder="e.g. machine learning healthcare outcomes 2023" onkeydown="if(event.key==='Enter')ssPdfSearch()" autocomplete="off" spellcheck="false"/>
+    <button class="ss-btn" onclick="ssPdfSearch()">Find PDFs</button>
+   </div>
+   <div class="ss-row">
+    <span style="font-size:12px;color:var(--ss-muted)">Source:</span>
+    <button class="ss-pill active" data-psrc="all" onclick="ssPdfSrc(this)">All Sources</button>
+    <button class="ss-pill" data-psrc="arxiv" onclick="ssPdfSrc(this)">arXiv</button>
+    <button class="ss-pill" data-psrc="semantic" onclick="ssPdfSrc(this)">Semantic Scholar</button>
+    <button class="ss-pill" data-psrc="pubmed" onclick="ssPdfSrc(this)">PubMed</button>
+    <button class="ss-pill" data-psrc="eric" onclick="ssPdfSrc(this)">ERIC (Education)</button>
+    <button class="ss-pill" data-psrc="core" onclick="ssPdfSrc(this)">CORE.ac.uk</button>
+    <button class="ss-pill" data-psrc="doaj" onclick="ssPdfSrc(this)">DOAJ</button>
+   </div>
+   <div class="ss-row">
+    <span style="font-size:12px;color:var(--ss-muted)">Match:</span>
+    <button class="ss-pill active" data-pmatch="smart" onclick="ssPdfMatch(this)">Smart</button>
+    <button class="ss-pill" data-pmatch="exact" onclick="ssPdfMatch(this)">Exact Phrase</button>
+    <button class="ss-pill" data-pmatch="word" onclick="ssPdfMatch(this)">Exact Word</button>
+   </div>
+   <div id="ss-pdf-status"></div>
+   <div id="ss-pdf-results"><div class="ss-empty">Search for any topic to find open-access PDF documents.</div></div>
+  </div>
+
+  <!-- ═══ CASE STUDIES ═══ -->
+  <div class="ss-pane" id="ss-pane-case">
+   <p style="font-size:13px;color:var(--ss-muted);margin:0 0 11px">Find real, live case studies and applied research by exact topic. Opens direct links — no login needed.</p>
+   <div class="ss-row">
+    <input id="ss-case-query" class="ss-input" style="flex:1;min-width:180px" type="text" placeholder="e.g. AI in supply chain management India" onkeydown="if(event.key==='Enter')ssCaseSearch()" autocomplete="off" spellcheck="false"/>
+    <button class="ss-btn" onclick="ssCaseSearch()">Find Case Studies</button>
+   </div>
+   <div class="ss-row">
+    <span style="font-size:12px;color:var(--ss-muted)">Domain:</span>
+    <button class="ss-pill active" data-cdomain="all" onclick="ssCaseDomain(this)">All</button>
+    <button class="ss-pill" data-cdomain="business" onclick="ssCaseDomain(this)">Business</button>
+    <button class="ss-pill" data-cdomain="medical" onclick="ssCaseDomain(this)">Medical</button>
+    <button class="ss-pill" data-cdomain="engineering" onclick="ssCaseDomain(this)">Engineering</button>
+    <button class="ss-pill" data-cdomain="education" onclick="ssCaseDomain(this)">Education</button>
+    <button class="ss-pill" data-cdomain="social" onclick="ssCaseDomain(this)">Social Science</button>
+    <button class="ss-pill" data-cdomain="law" onclick="ssCaseDomain(this)">Law &amp; Policy</button>
+    <button class="ss-pill" data-cdomain="env" onclick="ssCaseDomain(this)">Environment</button>
+   </div>
+   <div id="ss-case-status"></div>
+   <div id="ss-case-results"><div class="ss-empty">Search above to find real case studies from academic &amp; industry sources.</div></div>
+  </div>
+
+  <!-- ═══ PAGE SEARCH ═══ -->
+  <div class="ss-pane" id="ss-pane-page">
+   <p style="font-size:13px;color:var(--ss-muted);margin:0 0 11px">Find any word, phrase, or exact line anywhere on this page in real time.</p>
+   <div class="ss-row">
+    <input id="ss-page-query" class="ss-input" style="flex:1;min-width:180px" type="text" placeholder="Type to search this page…" oninput="ssPageSearch(this.value)" autocomplete="off" spellcheck="false"/>
+    <button class="ss-btn sec" onclick="ssPageClear()">Clear</button>
+   </div>
+   <div id="ss-page-jump-row" class="ss-row" style="flex-wrap:wrap;gap:6px"></div>
+   <div id="ss-page-hits" style="font-size:12px;color:var(--ss-muted);margin-bottom:8px"></div>
+   <div id="ss-page-results"><div class="ss-empty">Start typing to find text on this page.</div></div>
+  </div>
+
+  <!-- ═══ BUG FIXER ═══ -->
+  <div class="ss-pane" id="ss-pane-bug">
+   <p style="font-size:13px;color:var(--ss-muted);margin:0 0 11px">Paste any HTML code below. The detector finds broken tags, missing attributes, bad nesting, accessibility issues, deprecated elements and auto-fixes them.</p>
+   <textarea id="ss-bug-input" class="ss-input" placeholder="Paste your HTML code here…" spellcheck="false" onpaste="setTimeout(ssBugDetect,100)" oninput="ssBugDetect()"></textarea>
+   <div class="ss-row" style="margin-top:10px">
+    <button class="ss-btn" onclick="ssBugDetect()">🔍 Detect Issues</button>
+    <button class="ss-btn success" onclick="ssBugFix()">🔧 Auto-Fix &amp; Copy</button>
+    <button class="ss-btn sec" onclick="document.getElementById('ss-bug-input').value='';document.getElementById('ss-bug-output').innerHTML='';document.getElementById('ss-fixed-output').style.display='none';document.getElementById('ss-bug-status').textContent=''">Clear</button>
+   </div>
+   <div id="ss-bug-status"></div>
+   <div id="ss-bug-output"></div>
+   <textarea id="ss-fixed-output" readonly placeholder="Fixed code will appear here…"></textarea>
+  </div>
+
+  <!-- ═══ TRANSLATE ═══ -->
+  <div class="ss-pane" id="ss-pane-translate">
+   <div class="ss-row">
+    <select id="ss-src-lang" class="ss-select">
+     <option value="auto">Detect language</option>
+     <option value="en">English</option><option value="hi">Hindi</option>
+     <option value="te">Telugu</option><option value="ta">Tamil</option>
+     <option value="kn">Kannada</option><option value="ml">Malayalam</option>
+     <option value="mr">Marathi</option><option value="gu">Gujarati</option>
+     <option value="bn">Bengali</option><option value="ur">Urdu</option>
+     <option value="fr">French</option><option value="de">German</option>
+     <option value="es">Spanish</option><option value="pt">Portuguese</option>
+     <option value="it">Italian</option><option value="ja">Japanese</option>
+     <option value="zh">Chinese</option><option value="ko">Korean</option>
+     <option value="ar">Arabic</option><option value="ru">Russian</option>
+    </select>
+    <span style="align-self:center;color:var(--ss-muted);font-size:18px">→</span>
+    <select id="ss-tgt-lang" class="ss-select">
+     <option value="en" selected>English</option><option value="te">Telugu</option>
+     <option value="hi">Hindi</option><option value="ta">Tamil</option>
+     <option value="kn">Kannada</option><option value="ml">Malayalam</option>
+     <option value="mr">Marathi</option><option value="gu">Gujarati</option>
+     <option value="bn">Bengali</option><option value="ur">Urdu</option>
+     <option value="fr">French</option><option value="de">German</option>
+     <option value="es">Spanish</option><option value="pt">Portuguese</option>
+     <option value="it">Italian</option><option value="ja">Japanese</option>
+     <option value="zh">Chinese</option><option value="ko">Korean</option>
+     <option value="ar">Arabic</option><option value="ru">Russian</option>
+    </select>
+    <button class="ss-btn" onclick="ssTranslateText()">Translate</button>
+   </div>
+   <textarea id="ss-translate-input" class="ss-input" style="min-height:80px;resize:vertical;margin-bottom:10px" placeholder="Paste text to translate…"></textarea>
+   <div id="ss-translate-output"></div>
+   <div style="border-top:1px solid var(--ss-border);margin:12px 0 10px"></div>
+   <p style="font-size:13px;color:var(--ss-muted);margin:0 0 8px">🌐 Translate an entire webpage including all its subdomains:</p>
+   <div class="ss-row">
+    <input id="ss-page-url" class="ss-input" style="flex:1" type="url" placeholder="https://example.com (or blank = current page)"/>
+    <button class="ss-btn" onclick="ssTranslatePage()">Open Translated</button>
+   </div>
+   <button class="ss-btn sec" style="font-size:13px;margin-bottom:4px" onclick="ssTranslateThisPage()">🔄 Translate THIS page now</button>
+   <div style="font-size:11px;color:var(--ss-muted);margin-top:6px">Powered by Google Translate — covers full page + all subdomains. No sign-in needed.</div>
+  </div>
+
+ </div><!-- /panel -->
+</div><!-- /overlay -->
+
+<script>
+(function(){
+var _mode='smart',_engine='google',_pdfSrc='all',_pdfMatch='smart',_caseDomain='all',_pageNodes=[];
+
+/* ── open/close ── */
+window.ssOpen=function(){document.getElementById('ss-overlay').classList.add('open');};
+window.ssClose=function(){document.getElementById('ss-overlay').classList.remove('open');ssPageClear();};
+document.getElementById('ss-overlay').addEventListener('click',function(e){if(e.target===this)ssClose();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')ssClose();if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();ssOpen();}});
+
+/* ── tabs ── */
+window.ssTab=function(name){
+  var names=['web','pdf','case','page','bug','translate'];
+  document.querySelectorAll('.ss-tab').forEach(function(t,i){t.classList.toggle('active',names[i]===name);});
+  document.querySelectorAll('.ss-pane').forEach(function(p){p.classList.remove('active');});
+  document.getElementById('ss-pane-'+name).classList.add('active');
+};
+
+/* ── pill helpers ── */
+function activePill(btn,group){document.querySelectorAll(group).forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
+
+window.ssMode=function(btn){_mode=btn.dataset.mode;activePill(btn,'[data-mode]');};
+window.ssEng=function(btn){_engine=btn.dataset.eng;activePill(btn,'[data-eng]');};
+window.ssPdfSrc=function(btn){_pdfSrc=btn.dataset.psrc;activePill(btn,'[data-psrc]');};
+window.ssPdfMatch=function(btn){_pdfMatch=btn.dataset.pmatch;activePill(btn,'[data-pmatch]');};
+window.ssCaseDomain=function(btn){_caseDomain=btn.dataset.cdomain;activePill(btn,'[data-cdomain]');};
+
+/* ── utils ── */
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function setEl(id,html){var el=document.getElementById(id);if(el)el.innerHTML=html;}
+function setTxt(id,txt){var el=document.getElementById(id);if(el)el.textContent=txt;}
+function hlWords(text,raw){
+  if(!raw)return text;
+  var words=raw.trim().split(/\s+/).filter(Boolean);
+  var pat=words.map(function(w){return w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}).join('|');
+  try{return text.replace(new RegExp('('+pat+')','gi'),'<mark>$1</mark>');}catch(e){return text;}
+}
+function buildQ(raw,mode){
+  var q=raw.trim();
+  if(mode==='exact')return '"'+q.replace(/"/g,'')+'"';
+  if(mode==='word')return q.split(/\s+/).map(function(w){return'+'+w;}).join(' ');
+  if(mode==='line')return '"'+q.replace(/"/g,'')+'"';
+  return q;
+}
+function openURL(url){window.open(url,'_blank','noopener');}
+
+/* ════════════════════════════════
+   WEB SEARCH
+════════════════════════════════ */
+var _engineURLs={
+  google:function(q){return'https://www.google.com/search?q='+encodeURIComponent(q)+'&num=10';},
+  bing:function(q){return'https://www.bing.com/search?q='+encodeURIComponent(q);},
+  ddg:function(q){return'https://duckduckgo.com/?q='+encodeURIComponent(q)+'&kl=in-en';},
+  scholar:function(q){return'https://scholar.google.com/scholar?q='+encodeURIComponent(q);},
+  wiki:function(q){return'https://en.wikipedia.org/w/index.php?search='+encodeURIComponent(q);},
+  news:function(q){return'https://news.google.com/search?q='+encodeURIComponent(q)+'&hl=en-IN&gl=IN';}
+};
+
+window.ssSearch=function(){
+  var raw=document.getElementById('ss-query').value.trim();
+  if(!raw){setEl('ss-status','<span style="color:var(--ss-warn)">⚠ Enter a search query.</span>');return;}
+  var q=buildQ(raw,_mode);
+  setEl('ss-status','Searching for <b>'+esc(q)+'</b> via '+_engine+'…');
+  setEl('ss-results','<div class="ss-spinner"></div>');
+  if(_engine==='wiki'){fetchWiki(q,raw);}
+  else{fetchDDG(q,raw);}
+};
+
+function fetchWiki(q,raw){
+  var url='https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch='+encodeURIComponent(q)+'&srlimit=8&format=json&origin=*&srprop=snippet';
+  fetch(url).then(function(r){return r.json();}).then(function(data){
+    var items=(data.query&&data.query.search)||[];
+    if(!items.length){fallbackTab(q,'wiki');return;}
+    setEl('ss-status','Found <b>'+items.length+'</b> Wikipedia results for <b>'+esc(q)+'</b>');
+    var html='';
+    items.forEach(function(item){
+      var link='https://en.wikipedia.org/wiki/'+encodeURIComponent(item.title);
+      var desc=item.snippet.replace(/<[^>]+>/g,'');
+      html+='<div class="ss-result-card"><a href="'+link+'" target="_blank" rel="noopener">'+esc(item.title)+'</a><div class="ss-result-url">'+link+'</div><div class="ss-result-desc">'+hlWords(esc(desc),raw)+'</div></div>';
+    });
+    setEl('ss-results',html);
+  }).catch(function(){fallbackTab(q,'wiki');});
+}
+
+function fetchDDG(q,raw){
+  var url='https://api.duckduckgo.com/?q='+encodeURIComponent(q)+'&format=json&no_html=1&skip_disambig=1';
+  fetch(url).then(function(r){return r.json();}).then(function(data){
+    var results=[];
+    if(data.AbstractText&&data.AbstractURL)results.push({title:data.Heading||q,url:data.AbstractURL,desc:data.AbstractText});
+    (data.RelatedTopics||[]).forEach(function(t){
+      if(t.FirstURL&&t.Text)results.push({title:t.Text.substring(0,70),url:t.FirstURL,desc:t.Text});
+      else if(t.Topics)(t.Topics||[]).forEach(function(s){if(s.FirstURL&&s.Text)results.push({title:s.Text.substring(0,70),url:s.FirstURL,desc:s.Text});});
+    });
+    if(!results.length){fallbackTab(q,_engine);return;}
+    setEl('ss-status','Found <b>'+results.length+'</b> results for <b>'+esc(q)+'</b>');
+    var html='';
+    results.slice(0,14).forEach(function(item){
+      html+='<div class="ss-result-card"><a href="'+esc(item.url)+'" target="_blank" rel="noopener">'+hlWords(esc(item.title),raw)+'</a><div class="ss-result-url">'+esc(item.url)+'</div><div class="ss-result-desc">'+hlWords(esc(item.desc),raw)+'</div></div>';
+    });
+    setEl('ss-results',html);
+  }).catch(function(){fallbackTab(q,_engine);});
+}
+
+function fallbackTab(q,eng){
+  var url=(_engineURLs[eng]||_engineURLs.google)(q);
+  openURL(url);
+  setEl('ss-status','Opening '+eng+' in new tab…');
+  setEl('ss-results','<div class="ss-empty">Opened in a new tab. <a href="'+url+'" target="_blank" style="color:var(--ss-accent)">Click here if it didn\'t open →</a></div>');
+}
+
+/* ════════════════════════════════
+   PDF & PAPERS SEARCH
+════════════════════════════════ */
+window.ssPdfSearch=function(){
+  var raw=document.getElementById('ss-pdf-query').value.trim();
+  if(!raw){setEl('ss-pdf-status','<span style="color:var(--ss-warn)">⚠ Enter a topic to search.</span>');return;}
+  var q=buildQ(raw,_pdfMatch);
+  setEl('ss-pdf-status','Searching for PDFs: <b>'+esc(q)+'</b>…');
+  setEl('ss-pdf-results','<div class="ss-spinner"></div>');
+
+  if(_pdfSrc==='arxiv'){fetchArxiv(q,raw);}
+  else if(_pdfSrc==='semantic'){fetchSemantic(q,raw);}
+  else if(_pdfSrc==='pubmed'){fetchPubMed(q,raw);}
+  else if(_pdfSrc==='core'){fetchCore(q,raw);}
+  else if(_pdfSrc==='eric'){openPdfFallback(q,'https://eric.ed.gov/?q='+encodeURIComponent(q)+'&ft=on','ERIC');}
+  else if(_pdfSrc==='doaj'){openPdfFallback(q,'https://doaj.org/search/articles?query='+encodeURIComponent(q),'DOAJ');}
+  else{fetchAllPdf(q,raw);}
+};
+
+function fetchArxiv(q,raw){
+  var clean=q.replace(/["']/g,'');
+  var url='https://export.arxiv.org/api/query?search_query=all:'+encodeURIComponent(clean)+'&start=0&max_results=10&sortBy=relevance&sortOrder=descending';
+  fetch(url).then(function(r){return r.text();}).then(function(xml){
+    var parser=new DOMParser();
+    var doc=parser.parseFromString(xml,'application/xml');
+    var entries=doc.querySelectorAll('entry');
+    if(!entries.length){pdfFallbackDDG(q,raw);return;}
+    setEl('ss-pdf-status','Found <b>'+entries.length+'</b> arXiv papers for <b>'+esc(q)+'</b>');
+    var html='';
+    entries.forEach(function(e){
+      var title=(e.querySelector('title')||{}).textContent||'Untitled';
+      var summary=(e.querySelector('summary')||{}).textContent||'';
+      var pdfLink='';
+      e.querySelectorAll('link').forEach(function(l){if(l.getAttribute('title')==='pdf')pdfLink=l.getAttribute('href');});
+      if(!pdfLink){var id=(e.querySelector('id')||{}).textContent||'';pdfLink=id.replace('abs','pdf');}
+      var authors=[];
+      e.querySelectorAll('author name').forEach(function(a){authors.push(a.textContent);});
+      html+='<div class="ss-result-card">'
+        +'<a href="'+esc(pdfLink)+'" target="_blank" rel="noopener">'+hlWords(esc(title.trim()),raw)+'</a>'
+        +'<span class="ss-badge pdf">PDF</span><span class="ss-badge free">Free</span>'
+        +'<div class="ss-result-url">arXiv · '+esc(authors.slice(0,3).join(', '))+(authors.length>3?' et al.':'')+'</div>'
+        +'<div class="ss-result-desc">'+hlWords(esc(summary.trim().substring(0,220)),raw)+'…</div>'
+        +'</div>';
+    });
+    setEl('ss-pdf-results',html);
+  }).catch(function(){pdfFallbackDDG(q,raw);});
+}
+
+function fetchSemantic(q,raw){
+  var url='https://api.semanticscholar.org/graph/v1/paper/search?query='+encodeURIComponent(q)+'&limit=10&fields=title,abstract,year,authors,openAccessPdf,externalIds';
+  fetch(url,{headers:{'Accept':'application/json'}}).then(function(r){return r.json();}).then(function(data){
+    var items=(data.data)||[];
+    if(!items.length){pdfFallbackDDG(q,raw);return;}
+    setEl('ss-pdf-status','Found <b>'+items.length+'</b> Semantic Scholar papers for <b>'+esc(q)+'</b>');
+    var html='';
+    items.forEach(function(p){
+      var pdfUrl=(p.openAccessPdf&&p.openAccessPdf.url)||'https://www.semanticscholar.org/paper/'+p.paperId;
+      var isPdf=!!(p.openAccessPdf&&p.openAccessPdf.url);
+      var authors=(p.authors||[]).slice(0,3).map(function(a){return a.name;}).join(', ');
+      html+='<div class="ss-result-card">'
+        +'<a href="'+esc(pdfUrl)+'" target="_blank" rel="noopener">'+hlWords(esc(p.title||'Untitled'),raw)+'</a>'
+        +(isPdf?'<span class="ss-badge pdf">PDF</span><span class="ss-badge free">Open Access</span>':'<span class="ss-badge case">Abstract</span>')
+        +'<div class="ss-result-url">Semantic Scholar · '+(p.year||'')+(authors?' · '+esc(authors):'')+'</div>'
+        +'<div class="ss-result-desc">'+hlWords(esc((p.abstract||'No abstract available.').substring(0,220)),raw)+'</div>'
+        +'</div>';
+    });
+    setEl('ss-pdf-results',html);
+  }).catch(function(){pdfFallbackDDG(q,raw);});
+}
+
+function fetchPubMed(q,raw){
+  var enc=encodeURIComponent(q.replace(/"/g,''));
+  var searchUrl='https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term='+enc+'&retmax=8&retmode=json&sort=relevance';
+  fetch(searchUrl).then(function(r){return r.json();}).then(function(data){
+    var ids=((data.esearchresult&&data.esearchresult.idlist)||[]);
+    if(!ids.length){pdfFallbackDDG(q,raw);return;}
+    var sumUrl='https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id='+ids.join(',')+'&retmode=json';
+    return fetch(sumUrl).then(function(r){return r.json();}).then(function(sumData){
+      var result=sumData.result||{};
+      setEl('ss-pdf-status','Found <b>'+ids.length+'</b> PubMed results for <b>'+esc(q)+'</b>');
+      var html='';
+      ids.forEach(function(id){
+        var paper=result[id]||{};
+        var title=paper.title||'PubMed Article '+id;
+        var authors=(paper.authors||[]).slice(0,3).map(function(a){return a.name;}).join(', ');
+        var year=(paper.pubdate||'').substring(0,4);
+        var link='https://pubmed.ncbi.nlm.nih.gov/'+id+'/';
+        var pmcId=paper.articleids&&paper.articleids.find(function(a){return a.idtype==='pmc';});
+        var pdfLink=pmcId?'https://www.ncbi.nlm.nih.gov/pmc/articles/'+pmcId.value+'/pdf/':link;
+        html+='<div class="ss-result-card">'
+          +'<a href="'+esc(pdfLink)+'" target="_blank" rel="noopener">'+hlWords(esc(title),raw)+'</a>'
+          +(pmcId?'<span class="ss-badge pdf">PDF</span><span class="ss-badge free">PMC Free</span>':'<span class="ss-badge case">PubMed</span>')
+          +'<div class="ss-result-url">PubMed · '+esc(year+(authors?' · '+authors:''))+'</div>'
+          +'<div class="ss-result-desc">'+esc((paper.source||'')+(paper.volume?' Vol.'+paper.volume:'')+(paper.pages?', pp.'+paper.pages:''))+'</div>'
+          +'</div>';
+      });
+      setEl('ss-pdf-results',html);
+    });
+  }).catch(function(){pdfFallbackDDG(q,raw);});
+}
+
+function fetchCore(q,raw){
+  var url='https://api.core.ac.uk/v3/search/outputs?q='+encodeURIComponent(q)+'&limit=10&sort=relevance';
+  fetch(url,{headers:{'Accept':'application/json'}}).then(function(r){return r.json();}).then(function(data){
+    var items=(data.results)||[];
+    if(!items.length){pdfFallbackDDG(q,raw);return;}
+    setEl('ss-pdf-status','Found <b>'+items.length+'</b> CORE results for <b>'+esc(q)+'</b>');
+    var html='';
+    items.forEach(function(p){
+      var pdfUrl=(p.downloadUrl)||('https://core.ac.uk/works/'+p.id);
+      html+='<div class="ss-result-card">'
+        +'<a href="'+esc(pdfUrl)+'" target="_blank" rel="noopener">'+hlWords(esc(p.title||'Untitled'),raw)+'</a>'
+        +'<span class="ss-badge pdf">PDF</span><span class="ss-badge free">Open Access</span>'
+        +'<div class="ss-result-url">CORE.ac.uk · '+(p.yearPublished||'')+'</div>'
+        +'<div class="ss-result-desc">'+hlWords(esc((p.abstract||'').substring(0,220)),raw)+'</div>'
+        +'</div>';
+    });
+    setEl('ss-pdf-results',html);
+  }).catch(function(){pdfFallbackDDG(q,raw);});
+}
+
+function fetchAllPdf(q,raw){
+  /* Parallel: arXiv + Semantic Scholar, merge */
+  var results=[];
+  var done=0;
+  function finish(){
+    done++;
+    if(done<2)return;
+    if(!results.length){pdfFallbackDDG(q,raw);return;}
+    setEl('ss-pdf-status','Found <b>'+results.length+'</b> open-access papers for <b>'+esc(q)+'</b>');
+    var html='';
+    results.slice(0,16).forEach(function(item){
+      html+='<div class="ss-result-card">'
+        +'<a href="'+esc(item.url)+'" target="_blank" rel="noopener">'+hlWords(esc(item.title),raw)+'</a>'
+        +'<span class="ss-badge pdf">PDF</span><span class="ss-badge free">'+esc(item.source)+'</span>'
+        +'<div class="ss-result-url">'+esc(item.meta)+'</div>'
+        +'<div class="ss-result-desc">'+hlWords(esc(item.desc),raw)+'</div>'
+        +'</div>';
+    });
+    setEl('ss-pdf-results',html);
+  }
+  /* arXiv */
+  var clean=q.replace(/["']/g,'');
+  fetch('https://export.arxiv.org/api/query?search_query=all:'+encodeURIComponent(clean)+'&start=0&max_results=8&sortBy=relevance&sortOrder=descending')
+  .then(function(r){return r.text();}).then(function(xml){
+    var parser=new DOMParser();
+    var doc=parser.parseFromString(xml,'application/xml');
+    doc.querySelectorAll('entry').forEach(function(e){
+      var title=(e.querySelector('title')||{}).textContent||'Untitled';
+      var summary=(e.querySelector('summary')||{}).textContent||'';
+      var pdfLink='';
+      e.querySelectorAll('link').forEach(function(l){if(l.getAttribute('title')==='pdf')pdfLink=l.getAttribute('href');});
+      if(!pdfLink){var id=(e.querySelector('id')||{}).textContent||'';pdfLink=id.replace('abs','pdf');}
+      var authors=[];e.querySelectorAll('author name').forEach(function(a){authors.push(a.textContent);});
+      results.push({url:pdfLink,title:title.trim(),source:'arXiv',meta:'arXiv · '+authors.slice(0,2).join(', '),desc:summary.trim().substring(0,200)});
+    });
+    finish();
+  }).catch(finish);
+  /* Semantic Scholar */
+  fetch('https://api.semanticscholar.org/graph/v1/paper/search?query='+encodeURIComponent(q)+'&limit=8&fields=title,abstract,year,authors,openAccessPdf')
+  .then(function(r){return r.json();}).then(function(data){
+    (data.data||[]).forEach(function(p){
+      if(!(p.openAccessPdf&&p.openAccessPdf.url))return;
+      var authors=(p.authors||[]).slice(0,2).map(function(a){return a.name;}).join(', ');
+      results.push({url:p.openAccessPdf.url,title:p.title||'Untitled',source:'Open Access',meta:'Semantic Scholar · '+(p.year||'')+(authors?' · '+authors:''),desc:(p.abstract||'').substring(0,200)});
+    });
+    finish();
+  }).catch(finish);
+}
+
+function pdfFallbackDDG(q,raw){
+  var gUrl='https://www.google.com/search?q='+encodeURIComponent(q+' filetype:pdf')+' site:researchgate.net OR site:academia.edu OR site:arxiv.org OR site:ncbi.nlm.nih.gov';
+  openURL(gUrl);
+  setEl('ss-pdf-status','Opening Google PDF search in new tab…');
+  setEl('ss-pdf-results','<div class="ss-empty">Direct API returned no results. Opened Google PDF search in a new tab.<br><a href="'+gUrl+'" target="_blank" style="color:var(--ss-accent)">Click here if it didn\'t open →</a></div>');
+}
+
+function openPdfFallback(q,url,name){
+  openURL(url);
+  setEl('ss-pdf-status','Opening '+name+' in new tab…');
+  setEl('ss-pdf-results','<div class="ss-empty">Opened <b>'+name+'</b> in a new tab.<br><a href="'+url+'" target="_blank" style="color:var(--ss-accent)">Click here →</a></div>');
+}
+
+/* ════════════════════════════════
+   CASE STUDIES
+════════════════════════════════ */
+var _caseSources={
+  all:[
+    {name:'Harvard Business Review',url:'https://hbr.org/search?term={q}&search_type=search-all'},
+    {name:'Google Scholar',url:'https://scholar.google.com/scholar?q={q}+case+study'},
+    {name:'ResearchGate',url:'https://www.researchgate.net/search?q={q}+case+study'},
+    {name:'SSRN',url:'https://papers.ssrn.com/sol3/results.cfm?RequestTimeout=50000000&txtkey={q}&rnnum=10&absnew=1'},
+    {name:'JSTOR',url:'https://www.jstor.org/action/doBasicSearch?Query={q}+case+study'},
+    {name:'Springer',url:'https://link.springer.com/search?query={q}+case+study'},
+    {name:'ScienceDirect',url:'https://www.sciencedirect.com/search?qs={q}+case+study'},
+    {name:'Wiley Online',url:'https://onlinelibrary.wiley.com/action/doSearch?query={q}+case+study'}
+  ],
+  business:[
+    {name:'Harvard Business Review',url:'https://hbr.org/search?term={q}&search_type=search-all'},
+    {name:'INSEAD Cases',url:'https://cases.insead.edu/case-search/results/?keywords={q}'},
+    {name:'Ivey Publishing',url:'https://www.iveypublishing.ca/s/search?searchText={q}'},
+    {name:'SSRN',url:'https://papers.ssrn.com/sol3/results.cfm?RequestTimeout=50000000&txtkey={q}+business+case'}
+  ],
+  medical:[
+    {name:'PubMed Case Reports',url:'https://pubmed.ncbi.nlm.nih.gov/?term={q}+case+report&filter=article_type.Case+Reports'},
+    {name:'BMJ Case Reports',url:'https://casereports.bmj.com/search/1?fulltext={q}'},
+    {name:'NEJM',url:'https://www.nejm.org/search#q={q}&page=1&facet=article-type:Case+Records'},
+    {name:'ScienceDirect Medical',url:'https://www.sciencedirect.com/search?qs={q}+case+study&pub=clinical'}
+  ],
+  engineering:[
+    {name:'IEEE Xplore',url:'https://ieeexplore.ieee.org/search/searchresult.jsp?newsearch=true&queryText={q}+case+study'},
+    {name:'ASCE Library',url:'https://ascelibrary.org/action/doSearch?query={q}+case+study'},
+    {name:'Springer Engineering',url:'https://link.springer.com/search?query={q}+case+study&facet-content-type=%22Article%22'},
+    {name:'ResearchGate Engineering',url:'https://www.researchgate.net/search?q={q}+case+study+engineering'}
+  ],
+  education:[
+    {name:'ERIC',url:'https://eric.ed.gov/?q={q}+case+study&ft=on'},
+    {name:'Education Research',url:'https://scholar.google.com/scholar?q={q}+education+case+study'},
+    {name:'JSTOR Education',url:'https://www.jstor.org/action/doBasicSearch?Query={q}+case+study+education'},
+    {name:'Taylor & Francis',url:'https://www.tandfonline.com/action/doSearch?query={q}+case+study'}
+  ],
+  social:[
+    {name:'SSRN Social',url:'https://papers.ssrn.com/sol3/results.cfm?RequestTimeout=50000000&txtkey={q}+case+study'},
+    {name:'JSTOR Social',url:'https://www.jstor.org/action/doBasicSearch?Query={q}+case+study+social'},
+    {name:'Google Scholar Social',url:'https://scholar.google.com/scholar?q={q}+social+science+case+study'},
+    {name:'Sage Journals',url:'https://journals.sagepub.com/action/doSearch?query={q}+case+study'}
+  ],
+  law:[
+    {name:'Google Scholar Legal',url:'https://scholar.google.com/scholar?q={q}+case+law'},
+    {name:'JSTOR Law',url:'https://www.jstor.org/action/doBasicSearch?Query={q}+legal+case'},
+    {name:'SSRN Law',url:'https://papers.ssrn.com/sol3/results.cfm?RequestTimeout=50000000&txtkey={q}+law'},
+    {name:'HeinOnline',url:'https://heinonline.org/HOL/SimpleSearchFull?query={q}&collection=journals'}
+  ],
+  env:[
+    {name:'Science.gov',url:'https://www.science.gov/scigov/desktop/en/search.html?q={q}+environment+case+study'},
+    {name:'Springer Env',url:'https://link.springer.com/search?query={q}+environmental+case+study'},
+    {name:'Google Scholar Env',url:'https://scholar.google.com/scholar?q={q}+environment+case+study'},
+    {name:'ResearchGate Env',url:'https://www.researchgate.net/search?q={q}+environment+case+study'}
+  ]
+};
+
+window.ssCaseSearch=function(){
+  var raw=document.getElementById('ss-case-query').value.trim();
+  if(!raw){setEl('ss-case-status','<span style="color:var(--ss-warn)">⚠ Enter a topic.</span>');return;}
+  var enc=encodeURIComponent(raw);
+  var sources=_caseSources[_caseDomain]||_caseSources.all;
+  setEl('ss-case-status','Loading <b>'+sources.length+'</b> case study sources for <b>'+esc(raw)+'</b>…');
+  /* Try Semantic Scholar for real inline results */
+  var ssUrl='https://api.semanticscholar.org/graph/v1/paper/search?query='+encodeURIComponent(raw+' case study')+'&limit=8&fields=title,abstract,year,authors,openAccessPdf,externalIds,venue';
+  fetch(ssUrl,{headers:{'Accept':'application/json'}}).then(function(r){return r.json();}).then(function(data){
+    var items=(data.data)||[];
+    var html='';
+    if(items.length){
+      setEl('ss-case-status','Found <b>'+items.length+'</b> case studies for <b>'+esc(raw)+'</b>');
+      items.forEach(function(p){
+        var pdfUrl=(p.openAccessPdf&&p.openAccessPdf.url)||('https://www.semanticscholar.org/paper/'+p.paperId);
+        var isPdf=!!(p.openAccessPdf&&p.openAccessPdf.url);
+        var authors=(p.authors||[]).slice(0,3).map(function(a){return a.name;}).join(', ');
+        html+='<div class="ss-result-card">'
+          +'<a href="'+esc(pdfUrl)+'" target="_blank" rel="noopener">'+hlWords(esc(p.title||'Untitled'),raw)+'</a>'
+          +'<span class="ss-badge case">Case Study</span>'
+          +(isPdf?'<span class="ss-badge free">Open Access</span>':'')
+          +'<div class="ss-result-url">'+(p.venue?esc(p.venue)+' · ':'')+(p.year||'')+(authors?' · '+esc(authors):'')+'</div>'
+          +'<div class="ss-result-desc">'+hlWords(esc((p.abstract||'No abstract available.').substring(0,240)),raw)+'</div>'
+          +'</div>';
+      });
+    }
+    /* Always append links to all curated databases */
+    html+='<div style="border-top:1px solid var(--ss-border);margin:14px 0 10px"></div>'
+      +'<div style="font-size:12px;color:var(--ss-muted);margin-bottom:8px">🔗 Search directly in curated databases:</div>'
+      +'<div style="display:flex;flex-wrap:wrap;gap:7px">';
+    sources.forEach(function(s){
+      var url=s.url.replace('{q}',enc);
+      html+='<a href="'+esc(url)+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;padding:6px 12px;font-size:12px;background:var(--ss-card);border:1px solid var(--ss-border);border-radius:8px;color:var(--ss-accent);text-decoration:none;transition:border-color .15s" onmouseover="this.style.borderColor=\'var(--ss-accent)\'" onmouseout="this.style.borderColor=\'var(--ss-border)\'">'+esc(s.name)+' ↗</a>';
+    });
+    html+='</div>';
+    setEl('ss-case-results',html);
+  }).catch(function(){
+    setEl('ss-case-status','Showing curated database links for <b>'+esc(raw)+'</b>');
+    var html='<div style="display:flex;flex-wrap:wrap;gap:7px">';
+    sources.forEach(function(s){
+      var url=s.url.replace('{q}',enc);
+      html+='<a href="'+esc(url)+'" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;padding:8px 13px;font-size:12px;background:var(--ss-card);border:1px solid var(--ss-border);border-radius:8px;color:var(--ss-accent);text-decoration:none">'+esc(s.name)+' ↗</a>';
+    });
+    html+='</div>';
+    setEl('ss-case-results',html);
+  });
+};
+
+/* ════════════════════════════════
+   PAGE SEARCH
+════════════════════════════════ */
+window.ssPageSearch=function(q){
+  ssPageClear(true);
+  var res=document.getElementById('ss-page-results');
+  var hits=document.getElementById('ss-page-hits');
+  var jumpRow=document.getElementById('ss-page-jump-row');
+  if(!q||q.length<2){res.innerHTML='<div class="ss-empty">Start typing to find text on this page.</div>';return;}
+  var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+    acceptNode:function(node){
+      var p=node.parentElement;
+      if(!p)return NodeFilter.FILTER_REJECT;
+      var tag=p.tagName;
+      if(tag==='SCRIPT'||tag==='STYLE'||tag==='NOSCRIPT')return NodeFilter.FILTER_REJECT;
+      if(p.closest('#ss-overlay'))return NodeFilter.FILTER_REJECT;
+      if(!node.textContent.trim())return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  _pageNodes=[];
+  var node;
+  var reQ=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+  while((node=walker.nextNode())){
+    var txt=node.textContent;
+    if(reQ.test(txt)){
+      reQ.lastIndex=0;
+      var ctx=txt.trim().substring(0,200);
+      var highlighted=ctx.replace(reQ,function(m){return'<mark>'+esc(m)+'</mark>';});
+      reQ.lastIndex=0;
+      _pageNodes.push({node:node,highlighted:highlighted});
+    }
+  }
+  hits.textContent=_pageNodes.length?_pageNodes.length+' match'+(_pageNodes.length>1?'es':'')+' found':'No matches.';
+  if(!_pageNodes.length){res.innerHTML='<div class="ss-empty">No matches for "'+esc(q)+'" on this page.</div>';return;}
+  jumpRow.innerHTML='<span style="font-size:12px;color:var(--ss-muted)">Jump:</span>';
+  _pageNodes.slice(0,20).forEach(function(r,i){
+    var btn=document.createElement('button');
+    btn.className='ss-pill';btn.textContent='#'+(i+1);
+    btn.onclick=function(){ssClose();var el=_pageNodes[i]&&_pageNodes[i].node.parentElement;if(el){el.scrollIntoView({behavior:'smooth',block:'center'});ssHighlightEl(el);}};
+    jumpRow.appendChild(btn);
+  });
+  var html='';
+  _pageNodes.slice(0,20).forEach(function(r,i){
+    html+='<div class="ss-hit">'+r.highlighted+'<div class="ss-ctx">Match #'+(i+1)+' <button data-idx="'+i+'" style="background:none;border:none;cursor:pointer;color:var(--ss-accent);font-size:11px;padding:0 4px">Scroll to ↗</button></div></div>';
+  });
+  res.innerHTML=html;
+  res.querySelectorAll('[data-idx]').forEach(function(btn){
+    btn.onclick=function(){
+      var idx=parseInt(btn.dataset.idx);
+      ssClose();
+      var el=_pageNodes[idx]&&_pageNodes[idx].node.parentElement;
+      if(el){el.scrollIntoView({behavior:'smooth',block:'center'});ssHighlightEl(el);}
+    };
+  });
+};
+window.ssHighlightEl=function(el){
+  var p=el.style.outline,bg=el.style.backgroundColor;
+  el.style.outline='2.5px solid #4f8ef7';el.style.backgroundColor='rgba(79,142,247,.13)';el.style.transition='all .3s';
+  setTimeout(function(){el.style.outline=p;el.style.backgroundColor=bg;},2400);
+};
+window.ssPageClear=function(soft){
+  if(!soft){document.getElementById('ss-page-query').value='';}
+  setEl('ss-page-results','<div class="ss-empty">Start typing to find text on this page.</div>');
+  setTxt('ss-page-hits','');
+  document.getElementById('ss-page-jump-row').innerHTML='';
+  _pageNodes=[];
+};
+
+/* ════════════════════════════════
+   BUG DETECTOR & AUTO-FIXER
+════════════════════════════════ */
+var _bugRules=[
+  /* ─ ERRORS ─ */
+  {id:'unclosed-tag',sev:'error',label:'Unclosed tag',
+   test:function(h){
+     var tags=[];var re=/<\/?([a-z][a-z0-9]*)[^>]*>/gi;var m;var self=/^(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)$/i;
+     while((m=re.exec(h))!==null){var tag=m[1].toLowerCase();if(self.test(tag))continue;if(m[0][1]=='/'){var idx=tags.lastIndexOf(tag);if(idx!==-1)tags.splice(idx,1);}else if(m[0].slice(-2)!=='/>'){tags.push(tag);}}
+     return tags.length?'Unclosed tags detected: <'+tags.join('>, <')+'> — add closing tags.':null;
+   },
+   fix:function(h){
+     var self=/^(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)$/i;
+     var stack=[];var re=/<\/?([a-z][a-z0-9]*)[^>]*>/gi;var m;
+     while((m=re.exec(h))!==null){var tag=m[1].toLowerCase();if(self.test(tag))continue;if(m[0][1]=='/'){var idx=stack.lastIndexOf(tag);if(idx!==-1)stack.splice(idx,1);}else if(m[0].slice(-2)!=='/>'){stack.push(tag);}}
+     stack.reverse().forEach(function(t){h+='</'+t+'>';});return h;
+   }},
+  {id:'img-alt',sev:'error',label:'Missing alt attribute on <img>',
+   test:function(h){return/<img(?![^>]*\balt=)[^>]*>/i.test(h)?'One or more <img> tags are missing alt="" attribute (required for accessibility & SEO).':null;},
+   fix:function(h){return h.replace(/<img(?![^>]*\balt=)([^>]*?)(\s*\/?>)/gi,'<img$1 alt=""$2');}},
+  {id:'missing-href',sev:'error',label:'Empty href on <a>',
+   test:function(h){return/<a(?![^>]*\bhref=)[^>]*>/i.test(h)?'One or more <a> tags have no href attribute.':null;},
+   fix:function(h){return h.replace(/<a(?![^>]*\bhref=)([^>]*?)>/gi,'<a href="#"$1>');}},
+  {id:'duplicate-id',sev:'error',label:'Duplicate id attributes',
+   test:function(h){var ids={};var re=/\bid="([^"]+)"/gi;var m;var dups=[];while((m=re.exec(h))!==null){var id=m[1];if(ids[id])dups.push(id);ids[id]=true;}return dups.length?'Duplicate id values found: '+dups.map(function(d){return'"'+d+'"';}).join(', '):null;},
+   fix:function(h){var ids={};return h.replace(/\bid="([^"]+)"/gi,function(match,id){if(ids[id]){ids[id]++;return'id="'+id+'-'+ids[id]+'"';}ids[id]=1;return match;});}},
+  {id:'unquoted-attr',sev:'error',label:'Unquoted attribute values',
+   test:function(h){return/=[a-zA-Z0-9][^\s>"'\/=`]*(?=[\s>])/g.test(h)?'Attribute values without quotes detected — wrap all attribute values in double quotes.':null;},
+   fix:function(h){return h.replace(/=([a-zA-Z0-9][^\s>"'\/=`]*)(?=[\s>])/g,'="$1"');}},
+  {id:'script-type',sev:'warn',label:'Redundant type="text/javascript"',
+   test:function(h){return/type=["']text\/javascript["']/i.test(h)?'type="text/javascript" is redundant in HTML5 — remove it.':null;},
+   fix:function(h){return h.replace(/\s*type=["']text\/javascript["']/gi,'');}},
+  {id:'inline-style',sev:'warn',label:'Excessive inline styles',
+   test:function(h){var count=(h.match(/\bstyle=/gi)||[]).length;return count>5?'Found '+count+' inline style attributes — consider moving repeated styles to a <style> block or CSS file for maintainability.':null;},
+   fix:null},
+  {id:'deprecated-font',sev:'warn',label:'Deprecated <font> tag',
+   test:function(h){return/<font\b/i.test(h)?'<font> tag is deprecated in HTML5 — use CSS for styling instead.':null;},
+   fix:function(h){return h.replace(/<font\b[^>]*>([\s\S]*?)<\/font>/gi,'<span>$1</span>');}},
+  {id:'deprecated-center',sev:'warn',label:'Deprecated <center> tag',
+   test:function(h){return/<center\b/i.test(h)?'<center> tag is deprecated — use CSS text-align: center instead.':null;},
+   fix:function(h){return h.replace(/<center\b[^>]*>([\s\S]*?)<\/center>/gi,'<div style="text-align:center">$1</div>');}},
+  {id:'missing-lang',sev:'warn',label:'Missing lang attribute on <html>',
+   test:function(h){return/<html(?![^>]*\blang=)[^>]*>/i.test(h)?'<html> tag is missing the lang attribute (e.g. lang="en"). Required for screen readers.':null;},
+   fix:function(h){return h.replace(/<html(?![^>]*\blang=)([^>]*)>/i,'<html lang="en"$1>');}},
+  {id:'missing-viewport',sev:'warn',label:'Missing viewport meta tag',
+   test:function(h){return h.toLowerCase().includes('<head')&&!/<meta[^>]*name=["']viewport["'][^>]*>/i.test(h)?'No viewport meta tag found. Add <meta name="viewport" content="width=device-width, initial-scale=1"> for mobile responsiveness.':null;},
+   fix:function(h){return h.replace(/(<head[^>]*>)/i,'$1\n  <meta name="viewport" content="width=device-width, initial-scale=1">');}},
+  {id:'missing-charset',sev:'warn',label:'Missing charset declaration',
+   test:function(h){return h.toLowerCase().includes('<head')&&!/<meta[^>]*charset/i.test(h)?'No charset meta tag found. Add <meta charset="UTF-8"> as the first child of <head>.':null;},
+   fix:function(h){return h.replace(/(<head[^>]*>)/i,'$1\n  <meta charset="UTF-8">');}},
+  {id:'empty-button',sev:'info',label:'Button with no text or aria-label',
+   test:function(h){return/<button(?![^>]*aria-label)[^>]*>\s*<\/button>/i.test(h)?'One or more <button> elements are empty and have no aria-label — screen readers cannot describe them.':null;},
+   fix:function(h){return h.replace(/<button(?![^>]*aria-label)([^>]*)>\s*<\/button>/gi,'<button aria-label="button"$1></button>');}},
+  {id:'js-error',sev:'error',label:'Malformed inline script',
+   test:function(h){
+     var scriptRe=/<script[^>]*>([\s\S]*?)<\/script>/gi;var m;
+     while((m=scriptRe.exec(h))!==null){
+       var code=m[1];
+       var open=(code.match(/\{/g)||[]).length;var close=(code.match(/\}/g)||[]).length;
+       if(Math.abs(open-close)>2)return'Possible unbalanced braces in <script> block ('+open+' { vs '+close+' }) — check your JavaScript.';
+       var openP=(code.match(/\(/g)||[]).length;var closeP=(code.match(/\)/g)||[]).length;
+       if(Math.abs(openP-closeP)>2)return'Possible unbalanced parentheses in <script> block ('+openP+' ( vs '+closeP+' )).';
+     }
+     return null;
+   },
+   fix:null},
+  {id:'broken-link-hash',sev:'info',label:'href="#" placeholder links',
+   test:function(h){return(h.match(/href="#"/gi)||[]).length>0?'Found '+(h.match(/href="#"/gi)||[]).length+' placeholder href="#" links — replace with real URLs.':null;},
+   fix:null},
+  {id:'missing-doctype',sev:'warn',label:'Missing DOCTYPE',
+   test:function(h){var trimmed=h.trim().toLowerCase();return(trimmed.includes('<html')||trimmed.includes('<head')||trimmed.includes('<body'))&&!trimmed.startsWith('<!doctype')?'HTML document appears to be missing <!DOCTYPE html> declaration.':null;},
+   fix:function(h){var t=h.trim();if(!t.toLowerCase().startsWith('<!doctype'))return'<!DOCTYPE html>\n'+t;return h;}}
+];
+
+window.ssBugDetect=function(){
+  var code=document.getElementById('ss-bug-input').value;
+  if(!code.trim()){setTxt('ss-bug-status','');setEl('ss-bug-output','');return;}
+  var issues=[];
+  _bugRules.forEach(function(rule){
+    var result=rule.test(code);
+    if(result)issues.push({sev:rule.sev,label:rule.label,msg:result,id:rule.id});
+  });
+  var errors=issues.filter(function(i){return i.sev==='error';}).length;
+  var warns=issues.filter(function(i){return i.sev==='warn';}).length;
+  var infos=issues.filter(function(i){return i.sev==='info';}).length;
+  if(!issues.length){
+    setEl('ss-bug-status','');
+    setEl('ss-bug-output','<div class="ss-bug-ok">✅ No issues detected — your HTML looks clean!</div>');
+    return;
+  }
+  var statusParts=[];
+  if(errors)statusParts.push('<span style="color:var(--ss-danger)">'+errors+' error'+(errors>1?'s':'')+'</span>');
+  if(warns)statusParts.push('<span style="color:var(--ss-warn)">'+warns+' warning'+(warns>1?'s':'')+'</span>');
+  if(infos)statusParts.push('<span style="color:var(--ss-accent)">'+infos+' info</span>');
+  setEl('ss-bug-status','Found: '+statusParts.join(' · ')+' &nbsp;·&nbsp; Click <b>Auto-Fix</b> to apply all fixable corrections.');
+  var html='';
+  issues.forEach(function(issue){
+    var cls=issue.sev==='error'?'':issue.sev==='warn'?' warn':' info';
+    var icon=issue.sev==='error'?'🔴':issue.sev==='warn'?'🟡':'🔵';
+    html+='<div class="ss-bug-issue'+cls+'"><div class="ss-bug-title">'+icon+' '+esc(issue.label)+'</div><div style="font-size:13px;color:var(--ss-muted);margin-top:3px">'+esc(issue.msg)+'</div></div>';
+  });
+  setEl('ss-bug-output',html);
+};
+
+window.ssBugFix=function(){
+  var code=document.getElementById('ss-bug-input').value;
+  if(!code.trim()){alert('Paste some HTML first.');return;}
+  var fixed=code;
+  var applied=0;
+  _bugRules.forEach(function(rule){
+    if(!rule.fix)return;
+    var before=fixed;
+    fixed=rule.fix(fixed);
+    if(fixed!==before)applied++;
+  });
+  var out=document.getElementById('ss-fixed-output');
+  out.style.display='block';
+  out.value=fixed;
+  out.select();
+  try{document.execCommand('copy');}catch(e){}
+  setEl('ss-bug-status','<span style="color:var(--ss-success)">✅ '+applied+' fix'+(applied!==1?'es':'')+' applied — fixed HTML copied to clipboard and shown below.</span>');
+  ssBugDetect();
+};
+
+/* ════════════════════════════════
+   TRANSLATE
+════════════════════════════════ */
+window.ssTranslateText=function(){
+  var text=document.getElementById('ss-translate-input').value.trim();
+  if(!text){alert('Enter text to translate.');return;}
+  var src=document.getElementById('ss-src-lang').value;
+  var tgt=document.getElementById('ss-tgt-lang').value;
+  var out=document.getElementById('ss-translate-output');
+  out.style.display='block';out.textContent='Translating…';
+  fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl='+src+'&tl='+tgt+'&dt=t&q='+encodeURIComponent(text))
+  .then(function(r){return r.json();}).then(function(data){
+    var t='';if(data&&data[0])data[0].forEach(function(s){if(s[0])t+=s[0];});
+    out.textContent=t||'(No translation returned)';
+  }).catch(function(){out.textContent='⚠ Translation failed. Check your connection.';});
+};
+window.ssTranslatePage=function(){
+  var url=document.getElementById('ss-page-url').value.trim()||window.location.href;
+  if(!/^https?:\/\//.test(url)){alert('Enter a valid URL (https://...)');return;}
+  openURL('https://translate.google.com/translate?sl=auto&tl='+document.getElementById('ss-tgt-lang').value+'&u='+encodeURIComponent(url));
+};
+window.ssTranslateThisPage=function(){
+  openURL('https://translate.google.com/translate?sl=auto&tl='+document.getElementById('ss-tgt-lang').value+'&u='+encodeURIComponent(window.location.href));
+};
+
+/* Keyboard shortcut hint */
+var hint=document.createElement('div');
+hint.style.cssText='position:fixed;bottom:92px;right:28px;font-size:11px;color:rgba(255,255,255,.4);font-family:sans-serif;z-index:99997;pointer-events:none;';
+hint.textContent='Ctrl+K';document.body.appendChild(hint);
+setTimeout(function(){hint.style.opacity='0';hint.style.transition='opacity 1.2s';setTimeout(function(){hint.remove();},1200);},4500);
+})();
+</script>
+<!-- ══════════ END SMART SEARCH WIDGET ══════════ -->
 </body>
 </html>
