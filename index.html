@@ -7825,5 +7825,303 @@ window.rsgClear=function(){
 init();
 })();
 </script>
+  <!--
+  ========================================================
+  SOURCE PROTECTION + ADMIN-ONLY EDIT MODE SNIPPET
+  Paste this just before </body> in your HTML file
+  ========================================================
+  WHAT THIS DOES:
+  - Blocks right-click context menu
+  - Blocks Ctrl+U (View Source)
+  - Blocks F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (DevTools)
+  - Blocks Ctrl+S (Save page)
+  - Blocks Ctrl+A (Select All)
+  - Blocks Ctrl+P (Print)
+  - Detects DevTools open via window size and disables page
+  - Makes page read-only for viewers
+  - Admin can unlock editable mode with a password
+
+  NOTE: This is strong CLIENT-SIDE deterrence. A determined
+  developer can still bypass via browser extensions or disabling
+  JS. For full protection, use server-side authentication.
+  ========================================================
+-->
+
+<div id="admin-bar" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  padding: 10px 20px;
+  font-family: monospace;
+  font-size: 13px;
+  z-index: 999999;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  align-items: center;
+  gap: 12px;
+">
+  <span style="color:#4ecca3; font-weight:bold;">&#128274; ADMIN MODE ACTIVE</span>
+  <span style="color:#aaa; font-size:11px;">You can now edit page content. All changes are live.</span>
+  <button onclick="lockAdminMode()" style="
+    margin-left: auto;
+    background: #c0392b;
+    color: white;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 12px;
+  ">&#128274; Lock &amp; Exit Admin</button>
+</div>
+
+<div id="admin-login-overlay" style="
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 999998;
+  align-items: center;
+  justify-content: center;
+">
+  <div style="
+    background: #1a1a2e;
+    border: 1px solid #4ecca3;
+    border-radius: 10px;
+    padding: 36px 40px;
+    width: 320px;
+    font-family: monospace;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  ">
+    <div style="color:#4ecca3; font-size:15px; font-weight:bold; margin-bottom:20px; text-align:center;">
+      &#128274; Administrator Access
+    </div>
+    <input
+      type="password"
+      id="admin-password-input"
+      placeholder="Enter admin password"
+      onkeydown="if(event.key==='Enter')checkAdminPassword()"
+      style="
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 6px;
+        border: 1px solid #4ecca3;
+        background: #0f0f23;
+        color: #e0e0e0;
+        font-family: monospace;
+        font-size: 13px;
+        box-sizing: border-box;
+        margin-bottom: 12px;
+      "
+    />
+    <div id="admin-error" style="color:#e74c3c; font-size:12px; margin-bottom:10px; display:none;">
+      &#10007; Incorrect password. Access denied.
+    </div>
+    <div style="display:flex; gap:10px;">
+      <button onclick="checkAdminPassword()" style="
+        flex:1; background:#4ecca3; color:#0f0f23;
+        border:none; padding:9px; border-radius:6px;
+        cursor:pointer; font-family:monospace; font-weight:bold; font-size:13px;
+      ">Unlock</button>
+      <button onclick="closeAdminLogin()" style="
+        flex:1; background:transparent; color:#aaa;
+        border:1px solid #555; padding:9px; border-radius:6px;
+        cursor:pointer; font-family:monospace; font-size:13px;
+      ">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="devtools-warning" style="
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #0f0f23;
+  z-index: 9999999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: monospace;
+">
+  <div style="font-size: 48px; margin-bottom: 20px;">&#128683;</div>
+  <div style="color: #e74c3c; font-size: 22px; font-weight: bold; margin-bottom: 10px;">Access Restricted</div>
+  <div style="color: #aaa; font-size: 14px;">Developer tools are not permitted on this page.</div>
+  <div style="color: #666; font-size: 12px; margin-top: 8px;">Please close DevTools and refresh.</div>
+</div>
+
+<script>
+(function () {
+
+  /* ── CHANGE ONLY THESE TWO VALUES ───────────────────────────────────── */
+  var ADMIN_PASSWORD    = "YourSecretPassword123";  // ← Set your password
+  var ADMIN_SECRET_KEY  = "KeyA";                   // ← Key to open login (e.g. Alt+A)
+  /* ─────────────────────────────────────────────────────────────────── */
+
+  var adminActive = false;
+
+  /* ── 1. DISABLE RIGHT-CLICK ──────────────────────────────────────── */
+  document.addEventListener("contextmenu", function (e) {
+    if (!adminActive) {
+      e.preventDefault();
+      return false;
+    }
+  });
+
+  /* ── 2. BLOCK KEYBOARD SHORTCUTS ─────────────────────────────────── */
+  document.addEventListener("keydown", function (e) {
+
+    var key = e.key ? e.key.toUpperCase() : "";
+
+    /* Admin login hotkey (Alt + ADMIN_SECRET_KEY) */
+    if (e.altKey && key === ADMIN_SECRET_KEY.toUpperCase()) {
+      e.preventDefault();
+      openAdminLogin();
+      return false;
+    }
+
+    /* Allow everything in admin mode */
+    if (adminActive) return true;
+
+    /* F12 — DevTools */
+    if (e.keyCode === 123) { e.preventDefault(); return false; }
+
+    /* Ctrl / Cmd combos */
+    if (e.ctrlKey || e.metaKey) {
+      switch (key) {
+        case "U":  /* View Source       */
+        case "S":  /* Save Page         */
+        case "A":  /* Select All        */
+        case "P":  /* Print             */
+        case "F":  /* Find (Ctrl+F)     */
+          e.preventDefault(); return false;
+        case "SHIFT":
+          break;
+      }
+    }
+
+    /* Ctrl+Shift+I / J / C / K — DevTools panels */
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
+      if (["I","J","C","K"].indexOf(key) !== -1) {
+        e.preventDefault(); return false;
+      }
+    }
+
+    /* Function keys F1-F12 */
+    if (e.keyCode >= 112 && e.keyCode <= 123) {
+      e.preventDefault(); return false;
+    }
+
+  }, true);
+
+  /* ── 3. BLOCK DRAG-SELECT & COPY ─────────────────────────────────── */
+  document.addEventListener("selectstart", function (e) {
+    if (!adminActive) { e.preventDefault(); return false; }
+  });
+  document.addEventListener("copy", function (e) {
+    if (!adminActive) { e.preventDefault(); return false; }
+  });
+  document.addEventListener("dragstart", function (e) {
+    if (!adminActive) { e.preventDefault(); return false; }
+  });
+
+  /* ── 4. DEVTOOLS OPEN DETECTION ──────────────────────────────────── */
+  var devtoolsWarning = document.getElementById("devtools-warning");
+  var threshold = 160;
+
+  function checkDevTools() {
+    if (!adminActive) {
+      var widthDiff  = window.outerWidth  - window.innerWidth  > threshold;
+      var heightDiff = window.outerHeight - window.innerHeight > threshold;
+      if (widthDiff || heightDiff) {
+        devtoolsWarning.style.display = "flex";
+      } else {
+        devtoolsWarning.style.display = "none";
+      }
+    }
+  }
+
+  window.addEventListener("resize", checkDevTools);
+  setInterval(checkDevTools, 1000);
+
+  /* Debugger trap — slows down console inspection */
+  setInterval(function () {
+    if (!adminActive) {
+      (function () { /* jshint ignore:start */
+        try { (function (a) { if (('' + a / a).length !== 1 || a % 20 === 0) { (function () {}).constructor('debugger')(); } else { (function () {}).constructor('debugger')(); } })(1); } catch (e) {}
+      /* jshint ignore:end */ })();
+    }
+  }, 3000);
+
+  /* ── 5. PREVENT PRINT & SAVE VIA MENU ───────────────────────────── */
+  window.onbeforeprint = function () {
+    if (!adminActive) {
+      document.body.innerHTML = "<h2 style='text-align:center;margin-top:40vh;font-family:sans-serif'>Printing is disabled on this page.</h2>";
+    }
+  };
+
+  /* ── 6. ADMIN LOGIN / UNLOCK LOGIC ───────────────────────────────── */
+  var loginOverlay = document.getElementById("admin-login-overlay");
+  var adminBar     = document.getElementById("admin-bar");
+  var errorMsg     = document.getElementById("admin-error");
+  var pwdInput     = document.getElementById("admin-password-input");
+
+  function openAdminLogin() {
+    loginOverlay.style.display = "flex";
+    setTimeout(function () { pwdInput.focus(); }, 100);
+  }
+
+  function closeAdminLogin() {
+    loginOverlay.style.display = "none";
+    pwdInput.value = "";
+    errorMsg.style.display = "none";
+  }
+
+  function checkAdminPassword() {
+    if (pwdInput.value === ADMIN_PASSWORD) {
+      unlockAdminMode();
+      closeAdminLogin();
+    } else {
+      errorMsg.style.display = "block";
+      pwdInput.value = "";
+      pwdInput.focus();
+    }
+  }
+
+  function unlockAdminMode() {
+    adminActive = true;
+    adminBar.style.display = "flex";
+    /* Make all content editable */
+    document.body.contentEditable = "true";
+    document.body.style.outline = "none";
+    document.designMode = "on";
+    devtoolsWarning.style.display = "none";
+  }
+
+  function lockAdminMode() {
+    adminActive = false;
+    adminBar.style.display = "none";
+    document.body.contentEditable = "false";
+    document.designMode = "off";
+  }
+
+  /* Expose for button onclick handlers */
+  window.checkAdminPassword = checkAdminPassword;
+  window.closeAdminLogin    = closeAdminLogin;
+  window.lockAdminMode      = lockAdminMode;
+  window.openAdminLogin     = openAdminLogin;
+
+  /* ── 7. DISABLE CSS USER-SELECT ──────────────────────────────────── */
+  var style = document.createElement("style");
+  style.innerHTML = [
+    "body { -webkit-user-select: none; -moz-user-select: none;",
+    "-ms-user-select: none; user-select: none; }",
+    "[contenteditable='true'] { -webkit-user-select: text;",
+    "-moz-user-select: text; user-select: text; }"
+  ].join(" ");
+  document.head.appendChild(style);
+
+})();
+</script>
 </body>
 </html>
